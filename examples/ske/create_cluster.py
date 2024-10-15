@@ -26,8 +26,7 @@ options_resonse = client.list_provider_options()
 # Create a new instance using the first option for everything
 cluser_name = "cl-name"
 create_instance_payload = CreateOrUpdateClusterPayload(
-    kubernetes=Kubernetes(
-        version=options_resonse.kubernetes_versions[0].version),
+    kubernetes=Kubernetes(version=options_resonse.kubernetes_versions[0].version),
     nodepools=[
         Nodepool(
             availability_zones=[options_resonse.availability_zones[0].name],
@@ -48,5 +47,4 @@ create_instance_payload = CreateOrUpdateClusterPayload(
         )
     ],
 )
-client.create_or_update_cluster(
-    project_id, cluser_name, create_instance_payload)
+client.create_or_update_cluster(project_id, cluser_name, create_instance_payload)
