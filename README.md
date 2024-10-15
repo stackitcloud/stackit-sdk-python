@@ -1,5 +1,7 @@
 [![GitHub License](https://img.shields.io/github/license/stackitcloud/stackit-sdk-go)](https://www.apache.org/licenses/LICENSE-2.0)
 
+> ⓘ INFO: The STACKIt Python SDK is a beta and in active development.
+
 # Overview
 
 This repository contains the published Python SDKs and releases.
