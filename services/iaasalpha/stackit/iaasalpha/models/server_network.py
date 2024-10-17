@@ -19,10 +19,15 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+    field_validator,
+)
 from typing_extensions import Annotated, Self
-
-from stackit.iaasalpha.models.allowed_addresses_inner import AllowedAddressesInner
 
 
 class ServerNetwork(BaseModel):
@@ -30,7 +35,7 @@ class ServerNetwork(BaseModel):
     Describes the object that matches servers to its networks.
     """
 
-    allowed_addresses: Optional[List[AllowedAddressesInner]] = Field(
+    allowed_addresses: Optional[List[StrictStr]] = Field(
         default=None, description="A list of IPs or CIDR notations.", alias="allowedAddresses"
     )
     ipv4: Optional[Annotated[str, Field(strict=True)]] = Field(
@@ -186,13 +191,6 @@ class ServerNetwork(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in allowed_addresses (list)
-        _items = []
-        if self.allowed_addresses:
-            for _item in self.allowed_addresses:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["allowedAddresses"] = _items
         return _dict
 
     @classmethod
@@ -206,11 +204,7 @@ class ServerNetwork(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "allowedAddresses": (
-                    [AllowedAddressesInner.from_dict(_item) for _item in obj["allowedAddresses"]]
-                    if obj.get("allowedAddresses") is not None
-                    else None
-                ),
+                "allowedAddresses": obj.get("allowedAddresses"),
                 "ipv4": obj.get("ipv4"),
                 "ipv6": obj.get("ipv6"),
                 "mac": obj.get("mac"),
