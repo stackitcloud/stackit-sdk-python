@@ -84,13 +84,6 @@ gateway_a_network = client.create_network(
     ),
 )
 
-gateway_b_network = client.create_network(
-    project_id,
-    CreateNetworkPayload(
-        name="gateway_b_network",
-    ),
-)
-
 gateway_a_nic1 = alpha_client.create_nic(
     project_id,
     gateway_a_network.network_id,
@@ -102,19 +95,6 @@ gateway_a_nic1 = alpha_client.create_nic(
 
 gateway_a_public_ip = alpha_client.create_public_ip(
     project_id, CreatePublicIPPayload(network_interface=gateway_a_nic1.id)
-)
-
-gateway_b_nic1 = alpha_client.create_nic(
-    project_id,
-    gateway_b_network.network_id,
-    CreateNICPayload(
-        allowed_addresses=[x for x in admin_vps_routes],
-        security_groups=[security_group1_groupid],
-    ),
-)
-
-gateway_b_public_ip = alpha_client.create_public_ip(
-    project_id, CreatePublicIPPayload(network_interface=gateway_b_nic1.id)
 )
 
 gateway_a = alpha_client.create_server(
@@ -134,7 +114,7 @@ gateway_a = alpha_client.create_server(
         availability_zone="eu01-1",
     ),
 )
-time.sleep(180)  # wait for server to be created
+time.sleep(180)  # wait for server to be created, temporary sleep until waiter methods are implemented
 alpha_client.add_nicto_server(project_id, gateway_a.id, gateway_a_nic1.id)
 
 
@@ -144,8 +124,6 @@ admin_area_routes = client.create_network_area_route(
     CreateNetworkAreaRoutePayload(ipv4=[Route(prefix=x, nexthop=gateway_a_nic1.ipv4) for x in admin_vps_routes]),
 )
 
-
-# Tenant Part (right side of the picture)
 
 tenant_network = client.create_network(
     project_id,
@@ -179,7 +157,6 @@ tenant = alpha_client.create_server(
         keypair_name="key",
         labels={"key": "value"},
         machine_type="t1.2",
-        networking=CreateServerPayloadNetworking(CreateServerNetworkingWithNics(nic_ids=[tenant_nic.id])),
         availability_zone="eu01-1",
     ),
 )
