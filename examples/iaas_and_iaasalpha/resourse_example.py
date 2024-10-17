@@ -54,7 +54,7 @@ project = resource_client.create_project(
         name="demo_network_area",
         container_parent_id=organization_id,
         labels={"networkArea": demo_network_area.area_id},
-        members=[Member(role="owner", subject="melvin.klein@stackit.cloud")],
+        members=[Member(role="owner", subject="example@stackit.cloud")],
     )
 )
 project_id = project.project_id
