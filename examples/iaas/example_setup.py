@@ -6,19 +6,15 @@ from stackit.iaas.api.default_api import DefaultApi
 from stackit.iaas.models.create_area_address_family import CreateAreaAddressFamily
 from stackit.iaas.models.create_area_ipv4 import CreateAreaIPv4
 from stackit.iaas.models.create_network_area_payload import CreateNetworkAreaPayload
-from stackit.iaas.models.create_network_area_route_payload import CreateNetworkAreaRoutePayload
 from stackit.iaas.models.create_network_payload import CreateNetworkPayload
 from stackit.iaas.models.network_range import NetworkRange
-from stackit.iaas.models.route import Route
 from stackit.iaasalpha.api.default_api import DefaultApi as AlphaDefaultApi
 from stackit.iaasalpha.models.boot_volume import BootVolume
 from stackit.iaasalpha.models.boot_volume_source import BootVolumeSource
 from stackit.iaasalpha.models.create_nic_payload import CreateNICPayload
 from stackit.iaasalpha.models.create_public_ip_payload import CreatePublicIPPayload
 from stackit.iaasalpha.models.create_security_group_payload import CreateSecurityGroupPayload
-from stackit.iaasalpha.models.create_server_networking_with_nics import CreateServerNetworkingWithNics
 from stackit.iaasalpha.models.create_server_payload import CreateServerPayload
-from stackit.iaasalpha.models.create_server_payload_networking import CreateServerPayloadNetworking
 from stackit.resourcemanager.api.default_api import DefaultApi as ResourceDefaultApi
 from stackit.resourcemanager.models.create_project_payload import CreateProjectPayload
 from stackit.resourcemanager.models.member import Member
@@ -92,9 +88,7 @@ nic1 = alpha_client.create_nic(
     ),
 )
 
-public_ip = alpha_client.create_public_ip(
-    project_id, CreatePublicIPPayload(network_interface=nic1.id)
-)
+public_ip = alpha_client.create_public_ip(project_id, CreatePublicIPPayload(network_interface=nic1.id))
 
 server = alpha_client.create_server(
     project_id,

@@ -22,12 +22,14 @@ from stackit.iaasalpha.models.area import Area
 from stackit.iaasalpha.models.area_config import AreaConfig
 from stackit.iaasalpha.models.area_id import AreaId
 from stackit.iaasalpha.models.area_prefix_config_ipv4 import AreaPrefixConfigIPv4
+from stackit.iaasalpha.models.base_security_group_rule import BaseSecurityGroupRule
 from stackit.iaasalpha.models.boot_volume import BootVolume
 from stackit.iaasalpha.models.boot_volume_source import BootVolumeSource
 from stackit.iaasalpha.models.create_area_address_family import CreateAreaAddressFamily
 from stackit.iaasalpha.models.create_area_ipv4 import CreateAreaIPv4
 from stackit.iaasalpha.models.create_key_pair_payload import CreateKeyPairPayload
 from stackit.iaasalpha.models.create_nic_payload import CreateNICPayload
+from stackit.iaasalpha.models.create_protocol import CreateProtocol
 from stackit.iaasalpha.models.create_public_ip_payload import CreatePublicIPPayload
 from stackit.iaasalpha.models.create_security_group_payload import (
     CreateSecurityGroupPayload,
@@ -35,8 +37,8 @@ from stackit.iaasalpha.models.create_security_group_payload import (
 from stackit.iaasalpha.models.create_security_group_rule_payload import (
     CreateSecurityGroupRulePayload,
 )
-from stackit.iaasalpha.models.create_server_group_payload import (
-    CreateServerGroupPayload,
+from stackit.iaasalpha.models.create_security_group_rule_protocol import (
+    CreateSecurityGroupRuleProtocol,
 )
 from stackit.iaasalpha.models.create_server_networking import CreateServerNetworking
 from stackit.iaasalpha.models.create_server_networking_with_nics import (
@@ -64,8 +66,10 @@ from stackit.iaasalpha.models.nic_list_response import NICListResponse
 from stackit.iaasalpha.models.port_range import PortRange
 from stackit.iaasalpha.models.project import Project
 from stackit.iaasalpha.models.project_list_response import ProjectListResponse
+from stackit.iaasalpha.models.protocol import Protocol
 from stackit.iaasalpha.models.public_ip import PublicIp
 from stackit.iaasalpha.models.public_ip_list_response import PublicIpListResponse
+from stackit.iaasalpha.models.public_network import PublicNetwork
 from stackit.iaasalpha.models.public_network_list_response import (
     PublicNetworkListResponse,
 )
@@ -83,10 +87,11 @@ from stackit.iaasalpha.models.security_group_rule import SecurityGroupRule
 from stackit.iaasalpha.models.security_group_rule_list_response import (
     SecurityGroupRuleListResponse,
 )
+from stackit.iaasalpha.models.security_group_rule_protocol import (
+    SecurityGroupRuleProtocol,
+)
 from stackit.iaasalpha.models.server import Server
 from stackit.iaasalpha.models.server_console_url import ServerConsoleUrl
-from stackit.iaasalpha.models.server_group import ServerGroup
-from stackit.iaasalpha.models.server_group_list_response import ServerGroupListResponse
 from stackit.iaasalpha.models.server_list_response import ServerListResponse
 from stackit.iaasalpha.models.server_maintenance import ServerMaintenance
 from stackit.iaasalpha.models.server_network import ServerNetwork
@@ -107,15 +112,11 @@ from stackit.iaasalpha.models.update_security_group_payload import (
 )
 from stackit.iaasalpha.models.update_server_payload import UpdateServerPayload
 from stackit.iaasalpha.models.update_volume_payload import UpdateVolumePayload
-from stackit.iaasalpha.models.v1_public_network import V1PublicNetwork
-from stackit.iaasalpha.models.v1_security_group_rule_protocol import (
-    V1SecurityGroupRuleProtocol,
-)
-from stackit.iaasalpha.models.v1_volume_attachment_list_response import (
-    V1VolumeAttachmentListResponse,
-)
 from stackit.iaasalpha.models.volume import Volume
 from stackit.iaasalpha.models.volume_attachment import VolumeAttachment
+from stackit.iaasalpha.models.volume_attachment_list_response import (
+    VolumeAttachmentListResponse,
+)
 from stackit.iaasalpha.models.volume_list_response import VolumeListResponse
 from stackit.iaasalpha.models.volume_performance_class import VolumePerformanceClass
 from stackit.iaasalpha.models.volume_performance_class_list_response import (

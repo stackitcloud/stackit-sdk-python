@@ -43,6 +43,9 @@ class Server(BaseModel):
     Representation of a single server object.
     """
 
+    affinity_group: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+        default=None, description="The affinity group the server is assigned to.", alias="affinityGroup"
+    )
     availability_zone: Optional[StrictStr] = Field(
         default=None,
         description="This is the availability zone requested during server creation. If none is provided during the creation request and an existing volume will be used as boot volume it will be set to the same availability zone as the volume. For requests with no volumes involved it will be set to the metro availability zone.",
@@ -69,7 +72,7 @@ class Server(BaseModel):
         default=None, description="Date-time when resource was launched.", alias="launchedAt"
     )
     machine_type: Annotated[str, Field(strict=True, max_length=63)] = Field(
-        description="Name of the machine-type the server shall belong to.", alias="machineType"
+        description="Name of the machine type the server shall belong to.", alias="machineType"
     )
     maintenance_window: Optional[ServerMaintenance] = Field(default=None, alias="maintenanceWindow")
     name: Annotated[str, Field(strict=True, max_length=63)] = Field(description="The name for a Server.")
@@ -83,9 +86,6 @@ class Server(BaseModel):
     )
     security_groups: Optional[List[Annotated[str, Field(strict=True, max_length=63)]]] = Field(
         default=None, description="The initial security groups for the server creation.", alias="securityGroups"
-    )
-    server_group: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="The server group the server is assigned to.", alias="serverGroup"
     )
     service_account_mails: Optional[
         Annotated[List[Annotated[str, Field(strict=True, max_length=255)]], Field(max_length=1)]
@@ -107,6 +107,7 @@ class Server(BaseModel):
         default=None, description="The list of volumes attached to the server."
     )
     __properties: ClassVar[List[str]] = [
+        "affinityGroup",
         "availabilityZone",
         "bootVolume",
         "createdAt",
@@ -123,13 +124,24 @@ class Server(BaseModel):
         "nics",
         "powerStatus",
         "securityGroups",
-        "serverGroup",
         "serviceAccountMails",
         "status",
         "updatedAt",
         "userData",
         "volumes",
     ]
+
+    @field_validator("affinity_group")
+    def affinity_group_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
+        return value
 
     @field_validator("id")
     def id_validate_regular_expression(cls, value):
@@ -177,18 +189,6 @@ class Server(BaseModel):
         """Validates the regular expression"""
         if not re.match(r"^[A-Za-z0-9]+((-|\.)[A-Za-z0-9]+)*$", value):
             raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|\.)[A-Za-z0-9]+)*$/")
-        return value
-
-    @field_validator("server_group")
-    def server_group_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
-            raise ValueError(
-                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
-            )
         return value
 
     model_config = ConfigDict(
@@ -278,6 +278,7 @@ class Server(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "affinityGroup": obj.get("affinityGroup"),
                 "availabilityZone": obj.get("availabilityZone"),
                 "bootVolume": BootVolume.from_dict(obj["bootVolume"]) if obj.get("bootVolume") is not None else None,
                 "createdAt": obj.get("createdAt"),
@@ -304,7 +305,6 @@ class Server(BaseModel):
                 ),
                 "powerStatus": obj.get("powerStatus"),
                 "securityGroups": obj.get("securityGroups"),
-                "serverGroup": obj.get("serverGroup"),
                 "serviceAccountMails": obj.get("serviceAccountMails"),
                 "status": obj.get("status"),
                 "updatedAt": obj.get("updatedAt"),

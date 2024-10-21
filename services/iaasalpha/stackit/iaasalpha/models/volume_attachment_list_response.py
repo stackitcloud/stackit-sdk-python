@@ -18,20 +18,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field
+from typing_extensions import Self
+
+from stackit.iaasalpha.models.volume_attachment import VolumeAttachment
 
 
-class V1SecurityGroupRuleProtocol(BaseModel):
+class VolumeAttachmentListResponse(BaseModel):
     """
-    The internet protocol which the rule should match.
+    Volume attachment list response.
     """
 
-    name: Optional[StrictStr] = Field(default=None, description="The protocol name which the rule should match.")
-    protocol: Optional[Annotated[int, Field(le=255, strict=True, ge=0)]] = Field(
-        default=None, description="The protocol number which the rule should match."
-    )
-    __properties: ClassVar[List[str]] = ["name", "protocol"]
+    items: List[VolumeAttachment] = Field(description="A list containing Volume attachments of a server.")
+    __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +49,7 @@ class V1SecurityGroupRuleProtocol(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of V1SecurityGroupRuleProtocol from a JSON string"""
+        """Create an instance of VolumeAttachmentListResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,16 +69,31 @@ class V1SecurityGroupRuleProtocol(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item in self.items:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of V1SecurityGroupRuleProtocol from a dict"""
+        """Create an instance of VolumeAttachmentListResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"name": obj.get("name"), "protocol": obj.get("protocol")})
+        _obj = cls.model_validate(
+            {
+                "items": (
+                    [VolumeAttachment.from_dict(_item) for _item in obj["items"]]
+                    if obj.get("items") is not None
+                    else None
+                )
+            }
+        )
         return _obj
