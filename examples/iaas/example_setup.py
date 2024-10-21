@@ -6,19 +6,14 @@ from stackit.iaas.api.default_api import DefaultApi
 from stackit.iaas.models.create_area_address_family import CreateAreaAddressFamily
 from stackit.iaas.models.create_area_ipv4 import CreateAreaIPv4
 from stackit.iaas.models.create_network_area_payload import CreateNetworkAreaPayload
-from stackit.iaas.models.create_network_area_route_payload import CreateNetworkAreaRoutePayload
 from stackit.iaas.models.create_network_payload import CreateNetworkPayload
 from stackit.iaas.models.network_range import NetworkRange
-from stackit.iaas.models.route import Route
-from stackit.iaasalpha.api.default_api import DefaultApi as AlphaDefaultApi
-from stackit.iaasalpha.models.boot_volume import BootVolume
-from stackit.iaasalpha.models.boot_volume_source import BootVolumeSource
-from stackit.iaasalpha.models.create_nic_payload import CreateNICPayload
-from stackit.iaasalpha.models.create_public_ip_payload import CreatePublicIPPayload
-from stackit.iaasalpha.models.create_security_group_payload import CreateSecurityGroupPayload
-from stackit.iaasalpha.models.create_server_networking_with_nics import CreateServerNetworkingWithNics
-from stackit.iaasalpha.models.create_server_payload import CreateServerPayload
-from stackit.iaasalpha.models.create_server_payload_networking import CreateServerPayloadNetworking
+from stackit.iaas.models.boot_volume import BootVolume
+from stackit.iaas.models.boot_volume_source import BootVolumeSource
+from stackit.iaas.models.create_nic_payload import CreateNICPayload
+from stackit.iaas.models.create_public_ip_payload import CreatePublicIPPayload
+from stackit.iaas.models.create_security_group_payload import CreateSecurityGroupPayload
+from stackit.iaas.models.create_server_payload import CreateServerPayload
 from stackit.resourcemanager.api.default_api import DefaultApi as ResourceDefaultApi
 from stackit.resourcemanager.models.create_project_payload import CreateProjectPayload
 from stackit.resourcemanager.models.member import Member
@@ -30,7 +25,6 @@ image_id = os.getenv("IMAGE_ID")
 # Create a new API client, that uses default authentication and configuration
 config = Configuration()
 client = DefaultApi(config)
-alpha_client = AlphaDefaultApi(config)
 resource_client = ResourceDefaultApi(config)
 
 create_network_area_payload = CreateNetworkAreaPayload(
@@ -66,7 +60,7 @@ default_network_creation_response = client.create_network(
     ),
 )
 
-security_group1 = alpha_client.create_security_group(
+security_group1 = client.create_security_group(
     project_id,
     CreateSecurityGroupPayload(
         name="My-security-group",
@@ -83,7 +77,7 @@ network = client.create_network(
     ),
 )
 
-nic1 = alpha_client.create_nic(
+nic1 = client.create_nic(
     project_id,
     network.network_id,
     CreateNICPayload(
@@ -92,11 +86,9 @@ nic1 = alpha_client.create_nic(
     ),
 )
 
-public_ip = alpha_client.create_public_ip(
-    project_id, CreatePublicIPPayload(network_interface=nic1.id)
-)
+public_ip = client.create_public_ip(project_id, CreatePublicIPPayload(network_interface=nic1.id))
 
-server = alpha_client.create_server(
+server = client.create_server(
     project_id,
     CreateServerPayload(
         name="example-server",
@@ -114,4 +106,4 @@ server = alpha_client.create_server(
     ),
 )
 time.sleep(180)  # wait for server to be created, temporary sleep until waiter methods are implemented
-alpha_client.add_nicto_server(project_id, server.id, nic1.id)
+client.add_nicto_server(project_id, server.id, nic1.id)

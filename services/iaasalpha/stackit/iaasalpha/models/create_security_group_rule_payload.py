@@ -22,16 +22,14 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
+from stackit.iaasalpha.models.create_protocol import CreateProtocol
 from stackit.iaasalpha.models.icmp_parameters import ICMPParameters
 from stackit.iaasalpha.models.port_range import PortRange
-from stackit.iaasalpha.models.v1_security_group_rule_protocol import (
-    V1SecurityGroupRuleProtocol,
-)
 
 
 class CreateSecurityGroupRulePayload(BaseModel):
     """
-    Object that represents a security group rule.
+    Object that represents a request body for security group rule creation.
     """
 
     description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
@@ -47,7 +45,6 @@ class CreateSecurityGroupRulePayload(BaseModel):
         default=None, description="The remote IP range which the rule should match.", alias="ipRange"
     )
     port_range: Optional[PortRange] = Field(default=None, alias="portRange")
-    protocol: Optional[V1SecurityGroupRuleProtocol] = None
     remote_security_group_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None,
         description="The remote security group which the rule should match.",
@@ -56,6 +53,7 @@ class CreateSecurityGroupRulePayload(BaseModel):
     security_group_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="securityGroupId"
     )
+    protocol: Optional[CreateProtocol] = None
     __properties: ClassVar[List[str]] = [
         "description",
         "direction",
@@ -64,9 +62,9 @@ class CreateSecurityGroupRulePayload(BaseModel):
         "id",
         "ipRange",
         "portRange",
-        "protocol",
         "remoteSecurityGroupId",
         "securityGroupId",
+        "protocol",
     ]
 
     @field_validator("id")
@@ -195,11 +193,9 @@ class CreateSecurityGroupRulePayload(BaseModel):
                 "id": obj.get("id"),
                 "ipRange": obj.get("ipRange"),
                 "portRange": PortRange.from_dict(obj["portRange"]) if obj.get("portRange") is not None else None,
-                "protocol": (
-                    V1SecurityGroupRuleProtocol.from_dict(obj["protocol"]) if obj.get("protocol") is not None else None
-                ),
                 "remoteSecurityGroupId": obj.get("remoteSecurityGroupId"),
                 "securityGroupId": obj.get("securityGroupId"),
+                "protocol": CreateProtocol.from_dict(obj["protocol"]) if obj.get("protocol") is not None else None,
             }
         )
         return _obj

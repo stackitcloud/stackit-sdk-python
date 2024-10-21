@@ -39,9 +39,6 @@ from stackit.iaasalpha.models.create_security_group_payload import (
 from stackit.iaasalpha.models.create_security_group_rule_payload import (
     CreateSecurityGroupRulePayload,
 )
-from stackit.iaasalpha.models.create_server_group_payload import (
-    CreateServerGroupPayload,
-)
 from stackit.iaasalpha.models.create_server_payload import CreateServerPayload
 from stackit.iaasalpha.models.create_volume_payload import CreateVolumePayload
 from stackit.iaasalpha.models.get_server_log200_response import GetServerLog200Response
@@ -75,8 +72,6 @@ from stackit.iaasalpha.models.security_group_rule_list_response import (
 )
 from stackit.iaasalpha.models.server import Server
 from stackit.iaasalpha.models.server_console_url import ServerConsoleUrl
-from stackit.iaasalpha.models.server_group import ServerGroup
-from stackit.iaasalpha.models.server_group_list_response import ServerGroupListResponse
 from stackit.iaasalpha.models.server_list_response import ServerListResponse
 from stackit.iaasalpha.models.service_account_mail_list_response import (
     ServiceAccountMailListResponse,
@@ -92,11 +87,11 @@ from stackit.iaasalpha.models.update_security_group_payload import (
 )
 from stackit.iaasalpha.models.update_server_payload import UpdateServerPayload
 from stackit.iaasalpha.models.update_volume_payload import UpdateVolumePayload
-from stackit.iaasalpha.models.v1_volume_attachment_list_response import (
-    V1VolumeAttachmentListResponse,
-)
 from stackit.iaasalpha.models.volume import Volume
 from stackit.iaasalpha.models.volume_attachment import VolumeAttachment
+from stackit.iaasalpha.models.volume_attachment_list_response import (
+    VolumeAttachmentListResponse,
+)
 from stackit.iaasalpha.models.volume_list_response import VolumeListResponse
 from stackit.iaasalpha.models.volume_performance_class import VolumePerformanceClass
 from stackit.iaasalpha.models.volume_performance_class_list_response import (
@@ -2521,7 +2516,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
-        create_public_ip_payload: Annotated[CreatePublicIPPayload, Field(description="Request a public ip creation.")],
+        create_public_ip_payload: Annotated[CreatePublicIPPayload, Field(description="Request a public IP creation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2532,13 +2527,13 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PublicIp:
-        """Create new public ip.
+        """Create new public IP.
 
-        Create a new public ip in a project.
+        Create a new public IP in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
-        :param create_public_ip_payload: Request a public ip creation. (required)
+        :param create_public_ip_payload: Request a public IP creation. (required)
         :type create_public_ip_payload: CreatePublicIPPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2594,7 +2589,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
-        create_public_ip_payload: Annotated[CreatePublicIPPayload, Field(description="Request a public ip creation.")],
+        create_public_ip_payload: Annotated[CreatePublicIPPayload, Field(description="Request a public IP creation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2605,13 +2600,13 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PublicIp]:
-        """Create new public ip.
+        """Create new public IP.
 
-        Create a new public ip in a project.
+        Create a new public IP in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
-        :param create_public_ip_payload: Request a public ip creation. (required)
+        :param create_public_ip_payload: Request a public IP creation. (required)
         :type create_public_ip_payload: CreatePublicIPPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2667,7 +2662,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
-        create_public_ip_payload: Annotated[CreatePublicIPPayload, Field(description="Request a public ip creation.")],
+        create_public_ip_payload: Annotated[CreatePublicIPPayload, Field(description="Request a public IP creation.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2678,13 +2673,13 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create new public ip.
+        """Create new public IP.
 
-        Create a new public ip in a project.
+        Create a new public IP in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
-        :param create_public_ip_payload: Request a public ip creation. (required)
+        :param create_public_ip_payload: Request a public IP creation. (required)
         :type create_public_ip_payload: CreatePublicIPPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2850,7 +2845,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "SecurityGroup",
+            "201": "SecurityGroup",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -2924,7 +2919,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "SecurityGroup",
+            "201": "SecurityGroup",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -2998,7 +2993,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "SecurityGroup",
+            "201": "SecurityGroup",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -3141,7 +3136,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "SecurityGroupRule",
+            "201": "SecurityGroupRule",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -3227,7 +3222,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "SecurityGroupRule",
+            "201": "SecurityGroupRule",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -3313,7 +3308,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "SecurityGroupRule",
+            "201": "SecurityGroupRule",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -3445,7 +3440,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "Server",
+            "201": "Server",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -3517,7 +3512,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "Server",
+            "201": "Server",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -3589,7 +3584,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "Server",
+            "201": "Server",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -3661,285 +3656,6 @@ class DefaultApi:
         )
 
     @validate_call
-    def create_server_group(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        create_server_group_payload: Annotated[
-            CreateServerGroupPayload, Field(description="Request a server group creation.")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ServerGroup:
-        """Create a new server group in a project.
-
-        Create a new server server group in the given project ID.
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param create_server_group_payload: Request a server group creation. (required)
-        :type create_server_group_payload: CreateServerGroupPayload
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._create_server_group_serialize(
-            project_id=project_id,
-            create_server_group_payload=create_server_group_payload,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ServerGroup",
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    @validate_call
-    def create_server_group_with_http_info(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        create_server_group_payload: Annotated[
-            CreateServerGroupPayload, Field(description="Request a server group creation.")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ServerGroup]:
-        """Create a new server group in a project.
-
-        Create a new server server group in the given project ID.
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param create_server_group_payload: Request a server group creation. (required)
-        :type create_server_group_payload: CreateServerGroupPayload
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._create_server_group_serialize(
-            project_id=project_id,
-            create_server_group_payload=create_server_group_payload,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ServerGroup",
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    @validate_call
-    def create_server_group_without_preload_content(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        create_server_group_payload: Annotated[
-            CreateServerGroupPayload, Field(description="Request a server group creation.")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Create a new server group in a project.
-
-        Create a new server server group in the given project ID.
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param create_server_group_payload: Request a server group creation. (required)
-        :type create_server_group_payload: CreateServerGroupPayload
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._create_server_group_serialize(
-            project_id=project_id,
-            create_server_group_payload=create_server_group_payload,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ServerGroup",
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        return response_data.response
-
-    def _create_server_group_serialize(
-        self,
-        project_id,
-        create_server_group_payload,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if project_id is not None:
-            _path_params["projectId"] = project_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if create_server_group_payload is not None:
-            _body_params = create_server_group_payload
-
-        # set the HTTP header `Accept`
-        if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params["Content-Type"] = _content_type
-        else:
-            _default_content_type = self.api_client.select_header_content_type(["application/json"])
-            if _default_content_type is not None:
-                _header_params["Content-Type"] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = []
-
-        return self.api_client.param_serialize(
-            method="POST",
-            resource_path="/v1alpha1/projects/{projectId}/server-groups",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
     def create_volume(
         self,
         project_id: Annotated[
@@ -3997,7 +3713,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "Volume",
+            "201": "Volume",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4069,7 +3785,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "Volume",
+            "201": "Volume",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4141,7 +3857,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "Volume",
+            "201": "Volume",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4273,7 +3989,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": None,
+            "202": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4349,7 +4065,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": None,
+            "202": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4425,7 +4141,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": None,
+            "202": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4540,7 +4256,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4605,7 +4321,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4670,7 +4386,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4798,7 +4514,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4880,7 +4596,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -4962,7 +4678,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -5048,9 +4764,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """Delete a public ip.
+        """Delete a public IP.
 
-        Delete a public ip that is part of the project.
+        Delete a public IP that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
@@ -5122,9 +4838,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """Delete a public ip.
+        """Delete a public IP.
 
-        Delete a public ip that is part of the project.
+        Delete a public IP that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
@@ -5196,9 +4912,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Delete a public ip.
+        """Delete a public IP.
 
-        Delete a public ip that is part of the project.
+        Delete a public IP that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
@@ -5365,7 +5081,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -5446,7 +5162,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -5527,7 +5243,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -5669,7 +5385,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -5761,7 +5477,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -5853,7 +5569,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -5980,7 +5696,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -6055,7 +5771,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -6130,7 +5846,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -6181,286 +5897,6 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="DELETE",
             resource_path="/v1alpha1/projects/{projectId}/servers/{serverId}",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    def delete_server_group(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        server_group_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server Group."
-            ),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """Delete a server group in a project.
-
-        Delete a server group in the given project.
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param server_group_id: The identifier (ID) of a STACKIT Server Group. (required)
-        :type server_group_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._delete_server_group_serialize(
-            project_id=project_id,
-            server_group_id=server_group_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    @validate_call
-    def delete_server_group_with_http_info(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        server_group_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server Group."
-            ),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """Delete a server group in a project.
-
-        Delete a server group in the given project.
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param server_group_id: The identifier (ID) of a STACKIT Server Group. (required)
-        :type server_group_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._delete_server_group_serialize(
-            project_id=project_id,
-            server_group_id=server_group_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    @validate_call
-    def delete_server_group_without_preload_content(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        server_group_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server Group."
-            ),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Delete a server group in a project.
-
-        Delete a server group in the given project.
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param server_group_id: The identifier (ID) of a STACKIT Server Group. (required)
-        :type server_group_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._delete_server_group_serialize(
-            project_id=project_id,
-            server_group_id=server_group_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        return response_data.response
-
-    def _delete_server_group_serialize(
-        self,
-        project_id,
-        server_group_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if project_id is not None:
-            _path_params["projectId"] = project_id
-        if server_group_id is not None:
-            _path_params["serverGroupId"] = server_group_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
-
-        # authentication setting
-        _auth_settings: List[str] = []
-
-        return self.api_client.param_serialize(
-            method="DELETE",
-            resource_path="/v1alpha1/projects/{projectId}/server-groups/{serverGroupId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -6534,7 +5970,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -6610,7 +6046,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -6686,7 +6122,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -8971,9 +8407,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PublicIp:
-        """Get details about a public ip.
+        """Get details about a public IP.
 
-        Get details about a public ip inside a project.
+        Get details about a public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
@@ -9045,9 +8481,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PublicIp]:
-        """Get details about a public ip.
+        """Get details about a public IP.
 
-        Get details about a public ip inside a project.
+        Get details about a public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
@@ -9119,9 +8555,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get details about a public ip.
+        """Get details about a public IP.
 
-        Get details about a public ip inside a project.
+        Get details about a public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
@@ -10405,286 +9841,6 @@ class DefaultApi:
         )
 
     @validate_call
-    def get_server_group(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        server_group_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server Group."
-            ),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ServerGroup:
-        """Get the server group.
-
-        Get the server group created in a project.
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param server_group_id: The identifier (ID) of a STACKIT Server Group. (required)
-        :type server_group_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._get_server_group_serialize(
-            project_id=project_id,
-            server_group_id=server_group_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServerGroup",
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    @validate_call
-    def get_server_group_with_http_info(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        server_group_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server Group."
-            ),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ServerGroup]:
-        """Get the server group.
-
-        Get the server group created in a project.
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param server_group_id: The identifier (ID) of a STACKIT Server Group. (required)
-        :type server_group_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._get_server_group_serialize(
-            project_id=project_id,
-            server_group_id=server_group_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServerGroup",
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    @validate_call
-    def get_server_group_without_preload_content(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        server_group_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server Group."
-            ),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get the server group.
-
-        Get the server group created in a project.
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param server_group_id: The identifier (ID) of a STACKIT Server Group. (required)
-        :type server_group_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._get_server_group_serialize(
-            project_id=project_id,
-            server_group_id=server_group_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServerGroup",
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        return response_data.response
-
-    def _get_server_group_serialize(
-        self,
-        project_id,
-        server_group_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if project_id is not None:
-            _path_params["projectId"] = project_id
-        if server_group_id is not None:
-            _path_params["serverGroupId"] = server_group_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
-
-        # authentication setting
-        _auth_settings: List[str] = []
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/v1alpha1/projects/{projectId}/server-groups/{serverGroupId}",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
     def get_server_log(
         self,
         project_id: Annotated[
@@ -11555,7 +10711,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> V1VolumeAttachmentListResponse:
+    ) -> VolumeAttachmentListResponse:
         """List all volume attachments of a server.
 
         Get a list of all volume attachments of a server.
@@ -11596,7 +10752,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V1VolumeAttachmentListResponse",
+            "200": "VolumeAttachmentListResponse",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -11630,7 +10786,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[V1VolumeAttachmentListResponse]:
+    ) -> ApiResponse[VolumeAttachmentListResponse]:
         """List all volume attachments of a server.
 
         Get a list of all volume attachments of a server.
@@ -11671,7 +10827,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V1VolumeAttachmentListResponse",
+            "200": "VolumeAttachmentListResponse",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -11746,7 +10902,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "V1VolumeAttachmentListResponse",
+            "200": "VolumeAttachmentListResponse",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -13182,9 +12338,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PublicNetworkListResponse:
-        """List all public ip ranges.
+        """List all public IP ranges.
 
-        Get a list of all public ip ranges that STACKIT uses.
+        Get a list of all public IP ranges that STACKIT uses.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -13240,9 +12396,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PublicNetworkListResponse]:
-        """List all public ip ranges.
+        """List all public IP ranges.
 
-        Get a list of all public ip ranges that STACKIT uses.
+        Get a list of all public IP ranges that STACKIT uses.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -13298,9 +12454,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """List all public ip ranges.
+        """List all public IP ranges.
 
-        Get a list of all public ip ranges that STACKIT uses.
+        Get a list of all public IP ranges that STACKIT uses.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -13404,9 +12560,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PublicIpListResponse:
-        """List all public ips inside a project.
+        """List all public IPs inside a project.
 
-        Get a list of all public ips inside a project.
+        Get a list of all public IPs inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
@@ -13476,9 +12632,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PublicIpListResponse]:
-        """List all public ips inside a project.
+        """List all public IPs inside a project.
 
-        Get a list of all public ips inside a project.
+        Get a list of all public IPs inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
@@ -13548,9 +12704,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """List all public ips inside a project.
+        """List all public IPs inside a project.
 
-        Get a list of all public ips inside a project.
+        Get a list of all public IPs inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
@@ -14197,259 +13353,6 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1alpha1/projects/{projectId}/security-groups",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    def list_server_groups(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ServerGroupListResponse:
-        """Get the server groups setup for a project.
-
-        Get the server groups created in a project. Server groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._list_server_groups_serialize(
-            project_id=project_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServerGroupListResponse",
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "409": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    @validate_call
-    def list_server_groups_with_http_info(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ServerGroupListResponse]:
-        """Get the server groups setup for a project.
-
-        Get the server groups created in a project. Server groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._list_server_groups_serialize(
-            project_id=project_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServerGroupListResponse",
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "409": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    @validate_call
-    def list_server_groups_without_preload_content(
-        self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get the server groups setup for a project.
-
-        Get the server groups created in a project. Server groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
-
-        :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._list_server_groups_serialize(
-            project_id=project_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServerGroupListResponse",
-            "400": "Error",
-            "401": "Error",
-            "403": "Error",
-            "404": "Error",
-            "409": "Error",
-            "500": "Error",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        return response_data.response
-
-    def _list_server_groups_serialize(
-        self,
-        project_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if project_id is not None:
-            _path_params["projectId"] = project_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
-
-        # authentication setting
-        _auth_settings: List[str] = []
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/v1alpha1/projects/{projectId}/server-groups",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -16190,7 +15093,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -16272,7 +15175,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -16354,7 +15257,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -16488,7 +15391,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -16570,7 +15473,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -16652,7 +15555,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -16785,7 +15688,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -16867,7 +15770,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -16949,7 +15852,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -17089,7 +15992,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -17177,7 +16080,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -17265,7 +16168,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -17399,7 +16302,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "ServiceAccountMailListResponse",
+            "200": "ServiceAccountMailListResponse",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -17481,7 +16384,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "ServiceAccountMailListResponse",
+            "200": "ServiceAccountMailListResponse",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -17563,7 +16466,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "ServiceAccountMailListResponse",
+            "200": "ServiceAccountMailListResponse",
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -17698,7 +16601,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -17781,7 +16684,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -17864,7 +16767,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -18296,7 +17199,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": None,
+            "202": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -18376,7 +17279,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": None,
+            "202": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -18456,7 +17359,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": None,
+            "202": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -19175,7 +18078,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": None,
+            "202": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -19251,7 +18154,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": None,
+            "202": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -19327,7 +18230,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": None,
+            "202": None,
             "400": "Error",
             "401": "Error",
             "403": "Error",
@@ -19684,7 +18587,7 @@ class DefaultApi:
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
         ],
         update_attached_volume_payload: Annotated[
-            UpdateAttachedVolumePayload, Field(description="Request a volume attachment Update.")
+            UpdateAttachedVolumePayload, Field(description="Request a volume attachment update.")
         ],
         _request_timeout: Union[
             None,
@@ -19706,7 +18609,7 @@ class DefaultApi:
         :type server_id: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
         :type volume_id: str
-        :param update_attached_volume_payload: Request a volume attachment Update. (required)
+        :param update_attached_volume_payload: Request a volume attachment update. (required)
         :type update_attached_volume_payload: UpdateAttachedVolumePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -19772,7 +18675,7 @@ class DefaultApi:
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
         ],
         update_attached_volume_payload: Annotated[
-            UpdateAttachedVolumePayload, Field(description="Request a volume attachment Update.")
+            UpdateAttachedVolumePayload, Field(description="Request a volume attachment update.")
         ],
         _request_timeout: Union[
             None,
@@ -19794,7 +18697,7 @@ class DefaultApi:
         :type server_id: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
         :type volume_id: str
-        :param update_attached_volume_payload: Request a volume attachment Update. (required)
+        :param update_attached_volume_payload: Request a volume attachment update. (required)
         :type update_attached_volume_payload: UpdateAttachedVolumePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -19860,7 +18763,7 @@ class DefaultApi:
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
         ],
         update_attached_volume_payload: Annotated[
-            UpdateAttachedVolumePayload, Field(description="Request a volume attachment Update.")
+            UpdateAttachedVolumePayload, Field(description="Request a volume attachment update.")
         ],
         _request_timeout: Union[
             None,
@@ -19882,7 +18785,7 @@ class DefaultApi:
         :type server_id: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
         :type volume_id: str
-        :param update_attached_volume_payload: Request a volume attachment Update. (required)
+        :param update_attached_volume_payload: Request a volume attachment update. (required)
         :type update_attached_volume_payload: UpdateAttachedVolumePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -20280,7 +19183,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
         ],
-        update_nic_payload: Annotated[UpdateNICPayload, Field(description="Request an Update of a network interface.")],
+        update_nic_payload: Annotated[UpdateNICPayload, Field(description="Request an update of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -20301,7 +19204,7 @@ class DefaultApi:
         :type network_id: str
         :param nic_id: The identifier (ID) of a network interface. (required)
         :type nic_id: str
-        :param update_nic_payload: Request an Update of a network interface. (required)
+        :param update_nic_payload: Request an update of a network interface. (required)
         :type update_nic_payload: UpdateNICPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -20367,7 +19270,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
         ],
-        update_nic_payload: Annotated[UpdateNICPayload, Field(description="Request an Update of a network interface.")],
+        update_nic_payload: Annotated[UpdateNICPayload, Field(description="Request an update of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -20388,7 +19291,7 @@ class DefaultApi:
         :type network_id: str
         :param nic_id: The identifier (ID) of a network interface. (required)
         :type nic_id: str
-        :param update_nic_payload: Request an Update of a network interface. (required)
+        :param update_nic_payload: Request an update of a network interface. (required)
         :type update_nic_payload: UpdateNICPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -20454,7 +19357,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
         ],
-        update_nic_payload: Annotated[UpdateNICPayload, Field(description="Request an Update of a network interface.")],
+        update_nic_payload: Annotated[UpdateNICPayload, Field(description="Request an update of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -20475,7 +19378,7 @@ class DefaultApi:
         :type network_id: str
         :param nic_id: The identifier (ID) of a network interface. (required)
         :type nic_id: str
-        :param update_nic_payload: Request an Update of a network interface. (required)
+        :param update_nic_payload: Request an update of a network interface. (required)
         :type update_nic_payload: UpdateNICPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -20600,7 +19503,7 @@ class DefaultApi:
             str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
         ],
         update_public_ip_payload: Annotated[
-            UpdatePublicIPPayload, Field(description="Request an Update of a public IP.")
+            UpdatePublicIPPayload, Field(description="Request an update of a public IP.")
         ],
         _request_timeout: Union[
             None,
@@ -20612,15 +19515,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PublicIp:
-        """Update a public ip.
+        """Update a public IP.
 
-        Update the properties of an existing public ip inside a project.
+        Update the properties of an existing public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
         :type public_ip_id: str
-        :param update_public_ip_payload: Request an Update of a public IP. (required)
+        :param update_public_ip_payload: Request an update of a public IP. (required)
         :type update_public_ip_payload: UpdatePublicIPPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -20680,7 +19583,7 @@ class DefaultApi:
             str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
         ],
         update_public_ip_payload: Annotated[
-            UpdatePublicIPPayload, Field(description="Request an Update of a public IP.")
+            UpdatePublicIPPayload, Field(description="Request an update of a public IP.")
         ],
         _request_timeout: Union[
             None,
@@ -20692,15 +19595,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PublicIp]:
-        """Update a public ip.
+        """Update a public IP.
 
-        Update the properties of an existing public ip inside a project.
+        Update the properties of an existing public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
         :type public_ip_id: str
-        :param update_public_ip_payload: Request an Update of a public IP. (required)
+        :param update_public_ip_payload: Request an update of a public IP. (required)
         :type update_public_ip_payload: UpdatePublicIPPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -20760,7 +19663,7 @@ class DefaultApi:
             str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
         ],
         update_public_ip_payload: Annotated[
-            UpdatePublicIPPayload, Field(description="Request an Update of a public IP.")
+            UpdatePublicIPPayload, Field(description="Request an update of a public IP.")
         ],
         _request_timeout: Union[
             None,
@@ -20772,15 +19675,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Update a public ip.
+        """Update a public IP.
 
-        Update the properties of an existing public ip inside a project.
+        Update the properties of an existing public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
         :type public_ip_id: str
-        :param update_public_ip_payload: Request an Update of a public IP. (required)
+        :param update_public_ip_payload: Request an update of a public IP. (required)
         :type update_public_ip_payload: UpdatePublicIPPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

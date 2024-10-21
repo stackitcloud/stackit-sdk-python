@@ -29,7 +29,7 @@ class PublicIpListResponse(BaseModel):
     Public IP list response.
     """
 
-    items: List[PublicIp] = Field(description="A list of public ips.")
+    items: List[PublicIp] = Field(description="A list of public IPs.")
     __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(

@@ -21,7 +21,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
-from stackit.iaasalpha.models.v1_public_network import V1PublicNetwork
+from stackit.iaasalpha.models.public_network import PublicNetwork
 
 
 class PublicNetworkListResponse(BaseModel):
@@ -29,7 +29,7 @@ class PublicNetworkListResponse(BaseModel):
     Public network list response.
     """
 
-    items: List[V1PublicNetwork] = Field(description="A list of public networks.")
+    items: List[PublicNetwork] = Field(description="A list of public networks.")
     __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
@@ -90,9 +90,7 @@ class PublicNetworkListResponse(BaseModel):
         _obj = cls.model_validate(
             {
                 "items": (
-                    [V1PublicNetwork.from_dict(_item) for _item in obj["items"]]
-                    if obj.get("items") is not None
-                    else None
+                    [PublicNetwork.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None
                 )
             }
         )
