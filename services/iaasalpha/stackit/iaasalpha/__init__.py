@@ -37,6 +37,7 @@ from stackit.iaasalpha.exceptions import (
 from stackit.iaasalpha.models.add_volume_to_server_payload import (
     AddVolumeToServerPayload,
 )
+from stackit.iaasalpha.models.allowed_addresses_inner import AllowedAddressesInner
 from stackit.iaasalpha.models.area import Area
 from stackit.iaasalpha.models.area_config import AreaConfig
 from stackit.iaasalpha.models.area_id import AreaId
