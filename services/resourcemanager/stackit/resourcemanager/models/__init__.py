@@ -16,8 +16,12 @@
 # import models into model package
 from stackit.resourcemanager.models.create_project_payload import CreateProjectPayload
 from stackit.resourcemanager.models.error_response import ErrorResponse
+from stackit.resourcemanager.models.folder_response import FolderResponse
 from stackit.resourcemanager.models.get_project_response import GetProjectResponse
 from stackit.resourcemanager.models.lifecycle_state import LifecycleState
+from stackit.resourcemanager.models.list_organization_containers_response import (
+    ListOrganizationContainersResponse,
+)
 from stackit.resourcemanager.models.list_organizations_response import (
     ListOrganizationsResponse,
 )
