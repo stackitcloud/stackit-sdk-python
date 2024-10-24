@@ -1,0 +1,33 @@
+name: CI Workflow
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  main:
+    name: CI
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+    runs-on: ${{ matrix.os }}
+    steps:      
+      - name: Checkout
+        uses: actions/checkout@v4     
+      - name: Install Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: actions/checkout@v3
+        with:    
+          repository: "stackitcloud/stackit-sdk-python-core"
+          ref: "main"
+          path: 'python-core'
+      - name: Install Python SDK Core
+        working-directory: 'python-core'
+        run: make install
+      - name: Install
+        run: make install-dev
+      - name: Lint        
+        run: make lint 
+      - name: Test
+        run: make test
