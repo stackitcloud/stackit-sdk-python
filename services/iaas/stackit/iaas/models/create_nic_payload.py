@@ -29,13 +29,15 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
+from stackit.iaas.models.allowed_addresses_inner import AllowedAddressesInner
+
 
 class CreateNICPayload(BaseModel):
     """
     Object that represents a network interface.
     """
 
-    allowed_addresses: Optional[List[StrictStr]] = Field(
+    allowed_addresses: Optional[List[AllowedAddressesInner]] = Field(
         default=None, description="A list of IPs or CIDR notations.", alias="allowedAddresses"
     )
     device: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
@@ -226,6 +228,13 @@ class CreateNICPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in allowed_addresses (list)
+        _items = []
+        if self.allowed_addresses:
+            for _item in self.allowed_addresses:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["allowedAddresses"] = _items
         return _dict
 
     @classmethod
@@ -239,7 +248,11 @@ class CreateNICPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "allowedAddresses": obj.get("allowedAddresses"),
+                "allowedAddresses": (
+                    [AllowedAddressesInner.from_dict(_item) for _item in obj["allowedAddresses"]]
+                    if obj.get("allowedAddresses") is not None
+                    else None
+                ),
                 "device": obj.get("device"),
                 "id": obj.get("id"),
                 "ipv4": obj.get("ipv4"),

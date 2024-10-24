@@ -35,6 +35,7 @@ from stackit.iaas.exceptions import (
 
 # import models into sdk package
 from stackit.iaas.models.add_volume_to_server_payload import AddVolumeToServerPayload
+from stackit.iaas.models.allowed_addresses_inner import AllowedAddressesInner
 from stackit.iaas.models.area import Area
 from stackit.iaas.models.area_config import AreaConfig
 from stackit.iaas.models.area_prefix_config_ipv4 import AreaPrefixConfigIPv4
