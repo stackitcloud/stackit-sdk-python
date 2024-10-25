@@ -37,8 +37,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/stackitcloud/stackit-sdk-python-beta"
-Issues = "https://github.com/stackitcloud/stackit-sdk-python-beta/issues"
+Homepage = "https://github.com/stackitcloud/stackit-sdk-python"
+Issues = "https://github.com/stackitcloud/stackit-sdk-python/issues"
 
 [build-system]
 requires = ["setuptools"]
