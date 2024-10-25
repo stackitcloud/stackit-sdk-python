@@ -7,7 +7,7 @@ install-dev:
 	@for f in $(shell ls ${SERVICES_DIR}); do pip install -e ${SERVICES_DIR}/$${f}[dev]; done
 
 test:
-	@for f in $(shell ls ${SERVICES_DIR}); do  set -e; cd ${SERVICES_DIR}/$${f}; pytest; cd ../..; done
+	@for f in $(shell ls ${SERVICES_DIR}); do  set -e; cd ${SERVICES_DIR}/$${f}; sh -c 'pytest || ([ $$? = 5 ] && exit 0 || exit $$?)'; cd ../..; done
 
 lint:
 	# lint examples
