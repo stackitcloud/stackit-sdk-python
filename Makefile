@@ -1,7 +1,7 @@
 SERVICES_DIR := services
 
 install:
-	@for f in $(shell ls ${SERVICES_DIR}); do poetry install -C ${SERVICES_DIR}/$${f}; done
+	@for f in $(shell ls ${SERVICES_DIR}); do pip install ${SERVICES_DIR}/$${f}; done
 
 install-dev:
 	@for f in $(shell ls ${SERVICES_DIR}); do pip install -e ${SERVICES_DIR}/$${f};poetry install -C ${SERVICES_DIR}/$${f} --only dev --no-root; done
