@@ -1,48 +1,57 @@
-[project]
+[tool.poetry]
 name = "stackit-serverbackup"
-version = "1.0.0"
+version = "0.0.1"
 authors = [
-    { name="OpenAPI Generator Community", email="support@stackit.de" },
+    "OpenAPI Generator Community <support@stackit.de>",
 ]
 description = "STACKIT Server Backup Management API"
 #readme = "README.md"
 #license = "NoLicense"
-requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
 ]
-dependencies = [
-    "requests ~= 2.32.3",
-    "python_dateutil ~= 2.5.3",
-    "pydantic ~= 2.9.2",
-    "stackit-core ~= 0.0.1",
+packages = [
+  { include = "stackit", from="src" }
 ]
 
-[project.optional-dependencies]
-dev = [
-    "black >= 24.8.0",
-    "pytest ~= 8.3.2",
-    "flake8 ~= 7.1.0",
-    "flake8-black ~= 0.3.6",
-    "flake8-pyproject ~= 1.2.3",    
-    "flake8-quotes ~= 3.4.0",
-    "flake8-bandit ~= 4.1.1",
-    "flake8-bugbear ~= 24.8.19",    
-    "flake8-eradicate ~= 1.5.0",    
-    "flake8-eol ~= 0.0.8",
-    "autoimport ~= 1.6.1",
-    "isort ~= 5.13.2",
-]
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+stackit-core = "^0.0.1"
+requests = "^2.32.3"
+pydantic = "^2.9.2"
+python-dateutil = "^2.9.0.post0"
+
+[tool.poetry.group.dev.dependencies]
+black = "24.8.0"
+pytest = "^8.3.3"
+flake8 = "^5.0.3"
+flake8-black = "^0.3.6"
+flake8-pyproject = "^1.2.3"
+autoimport = "^1.6.1"
+flake8-eol = "^0.0.8"
+flake8-eradicate = "^1.5.0"
+flake8-bandit = "^4.1.1"
+flake8-bugbear = "^23.1.14"
+flake8-quotes = "^3.4.0"
+isort = "^5.13.2"
 
 [project.urls]
 Homepage = "https://github.com/stackitcloud/stackit-sdk-python"
 Issues = "https://github.com/stackitcloud/stackit-sdk-python/issues"
 
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["setuptools", "poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "src"
+]
+testpaths = [
+    "tests"
+]
 
 [tool.black]
 line-length = 120
@@ -85,9 +94,9 @@ per-file-ignores = """
   ./tests/*: S101,
     # F841: some variables get generated but may not be used, depending on the api-spec
     # E501: long descriptions/string values might lead to lines that are too long    
-  ./stackit/*/models/*: F841,E501
+  ./src/stackit/*/models/*: F841,E501
     # F841: some variables get generated but may not be used, depending on the api-spec
     # E501: long descriptions/string values might lead to lines that are too long
     # B028: stacklevel for deprecation warning is irrelevant
-  ./stackit/*/api/default_api.py: F841,B028,E501
+  ./src/stackit/*/api/default_api.py: F841,B028,E501
 """
