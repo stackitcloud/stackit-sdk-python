@@ -9,6 +9,7 @@ from stackit.iaas.models.create_network_area_payload import CreateNetworkAreaPay
 from stackit.iaas.models.create_network_payload import CreateNetworkPayload
 from stackit.iaas.models.network_range import NetworkRange
 from stackit.iaas.models.boot_volume import BootVolume
+from stackit.iaas.models.allowed_addresses_inner import AllowedAddressesInner
 from stackit.iaas.models.boot_volume_source import BootVolumeSource
 from stackit.iaas.models.create_nic_payload import CreateNICPayload
 from stackit.iaas.models.create_public_ip_payload import CreatePublicIPPayload
@@ -81,7 +82,7 @@ nic1 = client.create_nic(
     project_id,
     network.network_id,
     CreateNICPayload(
-        allowed_addresses=["192.0.2.0/24"],
+        allowed_addresses=[AllowedAddressesInner("192.0.2.0/24")],
         security_groups=[security_group1_groupid],
     ),
 )
