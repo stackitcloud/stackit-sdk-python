@@ -24,7 +24,9 @@ jobs:
           path: 'python-core'
       - name: Install Python SDK Core
         working-directory: 'python-core'
-        run: make install
+        run: make install      
+      - name: Install
+        run:           
           pip install poetry
           poetry config virtualenvs.create false
           make install-dev
