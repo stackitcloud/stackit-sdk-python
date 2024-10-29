@@ -29,9 +29,13 @@ This allows you to use any services that the SDK offers.
 
 
 ## Installation from source
+For an installation from source `poetry` is required.
+It can be installed with the following command:
+```bash
+pip install poetry
+```
 
-You can also install the packages from source by replacing the package-name by the path to the code.
-The path can be local, but can also point to a git-repository. For an installation using local code from the root folder of the repository this can look like the following:
+In order to install the code from source you have to execute the following code:
 ```bash
 pip install services/<service-name>
 ```

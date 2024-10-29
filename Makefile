@@ -4,7 +4,7 @@ install:
 	@for f in $(shell ls ${SERVICES_DIR}); do pip install ${SERVICES_DIR}/$${f}; done
 
 install-dev:
-	@for f in $(shell ls ${SERVICES_DIR}); do pip install -e ${SERVICES_DIR}/$${f}[dev]; done
+	@for f in $(shell ls ${SERVICES_DIR}); do pip install -e ${SERVICES_DIR}/$${f};poetry install -C ${SERVICES_DIR}/$${f} --only dev --no-root; done
 
 test:
 	@for f in $(shell ls ${SERVICES_DIR}); do  set -e; cd ${SERVICES_DIR}/$${f}; sh -c 'pytest || ([ $$? = 5 ] && exit 0 || exit $$?)'; cd ../..; done
