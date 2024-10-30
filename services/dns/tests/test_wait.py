@@ -1,9 +1,10 @@
-import pytest
-from stackit.dns.wait import *
-from stackit.core.wait import Wait
-from stackit.dns.models.zone_response import ZoneResponse
-from stackit.dns.models.zone import Zone
 from unittest.mock import Mock
+
+import pytest
+
+from stackit.dns.models.zone import Zone
+from stackit.dns.models.zone_response import ZoneResponse
+from stackit.dns.wait import *
 
 
 def test_create_zone_wait_handler_fails_for_wrong_id():

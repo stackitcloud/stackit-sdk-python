@@ -1,10 +1,12 @@
 from enum import Enum
-from typing import Any, Callable, Tuple, Union
+from typing import Any, Tuple, Union
+
+from stackit.core.wait import Wait
+
 from stackit.dns.api.default_api import DefaultApi
+from stackit.dns.exceptions import ApiException
 from stackit.dns.models.record_set_response import RecordSetResponse
 from stackit.dns.models.zone_response import ZoneResponse
-from stackit.dns.exceptions import ApiException
-from stackit.core.wait import Wait
 
 
 class _States(str, Enum):
