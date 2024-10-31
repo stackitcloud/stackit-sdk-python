@@ -7,45 +7,8 @@ from stackit.dns.models.zone_response import ZoneResponse
 from stackit.dns.wait import *
 
 
-def test_create_zone_wait_handler_fails_for_wrong_id():
-    zone_id = "zone_id"
-    project_id = "project_id"
-
-    api_response = ZoneResponse(
-        zone=Zone(
-            id="incorrect_id",
-            acl="acl",
-            creationFinished="creationFinished",
-            creationStarted="creationStarted",
-            defaultTTL=60,
-            dnsName="dnsName",
-            expireTime=60,
-            name="name",
-            negativeCache=60,
-            primaryNameServer="fqdn",
-            refreshTime=60,
-            retryTime=60,
-            serialNumber=123456,
-            state="CREATING",
-            type="primary",
-            updateFinished="updateFinished",
-            updateStarted="updateStarted",
-            visibility="public",
-        )
-    )
-
-    api_client = Mock()
-    api_client.get_zone.return_value = api_response
-
-    with pytest.raises(ValueError, match="ID of zone in return not equal to ID of requested zone."):
-        wait_for_create_zone(api_client, project_id, zone_id)
-
-
-def test_create_zone_wait_handler_retuns_response():
-    zone_id = "zone_id"
-    project_id = "project_id"
-
-    expected_api_response = ZoneResponse(
+def zone_response(state: str, zone_id: str) -> ZoneResponse:
+    return ZoneResponse(
         zone=Zone(
             id=zone_id,
             acl="acl",
@@ -60,7 +23,7 @@ def test_create_zone_wait_handler_retuns_response():
             refreshTime=60,
             retryTime=60,
             serialNumber=123456,
-            state="CREATE_SUCCEEDED",
+            state=state,
             type="primary",
             updateFinished="updateFinished",
             updateStarted="updateStarted",
@@ -68,6 +31,22 @@ def test_create_zone_wait_handler_retuns_response():
         )
     )
 
+@pytest.mark.parametrize("zone_id,project_id,api_response",[
+    ("zone_id", "project_id", zone_response("CREATING", "incorrect_zone_id"))
+])
+def test_create_zone_wait_handler_fails_for_wrong_id(zone_id:str, project_id:str, api_response:ZoneResponse):    
+    api_client = Mock()
+    api_client.get_zone.return_value = api_response
+
+    with pytest.raises(ValueError, match="ID of zone in return not equal to ID of requested zone."):
+        wait_for_create_zone(api_client, project_id, zone_id)
+
+
+@pytest.mark.parametrize("zone_id,project_id,expected_api_response", [
+    ("zone_id", "project_id", zone_response(
+        "CREATE_SUCCEEDED", "zone_id"))
+])
+def test_create_zone_wait_handler_retuns_response(zone_id: str, project_id: str, expected_api_response: ZoneResponse):
     api_client = Mock()
     api_client.get_zone.return_value = expected_api_response
 
@@ -76,33 +55,10 @@ def test_create_zone_wait_handler_retuns_response():
     assert response == expected_api_response
 
 
-def test_create_zone_wait_handler_fails_for_failure():
-    zone_id = "zone_id"
-    project_id = "project_id"
-
-    api_response = ZoneResponse(
-        zone=Zone(
-            id=zone_id,
-            acl="acl",
-            creationFinished="creationFinished",
-            creationStarted="creationStarted",
-            defaultTTL=60,
-            dnsName="dnsName",
-            expireTime=60,
-            name="name",
-            negativeCache=60,
-            primaryNameServer="fqdn",
-            refreshTime=60,
-            retryTime=60,
-            serialNumber=123456,
-            state="CREATE_FAILED",
-            type="primary",
-            updateFinished="updateFinished",
-            updateStarted="updateStarted",
-            visibility="public",
-        )
-    )
-
+@pytest.mark.parametrize("zone_id,project_id,api_response", [
+    ("zone_id", "project_id", zone_response("CREATE_FAILED", "zone_id"))
+])
+def test_create_zone_wait_handler_fails_for_failure(zone_id: str, project_id: str, api_response: ZoneResponse):
     api_client = Mock()
     api_client.get_zone.return_value = api_response
 
@@ -110,33 +66,10 @@ def test_create_zone_wait_handler_fails_for_failure():
         wait_for_create_zone(api_client, project_id, zone_id)
 
 
-def test_create_zone_wait_handler_waits():
-    zone_id = "zone_id"
-    project_id = "project_id"
-
-    api_response = ZoneResponse(
-        zone=Zone(
-            id=zone_id,
-            acl="acl",
-            creationFinished="creationFinished",
-            creationStarted="creationStarted",
-            defaultTTL=60,
-            dnsName="dnsName",
-            expireTime=60,
-            name="name",
-            negativeCache=60,
-            primaryNameServer="fqdn",
-            refreshTime=60,
-            retryTime=60,
-            serialNumber=123456,
-            state="CREATING",
-            type="primary",
-            updateFinished="updateFinished",
-            updateStarted="updateStarted",
-            visibility="public",
-        )
-    )
-
+@pytest.mark.parametrize("zone_id,project_id,api_response", [
+    ("zone_id", "project_id", zone_response("CREATING", "zone_id"))
+])
+def test_create_zone_wait_handler_waits(zone_id: str, project_id: str, api_response: ZoneResponse):
     api_client = Mock()
     api_client.get_zone.return_value = api_response
 
