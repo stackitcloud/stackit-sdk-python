@@ -1,3 +1,4 @@
+from typing import List
 from unittest.mock import Mock
 
 import pytest
@@ -31,10 +32,11 @@ def zone_response(state: str, zone_id: str) -> ZoneResponse:
         )
     )
 
-@pytest.mark.parametrize("zone_id,project_id,api_response",[
-    ("zone_id", "project_id", zone_response("CREATING", "incorrect_zone_id"))
-])
-def test_create_zone_wait_handler_fails_for_wrong_id(zone_id:str, project_id:str, api_response:ZoneResponse):    
+
+@pytest.mark.parametrize(
+    "zone_id,project_id,api_response", [("zone_id", "project_id", zone_response("CREATING", "incorrect_zone_id"))]
+)
+def test_create_zone_wait_handler_fails_for_wrong_id(zone_id: str, project_id: str, api_response: ZoneResponse):
     api_client = Mock()
     api_client.get_zone.return_value = api_response
 
@@ -42,10 +44,10 @@ def test_create_zone_wait_handler_fails_for_wrong_id(zone_id:str, project_id:str
         wait_for_create_zone(api_client, project_id, zone_id)
 
 
-@pytest.mark.parametrize("zone_id,project_id,expected_api_response", [
-    ("zone_id", "project_id", zone_response(
-        "CREATE_SUCCEEDED", "zone_id"))
-])
+@pytest.mark.parametrize(
+    "zone_id,project_id,expected_api_response",
+    [("zone_id", "project_id", zone_response("CREATE_SUCCEEDED", "zone_id"))],
+)
 def test_create_zone_wait_handler_retuns_response(zone_id: str, project_id: str, expected_api_response: ZoneResponse):
     api_client = Mock()
     api_client.get_zone.return_value = expected_api_response
@@ -55,9 +57,9 @@ def test_create_zone_wait_handler_retuns_response(zone_id: str, project_id: str,
     assert response == expected_api_response
 
 
-@pytest.mark.parametrize("zone_id,project_id,api_response", [
-    ("zone_id", "project_id", zone_response("CREATE_FAILED", "zone_id"))
-])
+@pytest.mark.parametrize(
+    "zone_id,project_id,api_response", [("zone_id", "project_id", zone_response("CREATE_FAILED", "zone_id"))]
+)
 def test_create_zone_wait_handler_fails_for_failure(zone_id: str, project_id: str, api_response: ZoneResponse):
     api_client = Mock()
     api_client.get_zone.return_value = api_response
@@ -66,12 +68,22 @@ def test_create_zone_wait_handler_fails_for_failure(zone_id: str, project_id: st
         wait_for_create_zone(api_client, project_id, zone_id)
 
 
-@pytest.mark.parametrize("zone_id,project_id,api_response", [
-    ("zone_id", "project_id", zone_response("CREATING", "zone_id"))
-])
-def test_create_zone_wait_handler_waits(zone_id: str, project_id: str, api_response: ZoneResponse):
+@pytest.mark.parametrize(
+    "zone_id,project_id,api_responses",
+    [
+        (
+            "zone_id",
+            "project_id",
+            [
+                zone_response("CREATING", "zone_id"),
+                zone_response("CREATING", "zone_id"),
+                zone_response("CREATE_SUCCEEDED", "zone_id"),
+            ],
+        )
+    ],
+)
+def test_create_zone_wait_handler_waits(zone_id: str, project_id: str, api_responses: List[ZoneResponse]):
     api_client = Mock()
-    api_client.get_zone.return_value = api_response
+    api_client.get_zone.side_effect = api_responses
 
-    with pytest.raises(TimeoutError, match="Wait has timed out"):
-        wait_for_create_zone(api_client, project_id, zone_id, timeout=1)
+    assert wait_for_create_zone(api_client, project_id, zone_id) == api_responses[-1]
