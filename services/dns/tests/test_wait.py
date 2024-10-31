@@ -87,3 +87,127 @@ def test_create_zone_wait_handler_waits(zone_id: str, project_id: str, api_respo
     api_client.get_zone.side_effect = api_responses
 
     assert wait_for_create_zone(api_client, project_id, zone_id) == api_responses[-1]
+
+
+@pytest.mark.parametrize(
+    "zone_id,project_id,api_response", [("zone_id", "project_id", zone_response("UPDATING", "incorrect_zone_id"))]
+)
+def test_wait_for_partial_update_zone_fails_for_wrong_id(zone_id: str, project_id: str, api_response: ZoneResponse):
+    api_client = Mock()
+    api_client.get_zone.return_value = api_response
+
+    with pytest.raises(ValueError, match="ID of zone in return not equal to ID of requested zone."):
+        wait_for_partial_update_zone(api_client, project_id, zone_id)
+
+
+@pytest.mark.parametrize(
+    "zone_id,project_id,expected_api_response",
+    [("zone_id", "project_id", zone_response("UPDATE_SUCCEEDED", "zone_id"))],
+)
+def test_wait_for_partial_update_zone_handler_retuns_response(
+    zone_id: str, project_id: str, expected_api_response: ZoneResponse
+):
+    api_client = Mock()
+    api_client.get_zone.return_value = expected_api_response
+
+    response = wait_for_partial_update_zone(api_client, project_id, zone_id)
+
+    assert response == expected_api_response
+
+
+@pytest.mark.parametrize(
+    "zone_id,project_id,api_response", [
+        ("zone_id", "project_id", zone_response("UPDATE_FAILED", "zone_id"))]
+)
+def test_wait_for_partial_update_zone_handler_fails_for_failure(
+    zone_id: str, project_id: str, api_response: ZoneResponse
+):
+    api_client = Mock()
+    api_client.get_zone.return_value = api_response
+
+    with pytest.raises(Exception, match=f"Update failed for zone with id {zone_id}"):
+        wait_for_partial_update_zone(api_client, project_id, zone_id)
+
+
+@pytest.mark.parametrize(
+    "zone_id,project_id,api_responses",
+    [
+        (
+            "zone_id",
+            "project_id",
+            [
+                zone_response("UPDATING", "zone_id"),
+                zone_response("UPDATING", "zone_id"),
+                zone_response("UPDATE_SUCCEEDED", "zone_id"),
+            ],
+        )
+    ],
+)
+def test_wait_for_partial_update_zone_waits(zone_id: str, project_id: str, api_responses: List[ZoneResponse]):
+    api_client = Mock()
+    api_client.get_zone.side_effect = api_responses
+
+    assert wait_for_partial_update_zone(api_client, project_id, zone_id) == api_responses[-1]
+
+
+@pytest.mark.parametrize(
+    "zone_id,project_id,api_response", [
+        ("zone_id", "project_id", zone_response("DELETING", "incorrect_zone_id"))]
+)
+def test_wait_for_delete_zone_fails_for_wrong_id(zone_id: str, project_id: str, api_response: ZoneResponse):
+    api_client = Mock()
+    api_client.get_zone.return_value = api_response
+
+    with pytest.raises(ValueError, match="ID of zone in return not equal to ID of requested zone."):
+        wait_for_delete_zone(api_client, project_id, zone_id)
+
+
+@pytest.mark.parametrize(
+    "zone_id,project_id,expected_api_response",
+    [("zone_id", "project_id", zone_response("DELETE_SUCCEEDED", "zone_id"))],
+)
+def test_wait_for_delete_zone_handler_retuns_response(
+    zone_id: str, project_id: str, expected_api_response: ZoneResponse
+):
+    api_client = Mock()
+    api_client.get_zone.return_value = expected_api_response
+
+    response = wait_for_delete_zone(api_client, project_id, zone_id)
+
+    assert response == expected_api_response
+
+
+@pytest.mark.parametrize(
+    "zone_id,project_id,api_response", [
+        ("zone_id", "project_id", zone_response("DELETE_FAILED", "zone_id"))]
+)
+def test_wait_for_delete_zone_handler_fails_for_failure(
+    zone_id: str, project_id: str, api_response: ZoneResponse
+):
+    api_client = Mock()
+    api_client.get_zone.return_value = api_response
+
+    with pytest.raises(Exception, match=f"Delete failed for zone with id {zone_id}"):
+        wait_for_delete_zone(api_client, project_id, zone_id)
+
+
+@pytest.mark.parametrize(
+    "zone_id,project_id,api_responses",
+    [
+        (
+            "zone_id",
+            "project_id",
+            [
+                zone_response("DELETING", "zone_id"),
+                zone_response("DELETING", "zone_id"),
+                zone_response("DELETE_SUCCEEDED", "zone_id"),
+            ],
+        )
+    ],
+)
+def test_wait_for_delete_zone_zone_waits(zone_id: str, project_id: str, api_responses: List[ZoneResponse]):
+    api_client = Mock()
+    api_client.get_zone.side_effect = api_responses
+
+    assert wait_for_delete_zone(
+        api_client, project_id, zone_id) == api_responses[-1]
