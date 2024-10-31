@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Any, Tuple, Union
 
-from stackit.core.wait import Wait
+from stackit.core.wait import Wait, WaitConfig
 
 from stackit.dns.api.default_api import DefaultApi
 from stackit.dns.exceptions import ApiException
@@ -22,10 +22,7 @@ def wait_for_create_zone(
     api_client: DefaultApi,
     project_id: str,
     zone_id: str,
-    sleep_before_wait: int = 0,
-    throttle: int = 5,
-    timeout: int = 30,
-    temp_error_retry_limit: int = 5,
+    wait_config: Union[WaitConfig, None] = None,
 ) -> ZoneResponse:
 
     def get_zone_execute_state() -> Tuple[bool, Union[Exception, None], Union[int, None], Any]:
@@ -49,10 +46,7 @@ def wait_for_create_zone(
 
     wait = Wait(
         get_zone_execute_state,
-        sleep_before_wait=sleep_before_wait,
-        throttle=throttle,
-        timeout=timeout,
-        temp_error_retry_limit=temp_error_retry_limit,
+        config=wait_config,
     )
     return wait.wait()
 
@@ -61,10 +55,7 @@ def wait_for_partial_update_zone(
     api_client: DefaultApi,
     project_id: str,
     zone_id: str,
-    sleep_before_wait: int = 0,
-    throttle: int = 5,
-    timeout: int = 30,
-    temp_error_retry_limit: int = 5,
+    wait_config: Union[WaitConfig, None] = None,
 ) -> ZoneResponse:
 
     def get_zone_execute_state() -> Tuple[bool, Union[Exception, None], Union[int, None], Any]:
@@ -88,10 +79,7 @@ def wait_for_partial_update_zone(
 
     wait = Wait(
         get_zone_execute_state,
-        sleep_before_wait=sleep_before_wait,
-        throttle=throttle,
-        timeout=timeout,
-        temp_error_retry_limit=temp_error_retry_limit,
+        config=wait_config,
     )
     return wait.wait()
 
@@ -100,10 +88,7 @@ def wait_for_delete_zone(
     api_client: DefaultApi,
     project_id: str,
     zone_id: str,
-    sleep_before_wait: int = 0,
-    throttle: int = 5,
-    timeout: int = 30,
-    temp_error_retry_limit: int = 5,
+    wait_config: Union[WaitConfig, None] = None,
 ) -> ZoneResponse:
 
     def get_zone_execute_state() -> Tuple[bool, Union[Exception, None], Union[int, None], Any]:
@@ -127,10 +112,7 @@ def wait_for_delete_zone(
 
     wait = Wait(
         get_zone_execute_state,
-        sleep_before_wait=sleep_before_wait,
-        throttle=throttle,
-        timeout=timeout,
-        temp_error_retry_limit=temp_error_retry_limit,
+        config=wait_config,
     )
     return wait.wait()
 
@@ -140,10 +122,7 @@ def wait_for_create_recordset(
     project_id: str,
     zone_id: str,
     rr_set_id: str,
-    sleep_before_wait: int = 0,
-    throttle: int = 5,
-    timeout: int = 30,
-    temp_error_retry_limit: int = 5,
+    wait_config: Union[WaitConfig, None] = None,
 ) -> RecordSetResponse:
 
     def get_rr_set_execute_state() -> Tuple[bool, Union[Exception, None], Union[int, None], Any]:
@@ -167,10 +146,7 @@ def wait_for_create_recordset(
 
     wait = Wait(
         get_rr_set_execute_state,
-        sleep_before_wait=sleep_before_wait,
-        throttle=throttle,
-        timeout=timeout,
-        temp_error_retry_limit=temp_error_retry_limit,
+        config=wait_config,
     )
     return wait.wait()
 
@@ -180,10 +156,7 @@ def wait_for_partial_update_recordset(
     project_id: str,
     zone_id: str,
     rr_set_id: str,
-    sleep_before_wait: int = 0,
-    throttle: int = 5,
-    timeout: int = 30,
-    temp_error_retry_limit: int = 5,
+    wait_config: Union[WaitConfig, None] = None,
 ) -> RecordSetResponse:
 
     def get_rr_set_execute_state() -> Tuple[bool, Union[Exception, None], Union[int, None], Any]:
@@ -207,10 +180,7 @@ def wait_for_partial_update_recordset(
 
     wait = Wait(
         get_rr_set_execute_state,
-        sleep_before_wait=sleep_before_wait,
-        throttle=throttle,
-        timeout=timeout,
-        temp_error_retry_limit=temp_error_retry_limit,
+        config=wait_config,
     )
     return wait.wait()
 
@@ -220,10 +190,7 @@ def wait_for_delete_recordset(
     project_id: str,
     zone_id: str,
     rr_set_id: str,
-    sleep_before_wait: int = 0,
-    throttle: int = 5,
-    timeout: int = 30,
-    temp_error_retry_limit: int = 5,
+    wait_config: Union[WaitConfig, None] = None,
 ) -> RecordSetResponse:
 
     def get_rr_set_execute_state() -> Tuple[bool, Union[Exception, None], Union[int, None], Any]:
@@ -247,9 +214,6 @@ def wait_for_delete_recordset(
 
     wait = Wait(
         get_rr_set_execute_state,
-        sleep_before_wait=sleep_before_wait,
-        throttle=throttle,
-        timeout=timeout,
-        temp_error_retry_limit=temp_error_retry_limit,
+        config=wait_config,
     )
     return wait.wait()

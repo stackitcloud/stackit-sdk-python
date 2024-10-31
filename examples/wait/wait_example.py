@@ -1,6 +1,7 @@
 import os
 
 from stackit.core.configuration import Configuration
+from stackit.core.wait import WaitConfig
 from stackit.dns.api.default_api import DefaultApi
 from stackit.dns.models.create_record_set_payload import CreateRecordSetPayload
 from stackit.dns.models.create_zone_payload import CreateZonePayload
@@ -25,8 +26,8 @@ create_zone_response = client.create_zone(
 )
 zone_id = create_zone_response.zone.id
 
-# Wait for the zone to be fully created
-wait_for_zone_response = wait_for_create_zone(client, project_id, zone_id)
+# Wait for the zone to be fully created. You can also adjust the wait configuration parameters
+wait_for_zone_response = wait_for_create_zone(client, project_id, zone_id, WaitConfig(sleep_before_wait=5))
 
 # Create a DNS record in the newly created DNS zone
 create_record_response = client.create_record_set(
