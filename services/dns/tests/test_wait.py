@@ -3,11 +3,11 @@ from unittest.mock import Mock
 
 import pytest
 
+from stackit.dns.models.record import Record
+from stackit.dns.models.record_set import RecordSet
+from stackit.dns.models.record_set_response import RecordSetResponse
 from stackit.dns.models.zone import Zone
 from stackit.dns.models.zone_response import ZoneResponse
-from stackit.dns.models.record import Record
-from stackit.dns.models.record_set_response import RecordSetResponse
-from stackit.dns.models.record_set import RecordSet
 from stackit.dns.wait import *
 
 
@@ -84,7 +84,7 @@ def test_create_zone_wait_handler_fails_for_failure(zone_id: str, project_id: st
     api_client = Mock()
     api_client.get_zone.return_value = api_response
 
-    with pytest.raises(Exception, match=f"Create failed for zone with id {zone_id}"):
+    with pytest.raises(Exception, match=f"Create failed for zone with ID {zone_id}"):
         wait_for_create_zone(api_client, project_id, zone_id)
 
 
@@ -144,7 +144,7 @@ def test_wait_for_partial_update_zone_handler_fails_for_failure(
     api_client = Mock()
     api_client.get_zone.return_value = api_response
 
-    with pytest.raises(Exception, match=f"Update failed for zone with id {zone_id}"):
+    with pytest.raises(Exception, match=f"Update failed for zone with ID {zone_id}"):
         wait_for_partial_update_zone(api_client, project_id, zone_id)
 
 
@@ -202,7 +202,7 @@ def test_wait_for_delete_zone_handler_fails_for_failure(zone_id: str, project_id
     api_client = Mock()
     api_client.get_zone.return_value = api_response
 
-    with pytest.raises(Exception, match=f"Delete failed for zone with id {zone_id}"):
+    with pytest.raises(Exception, match=f"Delete failed for zone with ID {zone_id}"):
         wait_for_delete_zone(api_client, project_id, zone_id)
 
 
@@ -281,7 +281,7 @@ def test_wait_for_create_recordset_waits(
 
 @pytest.mark.parametrize(
     "rr_set_id,zone_id,project_id,api_response",
-    [("rr_set_id", "zone_id", "project_id", rr_set_response("UPDATING", "rr_set_id"))],
+    [("rr_set_id", "zone_id", "project_id", rr_set_response("UPDATING", "incorrect_rr_set_id"))],
 )
 def test_wait_for_partial_update_recordset_fails_for_wrong_id(
     rr_set_id: str, zone_id: str, project_id: str, api_response: RecordSetResponse
@@ -295,8 +295,7 @@ def test_wait_for_partial_update_recordset_fails_for_wrong_id(
 
 @pytest.mark.parametrize(
     "rr_set_id,zone_id,project_id,api_response",
-    [("rr_set_id", "zone_id", "project_id",
-      rr_set_response("UPDATE_FAILED", "rr_set_id"))],
+    [("rr_set_id", "zone_id", "project_id", rr_set_response("UPDATE_FAILED", "rr_set_id"))],
 )
 def test_wait_for_partial_update_recordset_fails_for_failure(
     rr_set_id: str, zone_id: str, project_id: str, api_response: RecordSetResponse
@@ -304,7 +303,7 @@ def test_wait_for_partial_update_recordset_fails_for_failure(
     api_client = Mock()
     api_client.get_record_set.return_value = api_response
 
-    with pytest.raises(Exception, match=f"Update failed for rrset with id {zone_id}"):
+    with pytest.raises(Exception, match=f"Update failed for rrset with ID {rr_set_id}"):
         wait_for_partial_update_recordset(api_client, project_id, zone_id, rr_set_id)
 
 
@@ -329,14 +328,12 @@ def test_wait_for_partial_update_recordset_waits(
     api_client = Mock()
     api_client.get_record_set.side_effect = api_responses
 
-    assert wait_for_partial_update_recordset(
-        api_client, project_id, zone_id, rr_set_id) == api_responses[-1]
+    assert wait_for_partial_update_recordset(api_client, project_id, zone_id, rr_set_id) == api_responses[-1]
 
 
 @pytest.mark.parametrize(
     "rr_set_id,zone_id,project_id,api_response",
-    [("rr_set_id", "zone_id", "project_id", rr_set_response(
-        "DELETING", "incorrect_rr_set_id"))],
+    [("rr_set_id", "zone_id", "project_id", rr_set_response("DELETING", "incorrect_rr_set_id"))],
 )
 def test_wait_for_delete_recordset_fails_for_wrong_id(
     rr_set_id: str, zone_id: str, project_id: str, api_response: RecordSetResponse
@@ -350,8 +347,7 @@ def test_wait_for_delete_recordset_fails_for_wrong_id(
 
 @pytest.mark.parametrize(
     "rr_set_id,zone_id,project_id,api_response",
-    [("rr_set_id", "zone_id", "project_id",
-      rr_set_response("DELETE_FAILED", "rr_set_id"))],
+    [("rr_set_id", "zone_id", "project_id", rr_set_response("DELETE_FAILED", "rr_set_id"))],
 )
 def test_wait_for_delete_recordset_fails_for_failure(
     rr_set_id: str, zone_id: str, project_id: str, api_response: RecordSetResponse
@@ -359,7 +355,7 @@ def test_wait_for_delete_recordset_fails_for_failure(
     api_client = Mock()
     api_client.get_record_set.return_value = api_response
 
-    with pytest.raises(Exception, match=f"Delete failed for rrset with id {rr_set_id}"):
+    with pytest.raises(Exception, match=f"Delete failed for rrset with ID {rr_set_id}"):
         wait_for_delete_recordset(api_client, project_id, zone_id, rr_set_id)
 
 
@@ -384,5 +380,4 @@ def test_wait_for_delete_recordset_waits(
     api_client = Mock()
     api_client.get_record_set.side_effect = api_responses
 
-    assert wait_for_delete_recordset(
-        api_client, project_id, zone_id, rr_set_id) == api_responses[-1]
+    assert wait_for_delete_recordset(api_client, project_id, zone_id, rr_set_id) == api_responses[-1]

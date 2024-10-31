@@ -39,7 +39,7 @@ def wait_for_create_zone(
             elif response.zone.state == _States.CreateSuccess:
                 return True, None, None, response
             elif response.zone.state == _States.CreateFail:
-                return True, Exception("Create failed for zone with id %s" % zone_id), None, response
+                return True, Exception("Create failed for zone with ID %s" % zone_id), None, response
             else:
                 return False, None, None, None
         except ApiException as e:
@@ -78,7 +78,7 @@ def wait_for_partial_update_zone(
             elif response.zone.state == _States.UpdateSuccess:
                 return True, None, None, response
             elif response.zone.state == _States.UpdateFail:
-                return True, Exception("Update failed for zone with id %s" % zone_id), None, response
+                return True, Exception("Update failed for zone with ID %s" % zone_id), None, response
             else:
                 return False, None, None, None
         except ApiException as e:
@@ -117,7 +117,7 @@ def wait_for_delete_zone(
             elif response.zone.state == _States.DeleteSuccess:
                 return True, None, None, response
             elif response.zone.state == _States.DeleteFail:
-                return True, Exception("Delete failed for zone with id %s" % zone_id), None, response
+                return True, Exception("Delete failed for zone with ID %s" % zone_id), None, response
             else:
                 return False, None, None, None
         except ApiException as e:
@@ -152,12 +152,12 @@ def wait_for_create_recordset(
 
         try:
             response = api_client.get_record_set(project_id, zone_id, rr_set_id)
-            if response.rrset.id != zone_id:
+            if response.rrset.id != rr_set_id:
                 return False, ValueError("ID of rrset in return not equal to ID of requested rrset."), None, None
             elif response.rrset.state == _States.CreateSuccess:
                 return True, None, None, response
             elif response.rrset.state == _States.CreateFail:
-                return True, Exception("Create failed for rrset with id %s" % rr_set_id), None, response
+                return True, Exception("Create failed for rrset with ID %s" % rr_set_id), None, response
             else:
                 return False, None, None, None
         except ApiException as e:
@@ -192,12 +192,12 @@ def wait_for_partial_update_recordset(
 
         try:
             response = api_client.get_record_set(project_id, zone_id, rr_set_id)
-            if response.rrset.id != zone_id:
+            if response.rrset.id != rr_set_id:
                 return False, ValueError("ID of rrset in return not equal to ID of requested rrset."), None, None
             elif response.rrset.state == _States.UpdateSuccess:
                 return True, None, None, response
             elif response.rrset.state == _States.UpdateFail:
-                return True, Exception("Update failed for rrset with id %s" % rr_set_id), None, response
+                return True, Exception("Update failed for rrset with ID %s" % rr_set_id), None, response
             else:
                 return False, None, None, None
         except ApiException as e:
@@ -232,12 +232,12 @@ def wait_for_delete_recordset(
 
         try:
             response = api_client.get_record_set(project_id, zone_id, rr_set_id)
-            if response.rrset.id != zone_id:
+            if response.rrset.id != rr_set_id:
                 return False, ValueError("ID of rrset in return not equal to ID of requested rrset."), None, None
             elif response.rrset.state == _States.DeleteSuccess:
                 return True, None, None, response
             elif response.rrset.state == _States.DeleteFail:
-                return True, Exception("Delete failed for rrset with id %s" % rr_set_id), None, response
+                return True, Exception("Delete failed for rrset with ID %s" % rr_set_id), None, response
             else:
                 return False, None, None, None
         except ApiException as e:
