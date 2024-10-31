@@ -14,3 +14,6 @@ lint:
 	flake8 --toml-config $(word 1, $(wildcard $(SERVICES_DIR)/*))/pyproject.toml --black-config $(word 1, $(wildcard $(SERVICES_DIR)/*))/pyproject.toml examples; 
 	# lint services
 	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};flake8 .; cd ../..; done
+
+lock:
+	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};poetry lock --no-update; cd ../..; done
