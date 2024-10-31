@@ -30,4 +30,5 @@ jobs:
       - name: Build & Publish to PyPi
         run: |
           pip install poetry
-          poetry publish --build --username="__token__" --no-interaction --password="${{ secrets.PYPI_TOKEN }}" --directory=$SERVICE_PATH
+          cd $SERVICE_PATH         
+          poetry publish --build --username="__token__" --no-interaction --password="${{ secrets.PYPI_TOKEN }}"
