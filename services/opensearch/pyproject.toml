@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-opensearch"
-version = "0.0.1"
+version = "0.0.1a"
 authors = [
     "OpenAPI Generator Community <team@openapitools.org>",
 ]
@@ -18,7 +18,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-stackit-core = "^0.0.1"
+stackit-core = "^0.0.1a"
 requests = "^2.32.3"
 pydantic = "^2.9.2"
 python-dateutil = "^2.9.0.post0"
