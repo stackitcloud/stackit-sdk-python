@@ -18,21 +18,21 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing_extensions import Self
 
-from stackit.dns.models.zone_models_import_record_model import (
-    ZoneModelsImportRecordModel,
-)
 
-
-class ImportRecordSetsPayload(BaseModel):
+class ZoneModelsImportRecordModel(BaseModel):
     """
-    ImportRecordSetsPayload
+    ZoneModelsImportRecordModel
     """
 
-    rr_sets: Optional[List[ZoneModelsImportRecordModel]] = Field(default=None, alias="rrSets")
-    __properties: ClassVar[List[str]] = ["rrSets"]
+    comment: Optional[StrictStr] = None
+    content: Optional[List[StrictStr]] = None
+    name: Optional[StrictStr] = None
+    ttl: Optional[StrictInt] = None
+    type: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["comment", "content", "name", "ttl", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +51,7 @@ class ImportRecordSetsPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ImportRecordSetsPayload from a JSON string"""
+        """Create an instance of ZoneModelsImportRecordModel from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,18 +71,11 @@ class ImportRecordSetsPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in rr_sets (list)
-        _items = []
-        if self.rr_sets:
-            for _item in self.rr_sets:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["rrSets"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ImportRecordSetsPayload from a dict"""
+        """Create an instance of ZoneModelsImportRecordModel from a dict"""
         if obj is None:
             return None
 
@@ -91,11 +84,11 @@ class ImportRecordSetsPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "rrSets": (
-                    [ZoneModelsImportRecordModel.from_dict(_item) for _item in obj["rrSets"]]
-                    if obj.get("rrSets") is not None
-                    else None
-                )
+                "comment": obj.get("comment"),
+                "content": obj.get("content"),
+                "name": obj.get("name"),
+                "ttl": obj.get("ttl"),
+                "type": obj.get("type"),
             }
         )
         return _obj

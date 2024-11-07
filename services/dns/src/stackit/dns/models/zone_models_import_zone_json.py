@@ -26,9 +26,9 @@ from stackit.dns.models.zone_models_import_record_model import (
 )
 
 
-class ImportRecordSetsPayload(BaseModel):
+class ZoneModelsImportZoneJson(BaseModel):
     """
-    ImportRecordSetsPayload
+    ZoneModelsImportZoneJson
     """
 
     rr_sets: Optional[List[ZoneModelsImportRecordModel]] = Field(default=None, alias="rrSets")
@@ -51,7 +51,7 @@ class ImportRecordSetsPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ImportRecordSetsPayload from a JSON string"""
+        """Create an instance of ZoneModelsImportZoneJson from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +82,7 @@ class ImportRecordSetsPayload(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ImportRecordSetsPayload from a dict"""
+        """Create an instance of ZoneModelsImportZoneJson from a dict"""
         if obj is None:
             return None
 
