@@ -40,8 +40,8 @@ autoimport = "^1.6.1"
 isort = "^5.13.2"
 
 [project.urls]
-Homepage = "https://github.com/stackitcloud/stackit-sdk-python-core"
-Issues = "https://github.com/stackitcloud/stackit-sdk-python-core/issues"
+Homepage = "https://github.com/stackitcloud/stackit-sdk-python"
+Issues = "https://github.com/stackitcloud/stackit-sdk-python/issues"
 
 [build-system]
 requires = ["setuptools", "poetry-core"]
