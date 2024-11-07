@@ -16,15 +16,7 @@ jobs:
       - name: Install Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
-      - uses: actions/checkout@v3
-        with:    
-          repository: "stackitcloud/stackit-sdk-python-core"
-          ref: "main"
-          path: 'python-core'
-      - name: Install Python SDK Core
-        working-directory: 'python-core'
-        run: make install      
+          python-version: ${{ matrix.python-version }}      
       - name: Install
         run: |
           pip install poetry
