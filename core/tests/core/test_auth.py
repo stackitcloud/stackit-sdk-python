@@ -1,8 +1,9 @@
-import json
 from pathlib import Path, PurePath
-from unittest.mock import Mock, mock_open, patch
 
 import pytest
+import json
+from unittest.mock import patch, mock_open, Mock
+
 from requests.auth import HTTPBasicAuth
 
 from stackit.core.auth_methods.key_auth import KeyAuth

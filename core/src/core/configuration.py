@@ -2,22 +2,22 @@ import os
 
 
 class EnvironmentVariables:
-    _SERVICE_ACCOUNT_EMAIL_ENV = "STACKIT_SERVICE_ACCOUNT_EMAIL"
-    _SERVICE_ACCOUNT_TOKEN_ENV = "STACKIT_SERVICE_ACCOUNT_TOKEN"  # noqa: S105 false positive
-    _SERVICE_ACCOUNT_KEY_PATH_ENV = "STACKIT_SERVICE_ACCOUNT_KEY_PATH"
-    _PRIVATE_KEY_PATH_ENV = "STACKIT_PRIVATE_KEY_PATH"
-    _TOKEN_BASEURL_ENV = "STACKIT_TOKEN_BASEURL"  # noqa: S105 false positive
-    _CREDENTIALS_PATH_ENV = "STACKIT_CREDENTIALS_PATH"
-    _REGION_ENV = "STACKIT_REGION"
+    SERVICE_ACCOUNT_EMAIL_ENV = "STACKIT_SERVICE_ACCOUNT_EMAIL"
+    SERVICE_ACCOUNT_TOKEN_ENV = "STACKIT_SERVICE_ACCOUNT_TOKEN"  # noqa: S105 false positive
+    SERVICE_ACCOUNT_KEY_PATH_ENV = "STACKIT_SERVICE_ACCOUNT_KEY_PATH"
+    PRIVATE_KEY_PATH_ENV = "STACKIT_PRIVATE_KEY_PATH"
+    TOKEN_BASEURL_ENV = "STACKIT_TOKEN_BASEURL"  # noqa: S105 false positive
+    CREDENTIALS_PATH_ENV = "STACKIT_CREDENTIALS_PATH"
+    REGION_ENV = "STACKIT_REGION"
 
     def __init__(self):
-        self.account_email = os.environ.get(self._SERVICE_ACCOUNT_EMAIL_ENV)
-        self.service_account_token = os.environ.get(self._SERVICE_ACCOUNT_TOKEN_ENV)
-        self.account_key_path = os.environ.get(self._SERVICE_ACCOUNT_KEY_PATH_ENV)
-        self.private_key_path = os.environ.get(self._PRIVATE_KEY_PATH_ENV)
-        self.token_baseurl = os.environ.get(self._TOKEN_BASEURL_ENV)
-        self.credentials_path = os.environ.get(self._CREDENTIALS_PATH_ENV)
-        self.region = os.environ.get(self._REGION_ENV)
+        self.account_email = os.environ.get(self.SERVICE_ACCOUNT_EMAIL_ENV)
+        self.service_account_token = os.environ.get(self.SERVICE_ACCOUNT_TOKEN_ENV)
+        self.account_key_path = os.environ.get(self.SERVICE_ACCOUNT_KEY_PATH_ENV)
+        self.private_key_path = os.environ.get(self.PRIVATE_KEY_PATH_ENV)
+        self.token_baseurl = os.environ.get(self.TOKEN_BASEURL_ENV)
+        self.credentials_path = os.environ.get(self.CREDENTIALS_PATH_ENV)
+        self.region = os.environ.get(self.REGION_ENV)
 
 
 class Configuration:
