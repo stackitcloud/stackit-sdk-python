@@ -49,10 +49,6 @@ If you want to install all services you can use the `Makefile` with the followin
 make install
 ```
 
-> ⓘ INFO: The STACKIT Python SDK requires the STACKIT Python core package to be installed.
-> The STACKIT Python SDK package, as well as the accompanying installation instructions, can be found [here](https://github.com/stackitcloud/stackit-sdk-python-core).
-
-
 # Examples
 
 You can find several examples on how to use the SDK and also on how to configure the SDK to use your own custom implementation (to set proxies or implement a more fine-grained retry behaviour) in the [examples folder](/examples).
