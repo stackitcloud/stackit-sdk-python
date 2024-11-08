@@ -38,9 +38,7 @@ class CreateNetworkIPv4Body(BaseModel):
     prefix: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Classless Inter-Domain Routing (CIDR)."
     )
-    prefix_length: Optional[Annotated[int, Field(le=29, strict=True, ge=22)]] = Field(
-        default=None, alias="prefixLength"
-    )
+    prefix_length: Optional[Annotated[int, Field(le=29, strict=True, ge=8)]] = Field(default=None, alias="prefixLength")
     __properties: ClassVar[List[str]] = ["gateway", "nameservers", "prefix", "prefixLength"]
 
     @field_validator("gateway")

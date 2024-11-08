@@ -19,33 +19,31 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
 from typing_extensions import Annotated, Self
 
 
-class UpdateVolumePayload(BaseModel):
+class VolumePerformanceClass(BaseModel):
     """
-    Object that represents an update request body of a  volume.
+    Object that represents a Volume performance class.
     """
 
-    bootable: Optional[StrictBool] = Field(default=False, description="Indicates if a volume is bootable.")
     description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="Description Object. Allows string up to 127 Characters."
     )
+    iops: Optional[StrictInt] = Field(default=None, description="Input/Output Operations per second.")
     labels: Optional[Dict[str, Any]] = Field(
         default=None, description="Object that represents the labels of an object."
     )
-    name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
-        default=None, description="The name for a General Object. Matches Names and also UUIDs."
+    name: Annotated[str, Field(strict=True, max_length=63)] = Field(
+        description="The name for a General Object. Matches Names and also UUIDs."
     )
-    __properties: ClassVar[List[str]] = ["bootable", "description", "labels", "name"]
+    throughput: Optional[StrictInt] = Field(default=None, description="Throughput in Megabyte per second.")
+    __properties: ClassVar[List[str]] = ["description", "iops", "labels", "name", "throughput"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if value is None:
-            return value
-
         if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
             raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
         return value
@@ -67,7 +65,7 @@ class UpdateVolumePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateVolumePayload from a JSON string"""
+        """Create an instance of VolumePerformanceClass from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -91,7 +89,7 @@ class UpdateVolumePayload(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateVolumePayload from a dict"""
+        """Create an instance of VolumePerformanceClass from a dict"""
         if obj is None:
             return None
 
@@ -100,10 +98,11 @@ class UpdateVolumePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "bootable": obj.get("bootable") if obj.get("bootable") is not None else False,
                 "description": obj.get("description"),
+                "iops": obj.get("iops"),
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
+                "throughput": obj.get("throughput"),
             }
         )
         return _obj

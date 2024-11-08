@@ -16,39 +16,21 @@ from __future__ import annotations
 
 import json
 import pprint
-import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field
+from typing_extensions import Self
+
+from stackit.iaas.models.keypair import Keypair
 
 
-class UpdateVolumePayload(BaseModel):
+class KeyPairListResponse(BaseModel):
     """
-    Object that represents an update request body of a  volume.
+    SSH keypair list response.
     """
 
-    bootable: Optional[StrictBool] = Field(default=False, description="Indicates if a volume is bootable.")
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
-    )
-    labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
-    )
-    name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
-        default=None, description="The name for a General Object. Matches Names and also UUIDs."
-    )
-    __properties: ClassVar[List[str]] = ["bootable", "description", "labels", "name"]
-
-    @field_validator("name")
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
-        return value
+    items: List[Keypair] = Field(description="A list of SSH keypairs.")
+    __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -67,7 +49,7 @@ class UpdateVolumePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateVolumePayload from a JSON string"""
+        """Create an instance of KeyPairListResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -87,11 +69,18 @@ class UpdateVolumePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item in self.items:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateVolumePayload from a dict"""
+        """Create an instance of KeyPairListResponse from a dict"""
         if obj is None:
             return None
 
@@ -99,11 +88,6 @@ class UpdateVolumePayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "bootable": obj.get("bootable") if obj.get("bootable") is not None else False,
-                "description": obj.get("description"),
-                "labels": obj.get("labels"),
-                "name": obj.get("name"),
-            }
+            {"items": [Keypair.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None}
         )
         return _obj

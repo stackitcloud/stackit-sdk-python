@@ -25,6 +25,7 @@ from stackit.iaas.models.boot_volume import BootVolume
 from stackit.iaas.models.boot_volume_source import BootVolumeSource
 from stackit.iaas.models.create_area_address_family import CreateAreaAddressFamily
 from stackit.iaas.models.create_area_ipv4 import CreateAreaIPv4
+from stackit.iaas.models.create_key_pair_payload import CreateKeyPairPayload
 from stackit.iaas.models.create_network_address_family import CreateNetworkAddressFamily
 from stackit.iaas.models.create_network_area_payload import CreateNetworkAreaPayload
 from stackit.iaas.models.create_network_area_range_payload import (
@@ -36,7 +37,7 @@ from stackit.iaas.models.create_network_area_route_payload import (
 from stackit.iaas.models.create_network_ipv4_body import CreateNetworkIPv4Body
 from stackit.iaas.models.create_network_ipv6_body import CreateNetworkIPv6Body
 from stackit.iaas.models.create_network_payload import CreateNetworkPayload
-from stackit.iaas.models.create_nic_payload import CreateNICPayload
+from stackit.iaas.models.create_nic_payload import CreateNicPayload
 from stackit.iaas.models.create_protocol import CreateProtocol
 from stackit.iaas.models.create_public_ip_payload import CreatePublicIPPayload
 from stackit.iaas.models.create_security_group_payload import CreateSecurityGroupPayload
@@ -59,6 +60,10 @@ from stackit.iaas.models.error import Error
 from stackit.iaas.models.get_server_log200_response import GetServerLog200Response
 from stackit.iaas.models.get_server_log_request import GetServerLogRequest
 from stackit.iaas.models.icmp_parameters import ICMPParameters
+from stackit.iaas.models.key_pair_list_response import KeyPairListResponse
+from stackit.iaas.models.keypair import Keypair
+from stackit.iaas.models.machine_type import MachineType
+from stackit.iaas.models.machine_type_list_response import MachineTypeListResponse
 from stackit.iaas.models.network import Network
 from stackit.iaas.models.network_area import NetworkArea
 from stackit.iaas.models.network_area_ipv4 import NetworkAreaIPv4
@@ -106,13 +111,14 @@ from stackit.iaas.models.update_area_ipv4 import UpdateAreaIPv4
 from stackit.iaas.models.update_attached_volume_payload import (
     UpdateAttachedVolumePayload,
 )
+from stackit.iaas.models.update_key_pair_payload import UpdateKeyPairPayload
 from stackit.iaas.models.update_network_address_family import UpdateNetworkAddressFamily
 from stackit.iaas.models.update_network_area_route_payload import (
     UpdateNetworkAreaRoutePayload,
 )
 from stackit.iaas.models.update_network_ipv4_body import UpdateNetworkIPv4Body
 from stackit.iaas.models.update_network_ipv6_body import UpdateNetworkIPv6Body
-from stackit.iaas.models.update_nic_payload import UpdateNICPayload
+from stackit.iaas.models.update_nic_payload import UpdateNicPayload
 from stackit.iaas.models.update_public_ip_payload import UpdatePublicIPPayload
 from stackit.iaas.models.update_security_group_payload import UpdateSecurityGroupPayload
 from stackit.iaas.models.update_server_payload import UpdateServerPayload
@@ -123,4 +129,8 @@ from stackit.iaas.models.volume_attachment_list_response import (
     VolumeAttachmentListResponse,
 )
 from stackit.iaas.models.volume_list_response import VolumeListResponse
+from stackit.iaas.models.volume_performance_class import VolumePerformanceClass
+from stackit.iaas.models.volume_performance_class_list_response import (
+    VolumePerformanceClassListResponse,
+)
 from stackit.iaas.models.volume_source import VolumeSource
