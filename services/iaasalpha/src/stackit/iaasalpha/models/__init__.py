@@ -31,8 +31,9 @@ from stackit.iaasalpha.models.boot_volume import BootVolume
 from stackit.iaasalpha.models.boot_volume_source import BootVolumeSource
 from stackit.iaasalpha.models.create_area_address_family import CreateAreaAddressFamily
 from stackit.iaasalpha.models.create_area_ipv4 import CreateAreaIPv4
+from stackit.iaasalpha.models.create_image_payload import CreateImagePayload
 from stackit.iaasalpha.models.create_key_pair_payload import CreateKeyPairPayload
-from stackit.iaasalpha.models.create_nic_payload import CreateNICPayload
+from stackit.iaasalpha.models.create_nic_payload import CreateNicPayload
 from stackit.iaasalpha.models.create_protocol import CreateProtocol
 from stackit.iaasalpha.models.create_public_ip_payload import CreatePublicIPPayload
 from stackit.iaasalpha.models.create_security_group_payload import (
@@ -58,8 +59,14 @@ from stackit.iaasalpha.models.error import Error
 from stackit.iaasalpha.models.get_server_log200_response import GetServerLog200Response
 from stackit.iaasalpha.models.get_server_log_request import GetServerLogRequest
 from stackit.iaasalpha.models.icmp_parameters import ICMPParameters
+from stackit.iaasalpha.models.image import Image
+from stackit.iaasalpha.models.image_config import ImageConfig
+from stackit.iaasalpha.models.image_create_response import ImageCreateResponse
+from stackit.iaasalpha.models.image_list_response import ImageListResponse
 from stackit.iaasalpha.models.key_pair_list_response import KeyPairListResponse
 from stackit.iaasalpha.models.keypair import Keypair
+from stackit.iaasalpha.models.machine_type import MachineType
+from stackit.iaasalpha.models.machine_type_list_response import MachineTypeListResponse
 from stackit.iaasalpha.models.network import Network
 from stackit.iaasalpha.models.network_area import NetworkArea
 from stackit.iaasalpha.models.network_area_ipv4 import NetworkAreaIPv4
@@ -112,8 +119,9 @@ from stackit.iaasalpha.models.update_area_ipv4 import UpdateAreaIPv4
 from stackit.iaasalpha.models.update_attached_volume_payload import (
     UpdateAttachedVolumePayload,
 )
+from stackit.iaasalpha.models.update_image_payload import UpdateImagePayload
 from stackit.iaasalpha.models.update_key_pair_payload import UpdateKeyPairPayload
-from stackit.iaasalpha.models.update_nic_payload import UpdateNICPayload
+from stackit.iaasalpha.models.update_nic_payload import UpdateNicPayload
 from stackit.iaasalpha.models.update_public_ip_payload import UpdatePublicIPPayload
 from stackit.iaasalpha.models.update_security_group_payload import (
     UpdateSecurityGroupPayload,

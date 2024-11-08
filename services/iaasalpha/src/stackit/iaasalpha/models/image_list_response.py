@@ -19,29 +19,18 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
+
+from stackit.iaasalpha.models.image import Image
 
 
-class UpdateAreaIPv4(BaseModel):
+class ImageListResponse(BaseModel):
     """
-    The update object for a IPv4 network area.
+    Image list response.
     """
 
-    default_nameservers: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=3)]] = Field(
-        default=None, alias="defaultNameservers"
-    )
-    default_prefix_len: Optional[Annotated[int, Field(le=29, strict=True, ge=24)]] = Field(
-        default=None,
-        description="The default prefix length for networks in the network area.",
-        alias="defaultPrefixLen",
-    )
-    max_prefix_len: Optional[Annotated[int, Field(le=29, strict=True, ge=24)]] = Field(
-        default=None, description="The maximal prefix length for networks in the network area.", alias="maxPrefixLen"
-    )
-    min_prefix_len: Optional[Annotated[int, Field(le=29, strict=True, ge=8)]] = Field(
-        default=None, description="The minimal prefix length for networks in the network area.", alias="minPrefixLen"
-    )
-    __properties: ClassVar[List[str]] = ["defaultNameservers", "defaultPrefixLen", "maxPrefixLen", "minPrefixLen"]
+    items: List[Image] = Field(description="A list containing image objects.")
+    __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -60,7 +49,7 @@ class UpdateAreaIPv4(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateAreaIPv4 from a JSON string"""
+        """Create an instance of ImageListResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,11 +69,18 @@ class UpdateAreaIPv4(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item in self.items:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateAreaIPv4 from a dict"""
+        """Create an instance of ImageListResponse from a dict"""
         if obj is None:
             return None
 
@@ -92,11 +88,6 @@ class UpdateAreaIPv4(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "defaultNameservers": obj.get("defaultNameservers"),
-                "defaultPrefixLen": obj.get("defaultPrefixLen"),
-                "maxPrefixLen": obj.get("maxPrefixLen"),
-                "minPrefixLen": obj.get("minPrefixLen"),
-            }
+            {"items": [Image.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None}
         )
         return _obj

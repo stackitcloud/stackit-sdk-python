@@ -16,32 +16,32 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 
-class UpdateAreaIPv4(BaseModel):
+class ImageCreateResponse(BaseModel):
     """
-    The update object for a IPv4 network area.
+    Image creation response.
     """
 
-    default_nameservers: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=3)]] = Field(
-        default=None, alias="defaultNameservers"
+    id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
+        description="Universally Unique Identifier (UUID)."
     )
-    default_prefix_len: Optional[Annotated[int, Field(le=29, strict=True, ge=24)]] = Field(
-        default=None,
-        description="The default prefix length for networks in the network area.",
-        alias="defaultPrefixLen",
-    )
-    max_prefix_len: Optional[Annotated[int, Field(le=29, strict=True, ge=24)]] = Field(
-        default=None, description="The maximal prefix length for networks in the network area.", alias="maxPrefixLen"
-    )
-    min_prefix_len: Optional[Annotated[int, Field(le=29, strict=True, ge=8)]] = Field(
-        default=None, description="The minimal prefix length for networks in the network area.", alias="minPrefixLen"
-    )
-    __properties: ClassVar[List[str]] = ["defaultNameservers", "defaultPrefixLen", "maxPrefixLen", "minPrefixLen"]
+    upload_url: StrictStr = Field(alias="uploadUrl")
+    __properties: ClassVar[List[str]] = ["id", "uploadUrl"]
+
+    @field_validator("id")
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -60,7 +60,7 @@ class UpdateAreaIPv4(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateAreaIPv4 from a JSON string"""
+        """Create an instance of ImageCreateResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,19 +84,12 @@ class UpdateAreaIPv4(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateAreaIPv4 from a dict"""
+        """Create an instance of ImageCreateResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "defaultNameservers": obj.get("defaultNameservers"),
-                "defaultPrefixLen": obj.get("defaultPrefixLen"),
-                "maxPrefixLen": obj.get("maxPrefixLen"),
-                "minPrefixLen": obj.get("minPrefixLen"),
-            }
-        )
+        _obj = cls.model_validate({"id": obj.get("id"), "uploadUrl": obj.get("uploadUrl")})
         return _obj

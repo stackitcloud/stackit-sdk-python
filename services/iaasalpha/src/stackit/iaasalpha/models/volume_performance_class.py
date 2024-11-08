@@ -19,7 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
 from typing_extensions import Annotated, Self
 
 
@@ -31,13 +31,15 @@ class VolumePerformanceClass(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="Description Object. Allows string up to 127 Characters."
     )
+    iops: Optional[StrictInt] = Field(default=None, description="Input/Output Operations per second.")
     labels: Optional[Dict[str, Any]] = Field(
         default=None, description="Object that represents the labels of an object."
     )
     name: Annotated[str, Field(strict=True, max_length=63)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
     )
-    __properties: ClassVar[List[str]] = ["description", "labels", "name"]
+    throughput: Optional[StrictInt] = Field(default=None, description="Throughput in Megabyte per second.")
+    __properties: ClassVar[List[str]] = ["description", "iops", "labels", "name", "throughput"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -95,6 +97,12 @@ class VolumePerformanceClass(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"description": obj.get("description"), "labels": obj.get("labels"), "name": obj.get("name")}
+            {
+                "description": obj.get("description"),
+                "iops": obj.get("iops"),
+                "labels": obj.get("labels"),
+                "name": obj.get("name"),
+                "throughput": obj.get("throughput"),
+            }
         )
         return _obj

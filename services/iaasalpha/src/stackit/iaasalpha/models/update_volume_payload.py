@@ -19,7 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing_extensions import Annotated, Self
 
 
@@ -28,6 +28,7 @@ class UpdateVolumePayload(BaseModel):
     Object that represents an update request body of a  volume.
     """
 
+    bootable: Optional[StrictBool] = Field(default=False, description="Indicates if a volume is bootable.")
     description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="Description Object. Allows string up to 127 Characters."
     )
@@ -37,7 +38,7 @@ class UpdateVolumePayload(BaseModel):
     name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
-    __properties: ClassVar[List[str]] = ["description", "labels", "name"]
+    __properties: ClassVar[List[str]] = ["bootable", "description", "labels", "name"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -98,6 +99,11 @@ class UpdateVolumePayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"description": obj.get("description"), "labels": obj.get("labels"), "name": obj.get("name")}
+            {
+                "bootable": obj.get("bootable") if obj.get("bootable") is not None else False,
+                "description": obj.get("description"),
+                "labels": obj.get("labels"),
+                "name": obj.get("name"),
+            }
         )
         return _obj
