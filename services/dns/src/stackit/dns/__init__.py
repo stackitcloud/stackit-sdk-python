@@ -65,4 +65,8 @@ from stackit.dns.models.record_set_response import RecordSetResponse
 from stackit.dns.models.validate_move_code_payload import ValidateMoveCodePayload
 from stackit.dns.models.zone import Zone
 from stackit.dns.models.zone_data_exchange import ZoneDataExchange
+from stackit.dns.models.zone_models_import_record_model import (
+    ZoneModelsImportRecordModel,
+)
+from stackit.dns.models.zone_models_import_zone_json import ZoneModelsImportZoneJson
 from stackit.dns.models.zone_response import ZoneResponse
