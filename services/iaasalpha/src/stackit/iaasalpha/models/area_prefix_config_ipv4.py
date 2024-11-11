@@ -35,7 +35,7 @@ class AreaPrefixConfigIPv4(BaseModel):
     max_prefix_len: Optional[Annotated[int, Field(le=29, strict=True, ge=24)]] = Field(
         default=None, description="The maximal prefix length for networks in the network area.", alias="maxPrefixLen"
     )
-    min_prefix_len: Optional[Annotated[int, Field(le=29, strict=True, ge=22)]] = Field(
+    min_prefix_len: Optional[Annotated[int, Field(le=29, strict=True, ge=8)]] = Field(
         default=None, description="The minimal prefix length for networks in the network area.", alias="minPrefixLen"
     )
     __properties: ClassVar[List[str]] = ["defaultPrefixLen", "maxPrefixLen", "minPrefixLen"]
