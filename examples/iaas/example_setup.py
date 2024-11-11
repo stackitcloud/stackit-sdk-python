@@ -11,7 +11,7 @@ from stackit.iaas.models.network_range import NetworkRange
 from stackit.iaas.models.boot_volume import BootVolume
 from stackit.iaas.models.allowed_addresses_inner import AllowedAddressesInner
 from stackit.iaas.models.boot_volume_source import BootVolumeSource
-from stackit.iaas.models.create_nic_payload import CreateNICPayload
+from stackit.iaas.models.create_nic_payload import CreateNicPayload
 from stackit.iaas.models.create_public_ip_payload import CreatePublicIPPayload
 from stackit.iaas.models.create_security_group_payload import CreateSecurityGroupPayload
 from stackit.iaas.models.create_server_payload import CreateServerPayload
