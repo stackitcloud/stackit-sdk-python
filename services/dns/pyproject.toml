@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-dns"
-version = "0.0.1a3"
+version = "0.0.1a"
 authors = [
     "stackit-dns <stackit-dns@mail.schwarz>",
 ]
@@ -17,8 +17,8 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.2"
-stackit-core = "^0.0.1a2"
+python = ">=3.8,<4.0"
+stackit-core = "^0.0.1a"
 requests = "^2.32.3"
 pydantic = "^2.9.2"
 python-dateutil = "^2.9.0.post0"
