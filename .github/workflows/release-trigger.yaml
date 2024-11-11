@@ -10,38 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Find pyproject.toml files
-        run: |
-          pyproject_toml_files=$(git diff --name-only HEAD~1..HEAD | grep pyproject.toml)
-          if [ -z "$pyproject_toml_files" ]; then
-            echo "No pyproject.toml files changed"
-            exit 0
-          fi
-          echo "pyproject_toml_files=$pyproject_toml_files" >> $GITHUB_ENV
-      - name: Check version update
+      - name: Push tag for each updated package
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "github-action@github.com"
 
-          for file in ${pyproject_toml_files}; do    
-            if git diff HEAD~1..HEAD $file | grep "version ="; then
-              dirpath=$(dirname $file)
-              echo "pyproject.toml updated in $dirpath"
-              # Run your action here
-              version=$(grep -o "version = .*" ${file} | cut -d '=' -f 2-)
-              dirpath=$(dirname $file)
-              relpath=${file#*/core|stackit/*}
-              cleaned_version=$(echo "$version" | tr -d '" ')
-              tag=$(echo "${dirpath}/${cleaned_version}")
-              echo $file
-              echo $dirpath
-              echo $cleaned_version
-              echo $tag
-              
-              #git tag -a $tag -m "Release $version"
-              echo $(git status)
-              # git push origin --tags          
-            else
-              echo "No change in version found."              
-            fi            
+          for file in $(git diff --name-only HEAD~1..HEAD | grep pyproject.toml); do    
+              if git diff HEAD~1..HEAD $file | grep "version ="; then
+                  dirpath=$(dirname $file)        
+                  version=$(grep -o "version = .*" ${file} | cut -d '=' -f 2-)
+                  dirpath=$(dirname $file)
+                  relpath=${file#*/core|stackit/*}
+                  cleaned_version=$(echo "$version" | tr -d '" ')
+                  tag=$(echo "${dirpath}/${cleaned_version}")                
+                  git tag -a $tag -m "Release $version"        
+                  git push origin --tags          
+              else
+                  echo "No change in version found."              
+              fi            
           done
