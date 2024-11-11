@@ -19,42 +19,34 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
 from typing_extensions import Annotated, Self
 
-from stackit.iaasalpha.models.allowed_addresses_inner import AllowedAddressesInner
 
-
-class UpdateNicPayload(BaseModel):
+class MachineType(BaseModel):
     """
-    Object that represents a network interface update.
+    Machine Type.
     """
 
-    allowed_addresses: Optional[List[AllowedAddressesInner]] = Field(
-        default=None, description="A list of IPs or CIDR notations.", alias="allowedAddresses"
+    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
+        default=None, description="Description Object. Allows string up to 127 Characters."
     )
-    labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
-    )
-    name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
-        default=None, description="The name for a General Object. Matches Names and also UUIDs."
-    )
-    nic_security: Optional[StrictBool] = Field(
+    disk: StrictInt = Field(description="Size in Gigabyte.")
+    extra_specs: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="If this is set to false, then no security groups will apply to this network interface.",
-        alias="nicSecurity",
+        description="Properties to control certain aspects or scheduling behavior for an object.",
+        alias="extraSpecs",
     )
-    security_groups: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
-        default=None, description="A list of UUIDs.", alias="securityGroups"
+    name: Annotated[str, Field(strict=True, max_length=63)] = Field(
+        description="The name for a General Object. Matches Names and also UUIDs."
     )
-    __properties: ClassVar[List[str]] = ["allowedAddresses", "labels", "name", "nicSecurity", "securityGroups"]
+    ram: StrictInt = Field(description="Size in Megabyte.")
+    vcpus: Annotated[int, Field(strict=True, ge=1)] = Field(description="The number of virtual CPUs of a server.")
+    __properties: ClassVar[List[str]] = ["description", "disk", "extraSpecs", "name", "ram", "vcpus"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if value is None:
-            return value
-
         if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
             raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
         return value
@@ -76,7 +68,7 @@ class UpdateNicPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateNicPayload from a JSON string"""
+        """Create an instance of MachineType from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -96,18 +88,11 @@ class UpdateNicPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in allowed_addresses (list)
-        _items = []
-        if self.allowed_addresses:
-            for _item in self.allowed_addresses:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["allowedAddresses"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateNicPayload from a dict"""
+        """Create an instance of MachineType from a dict"""
         if obj is None:
             return None
 
@@ -116,15 +101,12 @@ class UpdateNicPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "allowedAddresses": (
-                    [AllowedAddressesInner.from_dict(_item) for _item in obj["allowedAddresses"]]
-                    if obj.get("allowedAddresses") is not None
-                    else None
-                ),
-                "labels": obj.get("labels"),
+                "description": obj.get("description"),
+                "disk": obj.get("disk"),
+                "extraSpecs": obj.get("extraSpecs"),
                 "name": obj.get("name"),
-                "nicSecurity": obj.get("nicSecurity"),
-                "securityGroups": obj.get("securityGroups"),
+                "ram": obj.get("ram"),
+                "vcpus": obj.get("vcpus"),
             }
         )
         return _obj
