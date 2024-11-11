@@ -20,7 +20,15 @@ import re
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictInt,
+    StrictStr,
+    field_validator,
+)
 from typing_extensions import Annotated, Self
 
 from stackit.iaas.models.volume_source import VolumeSource
@@ -34,6 +42,7 @@ class Volume(BaseModel):
     availability_zone: StrictStr = Field(
         description="Object that represents an availability zone.", alias="availabilityZone"
     )
+    bootable: Optional[StrictBool] = Field(default=None, description="Indicates if a volume is bootable.")
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
@@ -65,6 +74,7 @@ class Volume(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "availabilityZone",
+        "bootable",
         "createdAt",
         "description",
         "id",
@@ -189,6 +199,7 @@ class Volume(BaseModel):
         _obj = cls.model_validate(
             {
                 "availabilityZone": obj.get("availabilityZone"),
+                "bootable": obj.get("bootable"),
                 "createdAt": obj.get("createdAt"),
                 "description": obj.get("description"),
                 "id": obj.get("id"),
