@@ -17,31 +17,31 @@ jobs:
             echo "No pyproject.toml files changed"
             exit 0
           fi
-          echo "$pyproject_toml_files"
+          echo "pyproject_toml_files=$pyproject_toml_files" >> $GITHUB_ENV
       - name: Check version update
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "github-action@github.com"
-          for file in ${{ steps.find-pyproject-toml-files.outputs.pyproject_toml_files }}; do
-            git diff --quiet HEAD~1..HEAD $file || true
-            if git diff --quiet HEAD~1..HEAD $file; then
-              echo "No changes in $file"
+
+          for file in ${pyproject_toml_files}; do    
+            if git diff HEAD~1..HEAD $file | grep "version ="; then
+              dirpath=$(dirname $file)
+              echo "pyproject.toml updated in $dirpath"
+              # Run your action here
+              version=$(grep -o "version = .*" ${file} | cut -d '=' -f 2-)
+              dirpath=$(dirname $file)
+              relpath=${file#*/core|stackit/*}
+              cleaned_version=$(echo "$version" | tr -d '" ')
+              tag=$(echo "${dirpath}/${cleaned_version}")
+              echo $file
+              echo $dirpath
+              echo $cleaned_version
+              echo $tag
+              
+              #git tag -a $tag -m "Release $version"
+              echo $(git status)
+              # git push origin --tags          
             else
-              version_line=$(git diff HEAD~1..HEAD $file | grep "^+.*version = ")
-              if [ -n "$version_line" ]; then
-                echo "Version updated in $file"
-                # Run your action here
-                version=$(grep -o "version = .*" file.txt | cut -d '=' -f 2-)
-                # Get the update package
-                dirpath=$(dirname "$filepath")
-                relpath=${filepath#*/core|stackit/*}
-                tag = ${relpath}/${version}
-                echo $tag
-                git tag -a $version -m "Release $version"
-                echo git status
-                # git push origin --tags
-              else
-                echo "No version update in $file"
-              fi
-            fi
+              echo "No change in version found."              
+            fi            
           done
