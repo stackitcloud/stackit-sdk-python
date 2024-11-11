@@ -28,7 +28,6 @@ jobs:
           PACKAGE_PATH=$(echo "$TAG_NO_PREFIX" | rev | cut -d'/' -f2- | rev)          
           # Extract version to publish from tag
           VERSION="${TAG_NO_PREFIX##*/}"
-          echo $VERSION
           # Save the path to the module and the version for use in the build/publish step to only update the module associated with this tag
           echo "PACKAGE_PATH=$PACKAGE_PATH" >> $GITHUB_ENV
           echo "VERSION=$VERSION" >> $GITHUB_ENV
