@@ -19,35 +19,39 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictInt,
+    StrictStr,
+    field_validator,
+)
 from typing_extensions import Annotated, Self
 
-from stackit.iaasalpha.models.allowed_addresses_inner import AllowedAddressesInner
+from stackit.iaasalpha.models.image_config import ImageConfig
 
 
-class UpdateNicPayload(BaseModel):
+class UpdateImagePayload(BaseModel):
     """
-    Object that represents a network interface update.
+    Object that represents an update request body of an Image.
     """
 
-    allowed_addresses: Optional[List[AllowedAddressesInner]] = Field(
-        default=None, description="A list of IPs or CIDR notations.", alias="allowedAddresses"
+    config: Optional[ImageConfig] = None
+    disk_format: Optional[StrictStr] = Field(
+        default=None, description="Object that represents a disk format.", alias="diskFormat"
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None, description="Object that represents the labels of an object."
     )
+    min_disk_size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.", alias="minDiskSize")
+    min_ram: Optional[StrictInt] = Field(default=None, description="Size in Megabyte.", alias="minRam")
     name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
-    nic_security: Optional[StrictBool] = Field(
-        default=None,
-        description="If this is set to false, then no security groups will apply to this network interface.",
-        alias="nicSecurity",
-    )
-    security_groups: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
-        default=None, description="A list of UUIDs.", alias="securityGroups"
-    )
-    __properties: ClassVar[List[str]] = ["allowedAddresses", "labels", "name", "nicSecurity", "securityGroups"]
+    protected: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["config", "diskFormat", "labels", "minDiskSize", "minRam", "name", "protected"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -76,7 +80,7 @@ class UpdateNicPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateNicPayload from a JSON string"""
+        """Create an instance of UpdateImagePayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -96,18 +100,14 @@ class UpdateNicPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in allowed_addresses (list)
-        _items = []
-        if self.allowed_addresses:
-            for _item in self.allowed_addresses:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["allowedAddresses"] = _items
+        # override the default output from pydantic by calling `to_dict()` of config
+        if self.config:
+            _dict["config"] = self.config.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateNicPayload from a dict"""
+        """Create an instance of UpdateImagePayload from a dict"""
         if obj is None:
             return None
 
@@ -116,15 +116,13 @@ class UpdateNicPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "allowedAddresses": (
-                    [AllowedAddressesInner.from_dict(_item) for _item in obj["allowedAddresses"]]
-                    if obj.get("allowedAddresses") is not None
-                    else None
-                ),
+                "config": ImageConfig.from_dict(obj["config"]) if obj.get("config") is not None else None,
+                "diskFormat": obj.get("diskFormat"),
                 "labels": obj.get("labels"),
+                "minDiskSize": obj.get("minDiskSize"),
+                "minRam": obj.get("minRam"),
                 "name": obj.get("name"),
-                "nicSecurity": obj.get("nicSecurity"),
-                "securityGroups": obj.get("securityGroups"),
+                "protected": obj.get("protected"),
             }
         )
         return _obj
