@@ -31,59 +31,45 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
-from stackit.iaasalpha.models.volume_source import VolumeSource
+from stackit.iaasalpha.models.image_config import ImageConfig
 
 
-class Volume(BaseModel):
+class CreateImagePayload(BaseModel):
     """
-    Object that represents a volume and its parameters. Used for Creating and returning (get/list).
+    Object that represents an Image and its parameters. Used for Creating and returning (get/list).
     """
 
-    availability_zone: StrictStr = Field(
-        description="Object that represents an availability zone.", alias="availabilityZone"
-    )
-    bootable: Optional[StrictBool] = Field(default=None, description="Indicates if a volume is bootable.")
+    config: Optional[ImageConfig] = None
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
-    )
+    disk_format: StrictStr = Field(description="Object that represents a disk format.", alias="diskFormat")
     id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID)."
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None, description="Object that represents the labels of an object."
     )
-    name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
-        default=None, description="The name for a General Object. Matches Names and also UUIDs."
+    min_disk_size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.", alias="minDiskSize")
+    min_ram: Optional[StrictInt] = Field(default=None, description="Size in Megabyte.", alias="minRam")
+    name: Annotated[str, Field(strict=True, max_length=63)] = Field(
+        description="The name for a General Object. Matches Names and also UUIDs."
     )
-    performance_class: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
-        default=None,
-        description="The name for a General Object. Matches Names and also UUIDs.",
-        alias="performanceClass",
-    )
-    server_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID).", alias="serverId"
-    )
-    size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.")
-    source: Optional[VolumeSource] = None
-    status: Optional[StrictStr] = Field(default=None, description="The status of a volume object.")
+    protected: Optional[StrictBool] = None
+    status: Optional[StrictStr] = Field(default=None, description="The status of an image object.")
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
     __properties: ClassVar[List[str]] = [
-        "availabilityZone",
-        "bootable",
+        "config",
         "createdAt",
-        "description",
+        "diskFormat",
         "id",
         "labels",
+        "minDiskSize",
+        "minRam",
         "name",
-        "performanceClass",
-        "serverId",
-        "size",
-        "source",
+        "protected",
         "status",
         "updatedAt",
     ]
@@ -103,33 +89,8 @@ class Volume(BaseModel):
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if value is None:
-            return value
-
         if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
             raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
-        return value
-
-    @field_validator("performance_class")
-    def performance_class_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
-        return value
-
-    @field_validator("server_id")
-    def server_id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
-            raise ValueError(
-                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
-            )
         return value
 
     model_config = ConfigDict(
@@ -149,7 +110,7 @@ class Volume(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Volume from a JSON string"""
+        """Create an instance of CreateImagePayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -165,13 +126,11 @@ class Volume(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "created_at",
                 "id",
-                "server_id",
                 "status",
                 "updated_at",
             ]
@@ -182,14 +141,14 @@ class Volume(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of source
-        if self.source:
-            _dict["source"] = self.source.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of config
+        if self.config:
+            _dict["config"] = self.config.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Volume from a dict"""
+        """Create an instance of CreateImagePayload from a dict"""
         if obj is None:
             return None
 
@@ -198,17 +157,15 @@ class Volume(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "availabilityZone": obj.get("availabilityZone"),
-                "bootable": obj.get("bootable"),
+                "config": ImageConfig.from_dict(obj["config"]) if obj.get("config") is not None else None,
                 "createdAt": obj.get("createdAt"),
-                "description": obj.get("description"),
+                "diskFormat": obj.get("diskFormat"),
                 "id": obj.get("id"),
                 "labels": obj.get("labels"),
+                "minDiskSize": obj.get("minDiskSize"),
+                "minRam": obj.get("minRam"),
                 "name": obj.get("name"),
-                "performanceClass": obj.get("performanceClass"),
-                "serverId": obj.get("serverId"),
-                "size": obj.get("size"),
-                "source": VolumeSource.from_dict(obj["source"]) if obj.get("source") is not None else None,
+                "protected": obj.get("protected"),
                 "status": obj.get("status"),
                 "updatedAt": obj.get("updatedAt"),
             }
