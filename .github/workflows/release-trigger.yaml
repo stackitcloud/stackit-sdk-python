@@ -1,0 +1,47 @@
+name: Check Version Update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Find pyproject.toml files
+        run: |
+          pyproject_toml_files=$(git diff --name-only HEAD~1..HEAD | grep pyproject.toml)
+          if [ -z "$pyproject_toml_files" ]; then
+            echo "No pyproject.toml files changed"
+            exit 0
+          fi
+          echo "$pyproject_toml_files"
+      - name: Check version update
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "github-action@github.com"
+          for file in ${{ steps.find-pyproject-toml-files.outputs.pyproject_toml_files }}; do
+            git diff --quiet HEAD~1..HEAD $file || true
+            if git diff --quiet HEAD~1..HEAD $file; then
+              echo "No changes in $file"
+            else
+              version_line=$(git diff HEAD~1..HEAD $file | grep "^+.*version = ")
+              if [ -n "$version_line" ]; then
+                echo "Version updated in $file"
+                # Run your action here
+                version=$(grep -o "version = .*" file.txt | cut -d '=' -f 2-)
+                # Get the update package
+                dirpath=$(dirname "$filepath")
+                relpath=${filepath#*/core|stackit/*}
+                tag = ${relpath}/${version}
+                echo $tag
+                git tag -a $version -m "Release $version"
+                echo git status
+                # git push origin --tags
+              else
+                echo "No version update in $file"
+              fi
+            fi
+          done
