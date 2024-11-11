@@ -17,7 +17,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
+python = ">=3.8,<4.2"
 stackit-core = "^0.0.1a2"
 requests = "^2.32.3"
 pydantic = "^2.9.2"
