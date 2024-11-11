@@ -81,7 +81,7 @@ network = client.create_network(
 nic1 = client.create_nic(
     project_id,
     network.network_id,
-    CreateNICPayload(
+    CreateNicPayload(
         allowed_addresses=[AllowedAddressesInner("192.0.2.0/24")],
         security_groups=[security_group1_groupid],
     ),
