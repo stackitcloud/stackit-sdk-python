@@ -1,5 +1,6 @@
 [tool.poetry]
 name = "stackit-dns"
+
 version = "0.0.1a"
 authors = [
     "stackit-dns <stackit-dns@mail.schwarz>",
