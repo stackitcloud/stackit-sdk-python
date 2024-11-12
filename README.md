@@ -17,23 +17,10 @@ To use a specific service, you can install it as:
 pip install stackit-redis
 ```
 
-It will pull all needed dependencies automatically, so you can use the package right away.
-
-To use all services, you can install the whole SDK with a single package:
-
-```bash
-pip install stackit
-```
-
-This allows you to use any services that the SDK offers.
+It will install all needed dependencies automatically, so you can use the package right away.
 
 
 ## Installation from source
-For an installation from source `poetry` is required.
-It can be installed with the following command:
-```bash
-pip install poetry
-```
 
 In order to install the code from source you have to execute the following code:
 ```bash
@@ -171,7 +158,11 @@ If you encounter any issues or have suggestions for improvements, please open an
 ## Contribute
 
 ### Installing in editable mode
-For development it is best to install in editable mode.
+For developing it is recommended to install `poetry`, which can be installed via:
+```bash
+pip install poetry
+
+For development it is best to install the packages in editable mode.
 You can install a single package in editable mode using the following command:
 ```bash
 pip install -e services/<service-name>
@@ -181,7 +172,12 @@ For `redis` the command would be:
 ```bash
 pip install -e services/redis
 ```
-If you want to install all services in editable mode you can use the `Makefile` with the following command:
+There are optional dev-dependencies that require `poetry`. Those can be installed with:
+```bash
+poetry install -C <path-to-the-service> --only dev --no-root
+```
+
+If you want to install all services in editable mode, as well as the dev-dependencies, you can use the `Makefile` with the following command:
 ```bash
 make install-dev
 ```
