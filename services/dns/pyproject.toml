@@ -2,7 +2,7 @@
 name = "stackit-dns"
 
 
-version = "0.0.1a2"
+version = "0.0.1a3"
 authors = [
     "stackit-dns <stackit-dns@mail.schwarz>",
 ]
