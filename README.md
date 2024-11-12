@@ -158,11 +158,9 @@ If you encounter any issues or have suggestions for improvements, please open an
 ## Contribute
 
 ### Installing in editable mode
-For developing is is recommended to install `poetry`.
-It can be installed with:
+For developing it is recommended to install `poetry`, which can be installed via:
 ```bash
 pip install poetry
-```
 
 For development it is best to install the packages in editable mode.
 You can install a single package in editable mode using the following command:
