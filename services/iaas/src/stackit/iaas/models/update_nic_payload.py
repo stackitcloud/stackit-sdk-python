@@ -25,7 +25,7 @@ from typing_extensions import Annotated, Self
 from stackit.iaas.models.allowed_addresses_inner import AllowedAddressesInner
 
 
-class UpdateNICPayload(BaseModel):
+class UpdateNicPayload(BaseModel):
     """
     Object that represents a network interface update.
     """
@@ -76,7 +76,7 @@ class UpdateNICPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateNICPayload from a JSON string"""
+        """Create an instance of UpdateNicPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -107,7 +107,7 @@ class UpdateNICPayload(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateNICPayload from a dict"""
+        """Create an instance of UpdateNicPayload from a dict"""
         if obj is None:
             return None
 
