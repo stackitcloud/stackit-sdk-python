@@ -5,7 +5,7 @@ authors = [
     "STACKIT MongoDB Service Support <support@stackit.cloud>",
 ]
 description = "STACKIT MongoDB Service API"
-#readme = "README.md"
+readme = "README.md"
 #license = "NoLicense"
 classifiers = [
     "Programming Language :: Python :: 3",
