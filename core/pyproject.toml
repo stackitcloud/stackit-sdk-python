@@ -28,7 +28,10 @@ requests = ">=2.32.3"
 [tool.poetry.group.dev.dependencies]
 black = ">=24.8.0"
 pytest = ">=8.3.3"
-flake8 = ">=5.0.3"
+flake8 = [
+  { version= ">=5.0.3", python="<3.12"},
+  { version= ">=6.0.1", python=">=3.12"}
+]
 flake8-black = ">=0.3.6"
 flake8-pyproject = ">=1.2.3"
 flake8-quotes = ">=3.4.0"

@@ -158,9 +158,7 @@ If you encounter any issues or have suggestions for improvements, please open an
 ## Contribute
 
 ### Installing in editable mode
-For developing it is recommended to install `poetry`, which can be installed via:
-```bash
-pip install poetry
+For developing it is recommended to install [`poetry`](https://python-poetry.org/). An installation guide can be found [here](https://python-poetry.org/docs/#installation).
 
 For development it is best to install the packages in editable mode.
 You can install a single package in editable mode using the following command:
@@ -181,6 +179,9 @@ If you want to install all services in editable mode, as well as the dev-depende
 ```bash
 make install-dev
 ```
+When using the `make install-dev` command it is important to prevent `poetry` from creating a different environment for every package.
+This can be achieved by running `poetry config virtualenvs.create false`, but there are multiple way to achieve this, it is best to consult the [poetry docs](https://python-poetry.org/docs/configuration/) to see which option fits best for you.
+
 ## License
 
 Apache 2.0
