@@ -12,20 +12,23 @@ jobs:
       - uses: actions/checkout@v2
       - name: Push tag for each updated package
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "github-action@github.com"
+          git config --global user.name "SDK Releaser Bot"
+          git config --global user.email "noreply@stackit.de"
 
           for file in $(git diff --name-only HEAD~1..HEAD | grep pyproject.toml); do    
               if git diff HEAD~1..HEAD $file | grep "version ="; then
-                  dirpath=$(dirname $file)        
-                  version=$(grep -o "version = .*" ${file} | cut -d '=' -f 2-)
-                  dirpath=$(dirname $file)
-                  relpath=${file#*/core|stackit/*}
-                  cleaned_version=$(echo "$version" | tr -d '" ')
-                  tag=$(echo "${dirpath}/${cleaned_version}")                
-                  git tag -a $tag -m "Release $version"        
-                  git push origin --tags          
-              else
-                  echo "No change in version found."              
+                  version_changes=$(git diff HEAD~1..HEAD $file | grep "version =")
+                  splitted_version_changes=($(echo "$version_changes" | grep -oP '(?<=version = )[^ ]*'))
+                  # Check if all versions are equal
+                  if [ $(echo "${splitted_version_changes[@]}" | tr ' ' '\n' | sort -u | wc -l) -ne 1 ]; then        
+                      dirpath=$(dirname $file)        
+                      current_version=$(grep -o "version = .*" ${file} | cut -d '=' -f 2-)
+                      dirpath=$(dirname $file)
+                      relpath=${file#*/core|stackit/*}
+                      cleaned_version=$(echo "$current_version" | tr -d '" ')
+                      tag=$(echo "${dirpath}/${cleaned_version}")                
+                      git tag -a $tag -m "Release $cleaned_version"        
+                      git push origin tag $tag          
+                  fi            
               fi            
           done
