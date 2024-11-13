@@ -18,10 +18,10 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-stackit-core = "^0.0.1a"
-requests = "^2.32.3"
-pydantic = "^2.9.2"
-python-dateutil = "^2.9.0.post0"
+stackit-core = ">=0.0.1a"
+requests = ">=2.32.3"
+pydantic = ">=2.9.2"
+python-dateutil = ">=2.9.0.post0"
 
 [tool.poetry.group.dev.dependencies]
 black = ">=24.8.0"

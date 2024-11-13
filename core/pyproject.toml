@@ -18,26 +18,29 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-pyjwt = "^2.9.0"
-pydantic = "^2.9.2"
-urllib3 = "^2.2.3"
-cryptography = "^43.0.1"
-requests = "^2.32.3"
+pyjwt = ">=2.9.0"
+pydantic = ">=2.9.2"
+urllib3 = ">=2.2.3"
+cryptography = ">=43.0.1"
+requests = ">=2.32.3"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "24.8.0"
-pytest = "^8.3.3"
-flake8 = "^5.0.3"
-flake8-black = "^0.3.6"
-flake8-pyproject = "^1.2.3"
-flake8-quotes = "^3.4.0"
-flake8-bandit = "^4.1.1"
-flake8-bugbear = "^23.1.14"
-flake8-eradicate = "^1.5.0"
-flake8-eol = "^0.0.8"
-autoimport = "^1.6.1"
-isort = "^5.13.2"
+black = ">=24.8.0"
+pytest = ">=8.3.3"
+flake8 = [
+  { version= ">=5.0.3", python="<3.12"},
+  { version= ">=6.0.1", python=">=3.12"}
+]
+flake8-black = ">=0.3.6"
+flake8-pyproject = ">=1.2.3"
+flake8-quotes = ">=3.4.0"
+flake8-bandit = ">=4.1.1"
+flake8-bugbear = ">=23.1.14"
+flake8-eradicate = ">=1.5.0"
+flake8-eol = ">=0.0.8"
+autoimport = ">=1.6.1"
+isort = ">=5.13.2"
 
 [project.urls]
 Homepage = "https://github.com/stackitcloud/stackit-sdk-python"
