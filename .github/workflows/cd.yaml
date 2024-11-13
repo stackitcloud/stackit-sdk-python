@@ -3,8 +3,8 @@ name: CD Workflow
 on: 
   push:
     tags:
-      - "services/[a-zA-Z]+/v[0-9]+.[0-9]+.[0-9]+.*"
-      - "core/v[0-9]+.[0-9]+.[0-9]+.*"
+      - "services/[a-zA-Z]+/v[0-9]+.[0-9]+.[0-9]+*"
+      - "core/v[0-9]+.[0-9]+.[0-9]+*"
   workflow_dispatch:
 
 jobs:
