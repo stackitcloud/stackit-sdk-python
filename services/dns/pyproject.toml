@@ -5,7 +5,7 @@ authors = [
     "stackit-dns <stackit-dns@mail.schwarz>",
 ]
 description = "STACKIT DNS API"
-#readme = "README.md"
+readme = "README.md"
 #license = "NoLicense"
 classifiers = [
     "Programming Language :: Python :: 3",
