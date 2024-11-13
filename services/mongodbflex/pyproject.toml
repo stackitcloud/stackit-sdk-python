@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-mongodbflex"
-version = "0.0.1a"
+version = "0.0.1a1"
 authors = [
     "STACKIT MongoDB Service Support <support@stackit.cloud>",
 ]

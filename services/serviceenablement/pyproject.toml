@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-serviceenablement"
-version = "0.0.1a"
+version = "0.0.1a1"
 authors = [
     "OpenAPI Generator Community <team@openapitools.org>",
 ]

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-resourcemanager"
-version = "0.0.1a"
+version = "0.0.1a1"
 authors = [
     "STACKIT Core Platform <team@openapitools.org>",
 ]

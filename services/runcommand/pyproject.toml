@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-runcommand"
-version = "0.0.1a"
+version = "0.0.1a1"
 authors = [
     "OpenAPI Generator Community <support@stackit.de>",
 ]

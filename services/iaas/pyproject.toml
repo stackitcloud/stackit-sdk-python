@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-iaas"
-version = "0.0.1a"
+version = "0.0.1a1"
 authors = [
     "STACKIT IaaS Teams <stackit-iaas@mail.schwarz>",
 ]
