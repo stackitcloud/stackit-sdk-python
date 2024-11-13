@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-authorization"
-version = "0.0.1a"
+version = "v0.0.1a"
 authors = [
     "OpenAPI Generator Community <team@openapitools.org>",
 ]

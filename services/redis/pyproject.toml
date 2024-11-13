@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-redis"
-version = "0.0.1a1"
+version = "v0.0.1a"
 authors = [
     "OpenAPI Generator Community <team@openapitools.org>",
 ]
