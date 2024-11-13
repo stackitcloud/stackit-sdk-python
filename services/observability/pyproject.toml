@@ -5,7 +5,7 @@ authors = [
     "OpenAPI Generator Community <stackit-argus@mail.schwarz>",
 ]
 description = "STACKIT Observability API"
-#readme = "README.md"
+readme = "README.md"
 #license = "NoLicense"
 classifiers = [
     "Programming Language :: Python :: 3",
