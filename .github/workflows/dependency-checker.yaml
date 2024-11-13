@@ -1,0 +1,48 @@
+name: Dependency-Updater
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  dependency_updater:
+    name: Dependency-Updater
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.8"
+      - name: Poetry Python dependeny updater
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+            git config --global user.name "SDK Releaser Bot"
+            git config --global user.email "noreply@stackit.de"
+        
+            pip install poetry
+            make update-dependencies          
+            for file in $(git diff --name-only | grep poetry.lock); do
+                # Extract the service for which the dependencies have been updated
+                dirpath=$(dirname $file)
+                pr_name=$(echo "Dependency Updater: ${dirpath}")
+                
+                # Check if a PR already exists for the package
+                if gh pr list --state open | grep -q "${pr_name}"; then
+                    echo "Pr for $dirpath already exists. Skipping."
+                else
+                    # Create PR
+                    branch_name="dependency-updater-$dirpath"
+                    git checkout -b "$branch_name"
+                    git add "$file"
+                    git commit -m "chore: dependency update"
+                    git push --set-upstream origin "$branch_name"
+                    echo $(git status)
+                    gh pr create --title "$pr_name" --body "Automated dependency update" --base "main"
+                    git checkout main
+                fi            
+            done
+
