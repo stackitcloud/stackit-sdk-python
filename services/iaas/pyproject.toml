@@ -5,7 +5,7 @@ authors = [
     "STACKIT IaaS Teams <stackit-iaas@mail.schwarz>",
 ]
 description = "IaaS-API"
-#readme = "README.md"
+readme = "README.md"
 #license = "NoLicense"
 classifiers = [
     "Programming Language :: Python :: 3",
