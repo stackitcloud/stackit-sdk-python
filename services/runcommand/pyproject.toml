@@ -5,7 +5,7 @@ authors = [
     "OpenAPI Generator Community <support@stackit.de>",
 ]
 description = "STACKIT Run Commands Service API"
-#readme = "README.md"
+readme = "README.md"
 #license = "NoLicense"
 classifiers = [
     "Programming Language :: Python :: 3",
