@@ -8,13 +8,13 @@ install:
 
 install-dev:
 	# install core
-	pip install -e core;poetry install -C core --only dev --no-root
+	pip install -e core && poetry install -C core --only dev --no-root
 	# install services
 	@for f in $(shell ls ${SERVICES_DIR}); do pip install -e ${SERVICES_DIR}/$${f};poetry install -C ${SERVICES_DIR}/$${f} --only dev --no-root; done
 
 test:
 	# test core
-	cd core; pytest; cd ..;
+	cd core && pytest && cd ..
 	# test services
 	@for f in $(shell ls ${SERVICES_DIR}); do  set -e; cd ${SERVICES_DIR}/$${f}; sh -c 'pytest || ([ $$? = 5 ] && exit 0 || exit $$?)'; cd ../..; done
 
