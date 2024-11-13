@@ -5,7 +5,7 @@ authors = [
     "OpenAPI Generator Community <team@openapitools.org>",
 ]
 description = "STACKIT Redis API"
-#readme = "README.md"
+readme = "README.md"
 #license = "NoLicense"
 classifiers = [
     "Programming Language :: Python :: 3",
