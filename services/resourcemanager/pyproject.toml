@@ -5,7 +5,7 @@ authors = [
     "STACKIT Core Platform <team@openapitools.org>",
 ]
 description = "Resource Manager API"
-#readme = "README.md"
+readme = "README.md"
 #license = "NoLicense"
 classifiers = [
     "Programming Language :: Python :: 3",
