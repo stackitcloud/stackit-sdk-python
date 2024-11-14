@@ -20,7 +20,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
         run: |
-            git config --global user.name "SDK Releaser Bot"
+            git config --global user.name "SDK Updater Bot"
             git config --global user.email "noreply@stackit.de"
         
             pip install poetry
