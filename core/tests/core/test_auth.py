@@ -39,7 +39,7 @@ def credentials_file_json_with_unused_arguments():
     return """{
     "STACKIT_SERVICE_ACCOUNT_EMAIL": "email",
     "STACKIT_PRIVATE_KEY_PATH": "/path/to/private.key",
-    "STACKIT_SERVICE_ACCOUNT_TOKEN": "token",    
+    "STACKIT_SERVICE_ACCOUNT_TOKEN": "token",
     "STACKIT_SERVICE_ACCOUNT_KEY_PATH": "/path/to/account.key",
     "STACKIT_SERVICE_ACCOUNT_TOKEN_UNUSED": "unused"
 }"""
