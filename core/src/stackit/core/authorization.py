@@ -1,7 +1,7 @@
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Dict, Optional, Union
 
 from requests.auth import AuthBase
 
@@ -22,15 +22,12 @@ class Credentials:
         STACKIT_SERVICE_ACCOUNT_TOKEN: str = None,
         STACKIT_SERVICE_ACCOUNT_KEY_PATH: str = None,
         STACKIT_PRIVATE_KEY_PATH: str = None,
+        **kwargs,
     ):
         self.service_account_mail = STACKIT_SERVICE_ACCOUNT_EMAIL
         self.service_account_token = STACKIT_SERVICE_ACCOUNT_TOKEN
         self.service_account_key_path = STACKIT_SERVICE_ACCOUNT_KEY_PATH
         self.private_key_path = STACKIT_PRIVATE_KEY_PATH
-
-
-def either_this_or_that(this: Any, that: Any) -> Optional[Any]:
-    return this if this else that
 
 
 class Authorization:
@@ -45,16 +42,26 @@ class Authorization:
 
     def __init__(self, configuration: Configuration):
         credentials = self.__read_credentials_file(configuration.credentials_file_path)
-        self.service_account_mail = either_this_or_that(
-            configuration.service_account_mail, credentials.service_account_mail
+        self.service_account_mail = (
+            configuration.service_account_mail
+            if configuration.service_account_mail is not None
+            else credentials.service_account_mail
         )
-        self.service_account_token = either_this_or_that(
-            configuration.service_account_token, credentials.service_account_token
+        self.service_account_token = (
+            configuration.service_account_token
+            if configuration.service_account_token is not None
+            else credentials.service_account_token
         )
-        self.service_account_key_path = either_this_or_that(
-            configuration.service_account_key_path, credentials.service_account_key_path
+        self.service_account_key_path = (
+            configuration.service_account_key_path
+            if configuration.service_account_key_path is not None
+            else credentials.service_account_key_path
         )
-        self.private_key_path = either_this_or_that(configuration.private_key_path, credentials.private_key_path)
+        self.private_key_path = (
+            configuration.private_key_path
+            if configuration.private_key_path is not None
+            else credentials.private_key_path
+        )
         self.auth_method = configuration.custom_auth
         self.token_endpoint = configuration.token_endpoint
         self.__read_keys()
