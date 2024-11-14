@@ -2,7 +2,7 @@
 name = "stackit-iaasalpha"
 version = "v0.0.1a"
 authors = [
-    "STACKIT IaaS Teams <stackit-iaas@mail.schwarz>",
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
 description = "IaaS-API"
 readme = "README.md"

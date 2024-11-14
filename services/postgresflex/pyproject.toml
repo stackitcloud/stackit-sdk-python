@@ -2,7 +2,7 @@
 name = "stackit-postgresflex"
 version = "v0.0.1a"
 authors = [
-    "STACKIT Postgres Service Support <support@stackit.cloud>",
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
 description = "STACKIT PostgreSQL Flex API"
 readme = "README.md"

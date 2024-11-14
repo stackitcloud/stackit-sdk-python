@@ -2,7 +2,7 @@
 name = "stackit-mongodbflex"
 version = "v0.0.1a"
 authors = [
-    "STACKIT MongoDB Service Support <support@stackit.cloud>",
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
 description = "STACKIT MongoDB Service API"
 readme = "README.md"

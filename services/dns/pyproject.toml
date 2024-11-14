@@ -2,7 +2,7 @@
 name = "stackit-dns"
 version = "v0.0.1a2"
 authors = [
-    "stackit-dns <stackit-dns@mail.schwarz>",
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
 description = "STACKIT DNS API"
 readme = "README.md"

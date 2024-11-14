@@ -2,7 +2,7 @@
 name = "stackit-authorization"
 version = "v0.0.1a"
 authors = [
-    "OpenAPI Generator Community <team@openapitools.org>",
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
 description = "STACKIT Membership API"
 readme = "README.md"

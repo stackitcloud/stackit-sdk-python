@@ -2,7 +2,7 @@
 name = "stackit-sqlserverflex"
 version = "v0.0.1a"
 authors = [
-    "STACKIT MSSQL Service Support <support@stackit.cloud>",
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
 description = "STACKIT MSSQL Service API"
 readme = "README.md"

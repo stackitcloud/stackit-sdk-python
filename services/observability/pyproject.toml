@@ -2,7 +2,7 @@
 name = "stackit-observability"
 version = "v0.0.1a"
 authors = [
-    "OpenAPI Generator Community <stackit-argus@mail.schwarz>",
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
 description = "STACKIT Observability API"
 readme = "README.md"

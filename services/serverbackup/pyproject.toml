@@ -2,7 +2,7 @@
 name = "stackit-serverbackup"
 version = "v0.0.1a"
 authors = [
-    "OpenAPI Generator Community <support@stackit.de>",
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
 description = "STACKIT Server Backup Management API"
 readme = "README.md"
