@@ -199,16 +199,16 @@ class TestAuth:
         assert auth.auth_method is None
 
     @pytest.mark.parametrize(
-        "credentials_file_json_fixture", [
+        "credentials_file_json_fixture",
+        [
             ("credentials_file_json_with_unused_arguments"),
-            ("credentials_file_json"),            
-            ]
+            ("credentials_file_json"),
+        ],
     )
     def test_valid_credentials_file_is_parsed(
         self, request, credentials_file_json_fixture, service_account_key_file_json, private_key_file
     ):
-        credentials_file_json = request.getfixturevalue(
-            credentials_file_json_fixture)
+        credentials_file_json = request.getfixturevalue(credentials_file_json_fixture)
 
         with patch(
             "builtins.open",
