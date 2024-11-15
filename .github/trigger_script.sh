@@ -12,6 +12,6 @@ for file in $(git diff --name-only HEAD~1..HEAD | grep pyproject.toml); do
     else
         echo "Tag '$expected_tag' does not exist. Creating new tag to trigger release."
         git tag -a $expected_tag -m "Release $version"
-        #git push origin tag $expected_tag
+        git push origin tag $expected_tag
     fi              
 done
