@@ -2,7 +2,7 @@
 
 # Check all pyproject.toml files that have changed
 for file in $(git diff --name-only HEAD~1..HEAD | grep pyproject.toml); do
-    # Extract the current version and buikd the expected tag
+    # Extract the current version and build the expected tag
     dirpath=$(dirname $file)
     expected_tag=$(.github/helper.sh $dirpath --path-version)
     version=$(.github/helper.sh $dirpath)
