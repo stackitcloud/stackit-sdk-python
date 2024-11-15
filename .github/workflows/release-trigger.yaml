@@ -17,5 +17,5 @@ jobs:
           git config --global user.name "SDK Releaser Bot"
           git config --global user.email "noreply@stackit.de"
           
-          .github/trigger_script.sh
+          scripts/trigger_script.sh
           
