@@ -18,21 +18,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing_extensions import Self
 
+from stackit.serverbackup.models.backup_schedule import BackupSchedule
 
-class ErrorResponse(BaseModel):
+
+class GetBackupSchedulesResponse(BaseModel):
     """
-    ErrorResponse
+    GetBackupSchedulesResponse
     """
 
-    message: StrictStr = Field(description="Details about the error")
-    status: StrictStr = Field(
-        description="The string representation of the http status code (i.e. Not Found, Bad Request, etc)"
-    )
-    timestamp: StrictStr = Field(description="The time the error occured")
-    __properties: ClassVar[List[str]] = ["message", "status", "timestamp"]
+    items: Optional[List[BackupSchedule]] = None
+    __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +49,7 @@ class ErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ErrorResponse from a JSON string"""
+        """Create an instance of GetBackupSchedulesResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,11 +69,18 @@ class ErrorResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item in self.items:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ErrorResponse from a dict"""
+        """Create an instance of GetBackupSchedulesResponse from a dict"""
         if obj is None:
             return None
 
@@ -83,6 +88,12 @@ class ErrorResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"message": obj.get("message"), "status": obj.get("status"), "timestamp": obj.get("timestamp")}
+            {
+                "items": (
+                    [BackupSchedule.from_dict(_item) for _item in obj["items"]]
+                    if obj.get("items") is not None
+                    else None
+                )
+            }
         )
         return _obj
