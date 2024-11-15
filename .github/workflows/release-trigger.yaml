@@ -16,6 +16,25 @@ jobs:
         run: |
           git config --global user.name "SDK Releaser Bot"
           git config --global user.email "noreply@stackit.de"
-          
-          .github/trigger_script.sh
-          
+
+          for file in $(git diff --name-only HEAD~1..HEAD | grep pyproject.toml); do
+              # Extract the change regarding the version from the pyproject.toml file
+              version_changes=$(git diff HEAD~1..HEAD $file | grep "version =")
+              # Check if the extracted change is not empty
+              if [ -n "$version_changes" ]; then
+                  # Split all found version changes, so we can compare the old and new version.
+                  splitted_version_changes=($(echo "$version_changes" | grep -oP '(?<=version = )[^ ]*'))
+                  # Only create a tag if there has been an actual change in the version, not just a format change.
+                  if [ $(echo "${splitted_version_changes[@]}" | tr ' ' '\n' | sort -u | wc -l) -ne 1 ]; then
+                      dirpath=$(dirname $file)
+                      # Extract just the version number
+                      current_version=$(grep -o "version = .*" ${file} | cut -d '=' -f 2-)
+                      dirpath=$(dirname $file)
+                      cleaned_version=$(echo "$current_version" | tr -d '" ')
+                      # Create the tag based on the updated service and the new version
+                      tag=$(echo "${dirpath}/${cleaned_version}")
+                      git tag -a $tag -m "Release $cleaned_version"
+                      git push origin tag $tag
+                  fi            
+              fi            
+          done

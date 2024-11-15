@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-core"
-version = "v0.0.1a7"
+version = "v0.0.1a3"
 authors = ["STACKIT Developer Tools <developer-tools@stackit.cloud>"]
 description = "Core functionality for the STACKIT SDK for Python"
 readme = "README.md"
