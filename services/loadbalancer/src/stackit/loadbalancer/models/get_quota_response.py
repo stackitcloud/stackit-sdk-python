@@ -27,7 +27,7 @@ class GetQuotaResponse(BaseModel):
     GetQuotaResponse
     """
 
-    max_load_balancers: Optional[Annotated[int, Field(le=999, strict=True, ge=-1)]] = Field(
+    max_load_balancers: Optional[Annotated[int, Field(le=1000000, strict=True, ge=-1)]] = Field(
         default=None,
         description="The maximum number of load balancing servers in this project. Unlimited if set to -1.",
         alias="maxLoadBalancers",
