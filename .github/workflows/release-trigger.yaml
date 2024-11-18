@@ -17,6 +17,8 @@ jobs:
         with:
           python-version: "3.8"          
       - name: Push tag for each updated package
+        env:
+          GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
         run: |
           git config --global user.name "SDK Releaser Bot"
           git config --global user.email "noreply@stackit.de"
