@@ -21,15 +21,15 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict
 from typing_extensions import Self
 
-from stackit.serverbackup.models.backup_schedule import BackupSchedule
+from stackit.serverbackup.models.backup import Backup
 
 
-class ListBackupSchedules200Response(BaseModel):
+class GetBackupsListResponse(BaseModel):
     """
-    ListBackupSchedules200Response
+    GetBackupsListResponse
     """
 
-    items: Optional[List[BackupSchedule]] = None
+    items: Optional[List[Backup]] = None
     __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
@@ -49,7 +49,7 @@ class ListBackupSchedules200Response(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ListBackupSchedules200Response from a JSON string"""
+        """Create an instance of GetBackupsListResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +80,7 @@ class ListBackupSchedules200Response(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ListBackupSchedules200Response from a dict"""
+        """Create an instance of GetBackupsListResponse from a dict"""
         if obj is None:
             return None
 
@@ -88,12 +88,6 @@ class ListBackupSchedules200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "items": (
-                    [BackupSchedule.from_dict(_item) for _item in obj["items"]]
-                    if obj.get("items") is not None
-                    else None
-                )
-            }
+            {"items": [Backup.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None}
         )
         return _obj

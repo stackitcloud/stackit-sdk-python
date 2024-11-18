@@ -1,19 +1,15 @@
 [tool.poetry]
 name = "stackit-core"
-version = "v0.0.1a2"
-authors = [
-  "STACKIT Developer Tools <developer-tools@stackit.cloud>",
-]
+version = "v0.0.1a3"
+authors = ["STACKIT Developer Tools <developer-tools@stackit.cloud>"]
 description = "Core functionality for the STACKIT SDK for Python"
 readme = "README.md"
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: Apache Software License",
-    "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
 ]
-packages = [
-  { include = "stackit", from="src" }
-]
+packages = [{ include = "stackit", from = "src" }]
 
 
 [tool.poetry.dependencies]
@@ -29,8 +25,8 @@ requests = ">=2.32.3"
 black = ">=24.8.0"
 pytest = ">=8.3.3"
 flake8 = [
-  { version= ">=5.0.3", python="<3.12"},
-  { version= ">=6.0.1", python=">=3.12"}
+  { version = ">=5.0.3", python = "<3.12" },
+  { version = ">=6.0.1", python = ">=3.12" },
 ]
 flake8-black = ">=0.3.6"
 flake8-pyproject = ">=1.2.3"
@@ -51,12 +47,8 @@ requires = ["setuptools", "poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
-pythonpath = [
-    "src"
-]
-testpaths = [
-    "tests"
-]
+pythonpath = ["src"]
+testpaths = ["tests"]
 
 [tool.black]
 line-length = 120
@@ -83,7 +75,20 @@ exclude = """
 profile = 'black'
 
 [tool.flake8]
-exclude= [".eggs", ".git", ".hg", ".mypy_cache", ".tox", ".venv", ".devcontainer", "venv", "_build", "buck-out", "build", "dist"]
+exclude = [
+  ".eggs",
+  ".git",
+  ".hg",
+  ".mypy_cache",
+  ".tox",
+  ".venv",
+  ".devcontainer",
+  "venv",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+]
 statistics = true
 show-source = false
 max-line-length = 120
