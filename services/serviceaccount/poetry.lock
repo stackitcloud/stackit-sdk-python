@@ -1181,21 +1181,21 @@ files = [
 
 [[package]]
 name = "stackit-core"
-version = "0.0.1a0"
+version = "0.0.1a2"
 description = "Core functionality for the STACKIT SDK for Python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "stackit_core-0.0.1a0-py3-none-any.whl", hash = "sha256:8249cb4a380eb5ad168b742563b5911d1be67514791038ce2076246f03254989"},
-    {file = "stackit_core-0.0.1a0.tar.gz", hash = "sha256:3b06f468a65d77dd30d372397e6cf90d3d0e2535572f4422bcc5bd5e7e6c2b43"},
+    {file = "stackit_core-0.0.1a2-py3-none-any.whl", hash = "sha256:d11d11edbc820a3b756663db924d319f16028a106e0140d1c944fa4e5da97260"},
+    {file = "stackit_core-0.0.1a2.tar.gz", hash = "sha256:0d5c0f5a84668f8b060da20678819c13f5085db1cae8998c344eb2535097f406"},
 ]
 
 [package.dependencies]
-cryptography = ">=43.0.1,<44.0.0"
-pydantic = ">=2.9.2,<3.0.0"
-pyjwt = ">=2.9.0,<3.0.0"
-requests = ">=2.32.3,<3.0.0"
-urllib3 = ">=2.2.3,<3.0.0"
+cryptography = ">=43.0.1"
+pydantic = ">=2.9.2"
+pyjwt = ">=2.9.0"
+requests = ">=2.32.3"
+urllib3 = ">=2.2.3"
 
 [[package]]
 name = "stevedore"
