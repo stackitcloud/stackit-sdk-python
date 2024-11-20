@@ -28,7 +28,7 @@ class CreateUpdateSchedulePayload(BaseModel):
     """
 
     enabled: StrictBool
-    id: StrictInt
+    id: Optional[StrictInt] = None
     maintenance_window: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(alias="maintenanceWindow")
     name: StrictStr
     rrule: StrictStr

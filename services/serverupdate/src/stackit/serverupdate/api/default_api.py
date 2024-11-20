@@ -57,8 +57,8 @@ class DefaultApi:
     @validate_call
     def create_update(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_update_payload: Optional[CreateUpdatePayload] = None,
         _request_timeout: Union[
             None,
@@ -73,9 +73,9 @@ class DefaultApi:
         """create update
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_update_payload:
         :type create_update_payload: CreateUpdatePayload
@@ -127,8 +127,8 @@ class DefaultApi:
     @validate_call
     def create_update_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_update_payload: Optional[CreateUpdatePayload] = None,
         _request_timeout: Union[
             None,
@@ -143,9 +143,9 @@ class DefaultApi:
         """create update
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_update_payload:
         :type create_update_payload: CreateUpdatePayload
@@ -197,8 +197,8 @@ class DefaultApi:
     @validate_call
     def create_update_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_update_payload: Optional[CreateUpdatePayload] = None,
         _request_timeout: Union[
             None,
@@ -213,9 +213,9 @@ class DefaultApi:
         """create update
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_update_payload:
         :type create_update_payload: CreateUpdatePayload
@@ -327,8 +327,8 @@ class DefaultApi:
     @validate_call
     def create_update_schedule(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_update_schedule_payload: Optional[CreateUpdateSchedulePayload] = None,
         _request_timeout: Union[
             None,
@@ -343,9 +343,9 @@ class DefaultApi:
         """create update schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_update_schedule_payload:
         :type create_update_schedule_payload: CreateUpdateSchedulePayload
@@ -397,8 +397,8 @@ class DefaultApi:
     @validate_call
     def create_update_schedule_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_update_schedule_payload: Optional[CreateUpdateSchedulePayload] = None,
         _request_timeout: Union[
             None,
@@ -413,9 +413,9 @@ class DefaultApi:
         """create update schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_update_schedule_payload:
         :type create_update_schedule_payload: CreateUpdateSchedulePayload
@@ -467,8 +467,8 @@ class DefaultApi:
     @validate_call
     def create_update_schedule_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_update_schedule_payload: Optional[CreateUpdateSchedulePayload] = None,
         _request_timeout: Union[
             None,
@@ -483,9 +483,9 @@ class DefaultApi:
         """create update schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_update_schedule_payload:
         :type create_update_schedule_payload: CreateUpdateSchedulePayload
@@ -597,8 +597,8 @@ class DefaultApi:
     @validate_call
     def delete_update_schedule(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
@@ -613,9 +613,9 @@ class DefaultApi:
         """delete update schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param schedule_id: update schedule id (required)
         :type schedule_id: str
@@ -667,8 +667,8 @@ class DefaultApi:
     @validate_call
     def delete_update_schedule_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
@@ -683,9 +683,9 @@ class DefaultApi:
         """delete update schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param schedule_id: update schedule id (required)
         :type schedule_id: str
@@ -737,8 +737,8 @@ class DefaultApi:
     @validate_call
     def delete_update_schedule_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
@@ -753,9 +753,9 @@ class DefaultApi:
         """delete update schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param schedule_id: update schedule id (required)
         :type schedule_id: str
@@ -859,8 +859,8 @@ class DefaultApi:
     @validate_call
     def disable_service(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -874,9 +874,9 @@ class DefaultApi:
         """(Deprecated) disable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -926,8 +926,8 @@ class DefaultApi:
     @validate_call
     def disable_service_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -941,9 +941,9 @@ class DefaultApi:
         """(Deprecated) disable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -993,8 +993,8 @@ class DefaultApi:
     @validate_call
     def disable_service_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1008,9 +1008,9 @@ class DefaultApi:
         """(Deprecated) disable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1109,8 +1109,8 @@ class DefaultApi:
     @validate_call
     def disable_service_resource(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1124,9 +1124,9 @@ class DefaultApi:
         """disable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1175,8 +1175,8 @@ class DefaultApi:
     @validate_call
     def disable_service_resource_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1190,9 +1190,9 @@ class DefaultApi:
         """disable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1241,8 +1241,8 @@ class DefaultApi:
     @validate_call
     def disable_service_resource_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1256,9 +1256,9 @@ class DefaultApi:
         """disable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1356,8 +1356,8 @@ class DefaultApi:
     @validate_call
     def enable_service(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_payload: Optional[EnableServicePayload] = None,
         _request_timeout: Union[
             None,
@@ -1372,9 +1372,9 @@ class DefaultApi:
         """(Deprecated) enable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_payload:
         :type enable_service_payload: EnableServicePayload
@@ -1427,8 +1427,8 @@ class DefaultApi:
     @validate_call
     def enable_service_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_payload: Optional[EnableServicePayload] = None,
         _request_timeout: Union[
             None,
@@ -1443,9 +1443,9 @@ class DefaultApi:
         """(Deprecated) enable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_payload:
         :type enable_service_payload: EnableServicePayload
@@ -1498,8 +1498,8 @@ class DefaultApi:
     @validate_call
     def enable_service_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_payload: Optional[EnableServicePayload] = None,
         _request_timeout: Union[
             None,
@@ -1514,9 +1514,9 @@ class DefaultApi:
         """(Deprecated) enable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_payload:
         :type enable_service_payload: EnableServicePayload
@@ -1629,8 +1629,8 @@ class DefaultApi:
     @validate_call
     def enable_service_resource(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_resource_payload: Optional[EnableServiceResourcePayload] = None,
         _request_timeout: Union[
             None,
@@ -1645,9 +1645,9 @@ class DefaultApi:
         """enable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_resource_payload:
         :type enable_service_resource_payload: EnableServiceResourcePayload
@@ -1699,8 +1699,8 @@ class DefaultApi:
     @validate_call
     def enable_service_resource_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_resource_payload: Optional[EnableServiceResourcePayload] = None,
         _request_timeout: Union[
             None,
@@ -1715,9 +1715,9 @@ class DefaultApi:
         """enable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_resource_payload:
         :type enable_service_resource_payload: EnableServiceResourcePayload
@@ -1769,8 +1769,8 @@ class DefaultApi:
     @validate_call
     def enable_service_resource_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_resource_payload: Optional[EnableServiceResourcePayload] = None,
         _request_timeout: Union[
             None,
@@ -1785,9 +1785,9 @@ class DefaultApi:
         """enable update service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_resource_payload:
         :type enable_service_resource_payload: EnableServiceResourcePayload
@@ -1899,8 +1899,8 @@ class DefaultApi:
     @validate_call
     def get_update(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         update_id: Annotated[StrictStr, Field(description="id of the update")],
         _request_timeout: Union[
             None,
@@ -1915,9 +1915,9 @@ class DefaultApi:
         """get update
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param update_id: id of the update (required)
         :type update_id: str
@@ -1969,8 +1969,8 @@ class DefaultApi:
     @validate_call
     def get_update_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         update_id: Annotated[StrictStr, Field(description="id of the update")],
         _request_timeout: Union[
             None,
@@ -1985,9 +1985,9 @@ class DefaultApi:
         """get update
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param update_id: id of the update (required)
         :type update_id: str
@@ -2039,8 +2039,8 @@ class DefaultApi:
     @validate_call
     def get_update_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         update_id: Annotated[StrictStr, Field(description="id of the update")],
         _request_timeout: Union[
             None,
@@ -2055,9 +2055,9 @@ class DefaultApi:
         """get update
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param update_id: id of the update (required)
         :type update_id: str
@@ -2161,8 +2161,8 @@ class DefaultApi:
     @validate_call
     def get_update_schedule(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
@@ -2177,9 +2177,9 @@ class DefaultApi:
         """get single update schedule details
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param schedule_id: update schedule id (required)
         :type schedule_id: str
@@ -2231,8 +2231,8 @@ class DefaultApi:
     @validate_call
     def get_update_schedule_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
@@ -2247,9 +2247,9 @@ class DefaultApi:
         """get single update schedule details
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param schedule_id: update schedule id (required)
         :type schedule_id: str
@@ -2301,8 +2301,8 @@ class DefaultApi:
     @validate_call
     def get_update_schedule_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
@@ -2317,9 +2317,9 @@ class DefaultApi:
         """get single update schedule details
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param schedule_id: update schedule id (required)
         :type schedule_id: str
@@ -2423,8 +2423,8 @@ class DefaultApi:
     @validate_call
     def list_update_schedules(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2438,9 +2438,9 @@ class DefaultApi:
         """get list of update schedules
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2489,8 +2489,8 @@ class DefaultApi:
     @validate_call
     def list_update_schedules_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2504,9 +2504,9 @@ class DefaultApi:
         """get list of update schedules
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2555,8 +2555,8 @@ class DefaultApi:
     @validate_call
     def list_update_schedules_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2570,9 +2570,9 @@ class DefaultApi:
         """get list of update schedules
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2670,8 +2670,8 @@ class DefaultApi:
     @validate_call
     def list_updates(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2685,9 +2685,9 @@ class DefaultApi:
         """get list of updates
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2736,8 +2736,8 @@ class DefaultApi:
     @validate_call
     def list_updates_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2751,9 +2751,9 @@ class DefaultApi:
         """get list of updates
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2802,8 +2802,8 @@ class DefaultApi:
     @validate_call
     def list_updates_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2817,9 +2817,9 @@ class DefaultApi:
         """get list of updates
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2917,8 +2917,8 @@ class DefaultApi:
     @validate_call
     def update_update_schedule(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         update_update_schedule_payload: Optional[UpdateUpdateSchedulePayload] = None,
         _request_timeout: Union[
@@ -2934,9 +2934,9 @@ class DefaultApi:
         """update update schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param schedule_id: update schedule id (required)
         :type schedule_id: str
@@ -2991,8 +2991,8 @@ class DefaultApi:
     @validate_call
     def update_update_schedule_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         update_update_schedule_payload: Optional[UpdateUpdateSchedulePayload] = None,
         _request_timeout: Union[
@@ -3008,9 +3008,9 @@ class DefaultApi:
         """update update schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param schedule_id: update schedule id (required)
         :type schedule_id: str
@@ -3065,8 +3065,8 @@ class DefaultApi:
     @validate_call
     def update_update_schedule_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         update_update_schedule_payload: Optional[UpdateUpdateSchedulePayload] = None,
         _request_timeout: Union[
@@ -3082,9 +3082,9 @@ class DefaultApi:
         """update update schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param schedule_id: update schedule id (required)
         :type schedule_id: str
