@@ -43,6 +43,7 @@ jobs:
                     echo $(git status)
                     gh pr create --title "$pr_name" --body "Automated dependency update" --base "main"
                     git checkout main
+                    sleep 30 # prevent rate limit.
                 fi            
             done
 

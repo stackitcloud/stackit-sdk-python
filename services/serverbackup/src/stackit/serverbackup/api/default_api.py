@@ -62,8 +62,8 @@ class DefaultApi:
     @validate_call
     def create_backup(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_backup_payload: Optional[CreateBackupPayload] = None,
         _request_timeout: Union[
             None,
@@ -78,9 +78,9 @@ class DefaultApi:
         """create backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_backup_payload:
         :type create_backup_payload: CreateBackupPayload
@@ -131,8 +131,8 @@ class DefaultApi:
     @validate_call
     def create_backup_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_backup_payload: Optional[CreateBackupPayload] = None,
         _request_timeout: Union[
             None,
@@ -147,9 +147,9 @@ class DefaultApi:
         """create backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_backup_payload:
         :type create_backup_payload: CreateBackupPayload
@@ -200,8 +200,8 @@ class DefaultApi:
     @validate_call
     def create_backup_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_backup_payload: Optional[CreateBackupPayload] = None,
         _request_timeout: Union[
             None,
@@ -216,9 +216,9 @@ class DefaultApi:
         """create backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_backup_payload:
         :type create_backup_payload: CreateBackupPayload
@@ -329,8 +329,8 @@ class DefaultApi:
     @validate_call
     def create_backup_schedule(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_backup_schedule_payload: Optional[CreateBackupSchedulePayload] = None,
         _request_timeout: Union[
             None,
@@ -345,9 +345,9 @@ class DefaultApi:
         """create backup schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_backup_schedule_payload:
         :type create_backup_schedule_payload: CreateBackupSchedulePayload
@@ -398,8 +398,8 @@ class DefaultApi:
     @validate_call
     def create_backup_schedule_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_backup_schedule_payload: Optional[CreateBackupSchedulePayload] = None,
         _request_timeout: Union[
             None,
@@ -414,9 +414,9 @@ class DefaultApi:
         """create backup schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_backup_schedule_payload:
         :type create_backup_schedule_payload: CreateBackupSchedulePayload
@@ -467,8 +467,8 @@ class DefaultApi:
     @validate_call
     def create_backup_schedule_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         create_backup_schedule_payload: Optional[CreateBackupSchedulePayload] = None,
         _request_timeout: Union[
             None,
@@ -483,9 +483,9 @@ class DefaultApi:
         """create backup schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param create_backup_schedule_payload:
         :type create_backup_schedule_payload: CreateBackupSchedulePayload
@@ -596,8 +596,8 @@ class DefaultApi:
     @validate_call
     def delete_backup(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         _request_timeout: Union[
             None,
@@ -612,9 +612,9 @@ class DefaultApi:
         """delete backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -664,8 +664,8 @@ class DefaultApi:
     @validate_call
     def delete_backup_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         _request_timeout: Union[
             None,
@@ -680,9 +680,9 @@ class DefaultApi:
         """delete backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -732,8 +732,8 @@ class DefaultApi:
     @validate_call
     def delete_backup_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         _request_timeout: Union[
             None,
@@ -748,9 +748,9 @@ class DefaultApi:
         """delete backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -848,8 +848,8 @@ class DefaultApi:
     @validate_call
     def delete_backup_schedule(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
         _request_timeout: Union[
             None,
@@ -864,9 +864,9 @@ class DefaultApi:
         """delete backup schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_schedule_id: backup schedule id (required)
         :type backup_schedule_id: str
@@ -916,8 +916,8 @@ class DefaultApi:
     @validate_call
     def delete_backup_schedule_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
         _request_timeout: Union[
             None,
@@ -932,9 +932,9 @@ class DefaultApi:
         """delete backup schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_schedule_id: backup schedule id (required)
         :type backup_schedule_id: str
@@ -984,8 +984,8 @@ class DefaultApi:
     @validate_call
     def delete_backup_schedule_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
         _request_timeout: Union[
             None,
@@ -1000,9 +1000,9 @@ class DefaultApi:
         """delete backup schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_schedule_id: backup schedule id (required)
         :type backup_schedule_id: str
@@ -1100,8 +1100,8 @@ class DefaultApi:
     @validate_call
     def delete_volume_backup(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
         _request_timeout: Union[
@@ -1117,9 +1117,9 @@ class DefaultApi:
         """delete volume backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -1172,8 +1172,8 @@ class DefaultApi:
     @validate_call
     def delete_volume_backup_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
         _request_timeout: Union[
@@ -1189,9 +1189,9 @@ class DefaultApi:
         """delete volume backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -1244,8 +1244,8 @@ class DefaultApi:
     @validate_call
     def delete_volume_backup_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
         _request_timeout: Union[
@@ -1261,9 +1261,9 @@ class DefaultApi:
         """delete volume backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -1367,8 +1367,8 @@ class DefaultApi:
     @validate_call
     def disable_service(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1382,9 +1382,9 @@ class DefaultApi:
         """(Deprecated) disable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1433,8 +1433,8 @@ class DefaultApi:
     @validate_call
     def disable_service_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1448,9 +1448,9 @@ class DefaultApi:
         """(Deprecated) disable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1499,8 +1499,8 @@ class DefaultApi:
     @validate_call
     def disable_service_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1514,9 +1514,9 @@ class DefaultApi:
         """(Deprecated) disable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1610,8 +1610,8 @@ class DefaultApi:
     @validate_call
     def disable_service_resource(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1625,9 +1625,9 @@ class DefaultApi:
         """disable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1675,8 +1675,8 @@ class DefaultApi:
     @validate_call
     def disable_service_resource_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1690,9 +1690,9 @@ class DefaultApi:
         """disable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1740,8 +1740,8 @@ class DefaultApi:
     @validate_call
     def disable_service_resource_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1755,9 +1755,9 @@ class DefaultApi:
         """disable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1850,8 +1850,8 @@ class DefaultApi:
     @validate_call
     def enable_service(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_payload: Optional[EnableServicePayload] = None,
         _request_timeout: Union[
             None,
@@ -1866,9 +1866,9 @@ class DefaultApi:
         """(Deprecated) enable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_payload:
         :type enable_service_payload: EnableServicePayload
@@ -1920,8 +1920,8 @@ class DefaultApi:
     @validate_call
     def enable_service_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_payload: Optional[EnableServicePayload] = None,
         _request_timeout: Union[
             None,
@@ -1936,9 +1936,9 @@ class DefaultApi:
         """(Deprecated) enable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_payload:
         :type enable_service_payload: EnableServicePayload
@@ -1990,8 +1990,8 @@ class DefaultApi:
     @validate_call
     def enable_service_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_payload: Optional[EnableServicePayload] = None,
         _request_timeout: Union[
             None,
@@ -2006,9 +2006,9 @@ class DefaultApi:
         """(Deprecated) enable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_payload:
         :type enable_service_payload: EnableServicePayload
@@ -2116,8 +2116,8 @@ class DefaultApi:
     @validate_call
     def enable_service_resource(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_resource_payload: Optional[EnableServiceResourcePayload] = None,
         _request_timeout: Union[
             None,
@@ -2132,9 +2132,9 @@ class DefaultApi:
         """enable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_resource_payload:
         :type enable_service_resource_payload: EnableServiceResourcePayload
@@ -2185,8 +2185,8 @@ class DefaultApi:
     @validate_call
     def enable_service_resource_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_resource_payload: Optional[EnableServiceResourcePayload] = None,
         _request_timeout: Union[
             None,
@@ -2201,9 +2201,9 @@ class DefaultApi:
         """enable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_resource_payload:
         :type enable_service_resource_payload: EnableServiceResourcePayload
@@ -2254,8 +2254,8 @@ class DefaultApi:
     @validate_call
     def enable_service_resource_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         enable_service_resource_payload: Optional[EnableServiceResourcePayload] = None,
         _request_timeout: Union[
             None,
@@ -2270,9 +2270,9 @@ class DefaultApi:
         """enable backup service
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param enable_service_resource_payload:
         :type enable_service_resource_payload: EnableServiceResourcePayload
@@ -2379,8 +2379,8 @@ class DefaultApi:
     @validate_call
     def get_backup(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         _request_timeout: Union[
             None,
@@ -2395,9 +2395,9 @@ class DefaultApi:
         """get backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -2447,8 +2447,8 @@ class DefaultApi:
     @validate_call
     def get_backup_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         _request_timeout: Union[
             None,
@@ -2463,9 +2463,9 @@ class DefaultApi:
         """get backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -2515,8 +2515,8 @@ class DefaultApi:
     @validate_call
     def get_backup_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         _request_timeout: Union[
             None,
@@ -2531,9 +2531,9 @@ class DefaultApi:
         """get backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -2635,8 +2635,8 @@ class DefaultApi:
     @validate_call
     def get_backup_schedule(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
         _request_timeout: Union[
             None,
@@ -2651,9 +2651,9 @@ class DefaultApi:
         """get single backup schedule details
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_schedule_id: backup schedule id (required)
         :type backup_schedule_id: str
@@ -2703,8 +2703,8 @@ class DefaultApi:
     @validate_call
     def get_backup_schedule_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
         _request_timeout: Union[
             None,
@@ -2719,9 +2719,9 @@ class DefaultApi:
         """get single backup schedule details
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_schedule_id: backup schedule id (required)
         :type backup_schedule_id: str
@@ -2771,8 +2771,8 @@ class DefaultApi:
     @validate_call
     def get_backup_schedule_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
         _request_timeout: Union[
             None,
@@ -2787,9 +2787,9 @@ class DefaultApi:
         """get single backup schedule details
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_schedule_id: backup schedule id (required)
         :type backup_schedule_id: str
@@ -2891,8 +2891,8 @@ class DefaultApi:
     @validate_call
     def list_backup_schedules(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2906,9 +2906,9 @@ class DefaultApi:
         """get list of backup schedules
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2955,8 +2955,8 @@ class DefaultApi:
     @validate_call
     def list_backup_schedules_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2970,9 +2970,9 @@ class DefaultApi:
         """get list of backup schedules
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3019,8 +3019,8 @@ class DefaultApi:
     @validate_call
     def list_backup_schedules_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3034,9 +3034,9 @@ class DefaultApi:
         """get list of backup schedules
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3132,8 +3132,8 @@ class DefaultApi:
     @validate_call
     def list_backups(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3147,9 +3147,9 @@ class DefaultApi:
         """get list of backups
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3196,8 +3196,8 @@ class DefaultApi:
     @validate_call
     def list_backups_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3211,9 +3211,9 @@ class DefaultApi:
         """get list of backups
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3260,8 +3260,8 @@ class DefaultApi:
     @validate_call
     def list_backups_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3275,9 +3275,9 @@ class DefaultApi:
         """get list of backups
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3373,8 +3373,8 @@ class DefaultApi:
     @validate_call
     def restore_backup(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         restore_backup_payload: Optional[RestoreBackupPayload] = None,
         _request_timeout: Union[
@@ -3390,9 +3390,9 @@ class DefaultApi:
         """trigger restore of the requested backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -3446,8 +3446,8 @@ class DefaultApi:
     @validate_call
     def restore_backup_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         restore_backup_payload: Optional[RestoreBackupPayload] = None,
         _request_timeout: Union[
@@ -3463,9 +3463,9 @@ class DefaultApi:
         """trigger restore of the requested backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -3519,8 +3519,8 @@ class DefaultApi:
     @validate_call
     def restore_backup_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         restore_backup_payload: Optional[RestoreBackupPayload] = None,
         _request_timeout: Union[
@@ -3536,9 +3536,9 @@ class DefaultApi:
         """trigger restore of the requested backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -3651,8 +3651,8 @@ class DefaultApi:
     @validate_call
     def restore_volume_backup(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
         restore_volume_backup_payload: Optional[RestoreVolumeBackupPayload] = None,
@@ -3669,9 +3669,9 @@ class DefaultApi:
         """trigger restore of the requested volume backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -3728,8 +3728,8 @@ class DefaultApi:
     @validate_call
     def restore_volume_backup_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
         restore_volume_backup_payload: Optional[RestoreVolumeBackupPayload] = None,
@@ -3746,9 +3746,9 @@ class DefaultApi:
         """trigger restore of the requested volume backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -3805,8 +3805,8 @@ class DefaultApi:
     @validate_call
     def restore_volume_backup_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_id: Annotated[StrictStr, Field(description="id of the backup")],
         volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
         restore_volume_backup_payload: Optional[RestoreVolumeBackupPayload] = None,
@@ -3823,9 +3823,9 @@ class DefaultApi:
         """trigger restore of the requested volume backup
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_id: id of the backup (required)
         :type backup_id: str
@@ -3944,8 +3944,8 @@ class DefaultApi:
     @validate_call
     def update_backup_schedule(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
         update_backup_schedule_payload: Optional[UpdateBackupSchedulePayload] = None,
         _request_timeout: Union[
@@ -3961,9 +3961,9 @@ class DefaultApi:
         """update backup schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_schedule_id: backup schedule id (required)
         :type backup_schedule_id: str
@@ -4017,8 +4017,8 @@ class DefaultApi:
     @validate_call
     def update_backup_schedule_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
         update_backup_schedule_payload: Optional[UpdateBackupSchedulePayload] = None,
         _request_timeout: Union[
@@ -4034,9 +4034,9 @@ class DefaultApi:
         """update backup schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_schedule_id: backup schedule id (required)
         :type backup_schedule_id: str
@@ -4090,8 +4090,8 @@ class DefaultApi:
     @validate_call
     def update_backup_schedule_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        server_id: Annotated[StrictStr, Field(description="openstack server id")],
+        project_id: Annotated[StrictStr, Field(description="project id")],
+        server_id: Annotated[StrictStr, Field(description="server id")],
         backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
         update_backup_schedule_payload: Optional[UpdateBackupSchedulePayload] = None,
         _request_timeout: Union[
@@ -4107,9 +4107,9 @@ class DefaultApi:
         """update backup schedule
 
 
-        :param project_id: portal project id (required)
+        :param project_id: project id (required)
         :type project_id: str
-        :param server_id: openstack server id (required)
+        :param server_id: server id (required)
         :type server_id: str
         :param backup_schedule_id: backup schedule id (required)
         :type backup_schedule_id: str
