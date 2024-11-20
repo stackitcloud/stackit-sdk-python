@@ -35,7 +35,7 @@ jobs:
                     echo "Pr for $dirpath already exists. Skipping."
                 else
                     # Create PR
-                    branch_name="dependency-updater-$dirpath"
+                    branch_name="dependency-updater-$dirpath-${{ github.run_id }}"
                     git checkout -b "$branch_name"
                     git add "$file"
                     git commit -m "chore: dependency update"
