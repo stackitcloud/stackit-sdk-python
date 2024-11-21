@@ -18,19 +18,17 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from stackit.serverbackup.models.backup import Backup
 
-
-class ListBackups200Response(BaseModel):
+class EnableServiceResourcePayload(BaseModel):
     """
-    ListBackups200Response
+    EnableServiceResourcePayload
     """
 
-    items: Optional[List[Backup]] = None
-    __properties: ClassVar[List[str]] = ["items"]
+    backup_policy_id: Optional[StrictStr] = Field(default=None, alias="backupPolicyId")
+    __properties: ClassVar[List[str]] = ["backupPolicyId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +47,7 @@ class ListBackups200Response(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ListBackups200Response from a JSON string"""
+        """Create an instance of EnableServiceResourcePayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,25 +67,16 @@ class ListBackups200Response(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
-        _items = []
-        if self.items:
-            for _item in self.items:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ListBackups200Response from a dict"""
+        """Create an instance of EnableServiceResourcePayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"items": [Backup.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None}
-        )
+        _obj = cls.model_validate({"backupPolicyId": obj.get("backupPolicyId")})
         return _obj

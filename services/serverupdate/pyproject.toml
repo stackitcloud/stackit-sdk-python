@@ -1,8 +1,10 @@
 [tool.poetry]
-name = "stackit-dns"
-version = "v0.0.1a4"
-authors = ["STACKIT Developer Tools <developer-tools@stackit.cloud>"]
-description = "STACKIT DNS API"
+name = "stackit-serverupdate"
+version = "v0.0.1a"
+authors = [
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
+]
+description = "STACKIT Server Update Management API"
 readme = "README.md"
 #license = "NoLicense"
 classifiers = [

@@ -35,6 +35,17 @@ def credentials_file_json():
 
 
 @pytest.fixture
+def credentials_file_json_with_unused_arguments():
+    return """{
+    "STACKIT_SERVICE_ACCOUNT_EMAIL": "email",
+    "STACKIT_PRIVATE_KEY_PATH": "/path/to/private.key",
+    "STACKIT_SERVICE_ACCOUNT_TOKEN": "token",
+    "STACKIT_SERVICE_ACCOUNT_KEY_PATH": "/path/to/account.key",
+    "STACKIT_SERVICE_ACCOUNT_TOKEN_UNUSED": "unused"
+}"""
+
+
+@pytest.fixture
 def service_account_key_file_json():
     """
     This test key is for testing purposes only.
@@ -160,6 +171,7 @@ def mock_open_function(
 
 
 class TestAuth:
+
     def test_token_auth_is_selected_when_token_is_given(self, empty_credentials_file_json):
         with patch("builtins.open", mock_open(read_data=empty_credentials_file_json)):
             config = Configuration(service_account_token="token")
@@ -186,9 +198,18 @@ class TestAuth:
         auth = Authorization(config)
         assert auth.auth_method is None
 
+    @pytest.mark.parametrize(
+        "credentials_file_json_fixture",
+        [
+            ("credentials_file_json_with_unused_arguments"),
+            ("credentials_file_json"),
+        ],
+    )
     def test_valid_credentials_file_is_parsed(
-        self, credentials_file_json, service_account_key_file_json, private_key_file
+        self, request, credentials_file_json_fixture, service_account_key_file_json, private_key_file
     ):
+        credentials_file_json = request.getfixturevalue(credentials_file_json_fixture)
+
         with patch(
             "builtins.open",
             lambda filepath, *args, **kwargs: mock_open_function(

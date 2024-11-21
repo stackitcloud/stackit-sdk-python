@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    STACKIT Server Backup Management API
+    STACKIT Server Update Management API
 
-    API endpoints for Server Backup Operations on STACKIT Servers.
+    API endpoints for Server Update Operations on STACKIT Servers.
 
     The version of the OpenAPI document: 1.0
     Contact: support@stackit.de
@@ -18,21 +18,21 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from typing_extensions import Annotated, Self
 
 
-class ErrorResponse(BaseModel):
+class UpdateSchedule(BaseModel):
     """
-    ErrorResponse
+    UpdateSchedule
     """
 
-    message: StrictStr = Field(description="Details about the error")
-    status: StrictStr = Field(
-        description="The string representation of the http status code (i.e. Not Found, Bad Request, etc)"
-    )
-    timestamp: StrictStr = Field(description="The time the error occured")
-    __properties: ClassVar[List[str]] = ["message", "status", "timestamp"]
+    enabled: StrictBool
+    id: Optional[StrictInt] = None
+    maintenance_window: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(alias="maintenanceWindow")
+    name: StrictStr
+    rrule: StrictStr
+    __properties: ClassVar[List[str]] = ["enabled", "id", "maintenanceWindow", "name", "rrule"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +51,7 @@ class ErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ErrorResponse from a JSON string"""
+        """Create an instance of UpdateSchedule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +75,7 @@ class ErrorResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ErrorResponse from a dict"""
+        """Create an instance of UpdateSchedule from a dict"""
         if obj is None:
             return None
 
@@ -83,6 +83,12 @@ class ErrorResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"message": obj.get("message"), "status": obj.get("status"), "timestamp": obj.get("timestamp")}
+            {
+                "enabled": obj.get("enabled"),
+                "id": obj.get("id"),
+                "maintenanceWindow": obj.get("maintenanceWindow"),
+                "name": obj.get("name"),
+                "rrule": obj.get("rrule"),
+            }
         )
         return _obj

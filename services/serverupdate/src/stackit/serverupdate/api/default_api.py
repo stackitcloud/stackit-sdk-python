@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    STACKIT Server Backup Management API
+    STACKIT Server Update Management API
 
-    API endpoints for Server Backup Operations on STACKIT Servers.
+    API endpoints for Server Update Operations on STACKIT Servers.
 
     The version of the OpenAPI document: 1.0
     Contact: support@stackit.de
@@ -19,31 +19,26 @@ from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from stackit.core.configuration import Configuration
 from typing_extensions import Annotated
 
-from stackit.serverbackup.api_client import ApiClient, RequestSerialized
-from stackit.serverbackup.api_response import ApiResponse
-from stackit.serverbackup.models.backup import Backup
-from stackit.serverbackup.models.backup_job import BackupJob
-from stackit.serverbackup.models.backup_schedule import BackupSchedule
-from stackit.serverbackup.models.create_backup_payload import CreateBackupPayload
-from stackit.serverbackup.models.create_backup_schedule_payload import (
-    CreateBackupSchedulePayload,
+from stackit.serverupdate.api_client import ApiClient, RequestSerialized
+from stackit.serverupdate.api_response import ApiResponse
+from stackit.serverupdate.models.create_update_payload import CreateUpdatePayload
+from stackit.serverupdate.models.create_update_schedule_payload import (
+    CreateUpdateSchedulePayload,
 )
-from stackit.serverbackup.models.enable_service_payload import EnableServicePayload
-from stackit.serverbackup.models.enable_service_resource_payload import (
+from stackit.serverupdate.models.enable_service_payload import EnableServicePayload
+from stackit.serverupdate.models.enable_service_resource_payload import (
     EnableServiceResourcePayload,
 )
-from stackit.serverbackup.models.get_backup_schedules_response import (
-    GetBackupSchedulesResponse,
+from stackit.serverupdate.models.get_update_schedules_response import (
+    GetUpdateSchedulesResponse,
 )
-from stackit.serverbackup.models.get_backups_list_response import GetBackupsListResponse
-from stackit.serverbackup.models.restore_backup_payload import RestoreBackupPayload
-from stackit.serverbackup.models.restore_volume_backup_payload import (
-    RestoreVolumeBackupPayload,
+from stackit.serverupdate.models.get_updates_list_response import GetUpdatesListResponse
+from stackit.serverupdate.models.update import Update
+from stackit.serverupdate.models.update_schedule import UpdateSchedule
+from stackit.serverupdate.models.update_update_schedule_payload import (
+    UpdateUpdateSchedulePayload,
 )
-from stackit.serverbackup.models.update_backup_schedule_payload import (
-    UpdateBackupSchedulePayload,
-)
-from stackit.serverbackup.rest import RESTResponseType
+from stackit.serverupdate.rest import RESTResponseType
 
 
 class DefaultApi:
@@ -60,11 +55,11 @@ class DefaultApi:
         self.api_client = ApiClient(self.configuration)
 
     @validate_call
-    def create_backup(
+    def create_update(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        create_backup_payload: Optional[CreateBackupPayload] = None,
+        create_update_payload: Optional[CreateUpdatePayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -74,16 +69,16 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> BackupJob:
-        """create backup
+    ) -> Update:
+        """create update
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param create_backup_payload:
-        :type create_backup_payload: CreateBackupPayload
+        :param create_update_payload:
+        :type create_update_payload: CreateUpdatePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -106,10 +101,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._create_backup_serialize(
+        _param = self._create_update_serialize(
             project_id=project_id,
             server_id=server_id,
-            create_backup_payload=create_backup_payload,
+            create_update_payload=create_update_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -117,8 +112,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "BackupJob",
+            "202": "Update",
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -129,11 +125,11 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def create_backup_with_http_info(
+    def create_update_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        create_backup_payload: Optional[CreateBackupPayload] = None,
+        create_update_payload: Optional[CreateUpdatePayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -143,16 +139,16 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[BackupJob]:
-        """create backup
+    ) -> ApiResponse[Update]:
+        """create update
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param create_backup_payload:
-        :type create_backup_payload: CreateBackupPayload
+        :param create_update_payload:
+        :type create_update_payload: CreateUpdatePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -175,10 +171,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._create_backup_serialize(
+        _param = self._create_update_serialize(
             project_id=project_id,
             server_id=server_id,
-            create_backup_payload=create_backup_payload,
+            create_update_payload=create_update_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -186,8 +182,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "BackupJob",
+            "202": "Update",
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -198,11 +195,11 @@ class DefaultApi:
         )
 
     @validate_call
-    def create_backup_without_preload_content(
+    def create_update_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        create_backup_payload: Optional[CreateBackupPayload] = None,
+        create_update_payload: Optional[CreateUpdatePayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -213,15 +210,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """create backup
+        """create update
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param create_backup_payload:
-        :type create_backup_payload: CreateBackupPayload
+        :param create_update_payload:
+        :type create_update_payload: CreateUpdatePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -244,10 +241,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._create_backup_serialize(
+        _param = self._create_update_serialize(
             project_id=project_id,
             server_id=server_id,
-            create_backup_payload=create_backup_payload,
+            create_update_payload=create_update_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -255,18 +252,19 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "BackupJob",
+            "202": "Update",
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _create_backup_serialize(
+    def _create_update_serialize(
         self,
         project_id,
         server_id,
-        create_backup_payload,
+        create_update_payload,
         _request_auth,
         _content_type,
         _headers,
@@ -293,12 +291,12 @@ class DefaultApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if create_backup_payload is not None:
-            _body_params = create_backup_payload
+        if create_update_payload is not None:
+            _body_params = create_update_payload
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json", "text/plain"])
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -313,7 +311,7 @@ class DefaultApi:
 
         return self.api_client.param_serialize(
             method="POST",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backups",
+            resource_path="/v1/projects/{projectId}/servers/{serverId}/updates",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -327,11 +325,11 @@ class DefaultApi:
         )
 
     @validate_call
-    def create_backup_schedule(
+    def create_update_schedule(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        create_backup_schedule_payload: Optional[CreateBackupSchedulePayload] = None,
+        create_update_schedule_payload: Optional[CreateUpdateSchedulePayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -341,16 +339,16 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> BackupSchedule:
-        """create backup schedule
+    ) -> UpdateSchedule:
+        """create update schedule
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param create_backup_schedule_payload:
-        :type create_backup_schedule_payload: CreateBackupSchedulePayload
+        :param create_update_schedule_payload:
+        :type create_update_schedule_payload: CreateUpdateSchedulePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -373,10 +371,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._create_backup_schedule_serialize(
+        _param = self._create_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            create_backup_schedule_payload=create_backup_schedule_payload,
+            create_update_schedule_payload=create_update_schedule_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -384,8 +382,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "BackupSchedule",
+            "201": "UpdateSchedule",
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -396,11 +395,11 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def create_backup_schedule_with_http_info(
+    def create_update_schedule_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        create_backup_schedule_payload: Optional[CreateBackupSchedulePayload] = None,
+        create_update_schedule_payload: Optional[CreateUpdateSchedulePayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -410,16 +409,16 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[BackupSchedule]:
-        """create backup schedule
+    ) -> ApiResponse[UpdateSchedule]:
+        """create update schedule
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param create_backup_schedule_payload:
-        :type create_backup_schedule_payload: CreateBackupSchedulePayload
+        :param create_update_schedule_payload:
+        :type create_update_schedule_payload: CreateUpdateSchedulePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -442,10 +441,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._create_backup_schedule_serialize(
+        _param = self._create_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            create_backup_schedule_payload=create_backup_schedule_payload,
+            create_update_schedule_payload=create_update_schedule_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -453,8 +452,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "BackupSchedule",
+            "201": "UpdateSchedule",
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -465,11 +465,11 @@ class DefaultApi:
         )
 
     @validate_call
-    def create_backup_schedule_without_preload_content(
+    def create_update_schedule_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        create_backup_schedule_payload: Optional[CreateBackupSchedulePayload] = None,
+        create_update_schedule_payload: Optional[CreateUpdateSchedulePayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -480,15 +480,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """create backup schedule
+        """create update schedule
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param create_backup_schedule_payload:
-        :type create_backup_schedule_payload: CreateBackupSchedulePayload
+        :param create_update_schedule_payload:
+        :type create_update_schedule_payload: CreateUpdateSchedulePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -511,10 +511,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._create_backup_schedule_serialize(
+        _param = self._create_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            create_backup_schedule_payload=create_backup_schedule_payload,
+            create_update_schedule_payload=create_update_schedule_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -522,18 +522,19 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "BackupSchedule",
+            "201": "UpdateSchedule",
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _create_backup_schedule_serialize(
+    def _create_update_schedule_serialize(
         self,
         project_id,
         server_id,
-        create_backup_schedule_payload,
+        create_update_schedule_payload,
         _request_auth,
         _content_type,
         _headers,
@@ -560,12 +561,12 @@ class DefaultApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if create_backup_schedule_payload is not None:
-            _body_params = create_backup_schedule_payload
+        if create_update_schedule_payload is not None:
+            _body_params = create_update_schedule_payload
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json", "text/plain"])
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -580,7 +581,7 @@ class DefaultApi:
 
         return self.api_client.param_serialize(
             method="POST",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backup-schedules",
+            resource_path="/v1/projects/{projectId}/servers/{serverId}/update-schedules",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -594,11 +595,11 @@ class DefaultApi:
         )
 
     @validate_call
-    def delete_backup(
+    def delete_update_schedule(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
+        schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -609,15 +610,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """delete backup
+        """delete update schedule
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
+        :param schedule_id: update schedule id (required)
+        :type schedule_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -640,10 +641,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._delete_backup_serialize(
+        _param = self._delete_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_id=backup_id,
+            schedule_id=schedule_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -651,7 +652,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -662,11 +665,11 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def delete_backup_with_http_info(
+    def delete_update_schedule_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
+        schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -677,15 +680,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """delete backup
+        """delete update schedule
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
+        :param schedule_id: update schedule id (required)
+        :type schedule_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -708,10 +711,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._delete_backup_serialize(
+        _param = self._delete_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_id=backup_id,
+            schedule_id=schedule_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -719,7 +722,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -730,11 +735,11 @@ class DefaultApi:
         )
 
     @validate_call
-    def delete_backup_without_preload_content(
+    def delete_update_schedule_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
+        schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -745,15 +750,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """delete backup
+        """delete update schedule
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
+        :param schedule_id: update schedule id (required)
+        :type schedule_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -776,10 +781,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._delete_backup_serialize(
+        _param = self._delete_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_id=backup_id,
+            schedule_id=schedule_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -787,17 +792,19 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "204": None,
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _delete_backup_serialize(
+    def _delete_update_schedule_serialize(
         self,
         project_id,
         server_id,
-        backup_id,
+        schedule_id,
         _request_auth,
         _content_type,
         _headers,
@@ -820,538 +827,23 @@ class DefaultApi:
             _path_params["projectId"] = project_id
         if server_id is not None:
             _path_params["serverId"] = server_id
-        if backup_id is not None:
-            _path_params["backupId"] = backup_id
+        if schedule_id is not None:
+            _path_params["scheduleId"] = schedule_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
         # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["text/plain"])
 
         # authentication setting
         _auth_settings: List[str] = []
 
         return self.api_client.param_serialize(
             method="DELETE",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backups/{backupId}",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    def delete_backup_schedule(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """delete backup schedule
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_schedule_id: backup schedule id (required)
-        :type backup_schedule_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._delete_backup_schedule_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_schedule_id=backup_schedule_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "204": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    @validate_call
-    def delete_backup_schedule_with_http_info(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """delete backup schedule
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_schedule_id: backup schedule id (required)
-        :type backup_schedule_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._delete_backup_schedule_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_schedule_id=backup_schedule_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "204": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    @validate_call
-    def delete_backup_schedule_without_preload_content(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """delete backup schedule
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_schedule_id: backup schedule id (required)
-        :type backup_schedule_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._delete_backup_schedule_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_schedule_id=backup_schedule_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "204": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        return response_data.response
-
-    def _delete_backup_schedule_serialize(
-        self,
-        project_id,
-        server_id,
-        backup_schedule_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if project_id is not None:
-            _path_params["projectId"] = project_id
-        if server_id is not None:
-            _path_params["serverId"] = server_id
-        if backup_schedule_id is not None:
-            _path_params["backupScheduleId"] = backup_schedule_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # authentication setting
-        _auth_settings: List[str] = []
-
-        return self.api_client.param_serialize(
-            method="DELETE",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backup-schedules/{backupScheduleId}",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    def delete_volume_backup(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
-        volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """delete volume backup
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
-        :param volume_backup_id: id of the volume backup (required)
-        :type volume_backup_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._delete_volume_backup_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_id=backup_id,
-            volume_backup_id=volume_backup_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    @validate_call
-    def delete_volume_backup_with_http_info(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
-        volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """delete volume backup
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
-        :param volume_backup_id: id of the volume backup (required)
-        :type volume_backup_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._delete_volume_backup_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_id=backup_id,
-            volume_backup_id=volume_backup_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    @validate_call
-    def delete_volume_backup_without_preload_content(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
-        volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """delete volume backup
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
-        :param volume_backup_id: id of the volume backup (required)
-        :type volume_backup_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._delete_volume_backup_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_id=backup_id,
-            volume_backup_id=volume_backup_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        return response_data.response
-
-    def _delete_volume_backup_serialize(
-        self,
-        project_id,
-        server_id,
-        backup_id,
-        volume_backup_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if project_id is not None:
-            _path_params["projectId"] = project_id
-        if server_id is not None:
-            _path_params["serverId"] = server_id
-        if backup_id is not None:
-            _path_params["backupId"] = backup_id
-        if volume_backup_id is not None:
-            _path_params["volumeBackupId"] = volume_backup_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # authentication setting
-        _auth_settings: List[str] = []
-
-        return self.api_client.param_serialize(
-            method="DELETE",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backups/{backupId}/volume-backups/{volumeBackupId}",
+            resource_path="/v1/projects/{projectId}/servers/{serverId}/update-schedules/{scheduleId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1379,7 +871,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """(Deprecated) disable backup service
+        """(Deprecated) disable update service
 
 
         :param project_id: project id (required)
@@ -1421,6 +913,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1445,7 +938,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """(Deprecated) disable backup service
+        """(Deprecated) disable update service
 
 
         :param project_id: project id (required)
@@ -1487,6 +980,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1511,7 +1005,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """(Deprecated) disable backup service
+        """(Deprecated) disable update service
 
 
         :param project_id: project id (required)
@@ -1553,6 +1047,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1589,6 +1084,10 @@ class DefaultApi:
         # process the form parameters
         # process the body parameter
 
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["text/plain"])
+
         # authentication setting
         _auth_settings: List[str] = []
 
@@ -1622,7 +1121,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """disable backup service
+        """disable update service
 
 
         :param project_id: project id (required)
@@ -1663,6 +1162,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1687,7 +1187,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """disable backup service
+        """disable update service
 
 
         :param project_id: project id (required)
@@ -1728,6 +1228,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1752,7 +1253,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """disable backup service
+        """disable update service
 
 
         :param project_id: project id (required)
@@ -1793,6 +1294,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1829,6 +1331,10 @@ class DefaultApi:
         # process the form parameters
         # process the body parameter
 
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["text/plain"])
+
         # authentication setting
         _auth_settings: List[str] = []
 
@@ -1863,7 +1369,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """(Deprecated) enable backup service
+        """(Deprecated) enable update service
 
 
         :param project_id: project id (required)
@@ -1908,6 +1414,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1933,7 +1440,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """(Deprecated) enable backup service
+        """(Deprecated) enable update service
 
 
         :param project_id: project id (required)
@@ -1978,6 +1485,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2003,7 +1511,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """(Deprecated) enable backup service
+        """(Deprecated) enable update service
 
 
         :param project_id: project id (required)
@@ -2048,6 +1556,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2086,6 +1595,10 @@ class DefaultApi:
         # process the body parameter
         if enable_service_payload is not None:
             _body_params = enable_service_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["text/plain"])
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -2129,7 +1642,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """enable backup service
+        """enable update service
 
 
         :param project_id: project id (required)
@@ -2173,6 +1686,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2198,7 +1712,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """enable backup service
+        """enable update service
 
 
         :param project_id: project id (required)
@@ -2242,6 +1756,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2267,7 +1782,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """enable backup service
+        """enable update service
 
 
         :param project_id: project id (required)
@@ -2311,6 +1826,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2350,6 +1866,10 @@ class DefaultApi:
         if enable_service_resource_payload is not None:
             _body_params = enable_service_resource_payload
 
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["text/plain"])
+
         # set the HTTP header `Content-Type`
         if _content_type:
             _header_params["Content-Type"] = _content_type
@@ -2377,11 +1897,11 @@ class DefaultApi:
         )
 
     @validate_call
-    def get_backup(
+    def get_update(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
+        update_id: Annotated[StrictStr, Field(description="id of the update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2391,16 +1911,16 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Backup:
-        """get backup
+    ) -> Update:
+        """get update
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
+        :param update_id: id of the update (required)
+        :type update_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2423,10 +1943,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._get_backup_serialize(
+        _param = self._get_update_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_id=backup_id,
+            update_id=update_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2434,7 +1954,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Backup",
+            "200": "Update",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2445,11 +1967,11 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def get_backup_with_http_info(
+    def get_update_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
+        update_id: Annotated[StrictStr, Field(description="id of the update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2459,16 +1981,16 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Backup]:
-        """get backup
+    ) -> ApiResponse[Update]:
+        """get update
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
+        :param update_id: id of the update (required)
+        :type update_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2491,10 +2013,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._get_backup_serialize(
+        _param = self._get_update_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_id=backup_id,
+            update_id=update_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2502,7 +2024,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Backup",
+            "200": "Update",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2513,11 +2037,11 @@ class DefaultApi:
         )
 
     @validate_call
-    def get_backup_without_preload_content(
+    def get_update_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
+        update_id: Annotated[StrictStr, Field(description="id of the update")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2528,15 +2052,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get backup
+        """get update
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
+        :param update_id: id of the update (required)
+        :type update_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2559,10 +2083,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._get_backup_serialize(
+        _param = self._get_update_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_id=backup_id,
+            update_id=update_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2570,17 +2094,19 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Backup",
+            "200": "Update",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _get_backup_serialize(
+    def _get_update_serialize(
         self,
         project_id,
         server_id,
-        backup_id,
+        update_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2603,8 +2129,8 @@ class DefaultApi:
             _path_params["projectId"] = project_id
         if server_id is not None:
             _path_params["serverId"] = server_id
-        if backup_id is not None:
-            _path_params["backupId"] = backup_id
+        if update_id is not None:
+            _path_params["updateId"] = update_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -2612,14 +2138,14 @@ class DefaultApi:
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json", "text/plain"])
 
         # authentication setting
         _auth_settings: List[str] = []
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backups/{backupId}",
+            resource_path="/v1/projects/{projectId}/servers/{serverId}/updates/{updateId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2633,11 +2159,11 @@ class DefaultApi:
         )
 
     @validate_call
-    def get_backup_schedule(
+    def get_update_schedule(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
+        schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2647,16 +2173,16 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> BackupSchedule:
-        """get single backup schedule details
+    ) -> UpdateSchedule:
+        """get single update schedule details
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_schedule_id: backup schedule id (required)
-        :type backup_schedule_id: str
+        :param schedule_id: update schedule id (required)
+        :type schedule_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2679,10 +2205,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._get_backup_schedule_serialize(
+        _param = self._get_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_schedule_id=backup_schedule_id,
+            schedule_id=schedule_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2690,7 +2216,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "BackupSchedule",
+            "200": "UpdateSchedule",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2701,11 +2229,11 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def get_backup_schedule_with_http_info(
+    def get_update_schedule_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
+        schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2715,16 +2243,16 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[BackupSchedule]:
-        """get single backup schedule details
+    ) -> ApiResponse[UpdateSchedule]:
+        """get single update schedule details
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_schedule_id: backup schedule id (required)
-        :type backup_schedule_id: str
+        :param schedule_id: update schedule id (required)
+        :type schedule_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2747,10 +2275,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._get_backup_schedule_serialize(
+        _param = self._get_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_schedule_id=backup_schedule_id,
+            schedule_id=schedule_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2758,7 +2286,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "BackupSchedule",
+            "200": "UpdateSchedule",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2769,11 +2299,11 @@ class DefaultApi:
         )
 
     @validate_call
-    def get_backup_schedule_without_preload_content(
+    def get_update_schedule_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
+        schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2784,15 +2314,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get single backup schedule details
+        """get single update schedule details
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_schedule_id: backup schedule id (required)
-        :type backup_schedule_id: str
+        :param schedule_id: update schedule id (required)
+        :type schedule_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2815,10 +2345,10 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._get_backup_schedule_serialize(
+        _param = self._get_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_schedule_id=backup_schedule_id,
+            schedule_id=schedule_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2826,17 +2356,19 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "BackupSchedule",
+            "200": "UpdateSchedule",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _get_backup_schedule_serialize(
+    def _get_update_schedule_serialize(
         self,
         project_id,
         server_id,
-        backup_schedule_id,
+        schedule_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2859,8 +2391,8 @@ class DefaultApi:
             _path_params["projectId"] = project_id
         if server_id is not None:
             _path_params["serverId"] = server_id
-        if backup_schedule_id is not None:
-            _path_params["backupScheduleId"] = backup_schedule_id
+        if schedule_id is not None:
+            _path_params["scheduleId"] = schedule_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -2868,14 +2400,14 @@ class DefaultApi:
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json", "text/plain"])
 
         # authentication setting
         _auth_settings: List[str] = []
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backup-schedules/{backupScheduleId}",
+            resource_path="/v1/projects/{projectId}/servers/{serverId}/update-schedules/{scheduleId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2889,7 +2421,7 @@ class DefaultApi:
         )
 
     @validate_call
-    def list_backup_schedules(
+    def list_update_schedules(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
@@ -2902,8 +2434,8 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> GetBackupSchedulesResponse:
-        """get list of backup schedules
+    ) -> GetUpdateSchedulesResponse:
+        """get list of update schedules
 
 
         :param project_id: project id (required)
@@ -2932,7 +2464,7 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._list_backup_schedules_serialize(
+        _param = self._list_update_schedules_serialize(
             project_id=project_id,
             server_id=server_id,
             _request_auth=_request_auth,
@@ -2942,7 +2474,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "GetBackupSchedulesResponse",
+            "200": "GetUpdateSchedulesResponse",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2953,7 +2487,7 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def list_backup_schedules_with_http_info(
+    def list_update_schedules_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
@@ -2966,8 +2500,8 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[GetBackupSchedulesResponse]:
-        """get list of backup schedules
+    ) -> ApiResponse[GetUpdateSchedulesResponse]:
+        """get list of update schedules
 
 
         :param project_id: project id (required)
@@ -2996,7 +2530,7 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._list_backup_schedules_serialize(
+        _param = self._list_update_schedules_serialize(
             project_id=project_id,
             server_id=server_id,
             _request_auth=_request_auth,
@@ -3006,7 +2540,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "GetBackupSchedulesResponse",
+            "200": "GetUpdateSchedulesResponse",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3017,7 +2553,7 @@ class DefaultApi:
         )
 
     @validate_call
-    def list_backup_schedules_without_preload_content(
+    def list_update_schedules_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
@@ -3031,7 +2567,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get list of backup schedules
+        """get list of update schedules
 
 
         :param project_id: project id (required)
@@ -3060,7 +2596,7 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._list_backup_schedules_serialize(
+        _param = self._list_update_schedules_serialize(
             project_id=project_id,
             server_id=server_id,
             _request_auth=_request_auth,
@@ -3070,13 +2606,15 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "GetBackupSchedulesResponse",
+            "200": "GetUpdateSchedulesResponse",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _list_backup_schedules_serialize(
+    def _list_update_schedules_serialize(
         self,
         project_id,
         server_id,
@@ -3109,14 +2647,14 @@ class DefaultApi:
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json", "text/plain"])
 
         # authentication setting
         _auth_settings: List[str] = []
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backup-schedules",
+            resource_path="/v1/projects/{projectId}/servers/{serverId}/update-schedules",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3130,7 +2668,7 @@ class DefaultApi:
         )
 
     @validate_call
-    def list_backups(
+    def list_updates(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
@@ -3143,8 +2681,8 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> GetBackupsListResponse:
-        """get list of backups
+    ) -> GetUpdatesListResponse:
+        """get list of updates
 
 
         :param project_id: project id (required)
@@ -3173,7 +2711,7 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._list_backups_serialize(
+        _param = self._list_updates_serialize(
             project_id=project_id,
             server_id=server_id,
             _request_auth=_request_auth,
@@ -3183,7 +2721,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "GetBackupsListResponse",
+            "200": "GetUpdatesListResponse",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3194,7 +2734,7 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def list_backups_with_http_info(
+    def list_updates_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
@@ -3207,8 +2747,8 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[GetBackupsListResponse]:
-        """get list of backups
+    ) -> ApiResponse[GetUpdatesListResponse]:
+        """get list of updates
 
 
         :param project_id: project id (required)
@@ -3237,7 +2777,7 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._list_backups_serialize(
+        _param = self._list_updates_serialize(
             project_id=project_id,
             server_id=server_id,
             _request_auth=_request_auth,
@@ -3247,7 +2787,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "GetBackupsListResponse",
+            "200": "GetUpdatesListResponse",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3258,7 +2800,7 @@ class DefaultApi:
         )
 
     @validate_call
-    def list_backups_without_preload_content(
+    def list_updates_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
@@ -3272,7 +2814,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get list of backups
+        """get list of updates
 
 
         :param project_id: project id (required)
@@ -3301,7 +2843,7 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._list_backups_serialize(
+        _param = self._list_updates_serialize(
             project_id=project_id,
             server_id=server_id,
             _request_auth=_request_auth,
@@ -3311,13 +2853,15 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "GetBackupsListResponse",
+            "200": "GetUpdatesListResponse",
+            "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _list_backups_serialize(
+    def _list_updates_serialize(
         self,
         project_id,
         server_id,
@@ -3350,14 +2894,14 @@ class DefaultApi:
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json", "text/plain"])
 
         # authentication setting
         _auth_settings: List[str] = []
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backups",
+            resource_path="/v1/projects/{projectId}/servers/{serverId}/updates",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3371,12 +2915,12 @@ class DefaultApi:
         )
 
     @validate_call
-    def restore_backup(
+    def update_update_schedule(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
-        restore_backup_payload: Optional[RestoreBackupPayload] = None,
+        schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
+        update_update_schedule_payload: Optional[UpdateUpdateSchedulePayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3386,18 +2930,18 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """trigger restore of the requested backup
+    ) -> UpdateSchedule:
+        """update update schedule
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
-        :param restore_backup_payload:
-        :type restore_backup_payload: RestoreBackupPayload
+        :param schedule_id: update schedule id (required)
+        :type schedule_id: str
+        :param update_update_schedule_payload:
+        :type update_update_schedule_payload: UpdateUpdateSchedulePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3420,11 +2964,11 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._restore_backup_serialize(
+        _param = self._update_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_id=backup_id,
-            restore_backup_payload=restore_backup_payload,
+            schedule_id=schedule_id,
+            update_update_schedule_payload=update_update_schedule_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3432,8 +2976,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "200": "UpdateSchedule",
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3444,12 +2989,12 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def restore_backup_with_http_info(
+    def update_update_schedule_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
-        restore_backup_payload: Optional[RestoreBackupPayload] = None,
+        schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
+        update_update_schedule_payload: Optional[UpdateUpdateSchedulePayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3459,18 +3004,18 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """trigger restore of the requested backup
+    ) -> ApiResponse[UpdateSchedule]:
+        """update update schedule
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
-        :param restore_backup_payload:
-        :type restore_backup_payload: RestoreBackupPayload
+        :param schedule_id: update schedule id (required)
+        :type schedule_id: str
+        :param update_update_schedule_payload:
+        :type update_update_schedule_payload: UpdateUpdateSchedulePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3493,11 +3038,11 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._restore_backup_serialize(
+        _param = self._update_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_id=backup_id,
-            restore_backup_payload=restore_backup_payload,
+            schedule_id=schedule_id,
+            update_update_schedule_payload=update_update_schedule_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3505,8 +3050,9 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "200": "UpdateSchedule",
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3517,12 +3063,12 @@ class DefaultApi:
         )
 
     @validate_call
-    def restore_backup_without_preload_content(
+    def update_update_schedule_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
-        restore_backup_payload: Optional[RestoreBackupPayload] = None,
+        schedule_id: Annotated[StrictStr, Field(description="update schedule id")],
+        update_update_schedule_payload: Optional[UpdateUpdateSchedulePayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3533,17 +3079,17 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """trigger restore of the requested backup
+        """update update schedule
 
 
         :param project_id: project id (required)
         :type project_id: str
         :param server_id: server id (required)
         :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
-        :param restore_backup_payload:
-        :type restore_backup_payload: RestoreBackupPayload
+        :param schedule_id: update schedule id (required)
+        :type schedule_id: str
+        :param update_update_schedule_payload:
+        :type update_update_schedule_payload: UpdateUpdateSchedulePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3566,11 +3112,11 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501 docstring might be too long
 
-        _param = self._restore_backup_serialize(
+        _param = self._update_update_schedule_serialize(
             project_id=project_id,
             server_id=server_id,
-            backup_id=backup_id,
-            restore_backup_payload=restore_backup_payload,
+            schedule_id=schedule_id,
+            update_update_schedule_payload=update_update_schedule_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3578,19 +3124,20 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "200": "UpdateSchedule",
             "400": None,
+            "401": "str",
             "404": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _restore_backup_serialize(
+    def _update_update_schedule_serialize(
         self,
         project_id,
         server_id,
-        backup_id,
-        restore_backup_payload,
+        schedule_id,
+        update_update_schedule_payload,
         _request_auth,
         _content_type,
         _headers,
@@ -3613,589 +3160,18 @@ class DefaultApi:
             _path_params["projectId"] = project_id
         if server_id is not None:
             _path_params["serverId"] = server_id
-        if backup_id is not None:
-            _path_params["backupId"] = backup_id
+        if schedule_id is not None:
+            _path_params["scheduleId"] = schedule_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if restore_backup_payload is not None:
-            _body_params = restore_backup_payload
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params["Content-Type"] = _content_type
-        else:
-            _default_content_type = self.api_client.select_header_content_type(["application/json"])
-            if _default_content_type is not None:
-                _header_params["Content-Type"] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = []
-
-        return self.api_client.param_serialize(
-            method="POST",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backups/{backupId}/restore",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    def restore_volume_backup(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
-        volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
-        restore_volume_backup_payload: Optional[RestoreVolumeBackupPayload] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """trigger restore of the requested volume backup
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
-        :param volume_backup_id: id of the volume backup (required)
-        :type volume_backup_id: str
-        :param restore_volume_backup_payload:
-        :type restore_volume_backup_payload: RestoreVolumeBackupPayload
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._restore_volume_backup_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_id=backup_id,
-            volume_backup_id=volume_backup_id,
-            restore_volume_backup_payload=restore_volume_backup_payload,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
-            "400": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    @validate_call
-    def restore_volume_backup_with_http_info(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
-        volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
-        restore_volume_backup_payload: Optional[RestoreVolumeBackupPayload] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """trigger restore of the requested volume backup
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
-        :param volume_backup_id: id of the volume backup (required)
-        :type volume_backup_id: str
-        :param restore_volume_backup_payload:
-        :type restore_volume_backup_payload: RestoreVolumeBackupPayload
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._restore_volume_backup_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_id=backup_id,
-            volume_backup_id=volume_backup_id,
-            restore_volume_backup_payload=restore_volume_backup_payload,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
-            "400": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    @validate_call
-    def restore_volume_backup_without_preload_content(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_id: Annotated[StrictStr, Field(description="id of the backup")],
-        volume_backup_id: Annotated[StrictStr, Field(description="id of the volume backup")],
-        restore_volume_backup_payload: Optional[RestoreVolumeBackupPayload] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """trigger restore of the requested volume backup
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_id: id of the backup (required)
-        :type backup_id: str
-        :param volume_backup_id: id of the volume backup (required)
-        :type volume_backup_id: str
-        :param restore_volume_backup_payload:
-        :type restore_volume_backup_payload: RestoreVolumeBackupPayload
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._restore_volume_backup_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_id=backup_id,
-            volume_backup_id=volume_backup_id,
-            restore_volume_backup_payload=restore_volume_backup_payload,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
-            "400": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        return response_data.response
-
-    def _restore_volume_backup_serialize(
-        self,
-        project_id,
-        server_id,
-        backup_id,
-        volume_backup_id,
-        restore_volume_backup_payload,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if project_id is not None:
-            _path_params["projectId"] = project_id
-        if server_id is not None:
-            _path_params["serverId"] = server_id
-        if backup_id is not None:
-            _path_params["backupId"] = backup_id
-        if volume_backup_id is not None:
-            _path_params["volumeBackupId"] = volume_backup_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if restore_volume_backup_payload is not None:
-            _body_params = restore_volume_backup_payload
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params["Content-Type"] = _content_type
-        else:
-            _default_content_type = self.api_client.select_header_content_type(["application/json"])
-            if _default_content_type is not None:
-                _header_params["Content-Type"] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = []
-
-        return self.api_client.param_serialize(
-            method="POST",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backups/{backupId}/volume-backups/{volumeBackupId}/restore",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    def update_backup_schedule(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
-        update_backup_schedule_payload: Optional[UpdateBackupSchedulePayload] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> BackupSchedule:
-        """update backup schedule
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_schedule_id: backup schedule id (required)
-        :type backup_schedule_id: str
-        :param update_backup_schedule_payload:
-        :type update_backup_schedule_payload: UpdateBackupSchedulePayload
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._update_backup_schedule_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_schedule_id=backup_schedule_id,
-            update_backup_schedule_payload=update_backup_schedule_payload,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "BackupSchedule",
-            "400": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    @validate_call
-    def update_backup_schedule_with_http_info(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
-        update_backup_schedule_payload: Optional[UpdateBackupSchedulePayload] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[BackupSchedule]:
-        """update backup schedule
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_schedule_id: backup schedule id (required)
-        :type backup_schedule_id: str
-        :param update_backup_schedule_payload:
-        :type update_backup_schedule_payload: UpdateBackupSchedulePayload
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._update_backup_schedule_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_schedule_id=backup_schedule_id,
-            update_backup_schedule_payload=update_backup_schedule_payload,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "BackupSchedule",
-            "400": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    @validate_call
-    def update_backup_schedule_without_preload_content(
-        self,
-        project_id: Annotated[StrictStr, Field(description="project id")],
-        server_id: Annotated[StrictStr, Field(description="server id")],
-        backup_schedule_id: Annotated[StrictStr, Field(description="backup schedule id")],
-        update_backup_schedule_payload: Optional[UpdateBackupSchedulePayload] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """update backup schedule
-
-
-        :param project_id: project id (required)
-        :type project_id: str
-        :param server_id: server id (required)
-        :type server_id: str
-        :param backup_schedule_id: backup schedule id (required)
-        :type backup_schedule_id: str
-        :param update_backup_schedule_payload:
-        :type update_backup_schedule_payload: UpdateBackupSchedulePayload
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501 docstring might be too long
-
-        _param = self._update_backup_schedule_serialize(
-            project_id=project_id,
-            server_id=server_id,
-            backup_schedule_id=backup_schedule_id,
-            update_backup_schedule_payload=update_backup_schedule_payload,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "BackupSchedule",
-            "400": None,
-            "404": None,
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        return response_data.response
-
-    def _update_backup_schedule_serialize(
-        self,
-        project_id,
-        server_id,
-        backup_schedule_id,
-        update_backup_schedule_payload,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if project_id is not None:
-            _path_params["projectId"] = project_id
-        if server_id is not None:
-            _path_params["serverId"] = server_id
-        if backup_schedule_id is not None:
-            _path_params["backupScheduleId"] = backup_schedule_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if update_backup_schedule_payload is not None:
-            _body_params = update_backup_schedule_payload
+        if update_update_schedule_payload is not None:
+            _body_params = update_update_schedule_payload
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json", "text/plain"])
 
         # set the HTTP header `Content-Type`
         if _content_type:
@@ -4210,7 +3186,7 @@ class DefaultApi:
 
         return self.api_client.param_serialize(
             method="PUT",
-            resource_path="/v1/projects/{projectId}/servers/{serverId}/backup-schedules/{backupScheduleId}",
+            resource_path="/v1/projects/{projectId}/servers/{serverId}/update-schedules/{scheduleId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
