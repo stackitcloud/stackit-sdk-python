@@ -33,8 +33,8 @@ jobs:
                 # Check if a PR already exists for the package
                 if gh pr list --state open | grep -q "${pr_name}"; then
                     echo "Pr for $dirpath already exists. Deleting old PR."
-                    pr_id=$(gh pr list --state open --json id --search "$pr_name" -q '.[0].id')
-                    gh pr close "$pr_id" --delete-branch
+                    pr_number=$(gh pr list --state open --json number --search "$pr_name" -q '.[0].number')
+                    gh pr close "$pr_number" --delete-branch
 
                 fi
                 
