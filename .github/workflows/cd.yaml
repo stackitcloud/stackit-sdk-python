@@ -1,35 +1,28 @@
 name: CD Workflow
 
-on: 
+on:
   push:
-    tags:
-      - "services/[a-zA-Z]+/v[0-9]+.[0-9]+.[0-9]+*"
-      - "core/v[0-9]+.[0-9]+.[0-9]+*"
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
-  main:
-    name: Build & Publish module
-    runs-on: "ubuntu-latest"
-    steps:      
-      - name: Checkout
-        uses: actions/checkout@v4     
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Install Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.8"
-      - name: Extract updated module path
+          python-version: "3.8"          
+      - name: Push tag for each updated package
         env:
-          TAG: ${{ github.event.ref }}
+          GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
         run: |
-          # Remove the `refs/tags` prefix of the git tag
-          TAG_NO_PREFIX=$(echo "$TAG" | sed 's/^refs\/tags\///')
-          # Extract the path of the module to publish from the tag
-          PACKAGE_PATH=$(echo "$TAG_NO_PREFIX" | rev | cut -d'/' -f2- | rev)          
-          # Save the path to the module for use in the build/publish step to only update the module associated with this tag
-          echo "PACKAGE_PATH=$PACKAGE_PATH" >> $GITHUB_ENV
-      - name: Build & Publish to PyPi
-        run: |
+          git config --global user.name "SDK Releaser Bot"
+          git config --global user.email "noreply@stackit.de"
+          
           pip install poetry
-          cd $PACKAGE_PATH  
-          poetry publish --build --username="__token__" --no-interaction --password="${{ secrets.PYPI_TOKEN }}"
+          scripts/cd.sh
+          
