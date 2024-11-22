@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "stackit-loadbalancer"
-version = "0.0.1a"
+version = "v0.0.1a1"
 authors = [
-    "OpenAPI Generator Community <team@openapitools.org>",
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
 description = "Load Balancer API"
 readme = "README.md"
