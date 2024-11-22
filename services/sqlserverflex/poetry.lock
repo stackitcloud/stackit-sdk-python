@@ -1189,13 +1189,13 @@ files = [
 
 [[package]]
 name = "stackit-core"
-version = "0.0.1a2"
+version = "0.0.1a6"
 description = "Core functionality for the STACKIT SDK for Python"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "stackit_core-0.0.1a2-py3-none-any.whl", hash = "sha256:d11d11edbc820a3b756663db924d319f16028a106e0140d1c944fa4e5da97260"},
-    {file = "stackit_core-0.0.1a2.tar.gz", hash = "sha256:0d5c0f5a84668f8b060da20678819c13f5085db1cae8998c344eb2535097f406"},
+    {file = "stackit_core-0.0.1a6-py3-none-any.whl", hash = "sha256:4b82820d5ac2cd6faface9e25826e643f197ffeb8e34aee8995308fabe12afc5"},
+    {file = "stackit_core-0.0.1a6.tar.gz", hash = "sha256:c358295d52207c1851492fec3fff08cf3bebb5fb76792f61c670c580c374499a"},
 ]
 
 [package.dependencies]
