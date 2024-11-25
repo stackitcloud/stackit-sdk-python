@@ -16,6 +16,7 @@ packages = [
   { include = "stackit", from="src" }
 ]
 
+
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
 stackit-core = ">=0.0.1a"
