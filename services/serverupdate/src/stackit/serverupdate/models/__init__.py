@@ -24,11 +24,15 @@ from stackit.serverupdate.models.enable_service_payload import EnableServicePayl
 from stackit.serverupdate.models.enable_service_resource_payload import (
     EnableServiceResourcePayload,
 )
+from stackit.serverupdate.models.get_update_policies_response import (
+    GetUpdatePoliciesResponse,
+)
 from stackit.serverupdate.models.get_update_schedules_response import (
     GetUpdateSchedulesResponse,
 )
 from stackit.serverupdate.models.get_updates_list_response import GetUpdatesListResponse
 from stackit.serverupdate.models.update import Update
+from stackit.serverupdate.models.update_policy import UpdatePolicy
 from stackit.serverupdate.models.update_schedule import UpdateSchedule
 from stackit.serverupdate.models.update_update_schedule_payload import (
     UpdateUpdateSchedulePayload,
