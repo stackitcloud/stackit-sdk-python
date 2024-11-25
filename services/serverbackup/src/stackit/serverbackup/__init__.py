@@ -36,6 +36,10 @@ from stackit.serverbackup.exceptions import (
 # import models into sdk package
 from stackit.serverbackup.models.backup import Backup
 from stackit.serverbackup.models.backup_job import BackupJob
+from stackit.serverbackup.models.backup_policy import BackupPolicy
+from stackit.serverbackup.models.backup_policy_backup_properties import (
+    BackupPolicyBackupProperties,
+)
 from stackit.serverbackup.models.backup_properties import BackupProperties
 from stackit.serverbackup.models.backup_schedule import BackupSchedule
 from stackit.serverbackup.models.backup_volume_backups_inner import (
@@ -48,6 +52,9 @@ from stackit.serverbackup.models.create_backup_schedule_payload import (
 from stackit.serverbackup.models.enable_service_payload import EnableServicePayload
 from stackit.serverbackup.models.enable_service_resource_payload import (
     EnableServiceResourcePayload,
+)
+from stackit.serverbackup.models.get_backup_policies_response import (
+    GetBackupPoliciesResponse,
 )
 from stackit.serverbackup.models.get_backup_schedules_response import (
     GetBackupSchedulesResponse,
