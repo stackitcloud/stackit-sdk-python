@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Immediate exit on failure
+set -e
+
 # Check all pyproject.toml files that have changed
 for file in $(git diff --name-only HEAD~1..HEAD | grep pyproject.toml); do
     # Extract the current version and build the expected tag
