@@ -24,30 +24,28 @@ jobs:
             git config --global user.email "noreply@stackit.de"
         
             pip install poetry
+
+            pr_name=$(echo "Dependency Update")
+
             make update-dependencies          
+            branch_name="dependency-updater-${{ github.run_id }}"
+            git checkout -b "$branch_name"
             for file in $(git diff --name-only | grep poetry.lock); do
                 # Extract the service for which the dependencies have been updated
-                dirpath=$(dirname $file)
-                pr_name=$(echo "Dependency Updater: ${dirpath}")
-                
-                # Check if a PR already exists for the package
-                if gh pr list --state open | grep -q "${pr_name}"; then
-                    echo "Pr for $dirpath already exists. Deleting old PR."
-                    pr_number=$(gh pr list --state open --json number --search "$pr_name" -q '.[0].number')
-                    gh pr close "$pr_number" --delete-branch
+                dirpath=$(dirname $file)                
 
-                fi
-                
                 # Create PR
-                branch_name="dependency-updater-$dirpath-${{ github.run_id }}"
-                git checkout -b "$branch_name"
                 git add "$file"
-                git commit -m "chore: dependency update"
-                git push --set-upstream origin "$branch_name"
-                echo $(git status)
-                gh pr create --title "$pr_name" --body "Automated dependency update" --base "main"
-                git checkout main
-                sleep 30 # prevent rate limit.
-                
+                git commit -m "chore: dependency update"                                
             done
+            
+            # Check if a PR already exists for the package
+            if gh pr list --state open | grep -q "${pr_name}"; then
+                echo "Pr for $dirpath already exists. Deleting old PR."
+                pr_number=$(gh pr list --state open --json number --search "$pr_name" -q '.[0].number')
+                gh pr close "$pr_number" --delete-branch
+            fi
+
+            git push --set-upstream origin "$branch_name"
+            gh pr create --title "$pr_name" --body "Automated dependency update" --base "main"
 
