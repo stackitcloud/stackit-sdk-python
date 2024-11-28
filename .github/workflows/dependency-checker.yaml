@@ -25,7 +25,7 @@ jobs:
         
             pip install poetry
 
-            pr_name=$(echo "Dependency Update")
+            pr_name=$(echo "Dependency Updates")
 
             make update-dependencies          
             branch_name="dependency-updater-${{ github.run_id }}"
