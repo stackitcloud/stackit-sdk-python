@@ -31,6 +31,7 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
+from stackit.iaasalpha.models.image_checksum import ImageChecksum
 from stackit.iaasalpha.models.image_config import ImageConfig
 
 
@@ -39,6 +40,7 @@ class CreateImagePayload(BaseModel):
     Object that represents an Image and its parameters. Used for Creating and returning (get/list).
     """
 
+    checksum: Optional[ImageChecksum] = None
     config: Optional[ImageConfig] = None
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
@@ -56,11 +58,13 @@ class CreateImagePayload(BaseModel):
         description="The name for a General Object. Matches Names and also UUIDs."
     )
     protected: Optional[StrictBool] = None
+    scope: Optional[StrictStr] = Field(default=None, description="Scope of an Image.")
     status: Optional[StrictStr] = Field(default=None, description="The status of an image object.")
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
     __properties: ClassVar[List[str]] = [
+        "checksum",
         "config",
         "createdAt",
         "diskFormat",
@@ -70,6 +74,7 @@ class CreateImagePayload(BaseModel):
         "minRam",
         "name",
         "protected",
+        "scope",
         "status",
         "updatedAt",
     ]
@@ -126,11 +131,15 @@ class CreateImagePayload(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
+                "checksum",
                 "created_at",
                 "id",
+                "scope",
                 "status",
                 "updated_at",
             ]
@@ -141,6 +150,9 @@ class CreateImagePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of checksum
+        if self.checksum:
+            _dict["checksum"] = self.checksum.to_dict()
         # override the default output from pydantic by calling `to_dict()` of config
         if self.config:
             _dict["config"] = self.config.to_dict()
@@ -157,6 +169,7 @@ class CreateImagePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "checksum": ImageChecksum.from_dict(obj["checksum"]) if obj.get("checksum") is not None else None,
                 "config": ImageConfig.from_dict(obj["config"]) if obj.get("config") is not None else None,
                 "createdAt": obj.get("createdAt"),
                 "diskFormat": obj.get("diskFormat"),
@@ -166,6 +179,7 @@ class CreateImagePayload(BaseModel):
                 "minRam": obj.get("minRam"),
                 "name": obj.get("name"),
                 "protected": obj.get("protected"),
+                "scope": obj.get("scope"),
                 "status": obj.get("status"),
                 "updatedAt": obj.get("updatedAt"),
             }
