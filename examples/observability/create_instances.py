@@ -11,7 +11,7 @@ config = Configuration()
 client = DefaultApi(config)
 
 # Get all offerings
-response = client.v1_projects_offerings_list(project_id)
+response = client.list_plans(project_id)
 
 # Create instance using the first found offer
 create_instance_payload = CreateInstancePayload(
