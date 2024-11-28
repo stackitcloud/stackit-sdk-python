@@ -30,22 +30,24 @@ jobs:
             make update-dependencies          
             branch_name="dependency-updater-${{ github.run_id }}"
             git checkout -b "$branch_name"
-            for file in $(git diff --name-only | grep poetry.lock); do
-                # Extract the service for which the dependencies have been updated
-                dirpath=$(dirname $file)                
 
-                # Create PR
-                git add "$file"
-                git commit -m "chore: dependency update"                                
-            done
-            
-            # Check if a PR already exists for the package
-            if gh pr list --state open | grep -q "${pr_name}"; then
-                echo "Pr for $dirpath already exists. Deleting old PR."
-                pr_number=$(gh pr list --state open --json number --search "$pr_name" -q '.[0].number')
-                gh pr close "$pr_number" --delete-branch
+            if [ -n "$(git diff --name-only)" ]; then
+              for file in $(git diff --name-only | grep poetry.lock); do
+                  # Extract the service for which the dependencies have been updated
+                  dirpath=$(dirname $file)                
+                  git add "$file"
+                  git commit -m "chore: dependency update for ${dirpath}"
+              done
+              
+              # Check if a PR already exists for the package
+              if gh pr list --state open | grep -q "${pr_name}"; then
+                  echo "Pr for $dirpath already exists. Deleting old PR."
+                  pr_number=$(gh pr list --state open --json number --search "$pr_name" -q '.[0].number')
+                  gh pr close "$pr_number" --delete-branch
+              fi
+
+              git push --set-upstream origin "$branch_name"
+              gh pr create --title "$pr_name" --body "Automated dependency update" --base "main"
+            else
+              echo "No changes detected. Skipping PR creation."
             fi
-
-            git push --set-upstream origin "$branch_name"
-            gh pr create --title "$pr_name" --body "Automated dependency update" --base "main"
-
