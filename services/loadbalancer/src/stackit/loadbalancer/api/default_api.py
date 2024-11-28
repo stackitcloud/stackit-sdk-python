@@ -2395,7 +2395,7 @@ class DefaultApi:
     ) -> GetServiceStatusResponse:
         """(Deprecated) Return the status of load balancer functionality for the project specified.
 
-        DEPRECATED! Projects are auto-enabled on SE side, meaning status is always enabled.  Status will return the load balancer functionality status for the project specified.
+        DEPRECATED! Checking the status is now obsolete. The endpoint is kept for compatibility.  Status will return the load balancer functionality status for the project specified.
 
         :param project_id: (required)
         :type project_id: str
@@ -2460,7 +2460,7 @@ class DefaultApi:
     ) -> ApiResponse[GetServiceStatusResponse]:
         """(Deprecated) Return the status of load balancer functionality for the project specified.
 
-        DEPRECATED! Projects are auto-enabled on SE side, meaning status is always enabled.  Status will return the load balancer functionality status for the project specified.
+        DEPRECATED! Checking the status is now obsolete. The endpoint is kept for compatibility.  Status will return the load balancer functionality status for the project specified.
 
         :param project_id: (required)
         :type project_id: str
@@ -2525,7 +2525,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """(Deprecated) Return the status of load balancer functionality for the project specified.
 
-        DEPRECATED! Projects are auto-enabled on SE side, meaning status is always enabled.  Status will return the load balancer functionality status for the project specified.
+        DEPRECATED! Checking the status is now obsolete. The endpoint is kept for compatibility.  Status will return the load balancer functionality status for the project specified.
 
         :param project_id: (required)
         :type project_id: str
