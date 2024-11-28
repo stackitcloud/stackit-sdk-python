@@ -60,6 +60,7 @@ from stackit.iaasalpha.models.get_server_log200_response import GetServerLog200R
 from stackit.iaasalpha.models.get_server_log_request import GetServerLogRequest
 from stackit.iaasalpha.models.icmp_parameters import ICMPParameters
 from stackit.iaasalpha.models.image import Image
+from stackit.iaasalpha.models.image_checksum import ImageChecksum
 from stackit.iaasalpha.models.image_config import ImageConfig
 from stackit.iaasalpha.models.image_create_response import ImageCreateResponse
 from stackit.iaasalpha.models.image_list_response import ImageListResponse
