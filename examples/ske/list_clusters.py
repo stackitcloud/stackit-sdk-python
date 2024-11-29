@@ -1,5 +1,3 @@
-import os
-
 from stackit.core.configuration import Configuration
 from stackit.ske.api.default_api import DefaultApi
 
