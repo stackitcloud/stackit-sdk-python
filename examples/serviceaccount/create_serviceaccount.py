@@ -18,4 +18,5 @@ client = DefaultApi(config)
 create_serviceaccount_payload = CreateServiceAccountPayload(
     name="my-service-account",
 )
-client.create_service_account(project_id, create_serviceaccount_payload)
+sa = client.create_service_account(project_id, create_serviceaccount_payload)
+print(f"Created service-account with email {sa.email}")
