@@ -12,4 +12,4 @@ client = DefaultApi(config)
 
 
 # Delete service account
-client.delete_service_account(project_id, account_email)
+client.delete_service_account(project_id, account_mail)
