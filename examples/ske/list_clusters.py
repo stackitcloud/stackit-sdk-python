@@ -1,7 +1,9 @@
+import os
+
 from stackit.core.configuration import Configuration
 from stackit.ske.api.default_api import DefaultApi
 
-project_id = "16f49d71-37ad-4137-8b97-44d9c55c4094"
+project_id = os.getenv("PROJECT_ID")
 
 # Create a new API client, that uses default authentication and configuration
 config = Configuration()

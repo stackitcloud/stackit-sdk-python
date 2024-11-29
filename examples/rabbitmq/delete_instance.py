@@ -11,4 +11,4 @@ config = Configuration()
 client = DefaultApi(config)
 
 # Delete an instance
-client.delete_instance(project_id,instance_id)
+client.delete_instance(project_id, instance_id)
