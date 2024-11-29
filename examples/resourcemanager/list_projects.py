@@ -1,7 +1,7 @@
 import os
 
-from stackit.resourcemanager.api.default_api import DefaultApi
 from stackit.core.configuration import Configuration
+from stackit.resourcemanager.api.default_api import DefaultApi
 
 project_id = os.getenv("PROJECT_ID")
 
