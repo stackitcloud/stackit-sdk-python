@@ -19,4 +19,6 @@ create_instance_payload = CreateInstancePayload(
     name="my-instance",
     flavorId=flavor_response.flavors[0].id,
 )
-client.create_instance(project_id, create_instance_payload)
+instance = client.create_instance(project_id, create_instance_payload)
+
+print(f"Created instance with ID: {instance.id}")
