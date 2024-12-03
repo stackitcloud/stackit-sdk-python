@@ -7,7 +7,6 @@ from stackit.iaas.models.create_area_ipv4 import CreateAreaIPv4
 from stackit.iaas.models.network_range import NetworkRange
 from stackit.core.configuration import Configuration
 
-project_id = os.getenv("PROJECT_ID")
 organization_id = os.getenv("ORGANIZATION_ID")
 
 # Create a new API client, that uses default authentication and configuration

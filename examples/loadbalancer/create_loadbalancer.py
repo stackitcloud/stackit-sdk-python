@@ -11,8 +11,9 @@ from stackit.loadbalancer.models.network import Network
 from stackit.loadbalancer.models.target import Target
 from stackit.core.configuration import Configuration
 
-
-NETWORK_ID = ""
+# Note: Create a target server before
+NETWORK_ID = "NETWORK_ID"
+IP_ADDRESS = "x.x.x.x"
 X_REQUEST_ID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 project_id = os.getenv("PROJECT_ID")
 
@@ -30,14 +31,14 @@ create_load_balancer_payload = CreateLoadBalancerPayload(
     networks=[
         Network(
             networkId=NETWORK_ID,
-            role="1",
+            role="ROLE_LISTENERS_AND_TARGETS",
         ),
     ],
     listeners=[
         Listener(
             displayName="example-listener",
             port=1,
-            protocol="1",
+            protocol="PROTOCOL_TCP",
             targetPool="example-target-pool",
         ),
     ],
@@ -45,7 +46,7 @@ create_load_balancer_payload = CreateLoadBalancerPayload(
         TargetPool(
             name="example-target-pool",
             targetPort=1,
-            targets=[Target(displayName="example-target", ip="x.x.x.x")],
+            targets=[Target(displayName="example-target", ip=IP_ADDRESS)],
         )
     ],
 )
