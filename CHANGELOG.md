@@ -7,7 +7,7 @@ This is the first GitHub release of the STACKIT Python SDK.
 List of modules:
 
 - `core`: [v0.1.0](core/CHANGELOG.md#v010-2024-12-XX)
-  - The core module offers functionality to be used together with the other Python SDK modules, such as authorization and configuration
+  - The core module offers functionality, such as authorization and configuration, to be used together with the Python SDK service modules
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-python/tree/main/examples/core)
 - `authorization`: [v0.1.0](services/authorization/CHANGELOG.md#v010-2024-12-XX)
   - Manage authorization of your STACKIT resources
