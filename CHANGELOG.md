@@ -1,6 +1,6 @@
 ## Release (2024-12-XX)
 
-This is the first GitHub release of the STACKIT Go Python.
+This is the first GitHub release of the STACKIT Python SDK.
 
 ### Highlights
 
