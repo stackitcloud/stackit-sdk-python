@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-loadbalancer"
-version = "v0.0.1a1"
+version = "v0.1.01"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
