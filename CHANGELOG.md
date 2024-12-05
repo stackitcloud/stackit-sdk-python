@@ -11,7 +11,6 @@ List of modules:
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-python/tree/main/examples/core)
 - `authorization`: [v0.1.0](services/authorization/CHANGELOG.md#v010-2024-12-04)
   - Manage authorization of your STACKIT resources
-  - [Usage example](https://github.com/stackitcloud/stackit-sdk-python/tree/main/examples/authorization)
 - `dns`: [v0.1.0](services/dns/CHANGELOG.md#v010-2024-12-04)
   - Manage your STACKIT DNS resources
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-python/tree/main/examples/dns)
@@ -20,6 +19,7 @@ List of modules:
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-python/tree/main/examples/iaas)
 - `loadbalancer`: [v0.1.0](services/loadbalancer/CHANGELOG.md#v010-2024-12-04)
   - Manage your STACKIT Load Balancer resources
+  - [Usage example](https://github.com/stackitcloud/stackit-sdk-python/tree/main/examples/loadbalancer)
 - `logme`: [v0.1.0](services/logme/CHANGELOG.md#v010-2024-12-04)
   - Manage your STACKIT Logme resources
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-python/tree/main/examples/logme)
