@@ -22,6 +22,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing_extensions import Annotated, Self
 
+from stackit.iaas.models.image_config import ImageConfig
+
 
 class UpdateVolumePayload(BaseModel):
     """
@@ -32,13 +34,14 @@ class UpdateVolumePayload(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="Description Object. Allows string up to 127 Characters."
     )
+    image_config: Optional[ImageConfig] = Field(default=None, alias="imageConfig")
     labels: Optional[Dict[str, Any]] = Field(
         default=None, description="Object that represents the labels of an object."
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
-    __properties: ClassVar[List[str]] = ["bootable", "description", "labels", "name"]
+    __properties: ClassVar[List[str]] = ["bootable", "description", "imageConfig", "labels", "name"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -87,6 +90,9 @@ class UpdateVolumePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of image_config
+        if self.image_config:
+            _dict["imageConfig"] = self.image_config.to_dict()
         return _dict
 
     @classmethod
@@ -102,6 +108,9 @@ class UpdateVolumePayload(BaseModel):
             {
                 "bootable": obj.get("bootable") if obj.get("bootable") is not None else False,
                 "description": obj.get("description"),
+                "imageConfig": (
+                    ImageConfig.from_dict(obj["imageConfig"]) if obj.get("imageConfig") is not None else None
+                ),
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
             }

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stackit-serverupdate"
-version = "v0.1.0"
+version = "v0.1.1"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
