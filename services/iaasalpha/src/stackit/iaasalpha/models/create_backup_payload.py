@@ -19,29 +19,25 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
 
-from stackit.iaasalpha.models.image_config import ImageConfig
+from stackit.iaasalpha.models.backup_source import BackupSource
 
 
-class UpdateVolumePayload(BaseModel):
+class CreateBackupPayload(BaseModel):
     """
-    Object that represents an update request body of a  volume.
+    Object that represents a backup create request body.
     """
 
-    bootable: Optional[StrictBool] = Field(default=False, description="Indicates if a volume is bootable.")
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
-    )
-    image_config: Optional[ImageConfig] = Field(default=None, alias="imageConfig")
     labels: Optional[Dict[str, Any]] = Field(
         default=None, description="Object that represents the labels of an object."
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
-    __properties: ClassVar[List[str]] = ["bootable", "description", "imageConfig", "labels", "name"]
+    source: BackupSource
+    __properties: ClassVar[List[str]] = ["labels", "name", "source"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -70,7 +66,7 @@ class UpdateVolumePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateVolumePayload from a JSON string"""
+        """Create an instance of CreateBackupPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -90,14 +86,14 @@ class UpdateVolumePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of image_config
-        if self.image_config:
-            _dict["imageConfig"] = self.image_config.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of source
+        if self.source:
+            _dict["source"] = self.source.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateVolumePayload from a dict"""
+        """Create an instance of CreateBackupPayload from a dict"""
         if obj is None:
             return None
 
@@ -106,13 +102,9 @@ class UpdateVolumePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "bootable": obj.get("bootable") if obj.get("bootable") is not None else False,
-                "description": obj.get("description"),
-                "imageConfig": (
-                    ImageConfig.from_dict(obj["imageConfig"]) if obj.get("imageConfig") is not None else None
-                ),
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
+                "source": BackupSource.from_dict(obj["source"]) if obj.get("source") is not None else None,
             }
         )
         return _obj
