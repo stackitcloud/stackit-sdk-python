@@ -19,36 +19,42 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
-from stackit.iaasalpha.models.image_config import ImageConfig
 
-
-class UpdateVolumePayload(BaseModel):
+class AffinityGroup(BaseModel):
     """
-    Object that represents an update request body of a  volume.
+    Definition of an affinity group.
     """
 
-    bootable: Optional[StrictBool] = Field(default=False, description="Indicates if a volume is bootable.")
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
+    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+        default=None, description="Universally Unique Identifier (UUID)."
     )
-    image_config: Optional[ImageConfig] = Field(default=None, alias="imageConfig")
-    labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+    members: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
+        default=None, description="The servers that are part of the affinity group."
     )
-    name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
-        default=None, description="The name for a General Object. Matches Names and also UUIDs."
+    name: Annotated[str, Field(strict=True, max_length=63)] = Field(
+        description="The name for a General Object. Matches Names and also UUIDs."
     )
-    __properties: ClassVar[List[str]] = ["bootable", "description", "imageConfig", "labels", "name"]
+    policy: StrictStr = Field(description="The affinity group policy.")
+    __properties: ClassVar[List[str]] = ["id", "members", "name", "policy"]
 
-    @field_validator("name")
-    def name_validate_regular_expression(cls, value):
+    @field_validator("id")
+    def id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
 
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
+        return value
+
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
         if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
             raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
         return value
@@ -70,7 +76,7 @@ class UpdateVolumePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateVolumePayload from a JSON string"""
+        """Create an instance of AffinityGroup from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,22 +88,26 @@ class UpdateVolumePayload(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "id",
+                "members",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of image_config
-        if self.image_config:
-            _dict["imageConfig"] = self.image_config.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateVolumePayload from a dict"""
+        """Create an instance of AffinityGroup from a dict"""
         if obj is None:
             return None
 
@@ -105,14 +115,6 @@ class UpdateVolumePayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "bootable": obj.get("bootable") if obj.get("bootable") is not None else False,
-                "description": obj.get("description"),
-                "imageConfig": (
-                    ImageConfig.from_dict(obj["imageConfig"]) if obj.get("imageConfig") is not None else None
-                ),
-                "labels": obj.get("labels"),
-                "name": obj.get("name"),
-            }
+            {"id": obj.get("id"), "members": obj.get("members"), "name": obj.get("name"), "policy": obj.get("policy")}
         )
         return _obj
