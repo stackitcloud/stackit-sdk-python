@@ -4438,7 +4438,7 @@ class DefaultApi:
         metric: Annotated[
             StrictStr,
             Field(
-                description="The name of the metric. Valid metrics are 'cpu', 'memory', 'max-connections', 'connections' and 'disk-use'."
+                description="The name of the metric. Valid metrics are 'cpu', 'memory', 'disk-use', 'disk-size' and 'connections'."
             ),
         ],
         granularity: Annotated[StrictStr, Field(description="The granularity in ISO8601 e.g. 5 minutes are 'PT5M'.")],
@@ -4472,13 +4472,13 @@ class DefaultApi:
     ) -> InstanceMetricsResponse:
         """Get Metric
 
-        Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in max-connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
+        Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
 
         :param project_id: The UUID of the project. (required)
         :type project_id: str
         :param instance_id: The UUID of the instance. (required)
         :type instance_id: str
-        :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'max-connections', 'connections' and 'disk-use'. (required)
+        :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'disk-use', 'disk-size' and 'connections'. (required)
         :type metric: str
         :param granularity: The granularity in ISO8601 e.g. 5 minutes are 'PT5M'. (required)
         :type granularity: str
@@ -4545,7 +4545,7 @@ class DefaultApi:
         metric: Annotated[
             StrictStr,
             Field(
-                description="The name of the metric. Valid metrics are 'cpu', 'memory', 'max-connections', 'connections' and 'disk-use'."
+                description="The name of the metric. Valid metrics are 'cpu', 'memory', 'disk-use', 'disk-size' and 'connections'."
             ),
         ],
         granularity: Annotated[StrictStr, Field(description="The granularity in ISO8601 e.g. 5 minutes are 'PT5M'.")],
@@ -4579,13 +4579,13 @@ class DefaultApi:
     ) -> ApiResponse[InstanceMetricsResponse]:
         """Get Metric
 
-        Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in max-connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
+        Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
 
         :param project_id: The UUID of the project. (required)
         :type project_id: str
         :param instance_id: The UUID of the instance. (required)
         :type instance_id: str
-        :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'max-connections', 'connections' and 'disk-use'. (required)
+        :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'disk-use', 'disk-size' and 'connections'. (required)
         :type metric: str
         :param granularity: The granularity in ISO8601 e.g. 5 minutes are 'PT5M'. (required)
         :type granularity: str
@@ -4652,7 +4652,7 @@ class DefaultApi:
         metric: Annotated[
             StrictStr,
             Field(
-                description="The name of the metric. Valid metrics are 'cpu', 'memory', 'max-connections', 'connections' and 'disk-use'."
+                description="The name of the metric. Valid metrics are 'cpu', 'memory', 'disk-use', 'disk-size' and 'connections'."
             ),
         ],
         granularity: Annotated[StrictStr, Field(description="The granularity in ISO8601 e.g. 5 minutes are 'PT5M'.")],
@@ -4686,13 +4686,13 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get Metric
 
-        Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in max-connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
+        Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
 
         :param project_id: The UUID of the project. (required)
         :type project_id: str
         :param instance_id: The UUID of the instance. (required)
         :type instance_id: str
-        :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'max-connections', 'connections' and 'disk-use'. (required)
+        :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'disk-use', 'disk-size' and 'connections'. (required)
         :type metric: str
         :param granularity: The granularity in ISO8601 e.g. 5 minutes are 'PT5M'. (required)
         :type granularity: str
