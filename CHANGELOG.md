@@ -1,3 +1,10 @@
+## Release (2025-XX-XX)
+
+### Highlights
+
+- `certificates`: [v0.1.0](services/certificates/CHANGELOG.md#v010-2024-12-23)
+  - Manage your STACKIT Load Balancer certificates
+
 ## Release (2024-12-04)
 
 This is the first GitHub release of the STACKIT Python SDK.
