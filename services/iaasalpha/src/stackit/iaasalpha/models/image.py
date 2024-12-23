@@ -57,6 +57,9 @@ class Image(BaseModel):
     name: Annotated[str, Field(strict=True, max_length=63)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
     )
+    owner: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+        default=None, description="Universally Unique Identifier (UUID)."
+    )
     protected: Optional[StrictBool] = None
     scope: Optional[StrictStr] = Field(default=None, description="Scope of an Image.")
     status: Optional[StrictStr] = Field(default=None, description="The status of an image object.")
@@ -73,6 +76,7 @@ class Image(BaseModel):
         "minDiskSize",
         "minRam",
         "name",
+        "owner",
         "protected",
         "scope",
         "status",
@@ -96,6 +100,18 @@ class Image(BaseModel):
         """Validates the regular expression"""
         if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
             raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
+        return value
+
+    @field_validator("owner")
+    def owner_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
         return value
 
     model_config = ConfigDict(
@@ -133,12 +149,14 @@ class Image(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "checksum",
                 "created_at",
                 "id",
+                "owner",
                 "scope",
                 "status",
                 "updated_at",
@@ -178,6 +196,7 @@ class Image(BaseModel):
                 "minDiskSize": obj.get("minDiskSize"),
                 "minRam": obj.get("minRam"),
                 "name": obj.get("name"),
+                "owner": obj.get("owner"),
                 "protected": obj.get("protected"),
                 "scope": obj.get("scope"),
                 "status": obj.get("status"),
