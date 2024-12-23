@@ -16,21 +16,35 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
 
+from stackit.iaasalpha.models.create_area_address_family import CreateAreaAddressFamily
 
-class GetServerLogRequest(BaseModel):
+
+class CreateNetworkAreaPayload(BaseModel):
     """
-    GetServerLogRequest
+    CreateNetworkAreaPayload
     """
 
-    length: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
-        default=2000, description="Set to 0 to retrieve the complete log."
+    address_family: CreateAreaAddressFamily = Field(alias="addressFamily")
+    labels: Optional[Dict[str, Any]] = Field(
+        default=None, description="Object that represents the labels of an object."
     )
-    __properties: ClassVar[List[str]] = ["length"]
+    name: Annotated[str, Field(strict=True, max_length=63)] = Field(
+        description="The name for a General Object. Matches Names and also UUIDs."
+    )
+    __properties: ClassVar[List[str]] = ["addressFamily", "labels", "name"]
+
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +63,7 @@ class GetServerLogRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetServerLogRequest from a JSON string"""
+        """Create an instance of CreateNetworkAreaPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,16 +83,29 @@ class GetServerLogRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of address_family
+        if self.address_family:
+            _dict["addressFamily"] = self.address_family.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetServerLogRequest from a dict"""
+        """Create an instance of CreateNetworkAreaPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"length": obj.get("length") if obj.get("length") is not None else 2000})
+        _obj = cls.model_validate(
+            {
+                "addressFamily": (
+                    CreateAreaAddressFamily.from_dict(obj["addressFamily"])
+                    if obj.get("addressFamily") is not None
+                    else None
+                ),
+                "labels": obj.get("labels"),
+                "name": obj.get("name"),
+            }
+        )
         return _obj
