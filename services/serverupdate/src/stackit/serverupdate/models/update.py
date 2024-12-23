@@ -27,12 +27,11 @@ class Update(BaseModel):
     Update
     """
 
-    end_date: StrictStr = Field(alias="endDate")
+    end_date: Optional[StrictStr] = Field(default=None, alias="endDate")
     fail_reason: Optional[StrictStr] = Field(default=None, alias="failReason")
     failed_updates: Optional[StrictInt] = Field(default=None, alias="failedUpdates")
-    id: StrictStr
+    id: StrictInt
     installed_updates: Optional[StrictInt] = Field(default=None, alias="installedUpdates")
-    os_server_id: StrictStr = Field(alias="osServerId")
     start_date: StrictStr = Field(alias="startDate")
     status: StrictStr
     __properties: ClassVar[List[str]] = [
@@ -41,7 +40,6 @@ class Update(BaseModel):
         "failedUpdates",
         "id",
         "installedUpdates",
-        "osServerId",
         "startDate",
         "status",
     ]
@@ -101,7 +99,6 @@ class Update(BaseModel):
                 "failedUpdates": obj.get("failedUpdates"),
                 "id": obj.get("id"),
                 "installedUpdates": obj.get("installedUpdates"),
-                "osServerId": obj.get("osServerId"),
                 "startDate": obj.get("startDate"),
                 "status": obj.get("status"),
             }

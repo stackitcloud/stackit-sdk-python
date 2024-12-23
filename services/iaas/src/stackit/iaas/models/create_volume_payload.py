@@ -31,6 +31,7 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
+from stackit.iaas.models.image_config import ImageConfig
 from stackit.iaas.models.volume_source import VolumeSource
 
 
@@ -52,6 +53,7 @@ class CreateVolumePayload(BaseModel):
     id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID)."
     )
+    image_config: Optional[ImageConfig] = Field(default=None, alias="imageConfig")
     labels: Optional[Dict[str, Any]] = Field(
         default=None, description="Object that represents the labels of an object."
     )
@@ -78,6 +80,7 @@ class CreateVolumePayload(BaseModel):
         "createdAt",
         "description",
         "id",
+        "imageConfig",
         "labels",
         "name",
         "performanceClass",
@@ -166,11 +169,13 @@ class CreateVolumePayload(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "created_at",
                 "id",
+                "image_config",
                 "server_id",
                 "status",
                 "updated_at",
@@ -182,6 +187,9 @@ class CreateVolumePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of image_config
+        if self.image_config:
+            _dict["imageConfig"] = self.image_config.to_dict()
         # override the default output from pydantic by calling `to_dict()` of source
         if self.source:
             _dict["source"] = self.source.to_dict()
@@ -203,6 +211,9 @@ class CreateVolumePayload(BaseModel):
                 "createdAt": obj.get("createdAt"),
                 "description": obj.get("description"),
                 "id": obj.get("id"),
+                "imageConfig": (
+                    ImageConfig.from_dict(obj["imageConfig"]) if obj.get("imageConfig") is not None else None
+                ),
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
                 "performanceClass": obj.get("performanceClass"),
