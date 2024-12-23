@@ -33,8 +33,31 @@ from stackit.iaasalpha.models.add_member_to_virtual_ip_payload import (
 from stackit.iaasalpha.models.add_volume_to_server_payload import (
     AddVolumeToServerPayload,
 )
+from stackit.iaasalpha.models.affinity_group import AffinityGroup
+from stackit.iaasalpha.models.affinity_group_list_response import (
+    AffinityGroupListResponse,
+)
+from stackit.iaasalpha.models.availability_zone_list_response import (
+    AvailabilityZoneListResponse,
+)
+from stackit.iaasalpha.models.backup import Backup
+from stackit.iaasalpha.models.backup_list_response import BackupListResponse
+from stackit.iaasalpha.models.create_affinity_group_payload import (
+    CreateAffinityGroupPayload,
+)
+from stackit.iaasalpha.models.create_backup_payload import CreateBackupPayload
 from stackit.iaasalpha.models.create_image_payload import CreateImagePayload
 from stackit.iaasalpha.models.create_key_pair_payload import CreateKeyPairPayload
+from stackit.iaasalpha.models.create_network_area_payload import (
+    CreateNetworkAreaPayload,
+)
+from stackit.iaasalpha.models.create_network_area_range_payload import (
+    CreateNetworkAreaRangePayload,
+)
+from stackit.iaasalpha.models.create_network_area_route_payload import (
+    CreateNetworkAreaRoutePayload,
+)
+from stackit.iaasalpha.models.create_network_payload import CreateNetworkPayload
 from stackit.iaasalpha.models.create_nic_payload import CreateNicPayload
 from stackit.iaasalpha.models.create_public_ip_payload import CreatePublicIPPayload
 from stackit.iaasalpha.models.create_security_group_payload import (
@@ -44,13 +67,15 @@ from stackit.iaasalpha.models.create_security_group_rule_payload import (
     CreateSecurityGroupRulePayload,
 )
 from stackit.iaasalpha.models.create_server_payload import CreateServerPayload
+from stackit.iaasalpha.models.create_snapshot_payload import CreateSnapshotPayload
 from stackit.iaasalpha.models.create_virtual_ip_payload import CreateVirtualIPPayload
 from stackit.iaasalpha.models.create_volume_payload import CreateVolumePayload
 from stackit.iaasalpha.models.get_server_log200_response import GetServerLog200Response
-from stackit.iaasalpha.models.get_server_log_request import GetServerLogRequest
 from stackit.iaasalpha.models.image import Image
 from stackit.iaasalpha.models.image_create_response import ImageCreateResponse
 from stackit.iaasalpha.models.image_list_response import ImageListResponse
+from stackit.iaasalpha.models.image_share import ImageShare
+from stackit.iaasalpha.models.image_share_consumer import ImageShareConsumer
 from stackit.iaasalpha.models.key_pair_list_response import KeyPairListResponse
 from stackit.iaasalpha.models.keypair import Keypair
 from stackit.iaasalpha.models.machine_type import MachineType
@@ -59,8 +84,18 @@ from stackit.iaasalpha.models.network import Network
 from stackit.iaasalpha.models.network_area import NetworkArea
 from stackit.iaasalpha.models.network_area_list_response import NetworkAreaListResponse
 from stackit.iaasalpha.models.network_list_response import NetworkListResponse
+from stackit.iaasalpha.models.network_range import NetworkRange
+from stackit.iaasalpha.models.network_range_list_response import (
+    NetworkRangeListResponse,
+)
 from stackit.iaasalpha.models.nic import NIC
 from stackit.iaasalpha.models.nic_list_response import NICListResponse
+from stackit.iaasalpha.models.partial_update_network_area_payload import (
+    PartialUpdateNetworkAreaPayload,
+)
+from stackit.iaasalpha.models.partial_update_network_payload import (
+    PartialUpdateNetworkPayload,
+)
 from stackit.iaasalpha.models.project import Project
 from stackit.iaasalpha.models.project_list_response import ProjectListResponse
 from stackit.iaasalpha.models.public_ip import PublicIp
@@ -68,6 +103,7 @@ from stackit.iaasalpha.models.public_ip_list_response import PublicIpListRespons
 from stackit.iaasalpha.models.public_network_list_response import (
     PublicNetworkListResponse,
 )
+from stackit.iaasalpha.models.quota_list_response import QuotaListResponse
 from stackit.iaasalpha.models.remove_member_from_virtual_ip_payload import (
     RemoveMemberFromVirtualIPPayload,
 )
@@ -75,6 +111,8 @@ from stackit.iaasalpha.models.request import Request
 from stackit.iaasalpha.models.rescue_server_payload import RescueServerPayload
 from stackit.iaasalpha.models.resize_server_payload import ResizeServerPayload
 from stackit.iaasalpha.models.resize_volume_payload import ResizeVolumePayload
+from stackit.iaasalpha.models.route import Route
+from stackit.iaasalpha.models.route_list_response import RouteListResponse
 from stackit.iaasalpha.models.security_group import SecurityGroup
 from stackit.iaasalpha.models.security_group_list_response import (
     SecurityGroupListResponse,
@@ -89,10 +127,15 @@ from stackit.iaasalpha.models.server_list_response import ServerListResponse
 from stackit.iaasalpha.models.service_account_mail_list_response import (
     ServiceAccountMailListResponse,
 )
+from stackit.iaasalpha.models.set_image_share_payload import SetImageSharePayload
+from stackit.iaasalpha.models.snapshot import Snapshot
+from stackit.iaasalpha.models.snapshot_list_response import SnapshotListResponse
 from stackit.iaasalpha.models.update_attached_volume_payload import (
     UpdateAttachedVolumePayload,
 )
+from stackit.iaasalpha.models.update_backup_payload import UpdateBackupPayload
 from stackit.iaasalpha.models.update_image_payload import UpdateImagePayload
+from stackit.iaasalpha.models.update_image_share_payload import UpdateImageSharePayload
 from stackit.iaasalpha.models.update_key_pair_payload import UpdateKeyPairPayload
 from stackit.iaasalpha.models.update_nic_payload import UpdateNicPayload
 from stackit.iaasalpha.models.update_public_ip_payload import UpdatePublicIPPayload
@@ -100,8 +143,12 @@ from stackit.iaasalpha.models.update_security_group_payload import (
     UpdateSecurityGroupPayload,
 )
 from stackit.iaasalpha.models.update_server_payload import UpdateServerPayload
+from stackit.iaasalpha.models.update_snapshot_payload import UpdateSnapshotPayload
 from stackit.iaasalpha.models.update_virtual_ip_payload import UpdateVirtualIPPayload
 from stackit.iaasalpha.models.update_volume_payload import UpdateVolumePayload
+from stackit.iaasalpha.models.v1alpha1_update_route_of_area_payload import (
+    V1alpha1UpdateRouteOfAreaPayload,
+)
 from stackit.iaasalpha.models.virtual_ip import VirtualIp
 from stackit.iaasalpha.models.virtual_ip_list_response import VirtualIpListResponse
 from stackit.iaasalpha.models.volume import Volume
@@ -2296,6 +2343,558 @@ class DefaultApi:
         )
 
     @validate_call
+    def create_affinity_group(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_affinity_group_payload: Annotated[
+            CreateAffinityGroupPayload, Field(description="Request a affinity group creation.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffinityGroup:
+        """Create a new affinity group in a project.
+
+        Create a new server affinity group in the given project ID.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_affinity_group_payload: Request a affinity group creation. (required)
+        :type create_affinity_group_payload: CreateAffinityGroupPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_affinity_group_serialize(
+            project_id=project_id,
+            create_affinity_group_payload=create_affinity_group_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "AffinityGroup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_affinity_group_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_affinity_group_payload: Annotated[
+            CreateAffinityGroupPayload, Field(description="Request a affinity group creation.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffinityGroup]:
+        """Create a new affinity group in a project.
+
+        Create a new server affinity group in the given project ID.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_affinity_group_payload: Request a affinity group creation. (required)
+        :type create_affinity_group_payload: CreateAffinityGroupPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_affinity_group_serialize(
+            project_id=project_id,
+            create_affinity_group_payload=create_affinity_group_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "AffinityGroup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_affinity_group_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_affinity_group_payload: Annotated[
+            CreateAffinityGroupPayload, Field(description="Request a affinity group creation.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create a new affinity group in a project.
+
+        Create a new server affinity group in the given project ID.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_affinity_group_payload: Request a affinity group creation. (required)
+        :type create_affinity_group_payload: CreateAffinityGroupPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_affinity_group_serialize(
+            project_id=project_id,
+            create_affinity_group_payload=create_affinity_group_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "AffinityGroup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_affinity_group_serialize(
+        self,
+        project_id,
+        create_affinity_group_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_affinity_group_payload is not None:
+            _body_params = create_affinity_group_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1alpha1/projects/{projectId}/affinity-groups",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def create_backup(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_backup_payload: Annotated[CreateBackupPayload, Field(description="Request a backup creation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Backup:
+        """Create new Backup.
+
+        Create a new Backup in a project. If a snapshot ID is provided create the backup from the snapshot.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_backup_payload: Request a backup creation. (required)
+        :type create_backup_payload: CreateBackupPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_backup_serialize(
+            project_id=project_id,
+            create_backup_payload=create_backup_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "Backup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_backup_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_backup_payload: Annotated[CreateBackupPayload, Field(description="Request a backup creation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Backup]:
+        """Create new Backup.
+
+        Create a new Backup in a project. If a snapshot ID is provided create the backup from the snapshot.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_backup_payload: Request a backup creation. (required)
+        :type create_backup_payload: CreateBackupPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_backup_serialize(
+            project_id=project_id,
+            create_backup_payload=create_backup_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "Backup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_backup_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_backup_payload: Annotated[CreateBackupPayload, Field(description="Request a backup creation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create new Backup.
+
+        Create a new Backup in a project. If a snapshot ID is provided create the backup from the snapshot.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_backup_payload: Request a backup creation. (required)
+        :type create_backup_payload: CreateBackupPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_backup_serialize(
+            project_id=project_id,
+            create_backup_payload=create_backup_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "Backup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_backup_serialize(
+        self,
+        project_id,
+        create_backup_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_backup_payload is not None:
+            _body_params = create_backup_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1alpha1/projects/{projectId}/backups",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def create_image(
         self,
         project_id: Annotated[
@@ -2811,6 +3410,1203 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="POST",
             resource_path="/v1alpha1/keypairs",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def create_network(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_network_payload: Annotated[CreateNetworkPayload, Field(description="Request a network creation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Network:
+        """Create new network.
+
+        Create a new network in a project. `nameservers` will be filled from `defaultNameservers` of the respective area if not specified. If the project has `internetAccess` enabled and this is the first network in the project this might incur cost.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_network_payload: Request a network creation. (required)
+        :type create_network_payload: CreateNetworkPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_serialize(
+            project_id=project_id,
+            create_network_payload=create_network_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": "Network",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_network_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_network_payload: Annotated[CreateNetworkPayload, Field(description="Request a network creation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Network]:
+        """Create new network.
+
+        Create a new network in a project. `nameservers` will be filled from `defaultNameservers` of the respective area if not specified. If the project has `internetAccess` enabled and this is the first network in the project this might incur cost.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_network_payload: Request a network creation. (required)
+        :type create_network_payload: CreateNetworkPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_serialize(
+            project_id=project_id,
+            create_network_payload=create_network_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": "Network",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_network_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_network_payload: Annotated[CreateNetworkPayload, Field(description="Request a network creation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create new network.
+
+        Create a new network in a project. `nameservers` will be filled from `defaultNameservers` of the respective area if not specified. If the project has `internetAccess` enabled and this is the first network in the project this might incur cost.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_network_payload: Request a network creation. (required)
+        :type create_network_payload: CreateNetworkPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_serialize(
+            project_id=project_id,
+            create_network_payload=create_network_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": "Network",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_network_serialize(
+        self,
+        project_id,
+        create_network_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_network_payload is not None:
+            _body_params = create_network_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1alpha1/projects/{projectId}/networks",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def create_network_area(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        create_network_area_payload: Annotated[
+            CreateNetworkAreaPayload, Field(description="Request an Area creation.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NetworkArea:
+        """Create new network area in an organization.
+
+        Create a new network area in an organization.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param create_network_area_payload: Request an Area creation. (required)
+        :type create_network_area_payload: CreateNetworkAreaPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_area_serialize(
+            organization_id=organization_id,
+            create_network_area_payload=create_network_area_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkArea",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_network_area_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        create_network_area_payload: Annotated[
+            CreateNetworkAreaPayload, Field(description="Request an Area creation.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NetworkArea]:
+        """Create new network area in an organization.
+
+        Create a new network area in an organization.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param create_network_area_payload: Request an Area creation. (required)
+        :type create_network_area_payload: CreateNetworkAreaPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_area_serialize(
+            organization_id=organization_id,
+            create_network_area_payload=create_network_area_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkArea",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_network_area_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        create_network_area_payload: Annotated[
+            CreateNetworkAreaPayload, Field(description="Request an Area creation.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create new network area in an organization.
+
+        Create a new network area in an organization.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param create_network_area_payload: Request an Area creation. (required)
+        :type create_network_area_payload: CreateNetworkAreaPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_area_serialize(
+            organization_id=organization_id,
+            create_network_area_payload=create_network_area_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkArea",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_network_area_serialize(
+        self,
+        organization_id,
+        create_network_area_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_network_area_payload is not None:
+            _body_params = create_network_area_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def create_network_area_range(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        create_network_area_range_payload: Annotated[
+            CreateNetworkAreaRangePayload, Field(description="Request an addition of network ranges to an area.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NetworkRangeListResponse:
+        """Create new network range in a network area.
+
+        Create a new network range in an existing network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param create_network_area_range_payload: Request an addition of network ranges to an area. (required)
+        :type create_network_area_range_payload: CreateNetworkAreaRangePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_area_range_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            create_network_area_range_payload=create_network_area_range_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkRangeListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_network_area_range_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        create_network_area_range_payload: Annotated[
+            CreateNetworkAreaRangePayload, Field(description="Request an addition of network ranges to an area.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NetworkRangeListResponse]:
+        """Create new network range in a network area.
+
+        Create a new network range in an existing network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param create_network_area_range_payload: Request an addition of network ranges to an area. (required)
+        :type create_network_area_range_payload: CreateNetworkAreaRangePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_area_range_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            create_network_area_range_payload=create_network_area_range_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkRangeListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_network_area_range_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        create_network_area_range_payload: Annotated[
+            CreateNetworkAreaRangePayload, Field(description="Request an addition of network ranges to an area.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create new network range in a network area.
+
+        Create a new network range in an existing network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param create_network_area_range_payload: Request an addition of network ranges to an area. (required)
+        :type create_network_area_range_payload: CreateNetworkAreaRangePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_area_range_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            create_network_area_range_payload=create_network_area_range_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkRangeListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_network_area_range_serialize(
+        self,
+        organization_id,
+        area_id,
+        create_network_area_range_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_network_area_range_payload is not None:
+            _body_params = create_network_area_range_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def create_network_area_route(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        create_network_area_route_payload: Annotated[
+            CreateNetworkAreaRoutePayload, Field(description="Request an addition of routes to an area.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RouteListResponse:
+        """Create new network routes.
+
+        Create one or several new network routes in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param create_network_area_route_payload: Request an addition of routes to an area. (required)
+        :type create_network_area_route_payload: CreateNetworkAreaRoutePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_area_route_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            create_network_area_route_payload=create_network_area_route_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": "RouteListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_network_area_route_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        create_network_area_route_payload: Annotated[
+            CreateNetworkAreaRoutePayload, Field(description="Request an addition of routes to an area.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RouteListResponse]:
+        """Create new network routes.
+
+        Create one or several new network routes in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param create_network_area_route_payload: Request an addition of routes to an area. (required)
+        :type create_network_area_route_payload: CreateNetworkAreaRoutePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_area_route_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            create_network_area_route_payload=create_network_area_route_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": "RouteListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_network_area_route_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        create_network_area_route_payload: Annotated[
+            CreateNetworkAreaRoutePayload, Field(description="Request an addition of routes to an area.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create new network routes.
+
+        Create one or several new network routes in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param create_network_area_route_payload: Request an addition of routes to an area. (required)
+        :type create_network_area_route_payload: CreateNetworkAreaRoutePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_network_area_route_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            create_network_area_route_payload=create_network_area_route_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": "RouteListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_network_area_route_serialize(
+        self,
+        organization_id,
+        area_id,
+        create_network_area_route_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_network_area_route_payload is not None:
+            _body_params = create_network_area_route_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -4273,6 +6069,279 @@ class DefaultApi:
         )
 
     @validate_call
+    def create_snapshot(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_snapshot_payload: Annotated[CreateSnapshotPayload, Field(description="Request a snapshot creation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Snapshot:
+        """Create new Snapshot.
+
+        Create a new Snapshot from a Volume in a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_snapshot_payload: Request a snapshot creation. (required)
+        :type create_snapshot_payload: CreateSnapshotPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_snapshot_serialize(
+            project_id=project_id,
+            create_snapshot_payload=create_snapshot_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "Snapshot",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_snapshot_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_snapshot_payload: Annotated[CreateSnapshotPayload, Field(description="Request a snapshot creation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Snapshot]:
+        """Create new Snapshot.
+
+        Create a new Snapshot from a Volume in a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_snapshot_payload: Request a snapshot creation. (required)
+        :type create_snapshot_payload: CreateSnapshotPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_snapshot_serialize(
+            project_id=project_id,
+            create_snapshot_payload=create_snapshot_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "Snapshot",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_snapshot_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        create_snapshot_payload: Annotated[CreateSnapshotPayload, Field(description="Request a snapshot creation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create new Snapshot.
+
+        Create a new Snapshot from a Volume in a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param create_snapshot_payload: Request a snapshot creation. (required)
+        :type create_snapshot_payload: CreateSnapshotPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._create_snapshot_serialize(
+            project_id=project_id,
+            create_snapshot_payload=create_snapshot_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "Snapshot",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_snapshot_serialize(
+        self,
+        project_id,
+        create_snapshot_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_snapshot_payload is not None:
+            _body_params = create_snapshot_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1alpha1/projects/{projectId}/snapshots",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def create_virtual_ip(
         self,
         project_id: Annotated[
@@ -5129,6 +7198,586 @@ class DefaultApi:
         )
 
     @validate_call
+    def delete_affinity_group(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        affinity_group_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Affinity Group.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete a affinity group in a project.
+
+        Delete a affinity group in the given project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
+        :type affinity_group_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_affinity_group_serialize(
+            project_id=project_id,
+            affinity_group_id=affinity_group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_affinity_group_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        affinity_group_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Affinity Group.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete a affinity group in a project.
+
+        Delete a affinity group in the given project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
+        :type affinity_group_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_affinity_group_serialize(
+            project_id=project_id,
+            affinity_group_id=affinity_group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_affinity_group_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        affinity_group_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Affinity Group.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete a affinity group in a project.
+
+        Delete a affinity group in the given project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
+        :type affinity_group_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_affinity_group_serialize(
+            project_id=project_id,
+            affinity_group_id=affinity_group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_affinity_group_serialize(
+        self,
+        project_id,
+        affinity_group_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if affinity_group_id is not None:
+            _path_params["affinityGroupId"] = affinity_group_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v1alpha1/projects/{projectId}/affinity-groups/{affinityGroupId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_backup(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        force: Annotated[Optional[StrictBool], Field(description="Force action.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete a backup.
+
+        Delete a backup that is part of the project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param force: Force action.
+        :type force: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            force=force,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_backup_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        force: Annotated[Optional[StrictBool], Field(description="Force action.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete a backup.
+
+        Delete a backup that is part of the project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param force: Force action.
+        :type force: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            force=force,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_backup_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        force: Annotated[Optional[StrictBool], Field(description="Force action.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete a backup.
+
+        Delete a backup that is part of the project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param force: Force action.
+        :type force: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            force=force,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_backup_serialize(
+        self,
+        project_id,
+        backup_id,
+        force,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if backup_id is not None:
+            _path_params["backupId"] = backup_id
+        # process the query parameters
+        if force is not None:
+
+            _query_params.append(("force", force))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v1alpha1/projects/{projectId}/backups/{backupId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def delete_image(
         self,
         project_id: Annotated[
@@ -5400,6 +8049,587 @@ class DefaultApi:
         )
 
     @validate_call
+    def delete_image_share(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Remove image share.
+
+        Remove the image share. New scope will be local.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_image_share_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Remove image share.
+
+        Remove the image share. New scope will be local.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_image_share_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Remove image share.
+
+        Remove the image share. New scope will be local.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_image_share_serialize(
+        self,
+        project_id,
+        image_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if image_id is not None:
+            _path_params["imageId"] = image_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v1alpha1/projects/{projectId}/images/{imageId}/share",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_image_share_consumer(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        consumer_project_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Remove an image share consumer.
+
+        Remove consumer from a shared image.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
+        :type consumer_project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_image_share_consumer_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            consumer_project_id=consumer_project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_image_share_consumer_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        consumer_project_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Remove an image share consumer.
+
+        Remove consumer from a shared image.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
+        :type consumer_project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_image_share_consumer_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            consumer_project_id=consumer_project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_image_share_consumer_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        consumer_project_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Remove an image share consumer.
+
+        Remove consumer from a shared image.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
+        :type consumer_project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_image_share_consumer_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            consumer_project_id=consumer_project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_image_share_consumer_serialize(
+        self,
+        project_id,
+        image_id,
+        consumer_project_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if image_id is not None:
+            _path_params["imageId"] = image_id
+        if consumer_project_id is not None:
+            _path_params["consumerProjectId"] = consumer_project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v1alpha1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def delete_key_pair(
         self,
         keypair_name: Annotated[str, Field(strict=True, max_length=127, description="The name of an SSH keypair.")],
@@ -5628,6 +8858,1198 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="DELETE",
             resource_path="/v1alpha1/keypairs/{keypairName}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_network(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        network_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete network.
+
+        Delete a network. If the network is still in use, the deletion will fail.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param network_id: The identifier (ID) of a STACKIT Network. (required)
+        :type network_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_serialize(
+            project_id=project_id,
+            network_id=network_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_network_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        network_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete network.
+
+        Delete a network. If the network is still in use, the deletion will fail.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param network_id: The identifier (ID) of a STACKIT Network. (required)
+        :type network_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_serialize(
+            project_id=project_id,
+            network_id=network_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_network_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        network_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete network.
+
+        Delete a network. If the network is still in use, the deletion will fail.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param network_id: The identifier (ID) of a STACKIT Network. (required)
+        :type network_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_serialize(
+            project_id=project_id,
+            network_id=network_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_network_serialize(
+        self,
+        project_id,
+        network_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if network_id is not None:
+            _path_params["networkId"] = network_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v1alpha1/projects/{projectId}/networks/{networkId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_network_area(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete a network area.
+
+        Delete an existing network area in an organization. This is only possible if no projects are using the area anymore.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_area_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_network_area_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete a network area.
+
+        Delete an existing network area in an organization. This is only possible if no projects are using the area anymore.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_area_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_network_area_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete a network area.
+
+        Delete an existing network area in an organization. This is only possible if no projects are using the area anymore.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_area_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_network_area_serialize(
+        self,
+        organization_id,
+        area_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_network_area_range(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        network_range_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete a network range.
+
+        Delete a network range of a network area. The deletion will fail if the network range is still used.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
+        :type network_range_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_area_range_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            network_range_id=network_range_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_network_area_range_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        network_range_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete a network range.
+
+        Delete a network range of a network area. The deletion will fail if the network range is still used.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
+        :type network_range_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_area_range_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            network_range_id=network_range_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_network_area_range_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        network_range_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete a network range.
+
+        Delete a network range of a network area. The deletion will fail if the network range is still used.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
+        :type network_range_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_area_range_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            network_range_id=network_range_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_network_area_range_serialize(
+        self,
+        organization_id,
+        area_id,
+        network_range_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        if network_range_id is not None:
+            _path_params["networkRangeId"] = network_range_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_network_area_route(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        route_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete a network route.
+
+        Delete a network route of a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param route_id: The identifier (ID) of a STACKIT Route. (required)
+        :type route_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_area_route_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            route_id=route_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_network_area_route_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        route_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete a network route.
+
+        Delete a network route of a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param route_id: The identifier (ID) of a STACKIT Route. (required)
+        :type route_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_area_route_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            route_id=route_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_network_area_route_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        route_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete a network route.
+
+        Delete a network route of a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param route_id: The identifier (ID) of a STACKIT Route. (required)
+        :type route_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_network_area_route_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            route_id=route_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_network_area_route_serialize(
+        self,
+        organization_id,
+        area_id,
+        route_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        if route_id is not None:
+            _path_params["routeId"] = route_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -7104,6 +11526,280 @@ class DefaultApi:
         )
 
     @validate_call
+    def delete_snapshot(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        snapshot_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete a snapshot.
+
+        Delete a snapshot that is part of the project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
+        :type snapshot_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_snapshot_serialize(
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_snapshot_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        snapshot_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete a snapshot.
+
+        Delete a snapshot that is part of the project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
+        :type snapshot_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_snapshot_serialize(
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_snapshot_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        snapshot_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete a snapshot.
+
+        Delete a snapshot that is part of the project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
+        :type snapshot_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_snapshot_serialize(
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_snapshot_serialize(
+        self,
+        project_id,
+        snapshot_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if snapshot_id is not None:
+            _path_params["snapshotId"] = snapshot_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v1alpha1/projects/{projectId}/snapshots/{snapshotId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def delete_virtual_ip(
         self,
         project_id: Annotated[
@@ -7676,6 +12372,295 @@ class DefaultApi:
         )
 
     @validate_call
+    def get_affinity_group(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        affinity_group_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Affinity Group.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffinityGroup:
+        """Get the affinity group.
+
+        Get the affinity group created in a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
+        :type affinity_group_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_affinity_group_serialize(
+            project_id=project_id,
+            affinity_group_id=affinity_group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AffinityGroup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_affinity_group_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        affinity_group_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Affinity Group.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffinityGroup]:
+        """Get the affinity group.
+
+        Get the affinity group created in a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
+        :type affinity_group_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_affinity_group_serialize(
+            project_id=project_id,
+            affinity_group_id=affinity_group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AffinityGroup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_affinity_group_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        affinity_group_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Affinity Group.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the affinity group.
+
+        Get the affinity group created in a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
+        :type affinity_group_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_affinity_group_serialize(
+            project_id=project_id,
+            affinity_group_id=affinity_group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AffinityGroup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_affinity_group_serialize(
+        self,
+        project_id,
+        affinity_group_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if affinity_group_id is not None:
+            _path_params["affinityGroupId"] = affinity_group_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/affinity-groups/{affinityGroupId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def get_attached_volume(
         self,
         project_id: Annotated[
@@ -7974,6 +12959,280 @@ class DefaultApi:
         )
 
     @validate_call
+    def get_backup(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Backup:
+        """Get details about a backup.
+
+        Get details about a block device backup.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Backup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_backup_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Backup]:
+        """Get details about a backup.
+
+        Get details about a block device backup.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Backup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_backup_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get details about a backup.
+
+        Get details about a block device backup.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Backup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_backup_serialize(
+        self,
+        project_id,
+        backup_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if backup_id is not None:
+            _path_params["backupId"] = backup_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/backups/{backupId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def get_image(
         self,
         project_id: Annotated[
@@ -8232,6 +13491,587 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1alpha1/projects/{projectId}/images/{imageId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_image_share(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ImageShare:
+        """Get share details of an image.
+
+        Get share details about an shared image.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShare",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_image_share_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ImageShare]:
+        """Get share details of an image.
+
+        Get share details about an shared image.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShare",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_image_share_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get share details of an image.
+
+        Get share details about an shared image.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShare",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_image_share_serialize(
+        self,
+        project_id,
+        image_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if image_id is not None:
+            _path_params["imageId"] = image_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/images/{imageId}/share",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_image_share_consumer(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        consumer_project_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ImageShareConsumer:
+        """Get image share consumer.
+
+        Get details about an image share consumer.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
+        :type consumer_project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_image_share_consumer_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            consumer_project_id=consumer_project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShareConsumer",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_image_share_consumer_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        consumer_project_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ImageShareConsumer]:
+        """Get image share consumer.
+
+        Get details about an image share consumer.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
+        :type consumer_project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_image_share_consumer_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            consumer_project_id=consumer_project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShareConsumer",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_image_share_consumer_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        consumer_project_id: Annotated[
+            str,
+            Field(
+                min_length=36,
+                strict=True,
+                max_length=36,
+                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get image share consumer.
+
+        Get details about an image share consumer.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
+        :type consumer_project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_image_share_consumer_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            consumer_project_id=consumer_project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShareConsumer",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_image_share_consumer_serialize(
+        self,
+        project_id,
+        image_id,
+        consumer_project_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if image_id is not None:
+            _path_params["imageId"] = image_id
+        if consumer_project_id is not None:
+            _path_params["consumerProjectId"] = consumer_project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -9311,6 +15151,629 @@ class DefaultApi:
         )
 
     @validate_call
+    def get_network_area_range(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        network_range_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NetworkRange:
+        """Get details about a network range.
+
+        Get details about a network range in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
+        :type network_range_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_network_area_range_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            network_range_id=network_range_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkRange",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_network_area_range_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        network_range_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NetworkRange]:
+        """Get details about a network range.
+
+        Get details about a network range in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
+        :type network_range_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_network_area_range_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            network_range_id=network_range_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkRange",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_network_area_range_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        network_range_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get details about a network range.
+
+        Get details about a network range in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
+        :type network_range_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_network_area_range_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            network_range_id=network_range_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkRange",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_network_area_range_serialize(
+        self,
+        organization_id,
+        area_id,
+        network_range_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        if network_range_id is not None:
+            _path_params["networkRangeId"] = network_range_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_network_area_route(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        route_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Route:
+        """Get details about a network route.
+
+        Get details about a network route defined in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param route_id: The identifier (ID) of a STACKIT Route. (required)
+        :type route_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_network_area_route_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            route_id=route_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Route",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_network_area_route_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        route_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Route]:
+        """Get details about a network route.
+
+        Get details about a network route defined in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param route_id: The identifier (ID) of a STACKIT Route. (required)
+        :type route_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_network_area_route_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            route_id=route_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Route",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_network_area_route_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        route_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get details about a network route.
+
+        Get details about a network route defined in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param route_id: The identifier (ID) of a STACKIT Route. (required)
+        :type route_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_network_area_route_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            route_id=route_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Route",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_network_area_route_serialize(
+        self,
+        organization_id,
+        area_id,
+        route_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        if route_id is not None:
+            _path_params["routeId"] = route_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def get_nic(
         self,
         project_id: Annotated[
@@ -9335,7 +15798,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> NIC:
-        """Get details about a network interface.
+        """Get details about a network interface of a network.
 
         Get details about a network interface inside a network.
 
@@ -9417,7 +15880,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[NIC]:
-        """Get details about a network interface.
+        """Get details about a network interface of a network.
 
         Get details about a network interface inside a network.
 
@@ -9499,7 +15962,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get details about a network interface.
+        """Get details about a network interface of a network.
 
         Get details about a network interface inside a network.
 
@@ -10126,6 +16589,280 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1alpha1/projects/{projectId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_project_nic(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        nic_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NIC:
+        """Get details about a network interface of a project.
+
+        Get details about a network interface inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param nic_id: The identifier (ID) of a network interface. (required)
+        :type nic_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_project_nic_serialize(
+            project_id=project_id,
+            nic_id=nic_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NIC",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_project_nic_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        nic_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NIC]:
+        """Get details about a network interface of a project.
+
+        Get details about a network interface inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param nic_id: The identifier (ID) of a network interface. (required)
+        :type nic_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_project_nic_serialize(
+            project_id=project_id,
+            nic_id=nic_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NIC",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_project_nic_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        nic_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get details about a network interface of a project.
+
+        Get details about a network interface inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param nic_id: The identifier (ID) of a network interface. (required)
+        :type nic_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_project_nic_serialize(
+            project_id=project_id,
+            nic_id=nic_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NIC",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_project_nic_serialize(
+        self,
+        project_id,
+        nic_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if nic_id is not None:
+            _path_params["nicId"] = nic_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/nics/{nicId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -11876,9 +18613,11 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
         ],
-        get_server_log_request: Annotated[
-            Optional[GetServerLogRequest],
-            Field(description="Request the server log. By default the length is limited to 2000 lines."),
+        length: Annotated[
+            Optional[Annotated[int, Field(strict=True, ge=0)]],
+            Field(
+                description="Request the server log. By default the length is limited to 2000 lines. Set to 0 to retrieve the complete log."
+            ),
         ] = None,
         _request_timeout: Union[
             None,
@@ -11898,8 +18637,8 @@ class DefaultApi:
         :type project_id: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
         :type server_id: str
-        :param get_server_log_request: Request the server log. By default the length is limited to 2000 lines.
-        :type get_server_log_request: GetServerLogRequest
+        :param length: Request the server log. By default the length is limited to 2000 lines. Set to 0 to retrieve the complete log.
+        :type length: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11925,7 +18664,7 @@ class DefaultApi:
         _param = self._get_server_log_serialize(
             project_id=project_id,
             server_id=server_id,
-            get_server_log_request=get_server_log_request,
+            length=length,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11958,9 +18697,11 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
         ],
-        get_server_log_request: Annotated[
-            Optional[GetServerLogRequest],
-            Field(description="Request the server log. By default the length is limited to 2000 lines."),
+        length: Annotated[
+            Optional[Annotated[int, Field(strict=True, ge=0)]],
+            Field(
+                description="Request the server log. By default the length is limited to 2000 lines. Set to 0 to retrieve the complete log."
+            ),
         ] = None,
         _request_timeout: Union[
             None,
@@ -11980,8 +18721,8 @@ class DefaultApi:
         :type project_id: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
         :type server_id: str
-        :param get_server_log_request: Request the server log. By default the length is limited to 2000 lines.
-        :type get_server_log_request: GetServerLogRequest
+        :param length: Request the server log. By default the length is limited to 2000 lines. Set to 0 to retrieve the complete log.
+        :type length: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12007,7 +18748,7 @@ class DefaultApi:
         _param = self._get_server_log_serialize(
             project_id=project_id,
             server_id=server_id,
-            get_server_log_request=get_server_log_request,
+            length=length,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -12040,9 +18781,11 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
         ],
-        get_server_log_request: Annotated[
-            Optional[GetServerLogRequest],
-            Field(description="Request the server log. By default the length is limited to 2000 lines."),
+        length: Annotated[
+            Optional[Annotated[int, Field(strict=True, ge=0)]],
+            Field(
+                description="Request the server log. By default the length is limited to 2000 lines. Set to 0 to retrieve the complete log."
+            ),
         ] = None,
         _request_timeout: Union[
             None,
@@ -12062,8 +18805,8 @@ class DefaultApi:
         :type project_id: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
         :type server_id: str
-        :param get_server_log_request: Request the server log. By default the length is limited to 2000 lines.
-        :type get_server_log_request: GetServerLogRequest
+        :param length: Request the server log. By default the length is limited to 2000 lines. Set to 0 to retrieve the complete log.
+        :type length: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12089,7 +18832,7 @@ class DefaultApi:
         _param = self._get_server_log_serialize(
             project_id=project_id,
             server_id=server_id,
-            get_server_log_request=get_server_log_request,
+            length=length,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -12111,7 +18854,7 @@ class DefaultApi:
         self,
         project_id,
         server_id,
-        get_server_log_request,
+        length,
         _request_auth,
         _content_type,
         _headers,
@@ -12135,23 +18878,17 @@ class DefaultApi:
         if server_id is not None:
             _path_params["serverId"] = server_id
         # process the query parameters
+        if length is not None:
+
+            _query_params.append(("length", length))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if get_server_log_request is not None:
-            _body_params = get_server_log_request
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
             _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params["Content-Type"] = _content_type
-        else:
-            _default_content_type = self.api_client.select_header_content_type(["application/json"])
-            if _default_content_type is not None:
-                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = []
@@ -12159,6 +18896,280 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1alpha1/projects/{projectId}/servers/{serverId}/log",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_snapshot(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        snapshot_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Snapshot:
+        """Get details about a snapshot.
+
+        Get details about a block device snapshot.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
+        :type snapshot_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_snapshot_serialize(
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Snapshot",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_snapshot_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        snapshot_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Snapshot]:
+        """Get details about a snapshot.
+
+        Get details about a block device snapshot.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
+        :type snapshot_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_snapshot_serialize(
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Snapshot",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_snapshot_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        snapshot_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get details about a snapshot.
+
+        Get details about a block device snapshot.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
+        :type snapshot_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_snapshot_serialize(
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Snapshot",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_snapshot_serialize(
+        self,
+        project_id,
+        snapshot_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if snapshot_id is not None:
+            _path_params["snapshotId"] = snapshot_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/snapshots/{snapshotId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -13012,6 +20023,259 @@ class DefaultApi:
         )
 
     @validate_call
+    def list_affinity_groups(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffinityGroupListResponse:
+        """Get the affinity groups setup for a project.
+
+        Get the affinity groups created in a project. Affinity groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_affinity_groups_serialize(
+            project_id=project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AffinityGroupListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_affinity_groups_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffinityGroupListResponse]:
+        """Get the affinity groups setup for a project.
+
+        Get the affinity groups created in a project. Affinity groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_affinity_groups_serialize(
+            project_id=project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AffinityGroupListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_affinity_groups_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the affinity groups setup for a project.
+
+        Get the affinity groups created in a project. Affinity groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_affinity_groups_serialize(
+            project_id=project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AffinityGroupListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "409": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_affinity_groups_serialize(
+        self,
+        project_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/affinity-groups",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def list_attached_volumes(
         self,
         project_id: Annotated[
@@ -13273,6 +20537,490 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_availability_zones(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AvailabilityZoneListResponse:
+        """List all availability zones.
+
+        Get a list of all availability zones.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_availability_zones_serialize(
+            _request_auth=_request_auth, _content_type=_content_type, _headers=_headers, _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AvailabilityZoneListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_availability_zones_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AvailabilityZoneListResponse]:
+        """List all availability zones.
+
+        Get a list of all availability zones.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_availability_zones_serialize(
+            _request_auth=_request_auth, _content_type=_content_type, _headers=_headers, _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AvailabilityZoneListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_availability_zones_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all availability zones.
+
+        Get a list of all availability zones.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_availability_zones_serialize(
+            _request_auth=_request_auth, _content_type=_content_type, _headers=_headers, _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "AvailabilityZoneListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_availability_zones_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/availability-zones",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_backups(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> BackupListResponse:
+        """List all backups inside a project.
+
+        Get a list of all backups inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_backups_serialize(
+            project_id=project_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackupListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_backups_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[BackupListResponse]:
+        """List all backups inside a project.
+
+        Get a list of all backups inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_backups_serialize(
+            project_id=project_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackupListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_backups_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all backups inside a project.
+
+        Get a list of all backups inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_backups_serialize(
+            project_id=project_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackupListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_backups_serialize(
+        self,
+        project_id,
+        label_selector,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        if label_selector is not None:
+
+            _query_params.append(("label_selector", label_selector))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/backups",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -14332,6 +22080,595 @@ class DefaultApi:
         )
 
     @validate_call
+    def list_network_area_ranges(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NetworkRangeListResponse:
+        """List all network ranges in a network area.
+
+        Get a list of all network ranges in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_network_area_ranges_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkRangeListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_network_area_ranges_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NetworkRangeListResponse]:
+        """List all network ranges in a network area.
+
+        Get a list of all network ranges in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_network_area_ranges_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkRangeListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_network_area_ranges_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all network ranges in a network area.
+
+        Get a list of all network ranges in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_network_area_ranges_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkRangeListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_network_area_ranges_serialize(
+        self,
+        organization_id,
+        area_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_network_area_routes(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RouteListResponse:
+        """List all network routes in a network area.
+
+        Get a list of all network routes defined in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_network_area_routes_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RouteListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_network_area_routes_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RouteListResponse]:
+        """List all network routes in a network area.
+
+        Get a list of all network routes defined in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_network_area_routes_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RouteListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_network_area_routes_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all network routes in a network area.
+
+        Get a list of all network routes defined in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_network_area_routes_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "RouteListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_network_area_routes_serialize(
+        self,
+        organization_id,
+        area_id,
+        label_selector,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        # process the query parameters
+        if label_selector is not None:
+
+            _query_params.append(("label_selector", label_selector))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def list_network_areas(
         self,
         organization_id: Annotated[
@@ -15163,6 +23500,273 @@ class DefaultApi:
         )
 
     @validate_call
+    def list_project_nics(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NICListResponse:
+        """List all network interfaces inside a project.
+
+        Get a list of all network interfaces inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_project_nics_serialize(
+            project_id=project_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NICListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_project_nics_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NICListResponse]:
+        """List all network interfaces inside a project.
+
+        Get a list of all network interfaces inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_project_nics_serialize(
+            project_id=project_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NICListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_project_nics_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all network interfaces inside a project.
+
+        Get a list of all network interfaces inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_project_nics_serialize(
+            project_id=project_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NICListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_project_nics_serialize(
+        self,
+        project_id,
+        label_selector,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        if label_selector is not None:
+
+            _query_params.append(("label_selector", label_selector))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/nics",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def list_public_ip_ranges(
         self,
         _request_timeout: Union[
@@ -15634,6 +24238,256 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1alpha1/projects/{projectId}/public-ips",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_quotas(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> QuotaListResponse:
+        """List project quotas.
+
+        List quota limits and usage for project resources.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_quotas_serialize(
+            project_id=project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "QuotaListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_quotas_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[QuotaListResponse]:
+        """List project quotas.
+
+        List quota limits and usage for project resources.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_quotas_serialize(
+            project_id=project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "QuotaListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_quotas_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List project quotas.
+
+        List quota limits and usage for project resources.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_quotas_serialize(
+            project_id=project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "QuotaListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_quotas_serialize(
+        self,
+        project_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/quotas",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -17035,6 +25889,273 @@ class DefaultApi:
         )
 
     @validate_call
+    def list_snapshots(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> SnapshotListResponse:
+        """List all snapshots inside a project.
+
+        Get a list of all snapshots inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_snapshots_serialize(
+            project_id=project_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SnapshotListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_snapshots_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[SnapshotListResponse]:
+        """List all snapshots inside a project.
+
+        Get a list of all snapshots inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_snapshots_serialize(
+            project_id=project_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SnapshotListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_snapshots_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all snapshots inside a project.
+
+        Get a list of all snapshots inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param label_selector: Filter resources by labels.
+        :type label_selector: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_snapshots_serialize(
+            project_id=project_id,
+            label_selector=label_selector,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "SnapshotListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_snapshots_serialize(
+        self,
+        project_id,
+        label_selector,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        if label_selector is not None:
+
+            _query_params.append(("label_selector", label_selector))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1alpha1/projects/{projectId}/snapshots",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def list_virtual_ips(
         self,
         project_id: Annotated[
@@ -17847,6 +26968,624 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1alpha1/projects/{projectId}/volumes",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def partial_update_network(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        network_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
+        ],
+        partial_update_network_payload: Annotated[
+            PartialUpdateNetworkPayload, Field(description="Request an update of a network.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Update network settings.
+
+        Update the settings of a network inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param network_id: The identifier (ID) of a STACKIT Network. (required)
+        :type network_id: str
+        :param partial_update_network_payload: Request an update of a network. (required)
+        :type partial_update_network_payload: PartialUpdateNetworkPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._partial_update_network_serialize(
+            project_id=project_id,
+            network_id=network_id,
+            partial_update_network_payload=partial_update_network_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def partial_update_network_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        network_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
+        ],
+        partial_update_network_payload: Annotated[
+            PartialUpdateNetworkPayload, Field(description="Request an update of a network.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Update network settings.
+
+        Update the settings of a network inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param network_id: The identifier (ID) of a STACKIT Network. (required)
+        :type network_id: str
+        :param partial_update_network_payload: Request an update of a network. (required)
+        :type partial_update_network_payload: PartialUpdateNetworkPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._partial_update_network_serialize(
+            project_id=project_id,
+            network_id=network_id,
+            partial_update_network_payload=partial_update_network_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def partial_update_network_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        network_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
+        ],
+        partial_update_network_payload: Annotated[
+            PartialUpdateNetworkPayload, Field(description="Request an update of a network.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update network settings.
+
+        Update the settings of a network inside a project.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param network_id: The identifier (ID) of a STACKIT Network. (required)
+        :type network_id: str
+        :param partial_update_network_payload: Request an update of a network. (required)
+        :type partial_update_network_payload: PartialUpdateNetworkPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._partial_update_network_serialize(
+            project_id=project_id,
+            network_id=network_id,
+            partial_update_network_payload=partial_update_network_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _partial_update_network_serialize(
+        self,
+        project_id,
+        network_id,
+        partial_update_network_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if network_id is not None:
+            _path_params["networkId"] = network_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if partial_update_network_payload is not None:
+            _body_params = partial_update_network_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="PATCH",
+            resource_path="/v1alpha1/projects/{projectId}/networks/{networkId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def partial_update_network_area(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        partial_update_network_area_payload: Annotated[
+            PartialUpdateNetworkAreaPayload, Field(description="Request to update an Area.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NetworkArea:
+        """Update network area settings.
+
+        Update the settings of a network area in an organization.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param partial_update_network_area_payload: Request to update an Area. (required)
+        :type partial_update_network_area_payload: PartialUpdateNetworkAreaPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._partial_update_network_area_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            partial_update_network_area_payload=partial_update_network_area_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkArea",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def partial_update_network_area_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        partial_update_network_area_payload: Annotated[
+            PartialUpdateNetworkAreaPayload, Field(description="Request to update an Area.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NetworkArea]:
+        """Update network area settings.
+
+        Update the settings of a network area in an organization.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param partial_update_network_area_payload: Request to update an Area. (required)
+        :type partial_update_network_area_payload: PartialUpdateNetworkAreaPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._partial_update_network_area_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            partial_update_network_area_payload=partial_update_network_area_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkArea",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def partial_update_network_area_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        partial_update_network_area_payload: Annotated[
+            PartialUpdateNetworkAreaPayload, Field(description="Request to update an Area.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update network area settings.
+
+        Update the settings of a network area in an organization.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param partial_update_network_area_payload: Request to update an Area. (required)
+        :type partial_update_network_area_payload: PartialUpdateNetworkAreaPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._partial_update_network_area_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            partial_update_network_area_payload=partial_update_network_area_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "NetworkArea",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _partial_update_network_area_serialize(
+        self,
+        organization_id,
+        area_id,
+        partial_update_network_area_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if partial_update_network_area_payload is not None:
+            _body_params = partial_update_network_area_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="PATCH",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -21193,6 +30932,574 @@ class DefaultApi:
         )
 
     @validate_call
+    def restore_backup(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Restore Backup to the referenced source Volume.
+
+        Restores a Backup to the existing Volume it references to. The use of this endpoint is disruptive as the volume needs to be detached. If a new volume is to be created use the volumes endpoint with the option to create from backup.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._restore_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def restore_backup_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Restore Backup to the referenced source Volume.
+
+        Restores a Backup to the existing Volume it references to. The use of this endpoint is disruptive as the volume needs to be detached. If a new volume is to be created use the volumes endpoint with the option to create from backup.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._restore_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def restore_backup_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Restore Backup to the referenced source Volume.
+
+        Restores a Backup to the existing Volume it references to. The use of this endpoint is disruptive as the volume needs to be detached. If a new volume is to be created use the volumes endpoint with the option to create from backup.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._restore_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _restore_backup_serialize(
+        self,
+        project_id,
+        backup_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if backup_id is not None:
+            _path_params["backupId"] = backup_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1alpha1/projects/{projectId}/backups/{backupId}/restore",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def set_image_share(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        set_image_share_payload: Annotated[SetImageSharePayload, Field(description="Settings for an Image Share.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ImageShare:
+        """Set image share.
+
+        Set share of an Image. New Options will replace existing settings.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param set_image_share_payload: Settings for an Image Share. (required)
+        :type set_image_share_payload: SetImageSharePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._set_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            set_image_share_payload=set_image_share_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShare",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def set_image_share_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        set_image_share_payload: Annotated[SetImageSharePayload, Field(description="Settings for an Image Share.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ImageShare]:
+        """Set image share.
+
+        Set share of an Image. New Options will replace existing settings.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param set_image_share_payload: Settings for an Image Share. (required)
+        :type set_image_share_payload: SetImageSharePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._set_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            set_image_share_payload=set_image_share_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShare",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def set_image_share_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        set_image_share_payload: Annotated[SetImageSharePayload, Field(description="Settings for an Image Share.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Set image share.
+
+        Set share of an Image. New Options will replace existing settings.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param set_image_share_payload: Settings for an Image Share. (required)
+        :type set_image_share_payload: SetImageSharePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._set_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            set_image_share_payload=set_image_share_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShare",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _set_image_share_serialize(
+        self,
+        project_id,
+        image_id,
+        set_image_share_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if image_id is not None:
+            _path_params["imageId"] = image_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if set_image_share_payload is not None:
+            _body_params = set_image_share_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/v1alpha1/projects/{projectId}/images/{imageId}/share",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def start_server(
         self,
         project_id: Annotated[
@@ -22351,6 +32658,303 @@ class DefaultApi:
         )
 
     @validate_call
+    def update_backup(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        update_backup_payload: Annotated[UpdateBackupPayload, Field(description="Request an update of a backup.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Backup:
+        """Update information of a backup.
+
+        Update name or labels of the backup.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param update_backup_payload: Request an update of a backup. (required)
+        :type update_backup_payload: UpdateBackupPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            update_backup_payload=update_backup_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Backup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def update_backup_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        update_backup_payload: Annotated[UpdateBackupPayload, Field(description="Request an update of a backup.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Backup]:
+        """Update information of a backup.
+
+        Update name or labels of the backup.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param update_backup_payload: Request an update of a backup. (required)
+        :type update_backup_payload: UpdateBackupPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            update_backup_payload=update_backup_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Backup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def update_backup_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        backup_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
+        ],
+        update_backup_payload: Annotated[UpdateBackupPayload, Field(description="Request an update of a backup.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update information of a backup.
+
+        Update name or labels of the backup.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
+        :type backup_id: str
+        :param update_backup_payload: Request an update of a backup. (required)
+        :type update_backup_payload: UpdateBackupPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_backup_serialize(
+            project_id=project_id,
+            backup_id=backup_id,
+            update_backup_payload=update_backup_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Backup",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _update_backup_serialize(
+        self,
+        project_id,
+        backup_id,
+        update_backup_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if backup_id is not None:
+            _path_params["backupId"] = backup_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if update_backup_payload is not None:
+            _body_params = update_backup_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="PATCH",
+            resource_path="/v1alpha1/projects/{projectId}/backups/{backupId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def update_image(
         self,
         project_id: Annotated[
@@ -22632,6 +33236,842 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="PATCH",
             resource_path="/v1alpha1/projects/{projectId}/images/{imageId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def update_image_scope_local(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Image:
+        """Update Image Scope to Local.
+
+        Update the scope property of an existing Image inside a project to local.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_image_scope_local_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Image",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def update_image_scope_local_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Image]:
+        """Update Image Scope to Local.
+
+        Update the scope property of an existing Image inside a project to local.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_image_scope_local_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Image",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def update_image_scope_local_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update Image Scope to Local.
+
+        Update the scope property of an existing Image inside a project to local.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_image_scope_local_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Image",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _update_image_scope_local_serialize(
+        self,
+        project_id,
+        image_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if image_id is not None:
+            _path_params["imageId"] = image_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v1alpha1/projects/{projectId}/images/{imageId}/publish",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def update_image_scope_public(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Image:
+        """Update Image Scope to Public.
+
+        Update the scope property of an existing Image inside a project to public.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_image_scope_public_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Image",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def update_image_scope_public_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Image]:
+        """Update Image Scope to Public.
+
+        Update the scope property of an existing Image inside a project to public.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_image_scope_public_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Image",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def update_image_scope_public_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update Image Scope to Public.
+
+        Update the scope property of an existing Image inside a project to public.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_image_scope_public_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Image",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _update_image_scope_public_serialize(
+        self,
+        project_id,
+        image_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if image_id is not None:
+            _path_params["imageId"] = image_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/v1alpha1/projects/{projectId}/images/{imageId}/publish",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def update_image_share(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        update_image_share_payload: Annotated[UpdateImageSharePayload, Field(description="Update an Image Share.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ImageShare:
+        """Update image share.
+
+        Update share of an Image. Projects will be appended to existing list.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param update_image_share_payload: Update an Image Share. (required)
+        :type update_image_share_payload: UpdateImageSharePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            update_image_share_payload=update_image_share_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShare",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def update_image_share_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        update_image_share_payload: Annotated[UpdateImageSharePayload, Field(description="Update an Image Share.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ImageShare]:
+        """Update image share.
+
+        Update share of an Image. Projects will be appended to existing list.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param update_image_share_payload: Update an Image Share. (required)
+        :type update_image_share_payload: UpdateImageSharePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            update_image_share_payload=update_image_share_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShare",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def update_image_share_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        image_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
+        ],
+        update_image_share_payload: Annotated[UpdateImageSharePayload, Field(description="Update an Image Share.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update image share.
+
+        Update share of an Image. Projects will be appended to existing list.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param image_id: The identifier (ID) of a STACKIT Image. (required)
+        :type image_id: str
+        :param update_image_share_payload: Update an Image Share. (required)
+        :type update_image_share_payload: UpdateImageSharePayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_image_share_serialize(
+            project_id=project_id,
+            image_id=image_id,
+            update_image_share_payload=update_image_share_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ImageShare",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _update_image_share_serialize(
+        self,
+        project_id,
+        image_id,
+        update_image_share_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if image_id is not None:
+            _path_params["imageId"] = image_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if update_image_share_payload is not None:
+            _body_params = update_image_share_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="PATCH",
+            resource_path="/v1alpha1/projects/{projectId}/images/{imageId}/share",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -24154,6 +35594,309 @@ class DefaultApi:
         )
 
     @validate_call
+    def update_snapshot(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        snapshot_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
+        ],
+        update_snapshot_payload: Annotated[
+            UpdateSnapshotPayload, Field(description="Request an update of a snapshot.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Snapshot:
+        """Update information of the snapshot.
+
+        Update information like name or labels of the snapshot.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
+        :type snapshot_id: str
+        :param update_snapshot_payload: Request an update of a snapshot. (required)
+        :type update_snapshot_payload: UpdateSnapshotPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_snapshot_serialize(
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            update_snapshot_payload=update_snapshot_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Snapshot",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def update_snapshot_with_http_info(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        snapshot_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
+        ],
+        update_snapshot_payload: Annotated[
+            UpdateSnapshotPayload, Field(description="Request an update of a snapshot.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Snapshot]:
+        """Update information of the snapshot.
+
+        Update information like name or labels of the snapshot.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
+        :type snapshot_id: str
+        :param update_snapshot_payload: Request an update of a snapshot. (required)
+        :type update_snapshot_payload: UpdateSnapshotPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_snapshot_serialize(
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            update_snapshot_payload=update_snapshot_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Snapshot",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def update_snapshot_without_preload_content(
+        self,
+        project_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
+        ],
+        snapshot_id: Annotated[
+            str,
+            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
+        ],
+        update_snapshot_payload: Annotated[
+            UpdateSnapshotPayload, Field(description="Request an update of a snapshot.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update information of the snapshot.
+
+        Update information like name or labels of the snapshot.
+
+        :param project_id: The identifier (ID) of a STACKIT Project. (required)
+        :type project_id: str
+        :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
+        :type snapshot_id: str
+        :param update_snapshot_payload: Request an update of a snapshot. (required)
+        :type update_snapshot_payload: UpdateSnapshotPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._update_snapshot_serialize(
+            project_id=project_id,
+            snapshot_id=snapshot_id,
+            update_snapshot_payload=update_snapshot_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Snapshot",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _update_snapshot_serialize(
+        self,
+        project_id,
+        snapshot_id,
+        update_snapshot_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if snapshot_id is not None:
+            _path_params["snapshotId"] = snapshot_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if update_snapshot_payload is not None:
+            _body_params = update_snapshot_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="PATCH",
+            resource_path="/v1alpha1/projects/{projectId}/snapshots/{snapshotId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def update_virtual_ip(
         self,
         project_id: Annotated[
@@ -24762,6 +36505,342 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="PATCH",
             resource_path="/v1alpha1/projects/{projectId}/volumes/{volumeId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def v1alpha1_update_route_of_area(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        route_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
+        ],
+        v1alpha1_update_route_of_area_payload: Annotated[
+            V1alpha1UpdateRouteOfAreaPayload, Field(description="Request an update of a network route.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Route:
+        """Update a network route.
+
+        Update a network route defined in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param route_id: The identifier (ID) of a STACKIT Route. (required)
+        :type route_id: str
+        :param v1alpha1_update_route_of_area_payload: Request an update of a network route. (required)
+        :type v1alpha1_update_route_of_area_payload: V1alpha1UpdateRouteOfAreaPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._v1alpha1_update_route_of_area_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            route_id=route_id,
+            v1alpha1_update_route_of_area_payload=v1alpha1_update_route_of_area_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Route",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def v1alpha1_update_route_of_area_with_http_info(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        route_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
+        ],
+        v1alpha1_update_route_of_area_payload: Annotated[
+            V1alpha1UpdateRouteOfAreaPayload, Field(description="Request an update of a network route.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Route]:
+        """Update a network route.
+
+        Update a network route defined in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param route_id: The identifier (ID) of a STACKIT Route. (required)
+        :type route_id: str
+        :param v1alpha1_update_route_of_area_payload: Request an update of a network route. (required)
+        :type v1alpha1_update_route_of_area_payload: V1alpha1UpdateRouteOfAreaPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._v1alpha1_update_route_of_area_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            route_id=route_id,
+            v1alpha1_update_route_of_area_payload=v1alpha1_update_route_of_area_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Route",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def v1alpha1_update_route_of_area_without_preload_content(
+        self,
+        organization_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
+            ),
+        ],
+        area_id: Annotated[
+            str,
+            Field(
+                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
+            ),
+        ],
+        route_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
+        ],
+        v1alpha1_update_route_of_area_payload: Annotated[
+            V1alpha1UpdateRouteOfAreaPayload, Field(description="Request an update of a network route.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update a network route.
+
+        Update a network route defined in a network area.
+
+        :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
+        :type organization_id: str
+        :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
+        :type area_id: str
+        :param route_id: The identifier (ID) of a STACKIT Route. (required)
+        :type route_id: str
+        :param v1alpha1_update_route_of_area_payload: Request an update of a network route. (required)
+        :type v1alpha1_update_route_of_area_payload: V1alpha1UpdateRouteOfAreaPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._v1alpha1_update_route_of_area_serialize(
+            organization_id=organization_id,
+            area_id=area_id,
+            route_id=route_id,
+            v1alpha1_update_route_of_area_payload=v1alpha1_update_route_of_area_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "Route",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _v1alpha1_update_route_of_area_serialize(
+        self,
+        organization_id,
+        area_id,
+        route_id,
+        v1alpha1_update_route_of_area_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if area_id is not None:
+            _path_params["areaId"] = area_id
+        if route_id is not None:
+            _path_params["routeId"] = route_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if v1alpha1_update_route_of_area_payload is not None:
+            _body_params = v1alpha1_update_route_of_area_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="PATCH",
+            resource_path="/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
