@@ -18,19 +18,17 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing_extensions import Self
 
 
-class GetServerLogRequest(BaseModel):
+class AvailabilityZoneListResponse(BaseModel):
     """
-    GetServerLogRequest
+    Availability Zone list response.
     """
 
-    length: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
-        default=2000, description="Set to 0 to retrieve the complete log."
-    )
-    __properties: ClassVar[List[str]] = ["length"]
+    items: List[StrictStr] = Field(description="A list of availability zones.")
+    __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +47,7 @@ class GetServerLogRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetServerLogRequest from a JSON string"""
+        """Create an instance of AvailabilityZoneListResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,12 +71,12 @@ class GetServerLogRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetServerLogRequest from a dict"""
+        """Create an instance of AvailabilityZoneListResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"length": obj.get("length") if obj.get("length") is not None else 2000})
+        _obj = cls.model_validate({"items": obj.get("items")})
         return _obj
