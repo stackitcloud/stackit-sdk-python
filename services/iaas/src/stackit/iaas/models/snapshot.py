@@ -17,31 +17,51 @@ from __future__ import annotations
 import json
 import pprint
 import re
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
-from stackit.iaas.models.image_config import ImageConfig
 
-
-class UpdateVolumePayload(BaseModel):
+class Snapshot(BaseModel):
     """
-    Object that represents an update request body of a  volume.
+    Object that represents a snapshot.
     """
 
-    bootable: Optional[StrictBool] = Field(default=False, description="Indicates if a volume is bootable.")
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
+    created_at: Optional[datetime] = Field(
+        default=None, description="Date-time when resource was created.", alias="createdAt"
     )
-    image_config: Optional[ImageConfig] = Field(default=None, alias="imageConfig")
+    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+        default=None, description="Universally Unique Identifier (UUID)."
+    )
     labels: Optional[Dict[str, Any]] = Field(
         default=None, description="Object that represents the labels of an object."
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
-    __properties: ClassVar[List[str]] = ["bootable", "description", "imageConfig", "labels", "name"]
+    size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.")
+    status: Optional[StrictStr] = Field(default=None, description="The status of a snapshot object.")
+    updated_at: Optional[datetime] = Field(
+        default=None, description="Date-time when resource was last updated.", alias="updatedAt"
+    )
+    volume_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
+        description="Universally Unique Identifier (UUID).", alias="volumeId"
+    )
+    __properties: ClassVar[List[str]] = ["createdAt", "id", "labels", "name", "size", "status", "updatedAt", "volumeId"]
+
+    @field_validator("id")
+    def id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
+        return value
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -51,6 +71,15 @@ class UpdateVolumePayload(BaseModel):
 
         if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
             raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
+        return value
+
+    @field_validator("volume_id")
+    def volume_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
         return value
 
     model_config = ConfigDict(
@@ -70,7 +99,7 @@ class UpdateVolumePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateVolumePayload from a JSON string"""
+        """Create an instance of Snapshot from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,22 +111,32 @@ class UpdateVolumePayload(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "created_at",
+                "id",
+                "size",
+                "status",
+                "updated_at",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of image_config
-        if self.image_config:
-            _dict["imageConfig"] = self.image_config.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateVolumePayload from a dict"""
+        """Create an instance of Snapshot from a dict"""
         if obj is None:
             return None
 
@@ -106,13 +145,14 @@ class UpdateVolumePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "bootable": obj.get("bootable") if obj.get("bootable") is not None else False,
-                "description": obj.get("description"),
-                "imageConfig": (
-                    ImageConfig.from_dict(obj["imageConfig"]) if obj.get("imageConfig") is not None else None
-                ),
+                "createdAt": obj.get("createdAt"),
+                "id": obj.get("id"),
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
+                "size": obj.get("size"),
+                "status": obj.get("status"),
+                "updatedAt": obj.get("updatedAt"),
+                "volumeId": obj.get("volumeId"),
             }
         )
         return _obj
