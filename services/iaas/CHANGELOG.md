@@ -1,15 +1,12 @@
 ## v0.2.0 (2024-12-23)
 
-- **Feature:** Add method to list quotas: `ListQuotas`
-- **Feature:** Add methods to change image scope: `UpdateImageScopeLocal` and `UpdateImageScopePublic`
-- **Feature:** Add new methods to manage affinity groups: `CreateAffinityGroup`, `DeleteAffinityGroup`, `GetAffinityGroup`, and `ListAffinityGroup`
-- **Feature:** Add new methods to manage backups: `CreateBackup`, `DeleteBackup`, `GetBackup`, `ListBackup`, `RestoreBackup`, `ExecuteBackup`,`UpdateBackup`
-- **Feature:** Add new methods to manage images: `CreateImage`, `DeleteImage`, `GetImage`, `ListImage`,`UpdateImage`
-- **Feature:** Add new methods to manage imageshares: `DeleteImageShare`, `GetImageShare`, `SetImageShare`,`UpdateImageShare`
-- **Feature:** Add new methods to manage imageshare consumers: `DeleteImageShareConsumer`, `GetImageShareConsumer`, `SetImageShare`,`UpdateImageShare`
-- **Feature:** Add new methods to manage project NICs: `GetProjectNIC`, `ListProjectNICs`
-- **Feature:** Add new methods to manage snapshots: `CreateSnapshot`, `DeleteSnapshot`, `GetSnapshot`, `ListSnapshot`, `UpdateSnapshot`
-- **Bugfix:** Correctly handle nullable attributes in model types
+- **Feature:** Add new methods to manage affinity groups: `create_affinity_group`, `delete_affinity_group`, `get_affinity_group`, and `list_affinity_group`
+- **Feature:** Add new methods to manage backups: `create_backup`, `delete_backup`, `get_backup`, `list_backup`, `restore_backup`, `execute_backup`, `update_backup`
+- **Feature:** Add new methods to manage images: `create_image`, `delete_image`, `get_image`, `list_image`, `update_image`
+- **Feature:** Add new methods to manage imageshares: `delete_image_share`, `get_image_share`, `set_image_share`, `update_image_share`
+- **Feature:** Add new methods to manage imageshare consumers: `delete_image_share_consumer`, `get_image_share_consumer`, `set_image_share`, `update_image_share`
+- **Feature:** Add new methods to manage project NICs: `get_project_nic`, `list_project_nics`
+- **Feature:** Add new methods to manage snapshots: `create_snapshot`, `delete_snapshot`, `get_snapshot`, `list_snapshot`, `update_snapshot`
 
 ## v0.1.0 (2024-12-04)
 
