@@ -4,6 +4,8 @@
 
 - `certificates`: [v0.1.0](services/certificates/CHANGELOG.md#v010-2024-12-23)
   - Manage your STACKIT Load Balancer certificates
+- `lbapplication`: [v0.1.0](services/lbapplication/CHANGELOG.md#v010-2024-12-23)
+  - Manage your STACKIT Load Balancer applications
 
 ## Release (2024-12-04)
 
