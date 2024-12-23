@@ -40,18 +40,47 @@ from stackit.iaasalpha.models.add_member_to_virtual_ip_payload import (
 from stackit.iaasalpha.models.add_volume_to_server_payload import (
     AddVolumeToServerPayload,
 )
+from stackit.iaasalpha.models.affinity_group import AffinityGroup
+from stackit.iaasalpha.models.affinity_group_list_response import (
+    AffinityGroupListResponse,
+)
 from stackit.iaasalpha.models.allowed_addresses_inner import AllowedAddressesInner
 from stackit.iaasalpha.models.area import Area
 from stackit.iaasalpha.models.area_config import AreaConfig
 from stackit.iaasalpha.models.area_id import AreaId
 from stackit.iaasalpha.models.area_prefix_config_ipv4 import AreaPrefixConfigIPv4
+from stackit.iaasalpha.models.availability_zone_list_response import (
+    AvailabilityZoneListResponse,
+)
+from stackit.iaasalpha.models.backup import Backup
+from stackit.iaasalpha.models.backup_list_response import BackupListResponse
+from stackit.iaasalpha.models.backup_source import BackupSource
 from stackit.iaasalpha.models.base_security_group_rule import BaseSecurityGroupRule
 from stackit.iaasalpha.models.boot_volume import BootVolume
 from stackit.iaasalpha.models.boot_volume_source import BootVolumeSource
+from stackit.iaasalpha.models.create_affinity_group_payload import (
+    CreateAffinityGroupPayload,
+)
 from stackit.iaasalpha.models.create_area_address_family import CreateAreaAddressFamily
 from stackit.iaasalpha.models.create_area_ipv4 import CreateAreaIPv4
+from stackit.iaasalpha.models.create_backup_payload import CreateBackupPayload
 from stackit.iaasalpha.models.create_image_payload import CreateImagePayload
 from stackit.iaasalpha.models.create_key_pair_payload import CreateKeyPairPayload
+from stackit.iaasalpha.models.create_network_address_family import (
+    CreateNetworkAddressFamily,
+)
+from stackit.iaasalpha.models.create_network_area_payload import (
+    CreateNetworkAreaPayload,
+)
+from stackit.iaasalpha.models.create_network_area_range_payload import (
+    CreateNetworkAreaRangePayload,
+)
+from stackit.iaasalpha.models.create_network_area_route_payload import (
+    CreateNetworkAreaRoutePayload,
+)
+from stackit.iaasalpha.models.create_network_ipv4_body import CreateNetworkIPv4Body
+from stackit.iaasalpha.models.create_network_ipv6_body import CreateNetworkIPv6Body
+from stackit.iaasalpha.models.create_network_payload import CreateNetworkPayload
 from stackit.iaasalpha.models.create_nic_payload import CreateNicPayload
 from stackit.iaasalpha.models.create_protocol import CreateProtocol
 from stackit.iaasalpha.models.create_public_ip_payload import CreatePublicIPPayload
@@ -72,17 +101,19 @@ from stackit.iaasalpha.models.create_server_payload import CreateServerPayload
 from stackit.iaasalpha.models.create_server_payload_networking import (
     CreateServerPayloadNetworking,
 )
+from stackit.iaasalpha.models.create_snapshot_payload import CreateSnapshotPayload
 from stackit.iaasalpha.models.create_virtual_ip_payload import CreateVirtualIPPayload
 from stackit.iaasalpha.models.create_volume_payload import CreateVolumePayload
 from stackit.iaasalpha.models.error import Error
 from stackit.iaasalpha.models.get_server_log200_response import GetServerLog200Response
-from stackit.iaasalpha.models.get_server_log_request import GetServerLogRequest
 from stackit.iaasalpha.models.icmp_parameters import ICMPParameters
 from stackit.iaasalpha.models.image import Image
 from stackit.iaasalpha.models.image_checksum import ImageChecksum
 from stackit.iaasalpha.models.image_config import ImageConfig
 from stackit.iaasalpha.models.image_create_response import ImageCreateResponse
 from stackit.iaasalpha.models.image_list_response import ImageListResponse
+from stackit.iaasalpha.models.image_share import ImageShare
+from stackit.iaasalpha.models.image_share_consumer import ImageShareConsumer
 from stackit.iaasalpha.models.key_pair_list_response import KeyPairListResponse
 from stackit.iaasalpha.models.keypair import Keypair
 from stackit.iaasalpha.models.machine_type import MachineType
@@ -93,8 +124,17 @@ from stackit.iaasalpha.models.network_area_ipv4 import NetworkAreaIPv4
 from stackit.iaasalpha.models.network_area_list_response import NetworkAreaListResponse
 from stackit.iaasalpha.models.network_list_response import NetworkListResponse
 from stackit.iaasalpha.models.network_range import NetworkRange
+from stackit.iaasalpha.models.network_range_list_response import (
+    NetworkRangeListResponse,
+)
 from stackit.iaasalpha.models.nic import NIC
 from stackit.iaasalpha.models.nic_list_response import NICListResponse
+from stackit.iaasalpha.models.partial_update_network_area_payload import (
+    PartialUpdateNetworkAreaPayload,
+)
+from stackit.iaasalpha.models.partial_update_network_payload import (
+    PartialUpdateNetworkPayload,
+)
 from stackit.iaasalpha.models.port_range import PortRange
 from stackit.iaasalpha.models.project import Project
 from stackit.iaasalpha.models.project_list_response import ProjectListResponse
@@ -105,6 +145,9 @@ from stackit.iaasalpha.models.public_network import PublicNetwork
 from stackit.iaasalpha.models.public_network_list_response import (
     PublicNetworkListResponse,
 )
+from stackit.iaasalpha.models.quota import Quota
+from stackit.iaasalpha.models.quota_list import QuotaList
+from stackit.iaasalpha.models.quota_list_response import QuotaListResponse
 from stackit.iaasalpha.models.remove_member_from_virtual_ip_payload import (
     RemoveMemberFromVirtualIPPayload,
 )
@@ -114,6 +157,7 @@ from stackit.iaasalpha.models.rescue_server_payload import RescueServerPayload
 from stackit.iaasalpha.models.resize_server_payload import ResizeServerPayload
 from stackit.iaasalpha.models.resize_volume_payload import ResizeVolumePayload
 from stackit.iaasalpha.models.route import Route
+from stackit.iaasalpha.models.route_list_response import RouteListResponse
 from stackit.iaasalpha.models.security_group import SecurityGroup
 from stackit.iaasalpha.models.security_group_list_response import (
     SecurityGroupListResponse,
@@ -133,22 +177,36 @@ from stackit.iaasalpha.models.server_network import ServerNetwork
 from stackit.iaasalpha.models.service_account_mail_list_response import (
     ServiceAccountMailListResponse,
 )
+from stackit.iaasalpha.models.set_image_share_payload import SetImageSharePayload
+from stackit.iaasalpha.models.snapshot import Snapshot
+from stackit.iaasalpha.models.snapshot_list_response import SnapshotListResponse
 from stackit.iaasalpha.models.static_area_id import StaticAreaID
 from stackit.iaasalpha.models.update_area_address_family import UpdateAreaAddressFamily
 from stackit.iaasalpha.models.update_area_ipv4 import UpdateAreaIPv4
 from stackit.iaasalpha.models.update_attached_volume_payload import (
     UpdateAttachedVolumePayload,
 )
+from stackit.iaasalpha.models.update_backup_payload import UpdateBackupPayload
 from stackit.iaasalpha.models.update_image_payload import UpdateImagePayload
+from stackit.iaasalpha.models.update_image_share_payload import UpdateImageSharePayload
 from stackit.iaasalpha.models.update_key_pair_payload import UpdateKeyPairPayload
+from stackit.iaasalpha.models.update_network_address_family import (
+    UpdateNetworkAddressFamily,
+)
+from stackit.iaasalpha.models.update_network_ipv4_body import UpdateNetworkIPv4Body
+from stackit.iaasalpha.models.update_network_ipv6_body import UpdateNetworkIPv6Body
 from stackit.iaasalpha.models.update_nic_payload import UpdateNicPayload
 from stackit.iaasalpha.models.update_public_ip_payload import UpdatePublicIPPayload
 from stackit.iaasalpha.models.update_security_group_payload import (
     UpdateSecurityGroupPayload,
 )
 from stackit.iaasalpha.models.update_server_payload import UpdateServerPayload
+from stackit.iaasalpha.models.update_snapshot_payload import UpdateSnapshotPayload
 from stackit.iaasalpha.models.update_virtual_ip_payload import UpdateVirtualIPPayload
 from stackit.iaasalpha.models.update_volume_payload import UpdateVolumePayload
+from stackit.iaasalpha.models.v1alpha1_update_route_of_area_payload import (
+    V1alpha1UpdateRouteOfAreaPayload,
+)
 from stackit.iaasalpha.models.virtual_ip import VirtualIp
 from stackit.iaasalpha.models.virtual_ip_list_response import VirtualIpListResponse
 from stackit.iaasalpha.models.volume import Volume
