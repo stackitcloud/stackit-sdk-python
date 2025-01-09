@@ -1,3 +1,6 @@
+[project]
+name = "stackit-serviceaccount"
+
 [tool.poetry]
 name = "stackit-serviceaccount"
 version = "v0.1.0"

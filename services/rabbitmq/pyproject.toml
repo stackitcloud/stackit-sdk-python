@@ -1,3 +1,6 @@
+[project]
+name = "stackit-rabbitmq"
+
 [tool.poetry]
 name = "stackit-rabbitmq"
 version = "v0.1.0"

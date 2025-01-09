@@ -1,3 +1,6 @@
+[project]
+name = "stackit-logme"
+
 [tool.poetry]
 name = "stackit-logme"
 version = "v0.1.0"

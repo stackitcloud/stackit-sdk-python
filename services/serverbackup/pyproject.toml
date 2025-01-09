@@ -1,3 +1,6 @@
+[project]
+name = "stackit-serverbackup"
+
 [tool.poetry]
 name = "stackit-serverbackup"
 version = "v0.1.0"

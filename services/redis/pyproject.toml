@@ -1,3 +1,6 @@
+[project]
+name = "stackit-redis"
+
 [tool.poetry]
 name = "stackit-redis"
 version = "v0.1.0"

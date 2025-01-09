@@ -1,3 +1,6 @@
+[project]
+name = "stackit-sqlserverflex"
+
 [tool.poetry]
 name = "stackit-sqlserverflex"
 version = "v0.1.0"

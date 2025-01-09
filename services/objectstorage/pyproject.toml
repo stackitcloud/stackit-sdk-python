@@ -1,3 +1,6 @@
+[project]
+name = "stackit-objectstorage"
+
 [tool.poetry]
 name = "stackit-objectstorage"
 version = "v0.1.0"

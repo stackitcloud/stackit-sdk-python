@@ -1,3 +1,6 @@
+[project]
+name = "stackit-dns"
+
 [tool.poetry]
 name = "stackit-dns"
 version = "v0.1.0"

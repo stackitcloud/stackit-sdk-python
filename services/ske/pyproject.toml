@@ -1,3 +1,6 @@
+[project]
+name = "stackit-ske"
+
 [tool.poetry]
 name = "stackit-ske"
 version = "v0.1.0"
