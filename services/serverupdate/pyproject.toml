@@ -1,3 +1,6 @@
+[project]
+name = "stackit-serverupdate"
+
 [tool.poetry]
 name = "stackit-serverupdate"
 version = "v0.1.1"

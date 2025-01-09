@@ -1,3 +1,6 @@
+[project]
+name = "stackit-loadbalancer"
+
 [tool.poetry]
 name = "stackit-loadbalancer"
 version = "v0.1.0"

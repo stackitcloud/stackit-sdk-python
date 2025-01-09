@@ -1,3 +1,6 @@
+[project]
+name = "stackit-observability"
+
 [tool.poetry]
 name = "stackit-observability"
 version = "v0.1.0"

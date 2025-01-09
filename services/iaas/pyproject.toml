@@ -1,3 +1,6 @@
+[project]
+name = "stackit-iaas"
+
 [tool.poetry]
 name = "stackit-iaas"
 version = "v0.2.0"

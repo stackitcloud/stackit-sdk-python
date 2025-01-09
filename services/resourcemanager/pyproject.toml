@@ -1,3 +1,6 @@
+[project]
+name = "stackit-resourcemanager"
+
 [tool.poetry]
 name = "stackit-resourcemanager"
 version = "v0.1.0"

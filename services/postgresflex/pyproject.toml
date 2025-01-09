@@ -1,3 +1,6 @@
+[project]
+name = "stackit-postgresflex"
+
 [tool.poetry]
 name = "stackit-postgresflex"
 version = "v0.1.0"

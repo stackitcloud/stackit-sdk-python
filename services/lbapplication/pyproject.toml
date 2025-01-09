@@ -1,3 +1,6 @@
+[project]
+name = "stackit-lbapplication"
+
 [tool.poetry]
 name = "stackit-lbapplication"
 version = "v0.1.0"

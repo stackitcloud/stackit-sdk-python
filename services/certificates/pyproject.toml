@@ -1,3 +1,6 @@
+[project]
+name = "stackit-certificates"
+
 [tool.poetry]
 name = "stackit-certificates"
 version = "v0.1.0"

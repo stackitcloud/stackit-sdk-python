@@ -1,3 +1,6 @@
+[project]
+name = "stackit-mariadb"
+
 [tool.poetry]
 name = "stackit-mariadb"
 version = "v0.1.0"

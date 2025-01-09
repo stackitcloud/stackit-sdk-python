@@ -1,3 +1,6 @@
+[project]
+name = "stackit-secretsmanager"
+
 [tool.poetry]
 name = "stackit-secretsmanager"
 version = "v0.1.0"

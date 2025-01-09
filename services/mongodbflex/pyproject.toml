@@ -1,3 +1,6 @@
+[project]
+name = "stackit-mongodbflex"
+
 [tool.poetry]
 name = "stackit-mongodbflex"
 version = "v0.1.0"

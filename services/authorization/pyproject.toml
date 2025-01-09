@@ -1,3 +1,6 @@
+[project]
+name = "stackit-authorization"
+
 [tool.poetry]
 name = "stackit-authorization"
 version = "v0.1.0"
