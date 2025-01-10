@@ -11,6 +11,8 @@
     Do not edit the class manually.
 """  # noqa: E501 docstring might be too long
 
+import os
+
 
 class HostConfiguration:
     def __init__(
@@ -22,7 +24,14 @@ class HostConfiguration:
         server_operation_variables=None,
         ignore_operation_servers=False,
     ) -> None:
-        """Constructor"""
+        print(
+            "WARNING: STACKIT will move to a new way of specifying regions, where the region is provided\n",
+            "as a function argument instead of being set in the client configuration.\n"
+            "Once all services have migrated, the methods to specify the region in the client configuration "
+            "will be removed.",
+        )
+        """Constructor
+        """
         self._base_path = "https://resource-manager.api.stackit.cloud"
         """Default Base url
         """
@@ -63,6 +72,7 @@ class HostConfiguration:
         :param index: array index of the host settings
         :param variables: hash of variable and the corresponding value
         :param servers: an array of host settings or None
+        :error: if a region is given for a global url
         :return: URL based on host settings
         """
         if index is None:
@@ -81,8 +91,25 @@ class HostConfiguration:
 
         url = server["url"]
 
+        # check if environment variable was provided for region
+        # if nothing was set this is None
+        region_env = os.environ.get("STACKIT_REGION")
+
         # go through variables and replace placeholders
         for variable_name, variable in server.get("variables", {}).items():
+            # If a region is provided by the user for a global url
+            # return an error (except for providing via environment variable).
+            # The region is provided as a function argument instead of being set in the client configuration.
+            if (
+                variable_name == "region"
+                and (variable["default_value"] == "global" or variable["default_value"] == "")
+                and region_env is None
+                and variables.get(variable_name) is not None
+            ):
+                raise ValueError(
+                    "this API does not support setting a region in the the client configuration, "
+                    "please check if the region can be specified as a function parameter"
+                )
             used_value = variables.get(variable_name, variable["default_value"])
 
             if "enum_values" in variable and used_value not in variable["enum_values"]:
