@@ -16,6 +16,8 @@
   - **Feature:** Add new methods to manage snapshots: `create_snapshot`, `delete_snapshot`, `get_snapshot`, `list_snapshot`, `update_snapshot`
 - `serverupdate`: [v0.1.1](services/serverupdate/CHANGELOG.md#v011-2024-12-23)
   - **Bugfix:** `Id` field of `Update` model is now of type `int64` (was `string`)
+- `stackitmarketplace`: [v0.1.0](services/stackitmarketplace/CHANGELOG.md#v010-2025-01-10)
+  - **New**: STACKIT Marketplace module can be used to manage the STACKIT Marketplace.
 
 ## Release (2024-12-04)
 
