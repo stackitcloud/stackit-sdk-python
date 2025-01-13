@@ -2,6 +2,52 @@
 
 ### Highlights
 
+- `authorization`: [v0.2.0](services/authorization/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `dns`: [v0.2.0](services/dns/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `iaas`: [v0.3.0](services/iaas/CHANGELOG.md#v030-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `loadbalancer`: [v0.2.0](services/loadbalancer/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `logme`: [v0.2.0](services/logme/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `mariadb`: [v0.2.0](services/mariadb/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `mongodbflex`: [v0.2.0](services/mongodbflex/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `objectstorage`: [v0.2.0](services/objectstorage/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `opensearch`: [v0.2.0](services/opensearch/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `postgresflex`: [v0.2.0](services/postgresflex/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `rabbitmq`: [v0.2.0](services/rabbitmq/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `redis`: [v0.2.0](services/redis/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `resourcemanager`: [v0.2.0](services/resourcemanager/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `runcommand`: [v0.2.0](services/runcommand/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `secretsmanager`: [v0.2.0](services/secretsmanager/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `serverupdate`: [v0.2.0](services/serverupdate/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `serverbackup`: [v0.2.0](services/serverbackup/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `serviceaccount`: [v0.2.0](services/serviceaccount/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `serviceenablement`: [v0.2.0](services/serviceenablement/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `ske`: [v0.2.0](services/ske/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `sqlserverflex`: [v0.2.0](services/sqlserverflex/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `certificates`: [v0.2.0](services/certificates/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
+- `lbapplication`: [v0.2.0](services/lbapplication/CHANGELOG.md#v020-2025-01-13)
+  - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
 - `certificates`: [v0.1.0](services/certificates/CHANGELOG.md#v010-2024-12-23)
   - Manage your STACKIT Load Balancer certificates
 - `lbapplication`: [v0.1.0](services/lbapplication/CHANGELOG.md#v010-2024-12-23)
