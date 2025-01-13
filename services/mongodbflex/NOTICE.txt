@@ -1,0 +1,2 @@
+STACKIT MongoDB Flex SDK for Python
+Copyright 2025 Schwarz IT KG
