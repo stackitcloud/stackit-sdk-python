@@ -1,0 +1,2 @@
+STACKIT Load Balancer Certificates SDK for Python
+Copyright 2025 Schwarz IT KG

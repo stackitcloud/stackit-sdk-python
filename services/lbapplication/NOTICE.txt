@@ -1,0 +1,2 @@
+STACKIT Load Balancer Application SDK for Python
+Copyright 2025 Schwarz IT KG
