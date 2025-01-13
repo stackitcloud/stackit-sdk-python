@@ -1,0 +1,2 @@
+STACKIT Marketplace SDK for Python
+Copyright 2025 Schwarz IT KG
