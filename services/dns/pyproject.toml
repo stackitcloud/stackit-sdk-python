@@ -3,7 +3,7 @@ name = "stackit-dns"
 
 [tool.poetry]
 name = "stackit-dns"
-version = "v0.2.0"
+version = "v0.2.1"
 authors = ["STACKIT Developer Tools <developer-tools@stackit.cloud>"]
 description = "STACKIT DNS API"
 readme = "README.md"

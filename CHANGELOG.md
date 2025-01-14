@@ -2,6 +2,27 @@
 
 ### Highlights
 
+- `authorization`: [v0.2.1](services/authorization/CHANGELOG.md#v021-2025-01-14)
+  - **Bugfix**: `configuration.py` region adjustment was missing
+- `certificates`: [v0.2.1](services/certificates/CHANGELOG.md#v021-2025-01-14)
+  - **Bugfix**: `configuration.py` region adjustment was missing
+- `dns`: [v0.2.1](services/dns/CHANGELOG.md#v021-2025-01-14)
+  - **Bugfix**: `configuration.py` region adjustment was missing
+- `iaas`: [v0.3.1](services/iaas/CHANGELOG.md#v031-2025-01-14)
+  - **Bugfix**: `configuration.py` region adjustment was missing
+- `lbapplication`: [v0.2.1](services/lbapplication/CHANGELOG.md#v021-2025-01-14)
+  - **Bugfix**: `configuration.py` region adjustment was missing
+- `loadbalancer`: [v0.2.1](services/loadbalancer/CHANGELOG.md#v021-2025-01-14)
+  - **Bugfix**: `configuration.py` region adjustment was missing
+- `logme`: [v0.2.1](services/logme/CHANGELOG.md#v021-2025-01-14)
+  - **Bugfix**: `configuration.py` region adjustment was missing
+- `mariadb`: [v0.2.1](services/mariadb/CHANGELOG.md#v021-2025-01-14)
+  - **Bugfix**: `configuration.py` region adjustment was missing
+- `mongodbflex`: [v0.2.1](services/mongodbflex/CHANGELOG.md#v021-2025-01-14)
+  - **Bugfix**: `configuration.py` region adjustment was missing
+- `objectstorage`: [v0.2.1](services/objectstorage/CHANGELOG.md#v021-2025-01-14)
+  - **Bugfix**: `configuration.py` region adjustment was missing
+
 - `authorization`: [v0.2.0](services/authorization/CHANGELOG.md#v020-2025-01-13)
   - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
 - `dns`: [v0.2.0](services/dns/CHANGELOG.md#v020-2025-01-13)
