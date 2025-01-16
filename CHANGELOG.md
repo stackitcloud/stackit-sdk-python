@@ -1,4 +1,4 @@
-## Release (2025-XX-XX)
+## Release (2025-01-16)
 
 ### Highlights
 
