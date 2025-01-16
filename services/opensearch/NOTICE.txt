@@ -1,0 +1,2 @@
+STACKIT OpenSearch SDK for Python
+Copyright 2025 Schwarz IT KG

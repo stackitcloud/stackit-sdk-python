@@ -1,0 +1,2 @@
+STACKIT Service Account SDK for Python
+Copyright 2025 Schwarz IT KG
