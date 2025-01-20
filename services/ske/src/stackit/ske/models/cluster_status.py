@@ -15,9 +15,10 @@ from __future__ import annotations
 
 import json
 import pprint
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing_extensions import Self
 
 from stackit.ske.models.cluster_status_state import ClusterStatusState
@@ -31,7 +32,7 @@ class ClusterStatus(BaseModel):
     """
 
     aggregated: Optional[ClusterStatusState] = ClusterStatusState.STATE_UNSPECIFIED
-    creation_time: Optional[StrictStr] = Field(
+    creation_time: Optional[datetime] = Field(
         default=None, description="Format: `2024-02-15T11:06:29Z`", alias="creationTime"
     )
     credentials_rotation: Optional[CredentialsRotationState] = Field(default=None, alias="credentialsRotation")
