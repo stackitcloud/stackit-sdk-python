@@ -49,6 +49,9 @@ from stackit.serverupdate.models.get_update_policies_response import (
 from stackit.serverupdate.models.get_update_schedules_response import (
     GetUpdateSchedulesResponse,
 )
+from stackit.serverupdate.models.get_update_service_response import (
+    GetUpdateServiceResponse,
+)
 from stackit.serverupdate.models.get_updates_list_response import GetUpdatesListResponse
 from stackit.serverupdate.models.update import Update
 from stackit.serverupdate.models.update_policy import UpdatePolicy
