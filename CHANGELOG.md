@@ -1,3 +1,8 @@
+## Release (2025-XX-XX)
+
+- `logme`: [v0.2.2](services/logme/CHANGELOG.md#v022-2025-01-21)
+  - **Bugfix:** Remove mistakenly implemented `syslog-use-udp`. Does not exist.
+
 ## Release (2025-01-16)
 
 ### Highlights
