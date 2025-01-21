@@ -1,3 +1,7 @@
+## v0.3.0 (2025-01-21)
+
+- **Breaking change**: Delete endpoint made private.
+
 ## v0.2.1 (2025-01-14)
 
 - **Bugfix**: `configuration.py` region adjustment was missing

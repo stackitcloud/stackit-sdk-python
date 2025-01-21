@@ -1,3 +1,12 @@
+## Release (2025-XX-XX)
+
+- `sqlserverflex`: [v0.3.0](services/sqlserverflex/CHANGELOG.md#v030-2025-01-21)
+  - **Breaking change**: Delete endpoint made private.
+- `mongodbflex`: [v0.3.0](services/mongodbflex/CHANGELOG.md#v030-2025-01-21)
+  - **Breaking change**: Delete endpoint made private.
+- `postgresflex`: [v0.3.0](services/postgresflex/CHANGELOG.md#v030-2025-01-21)
+  - **Breaking change**: Delete endpoint made private.
+
 ## Release (2025-01-16)
 
 ### Highlights

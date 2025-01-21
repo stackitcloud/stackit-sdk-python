@@ -1,3 +1,7 @@
+## v0.3.0 (2025-01-21)
+
+- **Breaking change**: Delete endpoint made private.
+
 ## v0.2.0 (2025-01-13)
 
 - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
