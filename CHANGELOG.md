@@ -1,5 +1,7 @@
 ## Release (2025-XX-XX)
 
+- `authorization`: [v0.2.2](services/authorization/CHANGELOG.md#v022-2025-01-21)
+  - **Bugfix:** Revert back to global URL configuration
 - `sqlserverflex`: [v0.3.0](services/sqlserverflex/CHANGELOG.md#v030-2025-01-21)
   - **Breaking change**: Delete endpoint made private.
 - `mongodbflex`: [v0.3.0](services/mongodbflex/CHANGELOG.md#v030-2025-01-21)
