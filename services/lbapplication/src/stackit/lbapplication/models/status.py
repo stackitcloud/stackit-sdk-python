@@ -17,7 +17,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 from stackit.lbapplication.models.google_protobuf_any import GoogleProtobufAny
@@ -28,7 +28,7 @@ class Status(BaseModel):
     The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
     """
 
-    code: Optional[Any] = Field(
+    code: Optional[StrictInt] = Field(
         default=None,
         description="The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].",
     )
@@ -86,11 +86,6 @@ class Status(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["details"] = _items
-        # set to None if code (nullable) is None
-        # and model_fields_set contains the field
-        if self.code is None and "code" in self.model_fields_set:
-            _dict["code"] = None
-
         return _dict
 
     @classmethod

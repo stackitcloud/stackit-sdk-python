@@ -18,7 +18,7 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 from stackit.lbapplication.models.protocol_options_https import ProtocolOptionsHTTPS
 from stackit.lbapplication.models.rule import Rule
@@ -36,7 +36,9 @@ class Listener(BaseModel):
         default=None,
         description="Will be used to reference a listener and will replace display name in the future. Currently uses <protocol>-<port> as the name if no display name is given.",
     )
-    port: Optional[Any] = Field(default=None, description="Port number where we listen for traffic")
+    port: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(
+        default=None, description="Port number where we listen for traffic"
+    )
     protocol: Optional[StrictStr] = Field(
         default=None,
         description="Protocol is the highest network protocol we understand to load balance. Currently PROTOCOL_HTTP and PROTOCOL_HTTPS are supported.",
@@ -108,11 +110,6 @@ class Listener(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["rules"] = _items
-        # set to None if port (nullable) is None
-        # and model_fields_set contains the field
-        if self.port is None and "port" in self.model_fields_set:
-            _dict["port"] = None
-
         return _dict
 
     @classmethod
