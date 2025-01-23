@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import pprint
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
@@ -31,13 +32,25 @@ class ClusterStatus(BaseModel):
     """
 
     aggregated: Optional[ClusterStatusState] = ClusterStatusState.STATE_UNSPECIFIED
-    creation_time: Optional[StrictStr] = Field(
+    creation_time: Optional[datetime] = Field(
         default=None, description="Format: `2024-02-15T11:06:29Z`", alias="creationTime"
     )
     credentials_rotation: Optional[CredentialsRotationState] = Field(default=None, alias="credentialsRotation")
+    egress_address_ranges: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The outgoing network ranges (in CIDR notation) of traffic originating from workload on the cluster.",
+        alias="egressAddressRanges",
+    )
     error: Optional[RuntimeError] = None
     hibernated: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["aggregated", "creationTime", "credentialsRotation", "error", "hibernated"]
+    __properties: ClassVar[List[str]] = [
+        "aggregated",
+        "creationTime",
+        "credentialsRotation",
+        "egressAddressRanges",
+        "error",
+        "hibernated",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,6 +117,7 @@ class ClusterStatus(BaseModel):
                     if obj.get("credentialsRotation") is not None
                     else None
                 ),
+                "egressAddressRanges": obj.get("egressAddressRanges"),
                 "error": RuntimeError.from_dict(obj["error"]) if obj.get("error") is not None else None,
                 "hibernated": obj.get("hibernated"),
             }
