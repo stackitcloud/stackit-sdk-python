@@ -3039,7 +3039,7 @@ class DefaultApi:
     @validate_call
     def list_offerings(
         self,
-        project_id: StrictStr,
+        project_id: Annotated[StrictStr, Field(description="Project id on which user has permissions")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3054,7 +3054,7 @@ class DefaultApi:
 
         Get the service offerings that the service broker offers.
 
-        :param project_id: (required)
+        :param project_id: Project id on which user has permissions (required)
         :type project_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3099,7 +3099,7 @@ class DefaultApi:
     @validate_call
     def list_offerings_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: Annotated[StrictStr, Field(description="Project id on which user has permissions")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3114,7 +3114,7 @@ class DefaultApi:
 
         Get the service offerings that the service broker offers.
 
-        :param project_id: (required)
+        :param project_id: Project id on which user has permissions (required)
         :type project_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3159,7 +3159,7 @@ class DefaultApi:
     @validate_call
     def list_offerings_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: Annotated[StrictStr, Field(description="Project id on which user has permissions")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3174,7 +3174,7 @@ class DefaultApi:
 
         Get the service offerings that the service broker offers.
 
-        :param project_id: (required)
+        :param project_id: Project id on which user has permissions (required)
         :type project_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
