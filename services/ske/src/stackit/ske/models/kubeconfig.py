@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import pprint
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
@@ -26,7 +27,7 @@ class Kubeconfig(BaseModel):
     Kubeconfig
     """
 
-    expiration_timestamp: Optional[StrictStr] = Field(default=None, alias="expirationTimestamp")
+    expiration_timestamp: Optional[datetime] = Field(default=None, alias="expirationTimestamp")
     kubeconfig: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["expirationTimestamp", "kubeconfig"]
 
