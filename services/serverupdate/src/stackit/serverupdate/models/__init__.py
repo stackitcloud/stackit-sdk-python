@@ -15,7 +15,6 @@
 
 
 # import models into model package
-from stackit.serverupdate.models.backup_properties import BackupProperties
 from stackit.serverupdate.models.create_update_payload import CreateUpdatePayload
 from stackit.serverupdate.models.create_update_schedule_payload import (
     CreateUpdateSchedulePayload,
@@ -29,6 +28,9 @@ from stackit.serverupdate.models.get_update_policies_response import (
 )
 from stackit.serverupdate.models.get_update_schedules_response import (
     GetUpdateSchedulesResponse,
+)
+from stackit.serverupdate.models.get_update_service_response import (
+    GetUpdateServiceResponse,
 )
 from stackit.serverupdate.models.get_updates_list_response import GetUpdatesListResponse
 from stackit.serverupdate.models.update import Update

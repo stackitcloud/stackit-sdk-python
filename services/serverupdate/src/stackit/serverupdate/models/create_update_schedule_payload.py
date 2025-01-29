@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing_extensions import Annotated, Self
 
 
@@ -28,11 +28,10 @@ class CreateUpdateSchedulePayload(BaseModel):
     """
 
     enabled: StrictBool
-    id: Optional[StrictInt] = None
     maintenance_window: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(alias="maintenanceWindow")
     name: StrictStr
     rrule: StrictStr
-    __properties: ClassVar[List[str]] = ["enabled", "id", "maintenanceWindow", "name", "rrule"]
+    __properties: ClassVar[List[str]] = ["enabled", "maintenanceWindow", "name", "rrule"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +84,6 @@ class CreateUpdateSchedulePayload(BaseModel):
         _obj = cls.model_validate(
             {
                 "enabled": obj.get("enabled"),
-                "id": obj.get("id"),
                 "maintenanceWindow": obj.get("maintenanceWindow"),
                 "name": obj.get("name"),
                 "rrule": obj.get("rrule"),
