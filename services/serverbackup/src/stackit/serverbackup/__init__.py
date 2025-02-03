@@ -59,6 +59,9 @@ from stackit.serverbackup.models.get_backup_policies_response import (
 from stackit.serverbackup.models.get_backup_schedules_response import (
     GetBackupSchedulesResponse,
 )
+from stackit.serverbackup.models.get_backup_service_response import (
+    GetBackupServiceResponse,
+)
 from stackit.serverbackup.models.get_backups_list_response import GetBackupsListResponse
 from stackit.serverbackup.models.restore_backup_payload import RestoreBackupPayload
 from stackit.serverbackup.models.restore_volume_backup_payload import (
