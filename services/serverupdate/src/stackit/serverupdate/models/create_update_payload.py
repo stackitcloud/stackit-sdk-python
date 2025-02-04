@@ -21,8 +21,6 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing_extensions import Annotated, Self
 
-from stackit.serverupdate.models.backup_properties import BackupProperties
-
 
 class CreateUpdatePayload(BaseModel):
     """
@@ -30,9 +28,8 @@ class CreateUpdatePayload(BaseModel):
     """
 
     backup_before_update: Optional[StrictBool] = Field(default=None, alias="backupBeforeUpdate")
-    backup_properties: Optional[BackupProperties] = Field(default=None, alias="backupProperties")
     maintenance_window: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(alias="maintenanceWindow")
-    __properties: ClassVar[List[str]] = ["backupBeforeUpdate", "backupProperties", "maintenanceWindow"]
+    __properties: ClassVar[List[str]] = ["backupBeforeUpdate", "maintenanceWindow"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,9 +68,6 @@ class CreateUpdatePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of backup_properties
-        if self.backup_properties:
-            _dict["backupProperties"] = self.backup_properties.to_dict()
         return _dict
 
     @classmethod
@@ -86,14 +80,6 @@ class CreateUpdatePayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "backupBeforeUpdate": obj.get("backupBeforeUpdate"),
-                "backupProperties": (
-                    BackupProperties.from_dict(obj["backupProperties"])
-                    if obj.get("backupProperties") is not None
-                    else None
-                ),
-                "maintenanceWindow": obj.get("maintenanceWindow"),
-            }
+            {"backupBeforeUpdate": obj.get("backupBeforeUpdate"), "maintenanceWindow": obj.get("maintenanceWindow")}
         )
         return _obj
