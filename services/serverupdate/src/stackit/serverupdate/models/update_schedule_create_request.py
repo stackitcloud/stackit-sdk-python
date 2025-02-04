@@ -18,21 +18,20 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing_extensions import Annotated, Self
 
 
-class UpdateSchedule(BaseModel):
+class UpdateScheduleCreateRequest(BaseModel):
     """
-    UpdateSchedule
+    UpdateScheduleCreateRequest
     """
 
     enabled: StrictBool
     maintenance_window: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(alias="maintenanceWindow")
     name: StrictStr
     rrule: StrictStr
-    id: StrictInt
-    __properties: ClassVar[List[str]] = ["enabled", "maintenanceWindow", "name", "rrule", "id"]
+    __properties: ClassVar[List[str]] = ["enabled", "maintenanceWindow", "name", "rrule"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +50,7 @@ class UpdateSchedule(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateSchedule from a JSON string"""
+        """Create an instance of UpdateScheduleCreateRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +74,7 @@ class UpdateSchedule(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateSchedule from a dict"""
+        """Create an instance of UpdateScheduleCreateRequest from a dict"""
         if obj is None:
             return None
 
@@ -88,7 +87,6 @@ class UpdateSchedule(BaseModel):
                 "maintenanceWindow": obj.get("maintenanceWindow"),
                 "name": obj.get("name"),
                 "rrule": obj.get("rrule"),
-                "id": obj.get("id"),
             }
         )
         return _obj

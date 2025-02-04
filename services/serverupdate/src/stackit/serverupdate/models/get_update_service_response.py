@@ -18,21 +18,17 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, StrictBool
+from typing_extensions import Self
 
 
-class BackupProperties(BaseModel):
+class GetUpdateServiceResponse(BaseModel):
     """
-    BackupProperties
+    GetUpdateServiceResponse
     """
 
-    name: StrictStr = Field(description="Max 255 characters")
-    retention_period: Annotated[int, Field(le=36500, strict=True, ge=1)] = Field(
-        description="Values are set in days (1-36500)", alias="retentionPeriod"
-    )
-    volume_ids: Optional[List[StrictStr]] = Field(default=None, alias="volumeIds")
-    __properties: ClassVar[List[str]] = ["name", "retentionPeriod", "volumeIds"]
+    enabled: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["enabled"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +47,7 @@ class BackupProperties(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BackupProperties from a JSON string"""
+        """Create an instance of GetUpdateServiceResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,14 +71,12 @@ class BackupProperties(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BackupProperties from a dict"""
+        """Create an instance of GetUpdateServiceResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"name": obj.get("name"), "retentionPeriod": obj.get("retentionPeriod"), "volumeIds": obj.get("volumeIds")}
-        )
+        _obj = cls.model_validate({"enabled": obj.get("enabled")})
         return _obj
