@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
@@ -30,7 +31,7 @@ class MachineImageVersion(BaseModel):
     """
 
     cri: Optional[List[CRI]] = None
-    expiration_date: Optional[StrictStr] = Field(default=None, alias="expirationDate")
+    expiration_date: Optional[datetime] = Field(default=None, alias="expirationDate")
     state: Optional[StrictStr] = None
     version: Optional[Annotated[str, Field(strict=True)]] = None
     __properties: ClassVar[List[str]] = ["cri", "expirationDate", "state", "version"]

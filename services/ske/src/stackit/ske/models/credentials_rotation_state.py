@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import pprint
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
@@ -26,15 +27,15 @@ class CredentialsRotationState(BaseModel):
     CredentialsRotationState
     """
 
-    last_completion_time: Optional[StrictStr] = Field(
+    last_completion_time: Optional[datetime] = Field(
         default=None, description="Format: `2024-02-15T11:06:29Z`", alias="lastCompletionTime"
     )
-    last_initiation_time: Optional[StrictStr] = Field(
+    last_initiation_time: Optional[datetime] = Field(
         default=None, description="Format: `2024-02-15T11:06:29Z`", alias="lastInitiationTime"
     )
     phase: Optional[StrictStr] = Field(
         default=None,
-        description="Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet. Using the deprecated [rotate-credentials](#tag/Credentials/operation/SkeService_GetClusterCredentials) endpoint will not update this status field.",
+        description="Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet.",
     )
     __properties: ClassVar[List[str]] = ["lastCompletionTime", "lastInitiationTime", "phase"]
 
