@@ -84,7 +84,6 @@ class InstanceParameters(BaseModel):
         description="Comma separated list of IP networks in CIDR notation which are allowed to access this instance.",
     )
     syslog: Optional[List[StrictStr]] = None
-    syslog_use_udp: Optional[StrictStr] = Field(default=None, alias="syslog-use-udp")
     __properties: ClassVar[List[str]] = [
         "enable_monitoring",
         "fluentd-tcp",
@@ -109,7 +108,6 @@ class InstanceParameters(BaseModel):
         "opensearch-tls-protocols",
         "sgw_acl",
         "syslog",
-        "syslog-use-udp",
     ]
 
     @field_validator("opensearch_tls_ciphers")
@@ -121,16 +119,6 @@ class InstanceParameters(BaseModel):
         for i in value:
             if i not in set(["TLSv1.2", "TLSv1.3"]):
                 raise ValueError("each list item must be one of ('TLSv1.2', 'TLSv1.3')")
-        return value
-
-    @field_validator("syslog_use_udp")
-    def syslog_use_udp_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(["yes", "no"]):
-            raise ValueError("must be one of enum values ('yes', 'no')")
         return value
 
     model_config = ConfigDict(
@@ -223,7 +211,6 @@ class InstanceParameters(BaseModel):
                 "opensearch-tls-protocols": obj.get("opensearch-tls-protocols"),
                 "sgw_acl": obj.get("sgw_acl"),
                 "syslog": obj.get("syslog"),
-                "syslog-use-udp": obj.get("syslog-use-udp"),
             }
         )
         return _obj
