@@ -1,5 +1,7 @@
 ## Release (2025-XX-XX)
 
+- `objectstorage`: [v1.0.0](services/objectstorage/CHANGELOG.md#v100-2025-02-06)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `resourcemanager`: [v0.3.0](services/resourcemanager/CHANGELOG.md#v030-2025-02-07)
   - **Breaking Change**: Remove the methods `BffGetContainersOfAFolder` and `BffGetContainersOfAnOrganization`
 - `lbapplication`: [v0.3.0](services/lbapplication/CHANGELOG.md#v030-2025-02-07)
