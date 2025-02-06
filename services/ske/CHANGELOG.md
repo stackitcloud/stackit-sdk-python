@@ -1,3 +1,10 @@
+## v0.3.0 (2025-02-06)
+
+- **Removal:** The following methods were removed after deprecation (2024-04-16) and [`serviceenablement` SDK](https://github.com/stackitcloud/stackit-sdk-python/tree/main/services/serviceenablement) must be used instead.
+  - `DisableService`
+  - `EnableService`
+  - `GetServiceStatus`
+
 ## v0.2.0 (2025-01-13)
 
 - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.
