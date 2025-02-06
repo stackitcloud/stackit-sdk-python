@@ -1,5 +1,7 @@
 ## Release (2025-XX-XX)
 
+- `logme`: [v0.3.0](services/logme/CHANGELOG.md#v030-2025-02-05)
+  - **Breaking Change:** Remove mistakenly implemented `syslog-use-udp`. Does not exist.
 - `serverupdate`: [v0.3.0](services/serverupdate/CHANGELOG.md#v030-2025-02-06)
   - **Breaking Change:**: Remove field `BackupProperties` from `CreateUpdatePayload` model
   - **Fix**: Remove field `Id` from `CreateUpdateSchedulePayload` model

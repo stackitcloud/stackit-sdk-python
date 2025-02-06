@@ -1,3 +1,7 @@
+## v0.3.0 (2025-02-05)
+
+- **Breaking Change:** Remove mistakenly implemented `syslog-use-udp`. Does not exist.
+
 ## v0.2.1 (2025-01-14)
 
 - **Bugfix**: `configuration.py` region adjustment was missing
