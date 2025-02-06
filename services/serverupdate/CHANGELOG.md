@@ -1,3 +1,8 @@
+## v0.3.0 (2025-02-06)
+
+- **Breaking Change:**: Remove field `BackupProperties` from `CreateUpdatePayload` model
+- **Fix**: Remove field `Id` from `CreateUpdateSchedulePayload` model
+
 ## v0.2.0 (2025-01-13)
 
 - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.

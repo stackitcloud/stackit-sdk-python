@@ -1,5 +1,8 @@
 ## Release (2025-XX-XX)
 
+- `serverupdate`: [v0.3.0](services/serverupdate/CHANGELOG.md#v030-2025-02-06)
+  - **Breaking Change:**: Remove field `BackupProperties` from `CreateUpdatePayload` model
+  - **Fix**: Remove field `Id` from `CreateUpdateSchedulePayload` model
 - `authorization`: [v0.2.2](services/authorization/CHANGELOG.md#v022-2025-01-21)
   - **Bugfix:** Revert back to global URL configuration
 - `sqlserverflex`: [v0.3.0](services/sqlserverflex/CHANGELOG.md#v030-2025-01-21)
