@@ -1,5 +1,7 @@
 ## Release (2025-XX-XX)
 
+- `objectstorage`: [v1.0.0](services/objectstorage/CHANGELOG.md#v100-2025-02-06)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `ske`: [v0.3.0](services/ske/CHANGELOG.md#v030-2025-02-06)
   - **Removal:** The following methods were removed after deprecation (2024-04-16) and [`serviceenablement` SDK](https://github.com/stackitcloud/stackit-sdk-python/tree/main/services/serviceenablement) must be used instead.
   - `DisableService`
