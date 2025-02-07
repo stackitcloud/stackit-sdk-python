@@ -1,5 +1,7 @@
 ## Release (2025-XX-XX)
 
+- `resourcemanager`: [v0.3.0](services/resourcemanager/CHANGELOG.md#v030-2025-02-07)
+  - **Breaking Change**: Remove the methods `BffGetContainersOfAFolder` and `BffGetContainersOfAnOrganization`
 - `ske`: [v0.3.0](services/ske/CHANGELOG.md#v030-2025-02-06)
   - **Removal:** The following methods were removed after deprecation (2024-04-16) and [`serviceenablement` SDK](https://github.com/stackitcloud/stackit-sdk-python/tree/main/services/serviceenablement) must be used instead.
   - `DisableService`
