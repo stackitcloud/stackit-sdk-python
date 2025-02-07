@@ -27,7 +27,7 @@ class GetQuotaResponse(BaseModel):
     GetQuotaResponse
     """
 
-    max_load_balancers: Optional[Any] = Field(
+    max_load_balancers: Optional[Annotated[int, Field(le=999, strict=True, ge=-1)]] = Field(
         default=None,
         description="The maximum number of load balancing servers in this project. Unlimited if set to -1.",
         alias="maxLoadBalancers",
@@ -91,11 +91,6 @@ class GetQuotaResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if max_load_balancers (nullable) is None
-        # and model_fields_set contains the field
-        if self.max_load_balancers is None and "max_load_balancers" in self.model_fields_set:
-            _dict["maxLoadBalancers"] = None
-
         return _dict
 
     @classmethod

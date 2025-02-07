@@ -18,7 +18,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
 from typing_extensions import Annotated, Self
 
 from stackit.lbapplication.models.http_health_checks import HttpHealthChecks
@@ -29,7 +29,7 @@ class ActiveHealthCheck(BaseModel):
     ActiveHealthCheck
     """
 
-    healthy_threshold: Optional[Any] = Field(
+    healthy_threshold: Optional[StrictInt] = Field(
         default=None, description="Healthy threshold of the health checking", alias="healthyThreshold"
     )
     http_health_checks: Optional[HttpHealthChecks] = Field(default=None, alias="httpHealthChecks")
@@ -44,7 +44,7 @@ class ActiveHealthCheck(BaseModel):
     timeout: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Active health checking timeout duration in seconds"
     )
-    unhealthy_threshold: Optional[Any] = Field(
+    unhealthy_threshold: Optional[StrictInt] = Field(
         default=None, description="Unhealthy threshold of the health checking", alias="unhealthyThreshold"
     )
     __properties: ClassVar[List[str]] = [
@@ -126,16 +126,6 @@ class ActiveHealthCheck(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of http_health_checks
         if self.http_health_checks:
             _dict["httpHealthChecks"] = self.http_health_checks.to_dict()
-        # set to None if healthy_threshold (nullable) is None
-        # and model_fields_set contains the field
-        if self.healthy_threshold is None and "healthy_threshold" in self.model_fields_set:
-            _dict["healthyThreshold"] = None
-
-        # set to None if unhealthy_threshold (nullable) is None
-        # and model_fields_set contains the field
-        if self.unhealthy_threshold is None and "unhealthy_threshold" in self.model_fields_set:
-            _dict["unhealthyThreshold"] = None
-
         return _dict
 
     @classmethod
