@@ -1,5 +1,7 @@
 ## Release (2025-XX-XX)
 
+- `resourcemanager`: [v0.3.0](services/resourcemanager/CHANGELOG.md#v030-2025-02-07)
+  - **Breaking Change**: Remove the methods `BffGetContainersOfAFolder` and `BffGetContainersOfAnOrganization`
 - `lbapplication`: [v0.3.0](services/lbapplication/CHANGELOG.md#v030-2025-02-07)
   - **Bugfix**: Set type from interface to int64 of `HealthyThreshold`, `UnhealthyThreshold`, `MaxLoadBalancers`, `Port`, `MaxConnections`, `Code` and `TargetPort`
 - `ske`: [v0.3.0](services/ske/CHANGELOG.md#v030-2025-02-06)
