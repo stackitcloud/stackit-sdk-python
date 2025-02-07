@@ -3,7 +3,7 @@ name = "stackit-resourcemanager"
 
 [tool.poetry]
 name = "stackit-resourcemanager"
-version = "v0.2.0"
+version = "v0.3.0"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
