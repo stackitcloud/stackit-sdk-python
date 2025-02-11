@@ -1,3 +1,7 @@
+## v0.3.0 (2025-02-07)
+
+- **Bugfix**: Set type from interface to int64 of `HealthyThreshold`, `UnhealthyThreshold`, `MaxLoadBalancers`, `Port`, `MaxConnections`, `Code` and `TargetPort`
+
 ## v0.2.1 (2025-01-14)
 
 - **Bugfix**: `configuration.py` region adjustment was missing

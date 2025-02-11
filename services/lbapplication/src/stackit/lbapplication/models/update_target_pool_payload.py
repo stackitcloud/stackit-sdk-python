@@ -32,7 +32,7 @@ class UpdateTargetPoolPayload(BaseModel):
 
     active_health_check: Optional[ActiveHealthCheck] = Field(default=None, alias="activeHealthCheck")
     name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Target pool name")
-    target_port: Optional[Any] = Field(
+    target_port: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(
         default=None,
         description="The number identifying the port where each target listens for traffic.",
         alias="targetPort",
@@ -99,11 +99,6 @@ class UpdateTargetPoolPayload(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["targets"] = _items
-        # set to None if target_port (nullable) is None
-        # and model_fields_set contains the field
-        if self.target_port is None and "target_port" in self.model_fields_set:
-            _dict["targetPort"] = None
-
         return _dict
 
     @classmethod
