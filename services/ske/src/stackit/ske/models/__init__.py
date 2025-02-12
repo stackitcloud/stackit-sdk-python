@@ -24,7 +24,6 @@ from stackit.ske.models.create_kubeconfig_payload import CreateKubeconfigPayload
 from stackit.ske.models.create_or_update_cluster_payload import (
     CreateOrUpdateClusterPayload,
 )
-from stackit.ske.models.credentials import Credentials
 from stackit.ske.models.credentials_rotation_state import CredentialsRotationState
 from stackit.ske.models.cri import CRI
 from stackit.ske.models.dns import DNS
@@ -45,8 +44,6 @@ from stackit.ske.models.maintenance import Maintenance
 from stackit.ske.models.maintenance_auto_update import MaintenanceAutoUpdate
 from stackit.ske.models.network import Network
 from stackit.ske.models.nodepool import Nodepool
-from stackit.ske.models.project_response import ProjectResponse
-from stackit.ske.models.project_state import ProjectState
 from stackit.ske.models.provider_options import ProviderOptions
 from stackit.ske.models.runtime_error import RuntimeError
 from stackit.ske.models.taint import Taint

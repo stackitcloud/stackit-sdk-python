@@ -15,9 +15,10 @@ from __future__ import annotations
 
 import json
 import pprint
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing_extensions import Self
 
 
@@ -26,8 +27,8 @@ class TimeWindow(BaseModel):
     TimeWindow
     """
 
-    end: StrictStr
-    start: StrictStr
+    end: datetime
+    start: datetime
     __properties: ClassVar[List[str]] = ["end", "start"]
 
     model_config = ConfigDict(

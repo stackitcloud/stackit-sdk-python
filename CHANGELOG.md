@@ -1,5 +1,21 @@
-## Release (2025-XX-XX)
+## Release (2025-02-11)
 
+- `objectstorage`: [v1.0.0](services/objectstorage/CHANGELOG.md#v100-2025-02-06)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `resourcemanager`: [v0.3.0](services/resourcemanager/CHANGELOG.md#v030-2025-02-07)
+  - **Breaking Change**: Remove the methods `BffGetContainersOfAFolder` and `BffGetContainersOfAnOrganization`
+- `lbapplication`: [v0.3.0](services/lbapplication/CHANGELOG.md#v030-2025-02-07)
+  - **Bugfix**: Set type from interface to int64 of `HealthyThreshold`, `UnhealthyThreshold`, `MaxLoadBalancers`, `Port`, `MaxConnections`, `Code` and `TargetPort`
+- `ske`: [v0.3.0](services/ske/CHANGELOG.md#v030-2025-02-06)
+  - **Removal:** The following methods were removed after deprecation (2024-04-16) and [`serviceenablement` SDK](https://github.com/stackitcloud/stackit-sdk-python/tree/main/services/serviceenablement) must be used instead.
+  - `DisableService`
+  - `EnableService`
+  - `GetServiceStatus`
+- `logme`: [v0.3.0](services/logme/CHANGELOG.md#v030-2025-02-05)
+  - **Breaking Change:** Remove mistakenly implemented `syslog-use-udp`. Does not exist.
+- `serverupdate`: [v0.3.0](services/serverupdate/CHANGELOG.md#v030-2025-02-06)
+  - **Breaking Change:**: Remove field `BackupProperties` from `CreateUpdatePayload` model
+  - **Fix**: Remove field `Id` from `CreateUpdateSchedulePayload` model
 - `authorization`: [v0.2.2](services/authorization/CHANGELOG.md#v022-2025-01-21)
   - **Bugfix:** Revert back to global URL configuration
 - `sqlserverflex`: [v0.3.0](services/sqlserverflex/CHANGELOG.md#v030-2025-01-21)

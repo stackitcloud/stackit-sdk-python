@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 import re
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
@@ -27,7 +28,7 @@ class KubernetesVersion(BaseModel):
     KubernetesVersion
     """
 
-    expiration_date: Optional[StrictStr] = Field(default=None, alias="expirationDate")
+    expiration_date: Optional[datetime] = Field(default=None, alias="expirationDate")
     feature_gates: Optional[Dict[str, StrictStr]] = Field(default=None, alias="featureGates")
     state: Optional[StrictStr] = None
     version: Optional[Annotated[str, Field(strict=True)]] = None

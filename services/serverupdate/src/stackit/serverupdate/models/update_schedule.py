@@ -28,11 +28,11 @@ class UpdateSchedule(BaseModel):
     """
 
     enabled: StrictBool
-    id: Optional[StrictInt] = None
     maintenance_window: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(alias="maintenanceWindow")
     name: StrictStr
     rrule: StrictStr
-    __properties: ClassVar[List[str]] = ["enabled", "id", "maintenanceWindow", "name", "rrule"]
+    id: StrictInt
+    __properties: ClassVar[List[str]] = ["enabled", "maintenanceWindow", "name", "rrule", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,10 +85,10 @@ class UpdateSchedule(BaseModel):
         _obj = cls.model_validate(
             {
                 "enabled": obj.get("enabled"),
-                "id": obj.get("id"),
                 "maintenanceWindow": obj.get("maintenanceWindow"),
                 "name": obj.get("name"),
                 "rrule": obj.get("rrule"),
+                "id": obj.get("id"),
             }
         )
         return _obj
