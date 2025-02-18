@@ -17,7 +17,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 
@@ -28,7 +28,7 @@ class PlanDetails(BaseModel):
 
     description: Optional[StrictStr] = Field(default=None, description="Description")
     flavor_name: Optional[StrictStr] = Field(default=None, description="Flavor Name", alias="flavorName")
-    max_connections: Optional[Any] = Field(
+    max_connections: Optional[StrictInt] = Field(
         default=None,
         description="Maximum number of concurrent connections per application load balancer VM instance.",
         alias="maxConnections",
@@ -74,11 +74,6 @@ class PlanDetails(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if max_connections (nullable) is None
-        # and model_fields_set contains the field
-        if self.max_connections is None and "max_connections" in self.model_fields_set:
-            _dict["maxConnections"] = None
-
         return _dict
 
     @classmethod
