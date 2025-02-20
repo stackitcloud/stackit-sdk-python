@@ -673,6 +673,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "MoveCodeResponse",
             "400": "Message",
+            "409": "Message",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -739,6 +740,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "MoveCodeResponse",
             "400": "Message",
+            "409": "Message",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -805,6 +807,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "MoveCodeResponse",
             "400": "Message",
+            "409": "Message",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
