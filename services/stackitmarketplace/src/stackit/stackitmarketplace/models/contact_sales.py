@@ -18,19 +18,29 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
+from stackit.stackitmarketplace.models.contact_sales_contact_sales import (
+    ContactSalesContactSales,
+)
 
-class CatalogProductOverviewVendor(BaseModel):
+
+class ContactSales(BaseModel):
     """
-    CatalogProductOverviewVendor
+    Contact sales.
     """
 
-    name: StrictStr = Field(description="The vendor name.")
-    vendor_id: StrictStr = Field(description="The vendor ID.", alias="vendorId")
-    website_url: StrictStr = Field(description="The vendor website URL.", alias="websiteUrl")
-    __properties: ClassVar[List[str]] = ["name", "vendorId", "websiteUrl"]
+    contact_sales: ContactSalesContactSales = Field(alias="contactSales")
+    type: StrictStr = Field(description="The form type.")
+    __properties: ClassVar[List[str]] = ["contactSales", "type"]
+
+    @field_validator("type")
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["contact_sales"]):
+            raise ValueError("must be one of enum values ('contact_sales')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +59,7 @@ class CatalogProductOverviewVendor(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CatalogProductOverviewVendor from a JSON string"""
+        """Create an instance of ContactSales from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,11 +79,14 @@ class CatalogProductOverviewVendor(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of contact_sales
+        if self.contact_sales:
+            _dict["contactSales"] = self.contact_sales.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CatalogProductOverviewVendor from a dict"""
+        """Create an instance of ContactSales from a dict"""
         if obj is None:
             return None
 
@@ -81,6 +94,13 @@ class CatalogProductOverviewVendor(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"name": obj.get("name"), "vendorId": obj.get("vendorId"), "websiteUrl": obj.get("websiteUrl")}
+            {
+                "contactSales": (
+                    ContactSalesContactSales.from_dict(obj["contactSales"])
+                    if obj.get("contactSales") is not None
+                    else None
+                ),
+                "type": obj.get("type"),
+            }
         )
         return _obj
