@@ -31,13 +31,21 @@ class Request(BaseModel):
     """
 
     details: Optional[StrictStr] = None
-    request_action: StrictStr = Field(description="Object that represents a resource action.", alias="requestAction")
+    request_action: StrictStr = Field(
+        description="Object that represents a resource action. Possible values: `CREATE`, `DELETE`, `UPDATE`.",
+        alias="requestAction",
+    )
     request_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
         description="Identifier (ID) representing a single API request.", alias="requestId"
     )
-    request_type: StrictStr = Field(description="Object that represents a resource type.", alias="requestType")
+    request_type: StrictStr = Field(
+        description="Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`.",
+        alias="requestType",
+    )
     resources: List[RequestResource]
-    status: StrictStr = Field(description="The state of a resource object.")
+    status: StrictStr = Field(
+        description="The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`."
+    )
     __properties: ClassVar[List[str]] = ["details", "requestAction", "requestId", "requestType", "resources", "status"]
 
     @field_validator("request_id")

@@ -31,8 +31,12 @@ class RequestResource(BaseModel):
     id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
         description="Universally Unique Identifier (UUID)."
     )
-    status: StrictStr = Field(description="The state of a resource object.")
-    type: StrictStr = Field(description="Object that represents a resource type.")
+    status: StrictStr = Field(
+        description="The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`."
+    )
+    type: StrictStr = Field(
+        description="Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`."
+    )
     __properties: ClassVar[List[str]] = ["id", "status", "type"]
 
     @field_validator("id")

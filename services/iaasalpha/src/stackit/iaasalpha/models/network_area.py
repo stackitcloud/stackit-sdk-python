@@ -39,13 +39,16 @@ class NetworkArea(BaseModel):
     )
     ipv4: Optional[NetworkAreaIPv4] = None
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     name: StrictStr
     project_count: Annotated[int, Field(strict=True, ge=0)] = Field(
         description="The amount of projects currently referencing a specific area.", alias="projectCount"
     )
-    state: StrictStr = Field(description="The state of a resource object.")
+    state: StrictStr = Field(
+        description="The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`."
+    )
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
