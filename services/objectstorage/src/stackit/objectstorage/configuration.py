@@ -62,7 +62,7 @@ class HostConfiguration:
                     "region": {
                         "description": "No description provided",
                         "default_value": "eu01.",
-                        "enum_values": ["eu01."],
+                        "enum_values": ["eu01.", "eu02."],
                     }
                 },
             }
