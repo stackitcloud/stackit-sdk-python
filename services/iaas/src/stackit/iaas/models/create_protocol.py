@@ -43,7 +43,8 @@ class CreateProtocol(BaseModel):
     )
     # data type: str
     oneof_schema_2_validator: Optional[StrictStr] = Field(
-        default=None, description="The protocol name which the rule should match."
+        default=None,
+        description="The protocol name which the rule should match. Possible values: `ah`, `dccp`, `egp`, `esp`, `gre`, `icmp`, `igmp`, `ipip`, `ipv6-encap`, `ipv6-frag`, `ipv6-icmp`, `ipv6-nonxt`, `ipv6-opts`, `ipv6-route`, `ospf`, `pgm`, `rsvp`, `sctp`, `tcp`, `udp`, `udplite`, `vrrp`.",
     )
     actual_instance: Optional[Union[int, str]] = None
     one_of_schemas: Set[str] = {"int", "str"}

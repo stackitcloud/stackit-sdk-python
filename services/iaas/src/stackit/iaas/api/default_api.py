@@ -83,6 +83,7 @@ from stackit.iaas.models.partial_update_network_payload import (
 from stackit.iaas.models.project_list_response import ProjectListResponse
 from stackit.iaas.models.public_ip import PublicIp
 from stackit.iaas.models.public_ip_list_response import PublicIpListResponse
+from stackit.iaas.models.public_network_list_response import PublicNetworkListResponse
 from stackit.iaas.models.quota_list_response import QuotaListResponse
 from stackit.iaas.models.request import Request
 from stackit.iaas.models.rescue_server_payload import RescueServerPayload
@@ -19540,6 +19541,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
+        all: Annotated[Optional[StrictBool], Field(description="List all Images.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -19557,6 +19559,8 @@ class DefaultApi:
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
+        :param all: List all Images.
+        :type all: bool
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -19583,6 +19587,7 @@ class DefaultApi:
 
         _param = self._list_images_serialize(
             project_id=project_id,
+            all=all,
             label_selector=label_selector,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -19612,6 +19617,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
+        all: Annotated[Optional[StrictBool], Field(description="List all Images.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -19629,6 +19635,8 @@ class DefaultApi:
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
+        :param all: List all Images.
+        :type all: bool
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -19655,6 +19663,7 @@ class DefaultApi:
 
         _param = self._list_images_serialize(
             project_id=project_id,
+            all=all,
             label_selector=label_selector,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -19684,6 +19693,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
+        all: Annotated[Optional[StrictBool], Field(description="List all Images.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -19701,6 +19711,8 @@ class DefaultApi:
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
+        :param all: List all Images.
+        :type all: bool
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -19727,6 +19739,7 @@ class DefaultApi:
 
         _param = self._list_images_serialize(
             project_id=project_id,
+            all=all,
             label_selector=label_selector,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -19748,6 +19761,7 @@ class DefaultApi:
     def _list_images_serialize(
         self,
         project_id,
+        all,
         label_selector,
         _request_auth,
         _content_type,
@@ -19770,6 +19784,10 @@ class DefaultApi:
         if project_id is not None:
             _path_params["projectId"] = project_id
         # process the query parameters
+        if all is not None:
+
+            _query_params.append(("all", all))
+
         if label_selector is not None:
 
             _query_params.append(("label_selector", label_selector))
@@ -22254,6 +22272,223 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1beta1/projects/{projectId}/nics",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_public_ip_ranges(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PublicNetworkListResponse:
+        """List all public IP ranges.
+
+        Get a list of all public IP ranges that STACKIT uses.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_public_ip_ranges_serialize(
+            _request_auth=_request_auth, _content_type=_content_type, _headers=_headers, _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "PublicNetworkListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_public_ip_ranges_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PublicNetworkListResponse]:
+        """List all public IP ranges.
+
+        Get a list of all public IP ranges that STACKIT uses.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_public_ip_ranges_serialize(
+            _request_auth=_request_auth, _content_type=_content_type, _headers=_headers, _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "PublicNetworkListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_public_ip_ranges_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all public IP ranges.
+
+        Get a list of all public IP ranges that STACKIT uses.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_public_ip_ranges_serialize(
+            _request_auth=_request_auth, _content_type=_content_type, _headers=_headers, _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "PublicNetworkListResponse",
+            "400": "Error",
+            "401": "Error",
+            "403": "Error",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_public_ip_ranges_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1beta1/networks/public-ip-ranges",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
