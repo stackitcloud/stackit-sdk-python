@@ -28,6 +28,8 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
+from stackit.dns.models.zone_extensions import ZoneExtensions
+
 
 class CreateZonePayload(BaseModel):
     """
@@ -52,6 +54,7 @@ class CreateZonePayload(BaseModel):
     expire_time: Optional[Annotated[int, Field(strict=True, ge=60)]] = Field(
         default=None, description="expire time", alias="expireTime"
     )
+    extensions: Optional[ZoneExtensions] = Field(default=None, description="optional extensions")
     is_reverse_zone: Optional[StrictBool] = Field(
         default=False, description="if the zone is a reverse zone or not", alias="isReverseZone"
     )
@@ -74,6 +77,7 @@ class CreateZonePayload(BaseModel):
         "description",
         "dnsName",
         "expireTime",
+        "extensions",
         "isReverseZone",
         "name",
         "negativeCache",
@@ -130,6 +134,9 @@ class CreateZonePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of extensions
+        if self.extensions:
+            _dict["extensions"] = self.extensions.to_dict()
         return _dict
 
     @classmethod
@@ -151,6 +158,9 @@ class CreateZonePayload(BaseModel):
                 "description": obj.get("description"),
                 "dnsName": obj.get("dnsName"),
                 "expireTime": obj.get("expireTime"),
+                "extensions": (
+                    ZoneExtensions.from_dict(obj["extensions"]) if obj.get("extensions") is not None else None
+                ),
                 "isReverseZone": obj.get("isReverseZone") if obj.get("isReverseZone") is not None else False,
                 "name": obj.get("name"),
                 "negativeCache": obj.get("negativeCache"),
