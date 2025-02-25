@@ -53,7 +53,8 @@ class NIC(BaseModel):
         default=None, description="Object that represents an IPv6 address."
     )
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     mac: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Object that represents an MAC address."

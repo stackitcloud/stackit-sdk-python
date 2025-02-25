@@ -31,7 +31,7 @@ class BackupSource(BaseModel):
     id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
         description="Universally Unique Identifier (UUID)."
     )
-    type: StrictStr = Field(description="The source types of a backup.")
+    type: StrictStr = Field(description="The source types of a backup. Possible values: `volume`, `snapshot`.")
     __properties: ClassVar[List[str]] = ["id", "type"]
 
     @field_validator("id")
