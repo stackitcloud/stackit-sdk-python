@@ -32,7 +32,8 @@ class PartialUpdateNetworkPayload(BaseModel):
 
     address_family: Optional[UpdateNetworkAddressFamily] = Field(default=None, alias="addressFamily")
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
