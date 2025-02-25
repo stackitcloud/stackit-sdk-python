@@ -18,19 +18,29 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
+from stackit.stackitmarketplace.models.become_vendor_become_vendor import (
+    BecomeVendorBecomeVendor,
+)
 
-class CatalogProductOverviewVendor(BaseModel):
+
+class BecomeVendor(BaseModel):
     """
-    CatalogProductOverviewVendor
+    Become a vendor.
     """
 
-    name: StrictStr = Field(description="The vendor name.")
-    vendor_id: StrictStr = Field(description="The vendor ID.", alias="vendorId")
-    website_url: StrictStr = Field(description="The vendor website URL.", alias="websiteUrl")
-    __properties: ClassVar[List[str]] = ["name", "vendorId", "websiteUrl"]
+    become_vendor: BecomeVendorBecomeVendor = Field(alias="becomeVendor")
+    type: StrictStr = Field(description="The form type.")
+    __properties: ClassVar[List[str]] = ["becomeVendor", "type"]
+
+    @field_validator("type")
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["become_vendor"]):
+            raise ValueError("must be one of enum values ('become_vendor')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +59,7 @@ class CatalogProductOverviewVendor(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CatalogProductOverviewVendor from a JSON string"""
+        """Create an instance of BecomeVendor from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,11 +79,14 @@ class CatalogProductOverviewVendor(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of become_vendor
+        if self.become_vendor:
+            _dict["becomeVendor"] = self.become_vendor.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CatalogProductOverviewVendor from a dict"""
+        """Create an instance of BecomeVendor from a dict"""
         if obj is None:
             return None
 
@@ -81,6 +94,13 @@ class CatalogProductOverviewVendor(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"name": obj.get("name"), "vendorId": obj.get("vendorId"), "websiteUrl": obj.get("websiteUrl")}
+            {
+                "becomeVendor": (
+                    BecomeVendorBecomeVendor.from_dict(obj["becomeVendor"])
+                    if obj.get("becomeVendor") is not None
+                    else None
+                ),
+                "type": obj.get("type"),
+            }
         )
         return _obj

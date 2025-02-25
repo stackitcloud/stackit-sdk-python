@@ -16,53 +16,48 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing_extensions import Self
-
-from stackit.stackitmarketplace.models.catalog_product_overview_vendor import (
-    CatalogProductOverviewVendor,
-)
+from typing_extensions import Annotated, Self
 
 
-class CatalogProductOverview(BaseModel):
+class ContactSalesContactSales(BaseModel):
     """
-    CatalogProductOverview
+    ContactSalesContactSales
     """
 
-    delivery_method: StrictStr = Field(
-        description="The product type. For reference: SAAS - Software as a Service, SAI - STACKIT Application Image",
-        alias="deliveryMethod",
+    company_name: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The company name.", alias="companyName"
     )
-    lifecycle_state: StrictStr = Field(description="The lifecycle state of the product.", alias="lifecycleState")
-    logo: Optional[StrictStr] = Field(default=None, description="The logo base64 encoded.")
-    name: StrictStr = Field(description="The product name.")
+    contact_email: StrictStr = Field(description="The contact e-mail address.", alias="contactEmail")
+    full_name: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The full name of the contact person.", alias="fullName"
+    )
+    message: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The message content.")
     product_id: StrictStr = Field(description="The product ID.", alias="productId")
-    summary: StrictStr = Field(description="The short summary of the product.")
-    vendor: CatalogProductOverviewVendor
-    __properties: ClassVar[List[str]] = [
-        "deliveryMethod",
-        "lifecycleState",
-        "logo",
-        "name",
-        "productId",
-        "summary",
-        "vendor",
-    ]
+    __properties: ClassVar[List[str]] = ["companyName", "contactEmail", "fullName", "message", "productId"]
 
-    @field_validator("delivery_method")
-    def delivery_method_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["SAAS", "KUBERNETES", "SAI", "PROFESSIONAL_SERVICE"]):
-            raise ValueError("must be one of enum values ('SAAS', 'KUBERNETES', 'SAI', 'PROFESSIONAL_SERVICE')")
+    @field_validator("company_name")
+    def company_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
         return value
 
-    @field_validator("lifecycle_state")
-    def lifecycle_state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["PRODUCT_LIVE", "PRODUCT_PREVIEW"]):
-            raise ValueError("must be one of enum values ('PRODUCT_LIVE', 'PRODUCT_PREVIEW')")
+    @field_validator("full_name")
+    def full_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
+
+    @field_validator("message")
+    def message_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
         return value
 
     model_config = ConfigDict(
@@ -82,7 +77,7 @@ class CatalogProductOverview(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CatalogProductOverview from a JSON string"""
+        """Create an instance of ContactSalesContactSales from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -102,14 +97,11 @@ class CatalogProductOverview(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of vendor
-        if self.vendor:
-            _dict["vendor"] = self.vendor.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CatalogProductOverview from a dict"""
+        """Create an instance of ContactSalesContactSales from a dict"""
         if obj is None:
             return None
 
@@ -118,15 +110,11 @@ class CatalogProductOverview(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "deliveryMethod": obj.get("deliveryMethod"),
-                "lifecycleState": obj.get("lifecycleState"),
-                "logo": obj.get("logo"),
-                "name": obj.get("name"),
+                "companyName": obj.get("companyName"),
+                "contactEmail": obj.get("contactEmail"),
+                "fullName": obj.get("fullName"),
+                "message": obj.get("message"),
                 "productId": obj.get("productId"),
-                "summary": obj.get("summary"),
-                "vendor": (
-                    CatalogProductOverviewVendor.from_dict(obj["vendor"]) if obj.get("vendor") is not None else None
-                ),
             }
         )
         return _obj
