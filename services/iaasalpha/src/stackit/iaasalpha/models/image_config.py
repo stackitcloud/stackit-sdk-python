@@ -27,7 +27,12 @@ class ImageConfig(BaseModel):
     Properties to set hardware and scheduling settings for an Image.
     """
 
-    boot_menu: Optional[StrictBool] = Field(default=False, description="Enables the BIOS bootmenu.", alias="bootMenu")
+    architecture: Optional[StrictStr] = Field(
+        default=None, description="Represents CPU architecture. The default for new images is x86."
+    )
+    boot_menu: Optional[StrictBool] = Field(
+        default=None, description="Enables the BIOS bootmenu. The default for new images is disabled.", alias="bootMenu"
+    )
     cdrom_bus: Optional[StrictStr] = Field(
         default=None, description="Sets CDROM bus controller type.", alias="cdromBus"
     )
@@ -48,15 +53,20 @@ class ImageConfig(BaseModel):
     rescue_device: Optional[StrictStr] = Field(
         default=None, description="Sets the device when the image is used as a rescue image.", alias="rescueDevice"
     )
-    secure_boot: Optional[StrictBool] = Field(default=False, description="Enables Secure Boot.", alias="secureBoot")
-    uefi: Optional[StrictBool] = Field(default=False, description="Enables UEFI boot.")
+    secure_boot: Optional[StrictBool] = Field(
+        default=None, description="Enables Secure Boot. The default for new images is disabled.", alias="secureBoot"
+    )
+    uefi: Optional[StrictBool] = Field(
+        default=None, description="Configure UEFI boot. The default for new images is enabled."
+    )
     video_model: Optional[StrictStr] = Field(default=None, description="Sets Graphic device model.", alias="videoModel")
     virtio_scsi: Optional[StrictBool] = Field(
-        default=False,
-        description="Enables the use of VirtIO SCSI to provide block device access. By default instances use VirtIO Block.",
+        default=None,
+        description="Enables the use of VirtIO SCSI to provide block device access. By default servers use VirtIO Block.",
         alias="virtioScsi",
     )
     __properties: ClassVar[List[str]] = [
+        "architecture",
         "bootMenu",
         "cdromBus",
         "diskBus",
@@ -162,7 +172,8 @@ class ImageConfig(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "bootMenu": obj.get("bootMenu") if obj.get("bootMenu") is not None else False,
+                "architecture": obj.get("architecture"),
+                "bootMenu": obj.get("bootMenu"),
                 "cdromBus": obj.get("cdromBus"),
                 "diskBus": obj.get("diskBus"),
                 "nicModel": obj.get("nicModel"),
@@ -171,10 +182,10 @@ class ImageConfig(BaseModel):
                 "operatingSystemVersion": obj.get("operatingSystemVersion"),
                 "rescueBus": obj.get("rescueBus"),
                 "rescueDevice": obj.get("rescueDevice"),
-                "secureBoot": obj.get("secureBoot") if obj.get("secureBoot") is not None else False,
-                "uefi": obj.get("uefi") if obj.get("uefi") is not None else False,
+                "secureBoot": obj.get("secureBoot"),
+                "uefi": obj.get("uefi"),
                 "videoModel": obj.get("videoModel"),
-                "virtioScsi": obj.get("virtioScsi") if obj.get("virtioScsi") is not None else False,
+                "virtioScsi": obj.get("virtioScsi"),
             }
         )
         return _obj

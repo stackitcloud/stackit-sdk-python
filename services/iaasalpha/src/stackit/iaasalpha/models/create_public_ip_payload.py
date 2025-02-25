@@ -35,7 +35,8 @@ class CreatePublicIPPayload(BaseModel):
         default=None, description="Object that represents an IP address."
     )
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     network_interface: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None,

@@ -40,10 +40,13 @@ class UpdateImagePayload(BaseModel):
 
     config: Optional[ImageConfig] = None
     disk_format: Optional[StrictStr] = Field(
-        default=None, description="Object that represents a disk format.", alias="diskFormat"
+        default=None,
+        description="Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.",
+        alias="diskFormat",
     )
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     min_disk_size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.", alias="minDiskSize")
     min_ram: Optional[StrictInt] = Field(default=None, description="Size in Megabyte.", alias="minRam")

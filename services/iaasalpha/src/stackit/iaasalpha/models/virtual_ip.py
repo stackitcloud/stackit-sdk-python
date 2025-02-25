@@ -35,7 +35,8 @@ class VirtualIp(BaseModel):
         default=None, description="Object that represents an IP address."
     )
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     members: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
         default=None, description="A list of UUIDs."
@@ -46,7 +47,10 @@ class VirtualIp(BaseModel):
     network: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID)."
     )
-    status: Optional[StrictStr] = Field(default=None, description="The state of a resource object.")
+    status: Optional[StrictStr] = Field(
+        default=None,
+        description="The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.",
+    )
     __properties: ClassVar[List[str]] = ["id", "ip", "labels", "members", "name", "network", "status"]
 
     @field_validator("id")

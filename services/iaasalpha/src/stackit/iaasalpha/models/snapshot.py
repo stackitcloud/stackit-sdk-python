@@ -36,13 +36,17 @@ class Snapshot(BaseModel):
         default=None, description="Universally Unique Identifier (UUID)."
     )
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
     size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.")
-    status: Optional[StrictStr] = Field(default=None, description="The status of a snapshot object.")
+    status: Optional[StrictStr] = Field(
+        default=None,
+        description="The status of a snapshot object. Possible values: `AVAILABLE`, `BACKING-UP`, `CREATING`, `DELETED`, `DELETING`, `ERROR`, `RESTORING`, `UNMANAGING`, `UPDATING`.",
+    )
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )

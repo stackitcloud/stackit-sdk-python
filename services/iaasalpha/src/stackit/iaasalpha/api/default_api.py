@@ -21040,6 +21040,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
+        all: Annotated[Optional[StrictBool], Field(description="List all Images.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -21057,6 +21058,8 @@ class DefaultApi:
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
+        :param all: List all Images.
+        :type all: bool
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -21083,6 +21086,7 @@ class DefaultApi:
 
         _param = self._list_images_serialize(
             project_id=project_id,
+            all=all,
             label_selector=label_selector,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -21112,6 +21116,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
+        all: Annotated[Optional[StrictBool], Field(description="List all Images.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -21129,6 +21134,8 @@ class DefaultApi:
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
+        :param all: List all Images.
+        :type all: bool
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -21155,6 +21162,7 @@ class DefaultApi:
 
         _param = self._list_images_serialize(
             project_id=project_id,
+            all=all,
             label_selector=label_selector,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -21184,6 +21192,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
+        all: Annotated[Optional[StrictBool], Field(description="List all Images.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -21201,6 +21210,8 @@ class DefaultApi:
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
+        :param all: List all Images.
+        :type all: bool
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -21227,6 +21238,7 @@ class DefaultApi:
 
         _param = self._list_images_serialize(
             project_id=project_id,
+            all=all,
             label_selector=label_selector,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -21248,6 +21260,7 @@ class DefaultApi:
     def _list_images_serialize(
         self,
         project_id,
+        all,
         label_selector,
         _request_auth,
         _content_type,
@@ -21270,6 +21283,10 @@ class DefaultApi:
         if project_id is not None:
             _path_params["projectId"] = project_id
         # process the query parameters
+        if all is not None:
+
+            _query_params.append(("all", all))
+
         if label_selector is not None:
 
             _query_params.append(("label_selector", label_selector))

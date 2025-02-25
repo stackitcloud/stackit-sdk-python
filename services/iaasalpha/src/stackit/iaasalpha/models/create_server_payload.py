@@ -62,11 +62,12 @@ class CreateServerPayload(BaseModel):
     image_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="imageId"
     )
-    keypair_name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
+    keypair_name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The SSH keypair used during the server creation.", alias="keypairName"
     )
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     launched_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was launched.", alias="launchedAt"
@@ -82,7 +83,9 @@ class CreateServerPayload(BaseModel):
         description="The list of network interfaces (NICs) attached to the server. Only shown when detailed information is requested.",
     )
     power_status: Optional[StrictStr] = Field(
-        default=None, description="The power status of a server.", alias="powerStatus"
+        default=None,
+        description="The power status of a server. Possible values: `CRASHED`, `ERROR`, `RUNNING`, `STOPPED`.",
+        alias="powerStatus",
     )
     security_groups: Optional[List[Annotated[str, Field(strict=True, max_length=63)]]] = Field(
         default=None, description="The initial security groups for the server creation.", alias="securityGroups"
@@ -94,7 +97,10 @@ class CreateServerPayload(BaseModel):
         description="A list of service account mails. Only shown when detailed information is requested.",
         alias="serviceAccountMails",
     )
-    status: Optional[StrictStr] = Field(default=None, description="The status of a server object.")
+    status: Optional[StrictStr] = Field(
+        default=None,
+        description="The status of a server object. Possible values: `ACTIVE`, `BACKING-UP`, `CREATING`, `DEALLOCATED`, `DEALLOCATING`, `DELETED`, `DELETING`, `ERROR`, `INACTIVE`, `MIGRATING`, `REBOOT`, `REBOOTING`, `REBUILD`, `REBUILDING`, `RESCUE`, `RESCUING`, `RESIZING`, `RESTORING`, `SNAPSHOTTING`, `STARTING`, `STOPPING`, `UNRESCUING`, `UPDATING`.",
+    )
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
@@ -173,8 +179,8 @@ class CreateServerPayload(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
+        if not re.match(r"^[A-Za-z0-9@._-]*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9@._-]*$/")
         return value
 
     @field_validator("machine_type")

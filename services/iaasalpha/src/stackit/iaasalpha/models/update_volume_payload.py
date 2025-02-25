@@ -30,13 +30,14 @@ class UpdateVolumePayload(BaseModel):
     Object that represents an update request body of a  volume.
     """
 
-    bootable: Optional[StrictBool] = Field(default=False, description="Indicates if a volume is bootable.")
+    bootable: Optional[StrictBool] = Field(default=None, description="Indicates if a volume is bootable.")
     description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="Description Object. Allows string up to 127 Characters."
     )
     image_config: Optional[ImageConfig] = Field(default=None, alias="imageConfig")
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
@@ -106,7 +107,7 @@ class UpdateVolumePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "bootable": obj.get("bootable") if obj.get("bootable") is not None else False,
+                "bootable": obj.get("bootable"),
                 "description": obj.get("description"),
                 "imageConfig": (
                     ImageConfig.from_dict(obj["imageConfig"]) if obj.get("imageConfig") is not None else None

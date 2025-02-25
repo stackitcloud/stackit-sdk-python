@@ -45,12 +45,15 @@ class Image(BaseModel):
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
-    disk_format: StrictStr = Field(description="Object that represents a disk format.", alias="diskFormat")
+    disk_format: StrictStr = Field(
+        description="Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.", alias="diskFormat"
+    )
     id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID)."
     )
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     min_disk_size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.", alias="minDiskSize")
     min_ram: Optional[StrictInt] = Field(default=None, description="Size in Megabyte.", alias="minRam")
@@ -61,8 +64,14 @@ class Image(BaseModel):
         default=None, description="Universally Unique Identifier (UUID)."
     )
     protected: Optional[StrictBool] = None
-    scope: Optional[StrictStr] = Field(default=None, description="Scope of an Image.")
-    status: Optional[StrictStr] = Field(default=None, description="The status of an image object.")
+    scope: Optional[StrictStr] = Field(
+        default=None, description="Scope of an Image. Possible values: `public`, `local`, `projects`, `organization`."
+    )
+    size: Optional[StrictInt] = Field(default=None, description="Size in bytes.")
+    status: Optional[StrictStr] = Field(
+        default=None,
+        description="The status of an image object. Possible values: `AVAILABLE`, `CREATING`, `DEACTIVATED`, `DELETED`, `DELETING`, `ERROR`.",
+    )
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
@@ -79,6 +88,7 @@ class Image(BaseModel):
         "owner",
         "protected",
         "scope",
+        "size",
         "status",
         "updatedAt",
     ]
@@ -150,6 +160,7 @@ class Image(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -158,6 +169,7 @@ class Image(BaseModel):
                 "id",
                 "owner",
                 "scope",
+                "size",
                 "status",
                 "updated_at",
             ]
@@ -199,6 +211,7 @@ class Image(BaseModel):
                 "owner": obj.get("owner"),
                 "protected": obj.get("protected"),
                 "scope": obj.get("scope"),
+                "size": obj.get("size"),
                 "status": obj.get("status"),
                 "updatedAt": obj.get("updatedAt"),
             }
