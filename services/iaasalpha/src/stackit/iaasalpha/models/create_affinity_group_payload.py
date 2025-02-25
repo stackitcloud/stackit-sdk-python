@@ -37,7 +37,9 @@ class CreateAffinityGroupPayload(BaseModel):
     name: Annotated[str, Field(strict=True, max_length=63)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
     )
-    policy: StrictStr = Field(description="The affinity group policy.")
+    policy: StrictStr = Field(
+        description="The affinity group policy. `hard-affinity`: All servers in this group will be hosted on the same compute node. `soft-affinity`: All servers in this group will be hosted on as few compute nodes as possible. `hard-anti-affinity`: All servers in this group will be hosted on different compute nodes. `soft-anti-affinity`: All servers in this group will be hosted on as many compute nodes as possible. Possible values: `hard-anti-affinity`, `hard-affinity`, `soft-anti-affinity`, `soft-affinity`."
+    )
     __properties: ClassVar[List[str]] = ["id", "members", "name", "policy"]
 
     @field_validator("id")
