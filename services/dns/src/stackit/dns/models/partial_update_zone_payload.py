@@ -21,6 +21,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
+from stackit.dns.models.zone_extensions import ZoneExtensions
+
 
 class PartialUpdateZonePayload(BaseModel):
     """
@@ -42,6 +44,7 @@ class PartialUpdateZonePayload(BaseModel):
     expire_time: Optional[Annotated[int, Field(strict=True, ge=60)]] = Field(
         default=None, description="expire time", alias="expireTime"
     )
+    extensions: Optional[ZoneExtensions] = Field(default=None, description="optional extensions")
     name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=63)]] = Field(
         default=None, description="user given name"
     )
@@ -61,6 +64,7 @@ class PartialUpdateZonePayload(BaseModel):
         "defaultTTL",
         "description",
         "expireTime",
+        "extensions",
         "name",
         "negativeCache",
         "primaries",
@@ -105,6 +109,9 @@ class PartialUpdateZonePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of extensions
+        if self.extensions:
+            _dict["extensions"] = self.extensions.to_dict()
         return _dict
 
     @classmethod
@@ -125,6 +132,9 @@ class PartialUpdateZonePayload(BaseModel):
                 "defaultTTL": obj.get("defaultTTL"),
                 "description": obj.get("description"),
                 "expireTime": obj.get("expireTime"),
+                "extensions": (
+                    ZoneExtensions.from_dict(obj["extensions"]) if obj.get("extensions") is not None else None
+                ),
                 "name": obj.get("name"),
                 "negativeCache": obj.get("negativeCache"),
                 "primaries": obj.get("primaries"),
