@@ -48,7 +48,8 @@ class Network(BaseModel):
         description="The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.",
     )
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     name: StrictStr
     nameservers: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=3)]] = Field(
@@ -68,7 +69,9 @@ class Network(BaseModel):
     routed: Optional[StrictBool] = Field(
         default=None, description="Shows if the network is routed and therefore accessible from other networks."
     )
-    state: StrictStr = Field(description="The state of a resource object.")
+    state: StrictStr = Field(
+        description="The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`."
+    )
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )

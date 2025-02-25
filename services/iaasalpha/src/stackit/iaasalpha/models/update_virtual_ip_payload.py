@@ -29,7 +29,8 @@ class UpdateVirtualIPPayload(BaseModel):
     """
 
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     members: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
         default=None, description="A list of UUIDs."

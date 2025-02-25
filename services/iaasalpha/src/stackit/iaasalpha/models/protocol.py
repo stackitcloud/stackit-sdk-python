@@ -27,7 +27,10 @@ class Protocol(BaseModel):
     The schema for a protocol of a security group rule.
     """
 
-    name: Optional[StrictStr] = Field(default=None, description="The protocol name which the rule should match.")
+    name: Optional[StrictStr] = Field(
+        default=None,
+        description="The protocol name which the rule should match. Possible values: `ah`, `dccp`, `egp`, `esp`, `gre`, `icmp`, `igmp`, `ipip`, `ipv6-encap`, `ipv6-frag`, `ipv6-icmp`, `ipv6-nonxt`, `ipv6-opts`, `ipv6-route`, `ospf`, `pgm`, `rsvp`, `sctp`, `tcp`, `udp`, `udplite`, `vrrp`.",
+    )
     number: Optional[Annotated[int, Field(le=255, strict=True, ge=0)]] = Field(
         default=None, description="The protocol number which the rule should match."
     )
