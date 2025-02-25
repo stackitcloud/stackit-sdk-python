@@ -29,6 +29,7 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
+from stackit.dns.models.domain_extensions import DomainExtensions
 from stackit.dns.models.label import Label
 
 
@@ -59,6 +60,7 @@ class Zone(BaseModel):
     expire_time: Annotated[int, Field(le=99999999, strict=True, ge=60)] = Field(
         description="expire time", alias="expireTime"
     )
+    extensions: Optional[DomainExtensions] = None
     id: StrictStr = Field(description="zone id")
     is_reverse_zone: Optional[StrictBool] = Field(
         default=None, description="if the zone is a reverse zone or not", alias="isReverseZone"
@@ -98,6 +100,7 @@ class Zone(BaseModel):
         "dnsName",
         "error",
         "expireTime",
+        "extensions",
         "id",
         "isReverseZone",
         "labels",
@@ -188,6 +191,9 @@ class Zone(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of extensions
+        if self.extensions:
+            _dict["extensions"] = self.extensions.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in labels (list)
         _items = []
         if self.labels:
@@ -218,6 +224,9 @@ class Zone(BaseModel):
                 "dnsName": obj.get("dnsName"),
                 "error": obj.get("error"),
                 "expireTime": obj.get("expireTime"),
+                "extensions": (
+                    DomainExtensions.from_dict(obj["extensions"]) if obj.get("extensions") is not None else None
+                ),
                 "id": obj.get("id"),
                 "isReverseZone": obj.get("isReverseZone"),
                 "labels": (
