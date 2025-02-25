@@ -49,7 +49,9 @@ class Project(BaseModel):
     project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
         description="Universally Unique Identifier (UUID).", alias="projectId"
     )
-    state: StrictStr = Field(description="The state of a resource object.")
+    state: StrictStr = Field(
+        description="The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`."
+    )
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
