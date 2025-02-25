@@ -40,8 +40,12 @@ class Nodepool(BaseModel):
     machine: Machine
     max_surge: Optional[StrictInt] = Field(default=None, alias="maxSurge")
     max_unavailable: Optional[StrictInt] = Field(default=None, alias="maxUnavailable")
-    maximum: Annotated[int, Field(strict=True, ge=1)]
-    minimum: StrictInt
+    maximum: Annotated[int, Field(le=1000, strict=True, ge=1)] = Field(
+        description="Maximum number of nodes in the pool. During runtime, the cluster will never scale beyond 1000 nodes, even if the total maximum would allow for a larger cluster."
+    )
+    minimum: Annotated[int, Field(le=1000, strict=True)] = Field(
+        description="Minimum number of nodes in the pool. The sum of all minima must not exceed 1000."
+    )
     name: StrictStr = Field(description="Maximum 15 chars")
     taints: Optional[List[Taint]] = None
     volume: Volume
