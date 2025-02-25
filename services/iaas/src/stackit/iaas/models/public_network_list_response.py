@@ -16,38 +16,21 @@ from __future__ import annotations
 
 import json
 import pprint
-import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field
+from typing_extensions import Self
+
+from stackit.iaas.models.public_network import PublicNetwork
 
 
-class VolumePerformanceClass(BaseModel):
+class PublicNetworkListResponse(BaseModel):
     """
-    Object that represents a Volume performance class.
+    Public network list response.
     """
 
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
-    )
-    iops: Optional[StrictInt] = Field(default=None, description="Input/Output Operations per second.")
-    labels: Optional[Dict[str, Any]] = Field(
-        default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
-    )
-    name: Annotated[str, Field(strict=True, max_length=63)] = Field(
-        description="The name for a General Object. Matches Names and also UUIDs."
-    )
-    throughput: Optional[StrictInt] = Field(default=None, description="Throughput in Megabyte per second.")
-    __properties: ClassVar[List[str]] = ["description", "iops", "labels", "name", "throughput"]
-
-    @field_validator("name")
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
-        return value
+    items: List[PublicNetwork] = Field(description="A list of public networks.")
+    __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,7 +49,7 @@ class VolumePerformanceClass(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of VolumePerformanceClass from a JSON string"""
+        """Create an instance of PublicNetworkListResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -86,11 +69,18 @@ class VolumePerformanceClass(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item in self.items:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of VolumePerformanceClass from a dict"""
+        """Create an instance of PublicNetworkListResponse from a dict"""
         if obj is None:
             return None
 
@@ -99,11 +89,9 @@ class VolumePerformanceClass(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "description": obj.get("description"),
-                "iops": obj.get("iops"),
-                "labels": obj.get("labels"),
-                "name": obj.get("name"),
-                "throughput": obj.get("throughput"),
+                "items": (
+                    [PublicNetwork.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None
+                )
             }
         )
         return _obj

@@ -29,7 +29,7 @@ class VolumeAttachment(BaseModel):
     """
 
     delete_on_termination: Optional[StrictBool] = Field(
-        default=False,
+        default=None,
         description="Delete the volume during the termination of the server. Defaults to false.",
         alias="deleteOnTermination",
     )
@@ -122,9 +122,7 @@ class VolumeAttachment(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "deleteOnTermination": (
-                    obj.get("deleteOnTermination") if obj.get("deleteOnTermination") is not None else False
-                ),
+                "deleteOnTermination": obj.get("deleteOnTermination"),
                 "serverId": obj.get("serverId"),
                 "volumeId": obj.get("volumeId"),
             }

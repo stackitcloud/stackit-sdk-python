@@ -39,7 +39,8 @@ class Backup(BaseModel):
         default=None, description="Universally Unique Identifier (UUID)."
     )
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
@@ -48,7 +49,10 @@ class Backup(BaseModel):
     snapshot_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="snapshotId"
     )
-    status: Optional[StrictStr] = Field(default=None, description="The status of a backup object.")
+    status: Optional[StrictStr] = Field(
+        default=None,
+        description="The status of a backup object. Possible values: `AVAILABLE`, `CREATING`, `DELETED`, `DELETING`, `ERROR`, `RESTORING`.",
+    )
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
