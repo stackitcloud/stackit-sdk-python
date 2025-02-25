@@ -21,6 +21,10 @@ from stackit.dns.models.create_label_response import CreateLabelResponse
 from stackit.dns.models.create_record_set_payload import CreateRecordSetPayload
 from stackit.dns.models.create_zone_payload import CreateZonePayload
 from stackit.dns.models.delete_label_response import DeleteLabelResponse
+from stackit.dns.models.domain_extensions import DomainExtensions
+from stackit.dns.models.domain_observability_extension import (
+    DomainObservabilityExtension,
+)
 from stackit.dns.models.error_message import ErrorMessage
 from stackit.dns.models.export_record_sets_payload import ExportRecordSetsPayload
 from stackit.dns.models.import_record_sets_payload import ImportRecordSetsPayload
@@ -46,8 +50,10 @@ from stackit.dns.models.record_set_response import RecordSetResponse
 from stackit.dns.models.validate_move_code_payload import ValidateMoveCodePayload
 from stackit.dns.models.zone import Zone
 from stackit.dns.models.zone_data_exchange import ZoneDataExchange
+from stackit.dns.models.zone_extensions import ZoneExtensions
 from stackit.dns.models.zone_models_import_record_model import (
     ZoneModelsImportRecordModel,
 )
 from stackit.dns.models.zone_models_import_zone_json import ZoneModelsImportZoneJson
+from stackit.dns.models.zone_observability_extension import ZoneObservabilityExtension
 from stackit.dns.models.zone_response import ZoneResponse
