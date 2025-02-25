@@ -22,15 +22,17 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 
-class CatalogProductOverviewVendor(BaseModel):
+class ApproveSubscriptionPayload(BaseModel):
     """
-    CatalogProductOverviewVendor
+    ApproveSubscriptionPayload
     """
 
-    name: StrictStr = Field(description="The vendor name.")
-    vendor_id: StrictStr = Field(description="The vendor ID.", alias="vendorId")
-    website_url: StrictStr = Field(description="The vendor website URL.", alias="websiteUrl")
-    __properties: ClassVar[List[str]] = ["name", "vendorId", "websiteUrl"]
+    instance_target: Optional[StrictStr] = Field(
+        default=None,
+        description="The target URL of the user instance, used to redirect the user to the instance after the subscription is active.",
+        alias="instanceTarget",
+    )
+    __properties: ClassVar[List[str]] = ["instanceTarget"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +51,7 @@ class CatalogProductOverviewVendor(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CatalogProductOverviewVendor from a JSON string"""
+        """Create an instance of ApproveSubscriptionPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +75,12 @@ class CatalogProductOverviewVendor(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CatalogProductOverviewVendor from a dict"""
+        """Create an instance of ApproveSubscriptionPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"name": obj.get("name"), "vendorId": obj.get("vendorId"), "websiteUrl": obj.get("websiteUrl")}
-        )
+        _obj = cls.model_validate({"instanceTarget": obj.get("instanceTarget")})
         return _obj
