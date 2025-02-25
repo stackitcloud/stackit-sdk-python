@@ -217,7 +217,7 @@ class ServerNetwork(BaseModel):
                 "networkId": obj.get("networkId"),
                 "networkName": obj.get("networkName"),
                 "nicId": obj.get("nicId"),
-                "nicSecurity": obj.get("nicSecurity") if obj.get("nicSecurity") is not None else True,
+                "nicSecurity": obj.get("nicSecurity"),
                 "publicIp": obj.get("publicIp"),
                 "securityGroups": obj.get("securityGroups"),
             }
