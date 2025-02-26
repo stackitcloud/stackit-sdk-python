@@ -1,3 +1,9 @@
+## Release (2025-XX-XX)
+
+- `sqlserverflex`: [v1.0.0](services/sqlserverflex/CHANGELOG.md#v100-2025-02-26)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+  - **Feature:** Add new methods to manage database project termination: `terminate_project`, `terminate_project_with_http_info`, `terminate_project_without_preload_content`.
+
 ## Release (2025-02-11)
 
 - `objectstorage`: [v1.0.0](services/objectstorage/CHANGELOG.md#v100-2025-02-06)
