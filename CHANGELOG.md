@@ -1,3 +1,8 @@
+## Release (2025-XX-XX)
+
+- `objectstorage`: [v1.0.1](services/objectstorage/CHANGELOG.md#v101-2025-02-26)
+  - New value `eu02` in region enum
+
 ## Release (2025-02-11)
 
 - `objectstorage`: [v1.0.0](services/objectstorage/CHANGELOG.md#v100-2025-02-06)
