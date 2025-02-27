@@ -6,6 +6,8 @@
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `ske`: [v0.4.0](services/ske/CHANGELOG.md#v040-2025-02-27)
   - `Nodepool`: `maximum` and `minimum` must be <= 1000
+- `dns`: [v0.3.0](services/dns/CHANGELOG.md#v030-2025-02-27)
+  - Add support for extensions
 
 ## Release (2025-02-11)
 
