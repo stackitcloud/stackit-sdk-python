@@ -36,7 +36,8 @@ class Keypair(BaseModel):
         default=None, description="Object that represents an SSH keypair MD5 fingerprint."
     )
     labels: Optional[Dict[str, Any]] = Field(
-        default=None, description="Object that represents the labels of an object."
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None,
@@ -73,9 +74,11 @@ class Keypair(BaseModel):
     @field_validator("public_key")
     def public_key_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^(ssh-rsa|ssh-ed25519)\s+[A-Za-z0-9+\/]+[=]{0,3}(\s+.+)?\s*$", value):
+        if not re.match(
+            r"^(ssh-rsa|ssh-ed25519|ecdsa-sha2-nistp(256|384|521))\s+[A-Za-z0-9+\/]+[=]{0,3}(\s+.+)?\s*$", value
+        ):
             raise ValueError(
-                r"must validate the regular expression /^(ssh-rsa|ssh-ed25519)\s+[A-Za-z0-9+\/]+[=]{0,3}(\s+.+)?\s*$/"
+                r"must validate the regular expression /^(ssh-rsa|ssh-ed25519|ecdsa-sha2-nistp(256|384|521))\s+[A-Za-z0-9+\/]+[=]{0,3}(\s+.+)?\s*$/"
             )
         return value
 

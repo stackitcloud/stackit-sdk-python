@@ -31,7 +31,7 @@ class BootVolumeSource(BaseModel):
     id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
         description="Universally Unique Identifier (UUID)."
     )
-    type: StrictStr = Field(description="The source types of a boot volume.")
+    type: StrictStr = Field(description="The source types of a boot volume. Possible values: `image`, `volume`.")
     __properties: ClassVar[List[str]] = ["id", "type"]
 
     @field_validator("id")

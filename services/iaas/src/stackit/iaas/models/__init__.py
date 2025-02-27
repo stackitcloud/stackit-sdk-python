@@ -102,6 +102,8 @@ from stackit.iaas.models.project_list_response import ProjectListResponse
 from stackit.iaas.models.protocol import Protocol
 from stackit.iaas.models.public_ip import PublicIp
 from stackit.iaas.models.public_ip_list_response import PublicIpListResponse
+from stackit.iaas.models.public_network import PublicNetwork
+from stackit.iaas.models.public_network_list_response import PublicNetworkListResponse
 from stackit.iaas.models.quota import Quota
 from stackit.iaas.models.quota_list import QuotaList
 from stackit.iaas.models.quota_list_response import QuotaListResponse
