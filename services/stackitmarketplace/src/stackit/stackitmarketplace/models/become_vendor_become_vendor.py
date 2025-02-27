@@ -16,21 +16,28 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing_extensions import Annotated, Self
 
 
-class CatalogProductOverviewVendor(BaseModel):
+class BecomeVendorBecomeVendor(BaseModel):
     """
-    CatalogProductOverviewVendor
+    BecomeVendorBecomeVendor
     """
 
-    name: StrictStr = Field(description="The vendor name.")
-    vendor_id: StrictStr = Field(description="The vendor ID.", alias="vendorId")
-    website_url: StrictStr = Field(description="The vendor website URL.", alias="websiteUrl")
-    __properties: ClassVar[List[str]] = ["name", "vendorId", "websiteUrl"]
+    contact_email: StrictStr = Field(description="The contact e-mail address.", alias="contactEmail")
+    message: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The message content.")
+    __properties: ClassVar[List[str]] = ["contactEmail", "message"]
+
+    @field_validator("message")
+    def message_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +56,7 @@ class CatalogProductOverviewVendor(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CatalogProductOverviewVendor from a JSON string"""
+        """Create an instance of BecomeVendorBecomeVendor from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +80,12 @@ class CatalogProductOverviewVendor(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CatalogProductOverviewVendor from a dict"""
+        """Create an instance of BecomeVendorBecomeVendor from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"name": obj.get("name"), "vendorId": obj.get("vendorId"), "websiteUrl": obj.get("websiteUrl")}
-        )
+        _obj = cls.model_validate({"contactEmail": obj.get("contactEmail"), "message": obj.get("message")})
         return _obj
