@@ -1,3 +1,7 @@
+## v0.4.0 (2025-02-27)
+
+- `Nodepool`: `maximum` and `minimum` must be <= 1000
+
 ## v0.3.0 (2025-02-06)
 
 - **Removal:** The following methods were removed after deprecation (2024-04-16) and [`serviceenablement` SDK](https://github.com/stackitcloud/stackit-sdk-python/tree/main/services/serviceenablement) must be used instead.
