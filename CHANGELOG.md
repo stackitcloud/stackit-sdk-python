@@ -2,6 +2,8 @@
 
 - `objectstorage`: [v1.0.1](services/objectstorage/CHANGELOG.md#v101-2025-02-26)
   - New value `eu02` in region enum
+- `postgresflex`: [v1.0.0](services/postgresflex/CHANGELOG.md#v100-2025-02-27)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 
 ## Release (2025-02-11)
 
