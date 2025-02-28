@@ -3,7 +3,7 @@ name = "stackit-postgresflex"
 
 [tool.poetry]
 name = "stackit-postgresflex"
-version = "v0.3.0"
+version = "v1.0.0"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
