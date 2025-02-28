@@ -1,4 +1,7 @@
 [![GitHub License](https://img.shields.io/github/license/stackitcloud/stackit-sdk-go)](https://www.apache.org/licenses/LICENSE-2.0)
+[![CI Workflow](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/ci.yaml/badge.svg)](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/ci.yaml)
+[![CD Workflow](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/cd.yaml/badge.svg)](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/cd.yaml)
+[![Dependency-Updater](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/dependency-checker.yaml/badge.svg)](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/dependency-checker.yaml)
 
 > ⓘ INFO: The STACKIT Python SDK is in beta and in active development.
 
