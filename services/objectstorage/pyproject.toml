@@ -3,7 +3,7 @@ name = "stackit-objectstorage"
 
 [tool.poetry]
 name = "stackit-objectstorage"
-version = "v1.0.0"
+version = "v1.0.1"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]

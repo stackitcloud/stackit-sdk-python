@@ -1,10 +1,10 @@
-## v0.3.0 (2025-02-27)
+## v0.4.0 (2025-02-27)
 
 - **Feature:** Add method to list all public ip ranges: `list_public_ip_ranges`
 - Add size attribute to image model
 - Add CPU architecture attribute to image config model
 
-## v0.2.1 (2025-01-14)
+## v0.3.1 (2025-01-14)
 
 - **Bugfix**: `configuration.py` region adjustment was missing
 

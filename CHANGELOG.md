@@ -8,7 +8,7 @@
   - `Nodepool`: `maximum` and `minimum` must be <= 1000
 - `dns`: [v0.3.0](services/dns/CHANGELOG.md#v030-2025-02-27)
   - Add support for extensions
-- `iaas`: [v0.3.0](services/iaas/CHANGELOG.md#v030-2025-02-27)
+- `iaas`: [v0.4.0](services/iaas/CHANGELOG.md#v040-2025-02-27)
   - **Feature:** Add method to list all public ip ranges: `list_public_ip_ranges`
   - Add size attribute to image model
   - Add CPU architecture attribute to image config model
