@@ -1,3 +1,8 @@
+## v1.0.0 (2025-02-26)
+
+- **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- **Feature:** Add new methods to manage database project termination: `terminate_project`, `terminate_project_with_http_info`, `terminate_project_without_preload_content`.
+
 ## v0.3.0 (2025-01-21)
 
 - **Breaking change**: Delete endpoint made private.
