@@ -19,6 +19,7 @@ jobs:
       - name: Poetry Python dependeny updater
         env:
           GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+        shell: bash -x -e {0}
         run: |
             git config --global user.name "SDK Updater Bot"
             git config --global user.email "noreply@stackit.de"
