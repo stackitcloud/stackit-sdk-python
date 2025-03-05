@@ -1,4 +1,4 @@
-## Release (2025-XX-XX)
+## Release (2025-03-05)
 
 - `stackitmarketplace`: [v0.2.0](services/stackitmarketplace/CHANGELOG.md#v020-2025-03-05)
   - **Feature:** Add method to create inquiries: `InquiriesCreateInquiry`
