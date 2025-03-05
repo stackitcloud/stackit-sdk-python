@@ -1,5 +1,9 @@
 ## Release (2025-XX-XX)
 
+- `stackitmarketplace`: [v0.2.0](services/stackitmarketplace/CHANGELOG.md#v020-2025-03-05)
+  - **Feature:** Add method to create inquiries: `InquiriesCreateInquiry`
+  - **Feature:** Add `sort` property to `ApiListCatalogProductsRequest`
+  - **Feature:** Add payload `ApproveSubscriptionPayload` for `ApiApproveSubscriptionRequest`
 - `objectstorage`: [v1.0.1](services/objectstorage/CHANGELOG.md#v101-2025-02-26)
   - New value `eu02` in region enum
 - `postgresflex`: [v1.0.0](services/postgresflex/CHANGELOG.md#v100-2025-02-27)
