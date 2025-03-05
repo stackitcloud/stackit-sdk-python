@@ -9,7 +9,10 @@ jobs:
   dependency_updater:
     name: Dependency-Updater
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions: 
+      pull-requests: write
+      repository-projects: write
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
