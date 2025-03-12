@@ -23,6 +23,6 @@ jobs:
           poetry config virtualenvs.create false
           make install-dev
       - name: Lint        
-        run: make lint 
+        run: make lint-services
       - name: Test
-        run: make test
+        run: make test-services

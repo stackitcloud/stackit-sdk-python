@@ -12,19 +12,27 @@ install-dev:
 	# install core. This needs to be done last or it will get overriden by the dependency installation of the services
 	poetry install -C core --no-root; pip install -e core
 
-test:
+test-services:
 	# test core
 	cd core && poetry install --with dev && pytest
 	# test services
 	@for f in $(shell ls ${SERVICES_DIR}); do  set -e; cd ${SERVICES_DIR}/$${f}; poetry install --with dev;sh -c 'pytest || ([ $$? = 5 ] && exit 0 || exit $$?)'; cd ../..; done
 
-lint:	
+lint-services:
 	# lint core
 	cd core && poetry install --no-root --only dev &&flake8 . 
 	# lint examples. Use configuration from core
 	flake8 --toml-config core/pyproject.toml --black-config core/pyproject.toml examples; 
 	# lint services
 	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};poetry install --no-root --only dev; flake8 .; cd ../..; done
+
+test:
+	echo "Testing service ${service}"
+	cd ${SERVICES_DIR}/${service}; poetry install --with dev;sh -c 'pytest || ([ $$? = 5 ] && exit 0 || exit $$?)'; cd ../..;
+
+lint:
+	echo "Linting service ${service}"
+	cd ${SERVICES_DIR}/${service};poetry install --no-root --only dev; flake8 .; cd ../..;
 
 update-dependencies:
 	# lock core
