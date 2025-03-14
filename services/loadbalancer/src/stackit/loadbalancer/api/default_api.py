@@ -75,8 +75,8 @@ class DefaultApi:
     def create_credentials(
         self,
         project_id: StrictStr,
-        x_request_id: StrictStr,
         create_credentials_payload: CreateCredentialsPayload,
+        x_request_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -93,10 +93,10 @@ class DefaultApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param x_request_id: (required)
-        :type x_request_id: str
         :param create_credentials_payload: (required)
         :type create_credentials_payload: CreateCredentialsPayload
+        :param x_request_id:
+        :type x_request_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -121,8 +121,8 @@ class DefaultApi:
 
         _param = self._create_credentials_serialize(
             project_id=project_id,
-            x_request_id=x_request_id,
             create_credentials_payload=create_credentials_payload,
+            x_request_id=x_request_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -147,8 +147,8 @@ class DefaultApi:
     def create_credentials_with_http_info(
         self,
         project_id: StrictStr,
-        x_request_id: StrictStr,
         create_credentials_payload: CreateCredentialsPayload,
+        x_request_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -165,10 +165,10 @@ class DefaultApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param x_request_id: (required)
-        :type x_request_id: str
         :param create_credentials_payload: (required)
         :type create_credentials_payload: CreateCredentialsPayload
+        :param x_request_id:
+        :type x_request_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -193,8 +193,8 @@ class DefaultApi:
 
         _param = self._create_credentials_serialize(
             project_id=project_id,
-            x_request_id=x_request_id,
             create_credentials_payload=create_credentials_payload,
+            x_request_id=x_request_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -219,8 +219,8 @@ class DefaultApi:
     def create_credentials_without_preload_content(
         self,
         project_id: StrictStr,
-        x_request_id: StrictStr,
         create_credentials_payload: CreateCredentialsPayload,
+        x_request_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -237,10 +237,10 @@ class DefaultApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param x_request_id: (required)
-        :type x_request_id: str
         :param create_credentials_payload: (required)
         :type create_credentials_payload: CreateCredentialsPayload
+        :param x_request_id:
+        :type x_request_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -265,8 +265,8 @@ class DefaultApi:
 
         _param = self._create_credentials_serialize(
             project_id=project_id,
-            x_request_id=x_request_id,
             create_credentials_payload=create_credentials_payload,
+            x_request_id=x_request_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -286,8 +286,8 @@ class DefaultApi:
     def _create_credentials_serialize(
         self,
         project_id,
-        x_request_id,
         create_credentials_payload,
+        x_request_id,
         _request_auth,
         _content_type,
         _headers,
@@ -351,8 +351,8 @@ class DefaultApi:
     def create_load_balancer(
         self,
         project_id: StrictStr,
-        x_request_id: StrictStr,
         create_load_balancer_payload: CreateLoadBalancerPayload,
+        x_request_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -369,10 +369,10 @@ class DefaultApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param x_request_id: (required)
-        :type x_request_id: str
         :param create_load_balancer_payload: (required)
         :type create_load_balancer_payload: CreateLoadBalancerPayload
+        :param x_request_id:
+        :type x_request_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -397,8 +397,8 @@ class DefaultApi:
 
         _param = self._create_load_balancer_serialize(
             project_id=project_id,
-            x_request_id=x_request_id,
             create_load_balancer_payload=create_load_balancer_payload,
+            x_request_id=x_request_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -424,8 +424,8 @@ class DefaultApi:
     def create_load_balancer_with_http_info(
         self,
         project_id: StrictStr,
-        x_request_id: StrictStr,
         create_load_balancer_payload: CreateLoadBalancerPayload,
+        x_request_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -442,10 +442,10 @@ class DefaultApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param x_request_id: (required)
-        :type x_request_id: str
         :param create_load_balancer_payload: (required)
         :type create_load_balancer_payload: CreateLoadBalancerPayload
+        :param x_request_id:
+        :type x_request_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -470,8 +470,8 @@ class DefaultApi:
 
         _param = self._create_load_balancer_serialize(
             project_id=project_id,
-            x_request_id=x_request_id,
             create_load_balancer_payload=create_load_balancer_payload,
+            x_request_id=x_request_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -497,8 +497,8 @@ class DefaultApi:
     def create_load_balancer_without_preload_content(
         self,
         project_id: StrictStr,
-        x_request_id: StrictStr,
         create_load_balancer_payload: CreateLoadBalancerPayload,
+        x_request_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -515,10 +515,10 @@ class DefaultApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param x_request_id: (required)
-        :type x_request_id: str
         :param create_load_balancer_payload: (required)
         :type create_load_balancer_payload: CreateLoadBalancerPayload
+        :param x_request_id:
+        :type x_request_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -543,8 +543,8 @@ class DefaultApi:
 
         _param = self._create_load_balancer_serialize(
             project_id=project_id,
-            x_request_id=x_request_id,
             create_load_balancer_payload=create_load_balancer_payload,
+            x_request_id=x_request_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -565,8 +565,8 @@ class DefaultApi:
     def _create_load_balancer_serialize(
         self,
         project_id,
-        x_request_id,
         create_load_balancer_payload,
+        x_request_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1377,7 +1377,7 @@ class DefaultApi:
     def enable_service(
         self,
         project_id: StrictStr,
-        x_request_id: StrictStr,
+        x_request_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1394,7 +1394,7 @@ class DefaultApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param x_request_id: (required)
+        :param x_request_id:
         :type x_request_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1446,7 +1446,7 @@ class DefaultApi:
     def enable_service_with_http_info(
         self,
         project_id: StrictStr,
-        x_request_id: StrictStr,
+        x_request_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1463,7 +1463,7 @@ class DefaultApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param x_request_id: (required)
+        :param x_request_id:
         :type x_request_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1515,7 +1515,7 @@ class DefaultApi:
     def enable_service_without_preload_content(
         self,
         project_id: StrictStr,
-        x_request_id: StrictStr,
+        x_request_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1532,7 +1532,7 @@ class DefaultApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param x_request_id: (required)
+        :param x_request_id:
         :type x_request_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
