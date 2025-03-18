@@ -15,7 +15,6 @@
   - **New**: Client for managing the modelserving API
 - `objectstorage`: [v1.0.2](services/objectstorage/CHANGELOG.md#v102-2025-03-18)
   - Adapted to minor API changes
-region must be passed as a parameter to any region-specific request.
 - `runcommand`: [v1.0.0](services/runcommand/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `serverbackup`: [v1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-03-18)
