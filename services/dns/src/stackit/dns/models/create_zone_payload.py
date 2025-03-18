@@ -43,7 +43,7 @@ class CreateZonePayload(BaseModel):
         default="hostmaster@stackit.cloud", description="contact e-mail for the zone", alias="contactEmail"
     )
     default_ttl: Optional[Annotated[int, Field(strict=True, ge=60)]] = Field(
-        default=None, description="default time to live", alias="defaultTTL"
+        default=3600, description="default time to live", alias="defaultTTL"
     )
     description: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = Field(
         default=None, description="description of the zone"
@@ -52,7 +52,7 @@ class CreateZonePayload(BaseModel):
         description="zone name", alias="dnsName"
     )
     expire_time: Optional[Annotated[int, Field(strict=True, ge=60)]] = Field(
-        default=None, description="expire time", alias="expireTime"
+        default=1209600, description="expire time", alias="expireTime"
     )
     extensions: Optional[ZoneExtensions] = Field(default=None, description="optional extensions")
     is_reverse_zone: Optional[StrictBool] = Field(
@@ -64,10 +64,10 @@ class CreateZonePayload(BaseModel):
     )
     primaries: Optional[List[StrictStr]] = Field(default=None, description="primary name server for secondary zone")
     refresh_time: Optional[Annotated[int, Field(strict=True, ge=60)]] = Field(
-        default=None, description="refresh time", alias="refreshTime"
+        default=3600, description="refresh time", alias="refreshTime"
     )
     retry_time: Optional[Annotated[int, Field(strict=True, ge=60)]] = Field(
-        default=None, description="retry time", alias="retryTime"
+        default=600, description="retry time", alias="retryTime"
     )
     type: Optional[StrictStr] = Field(default="primary", description="zone type")
     __properties: ClassVar[List[str]] = [
@@ -154,10 +154,10 @@ class CreateZonePayload(BaseModel):
                 "contactEmail": (
                     obj.get("contactEmail") if obj.get("contactEmail") is not None else "hostmaster@stackit.cloud"
                 ),
-                "defaultTTL": obj.get("defaultTTL"),
+                "defaultTTL": obj.get("defaultTTL") if obj.get("defaultTTL") is not None else 3600,
                 "description": obj.get("description"),
                 "dnsName": obj.get("dnsName"),
-                "expireTime": obj.get("expireTime"),
+                "expireTime": obj.get("expireTime") if obj.get("expireTime") is not None else 1209600,
                 "extensions": (
                     ZoneExtensions.from_dict(obj["extensions"]) if obj.get("extensions") is not None else None
                 ),
@@ -165,8 +165,8 @@ class CreateZonePayload(BaseModel):
                 "name": obj.get("name"),
                 "negativeCache": obj.get("negativeCache"),
                 "primaries": obj.get("primaries"),
-                "refreshTime": obj.get("refreshTime"),
-                "retryTime": obj.get("retryTime"),
+                "refreshTime": obj.get("refreshTime") if obj.get("refreshTime") is not None else 3600,
+                "retryTime": obj.get("retryTime") if obj.get("retryTime") is not None else 600,
                 "type": obj.get("type") if obj.get("type") is not None else "primary",
             }
         )
