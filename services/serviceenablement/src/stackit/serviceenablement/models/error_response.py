@@ -15,26 +15,24 @@ from __future__ import annotations
 
 import json
 import pprint
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from typing_extensions import Self
 
 
-class Dependencies(BaseModel):
+class ErrorResponse(BaseModel):
     """
-    Dependencies
+    ErrorResponse
     """
 
-    hard: Optional[List[Annotated[str, Field(min_length=10, strict=True, max_length=255)]]] = Field(
-        default=None,
-        description="a list of service IDs which this service depend on. If the service is enabled, those service are enabled as well automatically.",
-    )
-    soft: Optional[List[Annotated[str, Field(min_length=10, strict=True, max_length=255)]]] = Field(
-        default=None,
-        description="a list of service IDs which this service depend on. When they are disabled a notification is sent.",
-    )
-    __properties: ClassVar[List[str]] = ["hard", "soft"]
+    error: Optional[StrictStr] = None
+    message: Optional[StrictStr] = None
+    path: Optional[StrictStr] = None
+    status: Optional[StrictInt] = None
+    timestamp: Optional[datetime] = None
+    __properties: ClassVar[List[str]] = ["error", "message", "path", "status", "timestamp"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +51,7 @@ class Dependencies(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Dependencies from a JSON string"""
+        """Create an instance of ErrorResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,12 +75,20 @@ class Dependencies(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Dependencies from a dict"""
+        """Create an instance of ErrorResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"hard": obj.get("hard"), "soft": obj.get("soft")})
+        _obj = cls.model_validate(
+            {
+                "error": obj.get("error"),
+                "message": obj.get("message"),
+                "path": obj.get("path"),
+                "status": obj.get("status"),
+                "timestamp": obj.get("timestamp"),
+            }
+        )
         return _obj
