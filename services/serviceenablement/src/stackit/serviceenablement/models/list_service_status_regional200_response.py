@@ -17,24 +17,20 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing_extensions import Self
+
+from stackit.serviceenablement.models.service_status import ServiceStatus
 
 
-class Dependencies(BaseModel):
+class ListServiceStatusRegional200Response(BaseModel):
     """
-    Dependencies
+    ListServiceStatusRegional200Response
     """
 
-    hard: Optional[List[Annotated[str, Field(min_length=10, strict=True, max_length=255)]]] = Field(
-        default=None,
-        description="a list of service IDs which this service depend on. If the service is enabled, those service are enabled as well automatically.",
-    )
-    soft: Optional[List[Annotated[str, Field(min_length=10, strict=True, max_length=255)]]] = Field(
-        default=None,
-        description="a list of service IDs which this service depend on. When they are disabled a notification is sent.",
-    )
-    __properties: ClassVar[List[str]] = ["hard", "soft"]
+    items: Optional[List[ServiceStatus]] = None
+    next_cursor: Optional[StrictStr] = Field(default=None, alias="nextCursor")
+    __properties: ClassVar[List[str]] = ["items", "nextCursor"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +49,7 @@ class Dependencies(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Dependencies from a JSON string"""
+        """Create an instance of ListServiceStatusRegional200Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,16 +69,30 @@ class Dependencies(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item in self.items:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Dependencies from a dict"""
+        """Create an instance of ListServiceStatusRegional200Response from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"hard": obj.get("hard"), "soft": obj.get("soft")})
+        _obj = cls.model_validate(
+            {
+                "items": (
+                    [ServiceStatus.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None
+                ),
+                "nextCursor": obj.get("nextCursor"),
+            }
+        )
         return _obj
