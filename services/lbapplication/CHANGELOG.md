@@ -1,3 +1,6 @@
+## v0.3.1 (2025-XX-YY)
+- Adapted to minor API changes
+
 ## v0.3.0 (2025-02-07)
 
 - **Bugfix**: Set type from interface to int64 of `HealthyThreshold`, `UnhealthyThreshold`, `MaxLoadBalancers`, `Port`, `MaxConnections`, `Code` and `TargetPort`

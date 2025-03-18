@@ -1,3 +1,6 @@
+## v1.0.0 (2025-XX-YY)
+- **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+
 ## v0.3.0 (2025-02-06)
 
 - **Breaking Change:**: Remove field `BackupProperties` from `CreateUpdatePayload` model
