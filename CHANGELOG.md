@@ -1,30 +1,30 @@
 ## Release (2025-XX-YY)
-- `alb`: [v0.1.0](services/alb/CHANGELOG.md#v010-2025-xx-yy)
+- `alb`: [v0.1.0](services/alb/CHANGELOG.md#v010-2025-03-18)
   - **New**: Client for managing the ALB service
-- `cdn`: [v0.1.0](services/cdn/CHANGELOG.md#v010-2025-xx-yy)
+- `cdn`: [v0.1.0](services/cdn/CHANGELOG.md#v010-2025-03-18)
   - **New**: Client for managing the CDN service
-- `certificates`: [v1.0.0](services/certificates/CHANGELOG.md#v100-2025-xx-yyy)
+- `certificates`: [v1.0.0](services/certificates/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-- `dns`: [v0.3.1](services/dns/CHANGELOG.md#v031-2025-xx-yy)
+- `dns`: [v0.3.1](services/dns/CHANGELOG.md#v031-2025-03-18)
   - Adapted to minor API changes
-- `lbapplication`: [v0.3.1](services/lbapplication/CHANGELOG.md#v031-2025-xx-yy)
+- `lbapplication`: [v0.3.1](services/lbapplication/CHANGELOG.md#v031-2025-03-18)
   - Adapted to minor API changes
-- `loadbalancer`: [v0.2.2](services/loadbalancer/CHANGELOG.md#v022-2025-xx-yy)
+- `loadbalancer`: [v0.2.2](services/loadbalancer/CHANGELOG.md#v022-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-- `modelserving`: [v0.1.0](services/modelserving/CHANGELOG.md#v010-2025-xx-yy)
+- `modelserving`: [v0.1.0](services/modelserving/CHANGELOG.md#v010-2025-03-18)
   - **New**: Client for managing the modelserving API
-- `objectstorage`: [v1.0.2](services/objectstorage/CHANGELOG.md#v102-2025-xx-yy)
+- `objectstorage`: [v1.0.2](services/objectstorage/CHANGELOG.md#v102-2025-03-18)
   - Adapted to minor API changes
 region must be passed as a parameter to any region-specific request.
-- `runcommand`: [v1.0.0](services/runcommand/CHANGELOG.md#v100-2025-xx-yy)
+- `runcommand`: [v1.0.0](services/runcommand/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-- `serverbackup`: [v1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-xx-yy)
+- `serverbackup`: [v1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-- `serverupdate`: [v1.0.0](services/serverupdate/CHANGELOG.md#v100-2025-xx-yy)
+- `serverupdate`: [v1.0.0](services/serverupdate/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-- `serviceenablement`: [v1.0.0](services/serviceenablement/CHANGELOG.md#v100-2025-xx-yy)
+- `serviceenablement`: [v1.0.0](services/serviceenablement/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-- `sqlserverflex`: [v1.0.0](services/sqlserverflex/CHANGELOG.md#v100-2025-xx-yy)
+- `sqlserverflex`: [v1.0.0](services/sqlserverflex/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 
 
