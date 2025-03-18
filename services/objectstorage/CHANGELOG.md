@@ -1,3 +1,6 @@
+## v1.0.2 (2025-03-18)
+- Adapted to minor API changes
+
 ## v1.0.1 (2025-02-26)
 
 - New value `eu02` in region enum
