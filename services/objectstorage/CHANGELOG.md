@@ -1,5 +1,5 @@
-## v2.0.0 (2025-XX-YY)
-- **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+## v1.0.2 (2025-XX-YY)
+- Adapted to minor API changes
 
 ## v1.0.1 (2025-02-26)
 

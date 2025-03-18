@@ -9,12 +9,13 @@
   - Adapted to minor API changes
 - `lbapplication`: [v0.3.1](services/lbapplication/CHANGELOG.md#v031-2025-xx-yy)
   - Adapted to minor API changes
-- `loadbalancer`: [v0.3.1](services/loadbalancer/CHANGELOG.md#v100-2025-xx-yy)
+- `loadbalancer`: [v0.2.2](services/loadbalancer/CHANGELOG.md#v022-2025-xx-yy)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `modelserving`: [v0.1.0](services/modelserving/CHANGELOG.md#v010-2025-xx-yy)
   - **New**: Client for managing the modelserving API
-- `objectstorage`: [v2.0.0](services/objectstorage/CHANGELOG.md#v200-2025-xx-yy)
-  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `objectstorage`: [v1.0.2](services/objectstorage/CHANGELOG.md#v102-2025-xx-yy)
+  - Adapted to minor API changes
+region must be passed as a parameter to any region-specific request.
 - `runcommand`: [v1.0.0](services/runcommand/CHANGELOG.md#v100-2025-xx-yy)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `serverbackup`: [v1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-xx-yy)
