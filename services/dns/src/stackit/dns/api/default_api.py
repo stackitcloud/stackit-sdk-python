@@ -128,6 +128,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ZoneResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "409": "Message",
             "502": "Message",
@@ -200,6 +201,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ZoneResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "409": "Message",
             "502": "Message",
@@ -272,6 +274,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ZoneResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "409": "Message",
             "502": "Message",
@@ -404,6 +407,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "CreateLabelResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -475,6 +479,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "CreateLabelResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -546,6 +551,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "CreateLabelResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -673,6 +679,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "MoveCodeResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "409": "Message",
             "502": "Message",
         }
@@ -740,6 +747,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "MoveCodeResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "409": "Message",
             "502": "Message",
         }
@@ -807,6 +815,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "MoveCodeResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "409": "Message",
             "502": "Message",
         }
@@ -927,6 +936,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "RecordSetResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "409": "Message",
             "502": "Message",
@@ -999,6 +1009,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "RecordSetResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "409": "Message",
             "502": "Message",
@@ -1071,6 +1082,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "RecordSetResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "409": "Message",
             "502": "Message",
@@ -1199,6 +1211,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ZoneResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "409": "Message",
             "502": "Message",
@@ -1267,6 +1280,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ZoneResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "409": "Message",
             "502": "Message",
@@ -1335,6 +1349,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ZoneResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "409": "Message",
             "502": "Message",
@@ -1463,6 +1478,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "DeleteLabelResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
             "404": "Message",
             "502": "Message",
@@ -1534,6 +1551,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "DeleteLabelResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
             "404": "Message",
             "502": "Message",
@@ -1605,6 +1624,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "DeleteLabelResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
             "404": "Message",
             "502": "Message",
@@ -1724,6 +1745,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Message",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -1790,6 +1813,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Message",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -1856,6 +1881,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Message",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -1976,6 +2003,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -2047,6 +2075,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -2118,6 +2147,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -2237,6 +2267,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -2304,6 +2335,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -2371,6 +2403,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -2491,6 +2524,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "ZoneDataExchange",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2561,6 +2595,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "ZoneDataExchange",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2631,6 +2666,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "ZoneDataExchange",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2762,6 +2798,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "RecordSetResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -2832,6 +2870,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "RecordSetResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -2902,6 +2942,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "RecordSetResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -3020,6 +3062,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ZoneResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -3086,6 +3130,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ZoneResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -3152,6 +3198,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ZoneResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -3282,6 +3330,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ImportRecordSetsResponse",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
             "502": "Message",
         }
@@ -3363,6 +3412,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ImportRecordSetsResponse",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
             "502": "Message",
         }
@@ -3444,6 +3494,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ImportRecordSetsResponse",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
             "502": "Message",
         }
@@ -3582,6 +3633,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListLabelsResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
             "404": "Message",
             "502": "Message",
@@ -3649,6 +3702,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListLabelsResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
             "404": "Message",
             "502": "Message",
@@ -3716,6 +3771,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListLabelsResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "403": "Message",
             "404": "Message",
             "502": "Message",
@@ -3996,6 +4053,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListRecordSetsResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -4226,6 +4285,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListRecordSetsResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -4456,6 +4517,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListRecordSetsResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -4947,6 +5010,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListZonesResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -5229,6 +5294,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListZonesResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -5511,6 +5578,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListZonesResponse",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -5847,6 +5916,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Message",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -5914,6 +5984,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Message",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -5981,6 +6052,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Message",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -6113,6 +6185,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -6188,6 +6261,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -6263,6 +6337,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -6403,6 +6478,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -6480,6 +6556,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -6557,6 +6634,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -6691,6 +6769,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ZoneResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -6762,6 +6841,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ZoneResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -6833,6 +6913,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "ZoneResponse",
             "400": "Message",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -6963,6 +7044,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -7033,6 +7116,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -7103,6 +7188,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
+            "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "404": "Message",
             "502": "Message",
         }
@@ -7222,6 +7309,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7288,6 +7376,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7354,6 +7443,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7469,6 +7559,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7535,6 +7626,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7601,6 +7693,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "202": "Message",
             "400": "Message",
+            "401": "ErrorMessage",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7720,6 +7813,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Message",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7790,6 +7884,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Message",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7860,6 +7955,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Message",
             "400": "ErrorMessage",
+            "401": "ErrorMessage",
             "502": "Message",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
