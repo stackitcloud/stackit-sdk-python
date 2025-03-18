@@ -32,7 +32,7 @@ class HostConfiguration:
         )
         """Constructor
         """
-        self._base_path = "https://object-storage.api.eu01.stackit.cloud"
+        self._base_path = "https://object-storage.api.stackit.cloud"
         """Default Base url
         """
         self.server_index = 0 if server_index is None else server_index
@@ -56,13 +56,12 @@ class HostConfiguration:
         """
         return [
             {
-                "url": "https://object-storage.api.{region}stackit.cloud",
+                "url": "https://object-storage.api.stackit.cloud",
                 "description": "No description provided",
                 "variables": {
                     "region": {
                         "description": "No description provided",
-                        "default_value": "eu01.",
-                        "enum_values": ["eu01.", "eu02."],
+                        "default_value": "global",
                     }
                 },
             }
