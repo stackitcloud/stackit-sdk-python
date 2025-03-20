@@ -17,19 +17,17 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from stackit.secretsmanager.models.user import User
 
-
-class ListUsersResponse(BaseModel):
+class BadRequest(BaseModel):
     """
-    ListUsersResponse
+    BadRequest
     """
 
-    users: List[User]
-    __properties: ClassVar[List[str]] = ["users"]
+    message: StrictStr = Field(description="The error message for bad requests")
+    __properties: ClassVar[List[str]] = ["message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +46,7 @@ class ListUsersResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ListUsersResponse from a JSON string"""
+        """Create an instance of BadRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -68,25 +66,16 @@ class ListUsersResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in users (list)
-        _items = []
-        if self.users:
-            for _item in self.users:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["users"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ListUsersResponse from a dict"""
+        """Create an instance of BadRequest from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"users": [User.from_dict(_item) for _item in obj["users"]] if obj.get("users") is not None else None}
-        )
+        _obj = cls.model_validate({"message": obj.get("message")})
         return _obj
