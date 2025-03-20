@@ -1,3 +1,7 @@
+## v0.2.1 (2025-03-20)
+- **Improvement:** Error handling
+- **Feature:** Add description to `UpdateUserPayload`
+
 ## v0.2.0 (2025-01-13)
 
 - **Breaking Change:**: `get_host_from_settings` returns an error if a region is specified for a global URL.

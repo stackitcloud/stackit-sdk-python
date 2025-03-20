@@ -25,7 +25,9 @@
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `sqlserverflex`: [v1.0.0](services/sqlserverflex/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-
+- `secretsmanager`: [v0.2.1](services/secretsmanager/CHANGELOG.md#v021-2025-03-20)
+  - **Improvement:** Error handling
+  - **Feature:** Add description to `UpdateUserPayload`
 
 ## Release (2025-03-05)
 
