@@ -1,3 +1,7 @@
+## v0.5.0 (2025-03-24)
+- **Improvement:** Upgrading from IaaS **beta** endpoints to **v1**
+- **Feature:** Add new method to filter `ListMachineTypes`: `Filter`
+
 ## v0.4.0 (2025-02-27)
 
 - **Feature:** Add method to list all public ip ranges: `list_public_ip_ranges`
