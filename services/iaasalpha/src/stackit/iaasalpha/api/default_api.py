@@ -21567,6 +21567,12 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
+        filter: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filter resources by fields. A subset of expr-lang is supported. See https://expr-lang.org/docs/language-definition for usage details."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -21583,6 +21589,8 @@ class DefaultApi:
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
+        :param filter: Filter resources by fields. A subset of expr-lang is supported. See https://expr-lang.org/docs/language-definition for usage details.
+        :type filter: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -21607,6 +21615,7 @@ class DefaultApi:
 
         _param = self._list_machine_types_serialize(
             project_id=project_id,
+            filter=filter,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -21635,6 +21644,12 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
+        filter: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filter resources by fields. A subset of expr-lang is supported. See https://expr-lang.org/docs/language-definition for usage details."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -21651,6 +21666,8 @@ class DefaultApi:
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
+        :param filter: Filter resources by fields. A subset of expr-lang is supported. See https://expr-lang.org/docs/language-definition for usage details.
+        :type filter: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -21675,6 +21692,7 @@ class DefaultApi:
 
         _param = self._list_machine_types_serialize(
             project_id=project_id,
+            filter=filter,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -21703,6 +21721,12 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
+        filter: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filter resources by fields. A subset of expr-lang is supported. See https://expr-lang.org/docs/language-definition for usage details."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -21719,6 +21743,8 @@ class DefaultApi:
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: str
+        :param filter: Filter resources by fields. A subset of expr-lang is supported. See https://expr-lang.org/docs/language-definition for usage details.
+        :type filter: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -21743,6 +21769,7 @@ class DefaultApi:
 
         _param = self._list_machine_types_serialize(
             project_id=project_id,
+            filter=filter,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -21763,6 +21790,7 @@ class DefaultApi:
     def _list_machine_types_serialize(
         self,
         project_id,
+        filter,
         _request_auth,
         _content_type,
         _headers,
@@ -21784,6 +21812,10 @@ class DefaultApi:
         if project_id is not None:
             _path_params["projectId"] = project_id
         # process the query parameters
+        if filter is not None:
+
+            _query_params.append(("filter", filter))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
