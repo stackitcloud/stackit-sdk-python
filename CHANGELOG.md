@@ -28,6 +28,9 @@
 - `secretsmanager`: [v0.2.1](services/secretsmanager/CHANGELOG.md#v021-2025-03-20)
   - **Improvement:** Error handling
   - **Feature:** Add description to `UpdateUserPayload`
+- `iaas`: [v0.5.0](services/iaas/CHANGELOG.md#v050-2025-03-24)
+  - **Improvement:** Upgrading from IaaS **beta** endpoints to **v1**
+  - **Feature:** Add new method to filter `ListMachineTypes`: `Filter`
 
 ## Release (2025-03-05)
 

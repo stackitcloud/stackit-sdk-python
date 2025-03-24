@@ -3,7 +3,7 @@ name = "stackit-iaas"
 
 [tool.poetry]
 name = "stackit-iaas"
-version = "v0.4.0"
+version = "v0.5.0"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
