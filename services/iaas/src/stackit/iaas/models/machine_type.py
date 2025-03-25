@@ -25,7 +25,7 @@ from typing_extensions import Annotated, Self
 
 class MachineType(BaseModel):
     """
-    Machine Type. Filterable Fields: disk, extraSpecs, name, ram, vcpus.
+    Machine Type. Filterable Fields: `disk`, `extraSpecs`, `name`, `ram`, `vcpus`.
     """
 
     description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
