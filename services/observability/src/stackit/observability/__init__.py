@@ -41,6 +41,9 @@ from stackit.observability.models.alert_config_receivers_response import (
 from stackit.observability.models.alert_config_route_response import (
     AlertConfigRouteResponse,
 )
+from stackit.observability.models.alert_group import AlertGroup
+from stackit.observability.models.alert_groups_response import AlertGroupsResponse
+from stackit.observability.models.alert_rule_record import AlertRuleRecord
 from stackit.observability.models.basic_auth import BasicAuth
 from stackit.observability.models.create_alert_config_receiver_payload import (
     CreateAlertConfigReceiverPayload,
