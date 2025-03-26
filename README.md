@@ -72,7 +72,7 @@ When setting up authentication, the SDK will always try to use the key flow firs
    }
    ```
 
-Check the [authentication example](examples/authentication/basic_authentication.py) for more details.
+Check the [custom authentication example](examples/core/custom_auth.py) for more details.
 
 ### Key flow
 
