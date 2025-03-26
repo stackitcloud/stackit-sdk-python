@@ -41,6 +41,12 @@ from stackit.observability.models.alert_config_receivers_response import (
 from stackit.observability.models.alert_config_route_response import (
     AlertConfigRouteResponse,
 )
+from stackit.observability.models.alert_group import AlertGroup
+from stackit.observability.models.alert_group_response import AlertGroupResponse
+from stackit.observability.models.alert_groups_response import AlertGroupsResponse
+from stackit.observability.models.alert_rule import AlertRule
+from stackit.observability.models.alert_rule_record import AlertRuleRecord
+from stackit.observability.models.alert_rules_response import AlertRulesResponse
 from stackit.observability.models.basic_auth import BasicAuth
 from stackit.observability.models.create_alert_config_receiver_payload import (
     CreateAlertConfigReceiverPayload,
@@ -59,6 +65,12 @@ from stackit.observability.models.create_alert_config_route_payload import (
 )
 from stackit.observability.models.create_alert_config_route_payload_routes_inner import (
     CreateAlertConfigRoutePayloadRoutesInner,
+)
+from stackit.observability.models.create_alertgroups_payload import (
+    CreateAlertgroupsPayload,
+)
+from stackit.observability.models.create_alertrules_payload import (
+    CreateAlertrulesPayload,
 )
 from stackit.observability.models.create_credentials_response import (
     CreateCredentialsResponse,
@@ -167,6 +179,15 @@ from stackit.observability.models.update_alert_configs_payload_route import (
 )
 from stackit.observability.models.update_alert_configs_response import (
     UpdateAlertConfigsResponse,
+)
+from stackit.observability.models.update_alertgroup_payload import (
+    UpdateAlertgroupPayload,
+)
+from stackit.observability.models.update_alertgroups_request_inner import (
+    UpdateAlertgroupsRequestInner,
+)
+from stackit.observability.models.update_alertgroups_request_inner_rules_inner import (
+    UpdateAlertgroupsRequestInnerRulesInner,
 )
 from stackit.observability.models.update_credentials_remote_write_config_payload import (
     UpdateCredentialsRemoteWriteConfigPayload,
