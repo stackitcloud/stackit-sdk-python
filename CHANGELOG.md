@@ -1,4 +1,4 @@
-## Release (2025-XX-YY)
+## Release (2025-03-27)
 - `alb`: [v0.1.0](services/alb/CHANGELOG.md#v010-2025-03-18)
   - **New**: Client for managing the ALB service
 - `cdn`: [v0.1.0](services/cdn/CHANGELOG.md#v010-2025-03-18)
