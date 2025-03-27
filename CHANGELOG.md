@@ -31,6 +31,8 @@
 - `iaas`: [v0.5.0](services/iaas/CHANGELOG.md#v050-2025-03-24)
   - **Improvement:** Upgrading from IaaS **beta** endpoints to **v1**
   - **Feature:** Add new method to filter `ListMachineTypes`: `Filter`
+- `observability`: [v0.3.0](services/observability/CHANGELOG.md#v030-2025-03-27)
+  - **Feature:** Added support for alert groups and alert rules.
 
 ## Release (2025-03-05)
 
