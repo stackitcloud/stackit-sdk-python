@@ -48,7 +48,7 @@ The only thing you need is a STACKIT account and valid credentials.
 
 ## Authorization
 
-To authenticate to the SDK, you will need a [service account](https://docs.stackit.cloud/stackit/en/service-accounts-134415819.html). Create it in the STACKIT Portal an assign it the necessary permissions, e.g. `project.owner`.
+To authenticate to the SDK, you will need a [service account](https://docs.stackit.cloud/stackit/en/service-accounts-134415819.html). Create it in the STACKIT Portal and assign it the necessary permissions, e.g. `project.owner`.
 
 There are multiple ways to authenticate:
 
@@ -72,7 +72,7 @@ When setting up authentication, the SDK will always try to use the key flow firs
    }
    ```
 
-Check the [authentication example](examples/authentication/basic_authentication.py) for more details.
+Check the [custom authentication example](examples/core/custom_auth.py) for more details.
 
 ### Key flow
 
