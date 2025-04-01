@@ -11,6 +11,10 @@ relates to #1234
 
 - [ ] Issue was linked above
 - [ ] **No generated code was adjusted manually** (check [comments in file header](https://github.com/stackitcloud/stackit-sdk-python/blob/main/services/dns/src/stackit/dns/api_client.py#L10-L12))
+- [ ] Changelogs and versioning
+    - [ ] Changelog in root directory was adjusted (see [here](https://github.com/stackitcloud/stackit-sdk-python/blob/608176ab8cdfa60a3cfb09da49de0b1aba5fea84/CHANGELOG.md))
+    - [ ] Changelog of the service(s) was adjusted (see e.g. [here](https://github.com/stackitcloud/stackit-sdk-python/blob/608176ab8cdfa60a3cfb09da49de0b1aba5fea84/services/dns/CHANGELOG.md))
+    - [ ] `pyproject.toml` of the service(s) was adjusted (see e.g. [here](https://github.com/stackitcloud/stackit-sdk-python/blob/608176ab8cdfa60a3cfb09da49de0b1aba5fea84/services/dns/pyproject.toml))
 - [ ] Examples were added / adjusted (see `examples/` directory)
 - [ ] Unit tests got implemented or updated
 - [x] Unit tests are passing: `make test` (will be checked by CI)
