@@ -1,3 +1,6 @@
+## v0.3.0 (2025-04-04)
+- **Feature:** Add new `VendorProductId` attribute for subscription products
+
 ## v0.2.0 (2025-03-05)
 
 - **Feature:** Add method to create inquiries: `InquiriesCreateInquiry`
