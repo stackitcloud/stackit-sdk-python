@@ -16,10 +16,11 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 
 class SubscriptionProduct(BaseModel):
@@ -34,6 +35,9 @@ class SubscriptionProduct(BaseModel):
     product_id: StrictStr = Field(description="The product ID.", alias="productId")
     product_name: StrictStr = Field(description="The name of the product.", alias="productName")
     vendor_name: StrictStr = Field(description="The product's vendor name.", alias="vendorName")
+    vendor_product_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="The product ID provided by the Vendor.", alias="vendorProductId"
+    )
     vendor_website_url: StrictStr = Field(description="The vendor's website.", alias="vendorWebsiteUrl")
     __properties: ClassVar[List[str]] = [
         "deliveryMethod",
@@ -43,6 +47,7 @@ class SubscriptionProduct(BaseModel):
         "productId",
         "productName",
         "vendorName",
+        "vendorProductId",
         "vendorWebsiteUrl",
     ]
 
@@ -65,6 +70,16 @@ class SubscriptionProduct(BaseModel):
         """Validates the enum"""
         if value not in set(["CONTRACT", "FREE", "FREE_TRIAL", "BYOL", "PAYG"]):
             raise ValueError("must be one of enum values ('CONTRACT', 'FREE', 'FREE_TRIAL', 'BYOL', 'PAYG')")
+        return value
+
+    @field_validator("vendor_product_id")
+    def vendor_product_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[a-zA-Z0-9](?:[a-zA-Z0-9_+&-]){0,39}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9](?:[a-zA-Z0-9_+&-]){0,39}$/")
         return value
 
     model_config = ConfigDict(
@@ -124,6 +139,7 @@ class SubscriptionProduct(BaseModel):
                 "productId": obj.get("productId"),
                 "productName": obj.get("productName"),
                 "vendorName": obj.get("vendorName"),
+                "vendorProductId": obj.get("vendorProductId"),
                 "vendorWebsiteUrl": obj.get("vendorWebsiteUrl"),
             }
         )
