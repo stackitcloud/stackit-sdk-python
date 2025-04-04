@@ -1,3 +1,7 @@
+## Release (2025-XX-YY)
+- `stackitmarketplace`: [0.3.0](services/stackitmarketplace/CHANGELOG.md#v030-2025-04-04)
+  - **Feature:** Add new `VendorProductId` attribute for subscription products
+
 ## Release (2025-03-27)
 - `alb`: [v0.1.0](services/alb/CHANGELOG.md#v010-2025-03-18)
   - **New**: Client for managing the ALB service
