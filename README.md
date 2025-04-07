@@ -185,6 +185,10 @@ make install-dev
 When using the `make install-dev` command it is important to prevent `poetry` from creating a different environment for every package.
 This can be achieved by running `poetry config virtualenvs.create false`, but there are multiple way to achieve this. You can check the [`poetry` docs](https://python-poetry.org/docs/configuration/) to see which option fits best for you.
 
+## Release creation
+
+See the [release documentation](./RELEASE.md) for further information.
+
 ## License
 
 Apache 2.0
