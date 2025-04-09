@@ -14,8 +14,13 @@
 
 
 # import models into model package
+from stackit.resourcemanager.models.create_folder_payload import CreateFolderPayload
 from stackit.resourcemanager.models.create_project_payload import CreateProjectPayload
 from stackit.resourcemanager.models.error_response import ErrorResponse
+from stackit.resourcemanager.models.folder_response import FolderResponse
+from stackit.resourcemanager.models.get_folder_details_response import (
+    GetFolderDetailsResponse,
+)
 from stackit.resourcemanager.models.get_project_response import GetProjectResponse
 from stackit.resourcemanager.models.lifecycle_state import LifecycleState
 from stackit.resourcemanager.models.list_organizations_response import (
@@ -29,6 +34,9 @@ from stackit.resourcemanager.models.member import Member
 from stackit.resourcemanager.models.organization_response import OrganizationResponse
 from stackit.resourcemanager.models.parent import Parent
 from stackit.resourcemanager.models.parent_list_inner import ParentListInner
+from stackit.resourcemanager.models.partial_update_folder_payload import (
+    PartialUpdateFolderPayload,
+)
 from stackit.resourcemanager.models.partial_update_project_payload import (
     PartialUpdateProjectPayload,
 )
