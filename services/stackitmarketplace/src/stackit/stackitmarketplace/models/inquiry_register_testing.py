@@ -23,16 +23,16 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 
-class RegisterTestingRegisterTesting(BaseModel):
+class InquiryRegisterTesting(BaseModel):
     """
-    RegisterTestingRegisterTesting
+    Register for testing.
     """
 
-    contact_email: StrictStr = Field(description="The contact e-mail address.", alias="contactEmail")
+    contact_email: StrictStr = Field(description="A e-mail address.", alias="contactEmail")
     full_name: Annotated[str, Field(strict=True, max_length=512)] = Field(
         description="The full name of the contact person.", alias="fullName"
     )
-    message: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The message content.")
+    message: Annotated[str, Field(strict=True, max_length=512)] = Field(description="A custom message.")
     __properties: ClassVar[List[str]] = ["contactEmail", "fullName", "message"]
 
     @field_validator("full_name")
@@ -66,7 +66,7 @@ class RegisterTestingRegisterTesting(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RegisterTestingRegisterTesting from a JSON string"""
+        """Create an instance of InquiryRegisterTesting from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -90,7 +90,7 @@ class RegisterTestingRegisterTesting(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RegisterTestingRegisterTesting from a dict"""
+        """Create an instance of InquiryRegisterTesting from a dict"""
         if obj is None:
             return None
 
