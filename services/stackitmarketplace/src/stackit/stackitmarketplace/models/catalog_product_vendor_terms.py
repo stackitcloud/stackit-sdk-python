@@ -16,10 +16,11 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing_extensions import Annotated, Self
 
 
 class CatalogProductVendorTerms(BaseModel):
@@ -27,10 +28,19 @@ class CatalogProductVendorTerms(BaseModel):
     CatalogProductVendorTerms
     """
 
-    description: StrictStr = Field(description="The terms of use description.")
-    title: StrictStr = Field(description="The terms of use title.")
-    url: StrictStr = Field(description="The terms of use url.")
+    description: StrictStr = Field(description="The terms of service description.")
+    title: StrictStr = Field(description="The terms of service title.")
+    url: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The terms of use url.")
     __properties: ClassVar[List[str]] = ["description", "title", "url"]
+
+    @field_validator("url")
+    def url_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

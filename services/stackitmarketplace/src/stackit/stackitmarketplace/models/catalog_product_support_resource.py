@@ -16,10 +16,11 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing_extensions import Annotated, Self
 
 
 class CatalogProductSupportResource(BaseModel):
@@ -27,13 +28,25 @@ class CatalogProductSupportResource(BaseModel):
     CatalogProductSupportResource
     """
 
-    support_link: Optional[StrictStr] = Field(
+    support_link: Optional[Annotated[str, Field(strict=True, max_length=512)]] = Field(
         default=None, description="The support resource link.", alias="supportLink"
     )
     support_link_title: Optional[StrictStr] = Field(
         default=None, description="The support resource link title.", alias="supportLinkTitle"
     )
     __properties: ClassVar[List[str]] = ["supportLink", "supportLinkTitle"]
+
+    @field_validator("support_link")
+    def support_link_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

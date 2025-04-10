@@ -16,13 +16,25 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Set
+import re
+from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing_extensions import Self
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBytes,
+    StrictStr,
+    field_validator,
+)
+from typing_extensions import Annotated, Self
 
 from stackit.stackitmarketplace.models.catalog_product_overview_vendor import (
     CatalogProductOverviewVendor,
+)
+from stackit.stackitmarketplace.models.delivery_method import DeliveryMethod
+from stackit.stackitmarketplace.models.product_lifecycle_state import (
+    ProductLifecycleState,
 )
 
 
@@ -31,15 +43,12 @@ class CatalogProductOverview(BaseModel):
     CatalogProductOverview
     """
 
-    delivery_method: StrictStr = Field(
-        description="The product type. For reference: SAAS - Software as a Service, SAI - STACKIT Application Image",
-        alias="deliveryMethod",
-    )
-    lifecycle_state: StrictStr = Field(description="The lifecycle state of the product.", alias="lifecycleState")
-    logo: Optional[StrictStr] = Field(default=None, description="The logo base64 encoded.")
-    name: StrictStr = Field(description="The product name.")
-    product_id: StrictStr = Field(description="The product ID.", alias="productId")
-    summary: StrictStr = Field(description="The short summary of the product.")
+    delivery_method: DeliveryMethod = Field(alias="deliveryMethod")
+    lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
+    logo: Optional[Union[StrictBytes, StrictStr]] = Field(default=None, description="The logo base64 encoded.")
+    name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The name of the product.")
+    product_id: object = Field(alias="productId")
+    summary: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The short summary of the product.")
     vendor: CatalogProductOverviewVendor
     __properties: ClassVar[List[str]] = [
         "deliveryMethod",
@@ -51,18 +60,18 @@ class CatalogProductOverview(BaseModel):
         "vendor",
     ]
 
-    @field_validator("delivery_method")
-    def delivery_method_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["SAAS", "KUBERNETES", "SAI", "PROFESSIONAL_SERVICE"]):
-            raise ValueError("must be one of enum values ('SAAS', 'KUBERNETES', 'SAI', 'PROFESSIONAL_SERVICE')")
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
         return value
 
-    @field_validator("lifecycle_state")
-    def lifecycle_state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["PRODUCT_LIVE", "PRODUCT_PREVIEW"]):
-            raise ValueError("must be one of enum values ('PRODUCT_LIVE', 'PRODUCT_PREVIEW')")
+    @field_validator("summary")
+    def summary_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
         return value
 
     model_config = ConfigDict(
