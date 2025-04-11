@@ -16,17 +16,19 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Set
+import re
+from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
 from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
     StrictBool,
+    StrictBytes,
     StrictStr,
     field_validator,
 )
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 from stackit.stackitmarketplace.models.catalog_product_details_vendor import (
     CatalogProductDetailsVendor,
@@ -43,6 +45,10 @@ from stackit.stackitmarketplace.models.catalog_product_support_resource import (
 from stackit.stackitmarketplace.models.catalog_product_vendor_terms import (
     CatalogProductVendorTerms,
 )
+from stackit.stackitmarketplace.models.delivery_method import DeliveryMethod
+from stackit.stackitmarketplace.models.product_lifecycle_state import (
+    ProductLifecycleState,
+)
 
 
 class CatalogProductDetail(BaseModel):
@@ -53,29 +59,28 @@ class CatalogProductDetail(BaseModel):
     categories: Optional[List[StrictStr]] = Field(
         default=None, description="The list of categories associated to the product."
     )
-    delivery_method: StrictStr = Field(
-        description="The product type. For reference: SAAS - Software as a Service, SAI - STACKIT Application Image",
-        alias="deliveryMethod",
-    )
+    delivery_method: DeliveryMethod = Field(alias="deliveryMethod")
     description: StrictStr = Field(description="The product description.")
-    documentation_url: StrictStr = Field(description="The documentation URL.", alias="documentationUrl")
+    documentation_url: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The documentation URL.", alias="documentationUrl"
+    )
+    email: Optional[StrictStr] = Field(default=None, description="A e-mail address.")
     highlights: List[CatalogProductHighlight] = Field(description="The list of highlights.")
     is_product_listing: StrictBool = Field(
         description="If true, the product is not fully integrated but only listed. Product listings may not have prices and support information.",
         alias="isProductListing",
     )
-    lifecycle_state: StrictStr = Field(description="The lifecycle state of the product.", alias="lifecycleState")
-    logo: StrictStr = Field(description="The logo base64 encoded.")
-    name: StrictStr = Field(description="The product name.")
+    lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
+    logo: Union[StrictBytes, StrictStr] = Field(description="The logo base64 encoded.")
+    name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The name of the product.")
     pricing_options: List[CatalogProductPricingOption] = Field(
         description="The list of pricing options.", alias="pricingOptions"
     )
-    product_id: StrictStr = Field(description="The product ID.", alias="productId")
+    product_id: object = Field(alias="productId")
     summary: StrictStr = Field(description="The short summary of the product.")
-    support_email: Optional[StrictStr] = Field(
-        default=None, description="The e-mail address for support inquiries.", alias="supportEmail"
+    support_faq: Optional[Annotated[str, Field(strict=True, max_length=512)]] = Field(
+        default=None, description="The support FAQ URL.", alias="supportFaq"
     )
-    support_faq: Optional[StrictStr] = Field(default=None, description="The support FAQ URL.", alias="supportFaq")
     support_phone: Optional[StrictStr] = Field(
         default=None, description="The phone number for support inquiries.", alias="supportPhone"
     )
@@ -86,12 +91,15 @@ class CatalogProductDetail(BaseModel):
     vendor_terms: Optional[List[CatalogProductVendorTerms]] = Field(
         default=None, description="The list of terms of use.", alias="vendorTerms"
     )
-    video_url: StrictStr = Field(description="The video URL.", alias="videoUrl")
+    video_url: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The video URL.", alias="videoUrl"
+    )
     __properties: ClassVar[List[str]] = [
         "categories",
         "deliveryMethod",
         "description",
         "documentationUrl",
+        "email",
         "highlights",
         "isProductListing",
         "lifecycleState",
@@ -100,7 +108,6 @@ class CatalogProductDetail(BaseModel):
         "pricingOptions",
         "productId",
         "summary",
-        "supportEmail",
         "supportFaq",
         "supportPhone",
         "supportResources",
@@ -109,18 +116,41 @@ class CatalogProductDetail(BaseModel):
         "videoUrl",
     ]
 
-    @field_validator("delivery_method")
-    def delivery_method_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["SAAS", "KUBERNETES", "SAI", "PROFESSIONAL_SERVICE"]):
-            raise ValueError("must be one of enum values ('SAAS', 'KUBERNETES', 'SAI', 'PROFESSIONAL_SERVICE')")
+    @field_validator("documentation_url")
+    def documentation_url_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
         return value
 
-    @field_validator("lifecycle_state")
-    def lifecycle_state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["PRODUCT_LIVE", "PRODUCT_PREVIEW"]):
-            raise ValueError("must be one of enum values ('PRODUCT_LIVE', 'PRODUCT_PREVIEW')")
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
+
+    @field_validator("support_faq")
+    def support_faq_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
+        return value
+
+    @field_validator("video_url")
+    def video_url_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
         return value
 
     model_config = ConfigDict(
@@ -208,6 +238,7 @@ class CatalogProductDetail(BaseModel):
                 "deliveryMethod": obj.get("deliveryMethod"),
                 "description": obj.get("description"),
                 "documentationUrl": obj.get("documentationUrl"),
+                "email": obj.get("email"),
                 "highlights": (
                     [CatalogProductHighlight.from_dict(_item) for _item in obj["highlights"]]
                     if obj.get("highlights") is not None
@@ -224,7 +255,6 @@ class CatalogProductDetail(BaseModel):
                 ),
                 "productId": obj.get("productId"),
                 "summary": obj.get("summary"),
-                "supportEmail": obj.get("supportEmail"),
                 "supportFaq": obj.get("supportFaq"),
                 "supportPhone": obj.get("supportPhone"),
                 "supportResources": (

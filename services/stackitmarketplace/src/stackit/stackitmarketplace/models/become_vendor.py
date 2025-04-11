@@ -18,29 +18,21 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
-from stackit.stackitmarketplace.models.become_vendor_become_vendor import (
-    BecomeVendorBecomeVendor,
-)
+from stackit.stackitmarketplace.models.inquiry_become_vendor import InquiryBecomeVendor
+from stackit.stackitmarketplace.models.inquiry_form_type import InquiryFormType
 
 
 class BecomeVendor(BaseModel):
     """
-    Become a vendor.
+    Become a Vendor.
     """
 
-    become_vendor: BecomeVendorBecomeVendor = Field(alias="becomeVendor")
-    type: StrictStr = Field(description="The form type.")
+    become_vendor: InquiryBecomeVendor = Field(alias="becomeVendor")
+    type: InquiryFormType
     __properties: ClassVar[List[str]] = ["becomeVendor", "type"]
-
-    @field_validator("type")
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["become_vendor"]):
-            raise ValueError("must be one of enum values ('become_vendor')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,9 +88,7 @@ class BecomeVendor(BaseModel):
         _obj = cls.model_validate(
             {
                 "becomeVendor": (
-                    BecomeVendorBecomeVendor.from_dict(obj["becomeVendor"])
-                    if obj.get("becomeVendor") is not None
-                    else None
+                    InquiryBecomeVendor.from_dict(obj["becomeVendor"]) if obj.get("becomeVendor") is not None else None
                 ),
                 "type": obj.get("type"),
             }

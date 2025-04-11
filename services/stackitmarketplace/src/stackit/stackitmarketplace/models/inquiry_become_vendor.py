@@ -16,27 +16,28 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Self
-
-from stackit.stackitmarketplace.models.current_subscription_state_response import (
-    CurrentSubscriptionStateResponse,
-)
-from stackit.stackitmarketplace.models.requested_subscription_state_response import (
-    RequestedSubscriptionStateResponse,
-)
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing_extensions import Annotated, Self
 
 
-class SubscriptionCancelResponse(BaseModel):
+class InquiryBecomeVendor(BaseModel):
     """
-    SubscriptionCancelResponse
+    Become a vendor.
     """
 
-    current_subscription: CurrentSubscriptionStateResponse = Field(alias="currentSubscription")
-    requested_subscription: RequestedSubscriptionStateResponse = Field(alias="requestedSubscription")
-    __properties: ClassVar[List[str]] = ["currentSubscription", "requestedSubscription"]
+    contact_email: StrictStr = Field(description="A e-mail address.", alias="contactEmail")
+    message: Annotated[str, Field(strict=True, max_length=512)] = Field(description="A custom message.")
+    __properties: ClassVar[List[str]] = ["contactEmail", "message"]
+
+    @field_validator("message")
+    def message_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +56,7 @@ class SubscriptionCancelResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SubscriptionCancelResponse from a JSON string"""
+        """Create an instance of InquiryBecomeVendor from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,35 +76,16 @@ class SubscriptionCancelResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of current_subscription
-        if self.current_subscription:
-            _dict["currentSubscription"] = self.current_subscription.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of requested_subscription
-        if self.requested_subscription:
-            _dict["requestedSubscription"] = self.requested_subscription.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SubscriptionCancelResponse from a dict"""
+        """Create an instance of InquiryBecomeVendor from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "currentSubscription": (
-                    CurrentSubscriptionStateResponse.from_dict(obj["currentSubscription"])
-                    if obj.get("currentSubscription") is not None
-                    else None
-                ),
-                "requestedSubscription": (
-                    RequestedSubscriptionStateResponse.from_dict(obj["requestedSubscription"])
-                    if obj.get("requestedSubscription") is not None
-                    else None
-                ),
-            }
-        )
+        _obj = cls.model_validate({"contactEmail": obj.get("contactEmail"), "message": obj.get("message")})
         return _obj

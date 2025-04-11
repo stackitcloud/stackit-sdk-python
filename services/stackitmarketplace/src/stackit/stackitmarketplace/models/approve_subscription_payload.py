@@ -16,10 +16,11 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+from typing_extensions import Annotated, Self
 
 
 class ApproveSubscriptionPayload(BaseModel):
@@ -27,12 +28,24 @@ class ApproveSubscriptionPayload(BaseModel):
     ApproveSubscriptionPayload
     """
 
-    instance_target: Optional[StrictStr] = Field(
+    instance_target: Optional[Annotated[str, Field(strict=True, max_length=512)]] = Field(
         default=None,
         description="The target URL of the user instance, used to redirect the user to the instance after the subscription is active.",
         alias="instanceTarget",
     )
     __properties: ClassVar[List[str]] = ["instanceTarget"]
+
+    @field_validator("instance_target")
+    def instance_target_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

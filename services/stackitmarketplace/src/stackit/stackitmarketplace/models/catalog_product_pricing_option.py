@@ -18,12 +18,14 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 from stackit.stackitmarketplace.models.catalog_pricing_option_highlight import (
     CatalogPricingOptionHighlight,
 )
+from stackit.stackitmarketplace.models.price_type import PriceType
+from stackit.stackitmarketplace.models.pricing_option_unit import PricingOptionUnit
 
 
 class CatalogProductPricingOption(BaseModel):
@@ -34,9 +36,7 @@ class CatalogProductPricingOption(BaseModel):
     description: StrictStr = Field(description="The pricing option description.")
     highlights: List[CatalogPricingOptionHighlight] = Field(description="The list of highlights.")
     name: StrictStr = Field(description="The pricing option name.")
-    price_type: Optional[StrictStr] = Field(
-        default=None, description="The price type / pricing model.", alias="priceType"
-    )
+    price_type: Optional[PriceType] = Field(default=None, alias="priceType")
     pricing_plan: Optional[StrictStr] = Field(
         default=None, description="Additional price type information.", alias="pricingPlan"
     )
@@ -46,7 +46,7 @@ class CatalogProductPricingOption(BaseModel):
     sku_info_details: StrictStr = Field(
         description="More details about what this offering entails.", alias="skuInfoDetails"
     )
-    unit: Optional[StrictStr] = Field(default=None, description="The interval to which the rate applies.")
+    unit: Optional[PricingOptionUnit] = None
     __properties: ClassVar[List[str]] = [
         "description",
         "highlights",
@@ -59,16 +59,6 @@ class CatalogProductPricingOption(BaseModel):
         "skuInfoDetails",
         "unit",
     ]
-
-    @field_validator("price_type")
-    def price_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(["CONTRACT", "FREE", "FREE_TRIAL", "BYOL", "PAYG"]):
-            raise ValueError("must be one of enum values ('CONTRACT', 'FREE', 'FREE_TRIAL', 'BYOL', 'PAYG')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

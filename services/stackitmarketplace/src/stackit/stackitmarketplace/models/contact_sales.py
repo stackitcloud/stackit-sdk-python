@@ -18,12 +18,11 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
-from stackit.stackitmarketplace.models.contact_sales_contact_sales import (
-    ContactSalesContactSales,
-)
+from stackit.stackitmarketplace.models.inquiry_contact_sales import InquiryContactSales
+from stackit.stackitmarketplace.models.inquiry_form_type import InquiryFormType
 
 
 class ContactSales(BaseModel):
@@ -31,16 +30,9 @@ class ContactSales(BaseModel):
     Contact sales.
     """
 
-    contact_sales: ContactSalesContactSales = Field(alias="contactSales")
-    type: StrictStr = Field(description="The form type.")
+    contact_sales: InquiryContactSales = Field(alias="contactSales")
+    type: InquiryFormType
     __properties: ClassVar[List[str]] = ["contactSales", "type"]
-
-    @field_validator("type")
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["contact_sales"]):
-            raise ValueError("must be one of enum values ('contact_sales')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,9 +88,7 @@ class ContactSales(BaseModel):
         _obj = cls.model_validate(
             {
                 "contactSales": (
-                    ContactSalesContactSales.from_dict(obj["contactSales"])
-                    if obj.get("contactSales") is not None
-                    else None
+                    InquiryContactSales.from_dict(obj["contactSales"]) if obj.get("contactSales") is not None else None
                 ),
                 "type": obj.get("type"),
             }

@@ -18,11 +18,12 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
-from stackit.stackitmarketplace.models.register_testing_register_testing import (
-    RegisterTestingRegisterTesting,
+from stackit.stackitmarketplace.models.inquiry_form_type import InquiryFormType
+from stackit.stackitmarketplace.models.inquiry_register_testing import (
+    InquiryRegisterTesting,
 )
 
 
@@ -31,16 +32,9 @@ class RegisterTesting(BaseModel):
     Register for testing.
     """
 
-    register_testing: RegisterTestingRegisterTesting = Field(alias="registerTesting")
-    type: StrictStr = Field(description="The form type.")
+    register_testing: InquiryRegisterTesting = Field(alias="registerTesting")
+    type: InquiryFormType
     __properties: ClassVar[List[str]] = ["registerTesting", "type"]
-
-    @field_validator("type")
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["register_testing"]):
-            raise ValueError("must be one of enum values ('register_testing')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,7 +90,7 @@ class RegisterTesting(BaseModel):
         _obj = cls.model_validate(
             {
                 "registerTesting": (
-                    RegisterTestingRegisterTesting.from_dict(obj["registerTesting"])
+                    InquiryRegisterTesting.from_dict(obj["registerTesting"])
                     if obj.get("registerTesting") is not None
                     else None
                 ),

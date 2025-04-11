@@ -16,10 +16,11 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+from typing_extensions import Annotated, Self
 
 
 class CatalogProductOverviewVendor(BaseModel):
@@ -27,10 +28,28 @@ class CatalogProductOverviewVendor(BaseModel):
     CatalogProductOverviewVendor
     """
 
-    name: StrictStr = Field(description="The vendor name.")
-    vendor_id: StrictStr = Field(description="The vendor ID.", alias="vendorId")
-    website_url: StrictStr = Field(description="The vendor website URL.", alias="websiteUrl")
+    name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The product's vendor name.")
+    vendor_id: object = Field(alias="vendorId")
+    website_url: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="Uniform Resource Locator.", alias="websiteUrl"
+    )
     __properties: ClassVar[List[str]] = ["name", "vendorId", "websiteUrl"]
+
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
+
+    @field_validator("website_url")
+    def website_url_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
