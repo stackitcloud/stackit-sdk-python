@@ -18,11 +18,12 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
-from stackit.stackitmarketplace.models.suggest_product_suggest_product import (
-    SuggestProductSuggestProduct,
+from stackit.stackitmarketplace.models.inquiry_form_type import InquiryFormType
+from stackit.stackitmarketplace.models.inquiry_suggest_product import (
+    InquirySuggestProduct,
 )
 
 
@@ -31,16 +32,9 @@ class SuggestProduct(BaseModel):
     Suggest a product.
     """
 
-    suggest_product: SuggestProductSuggestProduct = Field(alias="suggestProduct")
-    type: StrictStr = Field(description="The form type.")
+    suggest_product: InquirySuggestProduct = Field(alias="suggestProduct")
+    type: InquiryFormType
     __properties: ClassVar[List[str]] = ["suggestProduct", "type"]
-
-    @field_validator("type")
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["suggest_product"]):
-            raise ValueError("must be one of enum values ('suggest_product')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,7 +90,7 @@ class SuggestProduct(BaseModel):
         _obj = cls.model_validate(
             {
                 "suggestProduct": (
-                    SuggestProductSuggestProduct.from_dict(obj["suggestProduct"])
+                    InquirySuggestProduct.from_dict(obj["suggestProduct"])
                     if obj.get("suggestProduct") is not None
                     else None
                 ),
