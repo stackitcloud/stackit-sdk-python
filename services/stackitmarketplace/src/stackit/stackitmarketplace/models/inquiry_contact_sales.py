@@ -19,24 +19,25 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 
-class SuggestProductSuggestProduct(BaseModel):
+class InquiryContactSales(BaseModel):
     """
-    SuggestProductSuggestProduct
+    Contact sales.
     """
 
     company_name: Annotated[str, Field(strict=True, max_length=512)] = Field(
-        description="The suggested product's company name.", alias="companyName"
+        description="The company name.", alias="companyName"
     )
-    message: Optional[Annotated[str, Field(strict=True, max_length=512)]] = Field(
-        default=None, description="An additional message."
+    contact_email: StrictStr = Field(description="A e-mail address.", alias="contactEmail")
+    full_name: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The full name of the contact person.", alias="fullName"
     )
-    name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The suggested product name.")
-    url: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The suggested product's website URL.")
-    __properties: ClassVar[List[str]] = ["companyName", "message", "name", "url"]
+    message: Annotated[str, Field(strict=True, max_length=512)] = Field(description="A custom message.")
+    product_id: object = Field(alias="productId")
+    __properties: ClassVar[List[str]] = ["companyName", "contactEmail", "fullName", "message", "productId"]
 
     @field_validator("company_name")
     def company_name_validate_regular_expression(cls, value):
@@ -45,25 +46,15 @@ class SuggestProductSuggestProduct(BaseModel):
             raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
         return value
 
+    @field_validator("full_name")
+    def full_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
+
     @field_validator("message")
     def message_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
-        return value
-
-    @field_validator("name")
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
-        return value
-
-    @field_validator("url")
-    def url_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
             raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
@@ -86,7 +77,7 @@ class SuggestProductSuggestProduct(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SuggestProductSuggestProduct from a JSON string"""
+        """Create an instance of InquiryContactSales from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -110,7 +101,7 @@ class SuggestProductSuggestProduct(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SuggestProductSuggestProduct from a dict"""
+        """Create an instance of InquiryContactSales from a dict"""
         if obj is None:
             return None
 
@@ -120,9 +111,10 @@ class SuggestProductSuggestProduct(BaseModel):
         _obj = cls.model_validate(
             {
                 "companyName": obj.get("companyName"),
+                "contactEmail": obj.get("contactEmail"),
+                "fullName": obj.get("fullName"),
                 "message": obj.get("message"),
-                "name": obj.get("name"),
-                "url": obj.get("url"),
+                "productId": obj.get("productId"),
             }
         )
         return _obj

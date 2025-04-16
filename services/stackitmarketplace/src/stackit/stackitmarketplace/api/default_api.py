@@ -64,8 +64,10 @@ class DefaultApi:
     @validate_call
     def approve_subscription(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
-        subscription_id: Annotated[StrictStr, Field(description="The subscription ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
+        subscription_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
+        ],
         approve_subscription_payload: Optional[ApproveSubscriptionPayload] = None,
         _request_timeout: Union[
             None,
@@ -136,8 +138,10 @@ class DefaultApi:
     @validate_call
     def approve_subscription_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
-        subscription_id: Annotated[StrictStr, Field(description="The subscription ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
+        subscription_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
+        ],
         approve_subscription_payload: Optional[ApproveSubscriptionPayload] = None,
         _request_timeout: Union[
             None,
@@ -208,8 +212,10 @@ class DefaultApi:
     @validate_call
     def approve_subscription_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
-        subscription_id: Annotated[StrictStr, Field(description="The subscription ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
+        subscription_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
+        ],
         approve_subscription_payload: Optional[ApproveSubscriptionPayload] = None,
         _request_timeout: Union[
             None,
@@ -340,7 +346,7 @@ class DefaultApi:
     @validate_call
     def get_catalog_product(
         self,
-        product_id: Annotated[StrictStr, Field(description="The product ID.")],
+        product_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The product ID.")],
         locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
         _request_timeout: Union[
             None,
@@ -408,7 +414,7 @@ class DefaultApi:
     @validate_call
     def get_catalog_product_with_http_info(
         self,
-        product_id: Annotated[StrictStr, Field(description="The product ID.")],
+        product_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The product ID.")],
         locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
         _request_timeout: Union[
             None,
@@ -476,7 +482,7 @@ class DefaultApi:
     @validate_call
     def get_catalog_product_without_preload_content(
         self,
-        product_id: Annotated[StrictStr, Field(description="The product ID.")],
+        product_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The product ID.")],
         locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
         _request_timeout: Union[
             None,
@@ -595,8 +601,10 @@ class DefaultApi:
     @validate_call
     def get_vendor_subscription(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
-        subscription_id: Annotated[StrictStr, Field(description="The subscription ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
+        subscription_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -663,8 +671,10 @@ class DefaultApi:
     @validate_call
     def get_vendor_subscription_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
-        subscription_id: Annotated[StrictStr, Field(description="The subscription ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
+        subscription_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -731,8 +741,10 @@ class DefaultApi:
     @validate_call
     def get_vendor_subscription_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
-        subscription_id: Annotated[StrictStr, Field(description="The subscription ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
+        subscription_id: Annotated[
+            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1471,7 +1483,7 @@ class DefaultApi:
     @validate_call
     def list_vendor_subscriptions(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
         cursor: Annotated[
             Optional[StrictStr],
             Field(
@@ -1488,7 +1500,10 @@ class DefaultApi:
                 description="The maximum number of items to return in the response. If maximum is exceeded, maximum is used."
             ),
         ] = None,
-        product_id: Annotated[Optional[StrictStr], Field(description="The product ID.")] = None,
+        product_id: Annotated[
+            Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]],
+            Field(description="The product ID."),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1560,7 +1575,7 @@ class DefaultApi:
     @validate_call
     def list_vendor_subscriptions_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
         cursor: Annotated[
             Optional[StrictStr],
             Field(
@@ -1577,7 +1592,10 @@ class DefaultApi:
                 description="The maximum number of items to return in the response. If maximum is exceeded, maximum is used."
             ),
         ] = None,
-        product_id: Annotated[Optional[StrictStr], Field(description="The product ID.")] = None,
+        product_id: Annotated[
+            Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]],
+            Field(description="The product ID."),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1649,7 +1667,7 @@ class DefaultApi:
     @validate_call
     def list_vendor_subscriptions_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
         cursor: Annotated[
             Optional[StrictStr],
             Field(
@@ -1666,7 +1684,10 @@ class DefaultApi:
                 description="The maximum number of items to return in the response. If maximum is exceeded, maximum is used."
             ),
         ] = None,
-        product_id: Annotated[Optional[StrictStr], Field(description="The product ID.")] = None,
+        product_id: Annotated[
+            Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]],
+            Field(description="The product ID."),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1799,7 +1820,7 @@ class DefaultApi:
     @validate_call
     def resolve_customer(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
         resolve_customer_payload: ResolveCustomerPayload,
         _request_timeout: Union[
             None,
@@ -1867,7 +1888,7 @@ class DefaultApi:
     @validate_call
     def resolve_customer_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
         resolve_customer_payload: ResolveCustomerPayload,
         _request_timeout: Union[
             None,
@@ -1935,7 +1956,7 @@ class DefaultApi:
     @validate_call
     def resolve_customer_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The project ID.")],
+        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
         resolve_customer_payload: ResolveCustomerPayload,
         _request_timeout: Union[
             None,

@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Set
+from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
@@ -30,12 +30,12 @@ class ListVendorSubscriptionsResponse(BaseModel):
     """
 
     cursor: StrictStr = Field(
-        description="A pagination cursor that represents a position in the dataset. Use it in subsequent requests to continue retrieving data from this position. If `null`, there are no more results to retrieve."
+        description="A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning."
     )
     items: List[VendorSubscription] = Field(description="List of subscriptions.")
-    limit: Annotated[int, Field(le=100, strict=True, ge=0)] = Field(
-        description="Number of subscriptions returned for a single request."
-    )
+    limit: Union[
+        Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
+    ] = Field(description="Limit for returned Objects.")
     __properties: ClassVar[List[str]] = ["cursor", "items", "limit"]
 
     model_config = ConfigDict(
@@ -101,7 +101,7 @@ class ListVendorSubscriptionsResponse(BaseModel):
                     if obj.get("items") is not None
                     else None
                 ),
-                "limit": obj.get("limit") if obj.get("limit") is not None else 50,
+                "limit": obj.get("limit"),
             }
         )
         return _obj
