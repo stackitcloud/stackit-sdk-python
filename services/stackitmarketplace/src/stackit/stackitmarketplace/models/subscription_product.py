@@ -22,23 +22,35 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
+from stackit.stackitmarketplace.models.delivery_method import DeliveryMethod
+from stackit.stackitmarketplace.models.price_type import PriceType
+from stackit.stackitmarketplace.models.product_lifecycle_state import (
+    ProductLifecycleState,
+)
+
 
 class SubscriptionProduct(BaseModel):
     """
-    SubscriptionProduct
+    The product of a subscription
     """
 
-    delivery_method: StrictStr = Field(description="The product's delivery method.", alias="deliveryMethod")
-    lifecycle_state: StrictStr = Field(description="The lifecycle state of the product.", alias="lifecycleState")
-    price_type: StrictStr = Field(description="The product's price type.", alias="priceType")
-    pricing_plan: StrictStr = Field(description="The product's pricing plan.", alias="pricingPlan")
-    product_id: StrictStr = Field(description="The product ID.", alias="productId")
-    product_name: StrictStr = Field(description="The name of the product.", alias="productName")
-    vendor_name: StrictStr = Field(description="The product's vendor name.", alias="vendorName")
-    vendor_product_id: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="The product ID provided by the Vendor.", alias="vendorProductId"
+    delivery_method: DeliveryMethod = Field(alias="deliveryMethod")
+    lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
+    price_type: PriceType = Field(alias="priceType")
+    pricing_plan: StrictStr = Field(description="Additional price type information.", alias="pricingPlan")
+    product_id: object = Field(alias="productId")
+    product_name: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The name of the product.", alias="productName"
     )
-    vendor_website_url: StrictStr = Field(description="The vendor's website.", alias="vendorWebsiteUrl")
+    vendor_name: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The product's vendor name.", alias="vendorName"
+    )
+    vendor_product_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="The vendor provided product ID.", alias="vendorProductId"
+    )
+    vendor_website_url: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The vendor's website.", alias="vendorWebsiteUrl"
+    )
     __properties: ClassVar[List[str]] = [
         "deliveryMethod",
         "lifecycleState",
@@ -51,25 +63,18 @@ class SubscriptionProduct(BaseModel):
         "vendorWebsiteUrl",
     ]
 
-    @field_validator("delivery_method")
-    def delivery_method_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["SAAS"]):
-            raise ValueError("must be one of enum values ('SAAS')")
+    @field_validator("product_name")
+    def product_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
         return value
 
-    @field_validator("lifecycle_state")
-    def lifecycle_state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["PRODUCT_LIVE", "PRODUCT_PREVIEW"]):
-            raise ValueError("must be one of enum values ('PRODUCT_LIVE', 'PRODUCT_PREVIEW')")
-        return value
-
-    @field_validator("price_type")
-    def price_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["CONTRACT", "FREE", "FREE_TRIAL", "BYOL", "PAYG"]):
-            raise ValueError("must be one of enum values ('CONTRACT', 'FREE', 'FREE_TRIAL', 'BYOL', 'PAYG')")
+    @field_validator("vendor_name")
+    def vendor_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
         return value
 
     @field_validator("vendor_product_id")
@@ -80,6 +85,15 @@ class SubscriptionProduct(BaseModel):
 
         if not re.match(r"^[a-zA-Z0-9](?:[a-zA-Z0-9_+&-]){0,39}$", value):
             raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9](?:[a-zA-Z0-9_+&-]){0,39}$/")
+        return value
+
+    @field_validator("vendor_website_url")
+    def vendor_website_url_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
         return value
 
     model_config = ConfigDict(

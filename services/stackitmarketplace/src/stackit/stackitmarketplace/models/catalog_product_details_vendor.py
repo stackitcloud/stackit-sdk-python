@@ -16,10 +16,18 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Set
+import re
+from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Self
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBytes,
+    StrictStr,
+    field_validator,
+)
+from typing_extensions import Annotated, Self
 
 
 class CatalogProductDetailsVendor(BaseModel):
@@ -28,12 +36,41 @@ class CatalogProductDetailsVendor(BaseModel):
     """
 
     description: StrictStr = Field(description="The vendor description.")
-    logo: StrictStr = Field(description="The vendor logo base64 encoded.")
-    name: StrictStr = Field(description="The vendor name.")
-    vendor_id: StrictStr = Field(description="The vendor ID.", alias="vendorId")
-    video_url: StrictStr = Field(description="The vendor video URL.", alias="videoUrl")
-    website_url: StrictStr = Field(description="The vendor website URL.", alias="websiteUrl")
+    logo: Union[StrictBytes, StrictStr] = Field(description="The logo base64 encoded.")
+    name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The product's vendor name.")
+    vendor_id: object = Field(alias="vendorId")
+    video_url: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The vendor video URL.", alias="videoUrl"
+    )
+    website_url: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The vendor website URL.", alias="websiteUrl"
+    )
     __properties: ClassVar[List[str]] = ["description", "logo", "name", "vendorId", "videoUrl", "websiteUrl"]
+
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
+
+    @field_validator("video_url")
+    def video_url_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
+        return value
+
+    @field_validator("website_url")
+    def website_url_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

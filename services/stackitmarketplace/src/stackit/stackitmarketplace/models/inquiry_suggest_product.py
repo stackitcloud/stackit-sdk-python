@@ -19,24 +19,56 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
 
 
-class BecomeVendorBecomeVendor(BaseModel):
+class InquirySuggestProduct(BaseModel):
     """
-    BecomeVendorBecomeVendor
+    Suggest a product.
     """
 
-    contact_email: StrictStr = Field(description="The contact e-mail address.", alias="contactEmail")
-    message: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The message content.")
-    __properties: ClassVar[List[str]] = ["contactEmail", "message"]
+    company_name: Annotated[str, Field(strict=True, max_length=512)] = Field(
+        description="The suggested product's company name.", alias="companyName"
+    )
+    message: Optional[Annotated[str, Field(strict=True, max_length=512)]] = Field(
+        default=None, description="A custom message."
+    )
+    name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The suggested product name.")
+    url: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The suggested product's website URL.")
+    __properties: ClassVar[List[str]] = ["companyName", "message", "name", "url"]
+
+    @field_validator("company_name")
+    def company_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
 
     @field_validator("message")
     def message_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if value is None:
+            return value
+
         if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
             raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
+
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
+
+    @field_validator("url")
+    def url_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
         return value
 
     model_config = ConfigDict(
@@ -56,7 +88,7 @@ class BecomeVendorBecomeVendor(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BecomeVendorBecomeVendor from a JSON string"""
+        """Create an instance of InquirySuggestProduct from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,12 +112,19 @@ class BecomeVendorBecomeVendor(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BecomeVendorBecomeVendor from a dict"""
+        """Create an instance of InquirySuggestProduct from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"contactEmail": obj.get("contactEmail"), "message": obj.get("message")})
+        _obj = cls.model_validate(
+            {
+                "companyName": obj.get("companyName"),
+                "message": obj.get("message"),
+                "name": obj.get("name"),
+                "url": obj.get("url"),
+            }
+        )
         return _obj

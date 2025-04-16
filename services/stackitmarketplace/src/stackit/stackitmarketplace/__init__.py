@@ -38,9 +38,6 @@ from stackit.stackitmarketplace.models.approve_subscription_payload import (
     ApproveSubscriptionPayload,
 )
 from stackit.stackitmarketplace.models.become_vendor import BecomeVendor
-from stackit.stackitmarketplace.models.become_vendor_become_vendor import (
-    BecomeVendorBecomeVendor,
-)
 from stackit.stackitmarketplace.models.catalog_pricing_option_highlight import (
     CatalogPricingOptionHighlight,
 )
@@ -69,15 +66,19 @@ from stackit.stackitmarketplace.models.catalog_product_vendor_terms import (
     CatalogProductVendorTerms,
 )
 from stackit.stackitmarketplace.models.contact_sales import ContactSales
-from stackit.stackitmarketplace.models.contact_sales_contact_sales import (
-    ContactSalesContactSales,
-)
-from stackit.stackitmarketplace.models.current_subscription_state_response import (
-    CurrentSubscriptionStateResponse,
-)
+from stackit.stackitmarketplace.models.delivery_method import DeliveryMethod
 from stackit.stackitmarketplace.models.error_response import ErrorResponse
 from stackit.stackitmarketplace.models.inquiries_create_inquiry_payload import (
     InquiriesCreateInquiryPayload,
+)
+from stackit.stackitmarketplace.models.inquiry_become_vendor import InquiryBecomeVendor
+from stackit.stackitmarketplace.models.inquiry_contact_sales import InquiryContactSales
+from stackit.stackitmarketplace.models.inquiry_form_type import InquiryFormType
+from stackit.stackitmarketplace.models.inquiry_register_testing import (
+    InquiryRegisterTesting,
+)
+from stackit.stackitmarketplace.models.inquiry_suggest_product import (
+    InquirySuggestProduct,
 )
 from stackit.stackitmarketplace.models.list_catalog_products_response import (
     ListCatalogProductsResponse,
@@ -85,22 +86,18 @@ from stackit.stackitmarketplace.models.list_catalog_products_response import (
 from stackit.stackitmarketplace.models.list_vendor_subscriptions_response import (
     ListVendorSubscriptionsResponse,
 )
+from stackit.stackitmarketplace.models.price_type import PriceType
+from stackit.stackitmarketplace.models.pricing_option_unit import PricingOptionUnit
+from stackit.stackitmarketplace.models.product_lifecycle_state import (
+    ProductLifecycleState,
+)
 from stackit.stackitmarketplace.models.register_testing import RegisterTesting
-from stackit.stackitmarketplace.models.register_testing_register_testing import (
-    RegisterTestingRegisterTesting,
-)
-from stackit.stackitmarketplace.models.requested_subscription_state_response import (
-    RequestedSubscriptionStateResponse,
-)
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload,
 )
-from stackit.stackitmarketplace.models.subscription_cancel_response import (
-    SubscriptionCancelResponse,
+from stackit.stackitmarketplace.models.subscription_lifecycle_state import (
+    SubscriptionLifecycleState,
 )
 from stackit.stackitmarketplace.models.subscription_product import SubscriptionProduct
 from stackit.stackitmarketplace.models.suggest_product import SuggestProduct
-from stackit.stackitmarketplace.models.suggest_product_suggest_product import (
-    SuggestProductSuggestProduct,
-)
 from stackit.stackitmarketplace.models.vendor_subscription import VendorSubscription

@@ -18,9 +18,12 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
+from stackit.stackitmarketplace.models.subscription_lifecycle_state import (
+    SubscriptionLifecycleState,
+)
 from stackit.stackitmarketplace.models.subscription_product import SubscriptionProduct
 
 
@@ -29,29 +32,11 @@ class VendorSubscription(BaseModel):
     VendorSubscription
     """
 
-    lifecycle_state: StrictStr = Field(description="Lifecycle state of the subscription.", alias="lifecycleState")
+    lifecycle_state: SubscriptionLifecycleState = Field(alias="lifecycleState")
     product: SubscriptionProduct
-    project_id: StrictStr = Field(description="The associated consumer project ID.", alias="projectId")
-    subscription_id: StrictStr = Field(description="The subscription ID.", alias="subscriptionId")
+    project_id: object = Field(alias="projectId")
+    subscription_id: object = Field(alias="subscriptionId")
     __properties: ClassVar[List[str]] = ["lifecycleState", "product", "projectId", "subscriptionId"]
-
-    @field_validator("lifecycle_state")
-    def lifecycle_state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(
-            [
-                "SUBSCRIPTION_PENDING",
-                "SUBSCRIPTION_ACTIVE",
-                "SUBSCRIPTION_INACTIVE",
-                "SUBSCRIPTION_CANCELLING",
-                "SUBSCRIPTION_CANCELLED",
-                "SUBSCRIPTION_REJECTED",
-            ]
-        ):
-            raise ValueError(
-                "must be one of enum values ('SUBSCRIPTION_PENDING', 'SUBSCRIPTION_ACTIVE', 'SUBSCRIPTION_INACTIVE', 'SUBSCRIPTION_CANCELLING', 'SUBSCRIPTION_CANCELLED', 'SUBSCRIPTION_REJECTED')"
-            )
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
