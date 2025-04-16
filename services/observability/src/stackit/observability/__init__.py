@@ -77,6 +77,9 @@ from stackit.observability.models.create_credentials_response import (
 )
 from stackit.observability.models.create_instance_payload import CreateInstancePayload
 from stackit.observability.models.create_instance_response import CreateInstanceResponse
+from stackit.observability.models.create_logs_alertgroups_payload import (
+    CreateLogsAlertgroupsPayload,
+)
 from stackit.observability.models.create_scrape_config_payload import (
     CreateScrapeConfigPayload,
 )
@@ -199,6 +202,9 @@ from stackit.observability.models.update_grafana_configs_payload_generic_oauth i
     UpdateGrafanaConfigsPayloadGenericOauth,
 )
 from stackit.observability.models.update_instance_payload import UpdateInstancePayload
+from stackit.observability.models.update_logs_alertgroup_payload import (
+    UpdateLogsAlertgroupPayload,
+)
 from stackit.observability.models.update_metrics_storage_retention_payload import (
     UpdateMetricsStorageRetentionPayload,
 )
