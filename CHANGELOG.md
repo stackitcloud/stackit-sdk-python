@@ -4,7 +4,10 @@
 - `stackitmarketplace`: [v0.3.0](services/stackitmarketplace/CHANGELOG.md#v030-2025-04-04)
   - **Feature:** Add new `VendorProductId` attribute for subscription products
 - `observability`: [v0.4.0](services/observability/CHANGELOG.md#v040-2025-04-17)
-- **Feature:** Add new methods `create_logs_alertgroups`, `delete_logs_alertgroup`, `get_logs_alertgroup`, `list_logs_alertgroups`, `update_logs_alertgroup`
+  - **Feature:** Add new methods `create_logs_alertgroups`, `delete_logs_alertgroup`, `get_logs_alertgroup`, `list_logs_alertgroups`, `update_logs_alertgroup`
+- `git`: [v0.1.0](services/git/CHANGELOG.md#v010-2025-04-23)
+    - **New**: STACKIT Git module can be used to manage STACKIT Git
+
 
 ## Release (2025-03-27)
 - `alb`: [v0.1.0](services/alb/CHANGELOG.md#v010-2025-03-18)
