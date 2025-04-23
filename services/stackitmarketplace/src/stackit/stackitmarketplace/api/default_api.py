@@ -346,7 +346,7 @@ class DefaultApi:
     @validate_call
     def get_catalog_product(
         self,
-        product_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The product ID.")],
+        product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29, description="The product ID.")],
         locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
         _request_timeout: Union[
             None,
@@ -414,7 +414,7 @@ class DefaultApi:
     @validate_call
     def get_catalog_product_with_http_info(
         self,
-        product_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The product ID.")],
+        product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29, description="The product ID.")],
         locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
         _request_timeout: Union[
             None,
@@ -482,7 +482,7 @@ class DefaultApi:
     @validate_call
     def get_catalog_product_without_preload_content(
         self,
-        product_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The product ID.")],
+        product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29, description="The product ID.")],
         locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
         _request_timeout: Union[
             None,
@@ -1501,7 +1501,7 @@ class DefaultApi:
             ),
         ] = None,
         product_id: Annotated[
-            Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]],
+            Optional[Annotated[str, Field(min_length=10, strict=True, max_length=29)]],
             Field(description="The product ID."),
         ] = None,
         _request_timeout: Union[
@@ -1593,7 +1593,7 @@ class DefaultApi:
             ),
         ] = None,
         product_id: Annotated[
-            Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]],
+            Optional[Annotated[str, Field(min_length=10, strict=True, max_length=29)]],
             Field(description="The product ID."),
         ] = None,
         _request_timeout: Union[
@@ -1685,7 +1685,7 @@ class DefaultApi:
             ),
         ] = None,
         product_id: Annotated[
-            Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]],
+            Optional[Annotated[str, Field(min_length=10, strict=True, max_length=29)]],
             Field(description="The product ID."),
         ] = None,
         _request_timeout: Union[
