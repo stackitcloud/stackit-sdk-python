@@ -124,6 +124,7 @@ class DefaultApi:
             "400": None,
             "401": "ErrorResponse",
             "404": None,
+            "409": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -198,6 +199,7 @@ class DefaultApi:
             "400": None,
             "401": "ErrorResponse",
             "404": None,
+            "409": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -272,6 +274,7 @@ class DefaultApi:
             "400": None,
             "401": "ErrorResponse",
             "404": None,
+            "409": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
