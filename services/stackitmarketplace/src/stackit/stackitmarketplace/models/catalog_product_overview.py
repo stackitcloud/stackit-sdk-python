@@ -47,7 +47,9 @@ class CatalogProductOverview(BaseModel):
     lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
     logo: Optional[Union[StrictBytes, StrictStr]] = Field(default=None, description="The logo base64 encoded.")
     name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The name of the product.")
-    product_id: object = Field(alias="productId")
+    product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29)] = Field(
+        description="The user-readable product ID.", alias="productId"
+    )
     summary: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The short summary of the product.")
     vendor: CatalogProductOverviewVendor
     __properties: ClassVar[List[str]] = [
@@ -65,6 +67,13 @@ class CatalogProductOverview(BaseModel):
         """Validates the regular expression"""
         if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
             raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
+
+    @field_validator("product_id")
+    def product_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-z0-9-]{1,20}-[0-9a-f]{8}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z0-9-]{1,20}-[0-9a-f]{8}$/")
         return value
 
     @field_validator("summary")
