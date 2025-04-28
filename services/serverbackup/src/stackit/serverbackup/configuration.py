@@ -1,5 +1,10 @@
 # coding: utf-8
 
+import sys
+
+import os
+
+
 """
     STACKIT Server Backup Management API
 
@@ -11,8 +16,6 @@
 
     Do not edit the class manually.
 """  # noqa: E501 docstring might be too long
-
-import os
 
 
 class HostConfiguration:
@@ -30,6 +33,7 @@ class HostConfiguration:
             "as a function argument instead of being set in the client configuration.\n"
             "Once all services have migrated, the methods to specify the region in the client configuration "
             "will be removed.",
+            file=sys.stderr,
         )
         """Constructor
         """
