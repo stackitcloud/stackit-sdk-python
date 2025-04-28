@@ -346,7 +346,7 @@ class DefaultApi:
     @validate_call
     def get_catalog_product(
         self,
-        product_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The product ID.")],
+        product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29, description="The product ID.")],
         locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
         _request_timeout: Union[
             None,
@@ -414,7 +414,7 @@ class DefaultApi:
     @validate_call
     def get_catalog_product_with_http_info(
         self,
-        product_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The product ID.")],
+        product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29, description="The product ID.")],
         locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
         _request_timeout: Union[
             None,
@@ -482,7 +482,7 @@ class DefaultApi:
     @validate_call
     def get_catalog_product_without_preload_content(
         self,
-        product_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The product ID.")],
+        product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29, description="The product ID.")],
         locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
         _request_timeout: Union[
             None,
@@ -1132,7 +1132,7 @@ class DefaultApi:
         sort: Annotated[
             Optional[StrictStr],
             Field(
-                description="Sort the products based on attributes and order (if specified). E.g `name:asc`. The supported attributes are `name`, `price`, and `deliveryMethod`. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name,price:desc`. The order can be ommited to sort by the default order. E.g `name`."
+                description="Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`."
             ),
         ] = None,
         _request_timeout: Union[
@@ -1157,7 +1157,7 @@ class DefaultApi:
         :type locale: str
         :param filter: Filter the products based on attributes. E.g `deliveryMethod eq \"SAAS\"`. The supported attributes are `deliveryMethod`, `priceType`, `category`, `vendorId`, `vendorName`, and `name`. The supported operators are `eq`. Filters can be joined with `and` or `or`.
         :type filter: str
-        :param sort: Sort the products based on attributes and order (if specified). E.g `name:asc`. The supported attributes are `name`, `price`, and `deliveryMethod`. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name,price:desc`. The order can be ommited to sort by the default order. E.g `name`.
+        :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
         :type sort: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1235,7 +1235,7 @@ class DefaultApi:
         sort: Annotated[
             Optional[StrictStr],
             Field(
-                description="Sort the products based on attributes and order (if specified). E.g `name:asc`. The supported attributes are `name`, `price`, and `deliveryMethod`. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name,price:desc`. The order can be ommited to sort by the default order. E.g `name`."
+                description="Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`."
             ),
         ] = None,
         _request_timeout: Union[
@@ -1260,7 +1260,7 @@ class DefaultApi:
         :type locale: str
         :param filter: Filter the products based on attributes. E.g `deliveryMethod eq \"SAAS\"`. The supported attributes are `deliveryMethod`, `priceType`, `category`, `vendorId`, `vendorName`, and `name`. The supported operators are `eq`. Filters can be joined with `and` or `or`.
         :type filter: str
-        :param sort: Sort the products based on attributes and order (if specified). E.g `name:asc`. The supported attributes are `name`, `price`, and `deliveryMethod`. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name,price:desc`. The order can be ommited to sort by the default order. E.g `name`.
+        :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
         :type sort: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1338,7 +1338,7 @@ class DefaultApi:
         sort: Annotated[
             Optional[StrictStr],
             Field(
-                description="Sort the products based on attributes and order (if specified). E.g `name:asc`. The supported attributes are `name`, `price`, and `deliveryMethod`. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name,price:desc`. The order can be ommited to sort by the default order. E.g `name`."
+                description="Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`."
             ),
         ] = None,
         _request_timeout: Union[
@@ -1363,7 +1363,7 @@ class DefaultApi:
         :type locale: str
         :param filter: Filter the products based on attributes. E.g `deliveryMethod eq \"SAAS\"`. The supported attributes are `deliveryMethod`, `priceType`, `category`, `vendorId`, `vendorName`, and `name`. The supported operators are `eq`. Filters can be joined with `and` or `or`.
         :type filter: str
-        :param sort: Sort the products based on attributes and order (if specified). E.g `name:asc`. The supported attributes are `name`, `price`, and `deliveryMethod`. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name,price:desc`. The order can be ommited to sort by the default order. E.g `name`.
+        :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
         :type sort: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1501,7 +1501,7 @@ class DefaultApi:
             ),
         ] = None,
         product_id: Annotated[
-            Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]],
+            Optional[Annotated[str, Field(min_length=10, strict=True, max_length=29)]],
             Field(description="The product ID."),
         ] = None,
         _request_timeout: Union[
@@ -1593,7 +1593,7 @@ class DefaultApi:
             ),
         ] = None,
         product_id: Annotated[
-            Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]],
+            Optional[Annotated[str, Field(min_length=10, strict=True, max_length=29)]],
             Field(description="The product ID."),
         ] = None,
         _request_timeout: Union[
@@ -1685,7 +1685,7 @@ class DefaultApi:
             ),
         ] = None,
         product_id: Annotated[
-            Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]],
+            Optional[Annotated[str, Field(min_length=10, strict=True, max_length=29)]],
             Field(description="The product ID."),
         ] = None,
         _request_timeout: Union[
