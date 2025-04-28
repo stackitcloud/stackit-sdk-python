@@ -7,6 +7,8 @@
   - **Feature:** Add new methods `create_logs_alertgroups`, `delete_logs_alertgroup`, `get_logs_alertgroup`, `list_logs_alertgroups`, `update_logs_alertgroup`
 - `git`: [v0.1.0](services/git/CHANGELOG.md#v010-2025-04-23)
     - **New**: STACKIT Git module can be used to manage STACKIT Git
+- `kms`: [v0.0.1](services/kms/CHANGELOG.md#v001-2025-04-28)
+  - **New module:** Initial publication of Key Management Service API
 
 
 ## Release (2025-03-27)
