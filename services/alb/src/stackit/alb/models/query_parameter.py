@@ -17,26 +17,20 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 
-class PlanDetails(BaseModel):
+class QueryParameter(BaseModel):
     """
-    PlanDetails
+    QueryParameter
     """
 
-    description: Optional[StrictStr] = Field(default=None, description="Description")
-    flavor_name: Optional[StrictStr] = Field(default=None, description="Flavor Name", alias="flavorName")
-    max_connections: Optional[StrictInt] = Field(
-        default=None,
-        description="Maximum number of concurrent connections per application load balancer VM instance.",
-        alias="maxConnections",
+    exact_match: Optional[StrictStr] = Field(
+        default=None, description="Exact match for the parameter value.", alias="exactMatch"
     )
-    name: Optional[StrictStr] = Field(default=None, description="Service Plan Name")
-    plan_id: Optional[StrictStr] = Field(default=None, description="Service Plan Identifier", alias="planId")
-    region: Optional[StrictStr] = Field(default=None, description="Region this Plan is available in")
-    __properties: ClassVar[List[str]] = ["description", "flavorName", "maxConnections", "name", "planId", "region"]
+    name: Optional[StrictStr] = Field(default=None, description="Parameter name.")
+    __properties: ClassVar[List[str]] = ["exactMatch", "name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +49,7 @@ class PlanDetails(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PlanDetails from a JSON string"""
+        """Create an instance of QueryParameter from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -79,21 +73,12 @@ class PlanDetails(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PlanDetails from a dict"""
+        """Create an instance of QueryParameter from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "description": obj.get("description"),
-                "flavorName": obj.get("flavorName"),
-                "maxConnections": obj.get("maxConnections"),
-                "name": obj.get("name"),
-                "planId": obj.get("planId"),
-                "region": obj.get("region"),
-            }
-        )
+        _obj = cls.model_validate({"exactMatch": obj.get("exactMatch"), "name": obj.get("name")})
         return _obj
