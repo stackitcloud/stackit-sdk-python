@@ -28,10 +28,25 @@ class CreateDistributionPayload(BaseModel):
     CreateDistributionPayload
     """
 
+    blocked_countries: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="Restricts access to your content based on country.  We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB).  This setting blocks users from the specified countries. ",
+        alias="blockedCountries",
+    )
+    blocked_ips: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution. ",
+        alias="blockedIPs",
+    )
     intent_id: Optional[StrictStr] = Field(
         default=None,
         description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped. ",
         alias="intentId",
+    )
+    monthly_limit_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
+        default=None,
+        description="Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use. ",
+        alias="monthlyLimitBytes",
     )
     origin_request_headers: Optional[Dict[str, StrictStr]] = Field(
         default=None,
@@ -45,7 +60,15 @@ class CreateDistributionPayload(BaseModel):
     regions: Annotated[List[Region], Field(min_length=1)] = Field(
         description="Define in which regions you would like your content to be cached. "
     )
-    __properties: ClassVar[List[str]] = ["intentId", "originRequestHeaders", "originUrl", "regions"]
+    __properties: ClassVar[List[str]] = [
+        "blockedCountries",
+        "blockedIPs",
+        "intentId",
+        "monthlyLimitBytes",
+        "originRequestHeaders",
+        "originUrl",
+        "regions",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +120,10 @@ class CreateDistributionPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "blockedCountries": obj.get("blockedCountries"),
+                "blockedIPs": obj.get("blockedIPs"),
                 "intentId": obj.get("intentId"),
+                "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "originRequestHeaders": obj.get("originRequestHeaders"),
                 "originUrl": obj.get("originUrl"),
                 "regions": obj.get("regions"),
