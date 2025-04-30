@@ -20,9 +20,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.cdn.models.generic_json_response_details_inner import (
-    GenericJSONResponseDetailsInner,
-)
+from stackit.cdn.models.error_details import ErrorDetails
 
 
 class GenericJSONResponse(BaseModel):
@@ -30,9 +28,7 @@ class GenericJSONResponse(BaseModel):
     GenericJSONResponse
     """
 
-    details: Optional[List[GenericJSONResponseDetailsInner]] = Field(
-        default=None, description="Listing of issues with your request"
-    )
+    details: Optional[List[ErrorDetails]] = Field(default=None, description="Listing of issues with your request")
     message: Annotated[str, Field(min_length=1, strict=True)]
     __properties: ClassVar[List[str]] = ["details", "message"]
 
@@ -94,7 +90,7 @@ class GenericJSONResponse(BaseModel):
         _obj = cls.model_validate(
             {
                 "details": (
-                    [GenericJSONResponseDetailsInner.from_dict(_item) for _item in obj["details"]]
+                    [ErrorDetails.from_dict(_item) for _item in obj["details"]]
                     if obj.get("details") is not None
                     else None
                 ),

@@ -15,39 +15,40 @@ from __future__ import annotations
 
 import json
 import pprint
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing_extensions import Annotated, Self
 
 
-class StatusError(BaseModel):
+class DistributionLogsRecord(BaseModel):
     """
-    StatusError
+    DistributionLogsRecord
     """
 
-    de: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
-        default=None,
-        description="A german translation string corresponding to the error key. Note that we do not guarantee german translations are present.",
+    cache_hit: StrictBool = Field(alias="cacheHit")
+    data_center_region: StrictStr = Field(alias="dataCenterRegion")
+    distribution_id: StrictStr = Field(alias="distributionID")
+    host: StrictStr
+    path: StrictStr
+    request_country_code: Annotated[str, Field(min_length=2, strict=True, max_length=2)] = Field(
+        description="ISO 3166-1 A2 compliant country code", alias="requestCountryCode"
     )
-    en: Annotated[str, Field(min_length=1, strict=True)] = Field(
-        description="An english translation string corresponding to the error key. An english translation key is always present."
-    )
-    key: Annotated[str, Field(min_length=1, strict=True)] = Field(
-        description="An enum value that describes a Status Error."
-    )
-    __properties: ClassVar[List[str]] = ["de", "en", "key"]
-
-    @field_validator("key")
-    def key_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(
-            ["UNKNOWN", "CUSTOM_DOMAIN_CNAME_MISSING", "CUSTOM_DOMAIN_ALREADY_IN_USE", "PUBLIC_BETA_QUOTA_REACHED"]
-        ):
-            raise ValueError(
-                "must be one of enum values ('UNKNOWN', 'CUSTOM_DOMAIN_CNAME_MISSING', 'CUSTOM_DOMAIN_ALREADY_IN_USE', 'PUBLIC_BETA_QUOTA_REACHED')"
-            )
-        return value
+    size: Annotated[int, Field(strict=True, ge=0)]
+    status_code: StrictInt = Field(alias="statusCode")
+    timestamp: datetime
+    __properties: ClassVar[List[str]] = [
+        "cacheHit",
+        "dataCenterRegion",
+        "distributionID",
+        "host",
+        "path",
+        "requestCountryCode",
+        "size",
+        "statusCode",
+        "timestamp",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,7 +67,7 @@ class StatusError(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of StatusError from a JSON string"""
+        """Create an instance of DistributionLogsRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -90,12 +91,24 @@ class StatusError(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of StatusError from a dict"""
+        """Create an instance of DistributionLogsRecord from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"de": obj.get("de"), "en": obj.get("en"), "key": obj.get("key")})
+        _obj = cls.model_validate(
+            {
+                "cacheHit": obj.get("cacheHit"),
+                "dataCenterRegion": obj.get("dataCenterRegion"),
+                "distributionID": obj.get("distributionID"),
+                "host": obj.get("host"),
+                "path": obj.get("path"),
+                "requestCountryCode": obj.get("requestCountryCode"),
+                "size": obj.get("size"),
+                "statusCode": obj.get("statusCode"),
+                "timestamp": obj.get("timestamp"),
+            }
+        )
         return _obj

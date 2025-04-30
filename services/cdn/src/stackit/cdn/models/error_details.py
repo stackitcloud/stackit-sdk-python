@@ -17,18 +17,34 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
 
 
-class GenericJSONResponseDetailsInner(BaseModel):
+class ErrorDetails(BaseModel):
     """
-    GenericJSONResponseDetailsInner
+    ErrorDetails
     """
 
+    de: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
+        default=None, description="German description of the error"
+    )
     description: Annotated[str, Field(min_length=1, strict=True)]
-    var_field: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="field")
-    __properties: ClassVar[List[str]] = ["description", "field"]
+    en: Annotated[str, Field(min_length=1, strict=True)] = Field(description="English description of the error")
+    var_field: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
+        default=None, description="Optional field in the request this error detail refers to", alias="field"
+    )
+    key: Annotated[str, Field(min_length=1, strict=True)]
+    __properties: ClassVar[List[str]] = ["de", "description", "en", "field", "key"]
+
+    @field_validator("key")
+    def key_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["UNKNOWN", "CUSTOM_DOMAIN_CNAME_MISSING", "INVALID_ARGUMENT"]):
+            raise ValueError(
+                "must be one of enum values ('UNKNOWN', 'CUSTOM_DOMAIN_CNAME_MISSING', 'INVALID_ARGUMENT')"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +63,7 @@ class GenericJSONResponseDetailsInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GenericJSONResponseDetailsInner from a JSON string"""
+        """Create an instance of ErrorDetails from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,12 +87,20 @@ class GenericJSONResponseDetailsInner(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GenericJSONResponseDetailsInner from a dict"""
+        """Create an instance of ErrorDetails from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"description": obj.get("description"), "field": obj.get("field")})
+        _obj = cls.model_validate(
+            {
+                "de": obj.get("de"),
+                "description": obj.get("description"),
+                "en": obj.get("en"),
+                "field": obj.get("field"),
+                "key": obj.get("key"),
+            }
+        )
         return _obj
