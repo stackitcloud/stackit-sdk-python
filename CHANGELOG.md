@@ -1,4 +1,4 @@
-## Release (2025-XX-YY)
+## Release (2025-04-30)
 - `stackitmarketplace`: [v0.4.0](services/stackitmarketplace/CHANGELOG.md#v040-2025-04-16)
   - **Feature:** Add new `InquiryContactSales`, `InquirySuggestProduct`, `PriceType`, `PricingOption` and `DeliveryMethod`
 - `stackitmarketplace`: [v0.3.0](services/stackitmarketplace/CHANGELOG.md#v030-2025-04-04)
