@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
 
@@ -29,8 +29,18 @@ class InstanceListInstance(BaseModel):
 
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
-    status: Optional[StrictStr] = None
+    status: Optional[StrictStr] = Field(default=None, description="The current status of the instance.")
     __properties: ClassVar[List[str]] = ["id", "name", "status"]
+
+    @field_validator("status")
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["READY", "PENDING", "PROCESSING", "FAILED", "UNKNOWN"]):
+            raise ValueError("must be one of enum values ('READY', 'PENDING', 'PROCESSING', 'FAILED', 'UNKNOWN')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

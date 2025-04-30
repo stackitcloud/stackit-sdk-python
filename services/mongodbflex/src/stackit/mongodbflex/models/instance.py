@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Self
 
 from stackit.mongodbflex.models.acl import ACL
@@ -38,7 +38,7 @@ class Instance(BaseModel):
     name: Optional[StrictStr] = None
     options: Optional[Dict[str, StrictStr]] = None
     replicas: Optional[StrictInt] = None
-    status: Optional[StrictStr] = None
+    status: Optional[StrictStr] = Field(default=None, description="The current status of the instance.")
     storage: Optional[Storage] = None
     version: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
@@ -53,6 +53,16 @@ class Instance(BaseModel):
         "storage",
         "version",
     ]
+
+    @field_validator("status")
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["READY", "PENDING", "PROCESSING", "FAILED", "UNKNOWN"]):
+            raise ValueError("must be one of enum values ('READY', 'PENDING', 'PROCESSING', 'FAILED', 'UNKNOWN')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
