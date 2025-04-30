@@ -28,21 +28,21 @@ class Instance(BaseModel):
     Describes a STACKIT Git instance.
     """
 
-    created: datetime = Field(description="The date and time the creation of the STACKIT GIT instance was triggered.")
+    created: datetime = Field(description="The date and time the creation of the STACKIT Git instance was triggered.")
     id: Annotated[str, Field(strict=True, max_length=36)] = Field(
-        description="A auto generated unique id which identifies the STACKIT GIT instances."
+        description="A auto generated unique id which identifies the STACKIT Git instances."
     )
     name: Annotated[str, Field(strict=True, max_length=32)] = Field(
-        description="A user chosen name to distinguish multiple STACKIT GIT instances."
+        description="A user chosen name to distinguish multiple STACKIT Git instances."
     )
     state: Annotated[str, Field(strict=True, max_length=32)] = Field(
-        description="The current state of the STACKIT GIT instance."
+        description="The current state of the STACKIT Git instance."
     )
     url: Annotated[str, Field(strict=True, max_length=2048)] = Field(
-        description="The URL for reaching the STACKIT GIT instance."
+        description="The URL for reaching the STACKIT Git instance."
     )
     version: Annotated[str, Field(strict=True, max_length=20)] = Field(
-        description="The current version of STACKIT GIT deployed to the instance."
+        description="The current version of STACKIT Git deployed to the instance."
     )
     __properties: ClassVar[List[str]] = ["created", "id", "name", "state", "url", "version"]
 

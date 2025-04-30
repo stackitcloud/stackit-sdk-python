@@ -36,8 +36,8 @@ class CreateInstancePayload(BaseModel):
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[a-zA-Z0-9-_]+$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_]+$/")
+        if not re.match(r"^[a-z]([a-z0-9\-]){0,30}[a-z0-9]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z]([a-z0-9\-]){0,30}[a-z0-9]+$/")
         return value
 
     model_config = ConfigDict(

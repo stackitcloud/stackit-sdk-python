@@ -63,9 +63,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Instance:
-        """Users with write-access to a project may create a new STACKIT Git instance by posting the instance creation request to this endpoint, which will schedule the creation of a new STACKIT Git instance within that project.
+        """Creates a new STACKIT Git instance within the project.
 
-        Creates a new STACKIT Git instance within the project.
+        Users with write-access to a project may create a new STACKIT Git instance by posting the instance creation request to this endpoint, which will schedule the creation of a new STACKIT Git instance within that project.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -140,9 +140,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Instance]:
-        """Users with write-access to a project may create a new STACKIT Git instance by posting the instance creation request to this endpoint, which will schedule the creation of a new STACKIT Git instance within that project.
+        """Creates a new STACKIT Git instance within the project.
 
-        Creates a new STACKIT Git instance within the project.
+        Users with write-access to a project may create a new STACKIT Git instance by posting the instance creation request to this endpoint, which will schedule the creation of a new STACKIT Git instance within that project.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -217,9 +217,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Users with write-access to a project may create a new STACKIT Git instance by posting the instance creation request to this endpoint, which will schedule the creation of a new STACKIT Git instance within that project.
+        """Creates a new STACKIT Git instance within the project.
 
-        Creates a new STACKIT Git instance within the project.
+        Users with write-access to a project may create a new STACKIT Git instance by posting the instance creation request to this endpoint, which will schedule the creation of a new STACKIT Git instance within that project.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -349,9 +349,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """Allows a user with write-access to a project to schedule the deletion of a STACKIT Git instance, which will soon eliminate all repositories & user metadata associated with that instance. This is a destructive operation.
+        """Deletes the given STACKIT Git instance.
 
-        Deletes the given STACKIT Git instance.
+        Allows a user with write-access to a project to schedule the deletion of a STACKIT Git instance, which will soon eliminate all repositories & user metadata associated with that instance. This is a destructive operation.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -425,9 +425,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """Allows a user with write-access to a project to schedule the deletion of a STACKIT Git instance, which will soon eliminate all repositories & user metadata associated with that instance. This is a destructive operation.
+        """Deletes the given STACKIT Git instance.
 
-        Deletes the given STACKIT Git instance.
+        Allows a user with write-access to a project to schedule the deletion of a STACKIT Git instance, which will soon eliminate all repositories & user metadata associated with that instance. This is a destructive operation.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -501,9 +501,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Allows a user with write-access to a project to schedule the deletion of a STACKIT Git instance, which will soon eliminate all repositories & user metadata associated with that instance. This is a destructive operation.
+        """Deletes the given STACKIT Git instance.
 
-        Deletes the given STACKIT Git instance.
+        Allows a user with write-access to a project to schedule the deletion of a STACKIT Git instance, which will soon eliminate all repositories & user metadata associated with that instance. This is a destructive operation.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -626,9 +626,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Instance:
-        """Provides detailed information about the state of an instance within the specified project including information about how to access the instance for further use.
+        """Returns the details for the given STACKIT Git instance.
 
-        Returns the details for the given STACKIT Git instance.
+        Provides detailed information about the state of an instance within the specified project including information about how to access the instance for further use.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -701,9 +701,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[Instance]:
-        """Provides detailed information about the state of an instance within the specified project including information about how to access the instance for further use.
+        """Returns the details for the given STACKIT Git instance.
 
-        Returns the details for the given STACKIT Git instance.
+        Provides detailed information about the state of an instance within the specified project including information about how to access the instance for further use.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -776,9 +776,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Provides detailed information about the state of an instance within the specified project including information about how to access the instance for further use.
+        """Returns the details for the given STACKIT Git instance.
 
-        Returns the details for the given STACKIT Git instance.
+        Provides detailed information about the state of an instance within the specified project including information about how to access the instance for further use.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -899,9 +899,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ListInstances:
-        """STACKIT Git instances exist within a project, and a project may have zero or more instances. This endpoint allows a user with read-access to a project to list all instances that exist within the specified project.
+        """Returns a list of all STACKIT Git instances within the project.
 
-        Returns a list of all STACKIT Git instances within the project.
+        STACKIT Git instances exist within a project, and a project may have zero or more instances. This endpoint allows a user with read-access to a project to list all instances that exist within the specified project.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -969,9 +969,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ListInstances]:
-        """STACKIT Git instances exist within a project, and a project may have zero or more instances. This endpoint allows a user with read-access to a project to list all instances that exist within the specified project.
+        """Returns a list of all STACKIT Git instances within the project.
 
-        Returns a list of all STACKIT Git instances within the project.
+        STACKIT Git instances exist within a project, and a project may have zero or more instances. This endpoint allows a user with read-access to a project to list all instances that exist within the specified project.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
@@ -1039,9 +1039,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """STACKIT Git instances exist within a project, and a project may have zero or more instances. This endpoint allows a user with read-access to a project to list all instances that exist within the specified project.
+        """Returns a list of all STACKIT Git instances within the project.
 
-        Returns a list of all STACKIT Git instances within the project.
+        STACKIT Git instances exist within a project, and a project may have zero or more instances. This endpoint allows a user with read-access to a project to list all instances that exist within the specified project.
 
         :param project_id: The STACKIT portal project UUID the STACKIT Git instance is part of. (required)
         :type project_id: str
