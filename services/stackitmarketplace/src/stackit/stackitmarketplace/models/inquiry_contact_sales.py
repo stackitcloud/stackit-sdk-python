@@ -36,7 +36,9 @@ class InquiryContactSales(BaseModel):
         description="The full name of the contact person.", alias="fullName"
     )
     message: Annotated[str, Field(strict=True, max_length=512)] = Field(description="A custom message.")
-    product_id: object = Field(alias="productId")
+    product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29)] = Field(
+        description="The user-readable product ID.", alias="productId"
+    )
     __properties: ClassVar[List[str]] = ["companyName", "contactEmail", "fullName", "message", "productId"]
 
     @field_validator("company_name")
@@ -58,6 +60,13 @@ class InquiryContactSales(BaseModel):
         """Validates the regular expression"""
         if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
             raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
+
+    @field_validator("product_id")
+    def product_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-z0-9-]{1,20}-[0-9a-f]{8}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z0-9-]{1,20}-[0-9a-f]{8}$/")
         return value
 
     model_config = ConfigDict(
