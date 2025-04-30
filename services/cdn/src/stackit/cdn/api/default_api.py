@@ -34,6 +34,7 @@ from stackit.cdn.models.find_cache_paths_response import FindCachePathsResponse
 from stackit.cdn.models.get_cache_info_response import GetCacheInfoResponse
 from stackit.cdn.models.get_custom_domain_response import GetCustomDomainResponse
 from stackit.cdn.models.get_distribution_response import GetDistributionResponse
+from stackit.cdn.models.get_logs_response import GetLogsResponse
 from stackit.cdn.models.get_statistics_response import GetStatisticsResponse
 from stackit.cdn.models.list_distributions_response import ListDistributionsResponse
 from stackit.cdn.models.patch_distribution_payload import PatchDistributionPayload
@@ -60,7 +61,7 @@ class DefaultApi:
     @validate_call
     def create_distribution(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         create_distribution_payload: CreateDistributionPayload,
         _request_timeout: Union[
             None,
@@ -76,7 +77,7 @@ class DefaultApi:
 
         CreateDistribution will create a new CDN distribution
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param create_distribution_payload: (required)
         :type create_distribution_payload: CreateDistributionPayload
@@ -128,7 +129,7 @@ class DefaultApi:
     @validate_call
     def create_distribution_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         create_distribution_payload: CreateDistributionPayload,
         _request_timeout: Union[
             None,
@@ -144,7 +145,7 @@ class DefaultApi:
 
         CreateDistribution will create a new CDN distribution
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param create_distribution_payload: (required)
         :type create_distribution_payload: CreateDistributionPayload
@@ -196,7 +197,7 @@ class DefaultApi:
     @validate_call
     def create_distribution_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         create_distribution_payload: CreateDistributionPayload,
         _request_timeout: Union[
             None,
@@ -212,7 +213,7 @@ class DefaultApi:
 
         CreateDistribution will create a new CDN distribution
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param create_distribution_payload: (required)
         :type create_distribution_payload: CreateDistributionPayload
@@ -321,7 +322,7 @@ class DefaultApi:
     @validate_call
     def delete_custom_domain(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         intent_id: Optional[StrictStr] = None,
@@ -339,7 +340,7 @@ class DefaultApi:
 
         Removes a custom domain
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -396,7 +397,7 @@ class DefaultApi:
     @validate_call
     def delete_custom_domain_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         intent_id: Optional[StrictStr] = None,
@@ -414,7 +415,7 @@ class DefaultApi:
 
         Removes a custom domain
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -471,7 +472,7 @@ class DefaultApi:
     @validate_call
     def delete_custom_domain_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         intent_id: Optional[StrictStr] = None,
@@ -489,7 +490,7 @@ class DefaultApi:
 
         Removes a custom domain
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -603,7 +604,7 @@ class DefaultApi:
     @validate_call
     def delete_distribution(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         intent_id: Annotated[
             Optional[StrictStr],
@@ -625,7 +626,7 @@ class DefaultApi:
 
         DeleteDistribution accepts a project- and distribution-ID and will delete a distribution.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -679,7 +680,7 @@ class DefaultApi:
     @validate_call
     def delete_distribution_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         intent_id: Annotated[
             Optional[StrictStr],
@@ -701,7 +702,7 @@ class DefaultApi:
 
         DeleteDistribution accepts a project- and distribution-ID and will delete a distribution.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -755,7 +756,7 @@ class DefaultApi:
     @validate_call
     def delete_distribution_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         intent_id: Annotated[
             Optional[StrictStr],
@@ -777,7 +778,7 @@ class DefaultApi:
 
         DeleteDistribution accepts a project- and distribution-ID and will delete a distribution.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -885,7 +886,7 @@ class DefaultApi:
     @validate_call
     def find_cache_paths(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         path: Annotated[StrictStr, Field(description="A substring of the search query. ")],
         _request_timeout: Union[
@@ -902,7 +903,7 @@ class DefaultApi:
 
         This returns paths that are present in the cache purging history.  Only substrings of the provided input are returned.  The response is sorted in descending order by the most recent purge.  So, assuming you have have the following purged for a distribution - `/test/1` at `2025-01-01` - `/test/2` at `2025-01-02` - `/someOtherPath/1` at `2025-01-03` - `/test/1` at `2025-01-04` - `/test/3` at `2025-01-05`, this would return the following paths, in the following order, assuming `/te` was the search parameter: - `/test/3` - `/test/1` - `/test/2`
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -956,7 +957,7 @@ class DefaultApi:
     @validate_call
     def find_cache_paths_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         path: Annotated[StrictStr, Field(description="A substring of the search query. ")],
         _request_timeout: Union[
@@ -973,7 +974,7 @@ class DefaultApi:
 
         This returns paths that are present in the cache purging history.  Only substrings of the provided input are returned.  The response is sorted in descending order by the most recent purge.  So, assuming you have have the following purged for a distribution - `/test/1` at `2025-01-01` - `/test/2` at `2025-01-02` - `/someOtherPath/1` at `2025-01-03` - `/test/1` at `2025-01-04` - `/test/3` at `2025-01-05`, this would return the following paths, in the following order, assuming `/te` was the search parameter: - `/test/3` - `/test/1` - `/test/2`
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1027,7 +1028,7 @@ class DefaultApi:
     @validate_call
     def find_cache_paths_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         path: Annotated[StrictStr, Field(description="A substring of the search query. ")],
         _request_timeout: Union[
@@ -1044,7 +1045,7 @@ class DefaultApi:
 
         This returns paths that are present in the cache purging history.  Only substrings of the provided input are returned.  The response is sorted in descending order by the most recent purge.  So, assuming you have have the following purged for a distribution - `/test/1` at `2025-01-01` - `/test/2` at `2025-01-02` - `/someOtherPath/1` at `2025-01-03` - `/test/1` at `2025-01-04` - `/test/3` at `2025-01-05`, this would return the following paths, in the following order, assuming `/te` was the search parameter: - `/test/3` - `/test/1` - `/test/2`
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1152,7 +1153,7 @@ class DefaultApi:
     @validate_call
     def get_cache_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         purge_path: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1169,7 +1170,7 @@ class DefaultApi:
 
         Return caching info metadata, which contains the last cache purging time and a history of the most recent *full* purges.  If (and only if) you provide the path query parameter, the history will also contain granular cache purges.  The request will not fail if no data about a path is found.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1223,7 +1224,7 @@ class DefaultApi:
     @validate_call
     def get_cache_info_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         purge_path: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1240,7 +1241,7 @@ class DefaultApi:
 
         Return caching info metadata, which contains the last cache purging time and a history of the most recent *full* purges.  If (and only if) you provide the path query parameter, the history will also contain granular cache purges.  The request will not fail if no data about a path is found.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1294,7 +1295,7 @@ class DefaultApi:
     @validate_call
     def get_cache_info_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         purge_path: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1311,7 +1312,7 @@ class DefaultApi:
 
         Return caching info metadata, which contains the last cache purging time and a history of the most recent *full* purges.  If (and only if) you provide the path query parameter, the history will also contain granular cache purges.  The request will not fail if no data about a path is found.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1419,7 +1420,7 @@ class DefaultApi:
     @validate_call
     def get_custom_domain(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         _request_timeout: Union[
@@ -1436,7 +1437,7 @@ class DefaultApi:
 
         Returns a 200 and the custom domain if this custom domain was associated to this distribution, else 404
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1491,7 +1492,7 @@ class DefaultApi:
     @validate_call
     def get_custom_domain_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         _request_timeout: Union[
@@ -1508,7 +1509,7 @@ class DefaultApi:
 
         Returns a 200 and the custom domain if this custom domain was associated to this distribution, else 404
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1563,7 +1564,7 @@ class DefaultApi:
     @validate_call
     def get_custom_domain_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         _request_timeout: Union[
@@ -1580,7 +1581,7 @@ class DefaultApi:
 
         Returns a 200 and the custom domain if this custom domain was associated to this distribution, else 404
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1687,7 +1688,7 @@ class DefaultApi:
     @validate_call
     def get_distribution(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         _request_timeout: Union[
             None,
@@ -1703,7 +1704,7 @@ class DefaultApi:
 
         This returns a specific distribution by its ID. If no distribution with the given ID exists the endpoint returns 404. Trying to get a deleted distributions also return 404.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1755,7 +1756,7 @@ class DefaultApi:
     @validate_call
     def get_distribution_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         _request_timeout: Union[
             None,
@@ -1771,7 +1772,7 @@ class DefaultApi:
 
         This returns a specific distribution by its ID. If no distribution with the given ID exists the endpoint returns 404. Trying to get a deleted distributions also return 404.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1823,7 +1824,7 @@ class DefaultApi:
     @validate_call
     def get_distribution_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         _request_timeout: Union[
             None,
@@ -1839,7 +1840,7 @@ class DefaultApi:
 
         This returns a specific distribution by its ID. If no distribution with the given ID exists the endpoint returns 404. Trying to get a deleted distributions also return 404.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -1938,9 +1939,428 @@ class DefaultApi:
         )
 
     @validate_call
+    def get_logs(
+        self,
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
+        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution ID")],
+        var_from: Annotated[
+            Optional[datetime], Field(description="the start of the time range for which logs should be returned")
+        ] = None,
+        to: Annotated[
+            Optional[datetime],
+            Field(
+                description='the end of the time range for which logs should be returned. If not specified,  "now" is used. '
+            ),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]],
+            Field(
+                description="Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive) "
+            ),
+        ] = None,
+        page_identifier: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
+            ),
+        ] = None,
+        sort_by: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp. "
+            ),
+        ] = None,
+        sort_order: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetLogsResponse:
+        """Retrieve distribution logs
+
+
+        :param project_id: Your STACKIT Project ID (required)
+        :type project_id: str
+        :param distribution_id: Your CDN distribution ID (required)
+        :type distribution_id: str
+        :param var_from: the start of the time range for which logs should be returned
+        :type var_from: datetime
+        :param to: the end of the time range for which logs should be returned. If not specified,  \"now\" is used.
+        :type to: datetime
+        :param page_size: Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+        :type page_size: int
+        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+        :type page_identifier: str
+        :param sort_by: The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp.
+        :type sort_by: str
+        :param sort_order:
+        :type sort_order: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_logs_serialize(
+            project_id=project_id,
+            distribution_id=distribution_id,
+            var_from=var_from,
+            to=to,
+            page_size=page_size,
+            page_identifier=page_identifier,
+            sort_by=sort_by,
+            sort_order=sort_order,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetLogsResponse",
+            "401": "str",
+            "422": "GenericJSONResponse",
+            "500": "GenericJSONResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_logs_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
+        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution ID")],
+        var_from: Annotated[
+            Optional[datetime], Field(description="the start of the time range for which logs should be returned")
+        ] = None,
+        to: Annotated[
+            Optional[datetime],
+            Field(
+                description='the end of the time range for which logs should be returned. If not specified,  "now" is used. '
+            ),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]],
+            Field(
+                description="Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive) "
+            ),
+        ] = None,
+        page_identifier: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
+            ),
+        ] = None,
+        sort_by: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp. "
+            ),
+        ] = None,
+        sort_order: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetLogsResponse]:
+        """Retrieve distribution logs
+
+
+        :param project_id: Your STACKIT Project ID (required)
+        :type project_id: str
+        :param distribution_id: Your CDN distribution ID (required)
+        :type distribution_id: str
+        :param var_from: the start of the time range for which logs should be returned
+        :type var_from: datetime
+        :param to: the end of the time range for which logs should be returned. If not specified,  \"now\" is used.
+        :type to: datetime
+        :param page_size: Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+        :type page_size: int
+        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+        :type page_identifier: str
+        :param sort_by: The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp.
+        :type sort_by: str
+        :param sort_order:
+        :type sort_order: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_logs_serialize(
+            project_id=project_id,
+            distribution_id=distribution_id,
+            var_from=var_from,
+            to=to,
+            page_size=page_size,
+            page_identifier=page_identifier,
+            sort_by=sort_by,
+            sort_order=sort_order,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetLogsResponse",
+            "401": "str",
+            "422": "GenericJSONResponse",
+            "500": "GenericJSONResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_logs_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
+        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution ID")],
+        var_from: Annotated[
+            Optional[datetime], Field(description="the start of the time range for which logs should be returned")
+        ] = None,
+        to: Annotated[
+            Optional[datetime],
+            Field(
+                description='the end of the time range for which logs should be returned. If not specified,  "now" is used. '
+            ),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]],
+            Field(
+                description="Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive) "
+            ),
+        ] = None,
+        page_identifier: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
+            ),
+        ] = None,
+        sort_by: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp. "
+            ),
+        ] = None,
+        sort_order: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Retrieve distribution logs
+
+
+        :param project_id: Your STACKIT Project ID (required)
+        :type project_id: str
+        :param distribution_id: Your CDN distribution ID (required)
+        :type distribution_id: str
+        :param var_from: the start of the time range for which logs should be returned
+        :type var_from: datetime
+        :param to: the end of the time range for which logs should be returned. If not specified,  \"now\" is used.
+        :type to: datetime
+        :param page_size: Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+        :type page_size: int
+        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+        :type page_identifier: str
+        :param sort_by: The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp.
+        :type sort_by: str
+        :param sort_order:
+        :type sort_order: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._get_logs_serialize(
+            project_id=project_id,
+            distribution_id=distribution_id,
+            var_from=var_from,
+            to=to,
+            page_size=page_size,
+            page_identifier=page_identifier,
+            sort_by=sort_by,
+            sort_order=sort_order,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetLogsResponse",
+            "401": "str",
+            "422": "GenericJSONResponse",
+            "500": "GenericJSONResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_logs_serialize(
+        self,
+        project_id,
+        distribution_id,
+        var_from,
+        to,
+        page_size,
+        page_identifier,
+        sort_by,
+        sort_order,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if distribution_id is not None:
+            _path_params["distributionId"] = distribution_id
+        # process the query parameters
+        if var_from is not None:
+            if isinstance(var_from, datetime):
+                _query_params.append(("from", var_from.strftime(self.api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(("from", var_from))
+
+        if to is not None:
+            if isinstance(to, datetime):
+                _query_params.append(("to", to.strftime(self.api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(("to", to))
+
+        if page_size is not None:
+
+            _query_params.append(("pageSize", page_size))
+
+        if page_identifier is not None:
+
+            _query_params.append(("pageIdentifier", page_identifier))
+
+        if sort_by is not None:
+
+            _query_params.append(("sortBy", sort_by))
+
+        if sort_order is not None:
+
+            _query_params.append(("sortOrder", sort_order))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json", "text/plain"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1beta/projects/{projectId}/distributions/{distributionId}/logs",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def get_statistics(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         var_from: Annotated[
             datetime, Field(description="the start of the time range for which statistics should be returned")
@@ -1948,7 +2368,7 @@ class DefaultApi:
         to: Annotated[
             Optional[datetime],
             Field(
-                description="the end of the time range for which statistics should be returned. If not specified,  the end of the current time's interval is used, e.g. next day for daily,  next month for monthly, and so on. "
+                description="the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on. "
             ),
         ] = None,
         interval: Annotated[
@@ -1971,13 +2391,13 @@ class DefaultApi:
 
         Returns the statistics of the distribution in the given time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval. In case no statistics for a time interval exist, no record is returned. The time range for which statistics should be returned can be configured using query parameters.  Timestamps are assumed to be UTC. This is especially important for the \"buckets\" when you, for example, return daily information. A day always starts and ends at 00:00Z.  **Important Note:** Lower bounds are inclusive, upper bounds are exclusive. If you, for example, want a daily grouped which starts on the 1st Jan and also contains the full 10th Jan day, you would define `2025-01-01T00:00:00Z` as the lower and `2025-01-11T00:00:00Z` as the upper bound.  The upper bound is optional. If you omit it, the API will use the start of the next interval as the upper bound.   Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
         :param var_from: the start of the time range for which statistics should be returned (required)
         :type var_from: datetime
-        :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time's interval is used, e.g. next day for daily,  next month for monthly, and so on.
+        :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
         :type to: datetime
         :param interval: Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z`
         :type interval: str
@@ -2031,7 +2451,7 @@ class DefaultApi:
     @validate_call
     def get_statistics_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         var_from: Annotated[
             datetime, Field(description="the start of the time range for which statistics should be returned")
@@ -2039,7 +2459,7 @@ class DefaultApi:
         to: Annotated[
             Optional[datetime],
             Field(
-                description="the end of the time range for which statistics should be returned. If not specified,  the end of the current time's interval is used, e.g. next day for daily,  next month for monthly, and so on. "
+                description="the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on. "
             ),
         ] = None,
         interval: Annotated[
@@ -2062,13 +2482,13 @@ class DefaultApi:
 
         Returns the statistics of the distribution in the given time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval. In case no statistics for a time interval exist, no record is returned. The time range for which statistics should be returned can be configured using query parameters.  Timestamps are assumed to be UTC. This is especially important for the \"buckets\" when you, for example, return daily information. A day always starts and ends at 00:00Z.  **Important Note:** Lower bounds are inclusive, upper bounds are exclusive. If you, for example, want a daily grouped which starts on the 1st Jan and also contains the full 10th Jan day, you would define `2025-01-01T00:00:00Z` as the lower and `2025-01-11T00:00:00Z` as the upper bound.  The upper bound is optional. If you omit it, the API will use the start of the next interval as the upper bound.   Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
         :param var_from: the start of the time range for which statistics should be returned (required)
         :type var_from: datetime
-        :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time's interval is used, e.g. next day for daily,  next month for monthly, and so on.
+        :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
         :type to: datetime
         :param interval: Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z`
         :type interval: str
@@ -2122,7 +2542,7 @@ class DefaultApi:
     @validate_call
     def get_statistics_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         var_from: Annotated[
             datetime, Field(description="the start of the time range for which statistics should be returned")
@@ -2130,7 +2550,7 @@ class DefaultApi:
         to: Annotated[
             Optional[datetime],
             Field(
-                description="the end of the time range for which statistics should be returned. If not specified,  the end of the current time's interval is used, e.g. next day for daily,  next month for monthly, and so on. "
+                description="the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on. "
             ),
         ] = None,
         interval: Annotated[
@@ -2153,13 +2573,13 @@ class DefaultApi:
 
         Returns the statistics of the distribution in the given time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval. In case no statistics for a time interval exist, no record is returned. The time range for which statistics should be returned can be configured using query parameters.  Timestamps are assumed to be UTC. This is especially important for the \"buckets\" when you, for example, return daily information. A day always starts and ends at 00:00Z.  **Important Note:** Lower bounds are inclusive, upper bounds are exclusive. If you, for example, want a daily grouped which starts on the 1st Jan and also contains the full 10th Jan day, you would define `2025-01-01T00:00:00Z` as the lower and `2025-01-11T00:00:00Z` as the upper bound.  The upper bound is optional. If you omit it, the API will use the start of the next interval as the upper bound.   Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
         :param var_from: the start of the time range for which statistics should be returned (required)
         :type var_from: datetime
-        :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time's interval is used, e.g. next day for daily,  next month for monthly, and so on.
+        :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
         :type to: datetime
         :param interval: Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z`
         :type interval: str
@@ -2281,7 +2701,7 @@ class DefaultApi:
     @validate_call
     def list_distributions(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         page_size: Annotated[
             Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(
@@ -2297,7 +2717,7 @@ class DefaultApi:
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `createdAt` - `id` - Sort by the distributions's ID using String comparison - `updatedAt` - Sort by when the distribution's configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by looking at the distribution's status, using String comparison "
+                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -2315,13 +2735,13 @@ class DefaultApi:
 
         ListDistributions returns a list of all CDN distributions associated with  a given project, ordered by their distribution ID.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param page_size: Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
         :type page_size: int
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by the distributions's ID using String comparison - `updatedAt` - Sort by when the distribution's configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by looking at the distribution's status, using String comparison
+        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -2375,7 +2795,7 @@ class DefaultApi:
     @validate_call
     def list_distributions_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         page_size: Annotated[
             Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(
@@ -2391,7 +2811,7 @@ class DefaultApi:
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `createdAt` - `id` - Sort by the distributions's ID using String comparison - `updatedAt` - Sort by when the distribution's configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by looking at the distribution's status, using String comparison "
+                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -2409,13 +2829,13 @@ class DefaultApi:
 
         ListDistributions returns a list of all CDN distributions associated with  a given project, ordered by their distribution ID.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param page_size: Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
         :type page_size: int
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by the distributions's ID using String comparison - `updatedAt` - Sort by when the distribution's configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by looking at the distribution's status, using String comparison
+        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -2469,7 +2889,7 @@ class DefaultApi:
     @validate_call
     def list_distributions_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         page_size: Annotated[
             Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(
@@ -2485,7 +2905,7 @@ class DefaultApi:
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `createdAt` - `id` - Sort by the distributions's ID using String comparison - `updatedAt` - Sort by when the distribution's configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by looking at the distribution's status, using String comparison "
+                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -2503,13 +2923,13 @@ class DefaultApi:
 
         ListDistributions returns a list of all CDN distributions associated with  a given project, ordered by their distribution ID.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param page_size: Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
         :type page_size: int
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by the distributions's ID using String comparison - `updatedAt` - Sort by when the distribution's configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by looking at the distribution's status, using String comparison
+        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -2629,7 +3049,7 @@ class DefaultApi:
     @validate_call
     def patch_distribution(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         patch_distribution_payload: Optional[PatchDistributionPayload] = None,
         _request_timeout: Union[
@@ -2646,7 +3066,7 @@ class DefaultApi:
 
         Modify a CDN distribution with a partial update. Only the fields specified in the request will be modified.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -2700,7 +3120,7 @@ class DefaultApi:
     @validate_call
     def patch_distribution_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         patch_distribution_payload: Optional[PatchDistributionPayload] = None,
         _request_timeout: Union[
@@ -2717,7 +3137,7 @@ class DefaultApi:
 
         Modify a CDN distribution with a partial update. Only the fields specified in the request will be modified.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -2771,7 +3191,7 @@ class DefaultApi:
     @validate_call
     def patch_distribution_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         patch_distribution_payload: Optional[PatchDistributionPayload] = None,
         _request_timeout: Union[
@@ -2788,7 +3208,7 @@ class DefaultApi:
 
         Modify a CDN distribution with a partial update. Only the fields specified in the request will be modified.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -2902,7 +3322,7 @@ class DefaultApi:
     @validate_call
     def purge_cache(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         purge_cache_payload: Optional[PurgeCachePayload] = None,
         _request_timeout: Union[
@@ -2915,11 +3335,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> object:
-        """Clear distribution's cache
+        """Clear distribution cache
 
         Clear the cache for this distribution.  All content, regardless of its staleness, will get refetched from the host.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -2973,7 +3393,7 @@ class DefaultApi:
     @validate_call
     def purge_cache_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         purge_cache_payload: Optional[PurgeCachePayload] = None,
         _request_timeout: Union[
@@ -2986,11 +3406,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[object]:
-        """Clear distribution's cache
+        """Clear distribution cache
 
         Clear the cache for this distribution.  All content, regardless of its staleness, will get refetched from the host.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -3044,7 +3464,7 @@ class DefaultApi:
     @validate_call
     def purge_cache_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         purge_cache_payload: Optional[PurgeCachePayload] = None,
         _request_timeout: Union[
@@ -3057,11 +3477,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Clear distribution's cache
+        """Clear distribution cache
 
         Clear the cache for this distribution.  All content, regardless of its staleness, will get refetched from the host.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -3175,7 +3595,7 @@ class DefaultApi:
     @validate_call
     def put_custom_domain(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         put_custom_domain_payload: Optional[PutCustomDomainPayload] = None,
@@ -3193,7 +3613,7 @@ class DefaultApi:
 
         Creates a new custom domain. If it already exists, this will overwrite the previous custom domain's properties.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -3250,7 +3670,7 @@ class DefaultApi:
     @validate_call
     def put_custom_domain_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         put_custom_domain_payload: Optional[PutCustomDomainPayload] = None,
@@ -3268,7 +3688,7 @@ class DefaultApi:
 
         Creates a new custom domain. If it already exists, this will overwrite the previous custom domain's properties.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
@@ -3325,7 +3745,7 @@ class DefaultApi:
     @validate_call
     def put_custom_domain_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project's ID")],
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         put_custom_domain_payload: Optional[PutCustomDomainPayload] = None,
@@ -3343,7 +3763,7 @@ class DefaultApi:
 
         Creates a new custom domain. If it already exists, this will overwrite the previous custom domain's properties.
 
-        :param project_id: Your STACKIT Project's ID (required)
+        :param project_id: Your STACKIT Project ID (required)
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str

@@ -24,6 +24,7 @@ from stackit.cdn.models.custom_domain import CustomDomain
 from stackit.cdn.models.delete_custom_domain_response import DeleteCustomDomainResponse
 from stackit.cdn.models.delete_distribution_response import DeleteDistributionResponse
 from stackit.cdn.models.distribution import Distribution
+from stackit.cdn.models.distribution_logs_record import DistributionLogsRecord
 from stackit.cdn.models.distribution_statistics_record import (
     DistributionStatisticsRecord,
 )
@@ -35,20 +36,19 @@ from stackit.cdn.models.distribution_statistics_record_regions import (
 )
 from stackit.cdn.models.domain import Domain
 from stackit.cdn.models.domain_status import DomainStatus
+from stackit.cdn.models.error_details import ErrorDetails
 from stackit.cdn.models.find_cache_paths_response import FindCachePathsResponse
 from stackit.cdn.models.find_cache_paths_response_entry import (
     FindCachePathsResponseEntry,
 )
 from stackit.cdn.models.generic_json_response import GenericJSONResponse
-from stackit.cdn.models.generic_json_response_details_inner import (
-    GenericJSONResponseDetailsInner,
-)
 from stackit.cdn.models.get_cache_info_response import GetCacheInfoResponse
 from stackit.cdn.models.get_cache_info_response_history_entry import (
     GetCacheInfoResponseHistoryEntry,
 )
 from stackit.cdn.models.get_custom_domain_response import GetCustomDomainResponse
 from stackit.cdn.models.get_distribution_response import GetDistributionResponse
+from stackit.cdn.models.get_logs_response import GetLogsResponse
 from stackit.cdn.models.get_statistics_response import GetStatisticsResponse
 from stackit.cdn.models.http_backend import HttpBackend
 from stackit.cdn.models.http_backend_patch import HttpBackendPatch
