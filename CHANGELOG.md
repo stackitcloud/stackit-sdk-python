@@ -1,3 +1,10 @@
+## Release (2025-05-XX)
+- `stackitmarketplace`[v1.0.0](services/stackitmarketplace/CHANGELOG.md#v100-2025-05-05)
+  - **Breaking Change:**
+      - Introduced dedicated type for product id with appropriate validations
+  - **Feature:** 
+      - subscription products contain the plan id
+
 ## Release (2025-04-30)
 - `stackitmarketplace`: [v0.4.0](services/stackitmarketplace/CHANGELOG.md#v040-2025-04-16)
   - **Feature:** Add new `InquiryContactSales`, `InquirySuggestProduct`, `PriceType`, `PricingOption` and `DeliveryMethod`
