@@ -1,2 +1,6 @@
+## v0.0.2 (2025-05-05)
+- **Minor change:** Use stderr by default.
+- **Minor change:** Service update.
+
 ## v0.0.1 (2025-04-28)
 - **New module:** Initial publication of Key Management Service API
