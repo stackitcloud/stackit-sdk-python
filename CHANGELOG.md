@@ -9,6 +9,8 @@
     - Added API calls for folder management
  - `serverupdate`: [v1.0.1](services/serverupdate/CHANGELOG.md#v101-2025-05-05)
   - **Minor change:** Use stderr by default.
+- `mongodbflex`: [v1.0.0](services/mongodbflex/CHANGELOG.md#v100-2025-05-05)
+  - **Breaking Change:** Introduce typed enum constants for status attributes
 
 ## Release (2025-04-30)
 - `stackitmarketplace`: [v0.4.0](services/stackitmarketplace/CHANGELOG.md#v040-2025-04-16)

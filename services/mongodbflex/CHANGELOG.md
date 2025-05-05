@@ -1,3 +1,6 @@
+## v1.0.0 (2025-05-05)
+    - **Breaking Change:** Introduce typed enum constants for status attributes
+
 ## v0.3.0 (2025-01-21)
 
 - **Breaking change**: Delete endpoint made private.
