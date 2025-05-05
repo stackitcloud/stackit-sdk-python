@@ -4,6 +4,8 @@
       - Introduced dedicated type for product id with appropriate validations
   - **Feature:** 
       - subscription products contain the plan id
+- `serverupdate` [v1.0.1](services/serverupdate/CHANGELOG.md#v101-2025-05-05)
+  - **Minor change:** Use stderr by default.
 
 ## Release (2025-04-30)
 - `stackitmarketplace`: [v0.4.0](services/stackitmarketplace/CHANGELOG.md#v040-2025-04-16)
