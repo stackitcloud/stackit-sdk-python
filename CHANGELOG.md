@@ -16,6 +16,11 @@
   - **Minor change:** Service update.
 - `git`: [v0.1.1](services/git/CHANGELOG.md#v011-2025-05-05)
   - **Bugfix**: Spelling corrections in documentation
+- `cdn`[v1.0.0](services/cdn/CHANGELOG.md#v100-2025-05-05)
+  - **Feature:** Support for log management
+  - **Feature:** Create distribution payload has additional optional attributes for blocked countries, IPs and volume limitation
+  - **Feature:** Config Patch payload has additional optional attributes for blocked countries, IPs and volume limitation
+  - **Breaking Change:** Config has additional required attributes for blocked countries, IPs and volume limitation
 
 ## Release (2025-04-30)
 - `stackitmarketplace`: [v0.4.0](services/stackitmarketplace/CHANGELOG.md#v040-2025-04-16)
