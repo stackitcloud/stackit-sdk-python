@@ -1,3 +1,7 @@
+## v0.3.1 (2025-05-05)
+- **Feature:**
+  - Added API calls for folder management
+  
 ## v0.3.0 (2025-02-07)
 
 - **Breaking Change**: Remove the methods `BffGetContainersOfAFolder` and `BffGetContainersOfAnOrganization`

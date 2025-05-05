@@ -1,10 +1,13 @@
 ## Release (2025-05-XX)
-- `stackitmarketplace`[v1.0.0](services/stackitmarketplace/CHANGELOG.md#v100-2025-05-05)
+- `stackitmarketplace`: [v1.0.0](services/stackitmarketplace/CHANGELOG.md#v100-2025-05-05)
   - **Breaking Change:**
       - Introduced dedicated type for product id with appropriate validations
   - **Feature:** 
       - subscription products contain the plan id
-- `serverupdate` [v1.0.1](services/serverupdate/CHANGELOG.md#v101-2025-05-05)
+- `resourcemanager`: [v0.3.1](services/resourcemanager/CHANGELOG.md#v031-2025-05-05)
+  - **Feature:**
+    - Added API calls for folder management
+ - `serverupdate`: [v1.0.1](services/serverupdate/CHANGELOG.md#v101-2025-05-05)
   - **Minor change:** Use stderr by default.
 
 ## Release (2025-04-30)
