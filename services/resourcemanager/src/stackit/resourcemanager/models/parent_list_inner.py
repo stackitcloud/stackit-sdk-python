@@ -29,13 +29,16 @@ class ParentListInner(BaseModel):
     container_id: StrictStr = Field(
         description="User-friendly identifier of either organization or folder (will replace id).", alias="containerId"
     )
-    container_parent_id: StrictStr = Field(
+    container_parent_id: Optional[StrictStr] = Field(
+        default=None,
         description="User-friendly parent identifier of either organization or folder (will replace parentId).",
         alias="containerParentId",
     )
     id: StrictStr = Field(description="Identifier.")
     name: StrictStr = Field(description="Parent container name.")
-    parent_id: StrictStr = Field(description="Identifier of the parent resource container.", alias="parentId")
+    parent_id: Optional[StrictStr] = Field(
+        default=None, description="Identifier of the parent resource container.", alias="parentId"
+    )
     type: StrictStr = Field(description="Parent container type.")
     __properties: ClassVar[List[str]] = ["containerId", "containerParentId", "id", "name", "parentId", "type"]
 
