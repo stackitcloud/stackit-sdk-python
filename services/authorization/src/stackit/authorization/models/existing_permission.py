@@ -34,8 +34,8 @@ class ExistingPermission(BaseModel):
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[a-z](?:-?\.?[a-z]){1,63}$", value):
-            raise ValueError(r"must validate the regular expression /^[a-z](?:-?\.?[a-z]){1,63}$/")
+        if not re.match(r"^[a-z](?:[-.]?[a-z]){1,63}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z](?:[-.]?[a-z]){1,63}$/")
         return value
 
     model_config = ConfigDict(
