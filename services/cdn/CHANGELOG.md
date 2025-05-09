@@ -1,3 +1,6 @@
+## v1.0.1 (2025-05-09)
+- **Feature:** Update user-agent header
+
 ## v1.0.0 (2025-05-05)
 - **Feature:** Support for log management
 - **Feature:** Create distribution payload has additional optional attributes for blocked countries, IPs and volume limitation
