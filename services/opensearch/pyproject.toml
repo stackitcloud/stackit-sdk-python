@@ -3,7 +3,7 @@ name = "stackit-opensearch"
 
 [tool.poetry]
 name = "stackit-opensearch"
-version = "v0.2.0"
+version = "v0.2.1"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]

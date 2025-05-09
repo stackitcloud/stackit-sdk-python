@@ -3,7 +3,7 @@ name = "stackit-sqlserverflex"
 
 [tool.poetry]
 name = "stackit-sqlserverflex"
-version = "v1.0.0"
+version = "v1.0.1"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
