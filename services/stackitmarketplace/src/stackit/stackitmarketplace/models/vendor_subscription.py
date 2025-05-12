@@ -33,10 +33,11 @@ class VendorSubscription(BaseModel):
     """
 
     lifecycle_state: SubscriptionLifecycleState = Field(alias="lifecycleState")
+    organization_id: object = Field(alias="organizationId")
     product: SubscriptionProduct
     project_id: object = Field(alias="projectId")
     subscription_id: object = Field(alias="subscriptionId")
-    __properties: ClassVar[List[str]] = ["lifecycleState", "product", "projectId", "subscriptionId"]
+    __properties: ClassVar[List[str]] = ["lifecycleState", "organizationId", "product", "projectId", "subscriptionId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,6 +93,7 @@ class VendorSubscription(BaseModel):
         _obj = cls.model_validate(
             {
                 "lifecycleState": obj.get("lifecycleState"),
+                "organizationId": obj.get("organizationId"),
                 "product": SubscriptionProduct.from_dict(obj["product"]) if obj.get("product") is not None else None,
                 "projectId": obj.get("projectId"),
                 "subscriptionId": obj.get("subscriptionId"),
