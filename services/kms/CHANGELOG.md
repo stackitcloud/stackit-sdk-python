@@ -1,3 +1,6 @@
+## v0.0.3 (2025-05-09)
+- **Feature:** Update user-agent header
+
 ## v0.0.2 (2025-05-05)
 - **Minor change:** Use stderr by default.
 - **Minor change:** Service update.

@@ -3,7 +3,7 @@ name = "stackit-mongodbflex"
 
 [tool.poetry]
 name = "stackit-mongodbflex"
-version = "v0.3.0"
+version = "v1.0.1"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]

@@ -3,7 +3,7 @@ name = "stackit-runcommand"
 
 [tool.poetry]
 name = "stackit-runcommand"
-version = "v1.0.0"
+version = "v1.0.1"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]

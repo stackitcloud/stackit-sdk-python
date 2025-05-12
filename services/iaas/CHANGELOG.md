@@ -1,3 +1,6 @@
+## v0.5.1 (2025-05-09)
+- **Feature:** Update user-agent header
+
 ## v0.5.0 (2025-03-24)
 - **Improvement:** Upgrading from IaaS **beta** endpoints to **v1**
 - **Feature:** Add new method to filter `ListMachineTypes`: `Filter`

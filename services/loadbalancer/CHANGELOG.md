@@ -1,3 +1,6 @@
+## v0.2.3 (2025-05-09)
+- **Feature:** Update user-agent header
+
 ## v0.2.2 (2025-03-18)
 - Adapted to minor API changes
 
