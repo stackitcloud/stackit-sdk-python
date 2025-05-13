@@ -21,6 +21,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing_extensions import Self
 
+from stackit.ske.models.cluster_error import ClusterError
 from stackit.ske.models.cluster_status_state import ClusterStatusState
 from stackit.ske.models.credentials_rotation_state import CredentialsRotationState
 from stackit.ske.models.runtime_error import RuntimeError
@@ -42,6 +43,7 @@ class ClusterStatus(BaseModel):
         alias="egressAddressRanges",
     )
     error: Optional[RuntimeError] = None
+    errors: Optional[List[ClusterError]] = None
     hibernated: Optional[StrictBool] = None
     __properties: ClassVar[List[str]] = [
         "aggregated",
@@ -49,6 +51,7 @@ class ClusterStatus(BaseModel):
         "credentialsRotation",
         "egressAddressRanges",
         "error",
+        "errors",
         "hibernated",
     ]
 
@@ -95,6 +98,13 @@ class ClusterStatus(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of error
         if self.error:
             _dict["error"] = self.error.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
+        _items = []
+        if self.errors:
+            for _item in self.errors:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["errors"] = _items
         return _dict
 
     @classmethod
@@ -119,6 +129,11 @@ class ClusterStatus(BaseModel):
                 ),
                 "egressAddressRanges": obj.get("egressAddressRanges"),
                 "error": RuntimeError.from_dict(obj["error"]) if obj.get("error") is not None else None,
+                "errors": (
+                    [ClusterError.from_dict(_item) for _item in obj["errors"]]
+                    if obj.get("errors") is not None
+                    else None
+                ),
                 "hibernated": obj.get("hibernated"),
             }
         )
