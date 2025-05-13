@@ -1,3 +1,6 @@
+## v0.4.2 (2025-05-13)
+- **Feature:** Added `ClusterError`
+
 ## v0.4.1 (2025-05-09)
 - **Feature:** Update user-agent header
 
