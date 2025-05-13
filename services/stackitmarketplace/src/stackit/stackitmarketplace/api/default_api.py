@@ -1514,9 +1514,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ListVendorSubscriptionsResponse:
-        """List all subscriptions
+        """List all subscriptions of a project.
 
-        List all subscriptions.
+        List all subscriptions of a project.
 
         :param project_id: The project ID. (required)
         :type project_id: str
@@ -1606,9 +1606,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ListVendorSubscriptionsResponse]:
-        """List all subscriptions
+        """List all subscriptions of a project.
 
-        List all subscriptions.
+        List all subscriptions of a project.
 
         :param project_id: The project ID. (required)
         :type project_id: str
@@ -1698,9 +1698,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """List all subscriptions
+        """List all subscriptions of a project.
 
-        List all subscriptions.
+        List all subscriptions of a project.
 
         :param project_id: The project ID. (required)
         :type project_id: str
