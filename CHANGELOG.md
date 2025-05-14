@@ -7,8 +7,11 @@
   - **Deprecated:** `lbapplication` service is deprecated and no longer maintained. Use the `alb` service instead
 - `resourcemanager` [v0.4.0](services/resourcemanager/CHANGELOG.md#v040-2025-05-14)
   - **Breaking change:** Fields `ContainerParentId` and `ParentId` are no longer required in `ParentListInner`
-- `stackitmarketplace`: [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
-  - **Breaking Change:** Added organization id to `VendorSubscription`
+- `stackitmarketplace`:
+  - [v1.1.1](services/stackitmarketplace/CHANGELOG.md#v111-2025-05-14)
+    - **Feature**: Added new method `vendors_subscriptions_reject`
+  - [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
+    - **Breaking Change:** Added organization id to `VendorSubscription`
 - `ske`: 
   - [v0.4.3](services/ske/CHANGELOG.md#v043-2025-05-14)
     - **Feature:** Added enum `SKE_NODE_MACHINE_TYPE_NOT_FOUND` to `ClusterError` 

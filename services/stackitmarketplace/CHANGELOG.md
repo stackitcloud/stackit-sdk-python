@@ -1,3 +1,6 @@
+## v1.1.1 (2025-05-14)
+- **Feature**: Added new method `vendors_subscriptions_reject`
+
 ## v1.1.0 (2025-05-13)
 - **Breaking Change:** Added organization id to `VendorSubscription`
 
