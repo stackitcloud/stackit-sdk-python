@@ -1,8 +1,11 @@
 ## Release (2025-XX-XX)
 - `authorization`: [v0.2.4](services/authorization/CHANGELOG.md#v024-2025-05-13)
   - **Bugfix:** Updated regex validator
-- `stackitmarketplace`: [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
-  - **Breaking Change:** Added organization id to `VendorSubscription`
+- `stackitmarketplace`:
+  - [v1.1.1](services/stackitmarketplace/CHANGELOG.md#v111-2025-05-14)
+    - **Feature**: Added new method `vendors_subscriptions_reject`
+  - [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
+    - **Breaking Change:** Added organization id to `VendorSubscription`
 - `ske`: [v0.4.2](services/ske/CHANGELOG.md#v042-2025-05-13)
   - **Feature:** Added `ClusterError`
 
