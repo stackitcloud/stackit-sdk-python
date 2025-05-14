@@ -1,4 +1,7 @@
 ## Release (2025-XX-XX)
+- `alb`: [v0.2.0](services/alb/CHANGELOG.md#v020-2025-05-14)
+  - **Feature:** New field `Path` for `Rule`
+
 - `authorization`: [v0.2.4](services/authorization/CHANGELOG.md#v024-2025-05-13)
   - **Bugfix:** Updated regex validator
 - `resourcemanager` [v0.4.0](services/resourcemanager/CHANGELOG.md#v040-2025-05-14)
