@@ -43,6 +43,7 @@ from stackit.alb.models.loadbalancer_option_observability import (
     LoadbalancerOptionObservability,
 )
 from stackit.alb.models.network import Network
+from stackit.alb.models.path import Path
 from stackit.alb.models.plan_details import PlanDetails
 from stackit.alb.models.protocol_options_http import ProtocolOptionsHTTP
 from stackit.alb.models.protocol_options_https import ProtocolOptionsHTTPS
