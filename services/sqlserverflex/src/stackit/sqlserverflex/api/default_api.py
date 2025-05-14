@@ -44,6 +44,7 @@ from stackit.sqlserverflex.models.list_compatibility_response import (
 from stackit.sqlserverflex.models.list_databases_response import ListDatabasesResponse
 from stackit.sqlserverflex.models.list_flavors_response import ListFlavorsResponse
 from stackit.sqlserverflex.models.list_instances_response import ListInstancesResponse
+from stackit.sqlserverflex.models.list_metrics_response import ListMetricsResponse
 from stackit.sqlserverflex.models.list_restore_jobs_response import (
     ListRestoreJobsResponse,
 )
@@ -4469,6 +4470,399 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v2/projects/{projectId}/regions/{region}/instances",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_metrics(
+        self,
+        project_id: Annotated[StrictStr, Field(description="The UUID of the project.")],
+        instance_id: Annotated[StrictStr, Field(description="The UUID of the instance.")],
+        metric: Annotated[
+            StrictStr,
+            Field(
+                description="The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'."
+            ),
+        ],
+        granularity: Annotated[StrictStr, Field(description="The granularity in ISO8601 e.g. 5 minutes are 'PT5M'.")],
+        period: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The period in ISO8601 format e.g. 5 minutes are 'PT5M'. If no period is provided, the standard value of 5 minutes is used."
+            ),
+        ] = None,
+        start: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The start of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'. If no start time is provided, current server time as UTC is used."
+            ),
+        ] = None,
+        end: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The end of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'."
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListMetricsResponse:
+        """Get Metric
+
+        Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in max-connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
+
+        :param project_id: The UUID of the project. (required)
+        :type project_id: str
+        :param instance_id: The UUID of the instance. (required)
+        :type instance_id: str
+        :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'. (required)
+        :type metric: str
+        :param granularity: The granularity in ISO8601 e.g. 5 minutes are 'PT5M'. (required)
+        :type granularity: str
+        :param period: The period in ISO8601 format e.g. 5 minutes are 'PT5M'. If no period is provided, the standard value of 5 minutes is used.
+        :type period: str
+        :param start: The start of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'. If no start time is provided, current server time as UTC is used.
+        :type start: str
+        :param end: The end of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'.
+        :type end: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_metrics_serialize(
+            project_id=project_id,
+            instance_id=instance_id,
+            metric=metric,
+            granularity=granularity,
+            period=period,
+            start=start,
+            end=end,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListMetricsResponse",
+            "400": "InstanceError",
+            "405": "InstanceError",
+            "500": "InstanceError",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_metrics_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="The UUID of the project.")],
+        instance_id: Annotated[StrictStr, Field(description="The UUID of the instance.")],
+        metric: Annotated[
+            StrictStr,
+            Field(
+                description="The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'."
+            ),
+        ],
+        granularity: Annotated[StrictStr, Field(description="The granularity in ISO8601 e.g. 5 minutes are 'PT5M'.")],
+        period: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The period in ISO8601 format e.g. 5 minutes are 'PT5M'. If no period is provided, the standard value of 5 minutes is used."
+            ),
+        ] = None,
+        start: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The start of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'. If no start time is provided, current server time as UTC is used."
+            ),
+        ] = None,
+        end: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The end of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'."
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListMetricsResponse]:
+        """Get Metric
+
+        Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in max-connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
+
+        :param project_id: The UUID of the project. (required)
+        :type project_id: str
+        :param instance_id: The UUID of the instance. (required)
+        :type instance_id: str
+        :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'. (required)
+        :type metric: str
+        :param granularity: The granularity in ISO8601 e.g. 5 minutes are 'PT5M'. (required)
+        :type granularity: str
+        :param period: The period in ISO8601 format e.g. 5 minutes are 'PT5M'. If no period is provided, the standard value of 5 minutes is used.
+        :type period: str
+        :param start: The start of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'. If no start time is provided, current server time as UTC is used.
+        :type start: str
+        :param end: The end of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'.
+        :type end: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_metrics_serialize(
+            project_id=project_id,
+            instance_id=instance_id,
+            metric=metric,
+            granularity=granularity,
+            period=period,
+            start=start,
+            end=end,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListMetricsResponse",
+            "400": "InstanceError",
+            "405": "InstanceError",
+            "500": "InstanceError",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_metrics_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="The UUID of the project.")],
+        instance_id: Annotated[StrictStr, Field(description="The UUID of the instance.")],
+        metric: Annotated[
+            StrictStr,
+            Field(
+                description="The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'."
+            ),
+        ],
+        granularity: Annotated[StrictStr, Field(description="The granularity in ISO8601 e.g. 5 minutes are 'PT5M'.")],
+        period: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The period in ISO8601 format e.g. 5 minutes are 'PT5M'. If no period is provided, the standard value of 5 minutes is used."
+            ),
+        ] = None,
+        start: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The start of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'. If no start time is provided, current server time as UTC is used."
+            ),
+        ] = None,
+        end: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="The end of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'."
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Metric
+
+        Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in max-connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
+
+        :param project_id: The UUID of the project. (required)
+        :type project_id: str
+        :param instance_id: The UUID of the instance. (required)
+        :type instance_id: str
+        :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'. (required)
+        :type metric: str
+        :param granularity: The granularity in ISO8601 e.g. 5 minutes are 'PT5M'. (required)
+        :type granularity: str
+        :param period: The period in ISO8601 format e.g. 5 minutes are 'PT5M'. If no period is provided, the standard value of 5 minutes is used.
+        :type period: str
+        :param start: The start of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'. If no start time is provided, current server time as UTC is used.
+        :type start: str
+        :param end: The end of the timeframe as timestamp in ISO8601 (RFC3339) e.g. '2023-08-28T07:10:52.536Z'.
+        :type end: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_metrics_serialize(
+            project_id=project_id,
+            instance_id=instance_id,
+            metric=metric,
+            granularity=granularity,
+            period=period,
+            start=start,
+            end=end,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListMetricsResponse",
+            "400": "InstanceError",
+            "405": "InstanceError",
+            "500": "InstanceError",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_metrics_serialize(
+        self,
+        project_id,
+        instance_id,
+        metric,
+        granularity,
+        period,
+        start,
+        end,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if instance_id is not None:
+            _path_params["instanceId"] = instance_id
+        if metric is not None:
+            _path_params["metric"] = metric
+        # process the query parameters
+        if granularity is not None:
+
+            _query_params.append(("granularity", granularity))
+
+        if period is not None:
+
+            _query_params.append(("period", period))
+
+        if start is not None:
+
+            _query_params.append(("start", start))
+
+        if end is not None:
+
+            _query_params.append(("end", end))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v2/projects/{projectId}/instances/{instanceId}/metrics/{metric}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
