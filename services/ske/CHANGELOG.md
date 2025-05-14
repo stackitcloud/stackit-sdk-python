@@ -1,3 +1,6 @@
+## v0.4.3 (2025-05-14)
+- **Feature:** Added enum `SKE_NODE_MACHINE_TYPE_NOT_FOUND` to `ClusterError`
+
 ## v0.4.2 (2025-05-13)
 - **Feature:** Added `ClusterError`
 
