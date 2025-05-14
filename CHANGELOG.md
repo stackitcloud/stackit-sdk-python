@@ -14,6 +14,8 @@
     - **Feature:** Added enum `SKE_NODE_MACHINE_TYPE_NOT_FOUND` to `ClusterError` 
   - [v0.4.2](services/ske/CHANGELOG.md#v042-2025-05-13)
     - **Feature:** Added `ClusterError`
+- `sqlserverflex`: [v1.0.2](services/sqlserverflex/CHANGELOG.md#v102-2025-05-14)
+  - **Feature:** Added new method `list_metrics`
 
 ## Release (2025-05-09)
 - `stackitmarketplace`: 
