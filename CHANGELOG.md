@@ -5,6 +5,8 @@
   - **Breaking Change:** Added organization id to `VendorSubscription`
 - `ske`: [v0.4.2](services/ske/CHANGELOG.md#v042-2025-05-13)
   - **Feature:** Added `ClusterError`
+- `sqlserverflex`: [v1.0.2](services/sqlserverflex/CHANGELOG.md#v102-2025-05-14)
+  - **Feature:** Added new method `list_metrics`
 
 ## Release (2025-05-09)
 - `stackitmarketplace`: 

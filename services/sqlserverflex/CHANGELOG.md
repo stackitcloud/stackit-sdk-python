@@ -1,3 +1,6 @@
+## v1.0.2 (2025-05-14)
+- **Feature:** Add new method `list_metrics`
+
 ## v1.0.1 (2025-05-09)
 - **Feature:** Update user-agent header
 
