@@ -26,6 +26,7 @@ from stackit.sqlserverflex.models.create_instance_payload import CreateInstanceP
 from stackit.sqlserverflex.models.create_instance_response import CreateInstanceResponse
 from stackit.sqlserverflex.models.create_user_payload import CreateUserPayload
 from stackit.sqlserverflex.models.create_user_response import CreateUserResponse
+from stackit.sqlserverflex.models.data_point import DataPoint
 from stackit.sqlserverflex.models.database import Database
 from stackit.sqlserverflex.models.database_documentation_create_database_request_options import (
     DatabaseDocumentationCreateDatabaseRequestOptions,
@@ -36,6 +37,8 @@ from stackit.sqlserverflex.models.get_backup_response import GetBackupResponse
 from stackit.sqlserverflex.models.get_database_response import GetDatabaseResponse
 from stackit.sqlserverflex.models.get_instance_response import GetInstanceResponse
 from stackit.sqlserverflex.models.get_user_response import GetUserResponse
+from stackit.sqlserverflex.models.host import Host
+from stackit.sqlserverflex.models.host_metric import HostMetric
 from stackit.sqlserverflex.models.instance import Instance
 from stackit.sqlserverflex.models.instance_documentation_acl import (
     InstanceDocumentationACL,
@@ -58,6 +61,7 @@ from stackit.sqlserverflex.models.list_compatibility_response import (
 from stackit.sqlserverflex.models.list_databases_response import ListDatabasesResponse
 from stackit.sqlserverflex.models.list_flavors_response import ListFlavorsResponse
 from stackit.sqlserverflex.models.list_instances_response import ListInstancesResponse
+from stackit.sqlserverflex.models.list_metrics_response import ListMetricsResponse
 from stackit.sqlserverflex.models.list_restore_jobs_response import (
     ListRestoreJobsResponse,
 )

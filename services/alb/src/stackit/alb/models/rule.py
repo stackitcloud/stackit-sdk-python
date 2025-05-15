@@ -22,6 +22,7 @@ from typing_extensions import Self
 
 from stackit.alb.models.cookie_persistence import CookiePersistence
 from stackit.alb.models.http_header import HttpHeader
+from stackit.alb.models.path import Path
 from stackit.alb.models.query_parameter import QueryParameter
 
 
@@ -32,9 +33,10 @@ class Rule(BaseModel):
 
     cookie_persistence: Optional[CookiePersistence] = Field(default=None, alias="cookiePersistence")
     headers: Optional[List[HttpHeader]] = Field(default=None, description="Headers for the rule.")
+    path: Optional[Path] = None
     path_prefix: Optional[StrictStr] = Field(
         default=None,
-        description="Path prefix for the rule. If empty or '/', it matches the root path.",
+        description="Legacy path prefix match. Optional. If not set, defaults to root path '/'. Cannot be set if 'path' is used. Prefer using 'path.prefix' instead. Only matches on full segment boundaries, e.g. '/foo' matches '/foo' and '/foo/bar' but NOT '/foobar'.",
         alias="pathPrefix",
     )
     query_parameters: Optional[List[QueryParameter]] = Field(
@@ -51,6 +53,7 @@ class Rule(BaseModel):
     __properties: ClassVar[List[str]] = [
         "cookiePersistence",
         "headers",
+        "path",
         "pathPrefix",
         "queryParameters",
         "targetPool",
@@ -104,6 +107,9 @@ class Rule(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["headers"] = _items
+        # override the default output from pydantic by calling `to_dict()` of path
+        if self.path:
+            _dict["path"] = self.path.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in query_parameters (list)
         _items = []
         if self.query_parameters:
@@ -134,6 +140,7 @@ class Rule(BaseModel):
                     if obj.get("headers") is not None
                     else None
                 ),
+                "path": Path.from_dict(obj["path"]) if obj.get("path") is not None else None,
                 "pathPrefix": obj.get("pathPrefix"),
                 "queryParameters": (
                     [QueryParameter.from_dict(_item) for _item in obj["queryParameters"]]

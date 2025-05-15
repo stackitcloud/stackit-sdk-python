@@ -1,10 +1,24 @@
 ## Release (2025-XX-XX)
+- `alb`: [v0.2.0](services/alb/CHANGELOG.md#v020-2025-05-14)
+  - **Feature:** New field `Path` for `Rule`
 - `authorization`: [v0.2.4](services/authorization/CHANGELOG.md#v024-2025-05-13)
   - **Bugfix:** Updated regex validator
-- `stackitmarketplace`: [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
-  - **Breaking Change:** Added organization id to `VendorSubscription`
-- `ske`: [v0.4.2](services/ske/CHANGELOG.md#v042-2025-05-13)
-  - **Feature:** Added `ClusterError`
+- `lbapplication`: [v0.3.2](services/lbapplication/CHANGELOG.md#v032-2025-05-14)
+  - **Deprecated:** `lbapplication` service is deprecated and no longer maintained. Use the `alb` service instead
+- `resourcemanager` [v0.4.0](services/resourcemanager/CHANGELOG.md#v040-2025-05-14)
+  - **Breaking change:** Fields `ContainerParentId` and `ParentId` are no longer required in `ParentListInner`
+- `stackitmarketplace`:
+  - [v1.1.1](services/stackitmarketplace/CHANGELOG.md#v111-2025-05-14)
+    - **Feature**: Added new method `vendors_subscriptions_reject`
+  - [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
+    - **Breaking Change:** Added organization id to `VendorSubscription`
+- `ske`: 
+  - [v0.4.3](services/ske/CHANGELOG.md#v043-2025-05-14)
+    - **Feature:** Added enum `SKE_NODE_MACHINE_TYPE_NOT_FOUND` to `ClusterError` 
+  - [v0.4.2](services/ske/CHANGELOG.md#v042-2025-05-13)
+    - **Feature:** Added `ClusterError`
+- `sqlserverflex`: [v1.0.2](services/sqlserverflex/CHANGELOG.md#v102-2025-05-14)
+  - **Feature:** Added new method `list_metrics`
 
 ## Release (2025-05-09)
 - `stackitmarketplace`: 
