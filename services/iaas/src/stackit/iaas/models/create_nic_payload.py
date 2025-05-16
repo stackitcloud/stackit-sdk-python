@@ -50,7 +50,7 @@ class CreateNicPayload(BaseModel):
         default=None, description="Object that represents an IP address."
     )
     ipv6: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Object that represents an IPv6 address."
+        default=None, description="String that represents an IPv6 address."
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
