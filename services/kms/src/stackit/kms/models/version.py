@@ -69,9 +69,18 @@ class Version(BaseModel):
     @field_validator("state")
     def state_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["active", "key_material_not_ready", "key_material_invalid", "disabled", "destroyed"]):
+        if value not in set(
+            [
+                "active",
+                "key_material_not_ready",
+                "key_material_invalid",
+                "key_material_unavailable",
+                "disabled",
+                "destroyed",
+            ]
+        ):
             raise ValueError(
-                "must be one of enum values ('active', 'key_material_not_ready', 'key_material_invalid', 'disabled', 'destroyed')"
+                "must be one of enum values ('active', 'key_material_not_ready', 'key_material_invalid', 'key_material_unavailable', 'disabled', 'destroyed')"
             )
         return value
 
