@@ -3,6 +3,8 @@
   - **Feature:** New field `Path` for `Rule`
 - `authorization`: [v0.2.4](services/authorization/CHANGELOG.md#v024-2025-05-13)
   - **Bugfix:** Updated regex validator
+- `iaas`: [v0.5.2](services/iaas/CHANGELOG.md#v052-2025-05-19)
+  - **Improvement:** Update descriptions
 - `lbapplication`: [v0.3.2](services/lbapplication/CHANGELOG.md#v032-2025-05-14)
   - **Deprecated:** `lbapplication` service is deprecated and no longer maintained. Use the `alb` service instead
 - `resourcemanager` [v0.4.0](services/resourcemanager/CHANGELOG.md#v040-2025-05-14)
