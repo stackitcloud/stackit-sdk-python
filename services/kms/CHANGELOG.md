@@ -1,3 +1,6 @@
+## v0.0.4 (2025-05-19)
+- **Feature:** Added new method `delete_wrapping_key`
+
 ## v0.0.3 (2025-05-09)
 - **Feature:** Update user-agent header
 

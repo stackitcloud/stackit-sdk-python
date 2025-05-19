@@ -1,3 +1,6 @@
+## v0.5.2 (2025-05-19)
+- **Improvement:** Update descriptions
+
 ## v0.5.1 (2025-05-09)
 - **Feature:** Update user-agent header
 
