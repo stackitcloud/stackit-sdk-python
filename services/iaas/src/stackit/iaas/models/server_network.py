@@ -37,7 +37,7 @@ class ServerNetwork(BaseModel):
         default=None, description="Object that represents an IP address."
     )
     ipv6: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Object that represents an IPv6 address."
+        default=None, description="String that represents an IPv6 address."
     )
     mac: Annotated[str, Field(strict=True)] = Field(description="Object that represents an MAC address.")
     network_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
