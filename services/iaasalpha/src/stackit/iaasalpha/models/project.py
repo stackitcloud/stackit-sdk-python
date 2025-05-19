@@ -44,7 +44,9 @@ class Project(BaseModel):
     )
     internet_access: Optional[StrictBool] = Field(default=None, alias="internetAccess")
     openstack_project_id: Optional[Annotated[str, Field(min_length=32, strict=True, max_length=32)]] = Field(
-        default=None, description="The identifier (ID) of an OpenStack project.", alias="openstackProjectId"
+        default=None,
+        description="The identifier (ID) of the OpenStack project in the main region eu01.",
+        alias="openstackProjectId",
     )
     project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
         description="Universally Unique Identifier (UUID).", alias="projectId"
@@ -115,10 +117,12 @@ class Project(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "created_at",
+                "openstack_project_id",
                 "updated_at",
             ]
         )
