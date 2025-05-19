@@ -1,3 +1,6 @@
+## v1.1.2 (2025-05-19)
+- **Improvement:** Update descriptions
+
 ## v1.1.1 (2025-05-14)
 - **Feature**: Added new method `vendors_subscriptions_reject`
 
