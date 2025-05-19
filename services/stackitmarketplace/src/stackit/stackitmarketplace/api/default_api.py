@@ -1126,7 +1126,7 @@ class DefaultApi:
         filter: Annotated[
             Optional[StrictStr],
             Field(
-                description='Filter the products based on attributes. E.g `deliveryMethod eq "SAAS"`. The supported attributes are `deliveryMethod`, `priceType`, `category`, `vendorId`, `vendorName`, and `name`. The supported operators are `eq`. Filters can be joined with `and` or `or`.'
+                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
             ),
         ] = None,
         sort: Annotated[
@@ -1155,7 +1155,7 @@ class DefaultApi:
         :type limit: float
         :param locale: The language of the response.
         :type locale: str
-        :param filter: Filter the products based on attributes. E.g `deliveryMethod eq \"SAAS\"`. The supported attributes are `deliveryMethod`, `priceType`, `category`, `vendorId`, `vendorName`, and `name`. The supported operators are `eq`. Filters can be joined with `and` or `or`.
+        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
         :type filter: str
         :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
         :type sort: str
@@ -1229,7 +1229,7 @@ class DefaultApi:
         filter: Annotated[
             Optional[StrictStr],
             Field(
-                description='Filter the products based on attributes. E.g `deliveryMethod eq "SAAS"`. The supported attributes are `deliveryMethod`, `priceType`, `category`, `vendorId`, `vendorName`, and `name`. The supported operators are `eq`. Filters can be joined with `and` or `or`.'
+                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
             ),
         ] = None,
         sort: Annotated[
@@ -1258,7 +1258,7 @@ class DefaultApi:
         :type limit: float
         :param locale: The language of the response.
         :type locale: str
-        :param filter: Filter the products based on attributes. E.g `deliveryMethod eq \"SAAS\"`. The supported attributes are `deliveryMethod`, `priceType`, `category`, `vendorId`, `vendorName`, and `name`. The supported operators are `eq`. Filters can be joined with `and` or `or`.
+        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
         :type filter: str
         :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
         :type sort: str
@@ -1332,7 +1332,7 @@ class DefaultApi:
         filter: Annotated[
             Optional[StrictStr],
             Field(
-                description='Filter the products based on attributes. E.g `deliveryMethod eq "SAAS"`. The supported attributes are `deliveryMethod`, `priceType`, `category`, `vendorId`, `vendorName`, and `name`. The supported operators are `eq`. Filters can be joined with `and` or `or`.'
+                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
             ),
         ] = None,
         sort: Annotated[
@@ -1361,7 +1361,7 @@ class DefaultApi:
         :type limit: float
         :param locale: The language of the response.
         :type locale: str
-        :param filter: Filter the products based on attributes. E.g `deliveryMethod eq \"SAAS\"`. The supported attributes are `deliveryMethod`, `priceType`, `category`, `vendorId`, `vendorName`, and `name`. The supported operators are `eq`. Filters can be joined with `and` or `or`.
+        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
         :type filter: str
         :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
         :type sort: str
