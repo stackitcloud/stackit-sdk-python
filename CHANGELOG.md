@@ -8,6 +8,8 @@
 - `resourcemanager` [v0.4.0](services/resourcemanager/CHANGELOG.md#v040-2025-05-14)
   - **Breaking change:** Fields `ContainerParentId` and `ParentId` are no longer required in `ParentListInner`
 - `stackitmarketplace`:
+  - [v1.1.2](services/stackitmarketplace/CHANGELOG.md#v112-2025-05-19)
+    - **Improvement:** Update descriptions
   - [v1.1.1](services/stackitmarketplace/CHANGELOG.md#v111-2025-05-14)
     - **Feature**: Added new method `vendors_subscriptions_reject`
   - [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
