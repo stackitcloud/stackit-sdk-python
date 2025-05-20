@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing_extensions import Annotated, Self
 
 
@@ -37,10 +37,16 @@ class CreateAlertConfigReceiverPayloadOpsgenieConfigsInner(BaseModel):
         description="The host to send OpsGenie API requests to. `Additional Validators:` * must be a syntactically valid url address",
         alias="apiUrl",
     )
+    priority: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=2)]] = Field(
+        default=None, description="Priority level of alert. Possible values are P1, P2, P3, P4, and P5."
+    )
+    send_resolved: Optional[StrictBool] = Field(
+        default=True, description="Whether to notify about resolved alerts.", alias="sendResolved"
+    )
     tags: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=400)]] = Field(
         default=None, description="Comma separated list of tags attached to the notifications."
     )
-    __properties: ClassVar[List[str]] = ["apiKey", "apiUrl", "tags"]
+    __properties: ClassVar[List[str]] = ["apiKey", "apiUrl", "priority", "sendResolved", "tags"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,5 +96,13 @@ class CreateAlertConfigReceiverPayloadOpsgenieConfigsInner(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"apiKey": obj.get("apiKey"), "apiUrl": obj.get("apiUrl"), "tags": obj.get("tags")})
+        _obj = cls.model_validate(
+            {
+                "apiKey": obj.get("apiKey"),
+                "apiUrl": obj.get("apiUrl"),
+                "priority": obj.get("priority"),
+                "sendResolved": obj.get("sendResolved") if obj.get("sendResolved") is not None else True,
+                "tags": obj.get("tags"),
+            }
+        )
         return _obj
