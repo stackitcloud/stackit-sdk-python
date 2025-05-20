@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing_extensions import Annotated, Self
 
 
@@ -27,6 +27,7 @@ class CreateAlertConfigRoutePayloadRoutesInner(BaseModel):
     As in one level above
     """
 
+    var_continue: Optional[StrictBool] = Field(default=False, description="As in one level above", alias="continue")
     group_by: Optional[List[Annotated[str, Field(min_length=1, strict=True, max_length=200)]]] = Field(
         default=None, alias="groupBy"
     )
@@ -38,6 +39,9 @@ class CreateAlertConfigRoutePayloadRoutesInner(BaseModel):
     )
     match: Optional[Dict[str, Any]] = Field(default=None, description="As in one level above")
     match_re: Optional[Dict[str, Any]] = Field(default=None, description="As in one level above", alias="matchRe")
+    matchers: Optional[List[Annotated[str, Field(min_length=1, strict=True, max_length=200)]]] = Field(
+        default=None, description="As in one level above"
+    )
     receiver: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=100)]] = Field(
         default=None, description="As in one level above"
     )
@@ -46,11 +50,13 @@ class CreateAlertConfigRoutePayloadRoutesInner(BaseModel):
     )
     routes: Optional[List[Dict[str, Any]]] = Field(default=None, description="Another child routes")
     __properties: ClassVar[List[str]] = [
+        "continue",
         "groupBy",
         "groupInterval",
         "groupWait",
         "match",
         "matchRe",
+        "matchers",
         "receiver",
         "repeatInterval",
         "routes",
@@ -106,11 +112,13 @@ class CreateAlertConfigRoutePayloadRoutesInner(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "continue": obj.get("continue") if obj.get("continue") is not None else False,
                 "groupBy": obj.get("groupBy"),
                 "groupInterval": obj.get("groupInterval"),
                 "groupWait": obj.get("groupWait"),
                 "match": obj.get("match"),
                 "matchRe": obj.get("matchRe"),
+                "matchers": obj.get("matchers"),
                 "receiver": obj.get("receiver"),
                 "repeatInterval": obj.get("repeatInterval"),
                 "routes": obj.get("routes"),

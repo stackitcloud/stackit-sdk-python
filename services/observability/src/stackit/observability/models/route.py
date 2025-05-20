@@ -43,6 +43,9 @@ class Route(BaseModel):
     match_re: Optional[Dict[str, Annotated[str, Field(min_length=1, strict=True, max_length=200)]]] = Field(
         default=None, alias="matchRe"
     )
+    matchers: Optional[
+        Annotated[List[Annotated[str, Field(min_length=1, strict=True, max_length=200)]], Field(max_length=5)]
+    ] = None
     receiver: Annotated[str, Field(min_length=1, strict=True, max_length=200)]
     repeat_interval: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(
         default="4h", alias="repeatInterval"
@@ -55,6 +58,7 @@ class Route(BaseModel):
         "groupWait",
         "match",
         "matchRe",
+        "matchers",
         "receiver",
         "repeatInterval",
         "routes",
@@ -123,6 +127,7 @@ class Route(BaseModel):
                 "groupWait": obj.get("groupWait") if obj.get("groupWait") is not None else "30s",
                 "match": obj.get("match"),
                 "matchRe": obj.get("matchRe"),
+                "matchers": obj.get("matchers"),
                 "receiver": obj.get("receiver"),
                 "repeatInterval": obj.get("repeatInterval") if obj.get("repeatInterval") is not None else "4h",
                 "routes": (

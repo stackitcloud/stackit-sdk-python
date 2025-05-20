@@ -32,11 +32,14 @@ class CreateAlertConfigReceiverPayloadWebHookConfigsInner(BaseModel):
         description="Microsoft Teams webhooks require special handling. If you set this property to true, it is treated as such",
         alias="msTeams",
     )
+    send_resolved: Optional[StrictBool] = Field(
+        default=True, description="Whether to notify about resolved alerts.", alias="sendResolved"
+    )
     url: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=500)]] = Field(
         default=None,
         description="The endpoint to send HTTP POST requests to. `Additional Validators:` * must be a syntactically valid url address",
     )
-    __properties: ClassVar[List[str]] = ["msTeams", "url"]
+    __properties: ClassVar[List[str]] = ["msTeams", "sendResolved", "url"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,6 +90,10 @@ class CreateAlertConfigReceiverPayloadWebHookConfigsInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"msTeams": obj.get("msTeams") if obj.get("msTeams") is not None else False, "url": obj.get("url")}
+            {
+                "msTeams": obj.get("msTeams") if obj.get("msTeams") is not None else False,
+                "sendResolved": obj.get("sendResolved") if obj.get("sendResolved") is not None else True,
+                "url": obj.get("url"),
+            }
         )
         return _obj
