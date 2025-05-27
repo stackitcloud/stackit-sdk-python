@@ -25,6 +25,8 @@
     - **Feature:** Added `ClusterError`
 - `sqlserverflex`: [v1.0.2](services/sqlserverflex/CHANGELOG.md#v102-2025-05-14)
   - **Feature:** Added new method `list_metrics`
+- `cdn`: [v1.1.0](services/cdn/CHANGELOG.md#v110-2025-05-27)
+  - **Feature:** Add support for CDN Optimizer feature
 
 ## Release (2025-05-09)
 - `stackitmarketplace`: 
