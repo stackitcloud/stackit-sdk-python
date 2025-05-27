@@ -1,3 +1,7 @@
+## v0.5.0 (2025-05-27)
+- **Feature:** Add support for `matchers` to route
+- **Feature:** Add support for `priority levels`, `sendResolved`, `continue` to alert config models
+
 ## v0.4.1 (2025-05-09)
 - **Feature:** Update user-agent header
 
