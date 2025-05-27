@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
 from stackit.cdn.models.config_patch_backend import ConfigPatchBackend
+from stackit.cdn.models.optimizer_patch import OptimizerPatch
 from stackit.cdn.models.region import Region
 
 
@@ -45,8 +46,16 @@ class ConfigPatch(BaseModel):
         description="Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use. ",
         alias="monthlyLimitBytes",
     )
+    optimizer: Optional[OptimizerPatch] = None
     regions: Optional[Annotated[List[Region], Field(min_length=1)]] = None
-    __properties: ClassVar[List[str]] = ["backend", "blockedCountries", "blockedIPs", "monthlyLimitBytes", "regions"]
+    __properties: ClassVar[List[str]] = [
+        "backend",
+        "blockedCountries",
+        "blockedIPs",
+        "monthlyLimitBytes",
+        "optimizer",
+        "regions",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,6 +97,9 @@ class ConfigPatch(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of backend
         if self.backend:
             _dict["backend"] = self.backend.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of optimizer
+        if self.optimizer:
+            _dict["optimizer"] = self.optimizer.to_dict()
         # set to None if monthly_limit_bytes (nullable) is None
         # and model_fields_set contains the field
         if self.monthly_limit_bytes is None and "monthly_limit_bytes" in self.model_fields_set:
@@ -110,6 +122,7 @@ class ConfigPatch(BaseModel):
                 "blockedCountries": obj.get("blockedCountries"),
                 "blockedIPs": obj.get("blockedIPs"),
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
+                "optimizer": OptimizerPatch.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
                 "regions": obj.get("regions"),
             }
         )
