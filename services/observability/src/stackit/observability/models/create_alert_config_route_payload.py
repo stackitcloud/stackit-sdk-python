@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing_extensions import Annotated, Self
 
 from stackit.observability.models.create_alert_config_route_payload_routes_inner import (
@@ -31,6 +31,11 @@ class CreateAlertConfigRoutePayload(BaseModel):
     The root node of the routing tree.
     """
 
+    var_continue: Optional[StrictBool] = Field(
+        default=False,
+        description="Whether an alert should continue matching subsequent sibling nodes.",
+        alias="continue",
+    )
     group_by: Optional[List[Annotated[str, Field(min_length=1, strict=True, max_length=200)]]] = Field(
         default=None,
         description="The labels by which incoming alerts are grouped together. For example, multiple alerts coming in for cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels use the special value '...' as the sole label name, for example: group_by: ['...']. This effectively disables aggregation entirely, passing through all alerts as-is. This is unlikely to be what you want, unless you have a very low alert volume or your upstream notification system performs its own grouping.",
@@ -71,6 +76,7 @@ class CreateAlertConfigRoutePayload(BaseModel):
         default=None, description="Zero or more child routes."
     )
     __properties: ClassVar[List[str]] = [
+        "continue",
         "groupBy",
         "groupInterval",
         "groupWait",
@@ -139,6 +145,7 @@ class CreateAlertConfigRoutePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "continue": obj.get("continue") if obj.get("continue") is not None else False,
                 "groupBy": obj.get("groupBy"),
                 "groupInterval": obj.get("groupInterval") if obj.get("groupInterval") is not None else "5m",
                 "groupWait": obj.get("groupWait") if obj.get("groupWait") is not None else "30s",
