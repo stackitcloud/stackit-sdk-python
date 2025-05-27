@@ -72,6 +72,8 @@ from stackit.cdn.models.get_statistics_response import GetStatisticsResponse
 from stackit.cdn.models.http_backend import HttpBackend
 from stackit.cdn.models.http_backend_patch import HttpBackendPatch
 from stackit.cdn.models.list_distributions_response import ListDistributionsResponse
+from stackit.cdn.models.optimizer import Optimizer
+from stackit.cdn.models.optimizer_patch import OptimizerPatch
 from stackit.cdn.models.patch_distribution_payload import PatchDistributionPayload
 from stackit.cdn.models.patch_distribution_response import PatchDistributionResponse
 from stackit.cdn.models.purge_cache_payload import PurgeCachePayload

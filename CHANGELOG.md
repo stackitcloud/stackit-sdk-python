@@ -25,6 +25,11 @@
     - **Feature:** Added `ClusterError`
 - `sqlserverflex`: [v1.0.2](services/sqlserverflex/CHANGELOG.md#v102-2025-05-14)
   - **Feature:** Added new method `list_metrics`
+- `cdn`: [v1.1.0](services/cdn/CHANGELOG.md#v110-2025-05-27)
+  - **Feature:** Add support for CDN Optimizer feature
+- `observability`: [v0.5.0](services/observability/CHANGELOG.md#v050-2025-05-27)
+  - **Feature:** Add support for `matchers` to route
+  - **Feature:** Add support for `priority levels`, `sendResolved`, `continue` to alert config models
 
 ## Release (2025-05-09)
 - `stackitmarketplace`: 

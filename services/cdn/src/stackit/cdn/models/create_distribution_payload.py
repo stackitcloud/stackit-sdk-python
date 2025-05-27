@@ -20,6 +20,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
+from stackit.cdn.models.optimizer import Optimizer
 from stackit.cdn.models.region import Region
 
 
@@ -48,6 +49,7 @@ class CreateDistributionPayload(BaseModel):
         description="Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use. ",
         alias="monthlyLimitBytes",
     )
+    optimizer: Optional[Optimizer] = None
     origin_request_headers: Optional[Dict[str, StrictStr]] = Field(
         default=None,
         description="Headers that will be sent with every request to the configured origin. WARNING: Do not store sensitive values in the headers. The data is stores as plain text. ",
@@ -65,6 +67,7 @@ class CreateDistributionPayload(BaseModel):
         "blockedIPs",
         "intentId",
         "monthlyLimitBytes",
+        "optimizer",
         "originRequestHeaders",
         "originUrl",
         "regions",
@@ -107,6 +110,9 @@ class CreateDistributionPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of optimizer
+        if self.optimizer:
+            _dict["optimizer"] = self.optimizer.to_dict()
         return _dict
 
     @classmethod
@@ -124,6 +130,7 @@ class CreateDistributionPayload(BaseModel):
                 "blockedIPs": obj.get("blockedIPs"),
                 "intentId": obj.get("intentId"),
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
+                "optimizer": Optimizer.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
                 "originRequestHeaders": obj.get("originRequestHeaders"),
                 "originUrl": obj.get("originUrl"),
                 "regions": obj.get("regions"),

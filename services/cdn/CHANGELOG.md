@@ -1,3 +1,6 @@
+## v1.1.0 (2025-05-27)
+- **Feature:** Add support for CDN Optimizer feature
+
 ## v1.0.1 (2025-05-09)
 - **Feature:** Update user-agent header
 
