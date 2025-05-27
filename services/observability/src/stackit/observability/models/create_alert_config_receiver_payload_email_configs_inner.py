@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing_extensions import Annotated, Self
 
 
@@ -43,6 +43,9 @@ class CreateAlertConfigReceiverPayloadEmailConfigsInner(BaseModel):
         description="The sender address. `Additional Validators:` * must be a syntactically valid email address",
         alias="from",
     )
+    send_resolved: Optional[StrictBool] = Field(
+        default=False, description="Whether to notify about resolved alerts.", alias="sendResolved"
+    )
     smarthost: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=200)]] = Field(
         default=None,
         description="The SMTP host through which emails are sent. `Additional Validators:` * should only include the characters: a-zA-Z0-9_./@&?:-",
@@ -51,7 +54,15 @@ class CreateAlertConfigReceiverPayloadEmailConfigsInner(BaseModel):
         default=None,
         description="The email address to send notifications to. `Additional Validators:` * must be a syntactically valid email address",
     )
-    __properties: ClassVar[List[str]] = ["authIdentity", "authPassword", "authUsername", "from", "smarthost", "to"]
+    __properties: ClassVar[List[str]] = [
+        "authIdentity",
+        "authPassword",
+        "authUsername",
+        "from",
+        "sendResolved",
+        "smarthost",
+        "to",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,6 +118,7 @@ class CreateAlertConfigReceiverPayloadEmailConfigsInner(BaseModel):
                 "authPassword": obj.get("authPassword"),
                 "authUsername": obj.get("authUsername"),
                 "from": obj.get("from"),
+                "sendResolved": obj.get("sendResolved") if obj.get("sendResolved") is not None else False,
                 "smarthost": obj.get("smarthost"),
                 "to": obj.get("to"),
             }
