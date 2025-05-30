@@ -1727,9 +1727,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> GetQuotaResponse:
-        """Get the quota of application load balancers and target pools in a project.
+        """Get the quota of Application Load Balancers in a project.
 
-        Retrieves the configured Application Load Balancer quota for the project.  The default quota is 3.
+        Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
 
         :param project_id: (required)
         :type project_id: str
@@ -1795,9 +1795,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[GetQuotaResponse]:
-        """Get the quota of application load balancers and target pools in a project.
+        """Get the quota of Application Load Balancers in a project.
 
-        Retrieves the configured Application Load Balancer quota for the project.  The default quota is 3.
+        Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
 
         :param project_id: (required)
         :type project_id: str
@@ -1863,9 +1863,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the quota of application load balancers and target pools in a project.
+        """Get the quota of Application Load Balancers in a project.
 
-        Retrieves the configured Application Load Balancer quota for the project.  The default quota is 3.
+        Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
 
         :param project_id: (required)
         :type project_id: str
