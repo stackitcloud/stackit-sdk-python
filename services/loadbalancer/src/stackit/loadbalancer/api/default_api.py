@@ -1745,9 +1745,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> GetQuotaResponse:
-        """Get the quota of Load Balancers and Target Pools in a project.
+        """Get the quota of Load Balancers in a project.
 
-        GetQuota gets the configured load balancer quota for the project. Default is 3.
+        Retrieves the configured Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many observability credentials as Load Balancers.
 
         :param project_id: (required)
         :type project_id: str
@@ -1813,9 +1813,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[GetQuotaResponse]:
-        """Get the quota of Load Balancers and Target Pools in a project.
+        """Get the quota of Load Balancers in a project.
 
-        GetQuota gets the configured load balancer quota for the project. Default is 3.
+        Retrieves the configured Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many observability credentials as Load Balancers.
 
         :param project_id: (required)
         :type project_id: str
@@ -1881,9 +1881,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the quota of Load Balancers and Target Pools in a project.
+        """Get the quota of Load Balancers in a project.
 
-        GetQuota gets the configured load balancer quota for the project. Default is 3.
+        Retrieves the configured Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many observability credentials as Load Balancers.
 
         :param project_id: (required)
         :type project_id: str
