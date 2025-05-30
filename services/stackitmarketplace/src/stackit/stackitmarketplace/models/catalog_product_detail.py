@@ -66,6 +66,9 @@ class CatalogProductDetail(BaseModel):
     )
     email: Optional[StrictStr] = Field(default=None, description="A e-mail address.")
     highlights: List[CatalogProductHighlight] = Field(description="The list of highlights.")
+    industries: Optional[List[StrictStr]] = Field(
+        default=None, description="The list of industries associated to the product."
+    )
     is_product_listing: StrictBool = Field(
         description="If true, the product is not fully integrated but only listed. Product listings may not have prices and support information.",
         alias="isProductListing",
@@ -103,6 +106,7 @@ class CatalogProductDetail(BaseModel):
         "documentationUrl",
         "email",
         "highlights",
+        "industries",
         "isProductListing",
         "lifecycleState",
         "logo",
@@ -253,6 +257,7 @@ class CatalogProductDetail(BaseModel):
                     if obj.get("highlights") is not None
                     else None
                 ),
+                "industries": obj.get("industries"),
                 "isProductListing": obj.get("isProductListing"),
                 "lifecycleState": obj.get("lifecycleState"),
                 "logo": obj.get("logo"),
