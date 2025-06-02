@@ -1,3 +1,6 @@
+## v0.3.3 (2025-06-02)
+- **Deprecated:** Changed deprecation message of `GetQuotaResponse` and `RESTResponseType`
+
 ## v0.3.2 (2025-05-14)
 - **Deprecated:** `lbapplication` service is deprecated and no longer maintained. Use the `alb` service instead
 

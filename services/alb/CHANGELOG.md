@@ -1,3 +1,6 @@
+## v0.2.1 (2025-06-02)
+- **Improvement:** Adjusted `GetQuotaResponse` and `RESTResponseType` message
+
 ## v0.2.0 (2025-05-14)
 - **Feature:** New field `Path` for `Rule`
 

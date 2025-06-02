@@ -1,3 +1,6 @@
+## v1.1.3 (2025-06-02)
+- **Feature:** Added `industries` to `CatalogProductDetail`
+
 ## v1.1.2 (2025-05-19)
 - **Improvement:** Update descriptions
 
