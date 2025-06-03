@@ -1,3 +1,6 @@
+## v0.2.4 (2025-06-02)
+- **Improvement:** Adjusted `GetQuotaResponse` and `RESTResponseType` message
+
 ## v0.2.3 (2025-05-09)
 - **Feature:** Update user-agent header
 
