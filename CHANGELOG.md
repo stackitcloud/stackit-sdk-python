@@ -1,4 +1,4 @@
-## Release (2025-XX-XX)
+## Release (2025-06-03)
 
 - `loadbalancer`: [v0.2.4](services/loadbalancer/CHANGELOG.md#v024-2025-06-02)
   - **Improvement:** Adjusted `GetQuotaResponse` and `RESTResponseType` message
