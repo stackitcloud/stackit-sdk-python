@@ -23,6 +23,10 @@ from stackit.resourcemanager.models.get_folder_details_response import (
 )
 from stackit.resourcemanager.models.get_project_response import GetProjectResponse
 from stackit.resourcemanager.models.lifecycle_state import LifecycleState
+from stackit.resourcemanager.models.list_folders_response import ListFoldersResponse
+from stackit.resourcemanager.models.list_folders_response_items_inner import (
+    ListFoldersResponseItemsInner,
+)
 from stackit.resourcemanager.models.list_organizations_response import (
     ListOrganizationsResponse,
 )
@@ -36,6 +40,9 @@ from stackit.resourcemanager.models.parent import Parent
 from stackit.resourcemanager.models.parent_list_inner import ParentListInner
 from stackit.resourcemanager.models.partial_update_folder_payload import (
     PartialUpdateFolderPayload,
+)
+from stackit.resourcemanager.models.partial_update_organization_payload import (
+    PartialUpdateOrganizationPayload,
 )
 from stackit.resourcemanager.models.partial_update_project_payload import (
     PartialUpdateProjectPayload,
