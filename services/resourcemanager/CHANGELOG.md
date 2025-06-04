@@ -1,3 +1,9 @@
+## v0.5.0 (2025-06-04)
+- **Feature:** Delete Organization labels using the new method `DeleteOrganizationLabels`
+- **Feature:** Delete Project labels using the new method `DeleteProjectLabels`
+- **Feature:** List folders using the new method `ListFolders`
+- **Feature:** Partial Update Organization using the new method `PartialUpdateOrganization`
+
 ## v0.4.0 (2025-05-14)
 - **Breaking change:** Fields `ContainerParentId` and `ParentId` are no longer required in `ParentListInner`
 
