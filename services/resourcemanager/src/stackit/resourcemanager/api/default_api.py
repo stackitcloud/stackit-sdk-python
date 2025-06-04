@@ -27,6 +27,7 @@ from stackit.resourcemanager.models.get_folder_details_response import (
     GetFolderDetailsResponse,
 )
 from stackit.resourcemanager.models.get_project_response import GetProjectResponse
+from stackit.resourcemanager.models.list_folders_response import ListFoldersResponse
 from stackit.resourcemanager.models.list_organizations_response import (
     ListOrganizationsResponse,
 )
@@ -34,6 +35,9 @@ from stackit.resourcemanager.models.list_projects_response import ListProjectsRe
 from stackit.resourcemanager.models.organization_response import OrganizationResponse
 from stackit.resourcemanager.models.partial_update_folder_payload import (
     PartialUpdateFolderPayload,
+)
+from stackit.resourcemanager.models.partial_update_organization_payload import (
+    PartialUpdateOrganizationPayload,
 )
 from stackit.resourcemanager.models.partial_update_project_payload import (
     PartialUpdateProjectPayload,
@@ -1066,6 +1070,263 @@ class DefaultApi:
         )
 
     @validate_call
+    def delete_organization_labels(
+        self,
+        container_id: Annotated[
+            StrictStr,
+            Field(description="Organization identifier - containerId as well as UUID identifier is supported."),
+        ],
+        keys: Annotated[Optional[List[StrictStr]], Field(description="Label name.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Organization Labels
+
+        Deletes all organization labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+
+        :param container_id: Organization identifier - containerId as well as UUID identifier is supported. (required)
+        :type container_id: str
+        :param keys: Label name.
+        :type keys: List[str]
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_organization_labels_serialize(
+            container_id=container_id,
+            keys=keys,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_organization_labels_with_http_info(
+        self,
+        container_id: Annotated[
+            StrictStr,
+            Field(description="Organization identifier - containerId as well as UUID identifier is supported."),
+        ],
+        keys: Annotated[Optional[List[StrictStr]], Field(description="Label name.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Organization Labels
+
+        Deletes all organization labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+
+        :param container_id: Organization identifier - containerId as well as UUID identifier is supported. (required)
+        :type container_id: str
+        :param keys: Label name.
+        :type keys: List[str]
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_organization_labels_serialize(
+            container_id=container_id,
+            keys=keys,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_organization_labels_without_preload_content(
+        self,
+        container_id: Annotated[
+            StrictStr,
+            Field(description="Organization identifier - containerId as well as UUID identifier is supported."),
+        ],
+        keys: Annotated[Optional[List[StrictStr]], Field(description="Label name.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Organization Labels
+
+        Deletes all organization labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+
+        :param container_id: Organization identifier - containerId as well as UUID identifier is supported. (required)
+        :type container_id: str
+        :param keys: Label name.
+        :type keys: List[str]
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_organization_labels_serialize(
+            container_id=container_id,
+            keys=keys,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_organization_labels_serialize(
+        self,
+        container_id,
+        keys,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            "keys": "multi",
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if container_id is not None:
+            _path_params["containerId"] = container_id
+        # process the query parameters
+        if keys is not None:
+
+            _query_params.append(("keys", keys))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v2/organizations/{containerId}/labels",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def delete_project(
         self,
         id: Annotated[
@@ -1276,6 +1537,260 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="DELETE",
             resource_path="/v2/projects/{id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_project_labels(
+        self,
+        container_id: Annotated[
+            StrictStr, Field(description="Project identifier - containerId as well as UUID identifier is supported.")
+        ],
+        keys: Annotated[Optional[List[StrictStr]], Field(description="Label name.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Project Labels
+
+        Deletes all project labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+
+        :param container_id: Project identifier - containerId as well as UUID identifier is supported. (required)
+        :type container_id: str
+        :param keys: Label name.
+        :type keys: List[str]
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_project_labels_serialize(
+            container_id=container_id,
+            keys=keys,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_project_labels_with_http_info(
+        self,
+        container_id: Annotated[
+            StrictStr, Field(description="Project identifier - containerId as well as UUID identifier is supported.")
+        ],
+        keys: Annotated[Optional[List[StrictStr]], Field(description="Label name.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Project Labels
+
+        Deletes all project labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+
+        :param container_id: Project identifier - containerId as well as UUID identifier is supported. (required)
+        :type container_id: str
+        :param keys: Label name.
+        :type keys: List[str]
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_project_labels_serialize(
+            container_id=container_id,
+            keys=keys,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_project_labels_without_preload_content(
+        self,
+        container_id: Annotated[
+            StrictStr, Field(description="Project identifier - containerId as well as UUID identifier is supported.")
+        ],
+        keys: Annotated[Optional[List[StrictStr]], Field(description="Label name.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Project Labels
+
+        Deletes all project labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+
+        :param container_id: Project identifier - containerId as well as UUID identifier is supported. (required)
+        :type container_id: str
+        :param keys: Label name.
+        :type keys: List[str]
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._delete_project_labels_serialize(
+            container_id=container_id,
+            keys=keys,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "202": None,
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_project_labels_serialize(
+        self,
+        container_id,
+        keys,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            "keys": "multi",
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if container_id is not None:
+            _path_params["containerId"] = container_id
+        # process the query parameters
+        if keys is not None:
+
+            _query_params.append(("keys", keys))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v2/projects/{containerId}/labels",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2012,6 +2527,424 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v2/projects/{id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_folders(
+        self,
+        container_parent_id: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Identifier of the parent resource container - containerId as well as UUID identifier is supported."
+            ),
+        ] = None,
+        container_ids: Annotated[
+            Optional[List[StrictStr]],
+            Field(description="List of container identifiers - containerId as well as UUID identifier is supported."),
+        ] = None,
+        member: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="E-Mail address of the user for whom the visible resource containers should be filtered."
+            ),
+        ] = None,
+        limit: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
+                ]
+            ],
+            Field(
+                description="The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used."
+            ),
+        ] = None,
+        offset: Annotated[
+            Optional[Union[Annotated[float, Field(strict=True, ge=0)], Annotated[int, Field(strict=True, ge=0)]]],
+            Field(description="The offset of the first item in the collection to return."),
+        ] = None,
+        creation_time_start: Annotated[
+            Optional[datetime],
+            Field(
+                description="A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time."
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListFoldersResponse:
+        """Get All Folders
+
+        Returns all folders and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of <br />  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent
+
+        :param container_parent_id: Identifier of the parent resource container - containerId as well as UUID identifier is supported.
+        :type container_parent_id: str
+        :param container_ids: List of container identifiers - containerId as well as UUID identifier is supported.
+        :type container_ids: List[str]
+        :param member: E-Mail address of the user for whom the visible resource containers should be filtered.
+        :type member: str
+        :param limit: The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
+        :type limit: float
+        :param offset: The offset of the first item in the collection to return.
+        :type offset: float
+        :param creation_time_start: A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time.
+        :type creation_time_start: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_folders_serialize(
+            container_parent_id=container_parent_id,
+            container_ids=container_ids,
+            member=member,
+            limit=limit,
+            offset=offset,
+            creation_time_start=creation_time_start,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListFoldersResponse",
+            "400": "ErrorResponse",
+            "403": "ErrorResponse",
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_folders_with_http_info(
+        self,
+        container_parent_id: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Identifier of the parent resource container - containerId as well as UUID identifier is supported."
+            ),
+        ] = None,
+        container_ids: Annotated[
+            Optional[List[StrictStr]],
+            Field(description="List of container identifiers - containerId as well as UUID identifier is supported."),
+        ] = None,
+        member: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="E-Mail address of the user for whom the visible resource containers should be filtered."
+            ),
+        ] = None,
+        limit: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
+                ]
+            ],
+            Field(
+                description="The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used."
+            ),
+        ] = None,
+        offset: Annotated[
+            Optional[Union[Annotated[float, Field(strict=True, ge=0)], Annotated[int, Field(strict=True, ge=0)]]],
+            Field(description="The offset of the first item in the collection to return."),
+        ] = None,
+        creation_time_start: Annotated[
+            Optional[datetime],
+            Field(
+                description="A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time."
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListFoldersResponse]:
+        """Get All Folders
+
+        Returns all folders and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of <br />  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent
+
+        :param container_parent_id: Identifier of the parent resource container - containerId as well as UUID identifier is supported.
+        :type container_parent_id: str
+        :param container_ids: List of container identifiers - containerId as well as UUID identifier is supported.
+        :type container_ids: List[str]
+        :param member: E-Mail address of the user for whom the visible resource containers should be filtered.
+        :type member: str
+        :param limit: The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
+        :type limit: float
+        :param offset: The offset of the first item in the collection to return.
+        :type offset: float
+        :param creation_time_start: A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time.
+        :type creation_time_start: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_folders_serialize(
+            container_parent_id=container_parent_id,
+            container_ids=container_ids,
+            member=member,
+            limit=limit,
+            offset=offset,
+            creation_time_start=creation_time_start,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListFoldersResponse",
+            "400": "ErrorResponse",
+            "403": "ErrorResponse",
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_folders_without_preload_content(
+        self,
+        container_parent_id: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Identifier of the parent resource container - containerId as well as UUID identifier is supported."
+            ),
+        ] = None,
+        container_ids: Annotated[
+            Optional[List[StrictStr]],
+            Field(description="List of container identifiers - containerId as well as UUID identifier is supported."),
+        ] = None,
+        member: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="E-Mail address of the user for whom the visible resource containers should be filtered."
+            ),
+        ] = None,
+        limit: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
+                ]
+            ],
+            Field(
+                description="The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used."
+            ),
+        ] = None,
+        offset: Annotated[
+            Optional[Union[Annotated[float, Field(strict=True, ge=0)], Annotated[int, Field(strict=True, ge=0)]]],
+            Field(description="The offset of the first item in the collection to return."),
+        ] = None,
+        creation_time_start: Annotated[
+            Optional[datetime],
+            Field(
+                description="A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time."
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get All Folders
+
+        Returns all folders and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of <br />  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent
+
+        :param container_parent_id: Identifier of the parent resource container - containerId as well as UUID identifier is supported.
+        :type container_parent_id: str
+        :param container_ids: List of container identifiers - containerId as well as UUID identifier is supported.
+        :type container_ids: List[str]
+        :param member: E-Mail address of the user for whom the visible resource containers should be filtered.
+        :type member: str
+        :param limit: The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
+        :type limit: float
+        :param offset: The offset of the first item in the collection to return.
+        :type offset: float
+        :param creation_time_start: A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time.
+        :type creation_time_start: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._list_folders_serialize(
+            container_parent_id=container_parent_id,
+            container_ids=container_ids,
+            member=member,
+            limit=limit,
+            offset=offset,
+            creation_time_start=creation_time_start,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListFoldersResponse",
+            "400": "ErrorResponse",
+            "403": "ErrorResponse",
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_folders_serialize(
+        self,
+        container_parent_id,
+        container_ids,
+        member,
+        limit,
+        offset,
+        creation_time_start,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            "containerIds": "multi",
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if container_parent_id is not None:
+
+            _query_params.append(("containerParentId", container_parent_id))
+
+        if container_ids is not None:
+
+            _query_params.append(("containerIds", container_ids))
+
+        if member is not None:
+
+            _query_params.append(("member", member))
+
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if offset is not None:
+
+            _query_params.append(("offset", offset))
+
+        if creation_time_start is not None:
+            if isinstance(creation_time_start, datetime):
+                _query_params.append(
+                    ("creation-time-start", creation_time_start.strftime(self.api_client.configuration.datetime_format))
+                )
+            else:
+                _query_params.append(("creation-time-start", creation_time_start))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v2/folders",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3080,6 +4013,270 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="PATCH",
             resource_path="/v2/folders/{containerId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def partial_update_organization(
+        self,
+        id: Annotated[
+            StrictStr,
+            Field(description="Organization identifier - containerId as well as UUID identifier is supported."),
+        ],
+        partial_update_organization_payload: Optional[PartialUpdateOrganizationPayload] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> OrganizationResponse:
+        """Update Organization
+
+        Update the organization and its metadata. - Update organization name - Update organization labels
+
+        :param id: Organization identifier - containerId as well as UUID identifier is supported. (required)
+        :type id: str
+        :param partial_update_organization_payload:
+        :type partial_update_organization_payload: PartialUpdateOrganizationPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._partial_update_organization_serialize(
+            id=id,
+            partial_update_organization_payload=partial_update_organization_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "OrganizationResponse",
+            "404": "ErrorResponse",
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def partial_update_organization_with_http_info(
+        self,
+        id: Annotated[
+            StrictStr,
+            Field(description="Organization identifier - containerId as well as UUID identifier is supported."),
+        ],
+        partial_update_organization_payload: Optional[PartialUpdateOrganizationPayload] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[OrganizationResponse]:
+        """Update Organization
+
+        Update the organization and its metadata. - Update organization name - Update organization labels
+
+        :param id: Organization identifier - containerId as well as UUID identifier is supported. (required)
+        :type id: str
+        :param partial_update_organization_payload:
+        :type partial_update_organization_payload: PartialUpdateOrganizationPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._partial_update_organization_serialize(
+            id=id,
+            partial_update_organization_payload=partial_update_organization_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "OrganizationResponse",
+            "404": "ErrorResponse",
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def partial_update_organization_without_preload_content(
+        self,
+        id: Annotated[
+            StrictStr,
+            Field(description="Organization identifier - containerId as well as UUID identifier is supported."),
+        ],
+        partial_update_organization_payload: Optional[PartialUpdateOrganizationPayload] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update Organization
+
+        Update the organization and its metadata. - Update organization name - Update organization labels
+
+        :param id: Organization identifier - containerId as well as UUID identifier is supported. (required)
+        :type id: str
+        :param partial_update_organization_payload:
+        :type partial_update_organization_payload: PartialUpdateOrganizationPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501 docstring might be too long
+
+        _param = self._partial_update_organization_serialize(
+            id=id,
+            partial_update_organization_payload=partial_update_organization_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "OrganizationResponse",
+            "404": "ErrorResponse",
+            "409": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _partial_update_organization_serialize(
+        self,
+        id,
+        partial_update_organization_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params["id"] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if partial_update_organization_payload is not None:
+            _body_params = partial_update_organization_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="PATCH",
+            resource_path="/v2/organizations/{id}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

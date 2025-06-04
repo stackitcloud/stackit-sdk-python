@@ -1,3 +1,10 @@
+## Release (2025-XX-YY)
+- `resourcemanager`: [v0.5.0](services/resourcemanager/CHANGELOG.md#v050-2025-06-04)
+  - **Feature:** Delete Organization labels using the new method `DeleteOrganizationLabels`
+  - **Feature:** Delete Project labels using the new method `DeleteProjectLabels`
+  - **Feature:** List folders using the new method `ListFolders`
+  - **Feature:** Partial Update Organization using the new method `PartialUpdateOrganization`
+
 ## Release (2025-06-03)
 
 - `loadbalancer`: [v0.2.4](services/loadbalancer/CHANGELOG.md#v024-2025-06-02)
