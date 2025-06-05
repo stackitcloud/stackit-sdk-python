@@ -53,6 +53,7 @@ from stackit.loadbalancer.models.network import Network
 from stackit.loadbalancer.models.options_tcp import OptionsTCP
 from stackit.loadbalancer.models.options_udp import OptionsUDP
 from stackit.loadbalancer.models.plan_details import PlanDetails
+from stackit.loadbalancer.models.security_group import SecurityGroup
 from stackit.loadbalancer.models.server_name_indicator import ServerNameIndicator
 from stackit.loadbalancer.models.session_persistence import SessionPersistence
 from stackit.loadbalancer.models.status import Status
