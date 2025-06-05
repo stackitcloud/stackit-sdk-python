@@ -38,7 +38,9 @@ class CatalogProductDetailsVendor(BaseModel):
     description: StrictStr = Field(description="The vendor description.")
     logo: Union[StrictBytes, StrictStr] = Field(description="The logo base64 encoded.")
     name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The product's vendor name.")
-    vendor_id: object = Field(alias="vendorId")
+    vendor_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
+        description="Universally Unique Identifier (UUID).", alias="vendorId"
+    )
     video_url: Annotated[str, Field(strict=True, max_length=512)] = Field(
         description="The vendor video URL.", alias="videoUrl"
     )
@@ -52,6 +54,15 @@ class CatalogProductDetailsVendor(BaseModel):
         """Validates the regular expression"""
         if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$", value):
             raise ValueError(r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9,.!?()@\/:=\n\t -]+$/")
+        return value
+
+    @field_validator("vendor_id")
+    def vendor_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
         return value
 
     @field_validator("video_url")

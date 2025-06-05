@@ -16,10 +16,11 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+from typing_extensions import Annotated, Self
 
 from stackit.stackitmarketplace.models.subscription_lifecycle_state import (
     SubscriptionLifecycleState,
@@ -33,11 +34,44 @@ class VendorSubscription(BaseModel):
     """
 
     lifecycle_state: SubscriptionLifecycleState = Field(alias="lifecycleState")
-    organization_id: object = Field(alias="organizationId")
+    organization_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
+        description="Universally Unique Identifier (UUID).", alias="organizationId"
+    )
     product: SubscriptionProduct
-    project_id: object = Field(alias="projectId")
-    subscription_id: object = Field(alias="subscriptionId")
+    project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
+        description="Universally Unique Identifier (UUID).", alias="projectId"
+    )
+    subscription_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
+        description="Universally Unique Identifier (UUID).", alias="subscriptionId"
+    )
     __properties: ClassVar[List[str]] = ["lifecycleState", "organizationId", "product", "projectId", "subscriptionId"]
+
+    @field_validator("organization_id")
+    def organization_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
+        return value
+
+    @field_validator("project_id")
+    def project_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
+        return value
+
+    @field_validator("subscription_id")
+    def subscription_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
