@@ -25,6 +25,7 @@ from stackit.loadbalancer.models.listener import Listener
 from stackit.loadbalancer.models.load_balancer_error import LoadBalancerError
 from stackit.loadbalancer.models.load_balancer_options import LoadBalancerOptions
 from stackit.loadbalancer.models.network import Network
+from stackit.loadbalancer.models.security_group import SecurityGroup
 from stackit.loadbalancer.models.target_pool import TargetPool
 
 
@@ -70,6 +71,11 @@ class CreateLoadBalancerPayload(BaseModel):
         description="List of all target pools which will be used in the load balancer. Limited to 20.",
         alias="targetPools",
     )
+    target_security_group: Optional[SecurityGroup] = Field(
+        default=None,
+        description="Security Group permitting network traffic from the LoadBalancer to the targets.",
+        alias="targetSecurityGroup",
+    )
     version: Optional[StrictStr] = Field(
         default=None,
         description="Load balancer resource version. Must be empty or unset for creating load balancers, non-empty for updating load balancers. Semantics: While retrieving load balancers, this is the current version of this load balancer resource that changes during updates of the load balancers. On updates this field specified the load balancer version you calculated your update for instead of the future version to enable concurrency safe updates. Update calls will then report the new version in their result as you would see with a load balancer retrieval call later. There exist no total order of the version, so you can only compare it for equality, but not for less/greater than another version. Since the creation of load balancer is always intended to create the first version of it, there should be no existing version. That's why this field must by empty of not present in that case.",
@@ -86,6 +92,7 @@ class CreateLoadBalancerPayload(BaseModel):
         "region",
         "status",
         "targetPools",
+        "targetSecurityGroup",
         "version",
     ]
 
@@ -146,6 +153,7 @@ class CreateLoadBalancerPayload(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -153,6 +161,7 @@ class CreateLoadBalancerPayload(BaseModel):
                 "private_address",
                 "region",
                 "status",
+                "target_security_group",
             ]
         )
 
@@ -192,6 +201,9 @@ class CreateLoadBalancerPayload(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["targetPools"] = _items
+        # override the default output from pydantic by calling `to_dict()` of target_security_group
+        if self.target_security_group:
+            _dict["targetSecurityGroup"] = self.target_security_group.to_dict()
         return _dict
 
     @classmethod
@@ -228,6 +240,11 @@ class CreateLoadBalancerPayload(BaseModel):
                 "targetPools": (
                     [TargetPool.from_dict(_item) for _item in obj["targetPools"]]
                     if obj.get("targetPools") is not None
+                    else None
+                ),
+                "targetSecurityGroup": (
+                    SecurityGroup.from_dict(obj["targetSecurityGroup"])
+                    if obj.get("targetSecurityGroup") is not None
                     else None
                 ),
                 "version": obj.get("version"),
