@@ -21,6 +21,9 @@ from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
+from stackit.stackitmarketplace.models.catalog_product_facets_value_inner import (
+    CatalogProductFacetsValueInner,
+)
 from stackit.stackitmarketplace.models.catalog_product_overview import (
     CatalogProductOverview,
 )
@@ -34,11 +37,14 @@ class ListCatalogProductsResponse(BaseModel):
     cursor: StrictStr = Field(
         description="A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning."
     )
+    facets: Optional[Dict[str, List[CatalogProductFacetsValueInner]]] = Field(
+        default=None, description="A collection of facets, where each key represents a facet category."
+    )
     items: List[CatalogProductOverview]
     limit: Union[
         Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
     ] = Field(description="Limit for returned Objects.")
-    __properties: ClassVar[List[str]] = ["cursor", "items", "limit"]
+    __properties: ClassVar[List[str]] = ["cursor", "facets", "items", "limit"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +83,13 @@ class ListCatalogProductsResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each value in facets (dict of array)
+        _field_dict_of_array = {}
+        if self.facets:
+            for _key in self.facets:
+                if self.facets[_key] is not None:
+                    _field_dict_of_array[_key] = [_item.to_dict() for _item in self.facets[_key]]
+            _dict["facets"] = _field_dict_of_array
         # override the default output from pydantic by calling `to_dict()` of each item in items (list)
         _items = []
         if self.items:
@@ -98,6 +111,10 @@ class ListCatalogProductsResponse(BaseModel):
         _obj = cls.model_validate(
             {
                 "cursor": obj.get("cursor"),
+                "facets": dict(
+                    (_k, [CatalogProductFacetsValueInner.from_dict(_item) for _item in _v] if _v is not None else None)
+                    for _k, _v in obj.get("facets", {}).items()
+                ),
                 "items": (
                     [CatalogProductOverview.from_dict(_item) for _item in obj["items"]]
                     if obj.get("items") is not None
