@@ -1,3 +1,6 @@
+# v1.2.0 (2025-06-06)
+- **Fix:** Fixed types for `VendorId`, `ProjectId`, `OrganizationId` and `SubscriptionId`
+
 ## v1.1.3 (2025-06-02)
 - **Feature:** Added `industries` to `CatalogProductDetail`
 
