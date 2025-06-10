@@ -6,6 +6,8 @@
   - **Feature:** Delete Project labels using the new method `DeleteProjectLabels`
   - **Feature:** List folders using the new method `ListFolders`
   - **Feature:** Partial Update Organization using the new method `PartialUpdateOrganization`
+- `ske`: [v0.5.0](services/ske/CHANGELOG.md#v050-2025-06-10)
+  - **Feature:** Add new field `pod_address_ranges` to `ClusterStatus`
 - `stackitmarketplace`:
   - [v1.3.0](services/stackitmarketplace/CHANGELOG.md#v130-2025-06-10)
     - **Feature:** Add new field `facets` in `ListCatalogProductsResponse`

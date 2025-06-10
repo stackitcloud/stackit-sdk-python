@@ -45,6 +45,11 @@ class ClusterStatus(BaseModel):
     error: Optional[RuntimeError] = None
     errors: Optional[List[ClusterError]] = None
     hibernated: Optional[StrictBool] = None
+    pod_address_ranges: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The network ranges (in CIDR notation) used by pods of the cluster.",
+        alias="podAddressRanges",
+    )
     __properties: ClassVar[List[str]] = [
         "aggregated",
         "creationTime",
@@ -53,6 +58,7 @@ class ClusterStatus(BaseModel):
         "error",
         "errors",
         "hibernated",
+        "podAddressRanges",
     ]
 
     model_config = ConfigDict(
@@ -135,6 +141,7 @@ class ClusterStatus(BaseModel):
                     else None
                 ),
                 "hibernated": obj.get("hibernated"),
+                "podAddressRanges": obj.get("podAddressRanges"),
             }
         )
         return _obj

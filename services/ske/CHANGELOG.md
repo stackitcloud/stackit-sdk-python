@@ -1,3 +1,6 @@
+## v0.5.0 (2025-06-10)
+- **Feature:** Add new field `pod_address_ranges` to `ClusterStatus`
+
 ## v0.4.3 (2025-05-14)
 - **Feature:** Added enum `SKE_NODE_MACHINE_TYPE_NOT_FOUND` to `ClusterError`
 
