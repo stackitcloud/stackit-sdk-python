@@ -1,4 +1,6 @@
 ## Release (2025-XX-YY)
+- `loadbalanccer`: [v0.3.0](services/loadbalancer/CHANGELOG.md#v030-2025-06-10)
+  - **Feature:** Add new field `target_security_group` in `LoadBalancer` Model
 - `resourcemanager`: [v0.5.0](services/resourcemanager/CHANGELOG.md#v050-2025-06-04)
   - **Feature:** Delete Organization labels using the new method `DeleteOrganizationLabels`
   - **Feature:** Delete Project labels using the new method `DeleteProjectLabels`
@@ -6,8 +8,11 @@
   - **Feature:** Partial Update Organization using the new method `PartialUpdateOrganization`
 - `ske`: [v0.5.0](services/ske/CHANGELOG.md#v050-2025-06-10)
   - **Feature:** Add new field `pod_address_ranges` to `ClusterStatus`
-- `stackitmarketplace`: [v1.2.0](services/stackitmarketplace/CHANGELOG.md#v120-2025-06-06)
-  - **Fix:** Fixed types for `VendorId`, `ProjectId`, `OrganizationId` and `SubscriptionId`
+- `stackitmarketplace`:
+  - [v1.3.0](services/stackitmarketplace/CHANGELOG.md#v130-2025-06-10)
+    - **Feature:** Add new field `facets` in `ListCatalogProductsResponse`
+  - [v1.2.0](services/stackitmarketplace/CHANGELOG.md#v120-2025-06-06)
+    - **Fix:** Fixed types for `VendorId`, `ProjectId`, `OrganizationId` and `SubscriptionId`
 
 
 ## Release (2025-06-03)

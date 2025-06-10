@@ -28,6 +28,9 @@ from stackit.stackitmarketplace.models.catalog_product_detail import (
 from stackit.stackitmarketplace.models.catalog_product_details_vendor import (
     CatalogProductDetailsVendor,
 )
+from stackit.stackitmarketplace.models.catalog_product_facets_value_inner import (
+    CatalogProductFacetsValueInner,
+)
 from stackit.stackitmarketplace.models.catalog_product_highlight import (
     CatalogProductHighlight,
 )
