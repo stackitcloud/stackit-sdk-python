@@ -1,4 +1,6 @@
 ## Release (2025-XX-YY)
+- `loadbalanccer`: [v0.3.0](services/loadbalancer/CHANGELOG.md#v030-2025-06-10)
+  - **Feature:** Add new field `target_security_group` in `LoadBalancer` Model
 - `resourcemanager`: [v0.5.0](services/resourcemanager/CHANGELOG.md#v050-2025-06-04)
   - **Feature:** Delete Organization labels using the new method `DeleteOrganizationLabels`
   - **Feature:** Delete Project labels using the new method `DeleteProjectLabels`

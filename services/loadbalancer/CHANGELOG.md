@@ -1,3 +1,6 @@
+## v0.3.0 (2025-06-10)
+- **Feature:** Add new field `target_security_group` in `LoadBalancer` Model
+
 ## v0.2.4 (2025-06-02)
 - **Improvement:** Adjusted `GetQuotaResponse` and `RESTResponseType` message
 
