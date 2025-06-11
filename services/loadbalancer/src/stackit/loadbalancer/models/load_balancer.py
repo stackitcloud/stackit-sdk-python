@@ -18,7 +18,14 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+    field_validator,
+)
 from typing_extensions import Annotated, Self
 
 from stackit.loadbalancer.models.listener import Listener
@@ -34,6 +41,11 @@ class LoadBalancer(BaseModel):
     LoadBalancer
     """
 
+    disable_target_security_group_assignment: Optional[StrictBool] = Field(
+        default=None,
+        description="Disable target security group assignemt to allow targets outside of the given network. Connectivity to targets need to be ensured by the customer, including routing and Security Groups (targetSecurityGroup can be assigned). Not changeable after creation.",
+        alias="disableTargetSecurityGroupAssignment",
+    )
     errors: Optional[List[LoadBalancerError]] = Field(
         default=None, description="Reports all errors a load balancer has."
     )
@@ -73,7 +85,7 @@ class LoadBalancer(BaseModel):
     )
     target_security_group: Optional[SecurityGroup] = Field(
         default=None,
-        description="Security Group permitting network traffic from the LoadBalancer to the targets.",
+        description="Security Group permitting network traffic from the LoadBalancer to the targets. Useful when disableTargetSecurityGroupAssignment=true to manually assign target security groups to targets.",
         alias="targetSecurityGroup",
     )
     version: Optional[StrictStr] = Field(
@@ -81,6 +93,7 @@ class LoadBalancer(BaseModel):
         description="Load balancer resource version. Must be empty or unset for creating load balancers, non-empty for updating load balancers. Semantics: While retrieving load balancers, this is the current version of this load balancer resource that changes during updates of the load balancers. On updates this field specified the load balancer version you calculated your update for instead of the future version to enable concurrency safe updates. Update calls will then report the new version in their result as you would see with a load balancer retrieval call later. There exist no total order of the version, so you can only compare it for equality, but not for less/greater than another version. Since the creation of load balancer is always intended to create the first version of it, there should be no existing version. That's why this field must by empty of not present in that case.",
     )
     __properties: ClassVar[List[str]] = [
+        "disableTargetSecurityGroupAssignment",
         "errors",
         "externalAddress",
         "listeners",
@@ -217,6 +230,7 @@ class LoadBalancer(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "disableTargetSecurityGroupAssignment": obj.get("disableTargetSecurityGroupAssignment"),
                 "errors": (
                     [LoadBalancerError.from_dict(_item) for _item in obj["errors"]]
                     if obj.get("errors") is not None
