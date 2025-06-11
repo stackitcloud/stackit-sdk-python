@@ -68,6 +68,7 @@ from stackit.alb.models.protocol_options_http import ProtocolOptionsHTTP
 from stackit.alb.models.protocol_options_https import ProtocolOptionsHTTPS
 from stackit.alb.models.query_parameter import QueryParameter
 from stackit.alb.models.rule import Rule
+from stackit.alb.models.security_group import SecurityGroup
 from stackit.alb.models.status import Status
 from stackit.alb.models.target import Target
 from stackit.alb.models.target_pool import TargetPool
