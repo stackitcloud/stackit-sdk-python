@@ -18,13 +18,21 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+    field_validator,
+)
 from typing_extensions import Annotated, Self
 
 from stackit.alb.models.listener import Listener
 from stackit.alb.models.load_balancer_error import LoadBalancerError
 from stackit.alb.models.load_balancer_options import LoadBalancerOptions
 from stackit.alb.models.network import Network
+from stackit.alb.models.security_group import SecurityGroup
 from stackit.alb.models.target_pool import TargetPool
 
 
@@ -33,6 +41,11 @@ class UpdateLoadBalancerPayload(BaseModel):
     UpdateLoadBalancerPayload
     """
 
+    disable_target_security_group_assignment: Optional[StrictBool] = Field(
+        default=None,
+        description="Disable target security group assignemt to allow targets outside of the given network. Connectivity to targets need to be ensured by the customer, including routing and Security Groups (targetSecurityGroup can be assigned). Not changeable after creation.",
+        alias="disableTargetSecurityGroupAssignment",
+    )
     errors: Optional[List[LoadBalancerError]] = Field(
         default=None, description="Reports all errors a application load balancer has."
     )
@@ -67,11 +80,17 @@ class UpdateLoadBalancerPayload(BaseModel):
         description="List of all target pools which will be used in the application load balancer. Limited to 20.",
         alias="targetPools",
     )
+    target_security_group: Optional[SecurityGroup] = Field(
+        default=None,
+        description="Security Group permitting network traffic from the LoadBalancer to the targets. Useful when disableTargetSecurityGroupAssignment=true to manually assign target security groups to targets.",
+        alias="targetSecurityGroup",
+    )
     version: Optional[StrictStr] = Field(
         default=None,
         description="Application Load Balancer resource version. Must be empty or unset for creating load balancers, non-empty for updating load balancers. Semantics: While retrieving load balancers, this is the current version of this application load balancer resource that changes during updates of the load balancers. On updates this field specified the application load balancer version you calculated your update for instead of the future version to enable concurrency safe updates. Update calls will then report the new version in their result as you would see with a application load balancer retrieval call later. There exist no total order of the version, so you can only compare it for equality, but not for less/greater than another version. Since the creation of application load balancer is always intended to create the first version of it, there should be no existing version. That's why this field must by empty of not present in that case.",
     )
     __properties: ClassVar[List[str]] = [
+        "disableTargetSecurityGroupAssignment",
         "errors",
         "externalAddress",
         "listeners",
@@ -83,6 +102,7 @@ class UpdateLoadBalancerPayload(BaseModel):
         "region",
         "status",
         "targetPools",
+        "targetSecurityGroup",
         "version",
     ]
 
@@ -143,6 +163,7 @@ class UpdateLoadBalancerPayload(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -150,6 +171,7 @@ class UpdateLoadBalancerPayload(BaseModel):
                 "private_address",
                 "region",
                 "status",
+                "target_security_group",
             ]
         )
 
@@ -189,6 +211,9 @@ class UpdateLoadBalancerPayload(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["targetPools"] = _items
+        # override the default output from pydantic by calling `to_dict()` of target_security_group
+        if self.target_security_group:
+            _dict["targetSecurityGroup"] = self.target_security_group.to_dict()
         return _dict
 
     @classmethod
@@ -202,6 +227,7 @@ class UpdateLoadBalancerPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "disableTargetSecurityGroupAssignment": obj.get("disableTargetSecurityGroupAssignment"),
                 "errors": (
                     [LoadBalancerError.from_dict(_item) for _item in obj["errors"]]
                     if obj.get("errors") is not None
@@ -225,6 +251,11 @@ class UpdateLoadBalancerPayload(BaseModel):
                 "targetPools": (
                     [TargetPool.from_dict(_item) for _item in obj["targetPools"]]
                     if obj.get("targetPools") is not None
+                    else None
+                ),
+                "targetSecurityGroup": (
+                    SecurityGroup.from_dict(obj["targetSecurityGroup"])
+                    if obj.get("targetSecurityGroup") is not None
                     else None
                 ),
                 "version": obj.get("version"),
