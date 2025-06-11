@@ -32,8 +32,8 @@ class SecurityGroupRule(BaseModel):
     Object that represents a security group rule.
     """
 
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
     )
     direction: StrictStr = Field(description="The direction of the traffic which the rule should match.")
     ethertype: Optional[StrictStr] = Field(default="IPv4", description="The ethertype which the rule should match.")

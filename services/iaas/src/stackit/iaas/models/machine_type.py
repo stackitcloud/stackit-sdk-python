@@ -28,8 +28,8 @@ class MachineType(BaseModel):
     Machine Type. Filterable Fields: `disk`, `extraSpecs`, `name`, `ram`, `vcpus`.
     """
 
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
     )
     disk: StrictInt = Field(description="Size in Gigabyte.")
     extra_specs: Optional[Dict[str, Any]] = Field(
