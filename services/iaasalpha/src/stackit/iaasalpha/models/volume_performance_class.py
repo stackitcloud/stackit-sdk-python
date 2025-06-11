@@ -28,8 +28,8 @@ class VolumePerformanceClass(BaseModel):
     Object that represents a Volume performance class.
     """
 
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
     )
     iops: Optional[StrictInt] = Field(default=None, description="Input/Output Operations per second.")
     labels: Optional[Dict[str, Any]] = Field(
