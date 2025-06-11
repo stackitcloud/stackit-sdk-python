@@ -31,8 +31,8 @@ class UpdateVolumePayload(BaseModel):
     """
 
     bootable: Optional[StrictBool] = Field(default=None, description="Indicates if a volume is bootable.")
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
     )
     image_config: Optional[ImageConfig] = Field(default=None, alias="imageConfig")
     labels: Optional[Dict[str, Any]] = Field(

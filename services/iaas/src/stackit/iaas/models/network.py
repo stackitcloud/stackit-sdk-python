@@ -51,7 +51,7 @@ class Network(BaseModel):
         default=None,
         description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
-    name: StrictStr
+    name: Annotated[str, Field(strict=True, max_length=255)]
     nameservers: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=3)]] = Field(
         default=None, description="A list containing DNS Servers/Nameservers for IPv4."
     )
