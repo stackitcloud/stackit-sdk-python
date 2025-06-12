@@ -8,8 +8,11 @@
     - `MachineType`
   - Set max length of description of `Network` to 255
   - Update the description of `Server` and `CreateServerPayload` status field to include new possible value `PAUSED`
-- `loadbalanccer`: [v0.3.0](services/loadbalancer/CHANGELOG.md#v030-2025-06-10)
-  - **Feature:** Add new field `target_security_group` in `LoadBalancer` Model
+- `loadbalancer`: 
+  - [v0.4.0](services/loadbalancer/CHANGELOG.md#v040-2025-06-12)
+    - **Feature:** Add new field `disable_target_security_group_assignment` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
+  - [v0.3.0](services/loadbalancer/CHANGELOG.md#v030-2025-06-10)
+    - **Feature:** Add new field `target_security_group` in `LoadBalancer` Model
 - `resourcemanager`: [v0.5.0](services/resourcemanager/CHANGELOG.md#v050-2025-06-04)
   - **Feature:** Delete Organization labels using the new method `DeleteOrganizationLabels`
   - **Feature:** Delete Project labels using the new method `DeleteProjectLabels`
