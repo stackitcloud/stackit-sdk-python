@@ -28,8 +28,8 @@ class UpdateSecurityGroupPayload(BaseModel):
     Object that represents an update request body of a security group.
     """
 
-    description: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="Description Object. Allows string up to 127 Characters."
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
