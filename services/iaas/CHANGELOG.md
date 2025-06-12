@@ -1,3 +1,11 @@
+## v0.5.3 (2025-06-12)
+- Increase max length of description from 127 to 255 for 
+    - Security groups: `BaseSecurityGroupRule`, `CreateSecurityGroupPayload`, `CreateSecurityGroupRulePayload`, `SecurityGroup`, `SecurityGroupRule`, `UpdateSecurityGroupPayload`
+    - Volumes: `CreateVolumePayload`, `UpdateVolumePayload`, `Volume`, `VolumePerformanceClass`
+    - `MachineType`
+- Set max length of description of `Network` to 255
+- Update the description of `Server` and `CreateServerPayload` status field to include new possible value `PAUSED`
+
 ## v0.5.2 (2025-05-19)
 - **Improvement:** Update descriptions
 
