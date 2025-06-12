@@ -1,5 +1,5 @@
 ## Release (2025-XX-YY)
-- `core`: v0.2.0 (2025-06-12)[v0.2.0](core/CHANGELOG.md#v020-2025-06-12)
+- `core`: [v0.2.0](core/CHANGELOG.md#v020-2025-06-12)
   - **Feature:** Allow setting custom token endpoint url in configuration
 - `iaas`: [v0.5.3](services/iaas/CHANGELOG.md#v053-2025-06-12)
   - Increase max length of description from 127 to 255 for 
