@@ -3,7 +3,8 @@
 [![CD Workflow](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/cd.yaml/badge.svg)](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/cd.yaml)
 [![Dependency-Updater](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/dependency-checker.yaml/badge.svg)](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/dependency-checker.yaml)
 
-> ⓘ INFO: The STACKIT Python SDK is in beta and in active development.
+> [!NOTE]
+> The STACKIT Python SDK is in beta and in active development.
 
 # Overview
 
