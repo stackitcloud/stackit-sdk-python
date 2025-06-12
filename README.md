@@ -3,7 +3,8 @@
 [![CD Workflow](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/cd.yaml/badge.svg)](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/cd.yaml)
 [![Dependency-Updater](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/dependency-checker.yaml/badge.svg)](https://github.com/stackitcloud/stackit-sdk-python/actions/workflows/dependency-checker.yaml)
 
-> ⓘ INFO: The STACKIT Python SDK is in beta and in active development.
+> [!NOTE]
+> The STACKIT Python SDK is in beta and in active development.
 
 # Overview
 
@@ -153,6 +154,29 @@ Using this flow is less secure since the token is long-lived. You can provide th
     ```
 2. Setting the environment variable `STACKIT_SERVICE_ACCOUNT_TOKEN`
 3. Setting it in the credentials file (see above)
+
+## Using custom endpoints
+
+The example below shows how to use the STACKIT Python SDK in custom STACKIT environments.
+
+```python
+from stackit.iaas.api.default_api import DefaultApi
+from stackit.core.configuration import Configuration
+
+project_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+# Create a new API client that uses custom authentication and service endpoints
+config = Configuration(
+    service_account_key_path="/home/bob/.stackit/sa_key.json",
+    custom_token_endpoint="https://service-account.api.stackit.cloud/token",
+    custom_endpoint="https://iaas.api.eu01.stackit.cloud",
+)
+client = DefaultApi(config)
+
+print(client.list_project_nics(
+    project_id=project_id,
+))
+```
 
 ## Reporting issues
 

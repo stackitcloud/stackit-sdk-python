@@ -32,13 +32,14 @@ class Configuration:
         private_key_path=None,
         credentials_file_path=None,
         custom_endpoint=None,
+        custom_token_endpoint=None,
         custom_http_session=None,
         custom_auth=None,
         server_index=None,
     ) -> None:
         environment_variables = EnvironmentVariables()
         self.region = region if region else environment_variables.region
-        self.token_endpoint = environment_variables.token_baseurl
+        self.token_endpoint = custom_token_endpoint if custom_token_endpoint else environment_variables.token_baseurl
         self.service_account_token = (
             environment_variables.service_account_token if service_account_token is None else service_account_token
         )
