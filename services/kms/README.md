@@ -3,7 +3,7 @@ This API provides endpoints for managing keys and key rings.
 
 
 
-This package is part of the STACKIT Python SDK. For additional information, please visit the [GitHub repository](https://github.com/stackitcloud/git@github.com:stackitcloud/stackit-sdk-go.git) of the SDK.
+This package is part of the STACKIT Python SDK. For additional information, please visit the [GitHub repository](https://github.com/stackitcloud/stackit-sdk-python) of the SDK.
 
 
 ## Installation & Usage
