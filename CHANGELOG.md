@@ -1,6 +1,8 @@
 ## Release (2025-XX-YY)
 - `core`: [v0.2.0](core/CHANGELOG.md#v020-2025-06-12)
   - **Feature:** Allow setting custom token endpoint url in configuration
+- `alb`: [v0.3.0](services/alb/CHANGELOG.md#v030-2025-06-12)
+  - **Feature:** Add new fields `disable_target_security_group_assignment` and `target_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
 - `iaas`: [v0.5.3](services/iaas/CHANGELOG.md#v053-2025-06-12)
   - Increase max length of description from 127 to 255 for 
     - Security groups: `BaseSecurityGroupRule`, `CreateSecurityGroupPayload`, `CreateSecurityGroupRulePayload`, `SecurityGroup`, `SecurityGroupRule`, `UpdateSecurityGroupPayload`
