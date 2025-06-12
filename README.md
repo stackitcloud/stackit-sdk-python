@@ -167,8 +167,8 @@ project_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 # Create a new API client that uses custom authentication and service endpoints
 config = Configuration(
     service_account_key_path="/home/bob/.stackit/sa_key.json",
-    custom_token_endpoint="https://service-account.api.qa.stackit.cloud/token",
-    custom_endpoint="https://iaas.api.eu01.qa.stackit.cloud",
+    custom_token_endpoint="https://service-account.api.stackit.cloud/token",
+    custom_endpoint="https://iaas.api.eu01.stackit.cloud",
 )
 client = DefaultApi(config)
 
