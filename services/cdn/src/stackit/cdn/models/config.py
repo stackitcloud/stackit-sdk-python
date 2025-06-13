@@ -39,6 +39,11 @@ class Config(BaseModel):
         description="Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution. ",
         alias="blockedIPs",
     )
+    default_cache_duration: Optional[StrictStr] = Field(
+        default=None,
+        description="Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M) ",
+        alias="defaultCacheDuration",
+    )
     monthly_limit_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
         default=None,
         description="Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use. ",
@@ -50,6 +55,7 @@ class Config(BaseModel):
         "backend",
         "blockedCountries",
         "blockedIPs",
+        "defaultCacheDuration",
         "monthlyLimitBytes",
         "optimizer",
         "regions",
@@ -98,6 +104,11 @@ class Config(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of optimizer
         if self.optimizer:
             _dict["optimizer"] = self.optimizer.to_dict()
+        # set to None if default_cache_duration (nullable) is None
+        # and model_fields_set contains the field
+        if self.default_cache_duration is None and "default_cache_duration" in self.model_fields_set:
+            _dict["defaultCacheDuration"] = None
+
         # set to None if monthly_limit_bytes (nullable) is None
         # and model_fields_set contains the field
         if self.monthly_limit_bytes is None and "monthly_limit_bytes" in self.model_fields_set:
@@ -119,6 +130,7 @@ class Config(BaseModel):
                 "backend": ConfigBackend.from_dict(obj["backend"]) if obj.get("backend") is not None else None,
                 "blockedCountries": obj.get("blockedCountries"),
                 "blockedIPs": obj.get("blockedIPs"),
+                "defaultCacheDuration": obj.get("defaultCacheDuration"),
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": Optimizer.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
                 "regions": obj.get("regions"),

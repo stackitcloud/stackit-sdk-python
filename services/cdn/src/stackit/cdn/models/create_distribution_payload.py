@@ -39,6 +39,11 @@ class CreateDistributionPayload(BaseModel):
         description="Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution. ",
         alias="blockedIPs",
     )
+    default_cache_duration: Optional[StrictStr] = Field(
+        default=None,
+        description="Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M) ",
+        alias="defaultCacheDuration",
+    )
     intent_id: Optional[StrictStr] = Field(
         default=None,
         description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped. ",
@@ -65,6 +70,7 @@ class CreateDistributionPayload(BaseModel):
     __properties: ClassVar[List[str]] = [
         "blockedCountries",
         "blockedIPs",
+        "defaultCacheDuration",
         "intentId",
         "monthlyLimitBytes",
         "optimizer",
@@ -128,6 +134,7 @@ class CreateDistributionPayload(BaseModel):
             {
                 "blockedCountries": obj.get("blockedCountries"),
                 "blockedIPs": obj.get("blockedIPs"),
+                "defaultCacheDuration": obj.get("defaultCacheDuration"),
                 "intentId": obj.get("intentId"),
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": Optimizer.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
