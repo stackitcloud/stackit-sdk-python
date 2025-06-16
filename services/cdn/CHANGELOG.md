@@ -1,3 +1,7 @@
+## v1.2.0
+- **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
+- Add `originUrlRelated` to available options given in `sort_by` description
+
 ## v1.1.0 (2025-05-27)
 - **Feature:** Add support for CDN Optimizer feature
 
