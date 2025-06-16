@@ -1,4 +1,4 @@
-## Release (2025-XX-YY)
+## Release (2025-06-16)
 - `core`: [v0.2.0](core/CHANGELOG.md#v020-2025-06-12)
   - **Feature:** Allow setting custom token endpoint url in configuration
 - `alb`: [v0.3.0](services/alb/CHANGELOG.md#v030-2025-06-12)
