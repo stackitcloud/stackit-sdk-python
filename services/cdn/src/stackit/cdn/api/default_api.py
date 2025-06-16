@@ -2717,7 +2717,7 @@ class DefaultApi:
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison "
+                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The origin URL is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other. "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -2741,7 +2741,7 @@ class DefaultApi:
         :type page_size: int
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison
+        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The origin URL is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -2811,7 +2811,7 @@ class DefaultApi:
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison "
+                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The origin URL is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other. "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -2835,7 +2835,7 @@ class DefaultApi:
         :type page_size: int
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison
+        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The origin URL is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -2905,7 +2905,7 @@ class DefaultApi:
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison "
+                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The origin URL is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other. "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -2929,7 +2929,7 @@ class DefaultApi:
         :type page_size: int
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison
+        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The origin URL is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
         :type sort_by: str
         :param sort_order:
         :type sort_order: str

@@ -1,3 +1,8 @@
+## Release (2025-XX-YY)
+- `cdn`: [v1.2.0](services/cdn/CHANGELOG.md#v120)
+  - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
+  - Add `originUrlRelated` to available options given in `sort_by` description
+
 ## Release (2025-06-16)
 - `core`: [v0.2.0](core/CHANGELOG.md#v020-2025-06-12)
   - **Feature:** Allow setting custom token endpoint url in configuration
