@@ -46,6 +46,7 @@ from stackit.stackitmarketplace.models.catalog_product_vendor_terms import (
     CatalogProductVendorTerms,
 )
 from stackit.stackitmarketplace.models.delivery_method import DeliveryMethod
+from stackit.stackitmarketplace.models.offer_type import OfferType
 from stackit.stackitmarketplace.models.product_lifecycle_state import (
     ProductLifecycleState,
 )
@@ -69,13 +70,15 @@ class CatalogProductDetail(BaseModel):
     industries: Optional[List[StrictStr]] = Field(
         default=None, description="The list of industries associated to the product."
     )
-    is_product_listing: StrictBool = Field(
-        description="If true, the product is not fully integrated but only listed. Product listings may not have prices and support information.",
+    is_product_listing: Optional[StrictBool] = Field(
+        default=None,
+        description="If true, the product is not fully integrated but only listed. Product listings may not have prices and support information.   Deprecated: Will be removed after 16.12.2025. Please use `offerType` as replacement.",
         alias="isProductListing",
     )
     lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
     logo: Union[StrictBytes, StrictStr] = Field(description="The logo base64 encoded.")
     name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The name of the product.")
+    offer_type: OfferType = Field(alias="offerType")
     pricing_options: List[CatalogProductPricingOption] = Field(
         description="The list of pricing options.", alias="pricingOptions"
     )
@@ -111,6 +114,7 @@ class CatalogProductDetail(BaseModel):
         "lifecycleState",
         "logo",
         "name",
+        "offerType",
         "pricingOptions",
         "productId",
         "summary",
@@ -262,6 +266,7 @@ class CatalogProductDetail(BaseModel):
                 "lifecycleState": obj.get("lifecycleState"),
                 "logo": obj.get("logo"),
                 "name": obj.get("name"),
+                "offerType": obj.get("offerType"),
                 "pricingOptions": (
                     [CatalogProductPricingOption.from_dict(_item) for _item in obj["pricingOptions"]]
                     if obj.get("pricingOptions") is not None
