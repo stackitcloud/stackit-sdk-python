@@ -1,3 +1,6 @@
+## v0.3.0
+- **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
+
 ## v0.2.1 (2025-05-09)
 - **Feature:** Update user-agent header
 

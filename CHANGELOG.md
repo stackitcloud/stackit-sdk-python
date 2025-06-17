@@ -2,6 +2,8 @@
 - `cdn`: [v1.2.0](services/cdn/CHANGELOG.md#v120)
   - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
   - Add `originUrlRelated` to available options given in `sort_by` description
+- `opensearch`: [v0.3.0](services/opensearch/CHANGELOG.md#v030)
+  - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
 
 ## Release (2025-06-16)
 - `core`: [v0.2.0](core/CHANGELOG.md#v020-2025-06-12)
