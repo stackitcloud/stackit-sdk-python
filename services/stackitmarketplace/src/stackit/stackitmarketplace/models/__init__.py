@@ -70,6 +70,7 @@ from stackit.stackitmarketplace.models.list_catalog_products_response import (
 from stackit.stackitmarketplace.models.list_vendor_subscriptions_response import (
     ListVendorSubscriptionsResponse,
 )
+from stackit.stackitmarketplace.models.offer_type import OfferType
 from stackit.stackitmarketplace.models.price_type import PriceType
 from stackit.stackitmarketplace.models.pricing_option_unit import PricingOptionUnit
 from stackit.stackitmarketplace.models.product_lifecycle_state import (
