@@ -4,6 +4,11 @@
   - Add `originUrlRelated` to available options given in `sort_by` description
 - `opensearch`: [v0.3.0](services/opensearch/CHANGELOG.md#v030)
   - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
+- `stackitmarketplace`: [v1.4.0](services/stackitmarketplace/CHANGELOG.md#v140)
+  - **Feature:** Add support for offer types
+    - new model `OfferType`
+    - new attribute `CatalogProductDetail` for `CatalogProductDetail` model
+  - Attribute `is_product_listing` in `CatalogProductDetail` is now of type `Optional[StrictBool]` (previously `StrictBool`)
 
 ## Release (2025-06-16)
 - `core`: [v0.2.0](core/CHANGELOG.md#v020-2025-06-12)
