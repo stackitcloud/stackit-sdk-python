@@ -1,3 +1,9 @@
+## v1.4.0 
+- **Feature:** Add support for offer types
+    - new model `OfferType`
+    - new attribute `CatalogProductDetail` for `CatalogProductDetail` model
+- Attribute `is_product_listing` in `CatalogProductDetail` is now of type `Optional[StrictBool]` (previously `StrictBool`)
+
 ## v1.3.0 (2025-06-10)
 - **Feature:** Add new field `facets` in `ListCatalogProductsResponse`
 
