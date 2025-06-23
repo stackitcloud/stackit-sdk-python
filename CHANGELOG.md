@@ -9,6 +9,17 @@
     - new model `OfferType`
     - new attribute `CatalogProductDetail` for `CatalogProductDetail` model
   - Attribute `is_product_listing` in `CatalogProductDetail` is now of type `Optional[StrictBool]` (previously `StrictBool`)
+- `iaas`: [v0.5.4](services/iaas/CHANGELOG.md#v054)
+  - **Improvement:** Increase max length of `machine_type` and `volume_performance_class` fields from 63 to 127 characters in API methods
+  - **Improvement:** Increase max length of `name` fields from 63 to 127 characters for various models:
+    - `AffinityGroup`, `Backup`, `BootVolume`, `CreateAffinityGroupPayload`, `CreateBackupPayload`
+    `CreateImagePayload`, `CreateNetworkAreaPayload`, `CreateNetworkPayload`, `CreateNicPayload`
+    `CreateSecurityGroupPayload`, `CreateServerPayload`, `CreateSnapshotPayload`, `CreateVolumePayload`
+    `Image`, `MachineType`, `Nic`, `PartialUpdateNetworkAreaPayload`, `PartialUpdateNetworkPayload`
+    `ResizeServerPayload`, `SecurityGroup`, `Server`, `ServerNetwork`, `Snapshot`
+    `UpdateBackupPayload`, `UpdateImagePayload`, `UpdateNicPayload`, `UpdateSecurityGroupPayload`
+    `UpdateServerPayload`, `UpdateSnapshotPayload`, `UpdateVolumePayload`, `Volume`, `VolumePerformanceClass`
+  - **Improvement:** Update regular expression pattern for name validation to allow more flexible naming conventions
 
 ## Release (2025-06-16)
 - `core`: [v0.2.0](core/CHANGELOG.md#v020-2025-06-12)
