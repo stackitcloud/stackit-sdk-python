@@ -72,10 +72,14 @@ class CreateServerPayload(BaseModel):
     launched_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was launched.", alias="launchedAt"
     )
-    machine_type: Annotated[str, Field(strict=True, max_length=63)] = Field(
+    machine_type: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="Name of the machine type the server shall belong to.", alias="machineType"
     )
     maintenance_window: Optional[ServerMaintenance] = Field(default=None, alias="maintenanceWindow")
+    metadata: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`.",
+    )
     name: Annotated[str, Field(strict=True, max_length=63)] = Field(description="The name for a Server.")
     networking: Optional[CreateServerPayloadNetworking] = None
     nics: Optional[List[ServerNetwork]] = Field(
@@ -87,7 +91,7 @@ class CreateServerPayload(BaseModel):
         description="The power status of a server. Possible values: `CRASHED`, `ERROR`, `RUNNING`, `STOPPED`.",
         alias="powerStatus",
     )
-    security_groups: Optional[List[Annotated[str, Field(strict=True, max_length=63)]]] = Field(
+    security_groups: Optional[List[Annotated[str, Field(strict=True, max_length=127)]]] = Field(
         default=None, description="The initial security groups for the server creation.", alias="securityGroups"
     )
     service_account_mails: Optional[
@@ -125,6 +129,7 @@ class CreateServerPayload(BaseModel):
         "launchedAt",
         "machineType",
         "maintenanceWindow",
+        "metadata",
         "name",
         "networking",
         "nics",
@@ -186,15 +191,20 @@ class CreateServerPayload(BaseModel):
     @field_validator("machine_type")
     def machine_type_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
+        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
         return value
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[A-Za-z0-9]+((-|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|\.)[A-Za-z0-9]+)*$/")
+        if not re.match(
+            r"^(([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$/"
+            )
         return value
 
     model_config = ConfigDict(
@@ -300,6 +310,7 @@ class CreateServerPayload(BaseModel):
                     if obj.get("maintenanceWindow") is not None
                     else None
                 ),
+                "metadata": obj.get("metadata"),
                 "name": obj.get("name"),
                 "networking": (
                     CreateServerPayloadNetworking.from_dict(obj["networking"])

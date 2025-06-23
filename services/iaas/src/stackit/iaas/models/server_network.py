@@ -43,7 +43,7 @@ class ServerNetwork(BaseModel):
     network_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
         description="Universally Unique Identifier (UUID).", alias="networkId"
     )
-    network_name: Annotated[str, Field(strict=True, max_length=63)] = Field(
+    network_name: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs.", alias="networkName"
     )
     nic_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
@@ -121,8 +121,8 @@ class ServerNetwork(BaseModel):
     @field_validator("network_name")
     def network_name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
+        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
         return value
 
     @field_validator("nic_id")

@@ -28,7 +28,7 @@ class ResizeServerPayload(BaseModel):
     ResizeServerPayload
     """
 
-    machine_type: Annotated[str, Field(strict=True, max_length=63)] = Field(
+    machine_type: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs.", alias="machineType"
     )
     __properties: ClassVar[List[str]] = ["machineType"]
@@ -36,8 +36,8 @@ class ResizeServerPayload(BaseModel):
     @field_validator("machine_type")
     def machine_type_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
+        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
         return value
 
     model_config = ConfigDict(
