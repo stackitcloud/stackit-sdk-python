@@ -13378,7 +13378,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
-        machine_type: Annotated[str, Field(strict=True, max_length=63, description="STACKIT machine type Name.")],
+        machine_type: Annotated[str, Field(strict=True, max_length=127, description="STACKIT machine type Name.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13450,7 +13450,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
-        machine_type: Annotated[str, Field(strict=True, max_length=63, description="STACKIT machine type Name.")],
+        machine_type: Annotated[str, Field(strict=True, max_length=127, description="STACKIT machine type Name.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13522,7 +13522,7 @@ class DefaultApi:
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
-        machine_type: Annotated[str, Field(strict=True, max_length=63, description="STACKIT machine type Name.")],
+        machine_type: Annotated[str, Field(strict=True, max_length=127, description="STACKIT machine type Name.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18260,7 +18260,7 @@ class DefaultApi:
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
         volume_performance_class: Annotated[
-            str, Field(strict=True, max_length=63, description="The name of a STACKIT Volume performance class.")
+            str, Field(strict=True, max_length=127, description="The name of a STACKIT Volume performance class.")
         ],
         _request_timeout: Union[
             None,
@@ -18334,7 +18334,7 @@ class DefaultApi:
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
         volume_performance_class: Annotated[
-            str, Field(strict=True, max_length=63, description="The name of a STACKIT Volume performance class.")
+            str, Field(strict=True, max_length=127, description="The name of a STACKIT Volume performance class.")
         ],
         _request_timeout: Union[
             None,
@@ -18408,7 +18408,7 @@ class DefaultApi:
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
         ],
         volume_performance_class: Annotated[
-            str, Field(strict=True, max_length=63, description="The name of a STACKIT Volume performance class.")
+            str, Field(strict=True, max_length=127, description="The name of a STACKIT Volume performance class.")
         ],
         _request_timeout: Union[
             None,
