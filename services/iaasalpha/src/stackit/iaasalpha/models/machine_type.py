@@ -37,7 +37,7 @@ class MachineType(BaseModel):
         description="Properties to control certain aspects or scheduling behavior for an object.",
         alias="extraSpecs",
     )
-    name: Annotated[str, Field(strict=True, max_length=63)] = Field(
+    name: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
     )
     ram: StrictInt = Field(description="Size in Megabyte.")
@@ -47,8 +47,8 @@ class MachineType(BaseModel):
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
+        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
         return value
 
     model_config = ConfigDict(

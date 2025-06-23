@@ -57,7 +57,7 @@ class CreateImagePayload(BaseModel):
     )
     min_disk_size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.", alias="minDiskSize")
     min_ram: Optional[StrictInt] = Field(default=None, description="Size in Megabyte.", alias="minRam")
-    name: Annotated[str, Field(strict=True, max_length=63)] = Field(
+    name: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
     )
     owner: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
@@ -108,8 +108,8 @@ class CreateImagePayload(BaseModel):
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
+        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
         return value
 
     @field_validator("owner")

@@ -35,7 +35,7 @@ class UpdateVirtualIPPayload(BaseModel):
     members: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
         default=None, description="A list of UUIDs."
     )
-    name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
+    name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
     __properties: ClassVar[List[str]] = ["labels", "members", "name"]
@@ -46,8 +46,8 @@ class UpdateVirtualIPPayload(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|_|\s|\.)[A-Za-z0-9]+)*$/")
+        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
         return value
 
     model_config = ConfigDict(

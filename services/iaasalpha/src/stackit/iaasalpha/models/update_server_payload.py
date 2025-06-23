@@ -32,10 +32,14 @@ class UpdateServerPayload(BaseModel):
         default=None,
         description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
+    metadata: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`.",
+    )
     name: Optional[Annotated[str, Field(strict=True, max_length=63)]] = Field(
         default=None, description="The name for a Server."
     )
-    __properties: ClassVar[List[str]] = ["labels", "name"]
+    __properties: ClassVar[List[str]] = ["labels", "metadata", "name"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -43,8 +47,13 @@ class UpdateServerPayload(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^[A-Za-z0-9]+((-|\.)[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+((-|\.)[A-Za-z0-9]+)*$/")
+        if not re.match(
+            r"^(([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$/"
+            )
         return value
 
     model_config = ConfigDict(
@@ -95,5 +104,7 @@ class UpdateServerPayload(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"labels": obj.get("labels"), "name": obj.get("name")})
+        _obj = cls.model_validate(
+            {"labels": obj.get("labels"), "metadata": obj.get("metadata"), "name": obj.get("name")}
+        )
         return _obj
