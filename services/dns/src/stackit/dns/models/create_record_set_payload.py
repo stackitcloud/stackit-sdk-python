@@ -33,7 +33,7 @@ class CreateRecordSetPayload(BaseModel):
         default=None, description="user comment"
     )
     name: Annotated[str, Field(min_length=1, strict=True, max_length=253)] = Field(
-        description="name of the record which should be a valid domain according to rfc1035 Section 2.3.4"
+        description="name of the record which should be a valid domain according to rfc1035 Section 2.3.4. For APEX records (same as zone name), the zone name itself has to be put in here."
     )
     records: List[RecordPayload] = Field(description="records")
     ttl: Optional[Annotated[int, Field(le=99999999, strict=True, ge=60)]] = Field(
