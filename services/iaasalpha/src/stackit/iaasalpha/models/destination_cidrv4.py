@@ -16,21 +16,33 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Self
-
-from stackit.iaasalpha.models.network import Network
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing_extensions import Annotated, Self
 
 
-class NetworkListResponse(BaseModel):
+class DestinationCIDRv4(BaseModel):
     """
-    Network list response.
+    IPv4 Classless Inter-Domain Routing (CIDR) Object.
     """
 
-    items: List[Network] = Field(description="A list of networks.")
-    __properties: ClassVar[List[str]] = ["items"]
+    type: StrictStr
+    value: Annotated[str, Field(strict=True)] = Field(description="An CIDRv4 string.")
+    __properties: ClassVar[List[str]] = ["type", "value"]
+
+    @field_validator("value")
+    def value_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(
+            r"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +61,7 @@ class NetworkListResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of NetworkListResponse from a JSON string"""
+        """Create an instance of DestinationCIDRv4 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,25 +81,16 @@ class NetworkListResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
-        _items = []
-        if self.items:
-            for _item in self.items:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of NetworkListResponse from a dict"""
+        """Create an instance of DestinationCIDRv4 from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"items": [Network.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None}
-        )
+        _obj = cls.model_validate({"type": obj.get("type"), "value": obj.get("value")})
         return _obj

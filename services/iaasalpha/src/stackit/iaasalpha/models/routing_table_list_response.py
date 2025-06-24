@@ -21,15 +21,15 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
-from stackit.iaasalpha.models.network import Network
+from stackit.iaasalpha.models.routing_table import RoutingTable
 
 
-class NetworkListResponse(BaseModel):
+class RoutingTableListResponse(BaseModel):
     """
-    Network list response.
+    Routing table response.
     """
 
-    items: List[Network] = Field(description="A list of networks.")
+    items: List[RoutingTable] = Field(description="A list of routing tables.")
     __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
@@ -49,7 +49,7 @@ class NetworkListResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of NetworkListResponse from a JSON string"""
+        """Create an instance of RoutingTableListResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +80,7 @@ class NetworkListResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of NetworkListResponse from a dict"""
+        """Create an instance of RoutingTableListResponse from a dict"""
         if obj is None:
             return None
 
@@ -88,6 +88,10 @@ class NetworkListResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"items": [Network.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None}
+            {
+                "items": (
+                    [RoutingTable.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None
+                )
+            }
         )
         return _obj
