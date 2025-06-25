@@ -1,3 +1,6 @@
+## v0.6.0
+- **Breaking change:** Minimal python version is now Python 3.9
+
 ## v0.5.4
 - **Improvement:** Increase max length of `machine_type` and `volume_performance_class` fields from 63 to 127 characters in API methods
 - **Improvement:** Increase max length of `name` fields from 63 to 127 characters for various models:

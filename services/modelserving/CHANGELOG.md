@@ -1,3 +1,6 @@
+## v0.2.0
+- **Breaking change:** Minimal python version is now Python 3.9
+
 ## v0.1.1 (2025-05-09)
 - **Feature:** Update user-agent header
 

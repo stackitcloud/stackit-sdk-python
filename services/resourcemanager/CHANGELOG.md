@@ -1,3 +1,6 @@
+## v0.6.0
+- **Breaking change:** Minimal python version is now Python 3.9
+
 ## v0.5.0 (2025-06-04)
 - **Feature:** Delete Organization labels using the new method `DeleteOrganizationLabels`
 - **Feature:** Delete Project labels using the new method `DeleteProjectLabels`

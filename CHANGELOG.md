@@ -1,14 +1,23 @@
 ## Release (2025-XX-YY)
-- `cdn`: [v1.2.0](services/cdn/CHANGELOG.md#v120)
-  - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
-  - Add `originUrlRelated` to available options given in `sort_by` description
-- `opensearch`: [v0.3.0](services/opensearch/CHANGELOG.md#v030)
-  - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
-- `stackitmarketplace`: [v1.4.0](services/stackitmarketplace/CHANGELOG.md#v140)
-  - **Feature:** Add support for offer types
-    - new model `OfferType`
-    - new attribute `CatalogProductDetail` for `CatalogProductDetail` model
-  - Attribute `is_product_listing` in `CatalogProductDetail` is now of type `Optional[StrictBool]` (previously `StrictBool`)
+- `cdn`:
+  - [v1.3.0](services/cdn/CHANGELOG.md#v130)
+    - **Breaking change:** Minimal python version is now Python 3.9
+  - [v1.2.0](services/cdn/CHANGELOG.md#v120)
+    - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
+    - Add `originUrlRelated` to available options given in `sort_by` description
+- `opensearch`:
+  - [v0.4.0](services/opensearch/CHANGELOG.md#v040)
+  - **Breaking change:** Minimal python version is now Python 3.9 
+  - [v0.3.0](services/opensearch/CHANGELOG.md#v030)
+    - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
+- `stackitmarketplace`:
+  - [v1.5.0](services/stackitmarketplace/CHANGELOG.md#v150)
+    - **Breaking change:** Minimal python version is now Python 3.9
+  - [v1.4.0](services/stackitmarketplace/CHANGELOG.md#v140)
+    - **Feature:** Add support for offer types
+      - new model `OfferType`
+      - new attribute `CatalogProductDetail` for `CatalogProductDetail` model
+    - Attribute `is_product_listing` in `CatalogProductDetail` is now of type `Optional[StrictBool]` (previously `StrictBool`)
 - `iaas`: [v0.5.4](services/iaas/CHANGELOG.md#v054)
   - **Improvement:** Increase max length of `machine_type` and `volume_performance_class` fields from 63 to 127 characters in API methods
   - **Improvement:** Increase max length of `name` fields from 63 to 127 characters for various models:
@@ -20,6 +29,60 @@
     `UpdateBackupPayload`, `UpdateImagePayload`, `UpdateNicPayload`, `UpdateSecurityGroupPayload`
     `UpdateServerPayload`, `UpdateSnapshotPayload`, `UpdateVolumePayload`, `Volume`, `VolumePerformanceClass`
   - **Improvement:** Update regular expression pattern for name validation to allow more flexible naming conventions
+- `alb`: [v0.4.0](services/alb/CHANGELOG.md#v040)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `authorization`: [v0.3.0](services/authorization/CHANGELOG.md#v030)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `certificates`: [v1.1.0](services/certificates/CHANGELOG.md#v110)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `dns`: [v0.4.0](services/dns/CHANGELOG.md#v040)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `git`: [v0.2.0](services/git/CHANGELOG.md#v020)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `iaas`: [v0.6.0](services/iaas/CHANGELOG.md#v060)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `kms`: [v0.1.0](services/kms/CHANGELOG.md#v010)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `lbapplication`: [v0.4.0](services/lbapplication/CHANGELOG.md#v040)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `loadbalancer`: [v0.5.0](services/loadbalancer/CHANGELOG.md#v050)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `logme`: [v0.4.0](services/logme/CHANGELOG.md#v040)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `mariadb`: [v0.3.0](services/mariadb/CHANGELOG.md#v030)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `modelserving`: [v0.2.0](services/modelserving/CHANGELOG.md#v020)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `mongodbflex`: [v1.1.0](services/mongodbflex/CHANGELOG.md#v110)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `objectstorage`: [v1.1.0](services/objectstorage/CHANGELOG.md#v110)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `observability`: [v0.6.0](services/observability/CHANGELOG.md#v060)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `postgresflex`: [v1.1.0](services/postgresflex/CHANGELOG.md#v110)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `rabbitmq`: [v0.3.0](services/rabbitmq/CHANGELOG.md#v030)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `redis`: [v0.3.0](services/redis/CHANGELOG.md#v030)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `resourcemanager`: [v0.6.0](services/resourcemanager/CHANGELOG.md#v060)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `runcommand`: [v1.1.0](services/runcommand/CHANGELOG.md#v110)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `secretsmanager`: [v0.3.0](services/secretsmanager/CHANGELOG.md#v030)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `serverbackup`: [v1.1.0](services/serverbackup/CHANGELOG.md#v110)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `serverupdate`: [v1.1.0](services/serverupdate/CHANGELOG.md#v110)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `serviceaccount`: [v0.3.0](services/serviceaccount/CHANGELOG.md#v030)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `serviceenablement`: [v1.1.0](services/serviceenablement/CHANGELOG.md#v110)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `ske`: [v0.6.0](services/ske/CHANGELOG.md#v060)
+  - **Breaking change:** Minimal python version is now Python 3.9
+- `sqlserverflex`: [v1.1.0](services/sqlserverflex/CHANGELOG.md#v110)
+  - **Breaking change:** Minimal python version is now Python 3.9
 
 ## Release (2025-06-16)
 - `core`: [v0.2.0](core/CHANGELOG.md#v020-2025-06-12)

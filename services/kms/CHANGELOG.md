@@ -1,3 +1,6 @@
+## v0.1.0
+- **Breaking change:** Minimal python version is now Python 3.9
+
 ## v0.0.4 (2025-05-19)
 - **Feature:** Added new method `delete_wrapping_key`
 

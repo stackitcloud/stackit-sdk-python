@@ -1,4 +1,7 @@
-## v1.4.0 
+## v1.5.0
+- **Breaking change:** Minimal python version is now Python 3.9
+
+## v1.4.0
 - **Feature:** Add support for offer types
     - new model `OfferType`
     - new attribute `CatalogProductDetail` for `CatalogProductDetail` model

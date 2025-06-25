@@ -1,3 +1,6 @@
+## v1.3.0
+- **Breaking change:** Minimal python version is now Python 3.9
+
 ## v1.2.0
 - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
 - Add `originUrlRelated` to available options given in `sort_by` description
