@@ -24,6 +24,7 @@ from typing_extensions import Self
 from stackit.stackitmarketplace.models.catalog_pricing_option_highlight import (
     CatalogPricingOptionHighlight,
 )
+from stackit.stackitmarketplace.models.notice_period import NoticePeriod
 from stackit.stackitmarketplace.models.price_type import PriceType
 from stackit.stackitmarketplace.models.pricing_option_unit import PricingOptionUnit
 
@@ -36,6 +37,7 @@ class CatalogProductPricingOption(BaseModel):
     description: StrictStr = Field(description="The pricing option description.")
     highlights: List[CatalogPricingOptionHighlight] = Field(description="The list of highlights.")
     name: StrictStr = Field(description="The pricing option name.")
+    notice_period: Optional[NoticePeriod] = Field(default=None, alias="noticePeriod")
     price_type: Optional[PriceType] = Field(default=None, alias="priceType")
     pricing_plan: Optional[StrictStr] = Field(
         default=None, description="Additional price type information.", alias="pricingPlan"
@@ -51,6 +53,7 @@ class CatalogProductPricingOption(BaseModel):
         "description",
         "highlights",
         "name",
+        "noticePeriod",
         "priceType",
         "pricingPlan",
         "rate",
@@ -104,6 +107,9 @@ class CatalogProductPricingOption(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["highlights"] = _items
+        # override the default output from pydantic by calling `to_dict()` of notice_period
+        if self.notice_period:
+            _dict["noticePeriod"] = self.notice_period.to_dict()
         return _dict
 
     @classmethod
@@ -124,6 +130,9 @@ class CatalogProductPricingOption(BaseModel):
                     else None
                 ),
                 "name": obj.get("name"),
+                "noticePeriod": (
+                    NoticePeriod.from_dict(obj["noticePeriod"]) if obj.get("noticePeriod") is not None else None
+                ),
                 "priceType": obj.get("priceType"),
                 "pricingPlan": obj.get("pricingPlan"),
                 "rate": obj.get("rate"),

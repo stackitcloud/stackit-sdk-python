@@ -37,6 +37,7 @@ from stackit.stackitmarketplace.exceptions import (
 from stackit.stackitmarketplace.models.approve_subscription_payload import (
     ApproveSubscriptionPayload,
 )
+from stackit.stackitmarketplace.models.assets import Assets
 from stackit.stackitmarketplace.models.become_vendor import BecomeVendor
 from stackit.stackitmarketplace.models.catalog_pricing_option_highlight import (
     CatalogPricingOptionHighlight,
@@ -89,6 +90,8 @@ from stackit.stackitmarketplace.models.list_catalog_products_response import (
 from stackit.stackitmarketplace.models.list_vendor_subscriptions_response import (
     ListVendorSubscriptionsResponse,
 )
+from stackit.stackitmarketplace.models.localized_version import LocalizedVersion
+from stackit.stackitmarketplace.models.notice_period import NoticePeriod
 from stackit.stackitmarketplace.models.offer_type import OfferType
 from stackit.stackitmarketplace.models.price_type import PriceType
 from stackit.stackitmarketplace.models.pricing_option_unit import PricingOptionUnit
@@ -99,6 +102,7 @@ from stackit.stackitmarketplace.models.register_testing import RegisterTesting
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload,
 )
+from stackit.stackitmarketplace.models.service_certificate import ServiceCertificate
 from stackit.stackitmarketplace.models.subscription_lifecycle_state import (
     SubscriptionLifecycleState,
 )
