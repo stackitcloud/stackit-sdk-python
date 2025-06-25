@@ -45,7 +45,7 @@ class RecordSet(BaseModel):
     )
     id: StrictStr = Field(description="rr set id")
     name: Annotated[str, Field(min_length=1, strict=True, max_length=253)] = Field(
-        description="name of the record which should be a valid domain according to rfc1035 Section 2.3.4"
+        description="name of the record which should be a valid domain according to rfc1035 Section 2.3.4. For APEX records (same as zone name), the zone name itself has to be put in here."
     )
     records: Annotated[List[Record], Field(min_length=1)] = Field(description="records")
     state: StrictStr = Field(description="record set state")
@@ -93,9 +93,37 @@ class RecordSet(BaseModel):
     @field_validator("type")
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["A", "AAAA", "SOA", "CNAME", "NS", "MX", "TXT", "SRV", "PTR", "ALIAS", "DNAME", "CAA"]):
+        if value not in set(
+            [
+                "A",
+                "AAAA",
+                "SOA",
+                "CNAME",
+                "NS",
+                "MX",
+                "TXT",
+                "SRV",
+                "PTR",
+                "ALIAS",
+                "DNAME",
+                "CAA",
+                "DNSKEY",
+                "DS",
+                "LOC",
+                "NAPTR",
+                "SSHFP",
+                "TLSA",
+                "URI",
+                "CERT",
+                "SVCB",
+                "TYPE",
+                "CSYNC",
+                "HINFO",
+                "HTTPS",
+            ]
+        ):
             raise ValueError(
-                "must be one of enum values ('A', 'AAAA', 'SOA', 'CNAME', 'NS', 'MX', 'TXT', 'SRV', 'PTR', 'ALIAS', 'DNAME', 'CAA')"
+                "must be one of enum values ('A', 'AAAA', 'SOA', 'CNAME', 'NS', 'MX', 'TXT', 'SRV', 'PTR', 'ALIAS', 'DNAME', 'CAA', 'DNSKEY', 'DS', 'LOC', 'NAPTR', 'SSHFP', 'TLSA', 'URI', 'CERT', 'SVCB', 'TYPE', 'CSYNC', 'HINFO', 'HTTPS')"
             )
         return value
 
