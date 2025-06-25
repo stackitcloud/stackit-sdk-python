@@ -1,3 +1,6 @@
+## v0.6.0
+- **Breaking change:** Minimal python version is now Python 3.9
+
 ## v0.5.0 (2025-05-27)
 - **Feature:** Add support for `matchers` to route
 - **Feature:** Add support for `priority levels`, `sendResolved`, `continue` to alert config models

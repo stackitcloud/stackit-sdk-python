@@ -1,3 +1,6 @@
+## v0.4.0
+- **Breaking change:** Minimal python version is now Python 3.9
+
 ## v0.3.3 (2025-06-02)
 - **Deprecated:** Changed deprecation message of `GetQuotaResponse` and `RESTResponseType`
 
