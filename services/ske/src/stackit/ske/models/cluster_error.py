@@ -40,13 +40,15 @@ class ClusterError(BaseModel):
             [
                 "SKE_OBSERVABILITY_INSTANCE_NOT_FOUND",
                 "SKE_DNS_ZONE_NOT_FOUND",
-                "SKE_NODE_MISCONFIGURED_PDB",
                 "SKE_NODE_NO_VALID_HOST_FOUND",
+                "SKE_NODE_MISCONFIGURED_PDB",
                 "SKE_NODE_MACHINE_TYPE_NOT_FOUND",
+                "SKE_INFRA_SNA_NETWORK_NOT_FOUND",
+                "SKE_FETCHING_ERRORS_NOT_POSSIBLE",
             ]
         ):
             raise ValueError(
-                "must be one of enum values ('SKE_OBSERVABILITY_INSTANCE_NOT_FOUND', 'SKE_DNS_ZONE_NOT_FOUND', 'SKE_NODE_MISCONFIGURED_PDB', 'SKE_NODE_NO_VALID_HOST_FOUND', 'SKE_NODE_MACHINE_TYPE_NOT_FOUND')"
+                "must be one of enum values ('SKE_OBSERVABILITY_INSTANCE_NOT_FOUND', 'SKE_DNS_ZONE_NOT_FOUND', 'SKE_NODE_NO_VALID_HOST_FOUND', 'SKE_NODE_MISCONFIGURED_PDB', 'SKE_NODE_MACHINE_TYPE_NOT_FOUND', 'SKE_INFRA_SNA_NETWORK_NOT_FOUND', 'SKE_FETCHING_ERRORS_NOT_POSSIBLE')"
             )
         return value
 
