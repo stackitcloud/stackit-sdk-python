@@ -22,13 +22,14 @@ from pydantic import BaseModel, ConfigDict, StrictStr
 from typing_extensions import Self
 
 
-class InternalServerErrorResponse(BaseModel):
+class GenericErrorResponse(BaseModel):
     """
-    Internal server error.
+    Generic Error Response.
     """
 
-    error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["error"]
+    details: Optional[List[StrictStr]] = None
+    message: StrictStr
+    __properties: ClassVar[List[str]] = ["details", "message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +48,7 @@ class InternalServerErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InternalServerErrorResponse from a JSON string"""
+        """Create an instance of GenericErrorResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,12 +72,12 @@ class InternalServerErrorResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InternalServerErrorResponse from a dict"""
+        """Create an instance of GenericErrorResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"error": obj.get("error")})
+        _obj = cls.model_validate({"details": obj.get("details"), "message": obj.get("message")})
         return _obj
