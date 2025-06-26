@@ -18,17 +18,27 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing_extensions import Annotated, Self
 
 
-class InternalServerErrorResponse(BaseModel):
+class Flavor(BaseModel):
     """
-    Internal server error.
+    Describes a STACKIT Git Flavor.
     """
 
-    error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["error"]
+    availability: StrictStr = Field(description="Defines the flavor availability.")
+    description: StrictStr = Field(description="Flavor description.")
+    display_name: StrictStr = Field(description="The display name that will be shown in the Portal.")
+    id: Annotated[str, Field(strict=True, max_length=36)] = Field(description="Flavor id.")
+    __properties: ClassVar[List[str]] = ["availability", "description", "display_name", "id"]
+
+    @field_validator("availability")
+    def availability_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["available", "unavailable", "internal", "deprecated"]):
+            raise ValueError("must be one of enum values ('available', 'unavailable', 'internal', 'deprecated')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +57,7 @@ class InternalServerErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InternalServerErrorResponse from a JSON string"""
+        """Create an instance of Flavor from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,12 +81,19 @@ class InternalServerErrorResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InternalServerErrorResponse from a dict"""
+        """Create an instance of Flavor from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"error": obj.get("error")})
+        _obj = cls.model_validate(
+            {
+                "availability": obj.get("availability"),
+                "description": obj.get("description"),
+                "display_name": obj.get("display_name"),
+                "id": obj.get("id"),
+            }
+        )
         return _obj
