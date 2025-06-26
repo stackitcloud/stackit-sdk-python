@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
+from stackit.stackitmarketplace.models.assets import Assets
 from stackit.stackitmarketplace.models.delivery_method import DeliveryMethod
 from stackit.stackitmarketplace.models.price_type import PriceType
 from stackit.stackitmarketplace.models.product_lifecycle_state import (
@@ -34,6 +35,7 @@ class SubscriptionProduct(BaseModel):
     The product of a subscription
     """
 
+    assets: Optional[Assets] = None
     delivery_method: DeliveryMethod = Field(alias="deliveryMethod")
     lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
     price_type: PriceType = Field(alias="priceType")
@@ -57,6 +59,7 @@ class SubscriptionProduct(BaseModel):
         description="The vendor's website.", alias="vendorWebsiteUrl"
     )
     __properties: ClassVar[List[str]] = [
+        "assets",
         "deliveryMethod",
         "lifecycleState",
         "priceType",
@@ -156,6 +159,9 @@ class SubscriptionProduct(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of assets
+        if self.assets:
+            _dict["assets"] = self.assets.to_dict()
         return _dict
 
     @classmethod
@@ -169,6 +175,7 @@ class SubscriptionProduct(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "assets": Assets.from_dict(obj["assets"]) if obj.get("assets") is not None else None,
                 "deliveryMethod": obj.get("deliveryMethod"),
                 "lifecycleState": obj.get("lifecycleState"),
                 "priceType": obj.get("priceType"),
