@@ -1,3 +1,6 @@
+## v0.6.0
+- **Feature:** Add new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
+
 ## v0.5.0 (2025-06-10)
 - **Feature:** Add new field `pod_address_ranges` to `ClusterStatus`
 

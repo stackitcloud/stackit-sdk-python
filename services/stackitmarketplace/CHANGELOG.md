@@ -1,3 +1,9 @@
+## v1.5.0
+- **Feature:** Add new `Assets` model for managing service certificate assets
+- **Feature:** Add new `LocalizedVersion` model for localized content management
+- **Feature:** Add new `NoticePeriod` model with types: `SAME_DAY`, `DAYS`, `MONTHS`
+- **Feature:** Add new `ServiceCertificate` model for service certification
+
 ## v1.4.0 
 - **Feature:** Add support for offer types
     - new model `OfferType`
