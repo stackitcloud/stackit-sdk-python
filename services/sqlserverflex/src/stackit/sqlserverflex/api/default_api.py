@@ -6236,7 +6236,7 @@ class DefaultApi:
     ) -> UpdateInstanceResponse:
         """Update Instance
 
-        Update available instance of a mssql database.
+        Update available instance of a mssql database.  **Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
 
         :param project_id: Project ID (required)
         :type project_id: str
@@ -6312,7 +6312,7 @@ class DefaultApi:
     ) -> ApiResponse[UpdateInstanceResponse]:
         """Update Instance
 
-        Update available instance of a mssql database.
+        Update available instance of a mssql database.  **Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
 
         :param project_id: Project ID (required)
         :type project_id: str
@@ -6388,7 +6388,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Update Instance
 
-        Update available instance of a mssql database.
+        Update available instance of a mssql database.  **Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
 
         :param project_id: Project ID (required)
         :type project_id: str
@@ -7661,7 +7661,7 @@ class DefaultApi:
     ) -> UpdateInstanceResponse:
         """Update Instance
 
-        Update available instance of a mssql database.
+        Update available instance of a mssql database.  **Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
 
         :param project_id: Project ID (required)
         :type project_id: str
@@ -7737,7 +7737,7 @@ class DefaultApi:
     ) -> ApiResponse[UpdateInstanceResponse]:
         """Update Instance
 
-        Update available instance of a mssql database.
+        Update available instance of a mssql database.  **Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
 
         :param project_id: Project ID (required)
         :type project_id: str
@@ -7813,7 +7813,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Update Instance
 
-        Update available instance of a mssql database.
+        Update available instance of a mssql database.  **Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
 
         :param project_id: Project ID (required)
         :type project_id: str
