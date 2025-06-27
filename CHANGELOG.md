@@ -1,4 +1,8 @@
 ## Release (2025-XX-YY)
+
+- `dns`: [v0.4.0](services/dns/CHANGELOG.md#v040)
+  - **Feature:** Add new record set types
+  - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
 - `cdn`: [v1.2.0](services/cdn/CHANGELOG.md#v120)
   - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
   - Add `originUrlRelated` to available options given in `sort_by` description
