@@ -69,9 +69,9 @@ class WrappingKey(BaseModel):
     @field_validator("state")
     def state_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["active", "key_material_not_ready", "expired", "deleted", "key_material_unavailable"]):
+        if value not in set(["active", "creating", "expired", "deleted", "key_material_unavailable"]):
             raise ValueError(
-                "must be one of enum values ('active', 'key_material_not_ready', 'expired', 'deleted', 'key_material_unavailable')"
+                "must be one of enum values ('active', 'creating', 'expired', 'deleted', 'key_material_unavailable')"
             )
         return value
 

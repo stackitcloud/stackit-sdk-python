@@ -43,8 +43,8 @@ class KeyRing(BaseModel):
     @field_validator("state")
     def state_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["active", "deleted"]):
-            raise ValueError("must be one of enum values ('active', 'deleted')")
+        if value not in set(["creating", "active", "deleted"]):
+            raise ValueError("must be one of enum values ('creating', 'active', 'deleted')")
         return value
 
     model_config = ConfigDict(

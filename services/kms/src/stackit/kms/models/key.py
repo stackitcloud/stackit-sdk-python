@@ -80,9 +80,9 @@ class Key(BaseModel):
     @field_validator("state")
     def state_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["active", "deleted", "not_available", "errors_exist", "no_version"]):
+        if value not in set(["active", "deleted", "not_available", "errors_exist", "creating", "no_version"]):
             raise ValueError(
-                "must be one of enum values ('active', 'deleted', 'not_available', 'errors_exist', 'no_version')"
+                "must be one of enum values ('active', 'deleted', 'not_available', 'errors_exist', 'creating', 'no_version')"
             )
         return value
 
