@@ -16,21 +16,36 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Self
-
-from stackit.iaasalpha.models.network import Network
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+from typing_extensions import Annotated, Self
 
 
-class NetworkListResponse(BaseModel):
+class CreateNetworkIPv4WithPrefix(BaseModel):
     """
-    Network list response.
+    The create request for an IPv4 network with a specified prefix.
     """
 
-    items: List[Network] = Field(description="A list of networks.")
-    __properties: ClassVar[List[str]] = ["items"]
+    gateway: Optional[object] = None
+    nameservers: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=3)]] = Field(
+        default=None, description="A list containing DNS Servers/Nameservers for IPv4."
+    )
+    prefix: Annotated[str, Field(strict=True)] = Field(description="IPv4 Classless Inter-Domain Routing (CIDR).")
+    __properties: ClassVar[List[str]] = ["gateway", "nameservers", "prefix"]
+
+    @field_validator("prefix")
+    def prefix_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(
+            r"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +64,7 @@ class NetworkListResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of NetworkListResponse from a JSON string"""
+        """Create an instance of CreateNetworkIPv4WithPrefix from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +84,16 @@ class NetworkListResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
-        _items = []
-        if self.items:
-            for _item in self.items:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["items"] = _items
+        # set to None if gateway (nullable) is None
+        # and model_fields_set contains the field
+        if self.gateway is None and "gateway" in self.model_fields_set:
+            _dict["gateway"] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of NetworkListResponse from a dict"""
+        """Create an instance of CreateNetworkIPv4WithPrefix from a dict"""
         if obj is None:
             return None
 
@@ -88,6 +101,6 @@ class NetworkListResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"items": [Network.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None}
+            {"gateway": obj.get("gateway"), "nameservers": obj.get("nameservers"), "prefix": obj.get("prefix")}
         )
         return _obj
