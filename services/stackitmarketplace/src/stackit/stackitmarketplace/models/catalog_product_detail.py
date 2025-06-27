@@ -30,6 +30,7 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
+from stackit.stackitmarketplace.models.assets import Assets
 from stackit.stackitmarketplace.models.catalog_product_details_vendor import (
     CatalogProductDetailsVendor,
 )
@@ -57,6 +58,7 @@ class CatalogProductDetail(BaseModel):
     CatalogProductDetail
     """
 
+    assets: Optional[Assets] = None
     categories: Optional[List[StrictStr]] = Field(
         default=None, description="The list of categories associated to the product."
     )
@@ -103,6 +105,7 @@ class CatalogProductDetail(BaseModel):
         description="The video URL.", alias="videoUrl"
     )
     __properties: ClassVar[List[str]] = [
+        "assets",
         "categories",
         "deliveryMethod",
         "description",
@@ -207,6 +210,9 @@ class CatalogProductDetail(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of assets
+        if self.assets:
+            _dict["assets"] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in highlights (list)
         _items = []
         if self.highlights:
@@ -251,6 +257,7 @@ class CatalogProductDetail(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "assets": Assets.from_dict(obj["assets"]) if obj.get("assets") is not None else None,
                 "categories": obj.get("categories"),
                 "deliveryMethod": obj.get("deliveryMethod"),
                 "description": obj.get("description"),

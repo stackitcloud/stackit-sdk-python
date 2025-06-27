@@ -1,3 +1,7 @@
+## v0.2.0
+- **Feature:** Add support for `Flavors` for STACKIT git instance
+- **Improvement:** Error handling and documentation improved
+
 ## v0.1.2 (2025-05-09)
 - **Feature:** Update user-agent header
 

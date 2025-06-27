@@ -1,4 +1,18 @@
 ## Release (2025-XX-YY)
+
+- `dns`: [v0.4.0](services/dns/CHANGELOG.md#v040)
+  - **Feature:** Add new record set types
+  - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
+- `git`: [v0.2.0](services/git/CHANGELOG.md#v020)
+  - **Feature:** Add support for `Flavors` for STACKIT git instance
+  - **Improvement:** Error handling and documentation improved
+- `ske` [v0.6.0](services/ske/CHANGELOG.md#v060)
+  - **Feature:** Add new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
+- `stackitmarketplace`: [v1.5.0](services/stackitmarketplace/CHANGELOG.md#v150)
+  - **Feature:** Add new `Assets` model for managing service certificate assets
+  - **Feature:** Add new `LocalizedVersion` model for localized content management
+  - **Feature:** Add new `NoticePeriod` model with types: `SAME_DAY`, `DAYS`, `MONTHS`
+  - **Feature:** Add new `ServiceCertificate` model for service certification
 - `cdn`: [v1.2.0](services/cdn/CHANGELOG.md#v120)
   - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
   - Add `originUrlRelated` to available options given in `sort_by` description
