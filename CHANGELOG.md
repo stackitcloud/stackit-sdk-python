@@ -1,5 +1,7 @@
 ## Release (2025-XX-YY)
 
+- `kms`: [v0.0.5](services/kms/CHANGELOG.md#v005)
+  - **Improvement:** Updated validators
 - `dns`: [v0.4.0](services/dns/CHANGELOG.md#v040)
   - **Feature:** Add new record set types
   - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models

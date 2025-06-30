@@ -3,7 +3,7 @@ name = "stackit-kms"
 
 [tool.poetry]
 name = "stackit-kms"
-version = "v0.0.4"
+version = "v0.0.5"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]

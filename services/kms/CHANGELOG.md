@@ -1,3 +1,6 @@
+## v0.0.5
+- **Improvement:** Updated validators
+
 ## v0.0.4 (2025-05-19)
 - **Feature:** Added new method `delete_wrapping_key`
 
