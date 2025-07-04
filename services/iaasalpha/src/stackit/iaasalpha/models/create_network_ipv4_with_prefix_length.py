@@ -18,18 +18,20 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field
+from typing_extensions import Annotated, Self
 
 
-class Error(BaseModel):
+class CreateNetworkIPv4WithPrefixLength(BaseModel):
     """
-    Error with HTTP error code and an error message.
+    The create request for an IPv4 network with a wanted prefix length.
     """  # noqa: E501
 
-    code: StrictInt
-    msg: StrictStr = Field(description="An error message.")
-    __properties: ClassVar[List[str]] = ["code", "msg"]
+    nameservers: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=3)]] = Field(
+        default=None, description="A list containing DNS Servers/Nameservers for IPv4."
+    )
+    prefix_length: Annotated[int, Field(le=29, strict=True, ge=8)] = Field(alias="prefixLength")
+    __properties: ClassVar[List[str]] = ["nameservers", "prefixLength"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +50,7 @@ class Error(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Error from a JSON string"""
+        """Create an instance of CreateNetworkIPv4WithPrefixLength from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,12 +74,12 @@ class Error(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Error from a dict"""
+        """Create an instance of CreateNetworkIPv4WithPrefixLength from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"code": obj.get("code"), "msg": obj.get("msg")})
+        _obj = cls.model_validate({"nameservers": obj.get("nameservers"), "prefixLength": obj.get("prefixLength")})
         return _obj

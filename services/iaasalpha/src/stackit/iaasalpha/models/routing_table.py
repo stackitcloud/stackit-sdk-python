@@ -20,74 +20,52 @@ import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    StrictBool,
-    StrictStr,
-    field_validator,
-)
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing_extensions import Annotated, Self
 
-from stackit.iaasalpha.models.network_ipv4 import NetworkIPv4
-from stackit.iaasalpha.models.network_ipv6 import NetworkIPv6
 
-
-class Network(BaseModel):
+class RoutingTable(BaseModel):
     """
-    Object that represents a network.
+    An object representing a routing table.
     """  # noqa: E501
 
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
-    id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
-        description="Universally Unique Identifier (UUID)."
+    default: Optional[StrictBool] = Field(
+        default=True,
+        description="This is the default routing table for this area. It can't be deleted and is used if the user does not specify it otherwise.",
     )
-    ipv4: Optional[NetworkIPv4] = None
-    ipv6: Optional[NetworkIPv6] = None
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
+    )
+    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+        default=None, description="Universally Unique Identifier (UUID)."
+    )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
         description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
     )
-    name: StrictStr
-    routed: Optional[StrictBool] = Field(
-        default=None, description="Shows if the network is routed and therefore accessible from other networks."
+    name: Annotated[str, Field(strict=True, max_length=127)] = Field(
+        description="The name for a General Object. Matches Names and also UUIDs."
     )
-    routing_table_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID).", alias="routingTableId"
-    )
-    status: StrictStr = Field(
-        description="The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`."
-    )
+    system_routes: Optional[StrictBool] = Field(default=True, alias="systemRoutes")
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
     __properties: ClassVar[List[str]] = [
         "createdAt",
+        "default",
+        "description",
         "id",
-        "ipv4",
-        "ipv6",
         "labels",
         "name",
-        "routed",
-        "routingTableId",
-        "status",
+        "systemRoutes",
         "updatedAt",
     ]
 
     @field_validator("id")
     def id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
-            raise ValueError(
-                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
-            )
-        return value
-
-    @field_validator("routing_table_id")
-    def routing_table_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
@@ -96,6 +74,13 @@ class Network(BaseModel):
             raise ValueError(
                 r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
             )
+        return value
+
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
         return value
 
     model_config = ConfigDict(
@@ -115,7 +100,7 @@ class Network(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Network from a JSON string"""
+        """Create an instance of RoutingTable from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -129,10 +114,14 @@ class Network(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "created_at",
+                "default",
+                "id",
                 "updated_at",
             ]
         )
@@ -142,17 +131,11 @@ class Network(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of ipv4
-        if self.ipv4:
-            _dict["ipv4"] = self.ipv4.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ipv6
-        if self.ipv6:
-            _dict["ipv6"] = self.ipv6.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Network from a dict"""
+        """Create an instance of RoutingTable from a dict"""
         if obj is None:
             return None
 
@@ -162,14 +145,12 @@ class Network(BaseModel):
         _obj = cls.model_validate(
             {
                 "createdAt": obj.get("createdAt"),
+                "default": obj.get("default") if obj.get("default") is not None else True,
+                "description": obj.get("description"),
                 "id": obj.get("id"),
-                "ipv4": NetworkIPv4.from_dict(obj["ipv4"]) if obj.get("ipv4") is not None else None,
-                "ipv6": NetworkIPv6.from_dict(obj["ipv6"]) if obj.get("ipv6") is not None else None,
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
-                "routed": obj.get("routed"),
-                "routingTableId": obj.get("routingTableId"),
-                "status": obj.get("status"),
+                "systemRoutes": obj.get("systemRoutes") if obj.get("systemRoutes") is not None else True,
                 "updatedAt": obj.get("updatedAt"),
             }
         )

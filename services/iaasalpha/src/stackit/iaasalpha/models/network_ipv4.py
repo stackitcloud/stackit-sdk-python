@@ -16,22 +16,42 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
 
 
-class UpdateNetworkIPv4Body(BaseModel):
+class NetworkIPv4(BaseModel):
     """
-    The config object for a IPv4 network update.
+    Object that represents the IPv4 part of a network.
     """  # noqa: E501
 
     gateway: Optional[object] = None
     nameservers: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=3)]] = Field(
         default=None, description="A list containing DNS Servers/Nameservers for IPv4."
     )
-    __properties: ClassVar[List[str]] = ["gateway", "nameservers"]
+    prefixes: List[Annotated[str, Field(strict=True)]]
+    public_ip: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="String that represents an IPv4 address.", alias="publicIp"
+    )
+    __properties: ClassVar[List[str]] = ["gateway", "nameservers", "prefixes", "publicIp"]
+
+    @field_validator("public_ip")
+    def public_ip_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(
+            r"^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +70,7 @@ class UpdateNetworkIPv4Body(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateNetworkIPv4Body from a JSON string"""
+        """Create an instance of NetworkIPv4 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -62,8 +82,13 @@ class UpdateNetworkIPv4Body(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "public_ip",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
@@ -79,12 +104,19 @@ class UpdateNetworkIPv4Body(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateNetworkIPv4Body from a dict"""
+        """Create an instance of NetworkIPv4 from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"gateway": obj.get("gateway"), "nameservers": obj.get("nameservers")})
+        _obj = cls.model_validate(
+            {
+                "gateway": obj.get("gateway"),
+                "nameservers": obj.get("nameservers"),
+                "prefixes": obj.get("prefixes"),
+                "publicIp": obj.get("publicIp"),
+            }
+        )
         return _obj

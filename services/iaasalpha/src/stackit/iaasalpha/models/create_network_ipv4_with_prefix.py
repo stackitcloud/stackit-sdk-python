@@ -16,20 +16,36 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+from typing_extensions import Annotated, Self
 
 
-class Error(BaseModel):
+class CreateNetworkIPv4WithPrefix(BaseModel):
     """
-    Error with HTTP error code and an error message.
+    The create request for an IPv4 network with a specified prefix.
     """  # noqa: E501
 
-    code: StrictInt
-    msg: StrictStr = Field(description="An error message.")
-    __properties: ClassVar[List[str]] = ["code", "msg"]
+    gateway: Optional[object] = None
+    nameservers: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=3)]] = Field(
+        default=None, description="A list containing DNS Servers/Nameservers for IPv4."
+    )
+    prefix: Annotated[str, Field(strict=True)] = Field(description="IPv4 Classless Inter-Domain Routing (CIDR).")
+    __properties: ClassVar[List[str]] = ["gateway", "nameservers", "prefix"]
+
+    @field_validator("prefix")
+    def prefix_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(
+            r"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$/"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +64,7 @@ class Error(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Error from a JSON string"""
+        """Create an instance of CreateNetworkIPv4WithPrefix from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -68,16 +84,23 @@ class Error(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if gateway (nullable) is None
+        # and model_fields_set contains the field
+        if self.gateway is None and "gateway" in self.model_fields_set:
+            _dict["gateway"] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Error from a dict"""
+        """Create an instance of CreateNetworkIPv4WithPrefix from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"code": obj.get("code"), "msg": obj.get("msg")})
+        _obj = cls.model_validate(
+            {"gateway": obj.get("gateway"), "nameservers": obj.get("nameservers"), "prefix": obj.get("prefix")}
+        )
         return _obj
