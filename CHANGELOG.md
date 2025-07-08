@@ -35,6 +35,8 @@
 - `serverbackup`: [v1.0.2](services/serverbackup/CHANGELOG.md#v102)
   - **Feature:** Add `force` parameter to `delete_backup` and `delete_volume_backup` methods
   - **Internal:** Improve deserializing and error types
+- `serverupdate`: [v1.0.2](services/serverupdate/CHANGELOG.md#v103)
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 
