@@ -28,6 +28,8 @@
   - **Internal:** Improve deserializing and error types
 - `resourcemanager`: [v0.5.1](services/resourcemanager/CHANGELOG.md#v051)
   - **Internal:** Improve deserializing and error types
+- `runcommand`: [v1.0.2](services/runcommand/CHANGELOG.md#v102)
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 
