@@ -20,6 +20,8 @@
   - **Internal:** Improve deserializing and error types
 - `observability`: [v0.5.1](services/observability/CHANGELOG.md#v051)
   - **Internal:** Improve deserializing and error types
+- `postgresflex`: [v1.0.2](services/postgresflex/CHANGELOG.md#v102)
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 
