@@ -19,9 +19,13 @@
   - **Feature:** Add new `LocalizedVersion` model for localized content management
   - **Feature:** Add new `NoticePeriod` model with types: `SAME_DAY`, `DAYS`, `MONTHS`
   - **Feature:** Add new `ServiceCertificate` model for service certification
-- `cdn`: [v1.2.0](services/cdn/CHANGELOG.md#v120)
-  - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
-  - Add `originUrlRelated` to available options given in `sort_by` description
+- `cdn`:
+  - [v1.3.0](services/cdn/CHANGELOG.md#v130)
+    - **Breaking change:** Replace oneOf `ConfigBackend` with `HttpBackend`
+    - **Internal:** Improve deserializing and error types
+  - [v1.2.0](services/cdn/CHANGELOG.md#v120)
+    - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
+    - Add `originUrlRelated` to available options given in `sort_by` description
 - `opensearch`: [v0.3.0](services/opensearch/CHANGELOG.md#v030)
   - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
 - `stackitmarketplace`: [v1.4.0](services/stackitmarketplace/CHANGELOG.md#v140)
