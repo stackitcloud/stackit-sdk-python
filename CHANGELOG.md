@@ -68,11 +68,19 @@
     - **Internal:** Improve deserializing and error types
   - [v0.6.0](services/ske/CHANGELOG.md#v060)
     - **Feature:** Add new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
-- `stackitmarketplace`: [v1.5.0](services/stackitmarketplace/CHANGELOG.md#v150)
-  - **Feature:** Add new `Assets` model for managing service certificate assets
-  - **Feature:** Add new `LocalizedVersion` model for localized content management
-  - **Feature:** Add new `NoticePeriod` model with types: `SAME_DAY`, `DAYS`, `MONTHS`
-  - **Feature:** Add new `ServiceCertificate` model for service certification
+- `stackitmarketplace`:
+  - [v1.5.1](services/stackitmarketplace/CHANGELOG.md#v151)
+    - **Internal:** Improve deserializing and error types
+  - [v1.5.0](services/stackitmarketplace/CHANGELOG.md#v150)
+    - **Feature:** Add new `Assets` model for managing service certificate assets
+    - **Feature:** Add new `LocalizedVersion` model for localized content management
+    - **Feature:** Add new `NoticePeriod` model with types: `SAME_DAY`, `DAYS`, `MONTHS`
+    - **Feature:** Add new `ServiceCertificate` model for service certification
+  - [v1.4.0](services/stackitmarketplace/CHANGELOG.md#v140)
+      - **Feature:** Add support for offer types
+        - new model `OfferType`
+        - new attribute `CatalogProductDetail` for `CatalogProductDetail` model
+      - Attribute `is_product_listing` in `CatalogProductDetail` is now of type `Optional[StrictBool]` (previously `StrictBool`)
 - `cdn`:
   - [v1.3.0](services/cdn/CHANGELOG.md#v130)
     - **Breaking change:** Replace oneOf `ConfigBackend` with `HttpBackend`
@@ -85,11 +93,6 @@
     - **Internal:** Improve deserializing and error types 
   - [v0.3.0](services/opensearch/CHANGELOG.md#v030)
     - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
-- `stackitmarketplace`: [v1.4.0](services/stackitmarketplace/CHANGELOG.md#v140)
-  - **Feature:** Add support for offer types
-    - new model `OfferType`
-    - new attribute `CatalogProductDetail` for `CatalogProductDetail` model
-  - Attribute `is_product_listing` in `CatalogProductDetail` is now of type `Optional[StrictBool]` (previously `StrictBool`)
 - `iaas`: [v0.5.4](services/iaas/CHANGELOG.md#v054)
   - **Improvement:** Increase max length of `machine_type` and `volume_performance_class` fields from 63 to 127 characters in API methods
   - **Improvement:** Increase max length of `name` fields from 63 to 127 characters for various models:
