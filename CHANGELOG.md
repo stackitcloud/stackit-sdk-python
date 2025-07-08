@@ -14,6 +14,8 @@
   - **Internal:** Improve deserializing and error types
 - `mariadb`: [v0.2.3](services/mariadb/CHANGELOG.md#v023)
   - **Internal:** Improve deserializing and error types
+- `modelserving`: [v0.1.2](services/modelserving/CHANGELOG.md#v012)
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 
