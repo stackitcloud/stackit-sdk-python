@@ -18,18 +18,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
+from stackit.iaasalpha.models.route import Route
 
-class Error(BaseModel):
+
+class AddRoutesToRoutingTablePayload(BaseModel):
     """
-    Error with HTTP error code and an error message.
+    Object represents a request to add network routes.
     """  # noqa: E501
 
-    code: StrictInt
-    msg: StrictStr = Field(description="An error message.")
-    __properties: ClassVar[List[str]] = ["code", "msg"]
+    items: List[Route] = Field(description="A list of routes.")
+    __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +49,7 @@ class Error(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Error from a JSON string"""
+        """Create an instance of AddRoutesToRoutingTablePayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -68,16 +69,25 @@ class Error(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item in self.items:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Error from a dict"""
+        """Create an instance of AddRoutesToRoutingTablePayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"code": obj.get("code"), "msg": obj.get("msg")})
+        _obj = cls.model_validate(
+            {"items": [Route.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None}
+        )
         return _obj
