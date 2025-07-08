@@ -8,9 +8,12 @@
   - **Internal:** Improve deserializing and error types
 - `kms`: [v0.0.5](services/kms/CHANGELOG.md#v005)
   - **Improvement:** Updated validators
-- `dns`: [v0.4.0](services/dns/CHANGELOG.md#v040)
-  - **Feature:** Add new record set types
-  - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
+- `dns`:
+  - [v0.4.1](services/dns/CHANGELOG.md#v041)
+    - **Internal:** Improve deserializing and error types
+  - [v0.4.0](services/dns/CHANGELOG.md#v040)
+    - **Feature:** Add new record set types
+    - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
 - `git`: [v0.2.0](services/git/CHANGELOG.md#v020)
   - **Feature:** Add support for `Flavors` for STACKIT git instance
   - **Improvement:** Error handling and documentation improved

@@ -1,3 +1,6 @@
+## v0.4.1
+- **Internal:** Improve deserializing and error types
+
 ## v0.4.0
 - **Feature:** Add new record set types
 - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
