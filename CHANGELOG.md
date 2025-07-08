@@ -18,6 +18,8 @@
   - **Internal:** Improve deserializing and error types
 - `objectstorage`: [v1.0.4](services/objectstorage/CHANGELOG.md#v104)
   - **Internal:** Improve deserializing and error types
+- `observability`: [v0.5.1](services/observability/CHANGELOG.md#v051)
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 
