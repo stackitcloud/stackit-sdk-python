@@ -26,6 +26,8 @@
   - **Internal:** Improve deserializing and error types
 - `redis`: [v0.2.2](services/redis/CHANGELOG.md#v022)
   - **Internal:** Improve deserializing and error types
+- `resourcemanager`: [v0.5.1](services/resourcemanager/CHANGELOG.md#v051)
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 
