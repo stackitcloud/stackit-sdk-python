@@ -49,8 +49,11 @@
   - [v1.2.0](services/cdn/CHANGELOG.md#v120)
     - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
     - Add `originUrlRelated` to available options given in `sort_by` description
-- `opensearch`: [v0.3.0](services/opensearch/CHANGELOG.md#v030)
-  - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
+- `opensearch`:
+  - [v0.3.1](services/opensearch/CHANGELOG.md#v031)
+    - **Internal:** Improve deserializing and error types 
+  - [v0.3.0](services/opensearch/CHANGELOG.md#v030)
+    - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
 - `stackitmarketplace`: [v1.4.0](services/stackitmarketplace/CHANGELOG.md#v140)
   - **Feature:** Add support for offer types
     - new model `OfferType`

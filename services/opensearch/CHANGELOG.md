@@ -1,3 +1,6 @@
+## v0.3.1
+- **Internal:** Improve deserializing and error types
+
 ## v0.3.0
 - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
 
