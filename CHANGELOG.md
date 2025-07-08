@@ -6,6 +6,8 @@
   - **Internal:** Improve deserializing and error types
 - `certificates`: [v1.0.2](services/certificates/CHANGELOG.md#v102)
   - **Internal:** Improve deserializing and error types
+- `lbapplication`: [v0.3.4](services/lbapplication/CHANGELOG.md#v034)
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 

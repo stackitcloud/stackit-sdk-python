@@ -1,3 +1,6 @@
+## v0.3.4
+- **Internal:** Improve deserializing and error types
+
 ## v0.3.3 (2025-06-02)
 - **Deprecated:** Changed deprecation message of `GetQuotaResponse` and `RESTResponseType`
 
