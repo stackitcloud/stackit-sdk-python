@@ -39,6 +39,8 @@
   - **Internal:** Improve deserializing and error types
 - `serviceaccount`: [v0.2.2](services/serviceaccount/CHANGELOG.md#v022)
   - **Internal:** Improve deserializing and error types
+- `serviceenablement`: [v1.0.2](services/serviceenablement/CHANGELOG.md#v102)
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 
