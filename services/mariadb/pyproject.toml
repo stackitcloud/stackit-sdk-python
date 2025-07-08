@@ -3,7 +3,7 @@ name = "stackit-mariadb"
 
 [tool.poetry]
 name = "stackit-mariadb"
-version = "v0.2.2"
+version = "v0.2.3"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
