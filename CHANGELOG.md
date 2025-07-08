@@ -6,8 +6,11 @@
   - **Internal:** Improve deserializing and error types
 - `certificates`: [v1.0.2](services/certificates/CHANGELOG.md#v102)
   - **Internal:** Improve deserializing and error types
-- `kms`: [v0.0.5](services/kms/CHANGELOG.md#v005)
-  - **Improvement:** Updated validators
+- `kms`:
+  - [v0.0.6](services/kms/CHANGELOG.md#v006)
+    - **Internal:** Improve deserializing and error types 
+  - [v0.0.5](services/kms/CHANGELOG.md#v005)
+    - **Improvement:** Updated validators
 - `dns`:
   - [v0.4.1](services/dns/CHANGELOG.md#v041)
     - **Internal:** Improve deserializing and error types

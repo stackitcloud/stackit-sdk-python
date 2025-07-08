@@ -1,3 +1,6 @@
+## v0.0.6
+- **Internal:** Improve deserializing and error types
+
 ## v0.0.5
 - **Improvement:** Updated validators
 
