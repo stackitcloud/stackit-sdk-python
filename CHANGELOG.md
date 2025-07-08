@@ -2,6 +2,8 @@
 
 - `alb`: [v0.3.1](services/alb/CHANGELOG.md#v031)
   - **Internal:** Improve deserializing and error types
+- `authorization`: [v0.2.5](services/authorization/CHANGELOG.md#v025)
+  - **Internal:** Improve deserializing and error types
 - `kms`: [v0.0.5](services/kms/CHANGELOG.md#v005)
   - **Improvement:** Updated validators
 - `dns`: [v0.4.0](services/dns/CHANGELOG.md#v040)
