@@ -8,6 +8,8 @@
   - **Internal:** Improve deserializing and error types
 - `lbapplication`: [v0.3.4](services/lbapplication/CHANGELOG.md#v034)
   - **Internal:** Improve deserializing and error types
+- `loadbalancer`: [v0.4.1](services/loadbalancer/CHANGELOG.md#v041)
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 
