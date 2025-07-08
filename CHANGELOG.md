@@ -10,6 +10,8 @@
   - **Internal:** Improve deserializing and error types
 - `loadbalancer`: [v0.4.1](services/loadbalancer/CHANGELOG.md#v041)
   - **Internal:** Improve deserializing and error types
+- `logme`: [v0.3.2](services/logme/CHANGELOG.md#v032)
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 

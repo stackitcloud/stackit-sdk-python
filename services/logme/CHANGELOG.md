@@ -1,3 +1,6 @@
+## v0.3.2
+- **Internal:** Improve deserializing and error types
+
 ## v0.3.1 (2025-05-09)
 - **Feature:** Update user-agent header
 
