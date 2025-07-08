@@ -32,6 +32,9 @@
   - **Internal:** Improve deserializing and error types
 - `secretsmanager`: [v0.2.3](services/secretsmanager/CHANGELOG.md#v023)
   - **Internal:** Improve deserializing and error types
+- `serverbackup`: [v1.0.2](services/serverbackup/CHANGELOG.md#v102)
+  - **Feature:** Add `force` parameter to `delete_backup` and `delete_volume_backup` methods
+  - **Internal:** Improve deserializing and error types
 - `kms`:
   - [v0.0.6](services/kms/CHANGELOG.md#v006)
     - **Internal:** Improve deserializing and error types 

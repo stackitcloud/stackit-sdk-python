@@ -1,3 +1,7 @@
+## v1.0.2
+- **Feature:** Add `force` parameter to `delete_backup` and `delete_volume_backup` methods
+- **Internal:** Improve deserializing and error types
+
 ## v1.0.1 (2025-05-09)
 - **Feature:** Update user-agent header
 
