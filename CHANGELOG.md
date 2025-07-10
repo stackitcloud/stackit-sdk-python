@@ -35,7 +35,7 @@
 - `serverbackup`: [v1.0.2](services/serverbackup/CHANGELOG.md#v102)
   - **Feature:** Add `force` parameter to `delete_backup` and `delete_volume_backup` methods
   - **Internal:** Improve deserializing and error types
-- `serverupdate`: [v1.0.2](services/serverupdate/CHANGELOG.md#v103)
+- `serverupdate`: [v1.0.3](services/serverupdate/CHANGELOG.md#v103)
   - **Internal:** Improve deserializing and error types
 - `serviceaccount`: [v0.2.2](services/serviceaccount/CHANGELOG.md#v022)
   - **Internal:** Improve deserializing and error types
@@ -54,7 +54,11 @@
   - [v0.4.0](services/dns/CHANGELOG.md#v040)
     - **Feature:** Add new record set types
     - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
-- `git`: 
+- `git`:
+  - [v0.3.0](services/git/CHANGELOG.md#v030)
+    - **Feature:** Add validation for field `flavor` in `CreateInstancePayload` model
+    - **Feature:** Add field `sku` in `Flavor` model
+    - **Internal:** Improve deserializing and error types 
   - [v0.2.0](services/git/CHANGELOG.md#v020)
     - **Feature:** Add support for `Flavors` for STACKIT git instance
     - **Improvement:** Error handling and documentation improved
