@@ -121,6 +121,8 @@ from stackit.observability.models.list_instances_response import ListInstancesRe
 from stackit.observability.models.list_scrape_configs_response import (
     ListScrapeConfigsResponse,
 )
+from stackit.observability.models.logs_config import LogsConfig
+from stackit.observability.models.logs_config_response import LogsConfigResponse
 from stackit.observability.models.message import Message
 from stackit.observability.models.metrics_relabel_config import MetricsRelabelConfig
 from stackit.observability.models.model_global import ModelGlobal
@@ -139,6 +141,8 @@ from stackit.observability.models.scrape_configs_response import ScrapeConfigsRe
 from stackit.observability.models.service_keys_list import ServiceKeysList
 from stackit.observability.models.static_configs import StaticConfigs
 from stackit.observability.models.tls_config import TLSConfig
+from stackit.observability.models.trace_config import TraceConfig
+from stackit.observability.models.traces_config_response import TracesConfigResponse
 from stackit.observability.models.update_acl_payload import UpdateACLPayload
 from stackit.observability.models.update_alert_config_receiver_payload import (
     UpdateAlertConfigReceiverPayload,
@@ -186,6 +190,9 @@ from stackit.observability.models.update_instance_payload import UpdateInstanceP
 from stackit.observability.models.update_logs_alertgroup_payload import (
     UpdateLogsAlertgroupPayload,
 )
+from stackit.observability.models.update_logs_configs_payload import (
+    UpdateLogsConfigsPayload,
+)
 from stackit.observability.models.update_metrics_storage_retention_payload import (
     UpdateMetricsStorageRetentionPayload,
 )
@@ -194,5 +201,8 @@ from stackit.observability.models.update_scrape_config_payload import (
 )
 from stackit.observability.models.update_scrape_config_payload_static_configs_inner import (
     UpdateScrapeConfigPayloadStaticConfigsInner,
+)
+from stackit.observability.models.update_traces_configs_payload import (
+    UpdateTracesConfigsPayload,
 )
 from stackit.observability.models.web_hook import WebHook
