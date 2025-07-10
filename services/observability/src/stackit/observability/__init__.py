@@ -81,6 +81,8 @@ __all__ = [
     "ListCredentialsResponse",
     "ListInstancesResponse",
     "ListScrapeConfigsResponse",
+    "LogsConfig",
+    "LogsConfigResponse",
     "Message",
     "MetricsRelabelConfig",
     "ModelGlobal",
@@ -99,6 +101,8 @@ __all__ = [
     "ServiceKeysList",
     "StaticConfigs",
     "TLSConfig",
+    "TraceConfig",
+    "TracesConfigResponse",
     "UpdateACLPayload",
     "UpdateAlertConfigReceiverPayload",
     "UpdateAlertConfigRoutePayload",
@@ -116,9 +120,11 @@ __all__ = [
     "UpdateGrafanaConfigsPayloadGenericOauth",
     "UpdateInstancePayload",
     "UpdateLogsAlertgroupPayload",
+    "UpdateLogsConfigsPayload",
     "UpdateMetricsStorageRetentionPayload",
     "UpdateScrapeConfigPayload",
     "UpdateScrapeConfigPayloadStaticConfigsInner",
+    "UpdateTracesConfigsPayload",
     "WebHook",
 ]
 
@@ -269,6 +275,10 @@ from stackit.observability.models.list_instances_response import (
 from stackit.observability.models.list_scrape_configs_response import (
     ListScrapeConfigsResponse as ListScrapeConfigsResponse,
 )
+from stackit.observability.models.logs_config import LogsConfig as LogsConfig
+from stackit.observability.models.logs_config_response import (
+    LogsConfigResponse as LogsConfigResponse,
+)
 from stackit.observability.models.message import Message as Message
 from stackit.observability.models.metrics_relabel_config import (
     MetricsRelabelConfig as MetricsRelabelConfig,
@@ -301,6 +311,10 @@ from stackit.observability.models.service_keys_list import (
 )
 from stackit.observability.models.static_configs import StaticConfigs as StaticConfigs
 from stackit.observability.models.tls_config import TLSConfig as TLSConfig
+from stackit.observability.models.trace_config import TraceConfig as TraceConfig
+from stackit.observability.models.traces_config_response import (
+    TracesConfigResponse as TracesConfigResponse,
+)
 from stackit.observability.models.update_acl_payload import (
     UpdateACLPayload as UpdateACLPayload,
 )
@@ -352,6 +366,9 @@ from stackit.observability.models.update_instance_payload import (
 from stackit.observability.models.update_logs_alertgroup_payload import (
     UpdateLogsAlertgroupPayload as UpdateLogsAlertgroupPayload,
 )
+from stackit.observability.models.update_logs_configs_payload import (
+    UpdateLogsConfigsPayload as UpdateLogsConfigsPayload,
+)
 from stackit.observability.models.update_metrics_storage_retention_payload import (
     UpdateMetricsStorageRetentionPayload as UpdateMetricsStorageRetentionPayload,
 )
@@ -360,5 +377,8 @@ from stackit.observability.models.update_scrape_config_payload import (
 )
 from stackit.observability.models.update_scrape_config_payload_static_configs_inner import (
     UpdateScrapeConfigPayloadStaticConfigsInner as UpdateScrapeConfigPayloadStaticConfigsInner,
+)
+from stackit.observability.models.update_traces_configs_payload import (
+    UpdateTracesConfigsPayload as UpdateTracesConfigsPayload,
 )
 from stackit.observability.models.web_hook import WebHook as WebHook
