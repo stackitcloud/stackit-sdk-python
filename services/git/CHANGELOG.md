@@ -1,3 +1,8 @@
+## v0.3.0
+- **Feature:** Add validation for field `flavor` in `CreateInstancePayload` model
+- **Feature:** Add field `sku` in `Flavor` model
+- **Internal:** Improve deserializing and error types
+
 ## v0.2.0
 - **Feature:** Add support for `Flavors` for STACKIT git instance
 - **Improvement:** Error handling and documentation improved

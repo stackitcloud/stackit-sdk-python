@@ -1,3 +1,6 @@
+## v0.5.1
+- **Internal:** Improve deserializing and error types
+
 ## v0.5.0 (2025-05-27)
 - **Feature:** Add support for `matchers` to route
 - **Feature:** Add support for `priority levels`, `sendResolved`, `continue` to alert config models

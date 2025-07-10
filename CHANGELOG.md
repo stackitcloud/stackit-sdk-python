@@ -1,30 +1,102 @@
 ## Release (2025-XX-YY)
 
-- `kms`: [v0.0.5](services/kms/CHANGELOG.md#v005)
-  - **Improvement:** Updated validators
-- `dns`: [v0.4.0](services/dns/CHANGELOG.md#v040)
-  - **Feature:** Add new record set types
-  - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
-- `git`: [v0.2.0](services/git/CHANGELOG.md#v020)
-  - **Feature:** Add support for `Flavors` for STACKIT git instance
-  - **Improvement:** Error handling and documentation improved
-- `ske` [v0.6.0](services/ske/CHANGELOG.md#v060)
-  - **Feature:** Add new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
-- `stackitmarketplace`: [v1.5.0](services/stackitmarketplace/CHANGELOG.md#v150)
-  - **Feature:** Add new `Assets` model for managing service certificate assets
-  - **Feature:** Add new `LocalizedVersion` model for localized content management
-  - **Feature:** Add new `NoticePeriod` model with types: `SAME_DAY`, `DAYS`, `MONTHS`
-  - **Feature:** Add new `ServiceCertificate` model for service certification
-- `cdn`: [v1.2.0](services/cdn/CHANGELOG.md#v120)
-  - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
-  - Add `originUrlRelated` to available options given in `sort_by` description
-- `opensearch`: [v0.3.0](services/opensearch/CHANGELOG.md#v030)
-  - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
-- `stackitmarketplace`: [v1.4.0](services/stackitmarketplace/CHANGELOG.md#v140)
-  - **Feature:** Add support for offer types
-    - new model `OfferType`
-    - new attribute `CatalogProductDetail` for `CatalogProductDetail` model
-  - Attribute `is_product_listing` in `CatalogProductDetail` is now of type `Optional[StrictBool]` (previously `StrictBool`)
+- `alb`: [v0.3.1](services/alb/CHANGELOG.md#v031)
+  - **Internal:** Improve deserializing and error types
+- `authorization`: [v0.2.5](services/authorization/CHANGELOG.md#v025)
+  - **Internal:** Improve deserializing and error types
+- `certificates`: [v1.0.2](services/certificates/CHANGELOG.md#v102)
+  - **Internal:** Improve deserializing and error types
+- `lbapplication`: [v0.3.4](services/lbapplication/CHANGELOG.md#v034)
+  - **Internal:** Improve deserializing and error types
+- `loadbalancer`: [v0.4.1](services/loadbalancer/CHANGELOG.md#v041)
+  - **Internal:** Improve deserializing and error types
+- `logme`: [v0.3.2](services/logme/CHANGELOG.md#v032)
+  - **Internal:** Improve deserializing and error types
+- `mariadb`: [v0.2.3](services/mariadb/CHANGELOG.md#v023)
+  - **Internal:** Improve deserializing and error types
+- `modelserving`: [v0.1.2](services/modelserving/CHANGELOG.md#v012)
+  - **Internal:** Improve deserializing and error types
+- `objectstorage`: [v1.0.4](services/objectstorage/CHANGELOG.md#v104)
+  - **Internal:** Improve deserializing and error types
+- `observability`: [v0.5.1](services/observability/CHANGELOG.md#v051)
+  - **Internal:** Improve deserializing and error types
+- `postgresflex`: [v1.0.2](services/postgresflex/CHANGELOG.md#v102)
+  - **Internal:** Improve deserializing and error types
+- `rabbitmq`: [v0.2.2](services/rabbitmq/CHANGELOG.md#v022)
+  - **Internal:** Improve deserializing and error types
+- `redis`: [v0.2.2](services/redis/CHANGELOG.md#v022)
+  - **Internal:** Improve deserializing and error types
+- `resourcemanager`: [v0.5.1](services/resourcemanager/CHANGELOG.md#v051)
+  - **Internal:** Improve deserializing and error types
+- `runcommand`: [v1.0.2](services/runcommand/CHANGELOG.md#v102)
+  - **Internal:** Improve deserializing and error types
+- `secretsmanager`: [v0.2.3](services/secretsmanager/CHANGELOG.md#v023)
+  - **Internal:** Improve deserializing and error types
+- `serverbackup`: [v1.0.2](services/serverbackup/CHANGELOG.md#v102)
+  - **Feature:** Add `force` parameter to `delete_backup` and `delete_volume_backup` methods
+  - **Internal:** Improve deserializing and error types
+- `serverupdate`: [v1.0.3](services/serverupdate/CHANGELOG.md#v103)
+  - **Internal:** Improve deserializing and error types
+- `serviceaccount`: [v0.2.2](services/serviceaccount/CHANGELOG.md#v022)
+  - **Internal:** Improve deserializing and error types
+- `serviceenablement`: [v1.0.2](services/serviceenablement/CHANGELOG.md#v102)
+  - **Internal:** Improve deserializing and error types
+- `sqlserverflex`: [v1.0.3](services/sqlserverflex/CHANGELOG.md#v103)
+  - **Internal:** Improve deserializing and error types
+- `kms`:
+  - [v0.0.6](services/kms/CHANGELOG.md#v006)
+    - **Internal:** Improve deserializing and error types 
+  - [v0.0.5](services/kms/CHANGELOG.md#v005)
+    - **Improvement:** Updated validators
+- `dns`:
+  - [v0.4.1](services/dns/CHANGELOG.md#v041)
+    - **Internal:** Improve deserializing and error types
+  - [v0.4.0](services/dns/CHANGELOG.md#v040)
+    - **Feature:** Add new record set types
+    - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
+- `git`:
+  - [v0.3.0](services/git/CHANGELOG.md#v030)
+    - **Feature:** Add validation for field `flavor` in `CreateInstancePayload` model
+    - **Feature:** Add field `sku` in `Flavor` model
+    - **Internal:** Improve deserializing and error types 
+  - [v0.2.0](services/git/CHANGELOG.md#v020)
+    - **Feature:** Add support for `Flavors` for STACKIT git instance
+    - **Improvement:** Error handling and documentation improved
+- `ske`
+  - [v1.0.0](services/ske/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - **Breaking Change:** Renamed `Argus` model to `Observability`
+    - **Breaking Change:** Renamed `argus` field to `observability` in `Extension` model
+    - **Breaking Change:** Removed enum validation in `code` field in `ClusterError` model
+    - **Deprecated:** Remove deprecated `allow_privileged_containers` field in `Kubernetes` model
+    - **Internal:** Improve deserializing and error types
+  - [v0.6.0](services/ske/CHANGELOG.md#v060)
+    - **Feature:** Add new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
+- `stackitmarketplace`:
+  - [v1.5.1](services/stackitmarketplace/CHANGELOG.md#v151)
+    - **Internal:** Improve deserializing and error types
+  - [v1.5.0](services/stackitmarketplace/CHANGELOG.md#v150)
+    - **Feature:** Add new `Assets` model for managing service certificate assets
+    - **Feature:** Add new `LocalizedVersion` model for localized content management
+    - **Feature:** Add new `NoticePeriod` model with types: `SAME_DAY`, `DAYS`, `MONTHS`
+    - **Feature:** Add new `ServiceCertificate` model for service certification
+  - [v1.4.0](services/stackitmarketplace/CHANGELOG.md#v140)
+      - **Feature:** Add support for offer types
+        - new model `OfferType`
+        - new attribute `CatalogProductDetail` for `CatalogProductDetail` model
+      - Attribute `is_product_listing` in `CatalogProductDetail` is now of type `Optional[StrictBool]` (previously `StrictBool`)
+- `cdn`:
+  - [v1.3.0](services/cdn/CHANGELOG.md#v130)
+    - **Breaking change:** Replace oneOf `ConfigBackend` with `HttpBackend`
+    - **Internal:** Improve deserializing and error types
+  - [v1.2.0](services/cdn/CHANGELOG.md#v120)
+    - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
+    - Add `originUrlRelated` to available options given in `sort_by` description
+- `opensearch`:
+  - [v0.3.1](services/opensearch/CHANGELOG.md#v031)
+    - **Internal:** Improve deserializing and error types 
+  - [v0.3.0](services/opensearch/CHANGELOG.md#v030)
+    - **Breaking change:** Attribute `tls_protocols` of `InstanceParameters` model is now of type `List[StrictStr]` (previously `StrictStr`)
 - `iaas`: [v0.5.4](services/iaas/CHANGELOG.md#v054)
   - **Improvement:** Increase max length of `machine_type` and `volume_performance_class` fields from 63 to 127 characters in API methods
   - **Improvement:** Increase max length of `name` fields from 63 to 127 characters for various models:

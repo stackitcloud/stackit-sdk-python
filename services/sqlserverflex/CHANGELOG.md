@@ -1,3 +1,5 @@
+## v1.0.3
+
 ## v1.0.2 (2025-05-14)
 - **Feature:** Add new method `list_metrics`
 

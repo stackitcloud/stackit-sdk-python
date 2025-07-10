@@ -1,3 +1,7 @@
+## v1.3.0
+- **Breaking change:** Replace oneOf `ConfigBackend` with `HttpBackend`
+- **Internal:** Improve deserializing and error types
+
 ## v1.2.0
 - **Feature:** Add `default_cache_duration` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model
 - Add `originUrlRelated` to available options given in `sort_by` description

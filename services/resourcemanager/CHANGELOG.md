@@ -1,3 +1,6 @@
+## v0.5.1
+- **Internal:** Improve deserializing and error types
+
 ## v0.5.0 (2025-06-04)
 - **Feature:** Delete Organization labels using the new method `DeleteOrganizationLabels`
 - **Feature:** Delete Project labels using the new method `DeleteProjectLabels`

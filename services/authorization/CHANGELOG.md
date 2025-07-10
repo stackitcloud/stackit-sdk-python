@@ -1,3 +1,6 @@
+## v0.2.5
+- **Internal:** Improve deserializing and error types
+
 ## v0.2.4 (2025-05-13)
 - **Bugfix:** Updated regex validator
 

@@ -1,3 +1,6 @@
+## v0.3.1
+- **Internal:** Improve deserializing and error types
+
 ## v0.3.0 (2025-06-12)
 - **Feature:** Add new fields `disable_target_security_group_assignment` and `target_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
 

@@ -1,3 +1,11 @@
+## v1.0.0
+- **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- **Breaking Change:** Renamed `Argus` model to `Observability`
+- **Breaking Change:** Renamed `argus` field to `observability` in `Extension` model
+- **Breaking Change:** Removed enum validation in `code` field in `ClusterError` model
+- **Deprecated:** Remove deprecated `allow_privileged_containers` field in `Kubernetes` model
+- **Internal:** Improve deserializing and error types
+
 ## v0.6.0
 - **Feature:** Add new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
 
