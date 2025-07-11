@@ -28,8 +28,12 @@
     - **Feature:** Add new models `InstanceFlavor` and `InstanceResponse`.
 - `objectstorage`: [v1.0.4](services/objectstorage/CHANGELOG.md#v104)
   - **Internal:** Improve deserializing and error types
-- `observability`: [v0.5.1](services/observability/CHANGELOG.md#v051)
-  - **Internal:** Improve deserializing and error types
+- `observability`: 
+  - [v0.5.2](services/observability/CHANGELOG.md#v052)
+    - **Feature:** Add new methods `get_logs_configs()`, `update_logs_configs()`, `get_traces_configs()`, `update_traces_configs()`, `get_metrics_storage_retention()`, `update_metrics_storage_retention()`, `get_scrape_config()`, `update_scrape_config()`, `list_acl()`, `update_acl()`, `list_alert_config_receivers()`, `list_alert_config_routes()`, `update_alert_config_receiver()`, `update_alert_config_route()`, `list_alertgroups()`, `list_alertrules()`, `list_credentials()`, `list_instances()`
+    - **Feature:** Add new models `LogsConfig`, `LogsConfigResponse`, `TraceConfig`, `TracesConfigResponse`, `UpdateLogsConfigsPayload`, `UpdateTracesConfigsPayload`
+  - [v0.5.1](services/observability/CHANGELOG.md#v051)
+    - **Internal:** Improve deserializing and error types
 - `postgresflex`: [v1.0.2](services/postgresflex/CHANGELOG.md#v102)
   - **Internal:** Improve deserializing and error types
 - `rabbitmq`: [v0.2.2](services/rabbitmq/CHANGELOG.md#v022)
