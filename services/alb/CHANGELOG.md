@@ -1,3 +1,6 @@
+## v0.3.2
+- **Feature:** Add new field `load_balancer_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
+
 ## v0.3.1
 - **Internal:** Improve deserializing and error types
 

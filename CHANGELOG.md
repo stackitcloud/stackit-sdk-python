@@ -1,7 +1,9 @@
 ## Release (2025-XX-YY)
-
-- `alb`: [v0.3.1](services/alb/CHANGELOG.md#v031)
-  - **Internal:** Improve deserializing and error types
+- `alb`: 
+  - [v0.3.2](services/alb/CHANGELOG.md#v032)
+    - **Feature:** Add new field `load_balancer_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
+  - [v0.3.1](services/alb/CHANGELOG.md#v031)
+    - **Internal:** Improve deserializing and error types
 - `authorization`: [v0.2.5](services/authorization/CHANGELOG.md#v025)
   - **Internal:** Improve deserializing and error types
 - `certificates`: [v1.0.2](services/certificates/CHANGELOG.md#v102)
