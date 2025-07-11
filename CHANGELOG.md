@@ -21,6 +21,11 @@
   - **Internal:** Improve deserializing and error types
 - `modelserving`: [v0.1.2](services/modelserving/CHANGELOG.md#v012)
   - **Internal:** Improve deserializing and error types
+- `mongodbflex`: 
+  - [v1.0.2](services/mongodbflex/CHANGELOG.md#v102)
+    - **Breaking Change:** Add required `region` parameter to all API methods.
+    - **Feature:** Add new methods `clone_instance()` and `restore_instance()`.
+    - **Feature:** Add new models `InstanceFlavor` and `InstanceResponse`.
 - `objectstorage`: [v1.0.4](services/objectstorage/CHANGELOG.md#v104)
   - **Internal:** Improve deserializing and error types
 - `observability`: [v0.5.1](services/observability/CHANGELOG.md#v051)
