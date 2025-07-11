@@ -10,8 +10,11 @@
   - **Internal:** Improve deserializing and error types
 - `lbapplication`: [v0.3.4](services/lbapplication/CHANGELOG.md#v034)
   - **Internal:** Improve deserializing and error types
-- `loadbalancer`: [v0.4.1](services/loadbalancer/CHANGELOG.md#v041)
-  - **Internal:** Improve deserializing and error types
+- `loadbalancer`: 
+  - [v0.4.2](services/loadbalancer/CHANGELOG.md#v042)
+    - **Feature:** Add new field `load_balancer_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
+  - [v0.4.1](services/loadbalancer/CHANGELOG.md#v041)
+    - **Internal:** Improve deserializing and error types
 - `logme`: [v0.3.2](services/logme/CHANGELOG.md#v032)
   - **Internal:** Improve deserializing and error types
 - `mariadb`: [v0.2.3](services/mariadb/CHANGELOG.md#v023)
