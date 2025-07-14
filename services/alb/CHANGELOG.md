@@ -1,4 +1,4 @@
-## v0.3.2
+## v0.4.0
 - **Feature:** Add new field `load_balancer_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
 
 ## v0.3.1

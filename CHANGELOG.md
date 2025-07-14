@@ -1,6 +1,6 @@
 ## Release (2025-XX-YY)
 - `alb`: 
-  - [v0.3.2](services/alb/CHANGELOG.md#v032)
+  - [v0.4.0](services/alb/CHANGELOG.md#v040)
     - **Feature:** Add new field `load_balancer_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
   - [v0.3.1](services/alb/CHANGELOG.md#v031)
     - **Internal:** Improve deserializing and error types
@@ -11,7 +11,7 @@
 - `lbapplication`: [v0.3.4](services/lbapplication/CHANGELOG.md#v034)
   - **Internal:** Improve deserializing and error types
 - `loadbalancer`: 
-  - [v0.4.2](services/loadbalancer/CHANGELOG.md#v042)
+  - [v0.5.0](services/loadbalancer/CHANGELOG.md#v050)
     - **Feature:** Add new field `load_balancer_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
   - [v0.4.1](services/loadbalancer/CHANGELOG.md#v041)
     - **Internal:** Improve deserializing and error types
@@ -22,14 +22,14 @@
 - `modelserving`: [v0.1.2](services/modelserving/CHANGELOG.md#v012)
   - **Internal:** Improve deserializing and error types
 - `mongodbflex`: 
-  - [v1.0.2](services/mongodbflex/CHANGELOG.md#v102)
+  - [v1.1.0](services/mongodbflex/CHANGELOG.md#v110)
     - **Breaking Change:** Add required `region` parameter to all API methods.
     - **Feature:** Add new methods `clone_instance()` and `restore_instance()`.
     - **Feature:** Add new models `InstanceFlavor` and `InstanceResponse`.
 - `objectstorage`: [v1.0.4](services/objectstorage/CHANGELOG.md#v104)
   - **Internal:** Improve deserializing and error types
 - `observability`: 
-  - [v0.5.2](services/observability/CHANGELOG.md#v052)
+  - [v0.6.0](services/observability/CHANGELOG.md#v060)
     - **Feature:** Add new methods `get_logs_configs()`, `update_logs_configs()`, `get_traces_configs()`, `update_traces_configs()`, `get_metrics_storage_retention()`, `update_metrics_storage_retention()`, `get_scrape_config()`, `update_scrape_config()`, `list_acl()`, `update_acl()`, `list_alert_config_receivers()`, `list_alert_config_routes()`, `update_alert_config_receiver()`, `update_alert_config_route()`, `list_alertgroups()`, `list_alertrules()`, `list_credentials()`, `list_instances()`
     - **Feature:** Add new models `LogsConfig`, `LogsConfigResponse`, `TraceConfig`, `TracesConfigResponse`, `UpdateLogsConfigsPayload`, `UpdateTracesConfigsPayload`
   - [v0.5.1](services/observability/CHANGELOG.md#v051)

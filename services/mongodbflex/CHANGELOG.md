@@ -1,4 +1,4 @@
-## v1.0.2
+## v1.1.0
 - **Breaking Change:** Add required `region` parameter to all API methods.
 - **Feature:** Add new methods `clone_instance()` and `restore_instance()`.
 - **Feature:** Add new models `InstanceFlavor` and `InstanceResponse`.

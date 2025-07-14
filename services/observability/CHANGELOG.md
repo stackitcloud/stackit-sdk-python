@@ -1,4 +1,4 @@
-## v0.5.2
+## v0.6.0
 - **Feature:** Add new methods `get_logs_configs()`, `update_logs_configs()`, `get_traces_configs()`, `update_traces_configs()`, `get_metrics_storage_retention()`, `update_metrics_storage_retention()`, `get_scrape_config()`, `update_scrape_config()`, `list_acl()`, `update_acl()`, `list_alert_config_receivers()`, `list_alert_config_routes()`, `update_alert_config_receiver()`, `update_alert_config_route()`, `list_alertgroups()`, `list_alertrules()`, `list_credentials()`, `list_instances()`
 - **Feature:** Add new models `LogsConfig`, `LogsConfigResponse`, `TraceConfig`, `TracesConfigResponse`, `UpdateLogsConfigsPayload`, `UpdateTracesConfigsPayload`
 
