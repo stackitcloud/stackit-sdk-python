@@ -108,6 +108,8 @@
     `UpdateBackupPayload`, `UpdateImagePayload`, `UpdateNicPayload`, `UpdateSecurityGroupPayload`
     `UpdateServerPayload`, `UpdateSnapshotPayload`, `UpdateVolumePayload`, `Volume`, `VolumePerformanceClass`
   - **Improvement:** Update regular expression pattern for name validation to allow more flexible naming conventions
+- `mongodbflex`: [v2.0.0](services/mongodbflex/CHANGELOG.md#v200)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 
 ## Release (2025-06-16)
 - `core`: [v0.2.0](core/CHANGELOG.md#v020-2025-06-12)
