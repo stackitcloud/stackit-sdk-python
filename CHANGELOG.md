@@ -1,4 +1,4 @@
-## Release (2025-XX-YY)
+## Release (2025-07-21)
 - `alb`: 
   - [v0.4.0](services/alb/CHANGELOG.md#v040)
     - **Feature:** Add new field `load_balancer_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
