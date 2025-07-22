@@ -1,3 +1,7 @@
+## Release (2025-XX-YY)
+- `ske`: [v1.1.0](services/ske/CHANGELOG.md#v110)
+  - **Feature:** Add new methods to trigger the wake up of a cluster.
+
 ## Release (2025-07-21)
 - `alb`: 
   - [v0.4.0](services/alb/CHANGELOG.md#v040)
