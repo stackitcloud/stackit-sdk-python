@@ -1,4 +1,6 @@
 ## Release (2025-XX-YY)
+- `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
+  - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
 - `ske`: [v1.1.0](services/ske/CHANGELOG.md#v110)
   - **Feature:** Add new methods to trigger the wake up of a cluster.
 
