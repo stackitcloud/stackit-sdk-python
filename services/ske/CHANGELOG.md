@@ -1,3 +1,6 @@
+## v1.1.0
+- **Feature:** Add new methods to trigger the wake up of a cluster.
+
 ## v1.0.0
 - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - **Breaking Change:** Renamed `Argus` model to `Observability`
