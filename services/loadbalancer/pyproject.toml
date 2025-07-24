@@ -3,7 +3,7 @@ name = "stackit-loadbalancer"
 
 [tool.poetry]
 name = "stackit-loadbalancer"
-version = "v0.5.0"
+version = "v0.6.0"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
@@ -20,7 +20,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
+python = ">=3.9,<4.0"
 stackit-core = ">=0.0.1a"
 requests = ">=2.32.3"
 pydantic = ">=2.9.2"

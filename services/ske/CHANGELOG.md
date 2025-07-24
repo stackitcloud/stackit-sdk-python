@@ -1,3 +1,6 @@
+## v1.2.0
+- **Version**: Minimal version is now python 3.9
+
 ## v1.1.0
 - **Feature:** Add new methods to trigger the wake up of a cluster.
 

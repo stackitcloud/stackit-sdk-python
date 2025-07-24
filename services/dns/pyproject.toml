@@ -3,7 +3,7 @@ name = "stackit-dns"
 
 [tool.poetry]
 name = "stackit-dns"
-version = "v0.4.1"
+version = "v0.5.0"
 authors = ["STACKIT Developer Tools <developer-tools@stackit.cloud>"]
 description = "STACKIT DNS API"
 readme = "README.md"
@@ -18,7 +18,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
+python = ">=3.9,<4.0"
 stackit-core = ">=0.0.1a"
 requests = ">=2.32.3"
 pydantic = ">=2.9.2"
