@@ -20,23 +20,15 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from stackit.cdn.models.put_custom_domain_payload_certificate import (
-    PutCustomDomainPayloadCertificate,
-)
 
-
-class PutCustomDomainPayload(BaseModel):
+class LokiLogSink(BaseModel):
     """
-    PutCustomDomainPayload
+    LokiLogSink
     """  # noqa: E501
 
-    certificate: Optional[PutCustomDomainPayloadCertificate] = None
-    intent_id: Optional[StrictStr] = Field(
-        default=None,
-        description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple modifying Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped. ",
-        alias="intentId",
-    )
-    __properties: ClassVar[List[str]] = ["certificate", "intentId"]
+    push_url: StrictStr = Field(alias="pushUrl")
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["pushUrl", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +47,7 @@ class PutCustomDomainPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PutCustomDomainPayload from a JSON string"""
+        """Create an instance of LokiLogSink from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,28 +67,16 @@ class PutCustomDomainPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of certificate
-        if self.certificate:
-            _dict["certificate"] = self.certificate.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PutCustomDomainPayload from a dict"""
+        """Create an instance of LokiLogSink from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "certificate": (
-                    PutCustomDomainPayloadCertificate.from_dict(obj["certificate"])
-                    if obj.get("certificate") is not None
-                    else None
-                ),
-                "intentId": obj.get("intentId"),
-            }
-        )
+        _obj = cls.model_validate({"pushUrl": obj.get("pushUrl"), "type": obj.get("type")})
         return _obj
