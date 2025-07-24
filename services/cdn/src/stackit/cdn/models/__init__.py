@@ -44,19 +44,42 @@ from stackit.cdn.models.get_cache_info_response import GetCacheInfoResponse
 from stackit.cdn.models.get_cache_info_response_history_entry import (
     GetCacheInfoResponseHistoryEntry,
 )
+from stackit.cdn.models.get_custom_domain_custom_certificate import (
+    GetCustomDomainCustomCertificate,
+)
+from stackit.cdn.models.get_custom_domain_managed_certificate import (
+    GetCustomDomainManagedCertificate,
+)
 from stackit.cdn.models.get_custom_domain_response import GetCustomDomainResponse
+from stackit.cdn.models.get_custom_domain_response_certificate import (
+    GetCustomDomainResponseCertificate,
+)
 from stackit.cdn.models.get_distribution_response import GetDistributionResponse
 from stackit.cdn.models.get_logs_response import GetLogsResponse
 from stackit.cdn.models.get_statistics_response import GetStatisticsResponse
 from stackit.cdn.models.http_backend import HttpBackend
 from stackit.cdn.models.http_backend_patch import HttpBackendPatch
 from stackit.cdn.models.list_distributions_response import ListDistributionsResponse
+from stackit.cdn.models.loki_log_sink import LokiLogSink
 from stackit.cdn.models.optimizer import Optimizer
 from stackit.cdn.models.optimizer_patch import OptimizerPatch
 from stackit.cdn.models.patch_distribution_payload import PatchDistributionPayload
 from stackit.cdn.models.patch_distribution_response import PatchDistributionResponse
+from stackit.cdn.models.patch_loki_log_sink import PatchLokiLogSink
 from stackit.cdn.models.purge_cache_payload import PurgeCachePayload
+from stackit.cdn.models.put_custom_domain_custom_certificate import (
+    PutCustomDomainCustomCertificate,
+)
+from stackit.cdn.models.put_custom_domain_managed_certificate import (
+    PutCustomDomainManagedCertificate,
+)
 from stackit.cdn.models.put_custom_domain_payload import PutCustomDomainPayload
+from stackit.cdn.models.put_custom_domain_payload_certificate import (
+    PutCustomDomainPayloadCertificate,
+)
 from stackit.cdn.models.put_custom_domain_response import PutCustomDomainResponse
+from stackit.cdn.models.put_custom_domain_response_certificate import (
+    PutCustomDomainResponseCertificate,
+)
 from stackit.cdn.models.region import Region
 from stackit.cdn.models.status_error import StatusError

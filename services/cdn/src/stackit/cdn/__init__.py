@@ -48,20 +48,29 @@ __all__ = [
     "GenericJSONResponse",
     "GetCacheInfoResponse",
     "GetCacheInfoResponseHistoryEntry",
+    "GetCustomDomainCustomCertificate",
+    "GetCustomDomainManagedCertificate",
     "GetCustomDomainResponse",
+    "GetCustomDomainResponseCertificate",
     "GetDistributionResponse",
     "GetLogsResponse",
     "GetStatisticsResponse",
     "HttpBackend",
     "HttpBackendPatch",
     "ListDistributionsResponse",
+    "LokiLogSink",
     "Optimizer",
     "OptimizerPatch",
     "PatchDistributionPayload",
     "PatchDistributionResponse",
+    "PatchLokiLogSink",
     "PurgeCachePayload",
+    "PutCustomDomainCustomCertificate",
+    "PutCustomDomainManagedCertificate",
     "PutCustomDomainPayload",
+    "PutCustomDomainPayloadCertificate",
     "PutCustomDomainResponse",
+    "PutCustomDomainResponseCertificate",
     "Region",
     "StatusError",
 ]
@@ -127,8 +136,17 @@ from stackit.cdn.models.get_cache_info_response import (
 from stackit.cdn.models.get_cache_info_response_history_entry import (
     GetCacheInfoResponseHistoryEntry as GetCacheInfoResponseHistoryEntry,
 )
+from stackit.cdn.models.get_custom_domain_custom_certificate import (
+    GetCustomDomainCustomCertificate as GetCustomDomainCustomCertificate,
+)
+from stackit.cdn.models.get_custom_domain_managed_certificate import (
+    GetCustomDomainManagedCertificate as GetCustomDomainManagedCertificate,
+)
 from stackit.cdn.models.get_custom_domain_response import (
     GetCustomDomainResponse as GetCustomDomainResponse,
+)
+from stackit.cdn.models.get_custom_domain_response_certificate import (
+    GetCustomDomainResponseCertificate as GetCustomDomainResponseCertificate,
 )
 from stackit.cdn.models.get_distribution_response import (
     GetDistributionResponse as GetDistributionResponse,
@@ -142,6 +160,7 @@ from stackit.cdn.models.http_backend_patch import HttpBackendPatch as HttpBacken
 from stackit.cdn.models.list_distributions_response import (
     ListDistributionsResponse as ListDistributionsResponse,
 )
+from stackit.cdn.models.loki_log_sink import LokiLogSink as LokiLogSink
 from stackit.cdn.models.optimizer import Optimizer as Optimizer
 from stackit.cdn.models.optimizer_patch import OptimizerPatch as OptimizerPatch
 from stackit.cdn.models.patch_distribution_payload import (
@@ -150,14 +169,27 @@ from stackit.cdn.models.patch_distribution_payload import (
 from stackit.cdn.models.patch_distribution_response import (
     PatchDistributionResponse as PatchDistributionResponse,
 )
+from stackit.cdn.models.patch_loki_log_sink import PatchLokiLogSink as PatchLokiLogSink
 from stackit.cdn.models.purge_cache_payload import (
     PurgeCachePayload as PurgeCachePayload,
+)
+from stackit.cdn.models.put_custom_domain_custom_certificate import (
+    PutCustomDomainCustomCertificate as PutCustomDomainCustomCertificate,
+)
+from stackit.cdn.models.put_custom_domain_managed_certificate import (
+    PutCustomDomainManagedCertificate as PutCustomDomainManagedCertificate,
 )
 from stackit.cdn.models.put_custom_domain_payload import (
     PutCustomDomainPayload as PutCustomDomainPayload,
 )
+from stackit.cdn.models.put_custom_domain_payload_certificate import (
+    PutCustomDomainPayloadCertificate as PutCustomDomainPayloadCertificate,
+)
 from stackit.cdn.models.put_custom_domain_response import (
     PutCustomDomainResponse as PutCustomDomainResponse,
+)
+from stackit.cdn.models.put_custom_domain_response_certificate import (
+    PutCustomDomainResponseCertificate as PutCustomDomainResponseCertificate,
 )
 from stackit.cdn.models.region import Region as Region
 from stackit.cdn.models.status_error import StatusError as StatusError
