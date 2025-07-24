@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
 from stackit.cdn.models.http_backend import HttpBackend
+from stackit.cdn.models.loki_log_sink import LokiLogSink
 from stackit.cdn.models.optimizer import Optimizer
 from stackit.cdn.models.region import Region
 
@@ -44,6 +45,7 @@ class Config(BaseModel):
         description="Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M) ",
         alias="defaultCacheDuration",
     )
+    log_sink: Optional[LokiLogSink] = Field(default=None, alias="logSink")
     monthly_limit_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
         default=None,
         description="Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use. ",
@@ -56,6 +58,7 @@ class Config(BaseModel):
         "blockedCountries",
         "blockedIPs",
         "defaultCacheDuration",
+        "logSink",
         "monthlyLimitBytes",
         "optimizer",
         "regions",
@@ -101,6 +104,9 @@ class Config(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of backend
         if self.backend:
             _dict["backend"] = self.backend.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of log_sink
+        if self.log_sink:
+            _dict["logSink"] = self.log_sink.to_dict()
         # override the default output from pydantic by calling `to_dict()` of optimizer
         if self.optimizer:
             _dict["optimizer"] = self.optimizer.to_dict()
@@ -131,6 +137,7 @@ class Config(BaseModel):
                 "blockedCountries": obj.get("blockedCountries"),
                 "blockedIPs": obj.get("blockedIPs"),
                 "defaultCacheDuration": obj.get("defaultCacheDuration"),
+                "logSink": LokiLogSink.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": Optimizer.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
                 "regions": obj.get("regions"),
