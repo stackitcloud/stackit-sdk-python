@@ -1,4 +1,5 @@
-## v1.0.3
+## v1.1.0
+- **Version**: Minimal version is now python 3.9
 
 ## v1.0.2 (2025-05-14)
 - **Feature:** Add new method `list_metrics`

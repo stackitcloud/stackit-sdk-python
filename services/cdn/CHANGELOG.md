@@ -1,3 +1,6 @@
+## v1.4.0
+- **Version**: Minimal version is now python 3.9
+
 ## v1.3.0
 - **Breaking change:** Replace oneOf `ConfigBackend` with `HttpBackend`
 - **Internal:** Improve deserializing and error types
