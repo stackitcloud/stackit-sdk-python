@@ -16,6 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import (
     Field,
+    StrictBool,
     StrictFloat,
     StrictInt,
     StrictStr,
@@ -1971,6 +1972,30 @@ class DefaultApi:
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
+        data_center_region: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters by the CDN data center region that served the request. Can be combined with other filters "
+            ),
+        ] = None,
+        request_country_code: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters by the originating country of the user request. Can be combined with other filters "
+            ),
+        ] = None,
+        status_code: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters by the HTTP status code returned to the client. Can be combined with other filters "
+            ),
+        ] = None,
+        cache_hit: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Filters based on whether the request was served from the CDN cache. Can be combined with other filters "
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2000,6 +2025,14 @@ class DefaultApi:
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
+        :param data_center_region: Filters by the CDN data center region that served the request. Can be combined with other filters
+        :type data_center_region: str
+        :param request_country_code: Filters by the originating country of the user request. Can be combined with other filters
+        :type request_country_code: str
+        :param status_code: Filters by the HTTP status code returned to the client. Can be combined with other filters
+        :type status_code: int
+        :param cache_hit: Filters based on whether the request was served from the CDN cache. Can be combined with other filters
+        :type cache_hit: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2031,6 +2064,10 @@ class DefaultApi:
             page_identifier=page_identifier,
             sort_by=sort_by,
             sort_order=sort_order,
+            data_center_region=data_center_region,
+            request_country_code=request_country_code,
+            status_code=status_code,
+            cache_hit=cache_hit,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2083,6 +2120,30 @@ class DefaultApi:
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
+        data_center_region: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters by the CDN data center region that served the request. Can be combined with other filters "
+            ),
+        ] = None,
+        request_country_code: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters by the originating country of the user request. Can be combined with other filters "
+            ),
+        ] = None,
+        status_code: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters by the HTTP status code returned to the client. Can be combined with other filters "
+            ),
+        ] = None,
+        cache_hit: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Filters based on whether the request was served from the CDN cache. Can be combined with other filters "
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2112,6 +2173,14 @@ class DefaultApi:
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
+        :param data_center_region: Filters by the CDN data center region that served the request. Can be combined with other filters
+        :type data_center_region: str
+        :param request_country_code: Filters by the originating country of the user request. Can be combined with other filters
+        :type request_country_code: str
+        :param status_code: Filters by the HTTP status code returned to the client. Can be combined with other filters
+        :type status_code: int
+        :param cache_hit: Filters based on whether the request was served from the CDN cache. Can be combined with other filters
+        :type cache_hit: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2143,6 +2212,10 @@ class DefaultApi:
             page_identifier=page_identifier,
             sort_by=sort_by,
             sort_order=sort_order,
+            data_center_region=data_center_region,
+            request_country_code=request_country_code,
+            status_code=status_code,
+            cache_hit=cache_hit,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2195,6 +2268,30 @@ class DefaultApi:
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
+        data_center_region: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters by the CDN data center region that served the request. Can be combined with other filters "
+            ),
+        ] = None,
+        request_country_code: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters by the originating country of the user request. Can be combined with other filters "
+            ),
+        ] = None,
+        status_code: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters by the HTTP status code returned to the client. Can be combined with other filters "
+            ),
+        ] = None,
+        cache_hit: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Filters based on whether the request was served from the CDN cache. Can be combined with other filters "
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2224,6 +2321,14 @@ class DefaultApi:
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
+        :param data_center_region: Filters by the CDN data center region that served the request. Can be combined with other filters
+        :type data_center_region: str
+        :param request_country_code: Filters by the originating country of the user request. Can be combined with other filters
+        :type request_country_code: str
+        :param status_code: Filters by the HTTP status code returned to the client. Can be combined with other filters
+        :type status_code: int
+        :param cache_hit: Filters based on whether the request was served from the CDN cache. Can be combined with other filters
+        :type cache_hit: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2255,6 +2360,10 @@ class DefaultApi:
             page_identifier=page_identifier,
             sort_by=sort_by,
             sort_order=sort_order,
+            data_center_region=data_center_region,
+            request_country_code=request_country_code,
+            status_code=status_code,
+            cache_hit=cache_hit,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2280,6 +2389,10 @@ class DefaultApi:
         page_identifier,
         sort_by,
         sort_order,
+        data_center_region,
+        request_country_code,
+        status_code,
+        cache_hit,
         _request_auth,
         _content_type,
         _headers,
@@ -2330,6 +2443,22 @@ class DefaultApi:
         if sort_order is not None:
 
             _query_params.append(("sortOrder", sort_order))
+
+        if data_center_region is not None:
+
+            _query_params.append(("dataCenterRegion", data_center_region))
+
+        if request_country_code is not None:
+
+            _query_params.append(("requestCountryCode", request_country_code))
+
+        if status_code is not None:
+
+            _query_params.append(("statusCode", status_code))
+
+        if cache_hit is not None:
+
+            _query_params.append(("cacheHit", cache_hit))
 
         # process the header parameters
         # process the form parameters
