@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
 from stackit.cdn.models.optimizer import Optimizer
+from stackit.cdn.models.patch_loki_log_sink import PatchLokiLogSink
 from stackit.cdn.models.region import Region
 
 
@@ -49,6 +50,7 @@ class CreateDistributionPayload(BaseModel):
         description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped. ",
         alias="intentId",
     )
+    log_sink: Optional[PatchLokiLogSink] = Field(default=None, alias="logSink")
     monthly_limit_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
         default=None,
         description="Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use. ",
@@ -72,6 +74,7 @@ class CreateDistributionPayload(BaseModel):
         "blockedIPs",
         "defaultCacheDuration",
         "intentId",
+        "logSink",
         "monthlyLimitBytes",
         "optimizer",
         "originRequestHeaders",
@@ -116,6 +119,9 @@ class CreateDistributionPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of log_sink
+        if self.log_sink:
+            _dict["logSink"] = self.log_sink.to_dict()
         # override the default output from pydantic by calling `to_dict()` of optimizer
         if self.optimizer:
             _dict["optimizer"] = self.optimizer.to_dict()
@@ -136,6 +142,7 @@ class CreateDistributionPayload(BaseModel):
                 "blockedIPs": obj.get("blockedIPs"),
                 "defaultCacheDuration": obj.get("defaultCacheDuration"),
                 "intentId": obj.get("intentId"),
+                "logSink": PatchLokiLogSink.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": Optimizer.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
                 "originRequestHeaders": obj.get("originRequestHeaders"),

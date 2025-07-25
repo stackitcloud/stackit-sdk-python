@@ -22,6 +22,9 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
 
 from stackit.cdn.models.custom_domain import CustomDomain
+from stackit.cdn.models.get_custom_domain_response_certificate import (
+    GetCustomDomainResponseCertificate,
+)
 
 
 class GetCustomDomainResponse(BaseModel):
@@ -29,9 +32,10 @@ class GetCustomDomainResponse(BaseModel):
     GetCustomDomainResponse
     """  # noqa: E501
 
+    certificate: GetCustomDomainResponseCertificate
     custom_domain: CustomDomain = Field(alias="customDomain")
     domain: Annotated[str, Field(strict=True, max_length=72)]
-    __properties: ClassVar[List[str]] = ["customDomain", "domain"]
+    __properties: ClassVar[List[str]] = ["certificate", "customDomain", "domain"]
 
     @field_validator("domain")
     def domain_validate_regular_expression(cls, value):
@@ -77,6 +81,9 @@ class GetCustomDomainResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of certificate
+        if self.certificate:
+            _dict["certificate"] = self.certificate.to_dict()
         # override the default output from pydantic by calling `to_dict()` of custom_domain
         if self.custom_domain:
             _dict["customDomain"] = self.custom_domain.to_dict()
@@ -93,6 +100,11 @@ class GetCustomDomainResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "certificate": (
+                    GetCustomDomainResponseCertificate.from_dict(obj["certificate"])
+                    if obj.get("certificate") is not None
+                    else None
+                ),
                 "customDomain": (
                     CustomDomain.from_dict(obj["customDomain"]) if obj.get("customDomain") is not None else None
                 ),
