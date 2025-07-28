@@ -16,20 +16,39 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+from typing_extensions import Annotated, Self
 
 
-class Error(BaseModel):
+class UpdateRoutingTableOfAreaPayload(BaseModel):
     """
-    Error with HTTP error code and an error message.
+    Object that represents the request body for a routing table update.
     """  # noqa: E501
 
-    code: StrictInt
-    msg: StrictStr = Field(description="An error message.")
-    __properties: ClassVar[List[str]] = ["code", "msg"]
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
+    )
+    labels: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
+    )
+    name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
+        default=None, description="The name for a General Object. Matches Names and also UUIDs."
+    )
+    __properties: ClassVar[List[str]] = ["description", "labels", "name"]
+
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +67,7 @@ class Error(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Error from a JSON string"""
+        """Create an instance of UpdateRoutingTableOfAreaPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,12 +91,14 @@ class Error(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Error from a dict"""
+        """Create an instance of UpdateRoutingTableOfAreaPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"code": obj.get("code"), "msg": obj.get("msg")})
+        _obj = cls.model_validate(
+            {"description": obj.get("description"), "labels": obj.get("labels"), "name": obj.get("name")}
+        )
         return _obj
