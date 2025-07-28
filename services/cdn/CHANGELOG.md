@@ -1,3 +1,8 @@
+## v1.5.0
+- **Feature:** Added new filter functions `DataCenterRegion`, `RequestCountryCode`, `StatusCode` and `CacheHit`
+- **Feature:** Added Attribute `LogSink` and `Certificate`
+- **Feature:** Added `ConfigLogSink` and `PatchLokiLogSink` functionality
+
 ## v1.4.0
 - **Version**: Minimal version is now python 3.9
 

@@ -3,8 +3,13 @@
   - **Version**: Minimal version is now python 3.9
 - `authorization`: [v0.3.0](services/authorization/CHANGELOG.md#v030)
   - **Version**: Minimal version is now python 3.9
-- `cdn`: [v1.4.0](services/cdn/CHANGELOG.md#v140)
-  - **Version**: Minimal version is now python 3.9
+- `cdn`:
+  - [v1.5.0](services/cdn/CHANGELOG.md#v150)
+    - **Feature:** Added new filter functions `DataCenterRegion`, `RequestCountryCode`, `StatusCode` and `CacheHit`
+    - **Feature:** Added Attribute `LogSink` and `Certificate`
+    - **Feature:** Added `ConfigLogSink` and `PatchLokiLogSink` functionality
+  - [v1.4.0](services/cdn/CHANGELOG.md#v140)
+    - **Version**: Minimal version is now python 3.9
 - `certificates`: [v1.1.0](services/certificates/CHANGELOG.md#v110)
   - **Version**: Minimal version is now python 3.9
 - `dns`: [v0.5.0](services/dns/CHANGELOG.md#v050)
