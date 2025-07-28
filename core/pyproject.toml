@@ -16,7 +16,7 @@ packages = [{ include = "stackit", from = "src" }]
 
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
+python = ">=3.9,<4.0"
 pyjwt = ">=2.9.0"
 pydantic = ">=2.9.2"
 urllib3 = ">=2.2.3"

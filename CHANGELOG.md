@@ -1,6 +1,71 @@
 ## Release (2025-XX-YY)
-- `ske`: [v1.1.0](services/ske/CHANGELOG.md#v110)
-  - **Feature:** Add new methods to trigger the wake up of a cluster.
+- `alb`: [v0.5.0](services/alb/CHANGELOG.md#v050)
+  - **Version**: Minimal version is now python 3.9
+- `authorization`: [v0.3.0](services/authorization/CHANGELOG.md#v030)
+  - **Version**: Minimal version is now python 3.9
+- `cdn`: [v1.4.0](services/cdn/CHANGELOG.md#v140)
+  - **Version**: Minimal version is now python 3.9
+- `certificates`: [v1.1.0](services/certificates/CHANGELOG.md#v110)
+  - **Version**: Minimal version is now python 3.9
+- `dns`: [v0.5.0](services/dns/CHANGELOG.md#v050)
+  - **Version**: Minimal version is now python 3.9
+- `git`: [v0.4.0](services/git/CHANGELOG.md#v040)
+  - **Version**: Minimal version is now python 3.9
+- `iaas`: [v0.6.0](services/iaas/CHANGELOG.md#v060)
+  - **Version**: Minimal version is now python 3.9
+- `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
+  - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
+- `kms`: [v0.1.0](services/kms/CHANGELOG.md#v010)
+  - **Version**: Minimal version is now python 3.9
+- `lbapplication`: [v0.4.0](services/lbapplication/CHANGELOG.md#v040)
+  - **Version**: Minimal version is now python 3.9
+- `loadbalancer`: [v0.6.0](services/loadbalancer/CHANGELOG.md#v060)
+  - **Version**: Minimal version is now python 3.9
+- `logme`: [v0.4.0](services/logme/CHANGELOG.md#v040)
+  - **Version**: Minimal version is now python 3.9
+- `mariadb`: [v0.3.0](services/mariadb/CHANGELOG.md#v030)
+  - **Version**: Minimal version is now python 3.9
+- `modelserving`: [v0.2.0](services/modelserving/CHANGELOG.md#v020)
+  - **Version**: Minimal version is now python 3.9
+- `mongodbflex`: [v0.2.0](services/mongodbflex/CHANGELOG.md#v120)
+  - **Version**: Minimal version is now python 3.9
+- `objectstorage`: [v1.1.0](services/objectstorage/CHANGELOG.md#v110)
+  - **Version**: Minimal version is now python 3.9
+- `observability`: [v0.7.0](services/observability/CHANGELOG.md#v110)
+  - **Version**: Minimal version is now python 3.9
+- `opensearch`: [v0.4.0](services/opensearch/CHANGELOG.md#v040)
+  - **Version**: Minimal version is now python 3.9
+- `postgresflex`: [v1.1.0](services/postgresflex/CHANGELOG.md#v110)
+  - **Version**: Minimal version is now python 3.9
+- `rabbitmq`: [v0.3.0](services/rabbitmq/CHANGELOG.md#v030)
+  - **Version**: Minimal version is now python 3.9
+- `redis`: [v0.3.0](services/redis/CHANGELOG.md#v030)
+  - **Version**: Minimal version is now python 3.9
+- `resourcemanager`: [v0.6.0](services/resourcemanager/CHANGELOG.md#v060)
+  - **Version**: Minimal version is now python 3.9
+- `runcommand`: [v1.1.0](services/runcommand/CHANGELOG.md#v110)
+  - **Version**: Minimal version is now python 3.9
+- `secretsmanager`: [v0.3.0](services/secretsmanager/CHANGELOG.md#v030)
+  - **Version**: Minimal version is now python 3.9
+- `serverbackup`: [v1.1.0](services/serverbackup/CHANGELOG.md#v110)
+  - **Version**: Minimal version is now python 3.9
+- `serverupdate`: [v1.1.0](services/serverupdate/CHANGELOG.md#v110)
+  - **Version**: Minimal version is now python 3.9
+- `serviceaccount`: [v0.3.0](services/serviceaccount/CHANGELOG.md#v030)
+  - **Version**: Minimal version is now python 3.9
+- `serviceenablement`: [v1.1.0](services/serviceenablement/CHANGELOG.md#v110)
+  - **Version**: Minimal version is now python 3.9
+- `ske`: 
+  - [v1.2.0](services/ske/CHANGELOG.md#v120)
+    - **Version**: Minimal version is now python 3.9
+  - [v1.1.0](services/ske/CHANGELOG.md#v110)
+    - **Feature:** Add new methods to trigger the wake up of a cluster.
+- `sqlserverflex`: [v1.1.0](services/sqlserverflex/CHANGELOG.md#v110)
+  - **Version**: Minimal version is now python 3.9
+- `stackitmarketplace`: [v1.6.0](services/stackitmarketplace/CHANGELOG.md#v160)
+  - **Version**: Minimal version is now python 3.9
+ 
+
 
 ## Release (2025-07-21)
 - `alb`: 

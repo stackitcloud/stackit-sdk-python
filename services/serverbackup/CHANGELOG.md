@@ -1,3 +1,6 @@
+## v1.1.0
+- **Version**: Minimal version is now python 3.9
+
 ## v1.0.2
 - **Feature:** Add `force` parameter to `delete_backup` and `delete_volume_backup` methods
 - **Internal:** Improve deserializing and error types

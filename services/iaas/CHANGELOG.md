@@ -1,3 +1,6 @@
+## v0.6.0
+- **Version**: Minimal version is now python 3.9
+
 ## v0.5.5
 - **Improvement:** Add proper noqa comments for docstrings
 - **Improvement:** Update type annotations for better type safety

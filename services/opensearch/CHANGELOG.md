@@ -1,3 +1,6 @@
+## v0.4.0
+- **Version**: Minimal version is now python 3.9
+
 ## v0.3.1
 - **Internal:** Improve deserializing and error types
 

@@ -1,3 +1,6 @@
+## v0.6.0
+- **Version**: Minimal version is now python 3.9
+
 ## v0.5.0
 - **Feature:** Add new field `load_balancer_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
 
