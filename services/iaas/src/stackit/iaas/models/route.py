@@ -34,7 +34,7 @@ class Route(BaseModel):
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
     )
     nexthop: Annotated[str, Field(strict=True)] = Field(description="Object that represents an IP address.")
     prefix: Annotated[str, Field(strict=True)] = Field(description="Classless Inter-Domain Routing (CIDR).")
