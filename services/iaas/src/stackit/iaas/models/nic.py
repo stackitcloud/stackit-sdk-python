@@ -54,7 +54,7 @@ class NIC(BaseModel):
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
     )
     mac: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Object that represents an MAC address."
@@ -73,8 +73,10 @@ class NIC(BaseModel):
     security_groups: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
         default=None, description="A list of UUIDs.", alias="securityGroups"
     )
-    status: Optional[StrictStr] = None
-    type: Optional[StrictStr] = None
+    status: Optional[StrictStr] = Field(default=None, description="Possible values: `ACTIVE`, `DOWN`.")
+    type: Optional[StrictStr] = Field(
+        default=None, description="Possible values: `server`, `metadata`, `gateway`, `none`."
+    )
     __properties: ClassVar[List[str]] = [
         "allowedAddresses",
         "device",

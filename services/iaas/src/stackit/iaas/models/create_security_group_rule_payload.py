@@ -35,8 +35,12 @@ class CreateSecurityGroupRulePayload(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
         default=None, description="Description Object. Allows string up to 255 Characters."
     )
-    direction: StrictStr = Field(description="The direction of the traffic which the rule should match.")
-    ethertype: Optional[StrictStr] = Field(default="IPv4", description="The ethertype which the rule should match.")
+    direction: StrictStr = Field(
+        description="The direction of the traffic which the rule should match. Possible values: `ingress`, `egress`."
+    )
+    ethertype: Optional[StrictStr] = Field(
+        default="IPv4", description="The ethertype which the rule should match. Possible values: `IPv4`, `IPv6`."
+    )
     icmp_parameters: Optional[ICMPParameters] = Field(default=None, alias="icmpParameters")
     id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID)."

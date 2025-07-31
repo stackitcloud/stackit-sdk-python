@@ -72,6 +72,7 @@ __all__ = [
     "GetServerLog200Response",
     "ICMPParameters",
     "Image",
+    "ImageAgent",
     "ImageChecksum",
     "ImageConfig",
     "ImageCreateResponse",
@@ -268,6 +269,7 @@ from stackit.iaas.models.get_server_log200_response import (
 )
 from stackit.iaas.models.icmp_parameters import ICMPParameters as ICMPParameters
 from stackit.iaas.models.image import Image as Image
+from stackit.iaas.models.image_agent import ImageAgent as ImageAgent
 from stackit.iaas.models.image_checksum import ImageChecksum as ImageChecksum
 from stackit.iaas.models.image_config import ImageConfig as ImageConfig
 from stackit.iaas.models.image_create_response import (
