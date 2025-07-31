@@ -30,6 +30,7 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
+from stackit.iaas.models.image_agent import ImageAgent
 from stackit.iaas.models.image_config import ImageConfig
 
 
@@ -38,6 +39,7 @@ class UpdateImagePayload(BaseModel):
     Object that represents an update request body of an Image.
     """  # noqa: E501
 
+    agent: Optional[ImageAgent] = None
     config: Optional[ImageConfig] = None
     disk_format: Optional[StrictStr] = Field(
         default=None,
@@ -46,15 +48,26 @@ class UpdateImagePayload(BaseModel):
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
     )
     min_disk_size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.", alias="minDiskSize")
     min_ram: Optional[StrictInt] = Field(default=None, description="Size in Megabyte.", alias="minRam")
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
-    protected: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["config", "diskFormat", "labels", "minDiskSize", "minRam", "name", "protected"]
+    protected: Optional[StrictBool] = Field(
+        default=None, description="When true the image is prevented from being deleted."
+    )
+    __properties: ClassVar[List[str]] = [
+        "agent",
+        "config",
+        "diskFormat",
+        "labels",
+        "minDiskSize",
+        "minRam",
+        "name",
+        "protected",
+    ]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -103,6 +116,9 @@ class UpdateImagePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of agent
+        if self.agent:
+            _dict["agent"] = self.agent.to_dict()
         # override the default output from pydantic by calling `to_dict()` of config
         if self.config:
             _dict["config"] = self.config.to_dict()
@@ -119,6 +135,7 @@ class UpdateImagePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "agent": ImageAgent.from_dict(obj["agent"]) if obj.get("agent") is not None else None,
                 "config": ImageConfig.from_dict(obj["config"]) if obj.get("config") is not None else None,
                 "diskFormat": obj.get("diskFormat"),
                 "labels": obj.get("labels"),

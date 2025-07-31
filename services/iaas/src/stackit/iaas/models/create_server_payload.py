@@ -67,7 +67,7 @@ class CreateServerPayload(BaseModel):
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
     )
     launched_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was launched.", alias="launchedAt"
@@ -78,7 +78,7 @@ class CreateServerPayload(BaseModel):
     maintenance_window: Optional[ServerMaintenance] = Field(default=None, alias="maintenanceWindow")
     metadata: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`.",
+        description="Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`. Providing a `null` value for a key will remove that key.",
     )
     name: Annotated[str, Field(strict=True, max_length=63)] = Field(description="The name for a Server.")
     networking: Optional[CreateServerPayloadNetworking] = None

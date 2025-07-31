@@ -72,6 +72,7 @@ __all__ = [
     "GetServerLog200Response",
     "ICMPParameters",
     "Image",
+    "ImageAgent",
     "ImageChecksum",
     "ImageConfig",
     "ImageCreateResponse",
@@ -144,6 +145,7 @@ __all__ = [
     "Volume",
     "VolumeAttachment",
     "VolumeAttachmentListResponse",
+    "VolumeEncryptionParameter",
     "VolumeListResponse",
     "VolumePerformanceClass",
     "VolumePerformanceClassListResponse",
@@ -268,6 +270,7 @@ from stackit.iaas.models.get_server_log200_response import (
 )
 from stackit.iaas.models.icmp_parameters import ICMPParameters as ICMPParameters
 from stackit.iaas.models.image import Image as Image
+from stackit.iaas.models.image_agent import ImageAgent as ImageAgent
 from stackit.iaas.models.image_checksum import ImageChecksum as ImageChecksum
 from stackit.iaas.models.image_config import ImageConfig as ImageConfig
 from stackit.iaas.models.image_create_response import (
@@ -425,6 +428,9 @@ from stackit.iaas.models.volume import Volume as Volume
 from stackit.iaas.models.volume_attachment import VolumeAttachment as VolumeAttachment
 from stackit.iaas.models.volume_attachment_list_response import (
     VolumeAttachmentListResponse as VolumeAttachmentListResponse,
+)
+from stackit.iaas.models.volume_encryption_parameter import (
+    VolumeEncryptionParameter as VolumeEncryptionParameter,
 )
 from stackit.iaas.models.volume_list_response import (
     VolumeListResponse as VolumeListResponse,

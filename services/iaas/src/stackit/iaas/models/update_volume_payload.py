@@ -27,7 +27,7 @@ from stackit.iaas.models.image_config import ImageConfig
 
 class UpdateVolumePayload(BaseModel):
     """
-    Object that represents an update request body of a  volume.
+    Object that represents an update request body of a volume.
     """  # noqa: E501
 
     bootable: Optional[StrictBool] = Field(default=None, description="Indicates if a volume is bootable.")
@@ -37,7 +37,7 @@ class UpdateVolumePayload(BaseModel):
     image_config: Optional[ImageConfig] = Field(default=None, alias="imageConfig")
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
