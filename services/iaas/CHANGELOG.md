@@ -1,3 +1,8 @@
+## v0.7.0
+- **Docs:** Improved descriptions of properties in structs with their possible values
+- **Feature:** Add `Agent` field to `CreateImagePayload`, `UpdateImagePayload` and `Image` model
+- **Feature:** Add `Encrypted` and `EncryptionsParameters` fields to `CreateVolumePayload` model
+
 ## v0.6.0
 - **Version**: Minimal version is now python 3.9
 
