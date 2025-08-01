@@ -31,7 +31,7 @@ class ServerMaintenance(BaseModel):
     details: Optional[StrictStr] = None
     ends_at: datetime = Field(description="End of the maintenance window.", alias="endsAt")
     starts_at: datetime = Field(description="Start of the maintenance window.", alias="startsAt")
-    status: StrictStr
+    status: StrictStr = Field(description="Possible values: `PLANNED`, `ONGOING`.")
     __properties: ClassVar[List[str]] = ["details", "endsAt", "startsAt", "status"]
 
     model_config = ConfigDict(

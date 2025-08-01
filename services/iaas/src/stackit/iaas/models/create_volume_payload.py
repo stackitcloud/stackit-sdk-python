@@ -32,12 +32,13 @@ from pydantic import (
 from typing_extensions import Annotated, Self
 
 from stackit.iaas.models.image_config import ImageConfig
+from stackit.iaas.models.volume_encryption_parameter import VolumeEncryptionParameter
 from stackit.iaas.models.volume_source import VolumeSource
 
 
 class CreateVolumePayload(BaseModel):
     """
-    Object that represents a volume and its parameters. Used for Creating and returning (get/list).
+    Object that represents a volume and its parameters. Volumes sized up to 16000GB are supported.
     """  # noqa: E501
 
     availability_zone: StrictStr = Field(
@@ -50,13 +51,15 @@ class CreateVolumePayload(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
         default=None, description="Description Object. Allows string up to 255 Characters."
     )
+    encrypted: Optional[StrictBool] = Field(default=None, description="Indicates if a volume is encrypted.")
+    encryption_parameters: Optional[VolumeEncryptionParameter] = Field(default=None, alias="encryptionParameters")
     id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID)."
     )
     image_config: Optional[ImageConfig] = Field(default=None, alias="imageConfig")
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
@@ -83,6 +86,8 @@ class CreateVolumePayload(BaseModel):
         "bootable",
         "createdAt",
         "description",
+        "encrypted",
+        "encryptionParameters",
         "id",
         "imageConfig",
         "labels",
@@ -174,10 +179,12 @@ class CreateVolumePayload(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "created_at",
+                "encrypted",
                 "id",
                 "image_config",
                 "server_id",
@@ -191,6 +198,9 @@ class CreateVolumePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of encryption_parameters
+        if self.encryption_parameters:
+            _dict["encryptionParameters"] = self.encryption_parameters.to_dict()
         # override the default output from pydantic by calling `to_dict()` of image_config
         if self.image_config:
             _dict["imageConfig"] = self.image_config.to_dict()
@@ -214,6 +224,12 @@ class CreateVolumePayload(BaseModel):
                 "bootable": obj.get("bootable"),
                 "createdAt": obj.get("createdAt"),
                 "description": obj.get("description"),
+                "encrypted": obj.get("encrypted"),
+                "encryptionParameters": (
+                    VolumeEncryptionParameter.from_dict(obj["encryptionParameters"])
+                    if obj.get("encryptionParameters") is not None
+                    else None
+                ),
                 "id": obj.get("id"),
                 "imageConfig": (
                     ImageConfig.from_dict(obj["imageConfig"]) if obj.get("imageConfig") is not None else None

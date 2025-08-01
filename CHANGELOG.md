@@ -18,8 +18,13 @@
   - **Version**: Minimal version is now python 3.9
 - `git`: [v0.4.0](services/git/CHANGELOG.md#v040)
   - **Version**: Minimal version is now python 3.9
-- `iaas`: [v0.6.0](services/iaas/CHANGELOG.md#v060)
-  - **Version**: Minimal version is now python 3.9
+- `iaas`:
+  - [v0.7.0](services/iaas/CHANGELOG.md#v070)
+    - **Docs:** Improved descriptions of properties in structs with their possible values
+    - **Feature:** Add `Agent` field to `CreateImagePayload`, `UpdateImagePayload` and `Image` model
+    - **Feature:** Add `Encrypted` and `EncryptionsParameters` fields to `CreateVolumePayload` model
+  - [v0.6.0](services/iaas/CHANGELOG.md#v060)
+    - **Version**: Minimal version is now python 3.9
 - `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
   - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
 - `kms`: [v0.1.0](services/kms/CHANGELOG.md#v010)

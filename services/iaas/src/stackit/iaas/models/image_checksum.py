@@ -28,7 +28,9 @@ class ImageChecksum(BaseModel):
     Representation of an image checksum.
     """  # noqa: E501
 
-    algorithm: StrictStr = Field(description="Algorithm for the checksum of the image data.")
+    algorithm: StrictStr = Field(
+        description="Algorithm for the checksum of the image data. Possible values: `md5`, `sha512`."
+    )
     digest: Annotated[str, Field(strict=True)] = Field(description="Hexdigest of the checksum of the image data.")
     __properties: ClassVar[List[str]] = ["algorithm", "digest"]
 

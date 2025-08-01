@@ -31,6 +31,7 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
+from stackit.iaas.models.image_agent import ImageAgent
 from stackit.iaas.models.image_checksum import ImageChecksum
 from stackit.iaas.models.image_config import ImageConfig
 
@@ -40,6 +41,7 @@ class CreateImagePayload(BaseModel):
     Object that represents an Image and its parameters. Used for Creating and returning (get/list).
     """  # noqa: E501
 
+    agent: Optional[ImageAgent] = None
     checksum: Optional[ImageChecksum] = None
     config: Optional[ImageConfig] = None
     created_at: Optional[datetime] = Field(
@@ -53,7 +55,7 @@ class CreateImagePayload(BaseModel):
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.",
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
     )
     min_disk_size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.", alias="minDiskSize")
     min_ram: Optional[StrictInt] = Field(default=None, description="Size in Megabyte.", alias="minRam")
@@ -63,7 +65,9 @@ class CreateImagePayload(BaseModel):
     owner: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID)."
     )
-    protected: Optional[StrictBool] = None
+    protected: Optional[StrictBool] = Field(
+        default=None, description="When true the image is prevented from being deleted."
+    )
     scope: Optional[StrictStr] = Field(
         default=None, description="Scope of an Image. Possible values: `public`, `local`, `projects`, `organization`."
     )
@@ -76,6 +80,7 @@ class CreateImagePayload(BaseModel):
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
     __properties: ClassVar[List[str]] = [
+        "agent",
         "checksum",
         "config",
         "createdAt",
@@ -180,6 +185,9 @@ class CreateImagePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of agent
+        if self.agent:
+            _dict["agent"] = self.agent.to_dict()
         # override the default output from pydantic by calling `to_dict()` of checksum
         if self.checksum:
             _dict["checksum"] = self.checksum.to_dict()
@@ -199,6 +207,7 @@ class CreateImagePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "agent": ImageAgent.from_dict(obj["agent"]) if obj.get("agent") is not None else None,
                 "checksum": ImageChecksum.from_dict(obj["checksum"]) if obj.get("checksum") is not None else None,
                 "config": ImageConfig.from_dict(obj["config"]) if obj.get("config") is not None else None,
                 "createdAt": obj.get("createdAt"),
