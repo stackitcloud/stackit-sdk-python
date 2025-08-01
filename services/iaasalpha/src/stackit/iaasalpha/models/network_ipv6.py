@@ -23,9 +23,9 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
 
 
-class UpdateNetworkIPv6Body(BaseModel):
+class NetworkIPv6(BaseModel):
     """
-    The config object for a IPv6 network update.
+    Object that represents the IPv6 part of a network.
     """  # noqa: E501
 
     gateway: Optional[Annotated[str, Field(strict=True)]] = Field(
@@ -35,7 +35,8 @@ class UpdateNetworkIPv6Body(BaseModel):
     nameservers: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=3)]] = Field(
         default=None, description="A list containing DNS Servers/Nameservers for IPv6."
     )
-    __properties: ClassVar[List[str]] = ["gateway", "nameservers"]
+    prefixes: List[Annotated[str, Field(strict=True)]]
+    __properties: ClassVar[List[str]] = ["gateway", "nameservers", "prefixes"]
 
     @field_validator("gateway")
     def gateway_validate_regular_expression(cls, value):
@@ -69,7 +70,7 @@ class UpdateNetworkIPv6Body(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateNetworkIPv6Body from a JSON string"""
+        """Create an instance of NetworkIPv6 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -98,12 +99,14 @@ class UpdateNetworkIPv6Body(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateNetworkIPv6Body from a dict"""
+        """Create an instance of NetworkIPv6 from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"gateway": obj.get("gateway"), "nameservers": obj.get("nameservers")})
+        _obj = cls.model_validate(
+            {"gateway": obj.get("gateway"), "nameservers": obj.get("nameservers"), "prefixes": obj.get("prefixes")}
+        )
         return _obj
