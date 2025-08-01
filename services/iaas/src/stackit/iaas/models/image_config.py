@@ -28,18 +28,31 @@ class ImageConfig(BaseModel):
     """  # noqa: E501
 
     architecture: Optional[StrictStr] = Field(
-        default=None, description="Represents CPU architecture. The default for new images is x86."
+        default=None,
+        description="Represents CPU architecture. The default for new images is x86. Possible values: `arm64`, `x86`.",
     )
     boot_menu: Optional[StrictBool] = Field(
         default=None, description="Enables the BIOS bootmenu. The default for new images is disabled.", alias="bootMenu"
     )
     cdrom_bus: Optional[StrictStr] = Field(
-        default=None, description="Sets CDROM bus controller type.", alias="cdromBus"
+        default=None,
+        description="Sets CDROM bus controller type. Possible values: `scsi`, `virtio`, `ide`, `usb`.",
+        alias="cdromBus",
     )
-    disk_bus: Optional[StrictStr] = Field(default=None, description="Sets Disk bus controller type.", alias="diskBus")
-    nic_model: Optional[StrictStr] = Field(default=None, description="Sets virtual nic model.", alias="nicModel")
+    disk_bus: Optional[StrictStr] = Field(
+        default=None,
+        description="Sets Disk bus controller type. Possible values: `scsi`, `virtio`, `ide`, `usb`.",
+        alias="diskBus",
+    )
+    nic_model: Optional[StrictStr] = Field(
+        default=None,
+        description="Sets virtual nic model. Possible values: `e1000`, `e1000e`, `ne2k_pci`, `pcnet`, `rtl8139`, `virtio`, `vmxnet3`.",
+        alias="nicModel",
+    )
     operating_system: Optional[StrictStr] = Field(
-        default=None, description="Enables OS specific optimizations.", alias="operatingSystem"
+        default=None,
+        description="Enables OS specific optimizations. Possible values: `windows`, `linux`.",
+        alias="operatingSystem",
     )
     operating_system_distro: Optional[StrictStr] = Field(
         default=None, description="Operating System Distribution.", alias="operatingSystemDistro"
@@ -48,10 +61,14 @@ class ImageConfig(BaseModel):
         default=None, description="Version of the OS.", alias="operatingSystemVersion"
     )
     rescue_bus: Optional[StrictStr] = Field(
-        default=None, description="Sets the device bus when the image is used as a rescue image.", alias="rescueBus"
+        default=None,
+        description="Sets the device bus when the image is used as a rescue image. Possible values: `sata`, `scsi`, `virtio`, `usb`.",
+        alias="rescueBus",
     )
     rescue_device: Optional[StrictStr] = Field(
-        default=None, description="Sets the device when the image is used as a rescue image.", alias="rescueDevice"
+        default=None,
+        description="Sets the device when the image is used as a rescue image. Possible values: `cdrom`, `disk`.",
+        alias="rescueDevice",
     )
     secure_boot: Optional[StrictBool] = Field(
         default=None, description="Enables Secure Boot. The default for new images is disabled.", alias="secureBoot"
@@ -59,7 +76,11 @@ class ImageConfig(BaseModel):
     uefi: Optional[StrictBool] = Field(
         default=None, description="Configure UEFI boot. The default for new images is enabled."
     )
-    video_model: Optional[StrictStr] = Field(default=None, description="Sets Graphic device model.", alias="videoModel")
+    video_model: Optional[StrictStr] = Field(
+        default=None,
+        description="Sets Graphic device model. Possible values: `vga`, `cirrus`, `vmvga`, `qxl`, `virtio`, `none`.",
+        alias="videoModel",
+    )
     virtio_scsi: Optional[StrictBool] = Field(
         default=None,
         description="Enables the use of VirtIO SCSI to provide block device access. By default servers use VirtIO Block.",

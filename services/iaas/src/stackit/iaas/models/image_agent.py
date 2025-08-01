@@ -16,38 +16,27 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from typing_extensions import Self
 
 
-class VolumePerformanceClass(BaseModel):
+class ImageAgent(BaseModel):
     """
-    Object that represents a Volume performance class.
+    Support status and default provioning setting for the STACKIT server agent.
     """  # noqa: E501
 
-    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
-        default=None, description="Description Object. Allows string up to 255 Characters."
-    )
-    iops: Optional[StrictInt] = Field(default=None, description="Input/Output Operations per second.")
-    labels: Optional[Dict[str, Any]] = Field(
+    provision_by_default: Optional[StrictBool] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
+        description="Default provioning of the STACKIT server agent for new servers. The default for new images is false. Can only be enabled when supported is also true.",
+        alias="provisionByDefault",
     )
-    name: Annotated[str, Field(strict=True, max_length=127)] = Field(
-        description="The name for a General Object. Matches Names and also UUIDs."
+    supported: Optional[StrictBool] = Field(
+        default=None,
+        description="Indicates the STACKIT server agent for the image. The default for new images is false.",
     )
-    throughput: Optional[StrictInt] = Field(default=None, description="Throughput in Megabyte per second.")
-    __properties: ClassVar[List[str]] = ["description", "iops", "labels", "name", "throughput"]
-
-    @field_validator("name")
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
-        return value
+    __properties: ClassVar[List[str]] = ["provisionByDefault", "supported"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,7 +55,7 @@ class VolumePerformanceClass(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of VolumePerformanceClass from a JSON string"""
+        """Create an instance of ImageAgent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -90,7 +79,7 @@ class VolumePerformanceClass(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of VolumePerformanceClass from a dict"""
+        """Create an instance of ImageAgent from a dict"""
         if obj is None:
             return None
 
@@ -98,12 +87,6 @@ class VolumePerformanceClass(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "description": obj.get("description"),
-                "iops": obj.get("iops"),
-                "labels": obj.get("labels"),
-                "name": obj.get("name"),
-                "throughput": obj.get("throughput"),
-            }
+            {"provisionByDefault": obj.get("provisionByDefault"), "supported": obj.get("supported")}
         )
         return _obj

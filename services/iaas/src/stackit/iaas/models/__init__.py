@@ -72,6 +72,7 @@ from stackit.iaas.models.error import Error
 from stackit.iaas.models.get_server_log200_response import GetServerLog200Response
 from stackit.iaas.models.icmp_parameters import ICMPParameters
 from stackit.iaas.models.image import Image
+from stackit.iaas.models.image_agent import ImageAgent
 from stackit.iaas.models.image_checksum import ImageChecksum
 from stackit.iaas.models.image_config import ImageConfig
 from stackit.iaas.models.image_create_response import ImageCreateResponse
@@ -158,6 +159,7 @@ from stackit.iaas.models.volume_attachment import VolumeAttachment
 from stackit.iaas.models.volume_attachment_list_response import (
     VolumeAttachmentListResponse,
 )
+from stackit.iaas.models.volume_encryption_parameter import VolumeEncryptionParameter
 from stackit.iaas.models.volume_list_response import VolumeListResponse
 from stackit.iaas.models.volume_performance_class import VolumePerformanceClass
 from stackit.iaas.models.volume_performance_class_list_response import (
