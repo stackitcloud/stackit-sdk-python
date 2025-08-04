@@ -28,10 +28,10 @@ class InquiryFormType(str, Enum):
     """
     allowed enum values
     """
-    SUGGESTPRODUCT = "suggestProduct"
-    CONTACTSALES = "contactSales"
-    BECOMEVENDOR = "becomeVendor"
-    REGISTERTESTING = "registerTesting"
+    SUGGEST_PRODUCT = "SUGGEST_PRODUCT"
+    CONTACT_SALES = "CONTACT_SALES"
+    BECOME_VENDOR = "BECOME_VENDOR"
+    REGISTER_TESTING = "REGISTER_TESTING"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
