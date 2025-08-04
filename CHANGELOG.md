@@ -2,7 +2,7 @@
 - `scf`:
   - [v0.2.0](services/scf/CHANGELOG.md#v020)
     - **Feature:** Add field `OrgId` in model `OrgManager`
-    - **Feature:** Add ned model `OrganizationCreateBffResponse` and `SpaceCreatedBffResponse`
+    - **Feature:** Add new model `OrganizationCreateBffResponse` and `SpaceCreatedBffResponse`
   - [v0.1.0](services/scf/CHANGELOG.md#v010)
     - **New:** STACKIT Cloud Foundry module
 - `alb`: [v0.5.0](services/alb/CHANGELOG.md#v050)
