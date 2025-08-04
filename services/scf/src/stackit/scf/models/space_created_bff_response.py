@@ -16,36 +16,25 @@ from __future__ import annotations
 
 import json
 import pprint
-from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
+from stackit.scf.models.org_role_response import OrgRoleResponse
+from stackit.scf.models.space import Space
+from stackit.scf.models.space_role_create_response import SpaceRoleCreateResponse
 
-class OrgManager(BaseModel):
+
+class SpaceCreatedBffResponse(BaseModel):
     """
-    OrgManager
+    SpaceCreatedBffResponse
     """  # noqa: E501
 
-    created_at: datetime = Field(alias="createdAt")
-    guid: StrictStr
-    org_id: StrictStr = Field(alias="orgId")
-    platform_id: StrictStr = Field(alias="platformId")
-    project_id: StrictStr = Field(alias="projectId")
-    region: StrictStr
-    updated_at: datetime = Field(alias="updatedAt")
-    username: StrictStr
-    __properties: ClassVar[List[str]] = [
-        "createdAt",
-        "guid",
-        "orgId",
-        "platformId",
-        "projectId",
-        "region",
-        "updatedAt",
-        "username",
-    ]
+    org_role: Optional[OrgRoleResponse] = Field(default=None, alias="orgRole")
+    space: Space
+    space_role: SpaceRoleCreateResponse = Field(alias="spaceRole")
+    __properties: ClassVar[List[str]] = ["orgRole", "space", "spaceRole"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,7 +53,7 @@ class OrgManager(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of OrgManager from a JSON string"""
+        """Create an instance of SpaceCreatedBffResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,11 +73,20 @@ class OrgManager(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of org_role
+        if self.org_role:
+            _dict["orgRole"] = self.org_role.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of space
+        if self.space:
+            _dict["space"] = self.space.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of space_role
+        if self.space_role:
+            _dict["spaceRole"] = self.space_role.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of OrgManager from a dict"""
+        """Create an instance of SpaceCreatedBffResponse from a dict"""
         if obj is None:
             return None
 
@@ -97,14 +95,11 @@ class OrgManager(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "createdAt": obj.get("createdAt"),
-                "guid": obj.get("guid"),
-                "orgId": obj.get("orgId"),
-                "platformId": obj.get("platformId"),
-                "projectId": obj.get("projectId"),
-                "region": obj.get("region"),
-                "updatedAt": obj.get("updatedAt"),
-                "username": obj.get("username"),
+                "orgRole": OrgRoleResponse.from_dict(obj["orgRole"]) if obj.get("orgRole") is not None else None,
+                "space": Space.from_dict(obj["space"]) if obj.get("space") is not None else None,
+                "spaceRole": (
+                    SpaceRoleCreateResponse.from_dict(obj["spaceRole"]) if obj.get("spaceRole") is not None else None
+                ),
             }
         )
         return _obj

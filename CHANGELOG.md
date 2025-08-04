@@ -1,6 +1,10 @@
 ## Release (2025-XX-YY)
-- `scf`: [v0.1.0](services/scf/CHANGELOG.md#v010)
-  - **New:** STACKIT Cloud Foundry module
+- `scf`:
+  - [v0.2.0](services/scf/CHANGELOG.md#v020)
+    - **Feature:** Add field `OrgId` in model `OrgManager`
+    - **Feature:** Add new model `OrganizationCreateBffResponse` and `SpaceCreatedBffResponse`
+  - [v0.1.0](services/scf/CHANGELOG.md#v010)
+    - **New:** STACKIT Cloud Foundry module
 - `alb`: [v0.5.0](services/alb/CHANGELOG.md#v050)
   - **Version**: Minimal version is now python 3.9
 - `authorization`: [v0.3.0](services/authorization/CHANGELOG.md#v030)
