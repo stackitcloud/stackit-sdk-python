@@ -16,36 +16,23 @@ from __future__ import annotations
 
 import json
 import pprint
-from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing_extensions import Self
 
+from stackit.scf.models.org_role_response import OrgRoleResponse
+from stackit.scf.models.organization_create_response import OrganizationCreateResponse
 
-class OrgManager(BaseModel):
+
+class OrganizationCreateBffResponse(BaseModel):
     """
-    OrgManager
+    OrganizationCreateBffResponse
     """  # noqa: E501
 
-    created_at: datetime = Field(alias="createdAt")
-    guid: StrictStr
-    org_id: StrictStr = Field(alias="orgId")
-    platform_id: StrictStr = Field(alias="platformId")
-    project_id: StrictStr = Field(alias="projectId")
-    region: StrictStr
-    updated_at: datetime = Field(alias="updatedAt")
-    username: StrictStr
-    __properties: ClassVar[List[str]] = [
-        "createdAt",
-        "guid",
-        "orgId",
-        "platformId",
-        "projectId",
-        "region",
-        "updatedAt",
-        "username",
-    ]
+    org: OrganizationCreateResponse
+    roles: Dict[str, OrgRoleResponse]
+    __properties: ClassVar[List[str]] = ["org", "roles"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,7 +51,7 @@ class OrgManager(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of OrgManager from a JSON string"""
+        """Create an instance of OrganizationCreateBffResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,11 +71,21 @@ class OrgManager(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of org
+        if self.org:
+            _dict["org"] = self.org.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each value in roles (dict)
+        _field_dict = {}
+        if self.roles:
+            for _key in self.roles:
+                if self.roles[_key]:
+                    _field_dict[_key] = self.roles[_key].to_dict()
+            _dict["roles"] = _field_dict
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of OrgManager from a dict"""
+        """Create an instance of OrganizationCreateBffResponse from a dict"""
         if obj is None:
             return None
 
@@ -97,14 +94,12 @@ class OrgManager(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "createdAt": obj.get("createdAt"),
-                "guid": obj.get("guid"),
-                "orgId": obj.get("orgId"),
-                "platformId": obj.get("platformId"),
-                "projectId": obj.get("projectId"),
-                "region": obj.get("region"),
-                "updatedAt": obj.get("updatedAt"),
-                "username": obj.get("username"),
+                "org": OrganizationCreateResponse.from_dict(obj["org"]) if obj.get("org") is not None else None,
+                "roles": (
+                    dict((_k, OrgRoleResponse.from_dict(_v)) for _k, _v in obj["roles"].items())
+                    if obj.get("roles") is not None
+                    else None
+                ),
             }
         )
         return _obj
