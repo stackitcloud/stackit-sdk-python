@@ -78,6 +78,7 @@ __all__ = [
     "UpdateInstanceResponse",
     "UpdateUserPayload",
     "User",
+    "UserRole",
 ]
 
 # import apis into sdk package
@@ -208,3 +209,4 @@ from stackit.mongodbflex.models.update_user_payload import (
     UpdateUserPayload as UpdateUserPayload,
 )
 from stackit.mongodbflex.models.user import User as User
+from stackit.mongodbflex.models.user_role import UserRole as UserRole

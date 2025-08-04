@@ -21,6 +21,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing_extensions import Self
 
+from stackit.mongodbflex.models.user_role import UserRole
+
 
 class PartialUpdateUserPayload(BaseModel):
     """
@@ -28,7 +30,7 @@ class PartialUpdateUserPayload(BaseModel):
     """  # noqa: E501
 
     database: Optional[StrictStr] = None
-    roles: Optional[List[StrictStr]] = None
+    roles: Optional[List[UserRole]] = None
     __properties: ClassVar[List[str]] = ["database", "roles"]
 
     model_config = ConfigDict(
