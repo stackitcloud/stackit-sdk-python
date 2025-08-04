@@ -1,3 +1,6 @@
+## v1.7.0
+- **Breaking Change:** Update `InquiryFormType` enums
+
 ## v1.6.0
 - **Version**: Minimal version is now python 3.9
 
