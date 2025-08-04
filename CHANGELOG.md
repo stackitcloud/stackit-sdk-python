@@ -78,8 +78,11 @@
     - **Feature:** Add new methods to trigger the wake up of a cluster.
 - `sqlserverflex`: [v1.1.0](services/sqlserverflex/CHANGELOG.md#v110)
   - **Version**: Minimal version is now python 3.9
-- `stackitmarketplace`: [v1.6.0](services/stackitmarketplace/CHANGELOG.md#v160)
-  - **Version**: Minimal version is now python 3.9
+- `stackitmarketplace`:
+  - [v1.7.0](services/stackitmarketplace/CHANGELOG.md#v170)
+   - **Breaking Change:** Update `InquiryFormType` enums 
+  - [v1.6.0](services/stackitmarketplace/CHANGELOG.md#v160)
+    - **Version**: Minimal version is now python 3.9
  
 
 
