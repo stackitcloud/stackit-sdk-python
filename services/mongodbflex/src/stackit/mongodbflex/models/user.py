@@ -21,6 +21,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing_extensions import Self
 
+from stackit.mongodbflex.models.user_role import UserRole
+
 
 class User(BaseModel):
     """
@@ -32,7 +34,7 @@ class User(BaseModel):
     id: Optional[StrictStr] = None
     password: Optional[StrictStr] = None
     port: Optional[StrictInt] = None
-    roles: Optional[List[StrictStr]] = None
+    roles: Optional[List[UserRole]] = None
     uri: Optional[StrictStr] = None
     username: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["database", "host", "id", "password", "port", "roles", "uri", "username"]
