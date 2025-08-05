@@ -47,6 +47,7 @@ __all__ = [
     "CreateAlertConfigRoutePayloadRoutesInner",
     "CreateAlertgroupsPayload",
     "CreateAlertrulesPayload",
+    "CreateCredentialsPayload",
     "CreateCredentialsResponse",
     "CreateInstancePayload",
     "CreateInstanceResponse",
@@ -188,6 +189,9 @@ from stackit.observability.models.create_alertgroups_payload import (
 )
 from stackit.observability.models.create_alertrules_payload import (
     CreateAlertrulesPayload as CreateAlertrulesPayload,
+)
+from stackit.observability.models.create_credentials_payload import (
+    CreateCredentialsPayload as CreateCredentialsPayload,
 )
 from stackit.observability.models.create_credentials_response import (
     CreateCredentialsResponse as CreateCredentialsResponse,
