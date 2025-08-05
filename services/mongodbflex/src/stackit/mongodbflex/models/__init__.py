@@ -76,3 +76,4 @@ from stackit.mongodbflex.models.update_instance_payload import UpdateInstancePay
 from stackit.mongodbflex.models.update_instance_response import UpdateInstanceResponse
 from stackit.mongodbflex.models.update_user_payload import UpdateUserPayload
 from stackit.mongodbflex.models.user import User
+from stackit.mongodbflex.models.user_role import UserRole
