@@ -41,6 +41,9 @@ from stackit.observability.models.create_alertgroups_payload import (
 from stackit.observability.models.create_alertrules_payload import (
     CreateAlertrulesPayload,
 )
+from stackit.observability.models.create_credentials_payload import (
+    CreateCredentialsPayload,
+)
 from stackit.observability.models.create_credentials_response import (
     CreateCredentialsResponse,
 )
@@ -1248,6 +1251,7 @@ class DefaultApi:
         self,
         instance_id: StrictStr,
         project_id: StrictStr,
+        create_credentials_payload: Optional[CreateCredentialsPayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1266,6 +1270,8 @@ class DefaultApi:
         :type instance_id: str
         :param project_id: (required)
         :type project_id: str
+        :param create_credentials_payload:
+        :type create_credentials_payload: CreateCredentialsPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1291,6 +1297,7 @@ class DefaultApi:
         _param = self._create_credentials_serialize(
             instance_id=instance_id,
             project_id=project_id,
+            create_credentials_payload=create_credentials_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1299,6 +1306,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "CreateCredentialsResponse",
+            "400": "Error",
             "403": "PermissionDenied",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1313,6 +1321,7 @@ class DefaultApi:
         self,
         instance_id: StrictStr,
         project_id: StrictStr,
+        create_credentials_payload: Optional[CreateCredentialsPayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1331,6 +1340,8 @@ class DefaultApi:
         :type instance_id: str
         :param project_id: (required)
         :type project_id: str
+        :param create_credentials_payload:
+        :type create_credentials_payload: CreateCredentialsPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1356,6 +1367,7 @@ class DefaultApi:
         _param = self._create_credentials_serialize(
             instance_id=instance_id,
             project_id=project_id,
+            create_credentials_payload=create_credentials_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1364,6 +1376,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "CreateCredentialsResponse",
+            "400": "Error",
             "403": "PermissionDenied",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1378,6 +1391,7 @@ class DefaultApi:
         self,
         instance_id: StrictStr,
         project_id: StrictStr,
+        create_credentials_payload: Optional[CreateCredentialsPayload] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1396,6 +1410,8 @@ class DefaultApi:
         :type instance_id: str
         :param project_id: (required)
         :type project_id: str
+        :param create_credentials_payload:
+        :type create_credentials_payload: CreateCredentialsPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1421,6 +1437,7 @@ class DefaultApi:
         _param = self._create_credentials_serialize(
             instance_id=instance_id,
             project_id=project_id,
+            create_credentials_payload=create_credentials_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1429,6 +1446,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "CreateCredentialsResponse",
+            "400": "Error",
             "403": "PermissionDenied",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1438,6 +1456,7 @@ class DefaultApi:
         self,
         instance_id,
         project_id,
+        create_credentials_payload,
         _request_auth,
         _content_type,
         _headers,
@@ -1464,10 +1483,20 @@ class DefaultApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if create_credentials_payload is not None:
+            _body_params = create_credentials_payload
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
             _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = []
