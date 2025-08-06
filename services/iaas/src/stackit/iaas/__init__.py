@@ -35,6 +35,7 @@ __all__ = [
     "AllowedAddressesInner",
     "Area",
     "AreaConfig",
+    "AreaId",
     "AreaPrefixConfigIPv4",
     "AvailabilityZoneListResponse",
     "Backup",
@@ -95,6 +96,7 @@ __all__ = [
     "PartialUpdateNetworkAreaPayload",
     "PartialUpdateNetworkPayload",
     "PortRange",
+    "Project",
     "ProjectListResponse",
     "Protocol",
     "PublicIp",
@@ -125,6 +127,7 @@ __all__ = [
     "SetImageSharePayload",
     "Snapshot",
     "SnapshotListResponse",
+    "StaticAreaID",
     "UpdateAreaAddressFamily",
     "UpdateAreaIPv4",
     "UpdateAttachedVolumePayload",
@@ -179,6 +182,7 @@ from stackit.iaas.models.allowed_addresses_inner import (
 )
 from stackit.iaas.models.area import Area as Area
 from stackit.iaas.models.area_config import AreaConfig as AreaConfig
+from stackit.iaas.models.area_id import AreaId as AreaId
 from stackit.iaas.models.area_prefix_config_ipv4 import (
     AreaPrefixConfigIPv4 as AreaPrefixConfigIPv4,
 )
@@ -313,6 +317,7 @@ from stackit.iaas.models.partial_update_network_payload import (
     PartialUpdateNetworkPayload as PartialUpdateNetworkPayload,
 )
 from stackit.iaas.models.port_range import PortRange as PortRange
+from stackit.iaas.models.project import Project as Project
 from stackit.iaas.models.project_list_response import (
     ProjectListResponse as ProjectListResponse,
 )
@@ -377,6 +382,7 @@ from stackit.iaas.models.snapshot import Snapshot as Snapshot
 from stackit.iaas.models.snapshot_list_response import (
     SnapshotListResponse as SnapshotListResponse,
 )
+from stackit.iaas.models.static_area_id import StaticAreaID as StaticAreaID
 from stackit.iaas.models.update_area_address_family import (
     UpdateAreaAddressFamily as UpdateAreaAddressFamily,
 )
