@@ -66,8 +66,8 @@ class CreateServiceAccountKeyResponse(BaseModel):
     @field_validator("key_algorithm")
     def key_algorithm_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["RSA_2048"]):
-            raise ValueError("must be one of enum values ('RSA_2048')")
+        if value not in set(["RSA_2048", "RSA_4096"]):
+            raise ValueError("must be one of enum values ('RSA_2048', 'RSA_4096')")
         return value
 
     @field_validator("key_origin")
