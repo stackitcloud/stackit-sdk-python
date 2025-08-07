@@ -21,6 +21,7 @@ from stackit.iaas.models.affinity_group_list_response import AffinityGroupListRe
 from stackit.iaas.models.allowed_addresses_inner import AllowedAddressesInner
 from stackit.iaas.models.area import Area
 from stackit.iaas.models.area_config import AreaConfig
+from stackit.iaas.models.area_id import AreaId
 from stackit.iaas.models.area_prefix_config_ipv4 import AreaPrefixConfigIPv4
 from stackit.iaas.models.availability_zone_list_response import (
     AvailabilityZoneListResponse,
@@ -99,6 +100,7 @@ from stackit.iaas.models.partial_update_network_payload import (
     PartialUpdateNetworkPayload,
 )
 from stackit.iaas.models.port_range import PortRange
+from stackit.iaas.models.project import Project
 from stackit.iaas.models.project_list_response import ProjectListResponse
 from stackit.iaas.models.protocol import Protocol
 from stackit.iaas.models.public_ip import PublicIp
@@ -133,6 +135,7 @@ from stackit.iaas.models.service_account_mail_list_response import (
 from stackit.iaas.models.set_image_share_payload import SetImageSharePayload
 from stackit.iaas.models.snapshot import Snapshot
 from stackit.iaas.models.snapshot_list_response import SnapshotListResponse
+from stackit.iaas.models.static_area_id import StaticAreaID
 from stackit.iaas.models.update_area_address_family import UpdateAreaAddressFamily
 from stackit.iaas.models.update_area_ipv4 import UpdateAreaIPv4
 from stackit.iaas.models.update_attached_volume_payload import (

@@ -23,6 +23,8 @@
 - `git`: [v0.4.0](services/git/CHANGELOG.md#v040)
   - **Version**: Minimal version is now python 3.9
 - `iaas`:
+  - [v0.8.0](services/iaas/CHANGELOG.md#v080)
+    - **Feature:** Add new method to get project details `GetProjectDetails`
   - [v0.7.0](services/iaas/CHANGELOG.md#v070)
     - **Docs:** Improved descriptions of properties in structs with their possible values
     - **Feature:** Add `Agent` field to `CreateImagePayload`, `UpdateImagePayload` and `Image` model
