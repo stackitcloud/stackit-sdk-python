@@ -22,15 +22,15 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
 
-class Credentials(BaseModel):
+class CreateCredentialsPayload(BaseModel):
     """
-    Credentials
+    Create new credentials with (optional) description
     """  # noqa: E501
 
-    description: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=1000)]] = None
-    password: Annotated[str, Field(min_length=1, strict=True)]
-    username: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["description", "password", "username"]
+    description: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=1000)]] = Field(
+        default=None, description="description"
+    )
+    __properties: ClassVar[List[str]] = ["description"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +49,7 @@ class Credentials(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Credentials from a JSON string"""
+        """Create an instance of CreateCredentialsPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +73,12 @@ class Credentials(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Credentials from a dict"""
+        """Create an instance of CreateCredentialsPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"description": obj.get("description"), "password": obj.get("password"), "username": obj.get("username")}
-        )
+        _obj = cls.model_validate({"description": obj.get("description")})
         return _obj

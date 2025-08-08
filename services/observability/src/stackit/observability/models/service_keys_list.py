@@ -28,9 +28,10 @@ class ServiceKeysList(BaseModel):
     """  # noqa: E501
 
     credentials_info: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="credentialsInfo")
+    description: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=1000)]] = None
     id: Annotated[str, Field(min_length=1, strict=True, max_length=200)]
     name: Annotated[str, Field(min_length=1, strict=True, max_length=200)]
-    __properties: ClassVar[List[str]] = ["credentialsInfo", "id", "name"]
+    __properties: ClassVar[List[str]] = ["credentialsInfo", "description", "id", "name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,6 +82,11 @@ class ServiceKeysList(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"credentialsInfo": obj.get("credentialsInfo"), "id": obj.get("id"), "name": obj.get("name")}
+            {
+                "credentialsInfo": obj.get("credentialsInfo"),
+                "description": obj.get("description"),
+                "id": obj.get("id"),
+                "name": obj.get("name"),
+            }
         )
         return _obj
