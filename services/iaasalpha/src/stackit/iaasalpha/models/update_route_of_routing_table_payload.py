@@ -18,18 +18,20 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
 
-class Error(BaseModel):
+class UpdateRouteOfRoutingTablePayload(BaseModel):
     """
-    Error with HTTP error code and an error message.
+    Object that represents the request body for a route update.
     """  # noqa: E501
 
-    code: StrictInt
-    msg: StrictStr = Field(description="An error message.")
-    __properties: ClassVar[List[str]] = ["code", "msg"]
+    labels: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
+    )
+    __properties: ClassVar[List[str]] = ["labels"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +50,7 @@ class Error(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Error from a JSON string"""
+        """Create an instance of UpdateRouteOfRoutingTablePayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,12 +74,12 @@ class Error(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Error from a dict"""
+        """Create an instance of UpdateRouteOfRoutingTablePayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"code": obj.get("code"), "msg": obj.get("msg")})
+        _obj = cls.model_validate({"labels": obj.get("labels")})
         return _obj

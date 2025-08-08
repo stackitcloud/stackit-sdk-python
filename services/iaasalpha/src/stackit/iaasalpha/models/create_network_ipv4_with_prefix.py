@@ -23,9 +23,9 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
 
 
-class UpdateNetworkIPv4Body(BaseModel):
+class CreateNetworkIPv4WithPrefix(BaseModel):
     """
-    The config object for a IPv4 network update.
+    The create request for an IPv4 network with a specified prefix.
     """  # noqa: E501
 
     gateway: Optional[Annotated[str, Field(strict=True)]] = Field(
@@ -35,7 +35,8 @@ class UpdateNetworkIPv4Body(BaseModel):
     nameservers: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=3)]] = Field(
         default=None, description="A list containing DNS Servers/Nameservers for IPv4."
     )
-    __properties: ClassVar[List[str]] = ["gateway", "nameservers"]
+    prefix: Annotated[str, Field(strict=True)] = Field(description="IPv4 Classless Inter-Domain Routing (CIDR).")
+    __properties: ClassVar[List[str]] = ["gateway", "nameservers", "prefix"]
 
     @field_validator("gateway")
     def gateway_validate_regular_expression(cls, value):
@@ -49,6 +50,18 @@ class UpdateNetworkIPv4Body(BaseModel):
         ):
             raise ValueError(
                 r"must validate the regular expression /^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$/"
+            )
+        return value
+
+    @field_validator("prefix")
+    def prefix_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(
+            r"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$/"
             )
         return value
 
@@ -69,7 +82,7 @@ class UpdateNetworkIPv4Body(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateNetworkIPv4Body from a JSON string"""
+        """Create an instance of CreateNetworkIPv4WithPrefix from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -98,12 +111,14 @@ class UpdateNetworkIPv4Body(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateNetworkIPv4Body from a dict"""
+        """Create an instance of CreateNetworkIPv4WithPrefix from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"gateway": obj.get("gateway"), "nameservers": obj.get("nameservers")})
+        _obj = cls.model_validate(
+            {"gateway": obj.get("gateway"), "nameservers": obj.get("nameservers"), "prefix": obj.get("prefix")}
+        )
         return _obj
