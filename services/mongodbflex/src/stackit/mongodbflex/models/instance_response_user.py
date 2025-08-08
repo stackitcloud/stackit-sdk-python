@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 
@@ -31,7 +31,10 @@ class InstanceResponseUser(BaseModel):
     host: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     port: Optional[StrictInt] = None
-    roles: Optional[List[StrictStr]] = None
+    roles: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The roles defined for a user. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**",
+    )
     username: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["database", "host", "id", "port", "roles", "username"]
 
