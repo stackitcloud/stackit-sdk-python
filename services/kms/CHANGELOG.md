@@ -1,3 +1,7 @@
+## v0.2.0
+- **Breaking Change:** Change return type from `Key` to `Version` for `import_key()` and `rotate_key()` methods
+- **Internal:** Add HTTP 409 (Conflict) error handling to API methods
+
 ## v0.1.0
 - **Version**: Minimal version is now python 3.9
 

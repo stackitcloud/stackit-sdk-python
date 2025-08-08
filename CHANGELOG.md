@@ -33,8 +33,12 @@
     - **Version**: Minimal version is now python 3.9
 - `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
   - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
-- `kms`: [v0.1.0](services/kms/CHANGELOG.md#v010)
-  - **Version**: Minimal version is now python 3.9
+- `kms`: 
+  - [v0.2.0](services/kms/CHANGELOG.md#v011)
+    - **Breaking Change:** Change return type from `Key` to `Version` for `import_key()` and `rotate_key()` methods
+    - **Internal:** Add HTTP 409 (Conflict) error handling to API methods
+  - [v0.1.0](services/kms/CHANGELOG.md#v010)
+    - **Version**: Minimal version is now python 3.9
 - `lbapplication`: [v0.4.0](services/lbapplication/CHANGELOG.md#v040)
   - **Version**: Minimal version is now python 3.9
 - `loadbalancer`: [v0.6.0](services/loadbalancer/CHANGELOG.md#v060)
