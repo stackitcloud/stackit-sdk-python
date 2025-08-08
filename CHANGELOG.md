@@ -81,8 +81,11 @@
   - **Version**: Minimal version is now python 3.9
 - `serverupdate`: [v1.1.0](services/serverupdate/CHANGELOG.md#v110)
   - **Version**: Minimal version is now python 3.9
-- `serviceaccount`: [v0.3.0](services/serviceaccount/CHANGELOG.md#v030)
-  - **Version**: Minimal version is now python 3.9
+- `serviceaccount`: 
+  - [v0.4.0](services/serviceaccount/CHANGELOG.md#v040)
+    - **Feature:** Add new `algorithm` field to `CreateServiceAccountKeyPayload` model with enum values `RSA_2048` and `RSA_4096`
+  - [v0.3.0](services/serviceaccount/CHANGELOG.md#v030)
+    - **Version**: Minimal version is now python 3.9
 - `serviceenablement`: [v1.1.0](services/serviceenablement/CHANGELOG.md#v110)
   - **Version**: Minimal version is now python 3.9
 - `ske`: 
