@@ -1,3 +1,6 @@
+## v1.2.1
+- **Improvement:** Improve documentation for user roles field with descriptions of available values and behavior
+
 ## v1.2.0
 - **Version**: Minimal version is now python 3.9
 

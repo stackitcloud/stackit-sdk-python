@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 
@@ -28,7 +28,9 @@ class CreateUserPayload(BaseModel):
     """  # noqa: E501
 
     database: StrictStr
-    roles: List[StrictStr]
+    roles: List[StrictStr] = Field(
+        description="The roles defined for a user. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**"
+    )
     username: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["database", "roles", "username"]
 

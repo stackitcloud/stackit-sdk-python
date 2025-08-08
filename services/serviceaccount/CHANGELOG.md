@@ -1,3 +1,6 @@
+## v0.4.0
+- **Feature:** Add new `algorithm` field to `CreateServiceAccountKeyPayload` model with enum values `RSA_2048` and `RSA_4096`
+
 ## v0.3.0
 - **Version**: Minimal version is now python 3.9
 

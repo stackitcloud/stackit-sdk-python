@@ -33,8 +33,12 @@
     - **Version**: Minimal version is now python 3.9
 - `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
   - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
-- `kms`: [v0.1.0](services/kms/CHANGELOG.md#v010)
-  - **Version**: Minimal version is now python 3.9
+- `kms`: 
+  - [v0.2.0](services/kms/CHANGELOG.md#v020)
+    - **Breaking Change:** Change return type from `Key` to `Version` for `import_key()` and `rotate_key()` methods
+    - **Internal:** Add HTTP 409 (Conflict) error handling to API methods
+  - [v0.1.0](services/kms/CHANGELOG.md#v010)
+    - **Version**: Minimal version is now python 3.9
 - `lbapplication`: [v0.4.0](services/lbapplication/CHANGELOG.md#v040)
   - **Version**: Minimal version is now python 3.9
 - `loadbalancer`: [v0.6.0](services/loadbalancer/CHANGELOG.md#v060)
@@ -45,12 +49,20 @@
   - **Version**: Minimal version is now python 3.9
 - `modelserving`: [v0.2.0](services/modelserving/CHANGELOG.md#v020)
   - **Version**: Minimal version is now python 3.9
-- `mongodbflex`: [v0.2.0](services/mongodbflex/CHANGELOG.md#v120)
-  - **Version**: Minimal version is now python 3.9
+- `mongodbflex`: 
+  - [v1.2.1](services/mongodbflex/CHANGELOG.md#v121)
+    - **Improvement:** Improve documentation for user roles field with descriptions of available values and behavior
+  - [v1.2.0](services/mongodbflex/CHANGELOG.md#v120)
+    - **Version**: Minimal version is now python 3.9
 - `objectstorage`: [v1.1.0](services/objectstorage/CHANGELOG.md#v110)
   - **Version**: Minimal version is now python 3.9
-- `observability`: [v0.7.0](services/observability/CHANGELOG.md#v110)
-  - **Version**: Minimal version is now python 3.9
+- `observability`: 
+  - [v0.8.0](services/observability/CHANGELOG.md#v080)
+    - **Feature:** Add new model `CreateCredentialsPayload`
+    - **Feature:** Enhance `create_credentials()` method to accept optional payload parameter 
+    - **Internal:** Add HTTP 400 error handling
+  - [v0.7.0](services/observability/CHANGELOG.md#v070)
+    - **Version**: Minimal version is now python 3.9
 - `opensearch`: [v0.4.0](services/opensearch/CHANGELOG.md#v040)
   - **Version**: Minimal version is now python 3.9
 - `postgresflex`: [v1.1.0](services/postgresflex/CHANGELOG.md#v110)
@@ -69,8 +81,11 @@
   - **Version**: Minimal version is now python 3.9
 - `serverupdate`: [v1.1.0](services/serverupdate/CHANGELOG.md#v110)
   - **Version**: Minimal version is now python 3.9
-- `serviceaccount`: [v0.3.0](services/serviceaccount/CHANGELOG.md#v030)
-  - **Version**: Minimal version is now python 3.9
+- `serviceaccount`: 
+  - [v0.4.0](services/serviceaccount/CHANGELOG.md#v040)
+    - **Feature:** Add new `algorithm` field to `CreateServiceAccountKeyPayload` model with enum values `RSA_2048` and `RSA_4096`
+  - [v0.3.0](services/serviceaccount/CHANGELOG.md#v030)
+    - **Version**: Minimal version is now python 3.9
 - `serviceenablement`: [v1.1.0](services/serviceenablement/CHANGELOG.md#v110)
   - **Version**: Minimal version is now python 3.9
 - `ske`: 

@@ -27,9 +27,10 @@ class Credentials(BaseModel):
     Credentials
     """  # noqa: E501
 
+    description: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=1000)]] = None
     password: Annotated[str, Field(min_length=1, strict=True)]
     username: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["password", "username"]
+    __properties: ClassVar[List[str]] = ["description", "password", "username"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,5 +80,7 @@ class Credentials(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"password": obj.get("password"), "username": obj.get("username")})
+        _obj = cls.model_validate(
+            {"description": obj.get("description"), "password": obj.get("password"), "username": obj.get("username")}
+        )
         return _obj

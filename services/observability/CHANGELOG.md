@@ -1,3 +1,8 @@
+## v0.8.0
+- **Feature:** Add new model `CreateCredentialsPayload`
+- **Feature:** Enhance `create_credentials()` method to accept optional payload parameter 
+- **Internal:** Add HTTP 400 error handling
+
 ## v0.7.0
 - **Version**: Minimal version is now python 3.9
 
