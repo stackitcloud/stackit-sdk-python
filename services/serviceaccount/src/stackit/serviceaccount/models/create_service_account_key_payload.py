@@ -18,7 +18,7 @@ import pprint
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
 
@@ -27,6 +27,10 @@ class CreateServiceAccountKeyPayload(BaseModel):
     CreateServiceAccountKeyPayload
     """  # noqa: E501
 
+    algorithm: Optional[StrictStr] = Field(
+        default=None,
+        description="Optional, key algorithm of the generated key-pair. Used only if publicKey attribute is not specified, otherwise the algorithm is derived from the public key.",
+    )
     public_key: Optional[StrictStr] = Field(
         default=None,
         description="Optional, public key part of the user generated RSA key-pair wrapped in a [X.509 v3 certificate](https://www.rfc-editor.org/rfc/rfc5280)",
@@ -37,7 +41,17 @@ class CreateServiceAccountKeyPayload(BaseModel):
         description="Optional, date of key expiration. When omitted, key is valid until deleted",
         alias="validUntil",
     )
-    __properties: ClassVar[List[str]] = ["publicKey", "validUntil"]
+    __properties: ClassVar[List[str]] = ["algorithm", "publicKey", "validUntil"]
+
+    @field_validator("algorithm")
+    def algorithm_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["RSA_2048", "RSA_4096"]):
+            raise ValueError("must be one of enum values ('RSA_2048', 'RSA_4096')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,5 +101,7 @@ class CreateServiceAccountKeyPayload(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"publicKey": obj.get("publicKey"), "validUntil": obj.get("validUntil")})
+        _obj = cls.model_validate(
+            {"algorithm": obj.get("algorithm"), "publicKey": obj.get("publicKey"), "validUntil": obj.get("validUntil")}
+        )
         return _obj
