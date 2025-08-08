@@ -56,8 +56,13 @@
     - **Version**: Minimal version is now python 3.9
 - `objectstorage`: [v1.1.0](services/objectstorage/CHANGELOG.md#v110)
   - **Version**: Minimal version is now python 3.9
-- `observability`: [v0.7.0](services/observability/CHANGELOG.md#v110)
-  - **Version**: Minimal version is now python 3.9
+- `observability`: 
+  - [v0.8.0](services/observability/CHANGELOG.md#v080)
+    - **Feature:** Add new model `CreateCredentialsPayload`
+    - **Feature:** Enhance `create_credentials()` method to accept optional payload parameter 
+    - **Internal:** Add HTTP 400 error handling
+  - [v0.7.0](services/observability/CHANGELOG.md#v070)
+    - **Version**: Minimal version is now python 3.9
 - `opensearch`: [v0.4.0](services/opensearch/CHANGELOG.md#v040)
   - **Version**: Minimal version is now python 3.9
 - `postgresflex`: [v1.1.0](services/postgresflex/CHANGELOG.md#v110)
