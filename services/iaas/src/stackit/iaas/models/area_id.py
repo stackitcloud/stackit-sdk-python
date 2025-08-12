@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, Dict, Optional, Set, Union
 
 from pydantic import (
@@ -39,8 +40,10 @@ class AreaId(BaseModel):
     """
 
     # data type: str
-    oneof_schema_1_validator: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
+    oneof_schema_1_validator: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None,
+        description="Universally Unique Identifier (UUID).",
+        pattern=re.sub(r"^\/|\/$", "", "/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"),
     )
     # data type: StaticAreaID
     oneof_schema_2_validator: Optional[StaticAreaID] = None
