@@ -1,3 +1,6 @@
+## v0.2.1
+- **Improvement:** Improved error handling for multiple API methods including `delete_key`, `delete_key_ring`, `delete_wrapping_key`, `destroy_version`, `disable_version`, `enable_version`, `restore_key`, and `restore_version`
+
 ## v0.2.0
 - **Breaking Change:** Change return type from `Key` to `Version` for `import_key()` and `rotate_key()` methods
 - **Internal:** Add HTTP 409 (Conflict) error handling to API methods
