@@ -9,6 +9,8 @@
   - **Version**: Minimal version is now python 3.9
 - `authorization`: [v0.3.0](services/authorization/CHANGELOG.md#v030)
   - **Version**: Minimal version is now python 3.9
+- `auditlog`: [v0.1.0](services/auditlog/CHANGELOG.md#v010)
+  - **New**: STACKIT Audit Log module for retrieving recorded actions and system changes. Download audit log entries for folders, organizations, and projects with time range filtering, pagination, and configurable result limits.
 - `cdn`:
   - [v1.5.0](services/cdn/CHANGELOG.md#v150)
     - **Feature:** Added new filter functions `DataCenterRegion`, `RequestCountryCode`, `StatusCode` and `CacheHit`
