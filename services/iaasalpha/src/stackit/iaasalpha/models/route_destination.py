@@ -39,9 +39,19 @@ class RouteDestination(BaseModel):
     """
 
     # data type: DestinationCIDRv4
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_1_validator: Optional[DestinationCIDRv4] = None
+    # END of the workaround
     # data type: DestinationCIDRv6
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_2_validator: Optional[DestinationCIDRv6] = None
+    # END of the workaround
     actual_instance: Optional[Union[DestinationCIDRv4, DestinationCIDRv6]] = None
     one_of_schemas: Set[str] = {"DestinationCIDRv4", "DestinationCIDRv6"}
 
