@@ -41,13 +41,33 @@ class InquiriesCreateInquiryPayload(BaseModel):
     """
 
     # data type: SuggestProduct
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_1_validator: Optional[SuggestProduct] = None
+    # END of the workaround
     # data type: ContactSales
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_2_validator: Optional[ContactSales] = None
+    # END of the workaround
     # data type: BecomeVendor
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_3_validator: Optional[BecomeVendor] = None
+    # END of the workaround
     # data type: RegisterTesting
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_4_validator: Optional[RegisterTesting] = None
+    # END of the workaround
     actual_instance: Optional[Union[BecomeVendor, ContactSales, RegisterTesting, SuggestProduct]] = None
     one_of_schemas: Set[str] = {"BecomeVendor", "ContactSales", "RegisterTesting", "SuggestProduct"}
 
