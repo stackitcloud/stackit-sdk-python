@@ -22,7 +22,6 @@ from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
-    StrictStr,
     ValidationError,
     field_validator,
 )
@@ -42,7 +41,7 @@ class CreateProtocol(BaseModel):
         default=None, description="The protocol number which the rule should match."
     )
     # data type: str
-    oneof_schema_2_validator: Optional[StrictStr] = Field(
+    oneof_schema_2_validator: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
         description="The protocol name which the rule should match. Possible values: `ah`, `dccp`, `egp`, `esp`, `gre`, `icmp`, `igmp`, `ipip`, `ipv6-encap`, `ipv6-frag`, `ipv6-icmp`, `ipv6-nonxt`, `ipv6-opts`, `ipv6-route`, `ospf`, `pgm`, `rsvp`, `sctp`, `tcp`, `udp`, `udplite`, `vrrp`.",
     )
