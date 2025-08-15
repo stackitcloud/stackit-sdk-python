@@ -45,9 +45,19 @@ class PutCustomDomainResponseCertificate(BaseModel):
     """
 
     # data type: GetCustomDomainManagedCertificate
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_1_validator: Optional[GetCustomDomainManagedCertificate] = None
+    # END of the workaround
     # data type: GetCustomDomainCustomCertificate
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_2_validator: Optional[GetCustomDomainCustomCertificate] = None
+    # END of the workaround
     actual_instance: Optional[Union[GetCustomDomainCustomCertificate, GetCustomDomainManagedCertificate]] = None
     one_of_schemas: Set[str] = {"GetCustomDomainCustomCertificate", "GetCustomDomainManagedCertificate"}
 
