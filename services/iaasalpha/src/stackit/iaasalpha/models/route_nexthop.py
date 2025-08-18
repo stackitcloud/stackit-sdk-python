@@ -41,13 +41,33 @@ class RouteNexthop(BaseModel):
     """
 
     # data type: NexthopIPv4
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_1_validator: Optional[NexthopIPv4] = None
+    # END of the workaround
     # data type: NexthopIPv6
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_2_validator: Optional[NexthopIPv6] = None
+    # END of the workaround
     # data type: NexthopInternet
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_3_validator: Optional[NexthopInternet] = None
+    # END of the workaround
     # data type: NexthopBlackhole
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
     oneof_schema_4_validator: Optional[NexthopBlackhole] = None
+    # END of the workaround
     actual_instance: Optional[Union[NexthopBlackhole, NexthopIPv4, NexthopIPv6, NexthopInternet]] = None
     one_of_schemas: Set[str] = {"NexthopBlackhole", "NexthopIPv4", "NexthopIPv6", "NexthopInternet"}
 
