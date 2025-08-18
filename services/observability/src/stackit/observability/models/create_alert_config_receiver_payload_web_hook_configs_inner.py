@@ -27,9 +27,14 @@ class CreateAlertConfigReceiverPayloadWebHookConfigsInner(BaseModel):
     CreateAlertConfigReceiverPayloadWebHookConfigsInner
     """  # noqa: E501
 
+    google_chat: Optional[StrictBool] = Field(
+        default=False,
+        description="Google Chat webhooks require special handling. If you set this property to true, it is treated as such. `Additional Validators:` * When set to true, msTeams must be false.",
+        alias="googleChat",
+    )
     ms_teams: Optional[StrictBool] = Field(
         default=False,
-        description="Microsoft Teams webhooks require special handling. If you set this property to true, it is treated as such",
+        description="Microsoft Teams webhooks require special handling. If you set this property to true, it is treated as such. `Additional Validators:` * When set to true, googleChat must be false.",
         alias="msTeams",
     )
     send_resolved: Optional[StrictBool] = Field(
@@ -39,7 +44,7 @@ class CreateAlertConfigReceiverPayloadWebHookConfigsInner(BaseModel):
         default=None,
         description="The endpoint to send HTTP POST requests to. `Additional Validators:` * must be a syntactically valid url address",
     )
-    __properties: ClassVar[List[str]] = ["msTeams", "sendResolved", "url"]
+    __properties: ClassVar[List[str]] = ["googleChat", "msTeams", "sendResolved", "url"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +96,7 @@ class CreateAlertConfigReceiverPayloadWebHookConfigsInner(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "googleChat": obj.get("googleChat") if obj.get("googleChat") is not None else False,
                 "msTeams": obj.get("msTeams") if obj.get("msTeams") is not None else False,
                 "sendResolved": obj.get("sendResolved") if obj.get("sendResolved") is not None else True,
                 "url": obj.get("url"),
