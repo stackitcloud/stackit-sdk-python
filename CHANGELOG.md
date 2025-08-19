@@ -1,3 +1,7 @@
+## Release (2025-xx-xx)
+- `observability`: [v0.9.0](services/observability/CHANGELOG.md#v090)
+    - **Feature:** Add new `GoogleChat` webhook
+
 ## Release (2025-08-13)
 - `scf`:
   - [v0.2.0](services/scf/CHANGELOG.md#v020)

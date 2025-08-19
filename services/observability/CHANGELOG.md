@@ -1,3 +1,6 @@
+## v0.9.0
+- **Feature:** Add new `GoogleChat` webhook
+
 ## v0.8.0
 - **Feature:** Add new model `CreateCredentialsPayload`
 - **Feature:** Enhance `create_credentials()` method to accept optional payload parameter 
