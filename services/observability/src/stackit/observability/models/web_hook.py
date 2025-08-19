@@ -27,10 +27,11 @@ class WebHook(BaseModel):
     WebHook
     """  # noqa: E501
 
+    google_chat: Optional[StrictBool] = Field(default=False, alias="googleChat")
     ms_teams: Optional[StrictBool] = Field(default=False, alias="msTeams")
     send_resolved: Optional[StrictBool] = Field(default=True, alias="sendResolved")
     url: Annotated[str, Field(min_length=1, strict=True, max_length=500)]
-    __properties: ClassVar[List[str]] = ["msTeams", "sendResolved", "url"]
+    __properties: ClassVar[List[str]] = ["googleChat", "msTeams", "sendResolved", "url"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +83,7 @@ class WebHook(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "googleChat": obj.get("googleChat") if obj.get("googleChat") is not None else False,
                 "msTeams": obj.get("msTeams") if obj.get("msTeams") is not None else False,
                 "sendResolved": obj.get("sendResolved") if obj.get("sendResolved") is not None else True,
                 "url": obj.get("url"),
