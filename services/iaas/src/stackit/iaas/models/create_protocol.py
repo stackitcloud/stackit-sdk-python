@@ -22,7 +22,6 @@ from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
-    StrictStr,
     ValidationError,
     field_validator,
 )
@@ -42,10 +41,15 @@ class CreateProtocol(BaseModel):
         default=None, description="The protocol number which the rule should match."
     )
     # data type: str
-    oneof_schema_2_validator: Optional[StrictStr] = Field(
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
+    oneof_schema_2_validator: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
         description="The protocol name which the rule should match. Possible values: `ah`, `dccp`, `egp`, `esp`, `gre`, `icmp`, `igmp`, `ipip`, `ipv6-encap`, `ipv6-frag`, `ipv6-icmp`, `ipv6-nonxt`, `ipv6-opts`, `ipv6-route`, `ospf`, `pgm`, `rsvp`, `sctp`, `tcp`, `udp`, `udplite`, `vrrp`.",
     )
+    # END of the workaround
     actual_instance: Optional[Union[int, str]] = None
     one_of_schemas: Set[str] = {"int", "str"}
 
