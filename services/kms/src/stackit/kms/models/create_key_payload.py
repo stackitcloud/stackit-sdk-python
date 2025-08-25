@@ -20,8 +20,10 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing_extensions import Annotated, Self
 
+from stackit.kms.models.access_scope import AccessScope
 from stackit.kms.models.algorithm import Algorithm
 from stackit.kms.models.backend import Backend
+from stackit.kms.models.protection import Protection
 from stackit.kms.models.purpose import Purpose
 
 
@@ -30,6 +32,7 @@ class CreateKeyPayload(BaseModel):
     CreateKeyPayload
     """  # noqa: E501
 
+    access_scope: Optional[AccessScope] = AccessScope.PUBLIC
     algorithm: Algorithm
     backend: Backend
     description: Optional[StrictStr] = Field(
@@ -41,8 +44,18 @@ class CreateKeyPayload(BaseModel):
     import_only: Optional[StrictBool] = Field(
         default=False, description="States whether versions can be created or only imported.", alias="importOnly"
     )
+    protection: Optional[Protection] = None
     purpose: Purpose
-    __properties: ClassVar[List[str]] = ["algorithm", "backend", "description", "displayName", "importOnly", "purpose"]
+    __properties: ClassVar[List[str]] = [
+        "access_scope",
+        "algorithm",
+        "backend",
+        "description",
+        "displayName",
+        "importOnly",
+        "protection",
+        "purpose",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,11 +107,13 @@ class CreateKeyPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "access_scope": obj.get("access_scope") if obj.get("access_scope") is not None else AccessScope.PUBLIC,
                 "algorithm": obj.get("algorithm"),
                 "backend": obj.get("backend"),
                 "description": obj.get("description"),
                 "displayName": obj.get("displayName"),
                 "importOnly": obj.get("importOnly") if obj.get("importOnly") is not None else False,
+                "protection": obj.get("protection"),
                 "purpose": obj.get("purpose"),
             }
         )

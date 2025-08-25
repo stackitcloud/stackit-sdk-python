@@ -20,7 +20,9 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
+from stackit.kms.models.access_scope import AccessScope
 from stackit.kms.models.backend import Backend
+from stackit.kms.models.protection import Protection
 from stackit.kms.models.wrapping_algorithm import WrappingAlgorithm
 from stackit.kms.models.wrapping_purpose import WrappingPurpose
 
@@ -30,6 +32,7 @@ class CreateWrappingKeyPayload(BaseModel):
     CreateWrappingKeyPayload
     """  # noqa: E501
 
+    access_scope: Optional[AccessScope] = AccessScope.PUBLIC
     algorithm: WrappingAlgorithm
     backend: Backend
     description: Optional[StrictStr] = Field(
@@ -38,8 +41,17 @@ class CreateWrappingKeyPayload(BaseModel):
     display_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
         description="The display name to distinguish multiple wrapping keys.", alias="displayName"
     )
+    protection: Optional[Protection] = None
     purpose: WrappingPurpose
-    __properties: ClassVar[List[str]] = ["algorithm", "backend", "description", "displayName", "purpose"]
+    __properties: ClassVar[List[str]] = [
+        "access_scope",
+        "algorithm",
+        "backend",
+        "description",
+        "displayName",
+        "protection",
+        "purpose",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,10 +103,12 @@ class CreateWrappingKeyPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "access_scope": obj.get("access_scope") if obj.get("access_scope") is not None else AccessScope.PUBLIC,
                 "algorithm": obj.get("algorithm"),
                 "backend": obj.get("backend"),
                 "description": obj.get("description"),
                 "displayName": obj.get("displayName"),
+                "protection": obj.get("protection"),
                 "purpose": obj.get("purpose"),
             }
         )

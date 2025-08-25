@@ -21,7 +21,9 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
+from stackit.kms.models.access_scope import AccessScope
 from stackit.kms.models.backend import Backend
+from stackit.kms.models.protection import Protection
 from stackit.kms.models.wrapping_algorithm import WrappingAlgorithm
 from stackit.kms.models.wrapping_purpose import WrappingPurpose
 
@@ -31,6 +33,7 @@ class WrappingKey(BaseModel):
     WrappingKey
     """  # noqa: E501
 
+    access_scope: AccessScope
     algorithm: WrappingAlgorithm
     backend: Backend
     created_at: datetime = Field(
@@ -47,12 +50,14 @@ class WrappingKey(BaseModel):
     key_ring_id: StrictStr = Field(
         description="The unique id of the key ring this wrapping key is assigned to.", alias="keyRingId"
     )
+    protection: Optional[Protection] = None
     public_key: Optional[StrictStr] = Field(
         default=None, description="The public key of the wrapping key.", alias="publicKey"
     )
     purpose: WrappingPurpose
     state: StrictStr = Field(description="The current state of the wrapping key.")
     __properties: ClassVar[List[str]] = [
+        "access_scope",
         "algorithm",
         "backend",
         "createdAt",
@@ -61,6 +66,7 @@ class WrappingKey(BaseModel):
         "expiresAt",
         "id",
         "keyRingId",
+        "protection",
         "publicKey",
         "purpose",
         "state",
@@ -125,6 +131,7 @@ class WrappingKey(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "access_scope": obj.get("access_scope") if obj.get("access_scope") is not None else AccessScope.PUBLIC,
                 "algorithm": obj.get("algorithm"),
                 "backend": obj.get("backend"),
                 "createdAt": obj.get("createdAt"),
@@ -133,6 +140,7 @@ class WrappingKey(BaseModel):
                 "expiresAt": obj.get("expiresAt"),
                 "id": obj.get("id"),
                 "keyRingId": obj.get("keyRingId"),
+                "protection": obj.get("protection"),
                 "publicKey": obj.get("publicKey"),
                 "purpose": obj.get("purpose"),
                 "state": obj.get("state"),

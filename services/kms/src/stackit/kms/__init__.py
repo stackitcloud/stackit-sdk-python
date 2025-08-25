@@ -28,6 +28,7 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "AccessScope",
     "Algorithm",
     "Backend",
     "CreateKeyPayload",
@@ -43,6 +44,7 @@ __all__ = [
     "KeyList",
     "KeyRing",
     "KeyRingList",
+    "Protection",
     "Purpose",
     "SignPayload",
     "SignedData",
@@ -71,6 +73,7 @@ from stackit.kms.exceptions import ApiValueError as ApiValueError
 from stackit.kms.exceptions import OpenApiException as OpenApiException
 
 # import models into sdk package
+from stackit.kms.models.access_scope import AccessScope as AccessScope
 from stackit.kms.models.algorithm import Algorithm as Algorithm
 from stackit.kms.models.backend import Backend as Backend
 from stackit.kms.models.create_key_payload import CreateKeyPayload as CreateKeyPayload
@@ -90,6 +93,7 @@ from stackit.kms.models.key import Key as Key
 from stackit.kms.models.key_list import KeyList as KeyList
 from stackit.kms.models.key_ring import KeyRing as KeyRing
 from stackit.kms.models.key_ring_list import KeyRingList as KeyRingList
+from stackit.kms.models.protection import Protection as Protection
 from stackit.kms.models.purpose import Purpose as Purpose
 from stackit.kms.models.sign_payload import SignPayload as SignPayload
 from stackit.kms.models.signed_data import SignedData as SignedData
