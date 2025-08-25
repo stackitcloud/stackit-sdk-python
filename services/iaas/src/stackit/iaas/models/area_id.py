@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
+import re
 from typing import Any, Dict, Optional, Set, Union
 
 from pydantic import (
@@ -39,9 +40,16 @@ class AreaId(BaseModel):
     """
 
     # data type: str
-    oneof_schema_1_validator: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
+    # BEGIN of the workaround until upstream issues are fixed:
+    # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
+    # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
+    # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
+    oneof_schema_1_validator: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None,
+        description="Universally Unique Identifier (UUID).",
+        pattern=re.sub(r"^\/|\/$", "", r"/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"),
     )
+    # END of the workaround
     # data type: StaticAreaID
     oneof_schema_2_validator: Optional[StaticAreaID] = None
     actual_instance: Optional[Union[StaticAreaID, str]] = None
