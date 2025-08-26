@@ -19,17 +19,18 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class Backend(str, Enum):
+class AccessScope(str, Enum):
     """
-    The backend that is responsible for maintaining this key. Deprecated - use `protection`.
+    The access scope of the key.
     """
 
     """
     allowed enum values
     """
-    SOFTWARE = "software"
+    PUBLIC = "PUBLIC"
+    SNA = "SNA"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Backend from a JSON string"""
+        """Create an instance of AccessScope from a JSON string"""
         return cls(json.loads(json_str))
