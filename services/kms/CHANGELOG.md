@@ -1,3 +1,12 @@
+## v0.3.0
+- **Breaking Change:** Updated `create_key()` and `create_wrapping_key()` method signatures to require new `access_scope` parameter
+- **Breaking Change:** Added new required `access_scope` field to `Key` and `WrappingKey` models
+- **Feature:** Add new `AccessScope` enum with values `PUBLIC` and `SNA` for managing key access permissions
+- **Feature:** Add new `Protection` enum with value `SOFTWARE` as a replacement for the deprecated `backend` field
+- **Feature:** Add new `access_scope` field to `CreateKeyPayload` and `CreateWrappingKeyPayload` models
+- **Feature:** Add new `protection` field to `CreateKeyPayload`, `CreateWrappingKeyPayload`, `Key`, and `WrappingKey` models
+- **Deprecation:** The `backend` field is now deprecated in all relevant models. Use the new `protection` field instead
+
 ## v0.2.0
 - **Breaking Change:** Change return type from `Key` to `Version` for `import_key()` and `rotate_key()` methods
 - **Internal:** Add HTTP 409 (Conflict) error handling to API methods
