@@ -112,6 +112,7 @@ __all__ = [
     "UpdateAlertConfigsPayloadInhibitRules",
     "UpdateAlertConfigsPayloadReceiversInner",
     "UpdateAlertConfigsPayloadRoute",
+    "UpdateAlertConfigsPayloadRouteRoutesInner",
     "UpdateAlertConfigsResponse",
     "UpdateAlertgroupPayload",
     "UpdateAlertgroupsRequestInner",
@@ -342,6 +343,9 @@ from stackit.observability.models.update_alert_configs_payload_receivers_inner i
 )
 from stackit.observability.models.update_alert_configs_payload_route import (
     UpdateAlertConfigsPayloadRoute as UpdateAlertConfigsPayloadRoute,
+)
+from stackit.observability.models.update_alert_configs_payload_route_routes_inner import (
+    UpdateAlertConfigsPayloadRouteRoutesInner as UpdateAlertConfigsPayloadRouteRoutesInner,
 )
 from stackit.observability.models.update_alert_configs_response import (
     UpdateAlertConfigsResponse as UpdateAlertConfigsResponse,
