@@ -29,6 +29,8 @@
 - `git`: [v0.4.0](services/git/CHANGELOG.md#v040)
   - **Version**: Minimal version is now python 3.9
 - `iaas`:
+  - [v0.8.1](services/iaas/CHANGELOG.md#v081)
+    - **Internal:** Add workaround to fix upstream OpenAPI generator issue where regex patterns include leading/trailing slashes that need to be removed for validation in `AllowedAddressesInner`, `AreaId`, and `CreateProtocol` models
   - [v0.8.0](services/iaas/CHANGELOG.md#v080)
     - **Feature:** Add new method to get project details `GetProjectDetails`
   - [v0.7.0](services/iaas/CHANGELOG.md#v070)
