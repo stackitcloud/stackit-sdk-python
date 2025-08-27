@@ -5,6 +5,8 @@
     - **Feature:** Add new `AccessScope` enum with values `PUBLIC` and `SNA` for managing key access permissions
     - **Feature:** Add new `Protection` enum with value `SOFTWARE` as a replacement for the deprecated `backend` field
     - **Deprecation:** The `backend` field is now deprecated in all relevant models. Use the new `protection` field instead
+- `iaas`: [v0.8.1](services/iaas/CHANGELOG.md#v081)
+    - **Internal:** Add workaround to fix upstream OpenAPI generator issue where regex patterns include leading/trailing slashes that need to be removed for validation in `AllowedAddressesInner`, `AreaId`, and `CreateProtocol` models
 - `observability`: [v0.9.0](services/observability/CHANGELOG.md#v090)
     - **Feature:** Add new `GoogleChat` webhook
 
