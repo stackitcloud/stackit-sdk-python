@@ -7,7 +7,10 @@
     - **Deprecation:** The `backend` field is now deprecated in all relevant models. Use the new `protection` field instead
 - `iaas`: [v0.8.1](services/iaas/CHANGELOG.md#v081)
     - **Internal:** Add workaround to fix upstream OpenAPI generator issue where regex patterns include leading/trailing slashes that need to be removed for validation in `AllowedAddressesInner`, `AreaId`, and `CreateProtocol` models
-- `observability`: [v0.9.0](services/observability/CHANGELOG.md#v090)
+- `observability`: 
+  - [v0.9.1](services/observability/CHANGELOG.md#v091)
+    - Introduce new model `UpdateAlertConfigsPayloadRouteRoutesInner` 
+  - [v0.9.0](services/observability/CHANGELOG.md#v090)
     - **Feature:** Add new `GoogleChat` webhook
 
 ## Release (2025-08-13)

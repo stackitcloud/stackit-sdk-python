@@ -1,3 +1,6 @@
+## v0.9.1
+- Introduce new model `UpdateAlertConfigsPayloadRouteRoutesInner` 
+
 ## v0.9.0
 - **Feature:** Add new `GoogleChat` webhook
 
