@@ -28,8 +28,10 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
+from stackit.kms.models.access_scope import AccessScope
 from stackit.kms.models.algorithm import Algorithm
 from stackit.kms.models.backend import Backend
+from stackit.kms.models.protection import Protection
 from stackit.kms.models.purpose import Purpose
 
 
@@ -38,6 +40,7 @@ class Key(BaseModel):
     Key
     """  # noqa: E501
 
+    access_scope: AccessScope
     algorithm: Algorithm
     backend: Backend
     created_at: datetime = Field(
@@ -61,9 +64,11 @@ class Key(BaseModel):
     key_ring_id: StrictStr = Field(
         description="The unique id of the key ring this key is assigned to.", alias="keyRingId"
     )
+    protection: Optional[Protection] = None
     purpose: Purpose
     state: StrictStr = Field(description="The current state of the key.")
     __properties: ClassVar[List[str]] = [
+        "access_scope",
         "algorithm",
         "backend",
         "createdAt",
@@ -73,6 +78,7 @@ class Key(BaseModel):
         "id",
         "importOnly",
         "keyRingId",
+        "protection",
         "purpose",
         "state",
     ]
@@ -136,6 +142,7 @@ class Key(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "access_scope": obj.get("access_scope") if obj.get("access_scope") is not None else AccessScope.PUBLIC,
                 "algorithm": obj.get("algorithm"),
                 "backend": obj.get("backend"),
                 "createdAt": obj.get("createdAt"),
@@ -145,6 +152,7 @@ class Key(BaseModel):
                 "id": obj.get("id"),
                 "importOnly": obj.get("importOnly") if obj.get("importOnly") is not None else False,
                 "keyRingId": obj.get("keyRingId"),
+                "protection": obj.get("protection"),
                 "purpose": obj.get("purpose"),
                 "state": obj.get("state"),
             }
