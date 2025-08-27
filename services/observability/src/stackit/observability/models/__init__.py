@@ -168,6 +168,9 @@ from stackit.observability.models.update_alert_configs_payload_receivers_inner i
 from stackit.observability.models.update_alert_configs_payload_route import (
     UpdateAlertConfigsPayloadRoute,
 )
+from stackit.observability.models.update_alert_configs_payload_route_routes_inner import (
+    UpdateAlertConfigsPayloadRouteRoutesInner,
+)
 from stackit.observability.models.update_alert_configs_response import (
     UpdateAlertConfigsResponse,
 )
