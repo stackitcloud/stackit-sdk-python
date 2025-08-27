@@ -1,4 +1,6 @@
 ## Release (2025-xx-xx)
+- `iaas`: [v0.8.1](services/iaas/CHANGELOG.md#v081)
+    - **Internal:** Add workaround to fix upstream OpenAPI generator issue where regex patterns include leading/trailing slashes that need to be removed for validation in `AllowedAddressesInner`, `AreaId`, and `CreateProtocol` models
 - `observability`: [v0.9.0](services/observability/CHANGELOG.md#v090)
     - **Feature:** Add new `GoogleChat` webhook
 
