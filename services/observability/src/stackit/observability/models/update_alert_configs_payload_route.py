@@ -21,8 +21,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing_extensions import Annotated, Self
 
-from stackit.observability.models.create_alert_config_route_payload_routes_inner import (
-    CreateAlertConfigRoutePayloadRoutesInner,
+from stackit.observability.models.update_alert_configs_payload_route_routes_inner import (
+    UpdateAlertConfigsPayloadRouteRoutesInner,
 )
 
 
@@ -60,10 +60,6 @@ class UpdateAlertConfigsPayloadRoute(BaseModel):
         description="map of key:value. A set of regex-matchers an alert has to fulfill to match the node.  `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters",
         alias="matchRe",
     )
-    matchers: Optional[List[Annotated[str, Field(min_length=1, strict=True, max_length=200)]]] = Field(
-        default=None,
-        description="A list of matchers that an alert has to fulfill to match the node. A matcher is a string with a syntax inspired by PromQL and OpenMetrics. The syntax of a matcher consists of three tokens: * A valid Prometheus label name. * One of =, !=, =~, or !~. = means equals, != means that the strings are not equal, =~ is used for equality of regex expressions and !~ is used for un-equality of regex expressions. They have the same meaning as known from PromQL selectors. * A UTF-8 string, which may be enclosed in double quotes. Before or after each token, there may be any amount of whitespace. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters",
-    )
     receiver: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(
         description="Receiver that should be one item of receivers `Additional Validators:` * must be a in name of receivers"
     )
@@ -72,7 +68,7 @@ class UpdateAlertConfigsPayloadRoute(BaseModel):
         description="How long to wait before sending a notification again if it has already been sent successfully for an alert. (Usually ~3h or more). `Additional Validators:` * must be a valid time format",
         alias="repeatInterval",
     )
-    routes: Optional[List[CreateAlertConfigRoutePayloadRoutesInner]] = Field(
+    routes: Optional[List[UpdateAlertConfigsPayloadRouteRoutesInner]] = Field(
         default=None, description="Zero or more child routes."
     )
     __properties: ClassVar[List[str]] = [
@@ -82,7 +78,6 @@ class UpdateAlertConfigsPayloadRoute(BaseModel):
         "groupWait",
         "match",
         "matchRe",
-        "matchers",
         "receiver",
         "repeatInterval",
         "routes",
@@ -151,11 +146,10 @@ class UpdateAlertConfigsPayloadRoute(BaseModel):
                 "groupWait": obj.get("groupWait") if obj.get("groupWait") is not None else "30s",
                 "match": obj.get("match"),
                 "matchRe": obj.get("matchRe"),
-                "matchers": obj.get("matchers"),
                 "receiver": obj.get("receiver"),
                 "repeatInterval": obj.get("repeatInterval") if obj.get("repeatInterval") is not None else "4h",
                 "routes": (
-                    [CreateAlertConfigRoutePayloadRoutesInner.from_dict(_item) for _item in obj["routes"]]
+                    [UpdateAlertConfigsPayloadRouteRoutesInner.from_dict(_item) for _item in obj["routes"]]
                     if obj.get("routes") is not None
                     else None
                 ),
