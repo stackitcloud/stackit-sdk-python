@@ -42,6 +42,7 @@ class InstanceSensitiveData(BaseModel):
     jaeger_ui_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="jaegerUiUrl")
     logs_push_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="logsPushUrl")
     logs_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="logsUrl")
+    metrics_endpoint_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="metricsEndpointUrl")
     metrics_retention_time1h: Annotated[int, Field(strict=True, ge=0)] = Field(alias="metricsRetentionTime1h")
     metrics_retention_time5m: Annotated[int, Field(strict=True, ge=0)] = Field(alias="metricsRetentionTime5m")
     metrics_retention_time_raw: Annotated[int, Field(strict=True, ge=0)] = Field(alias="metricsRetentionTimeRaw")
@@ -66,6 +67,7 @@ class InstanceSensitiveData(BaseModel):
         "jaegerUiUrl",
         "logsPushUrl",
         "logsUrl",
+        "metricsEndpointUrl",
         "metricsRetentionTime1h",
         "metricsRetentionTime5m",
         "metricsRetentionTimeRaw",
@@ -144,6 +146,7 @@ class InstanceSensitiveData(BaseModel):
                 "jaegerUiUrl": obj.get("jaegerUiUrl"),
                 "logsPushUrl": obj.get("logsPushUrl"),
                 "logsUrl": obj.get("logsUrl"),
+                "metricsEndpointUrl": obj.get("metricsEndpointUrl"),
                 "metricsRetentionTime1h": obj.get("metricsRetentionTime1h"),
                 "metricsRetentionTime5m": obj.get("metricsRetentionTime5m"),
                 "metricsRetentionTimeRaw": obj.get("metricsRetentionTimeRaw"),
