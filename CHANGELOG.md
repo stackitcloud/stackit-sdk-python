@@ -1,3 +1,9 @@
+## Release (2025-MM-DD)
+- `kms`: [v0.4.0](services/kms/CHANGELOG.md#v040)
+  - Switch to API version `v1` of STACKIT KMS service (previously `v1beta`)
+  - **Breaking Change:** Removal of deprecated `Backend` model
+  - **Breaking Change:** Mark `protection` attribute as required in `Key`, `CreateKeyPayload`, `CreateWrappingKeyPayload` and `WrappingKey` model
+
 ## Release (2025-08-29)
 - `kms`: [v0.3.0](services/kms/CHANGELOG.md#v030)
     - **Breaking Change:** Updated `create_key()` and `create_wrapping_key()` method signatures to require new `access_scope` parameter
