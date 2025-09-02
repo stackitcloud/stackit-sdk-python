@@ -24,7 +24,7 @@ from typing_extensions import Annotated, Self
 
 class UpdateAlertConfigsPayloadGlobal(BaseModel):
     """
-    Global config. If nothing passed the default argus config will be used.
+    Global config. If nothing passed the default argus config will be used. It is only possible to update the entire global part, not individual attributes.
     """  # noqa: E501
 
     opsgenie_api_key: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=200)]] = Field(
