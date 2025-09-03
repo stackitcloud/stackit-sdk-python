@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if the directory is provided as an argument
 if [ $# -lt 1 ] || [ $# -gt 2 ]; then
