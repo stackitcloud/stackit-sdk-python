@@ -1,3 +1,6 @@
+## v0.10.0
+- **Feature:** Add support for HTTP checks and cert checks
+
 ## v0.9.2
 - **Feature:** Add `metrics_endpoint_url` attribute to `InstanceSensitiveData` model
 
