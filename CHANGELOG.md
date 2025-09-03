@@ -5,6 +5,8 @@
   - Switch to API version `v1` of STACKIT KMS service (previously `v1beta`)
   - **Breaking Change:** Removal of deprecated `Backend` model
   - **Breaking Change:** Mark `protection` attribute as required in `Key`, `CreateKeyPayload`, `CreateWrappingKeyPayload` and `WrappingKey` model
+- `intake`: [v0.1.1](services/intake/CHANGELOG.md#v011)
+  - Mark attributes `max_message_size_ki_b` and `max_messages_per_hour` as optional (previously required) in `UpdateIntakeRunnerPayload` model
 
 ## Release (2025-08-29)
 - `kms`: [v0.3.0](services/kms/CHANGELOG.md#v030)
