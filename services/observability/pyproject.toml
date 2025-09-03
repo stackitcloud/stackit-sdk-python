@@ -3,7 +3,7 @@ name = "stackit-observability"
 
 [tool.poetry]
 name = "stackit-observability"
-version = "v0.9.1"
+version = "v0.9.2"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]

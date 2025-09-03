@@ -1,3 +1,6 @@
+## v0.9.2
+- **Feature:** Add `metrics_endpoint_url` attribute to `InstanceSensitiveData` model
+
 ## v0.9.1
 - Introduce new model `UpdateAlertConfigsPayloadRouteRoutesInner` 
 
