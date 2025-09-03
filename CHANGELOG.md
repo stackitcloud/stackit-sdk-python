@@ -1,6 +1,9 @@
 ## Release (2025-MM-DD)
-- `observability`: [v0.9.2](services/observability/CHANGELOG.md#v092)
-  - **Feature:** Add `metrics_endpoint_url` attribute to `InstanceSensitiveData` model
+- `observability`: 
+  - [v0.10.0](services/observability/CHANGELOG.md#v0100)
+    - **Feature:** Add support for HTTP checks and cert checks
+  - [v0.9.2](services/observability/CHANGELOG.md#v092)
+    - **Feature:** Add `metrics_endpoint_url` attribute to `InstanceSensitiveData` model
 - `kms`: [v0.4.0](services/kms/CHANGELOG.md#v040)
   - Switch to API version `v1` of STACKIT KMS service (previously `v1beta`)
   - **Breaking Change:** Removal of deprecated `Backend` model

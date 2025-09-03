@@ -29,6 +29,10 @@ from stackit.observability.models.alert_rule import AlertRule
 from stackit.observability.models.alert_rule_record import AlertRuleRecord
 from stackit.observability.models.alert_rules_response import AlertRulesResponse
 from stackit.observability.models.basic_auth import BasicAuth
+from stackit.observability.models.cert_check_child_response import (
+    CertCheckChildResponse,
+)
+from stackit.observability.models.cert_check_response import CertCheckResponse
 from stackit.observability.models.create_alert_config_receiver_payload import (
     CreateAlertConfigReceiverPayload,
 )
@@ -53,11 +57,17 @@ from stackit.observability.models.create_alertgroups_payload import (
 from stackit.observability.models.create_alertrules_payload import (
     CreateAlertrulesPayload,
 )
+from stackit.observability.models.create_cert_check_payload import (
+    CreateCertCheckPayload,
+)
 from stackit.observability.models.create_credentials_payload import (
     CreateCredentialsPayload,
 )
 from stackit.observability.models.create_credentials_response import (
     CreateCredentialsResponse,
+)
+from stackit.observability.models.create_http_check_payload import (
+    CreateHttpCheckPayload,
 )
 from stackit.observability.models.create_instance_payload import CreateInstancePayload
 from stackit.observability.models.create_instance_response import CreateInstanceResponse
@@ -110,6 +120,10 @@ from stackit.observability.models.get_scrape_config_response import (
 )
 from stackit.observability.models.grafana_configs import GrafanaConfigs
 from stackit.observability.models.grafana_oauth import GrafanaOauth
+from stackit.observability.models.http_check_child_response import (
+    HttpCheckChildResponse,
+)
+from stackit.observability.models.http_check_response import HttpCheckResponse
 from stackit.observability.models.http_service_sd import HTTPServiceSD
 from stackit.observability.models.inhibit_rules import InhibitRules
 from stackit.observability.models.instance import Instance
