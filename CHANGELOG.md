@@ -1,4 +1,6 @@
 ## Release (2025-MM-DD)
+- `modelserving`: [v0.2.1](services/modelserving/CHANGELOG.md#v021)
+  - **Feature:** Extend enums in field `type` in model `Model`: `audio`, `image`
 - `observability`: 
   - [v0.10.0](services/observability/CHANGELOG.md#v0100)
     - **Feature:** Add support for HTTP checks and cert checks

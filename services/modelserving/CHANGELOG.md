@@ -1,3 +1,6 @@
+## v0.2.1
+- **Feature:** Extend enums in field `type` in model `Model`: `audio`, `image`
+
 ## v0.2.0
 - **Version**: Minimal version is now python 3.9
 
