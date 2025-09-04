@@ -56,6 +56,7 @@ __all__ = [
     "MaintenanceAutoUpdate",
     "Network",
     "Nodepool",
+    "NodepoolKubernetes",
     "Observability",
     "ProviderOptions",
     "RuntimeError",
@@ -124,6 +125,9 @@ from stackit.ske.models.maintenance_auto_update import (
 )
 from stackit.ske.models.network import Network as Network
 from stackit.ske.models.nodepool import Nodepool as Nodepool
+from stackit.ske.models.nodepool_kubernetes import (
+    NodepoolKubernetes as NodepoolKubernetes,
+)
 from stackit.ske.models.observability import Observability as Observability
 from stackit.ske.models.provider_options import ProviderOptions as ProviderOptions
 from stackit.ske.models.runtime_error import RuntimeError as RuntimeError
