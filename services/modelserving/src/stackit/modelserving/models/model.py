@@ -77,8 +77,8 @@ class Model(BaseModel):
     @field_validator("type")
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["chat", "embedding"]):
-            raise ValueError("must be one of enum values ('chat', 'embedding')")
+        if value not in set(["chat", "embedding", "audio", "image"]):
+            raise ValueError("must be one of enum values ('chat', 'embedding', 'audio', 'image')")
         return value
 
     model_config = ConfigDict(
