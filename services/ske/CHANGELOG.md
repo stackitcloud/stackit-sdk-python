@@ -1,3 +1,6 @@
+## v1.3.0
+- **Feature:** Add new field `kubernetes` to `Nodepool` model
+
 ## v1.2.0
 - **Version**: Minimal version is now python 3.9
 

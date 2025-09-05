@@ -22,6 +22,7 @@ from typing_extensions import Annotated, Self
 
 from stackit.ske.models.cri import CRI
 from stackit.ske.models.machine import Machine
+from stackit.ske.models.nodepool_kubernetes import NodepoolKubernetes
 from stackit.ske.models.taint import Taint
 from stackit.ske.models.volume import Volume
 
@@ -36,6 +37,7 @@ class Nodepool(BaseModel):
     )
     availability_zones: List[StrictStr] = Field(alias="availabilityZones")
     cri: Optional[CRI] = None
+    kubernetes: Optional[NodepoolKubernetes] = None
     labels: Optional[Dict[str, StrictStr]] = None
     machine: Machine
     max_surge: Optional[StrictInt] = Field(default=None, alias="maxSurge")
@@ -53,6 +55,7 @@ class Nodepool(BaseModel):
         "allowSystemComponents",
         "availabilityZones",
         "cri",
+        "kubernetes",
         "labels",
         "machine",
         "maxSurge",
@@ -104,6 +107,9 @@ class Nodepool(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of cri
         if self.cri:
             _dict["cri"] = self.cri.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of kubernetes
+        if self.kubernetes:
+            _dict["kubernetes"] = self.kubernetes.to_dict()
         # override the default output from pydantic by calling `to_dict()` of machine
         if self.machine:
             _dict["machine"] = self.machine.to_dict()
@@ -133,6 +139,9 @@ class Nodepool(BaseModel):
                 "allowSystemComponents": obj.get("allowSystemComponents"),
                 "availabilityZones": obj.get("availabilityZones"),
                 "cri": CRI.from_dict(obj["cri"]) if obj.get("cri") is not None else None,
+                "kubernetes": (
+                    NodepoolKubernetes.from_dict(obj["kubernetes"]) if obj.get("kubernetes") is not None else None
+                ),
                 "labels": obj.get("labels"),
                 "machine": Machine.from_dict(obj["machine"]) if obj.get("machine") is not None else None,
                 "maxSurge": obj.get("maxSurge"),
