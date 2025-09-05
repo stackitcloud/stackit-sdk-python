@@ -1,7 +1,9 @@
 ## Release (2025-MM-DD)
 - `modelserving`: [v0.2.1](services/modelserving/CHANGELOG.md#v021)
   - **Feature:** Extend enums in field `type` in model `Model`: `audio`, `image`
-- `observability`: 
+- `observability`:
+  - [v0.10.1](services/observability/CHANGELOG.md#v0110)
+    - **Feature:** Add attributes `jaeger_http_traces_url`, `otlp_grpc_traces_url` and `otlp_http_traces_url` to `InstanceSensitiveData` model
   - [v0.10.0](services/observability/CHANGELOG.md#v0100)
     - **Feature:** Add support for HTTP checks and cert checks
   - [v0.9.2](services/observability/CHANGELOG.md#v092)

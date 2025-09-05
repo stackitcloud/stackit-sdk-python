@@ -1,3 +1,6 @@
+# v0.10.1
+- **Feature:** Add attributes `jaeger_http_traces_url`, `otlp_grpc_traces_url` and `otlp_http_traces_url` to `InstanceSensitiveData` model
+
 ## v0.10.0
 - **Feature:** Add support for HTTP checks and cert checks
 

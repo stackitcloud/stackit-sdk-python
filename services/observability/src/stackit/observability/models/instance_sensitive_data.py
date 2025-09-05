@@ -38,6 +38,9 @@ class InstanceSensitiveData(BaseModel):
     grafana_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="grafanaUrl")
     grafana_use_stackit_sso: StrictBool = Field(alias="grafanaUseStackitSso")
     instance: Annotated[str, Field(min_length=1, strict=True, max_length=63)]
+    jaeger_http_traces_url: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
+        default=None, alias="jaegerHttpTracesUrl"
+    )
     jaeger_traces_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="jaegerTracesUrl")
     jaeger_ui_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="jaegerUiUrl")
     logs_push_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="logsPushUrl")
@@ -48,6 +51,8 @@ class InstanceSensitiveData(BaseModel):
     metrics_retention_time_raw: Annotated[int, Field(strict=True, ge=0)] = Field(alias="metricsRetentionTimeRaw")
     metrics_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="metricsUrl")
     name: Optional[Annotated[str, Field(strict=True, max_length=300)]] = ""
+    otlp_grpc_traces_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="otlpGrpcTracesUrl")
+    otlp_http_traces_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="otlpHttpTracesUrl")
     otlp_traces_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="otlpTracesUrl")
     plan: PlanModel
     push_metrics_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="pushMetricsUrl")
@@ -63,6 +68,7 @@ class InstanceSensitiveData(BaseModel):
         "grafanaUrl",
         "grafanaUseStackitSso",
         "instance",
+        "jaegerHttpTracesUrl",
         "jaegerTracesUrl",
         "jaegerUiUrl",
         "logsPushUrl",
@@ -73,6 +79,8 @@ class InstanceSensitiveData(BaseModel):
         "metricsRetentionTimeRaw",
         "metricsUrl",
         "name",
+        "otlpGrpcTracesUrl",
+        "otlpHttpTracesUrl",
         "otlpTracesUrl",
         "plan",
         "pushMetricsUrl",
@@ -142,6 +150,7 @@ class InstanceSensitiveData(BaseModel):
                 "grafanaUrl": obj.get("grafanaUrl"),
                 "grafanaUseStackitSso": obj.get("grafanaUseStackitSso"),
                 "instance": obj.get("instance"),
+                "jaegerHttpTracesUrl": obj.get("jaegerHttpTracesUrl"),
                 "jaegerTracesUrl": obj.get("jaegerTracesUrl"),
                 "jaegerUiUrl": obj.get("jaegerUiUrl"),
                 "logsPushUrl": obj.get("logsPushUrl"),
@@ -152,6 +161,8 @@ class InstanceSensitiveData(BaseModel):
                 "metricsRetentionTimeRaw": obj.get("metricsRetentionTimeRaw"),
                 "metricsUrl": obj.get("metricsUrl"),
                 "name": obj.get("name") if obj.get("name") is not None else "",
+                "otlpGrpcTracesUrl": obj.get("otlpGrpcTracesUrl"),
+                "otlpHttpTracesUrl": obj.get("otlpHttpTracesUrl"),
                 "otlpTracesUrl": obj.get("otlpTracesUrl"),
                 "plan": PlanModel.from_dict(obj["plan"]) if obj.get("plan") is not None else None,
                 "pushMetricsUrl": obj.get("pushMetricsUrl"),
