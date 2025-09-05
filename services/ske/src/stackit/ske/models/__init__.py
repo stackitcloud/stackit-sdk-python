@@ -44,6 +44,7 @@ from stackit.ske.models.maintenance import Maintenance
 from stackit.ske.models.maintenance_auto_update import MaintenanceAutoUpdate
 from stackit.ske.models.network import Network
 from stackit.ske.models.nodepool import Nodepool
+from stackit.ske.models.nodepool_kubernetes import NodepoolKubernetes
 from stackit.ske.models.observability import Observability
 from stackit.ske.models.provider_options import ProviderOptions
 from stackit.ske.models.runtime_error import RuntimeError
