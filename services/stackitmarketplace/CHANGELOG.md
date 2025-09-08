@@ -1,6 +1,3 @@
-## v1.8.0
-- **Feature:** Add new field `free_trial` in `CatalogProductOverview` model
-
 ## v1.7.0
 - **Breaking Change:** Update `InquiryFormType` enums
 
