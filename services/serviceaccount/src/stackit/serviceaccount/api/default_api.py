@@ -986,6 +986,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "CreateShortLivedAccessTokenResponse",
+            "400": "Error",
+            "403": "AuthError",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -1069,6 +1071,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "CreateShortLivedAccessTokenResponse",
+            "400": "Error",
+            "403": "AuthError",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -1152,6 +1156,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "CreateShortLivedAccessTokenResponse",
+            "400": "Error",
+            "403": "AuthError",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
