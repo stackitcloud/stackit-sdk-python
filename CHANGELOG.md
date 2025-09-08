@@ -16,6 +16,8 @@
   - Mark attributes `max_message_size_ki_b` and `max_messages_per_hour` as optional (previously required) in `UpdateIntakeRunnerPayload` model
 - `ske`: [v1.3.0](services/ske/CHANGELOG.md#v130)
   - **Feature:** Add new field `kubernetes` to `Nodepool` model
+- `stackitmarketplace`: [v1.8.0](services/stackitmarketplace/CHANGELOG.md#v180)
+  - **Feature:** Add new field `free_trial` in `CatalogProductOverview` model
 
 ## Release (2025-08-29)
 - `kms`: [v0.3.0](services/kms/CHANGELOG.md#v030)
