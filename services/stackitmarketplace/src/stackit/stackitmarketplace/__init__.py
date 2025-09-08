@@ -45,6 +45,7 @@ __all__ = [
     "ContactSales",
     "DeliveryMethod",
     "ErrorResponse",
+    "FreeTrial",
     "InquiriesCreateInquiryPayload",
     "InquiryBecomeVendor",
     "InquiryContactSales",
@@ -127,6 +128,7 @@ from stackit.stackitmarketplace.models.delivery_method import (
 from stackit.stackitmarketplace.models.error_response import (
     ErrorResponse as ErrorResponse,
 )
+from stackit.stackitmarketplace.models.free_trial import FreeTrial as FreeTrial
 from stackit.stackitmarketplace.models.inquiries_create_inquiry_payload import (
     InquiriesCreateInquiryPayload as InquiriesCreateInquiryPayload,
 )

@@ -53,6 +53,7 @@ from stackit.stackitmarketplace.models.catalog_product_vendor_terms import (
 from stackit.stackitmarketplace.models.contact_sales import ContactSales
 from stackit.stackitmarketplace.models.delivery_method import DeliveryMethod
 from stackit.stackitmarketplace.models.error_response import ErrorResponse
+from stackit.stackitmarketplace.models.free_trial import FreeTrial
 from stackit.stackitmarketplace.models.inquiries_create_inquiry_payload import (
     InquiriesCreateInquiryPayload,
 )
