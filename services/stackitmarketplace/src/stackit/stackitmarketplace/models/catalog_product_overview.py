@@ -33,6 +33,7 @@ from stackit.stackitmarketplace.models.catalog_product_overview_vendor import (
     CatalogProductOverviewVendor,
 )
 from stackit.stackitmarketplace.models.delivery_method import DeliveryMethod
+from stackit.stackitmarketplace.models.free_trial import FreeTrial
 from stackit.stackitmarketplace.models.product_lifecycle_state import (
     ProductLifecycleState,
 )
@@ -44,6 +45,7 @@ class CatalogProductOverview(BaseModel):
     """  # noqa: E501
 
     delivery_method: DeliveryMethod = Field(alias="deliveryMethod")
+    free_trial: Optional[FreeTrial] = Field(default=None, alias="freeTrial")
     lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
     logo: Optional[Union[StrictBytes, StrictStr]] = Field(default=None, description="The logo base64 encoded.")
     name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The name of the product.")
@@ -54,6 +56,7 @@ class CatalogProductOverview(BaseModel):
     vendor: CatalogProductOverviewVendor
     __properties: ClassVar[List[str]] = [
         "deliveryMethod",
+        "freeTrial",
         "lifecycleState",
         "logo",
         "name",
@@ -120,6 +123,9 @@ class CatalogProductOverview(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of free_trial
+        if self.free_trial:
+            _dict["freeTrial"] = self.free_trial.to_dict()
         # override the default output from pydantic by calling `to_dict()` of vendor
         if self.vendor:
             _dict["vendor"] = self.vendor.to_dict()
@@ -137,6 +143,7 @@ class CatalogProductOverview(BaseModel):
         _obj = cls.model_validate(
             {
                 "deliveryMethod": obj.get("deliveryMethod"),
+                "freeTrial": FreeTrial.from_dict(obj["freeTrial"]) if obj.get("freeTrial") is not None else None,
                 "lifecycleState": obj.get("lifecycleState"),
                 "logo": obj.get("logo"),
                 "name": obj.get("name"),
