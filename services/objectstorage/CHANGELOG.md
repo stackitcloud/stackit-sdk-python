@@ -1,3 +1,6 @@
+## v1.2.0
+- **Breaking change:** Set `expires` field in `CreateAccessKeyResponse` model to optional
+
 ## v1.1.0
 - **Version**: Minimal version is now python 3.9
 

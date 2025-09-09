@@ -1,6 +1,8 @@
 ## Release (2025-MM-DD)
 - `modelserving`: [v0.2.1](services/modelserving/CHANGELOG.md#v021)
   - **Feature:** Extend enums in field `type` in model `Model`: `audio`, `image`
+- `objectstorage`: [v1.2.0](services/objectstorage/CHANGELOG.md#v120)
+  - **Breaking change:** Set `expires` field in `CreateAccessKeyResponse` model to optional
 - `observability`:
   - [v0.10.1](services/observability/CHANGELOG.md#v0110)
     - **Feature:** Add attributes `jaeger_http_traces_url`, `otlp_grpc_traces_url` and `otlp_http_traces_url` to `InstanceSensitiveData` model
