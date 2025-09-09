@@ -28,7 +28,7 @@ class CreateAccessKeyResponse(BaseModel):
 
     access_key: StrictStr = Field(description="Access key", alias="accessKey")
     display_name: StrictStr = Field(description="Obfuscated access key", alias="displayName")
-    expires: StrictStr = Field(description="Expiration date. Null means never expires.")
+    expires: Optional[StrictStr] = Field(description="Expiration date. Null means never expires.")
     key_id: StrictStr = Field(
         description="Identifies the pair of access key and secret access key for deletion", alias="keyId"
     )
@@ -73,6 +73,11 @@ class CreateAccessKeyResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if expires (nullable) is None
+        # and model_fields_set contains the field
+        if self.expires is None and "expires" in self.model_fields_set:
+            _dict["expires"] = None
+
         return _dict
 
     @classmethod
