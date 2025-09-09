@@ -19,18 +19,19 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class CatalogAuthType(str, Enum):
+class PartitioningType(str, Enum):
     """
-    Means of authentication for catalog requests
+    The target table's partitioning. * `none` disables partitioning, the default. * `intake-time` configures daily partitioning based on the automatically created ingestion time column `__intake_ts`. * `manual` allows arbitrary Iceberg partitioning expression to be set via `partitionBy`.
     """
 
     """
     allowed enum values
     """
     NONE = "none"
-    DREMIO = "dremio"
+    INTAKE_MINUS_TIME = "intake-time"
+    MANUAL = "manual"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of CatalogAuthType from a JSON string"""
+        """Create an instance of PartitioningType from a JSON string"""
         return cls(json.loads(json_str))

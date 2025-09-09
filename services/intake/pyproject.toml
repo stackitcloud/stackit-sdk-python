@@ -3,7 +3,7 @@ name = "stackit-intake"
 
 [tool.poetry]
 name = "stackit-intake"
-version = "v0.1.1"
+version = "v0.1.2"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
