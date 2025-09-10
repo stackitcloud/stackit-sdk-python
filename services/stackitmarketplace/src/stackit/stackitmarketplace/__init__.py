@@ -51,6 +51,7 @@ __all__ = [
     "InquiryContactSales",
     "InquiryFormType",
     "InquiryRegisterTesting",
+    "InquiryRequestPrivatePlan",
     "InquirySuggestProduct",
     "ListCatalogProductsResponse",
     "ListVendorSubscriptionsResponse",
@@ -61,6 +62,7 @@ __all__ = [
     "PricingOptionUnit",
     "ProductLifecycleState",
     "RegisterTesting",
+    "RequestPrivatePlan",
     "ResolveCustomerPayload",
     "ServiceCertificate",
     "SubscriptionLifecycleState",
@@ -144,6 +146,9 @@ from stackit.stackitmarketplace.models.inquiry_form_type import (
 from stackit.stackitmarketplace.models.inquiry_register_testing import (
     InquiryRegisterTesting as InquiryRegisterTesting,
 )
+from stackit.stackitmarketplace.models.inquiry_request_private_plan import (
+    InquiryRequestPrivatePlan as InquiryRequestPrivatePlan,
+)
 from stackit.stackitmarketplace.models.inquiry_suggest_product import (
     InquirySuggestProduct as InquirySuggestProduct,
 )
@@ -167,6 +172,9 @@ from stackit.stackitmarketplace.models.product_lifecycle_state import (
 )
 from stackit.stackitmarketplace.models.register_testing import (
     RegisterTesting as RegisterTesting,
+)
+from stackit.stackitmarketplace.models.request_private_plan import (
+    RequestPrivatePlan as RequestPrivatePlan,
 )
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload as ResolveCustomerPayload,

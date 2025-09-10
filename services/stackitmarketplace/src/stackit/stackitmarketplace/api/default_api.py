@@ -873,7 +873,7 @@ class DefaultApi:
     ) -> None:
         """Create inquiry
 
-        Create an inquiry to contact sales, become a vendor, or suggest a product. Requests are limited to 10 per 5 minutes.
+        Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 
         :param inquiries_create_inquiry_payload: (required)
         :type inquiries_create_inquiry_payload: InquiriesCreateInquiryPayload
@@ -937,7 +937,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Create inquiry
 
-        Create an inquiry to contact sales, become a vendor, or suggest a product. Requests are limited to 10 per 5 minutes.
+        Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 
         :param inquiries_create_inquiry_payload: (required)
         :type inquiries_create_inquiry_payload: InquiriesCreateInquiryPayload
@@ -1001,7 +1001,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create inquiry
 
-        Create an inquiry to contact sales, become a vendor, or suggest a product. Requests are limited to 10 per 5 minutes.
+        Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 
         :param inquiries_create_inquiry_payload: (required)
         :type inquiries_create_inquiry_payload: InquiriesCreateInquiryPayload
