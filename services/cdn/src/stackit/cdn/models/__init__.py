@@ -56,6 +56,9 @@ from stackit.cdn.models.get_custom_domain_response_certificate import (
 )
 from stackit.cdn.models.get_distribution_response import GetDistributionResponse
 from stackit.cdn.models.get_logs_response import GetLogsResponse
+from stackit.cdn.models.get_logs_search_filters_response import (
+    GetLogsSearchFiltersResponse,
+)
 from stackit.cdn.models.get_statistics_response import GetStatisticsResponse
 from stackit.cdn.models.http_backend import HttpBackend
 from stackit.cdn.models.http_backend_patch import HttpBackendPatch

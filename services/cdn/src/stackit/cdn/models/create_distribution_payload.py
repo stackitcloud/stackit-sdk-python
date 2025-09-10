@@ -45,6 +45,10 @@ class CreateDistributionPayload(BaseModel):
         description="Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M) ",
         alias="defaultCacheDuration",
     )
+    geofencing: Optional[Dict[str, List[StrictStr]]] = Field(
+        default=None,
+        description="An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You can not have a country be assigned to multiple alternative origins. ",
+    )
     intent_id: Optional[StrictStr] = Field(
         default=None,
         description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped. ",
@@ -73,6 +77,7 @@ class CreateDistributionPayload(BaseModel):
         "blockedCountries",
         "blockedIPs",
         "defaultCacheDuration",
+        "geofencing",
         "intentId",
         "logSink",
         "monthlyLimitBytes",
@@ -141,6 +146,7 @@ class CreateDistributionPayload(BaseModel):
                 "blockedCountries": obj.get("blockedCountries"),
                 "blockedIPs": obj.get("blockedIPs"),
                 "defaultCacheDuration": obj.get("defaultCacheDuration"),
+                "geofencing": obj.get("geofencing"),
                 "intentId": obj.get("intentId"),
                 "logSink": PatchLokiLogSink.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),

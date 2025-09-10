@@ -36,6 +36,9 @@ from stackit.cdn.models.get_cache_info_response import GetCacheInfoResponse
 from stackit.cdn.models.get_custom_domain_response import GetCustomDomainResponse
 from stackit.cdn.models.get_distribution_response import GetDistributionResponse
 from stackit.cdn.models.get_logs_response import GetLogsResponse
+from stackit.cdn.models.get_logs_search_filters_response import (
+    GetLogsSearchFiltersResponse,
+)
 from stackit.cdn.models.get_statistics_response import GetStatisticsResponse
 from stackit.cdn.models.list_distributions_response import ListDistributionsResponse
 from stackit.cdn.models.patch_distribution_payload import PatchDistributionPayload
@@ -1968,7 +1971,7 @@ class DefaultApi:
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp. "
+                description="Sorts the log messages by a specific field. Defaults to `timestamp`.  Supported sort options: - `timestamp` - `dataCenterRegion` - `requestCountryCode` - `statusCode` - `cacheHit` - `size` - `path` - `host` "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -2021,7 +2024,7 @@ class DefaultApi:
         :type page_size: int
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp.
+        :param sort_by: Sorts the log messages by a specific field. Defaults to `timestamp`.  Supported sort options: - `timestamp` - `dataCenterRegion` - `requestCountryCode` - `statusCode` - `cacheHit` - `size` - `path` - `host`
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -2116,7 +2119,7 @@ class DefaultApi:
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp. "
+                description="Sorts the log messages by a specific field. Defaults to `timestamp`.  Supported sort options: - `timestamp` - `dataCenterRegion` - `requestCountryCode` - `statusCode` - `cacheHit` - `size` - `path` - `host` "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -2169,7 +2172,7 @@ class DefaultApi:
         :type page_size: int
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp.
+        :param sort_by: Sorts the log messages by a specific field. Defaults to `timestamp`.  Supported sort options: - `timestamp` - `dataCenterRegion` - `requestCountryCode` - `statusCode` - `cacheHit` - `size` - `path` - `host`
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -2264,7 +2267,7 @@ class DefaultApi:
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp. "
+                description="Sorts the log messages by a specific field. Defaults to `timestamp`.  Supported sort options: - `timestamp` - `dataCenterRegion` - `requestCountryCode` - `statusCode` - `cacheHit` - `size` - `path` - `host` "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -2317,7 +2320,7 @@ class DefaultApi:
         :type page_size: int
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `timestamp` - `timestamp` - Sort by log message time stamp.
+        :param sort_by: Sorts the log messages by a specific field. Defaults to `timestamp`.  Supported sort options: - `timestamp` - `dataCenterRegion` - `requestCountryCode` - `statusCode` - `cacheHit` - `size` - `path` - `host`
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -2474,6 +2477,288 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1beta/projects/{projectId}/distributions/{distributionId}/logs",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_logs_search_filters(
+        self,
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
+        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution ID")],
+        filter: Annotated[
+            StrictStr,
+            Field(
+                description="Required filter for search suggestions (e.g., status=4, requestCountry, cacheHit=tru, dataCenterRegion). The filter query cannot be empty."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetLogsSearchFiltersResponse:
+        """Get relevant search filters for this distribution based on user input
+
+
+        :param project_id: Your STACKIT Project ID (required)
+        :type project_id: str
+        :param distribution_id: Your CDN distribution ID (required)
+        :type distribution_id: str
+        :param filter: Required filter for search suggestions (e.g., status=4, requestCountry, cacheHit=tru, dataCenterRegion). The filter query cannot be empty. (required)
+        :type filter: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_logs_search_filters_serialize(
+            project_id=project_id,
+            distribution_id=distribution_id,
+            filter=filter,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetLogsSearchFiltersResponse",
+            "400": "GenericJSONResponse",
+            "401": "str",
+            "422": "GenericJSONResponse",
+            "500": "GenericJSONResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_logs_search_filters_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
+        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution ID")],
+        filter: Annotated[
+            StrictStr,
+            Field(
+                description="Required filter for search suggestions (e.g., status=4, requestCountry, cacheHit=tru, dataCenterRegion). The filter query cannot be empty."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetLogsSearchFiltersResponse]:
+        """Get relevant search filters for this distribution based on user input
+
+
+        :param project_id: Your STACKIT Project ID (required)
+        :type project_id: str
+        :param distribution_id: Your CDN distribution ID (required)
+        :type distribution_id: str
+        :param filter: Required filter for search suggestions (e.g., status=4, requestCountry, cacheHit=tru, dataCenterRegion). The filter query cannot be empty. (required)
+        :type filter: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_logs_search_filters_serialize(
+            project_id=project_id,
+            distribution_id=distribution_id,
+            filter=filter,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetLogsSearchFiltersResponse",
+            "400": "GenericJSONResponse",
+            "401": "str",
+            "422": "GenericJSONResponse",
+            "500": "GenericJSONResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_logs_search_filters_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
+        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution ID")],
+        filter: Annotated[
+            StrictStr,
+            Field(
+                description="Required filter for search suggestions (e.g., status=4, requestCountry, cacheHit=tru, dataCenterRegion). The filter query cannot be empty."
+            ),
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get relevant search filters for this distribution based on user input
+
+
+        :param project_id: Your STACKIT Project ID (required)
+        :type project_id: str
+        :param distribution_id: Your CDN distribution ID (required)
+        :type distribution_id: str
+        :param filter: Required filter for search suggestions (e.g., status=4, requestCountry, cacheHit=tru, dataCenterRegion). The filter query cannot be empty. (required)
+        :type filter: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_logs_search_filters_serialize(
+            project_id=project_id,
+            distribution_id=distribution_id,
+            filter=filter,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetLogsSearchFiltersResponse",
+            "400": "GenericJSONResponse",
+            "401": "str",
+            "422": "GenericJSONResponse",
+            "500": "GenericJSONResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_logs_search_filters_serialize(
+        self,
+        project_id,
+        distribution_id,
+        filter,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if distribution_id is not None:
+            _path_params["distributionId"] = distribution_id
+        # process the query parameters
+        if filter is not None:
+
+            _query_params.append(("filter", filter))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json", "text/plain"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1beta/projects/{projectId}/distributions/{distributionId}/logs/searchFilters",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

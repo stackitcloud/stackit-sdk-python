@@ -26,8 +26,8 @@ class PutCustomDomainCustomCertificate(BaseModel):
     Returned if a custom certificate is used. Response does not contain the certificate or key.
     """  # noqa: E501
 
-    certificate: StrictStr = Field(description="base64-encoded certificate")
-    key: StrictStr = Field(description="base64-encoded key")
+    certificate: StrictStr = Field(description="base64-encoded PEM-encoded certificate")
+    key: StrictStr = Field(description="base64-encoded PEM encoded key")
     type: StrictStr
     __properties: ClassVar[List[str]] = ["certificate", "key", "type"]
 
