@@ -32,6 +32,7 @@ class InquiryFormType(str, Enum):
     CONTACT_SALES = "CONTACT_SALES"
     BECOME_VENDOR = "BECOME_VENDOR"
     REGISTER_TESTING = "REGISTER_TESTING"
+    REQUEST_PRIVATE_PLAN = "REQUEST_PRIVATE_PLAN"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

@@ -29,10 +29,17 @@ from typing_extensions import Self
 from stackit.stackitmarketplace.models.become_vendor import BecomeVendor
 from stackit.stackitmarketplace.models.contact_sales import ContactSales
 from stackit.stackitmarketplace.models.register_testing import RegisterTesting
+from stackit.stackitmarketplace.models.request_private_plan import RequestPrivatePlan
 from stackit.stackitmarketplace.models.suggest_product import SuggestProduct
 
 
-INQUIRIESCREATEINQUIRYPAYLOAD_ONE_OF_SCHEMAS = ["BecomeVendor", "ContactSales", "RegisterTesting", "SuggestProduct"]
+INQUIRIESCREATEINQUIRYPAYLOAD_ONE_OF_SCHEMAS = [
+    "BecomeVendor",
+    "ContactSales",
+    "RegisterTesting",
+    "RequestPrivatePlan",
+    "SuggestProduct",
+]
 
 
 class InquiriesCreateInquiryPayload(BaseModel):
@@ -46,10 +53,20 @@ class InquiriesCreateInquiryPayload(BaseModel):
     oneof_schema_2_validator: Optional[ContactSales] = None
     # data type: BecomeVendor
     oneof_schema_3_validator: Optional[BecomeVendor] = None
+    # data type: RequestPrivatePlan
+    oneof_schema_4_validator: Optional[RequestPrivatePlan] = None
     # data type: RegisterTesting
-    oneof_schema_4_validator: Optional[RegisterTesting] = None
-    actual_instance: Optional[Union[BecomeVendor, ContactSales, RegisterTesting, SuggestProduct]] = None
-    one_of_schemas: Set[str] = {"BecomeVendor", "ContactSales", "RegisterTesting", "SuggestProduct"}
+    oneof_schema_5_validator: Optional[RegisterTesting] = None
+    actual_instance: Optional[
+        Union[BecomeVendor, ContactSales, RegisterTesting, RequestPrivatePlan, SuggestProduct]
+    ] = None
+    one_of_schemas: Set[str] = {
+        "BecomeVendor",
+        "ContactSales",
+        "RegisterTesting",
+        "RequestPrivatePlan",
+        "SuggestProduct",
+    }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -86,6 +103,11 @@ class InquiriesCreateInquiryPayload(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `BecomeVendor`")
         else:
             match += 1
+        # validate data type: RequestPrivatePlan
+        if not isinstance(v, RequestPrivatePlan):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `RequestPrivatePlan`")
+        else:
+            match += 1
         # validate data type: RegisterTesting
         if not isinstance(v, RegisterTesting):
             error_messages.append(f"Error! Input type `{type(v)}` is not `RegisterTesting`")
@@ -94,7 +116,7 @@ class InquiriesCreateInquiryPayload(BaseModel):
         if match == 0:
             # no match
             raise ValueError(
-                "No match found when setting `actual_instance` in InquiriesCreateInquiryPayload with oneOf schemas: BecomeVendor, ContactSales, RegisterTesting, SuggestProduct. Details: "
+                "No match found when setting `actual_instance` in InquiriesCreateInquiryPayload with oneOf schemas: BecomeVendor, ContactSales, RegisterTesting, RequestPrivatePlan, SuggestProduct. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -129,6 +151,12 @@ class InquiriesCreateInquiryPayload(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into RequestPrivatePlan
+        try:
+            instance.actual_instance = RequestPrivatePlan.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into RegisterTesting
         try:
             instance.actual_instance = RegisterTesting.from_json(json_str)
@@ -139,13 +167,13 @@ class InquiriesCreateInquiryPayload(BaseModel):
         if match > 1:
             # more than 1 match
             raise ValueError(
-                "Multiple matches found when deserializing the JSON string into InquiriesCreateInquiryPayload with oneOf schemas: BecomeVendor, ContactSales, RegisterTesting, SuggestProduct. Details: "
+                "Multiple matches found when deserializing the JSON string into InquiriesCreateInquiryPayload with oneOf schemas: BecomeVendor, ContactSales, RegisterTesting, RequestPrivatePlan, SuggestProduct. Details: "
                 + ", ".join(error_messages)
             )
         elif match == 0:
             # no match
             raise ValueError(
-                "No match found when deserializing the JSON string into InquiriesCreateInquiryPayload with oneOf schemas: BecomeVendor, ContactSales, RegisterTesting, SuggestProduct. Details: "
+                "No match found when deserializing the JSON string into InquiriesCreateInquiryPayload with oneOf schemas: BecomeVendor, ContactSales, RegisterTesting, RequestPrivatePlan, SuggestProduct. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -161,7 +189,11 @@ class InquiriesCreateInquiryPayload(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], BecomeVendor, ContactSales, RegisterTesting, SuggestProduct]]:
+    def to_dict(
+        self,
+    ) -> Optional[
+        Union[Dict[str, Any], BecomeVendor, ContactSales, RegisterTesting, RequestPrivatePlan, SuggestProduct]
+    ]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
