@@ -1,3 +1,8 @@
+## v1.6.0
+- **Feature:** Added Attribute `LogSink` to `ConfigPatch`
+- **Feature:** Added Attribute `Geofencing` to `DistributionPayload`, `HttpBackend` and `HttpBackendPatch`
+- **Feature:** Added new function `GetLogsSearchFilters`
+
 ## v1.5.0
 - **Feature:** Added new filter functions `DataCenterRegion`, `RequestCountryCode`, `StatusCode` and `CacheHit`
 - **Feature:** Added Attribute `LogSink` and `Certificate`
