@@ -17,25 +17,17 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing_extensions import Self
 
 
-class HttpBackend(BaseModel):
+class GetLogsSearchFiltersResponse(BaseModel):
     """
-    HttpBackend
+    GetLogsSearchFiltersResponse
     """  # noqa: E501
 
-    geofencing: Dict[str, List[StrictStr]] = Field(
-        description="An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You cannot have a country be assigned to multiple alternative origins. "
-    )
-    origin_request_headers: Dict[str, StrictStr] = Field(
-        description="Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text. ",
-        alias="originRequestHeaders",
-    )
-    origin_url: StrictStr = Field(alias="originUrl")
-    type: StrictStr
-    __properties: ClassVar[List[str]] = ["geofencing", "originRequestHeaders", "originUrl", "type"]
+    filters: List[StrictStr]
+    __properties: ClassVar[List[str]] = ["filters"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +46,7 @@ class HttpBackend(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of HttpBackend from a JSON string"""
+        """Create an instance of GetLogsSearchFiltersResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,19 +70,12 @@ class HttpBackend(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of HttpBackend from a dict"""
+        """Create an instance of GetLogsSearchFiltersResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "geofencing": obj.get("geofencing"),
-                "originRequestHeaders": obj.get("originRequestHeaders"),
-                "originUrl": obj.get("originUrl"),
-                "type": obj.get("type"),
-            }
-        )
+        _obj = cls.model_validate({"filters": obj.get("filters")})
         return _obj

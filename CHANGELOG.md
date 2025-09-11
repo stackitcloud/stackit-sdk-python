@@ -1,4 +1,8 @@
 ## Release (2025-MM-DD)
+- `cdn`: [v1.6.0](services/cdn/CHANGELOG.md#v160)
+  - **Feature:** Added Attribute `LogSink` to `ConfigPatch`
+  - **Feature:** Added Attribute `Geofencing` to `DistributionPayload`, `HttpBackend` and `HttpBackendPatch`
+  - **Feature:** Added new function `GetLogsSearchFilters`
 - `modelserving`: [v0.2.1](services/modelserving/CHANGELOG.md#v021)
   - **Feature:** Extend enums in field `type` in model `Model`: `audio`, `image`
 - `objectstorage`: [v1.2.0](services/objectstorage/CHANGELOG.md#v120)
@@ -23,8 +27,11 @@
   - **Feature:** Add new field `kubernetes` to `Nodepool` model
 - `serviceaccount`: [v0.4.1](services/serviceaccount/CHANGELOG.md#v041)
   - **Improvement:** Improve error handling for `CreateShortLivedAccessToken`
-- `stackitmarketplace`: [v1.8.0](services/stackitmarketplace/CHANGELOG.md#v180)
-  - **Feature:** Add new field `free_trial` in `CatalogProductOverview` model
+- `stackitmarketplace`:
+  - [v1.9.0](services/stackitmarketplace/CHANGELOG.md#v190)
+    - **Feature:** Added `RequestPrivatePlan` to `InquiriesCreateInquiryPayload`
+  - [v1.8.0](services/stackitmarketplace/CHANGELOG.md#v180)
+    - **Feature:** Add new field `free_trial` in `CatalogProductOverview` model
 
 ## Release (2025-08-29)
 - `kms`: [v0.3.0](services/kms/CHANGELOG.md#v030)

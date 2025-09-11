@@ -26,6 +26,10 @@ class HttpBackendPatch(BaseModel):
     A partial HTTP Backend
     """  # noqa: E501
 
+    geofencing: Optional[Dict[str, List[StrictStr]]] = Field(
+        default=None,
+        description="An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You cannot have a country be assigned to multiple alternative origins. ",
+    )
     origin_request_headers: Optional[Dict[str, StrictStr]] = Field(
         default=None,
         description="Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text. ",
@@ -33,7 +37,7 @@ class HttpBackendPatch(BaseModel):
     )
     origin_url: Optional[StrictStr] = Field(default=None, alias="originUrl")
     type: StrictStr = Field(description="This property is required to determine the used backend type.")
-    __properties: ClassVar[List[str]] = ["originRequestHeaders", "originUrl", "type"]
+    __properties: ClassVar[List[str]] = ["geofencing", "originRequestHeaders", "originUrl", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,6 +89,7 @@ class HttpBackendPatch(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "geofencing": obj.get("geofencing"),
                 "originRequestHeaders": obj.get("originRequestHeaders"),
                 "originUrl": obj.get("originUrl"),
                 "type": obj.get("type"),

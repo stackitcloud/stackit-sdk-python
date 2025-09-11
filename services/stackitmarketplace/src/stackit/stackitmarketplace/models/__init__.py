@@ -63,6 +63,9 @@ from stackit.stackitmarketplace.models.inquiry_form_type import InquiryFormType
 from stackit.stackitmarketplace.models.inquiry_register_testing import (
     InquiryRegisterTesting,
 )
+from stackit.stackitmarketplace.models.inquiry_request_private_plan import (
+    InquiryRequestPrivatePlan,
+)
 from stackit.stackitmarketplace.models.inquiry_suggest_product import (
     InquirySuggestProduct,
 )
@@ -81,6 +84,7 @@ from stackit.stackitmarketplace.models.product_lifecycle_state import (
     ProductLifecycleState,
 )
 from stackit.stackitmarketplace.models.register_testing import RegisterTesting
+from stackit.stackitmarketplace.models.request_private_plan import RequestPrivatePlan
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload,
 )

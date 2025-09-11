@@ -54,6 +54,7 @@ __all__ = [
     "GetCustomDomainResponseCertificate",
     "GetDistributionResponse",
     "GetLogsResponse",
+    "GetLogsSearchFiltersResponse",
     "GetStatisticsResponse",
     "HttpBackend",
     "HttpBackendPatch",
@@ -152,6 +153,9 @@ from stackit.cdn.models.get_distribution_response import (
     GetDistributionResponse as GetDistributionResponse,
 )
 from stackit.cdn.models.get_logs_response import GetLogsResponse as GetLogsResponse
+from stackit.cdn.models.get_logs_search_filters_response import (
+    GetLogsSearchFiltersResponse as GetLogsSearchFiltersResponse,
+)
 from stackit.cdn.models.get_statistics_response import (
     GetStatisticsResponse as GetStatisticsResponse,
 )

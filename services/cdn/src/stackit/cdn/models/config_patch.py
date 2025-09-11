@@ -22,6 +22,7 @@ from typing_extensions import Annotated, Self
 
 from stackit.cdn.models.http_backend_patch import HttpBackendPatch
 from stackit.cdn.models.optimizer_patch import OptimizerPatch
+from stackit.cdn.models.patch_loki_log_sink import PatchLokiLogSink
 from stackit.cdn.models.region import Region
 
 
@@ -46,6 +47,7 @@ class ConfigPatch(BaseModel):
         description="Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M) ",
         alias="defaultCacheDuration",
     )
+    log_sink: Optional[PatchLokiLogSink] = Field(default=None, alias="logSink")
     monthly_limit_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
         default=None,
         description="Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use. ",
@@ -58,6 +60,7 @@ class ConfigPatch(BaseModel):
         "blockedCountries",
         "blockedIPs",
         "defaultCacheDuration",
+        "logSink",
         "monthlyLimitBytes",
         "optimizer",
         "regions",
@@ -103,6 +106,9 @@ class ConfigPatch(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of backend
         if self.backend:
             _dict["backend"] = self.backend.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of log_sink
+        if self.log_sink:
+            _dict["logSink"] = self.log_sink.to_dict()
         # override the default output from pydantic by calling `to_dict()` of optimizer
         if self.optimizer:
             _dict["optimizer"] = self.optimizer.to_dict()
@@ -110,6 +116,11 @@ class ConfigPatch(BaseModel):
         # and model_fields_set contains the field
         if self.default_cache_duration is None and "default_cache_duration" in self.model_fields_set:
             _dict["defaultCacheDuration"] = None
+
+        # set to None if log_sink (nullable) is None
+        # and model_fields_set contains the field
+        if self.log_sink is None and "log_sink" in self.model_fields_set:
+            _dict["logSink"] = None
 
         # set to None if monthly_limit_bytes (nullable) is None
         # and model_fields_set contains the field
@@ -133,6 +144,7 @@ class ConfigPatch(BaseModel):
                 "blockedCountries": obj.get("blockedCountries"),
                 "blockedIPs": obj.get("blockedIPs"),
                 "defaultCacheDuration": obj.get("defaultCacheDuration"),
+                "logSink": PatchLokiLogSink.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": OptimizerPatch.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
                 "regions": obj.get("regions"),
