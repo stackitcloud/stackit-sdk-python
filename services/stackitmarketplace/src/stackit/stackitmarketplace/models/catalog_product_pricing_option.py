@@ -16,10 +16,11 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing_extensions import Annotated, Self
 
 from stackit.stackitmarketplace.models.catalog_pricing_option_highlight import (
     CatalogPricingOptionHighlight,
@@ -38,6 +39,9 @@ class CatalogProductPricingOption(BaseModel):
     highlights: List[CatalogPricingOptionHighlight] = Field(description="The list of highlights.")
     name: StrictStr = Field(description="The pricing option name.")
     notice_period: Optional[NoticePeriod] = Field(default=None, alias="noticePeriod")
+    plan_id: Annotated[str, Field(min_length=10, strict=True, max_length=29)] = Field(
+        description="The user-readable plan ID of a pricing option.", alias="planId"
+    )
     price_type: Optional[PriceType] = Field(default=None, alias="priceType")
     pricing_plan: Optional[StrictStr] = Field(
         default=None, description="Additional price type information.", alias="pricingPlan"
@@ -54,6 +58,7 @@ class CatalogProductPricingOption(BaseModel):
         "highlights",
         "name",
         "noticePeriod",
+        "planId",
         "priceType",
         "pricingPlan",
         "rate",
@@ -62,6 +67,13 @@ class CatalogProductPricingOption(BaseModel):
         "skuInfoDetails",
         "unit",
     ]
+
+    @field_validator("plan_id")
+    def plan_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-z0-9-]{1,20}-[0-9a-f]{8}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z0-9-]{1,20}-[0-9a-f]{8}$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -133,6 +145,7 @@ class CatalogProductPricingOption(BaseModel):
                 "noticePeriod": (
                     NoticePeriod.from_dict(obj["noticePeriod"]) if obj.get("noticePeriod") is not None else None
                 ),
+                "planId": obj.get("planId"),
                 "priceType": obj.get("priceType"),
                 "pricingPlan": obj.get("pricingPlan"),
                 "rate": obj.get("rate"),

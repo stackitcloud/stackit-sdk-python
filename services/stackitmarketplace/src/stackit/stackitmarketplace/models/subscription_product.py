@@ -38,6 +38,9 @@ class SubscriptionProduct(BaseModel):
     assets: Optional[Assets] = None
     delivery_method: DeliveryMethod = Field(alias="deliveryMethod")
     lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
+    plan_id: Annotated[str, Field(min_length=10, strict=True, max_length=29)] = Field(
+        description="The user-readable plan ID of a pricing option.", alias="planId"
+    )
     price_type: PriceType = Field(alias="priceType")
     pricing_plan: StrictStr = Field(description="Additional price type information.", alias="pricingPlan")
     product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29)] = Field(
@@ -62,6 +65,7 @@ class SubscriptionProduct(BaseModel):
         "assets",
         "deliveryMethod",
         "lifecycleState",
+        "planId",
         "priceType",
         "pricingPlan",
         "productId",
@@ -71,6 +75,13 @@ class SubscriptionProduct(BaseModel):
         "vendorProductId",
         "vendorWebsiteUrl",
     ]
+
+    @field_validator("plan_id")
+    def plan_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-z0-9-]{1,20}-[0-9a-f]{8}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z0-9-]{1,20}-[0-9a-f]{8}$/")
+        return value
 
     @field_validator("product_id")
     def product_id_validate_regular_expression(cls, value):
@@ -178,6 +189,7 @@ class SubscriptionProduct(BaseModel):
                 "assets": Assets.from_dict(obj["assets"]) if obj.get("assets") is not None else None,
                 "deliveryMethod": obj.get("deliveryMethod"),
                 "lifecycleState": obj.get("lifecycleState"),
+                "planId": obj.get("planId"),
                 "priceType": obj.get("priceType"),
                 "pricingPlan": obj.get("pricingPlan"),
                 "productId": obj.get("productId"),
