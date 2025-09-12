@@ -82,9 +82,9 @@ The following instructions assume that you have created a service account and as
 To use the key flow, you need to have a service account key, which must have an RSA key-pair attached to it.
 
 When creating the service account key, a new pair can be created automatically, which will be included in the service account key.
-This will make it much easier to configure the key flow authentication in the CLI, by just providing the service account key.
+This will make it much easier to configure the key flow authentication in the SDK, by just providing the service account key.
 
-> **Optionally**, you can provide your own private key when creating the service account key, which will then require you to also provide it explicitly to the CLI, additionally to the service account key.
+> **Optionally**, you can provide your own private key when creating the service account key, which will then require you to also provide it explicitly to the SDK, additionally to the service account key.
 > Check the STACKIT Knowledge Base for an [example of how to create your own key-pair](https://docs.stackit.cloud/stackit/en/usage-of-the-service-account-keys-in-stackit-175112464.html#UsageoftheserviceaccountkeysinSTACKIT-CreatinganRSAkey-pair).
 
 To configure the key flow, follow this steps:
