@@ -63,6 +63,9 @@ class CatalogProductDetail(BaseModel):
         default=None, description="The list of categories associated to the product."
     )
     delivery_method: DeliveryMethod = Field(alias="deliveryMethod")
+    demo_url: Optional[Annotated[str, Field(strict=True, max_length=512)]] = Field(
+        default=None, description="The URL to a demo if available.", alias="demoUrl"
+    )
     description: StrictStr = Field(description="The product description.")
     documentation_url: Annotated[str, Field(strict=True, max_length=512)] = Field(
         description="The documentation URL.", alias="documentationUrl"
@@ -108,6 +111,7 @@ class CatalogProductDetail(BaseModel):
         "assets",
         "categories",
         "deliveryMethod",
+        "demoUrl",
         "description",
         "documentationUrl",
         "email",
@@ -128,6 +132,18 @@ class CatalogProductDetail(BaseModel):
         "vendorTerms",
         "videoUrl",
     ]
+
+    @field_validator("demo_url")
+    def demo_url_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+            )
+        return value
 
     @field_validator("documentation_url")
     def documentation_url_validate_regular_expression(cls, value):
@@ -260,6 +276,7 @@ class CatalogProductDetail(BaseModel):
                 "assets": Assets.from_dict(obj["assets"]) if obj.get("assets") is not None else None,
                 "categories": obj.get("categories"),
                 "deliveryMethod": obj.get("deliveryMethod"),
+                "demoUrl": obj.get("demoUrl"),
                 "description": obj.get("description"),
                 "documentationUrl": obj.get("documentationUrl"),
                 "email": obj.get("email"),
