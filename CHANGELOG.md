@@ -1,4 +1,7 @@
 ## Release (2025-xx-xx)
+- `intake`: [v0.2.0](services/intake/CHANGELOG.md#v020)
+  - **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
+  - **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request
 - `stackitmarketplace`:
   - [v1.11.0](services/stackitmarketplace/CHANGELOG.md#v1110)
     - **Feature:** Add new field `DemoUrl` to `CatalogProductDetail` model
