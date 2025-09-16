@@ -1,6 +1,9 @@
 ## Release (2025-xx-xx)
-- `stackitmarketplace`: [v1.10.0](services/stackitmarketplace/CHANGELOG.md#v1100)
-  - **Feature:** Added `PlanId` to `CatalogProductPricingOption`and `SubscriptionProduct`
+- `stackitmarketplace`:
+  - [v1.11.0](services/stackitmarketplace/CHANGELOG.md#v1110)
+    - **Feature:** Add new field `DemoUrl` to `CatalogProductDetail` model
+  - [v1.10.0](services/stackitmarketplace/CHANGELOG.md#v1100)
+    - **Feature:** Added `PlanId` to `CatalogProductPricingOption` and `SubscriptionProduct`
 
 ## Release (2025-09-11)
 - `cdn`: [v1.6.0](services/cdn/CHANGELOG.md#v160)
