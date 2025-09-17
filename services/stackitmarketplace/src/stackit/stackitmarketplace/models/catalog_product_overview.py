@@ -17,16 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from typing import Any, ClassVar, Dict, List, Optional, Set, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    StrictBytes,
-    StrictStr,
-    field_validator,
-)
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 from stackit.stackitmarketplace.models.catalog_product_overview_vendor import (
@@ -47,7 +40,7 @@ class CatalogProductOverview(BaseModel):
     delivery_method: DeliveryMethod = Field(alias="deliveryMethod")
     free_trial: Optional[FreeTrial] = Field(default=None, alias="freeTrial")
     lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
-    logo: Optional[Union[StrictBytes, StrictStr]] = Field(default=None, description="The logo base64 encoded.")
+    logo: Optional[StrictStr] = Field(default=None, description="The logo information.")
     name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The name of the product.")
     product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29)] = Field(
         description="The user-readable product ID.", alias="productId"
