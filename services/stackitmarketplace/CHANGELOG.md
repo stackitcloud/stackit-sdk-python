@@ -1,3 +1,6 @@
+## v1.12.0
+- **Breaking Change:** Change `logo` field type from `Union[StrictBytes, StrictStr]` to `StrictStr` in `CatalogProductDetail`, `CatalogProductDetailsVendor`, and `CatalogProductOverview` models
+
 ## v1.11.0
 - **Feature:** Add new field `DemoUrl` to `CatalogProductDetail` model
 
