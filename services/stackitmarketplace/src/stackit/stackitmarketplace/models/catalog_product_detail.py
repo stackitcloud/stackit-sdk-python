@@ -17,14 +17,13 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from typing import Any, ClassVar, Dict, List, Optional, Set, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
     StrictBool,
-    StrictBytes,
     StrictStr,
     field_validator,
 )
@@ -81,7 +80,7 @@ class CatalogProductDetail(BaseModel):
         alias="isProductListing",
     )
     lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
-    logo: Union[StrictBytes, StrictStr] = Field(description="The logo base64 encoded.")
+    logo: StrictStr = Field(description="The logo information.")
     name: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The name of the product.")
     offer_type: OfferType = Field(alias="offerType")
     pricing_options: List[CatalogProductPricingOption] = Field(
