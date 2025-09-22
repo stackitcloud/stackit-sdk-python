@@ -119,6 +119,7 @@ __all__ = [
     "SecurityGroupRuleListResponse",
     "SecurityGroupRuleProtocol",
     "Server",
+    "ServerAgent",
     "ServerConsoleUrl",
     "ServerListResponse",
     "ServerMaintenance",
@@ -364,6 +365,7 @@ from stackit.iaas.models.security_group_rule_protocol import (
     SecurityGroupRuleProtocol as SecurityGroupRuleProtocol,
 )
 from stackit.iaas.models.server import Server as Server
+from stackit.iaas.models.server_agent import ServerAgent as ServerAgent
 from stackit.iaas.models.server_console_url import ServerConsoleUrl as ServerConsoleUrl
 from stackit.iaas.models.server_list_response import (
     ServerListResponse as ServerListResponse,

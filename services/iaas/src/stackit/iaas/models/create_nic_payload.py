@@ -40,6 +40,9 @@ class CreateNicPayload(BaseModel):
     allowed_addresses: Optional[List[AllowedAddressesInner]] = Field(
         default=None, description="A list of IPs or CIDR notations.", alias="allowedAddresses"
     )
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
+    )
     device: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID)."
     )
@@ -54,7 +57,7 @@ class CreateNicPayload(BaseModel):
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
     )
     mac: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Object that represents an MAC address."
@@ -79,6 +82,7 @@ class CreateNicPayload(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "allowedAddresses",
+        "description",
         "device",
         "id",
         "ipv4",
@@ -256,6 +260,7 @@ class CreateNicPayload(BaseModel):
                     if obj.get("allowedAddresses") is not None
                     else None
                 ),
+                "description": obj.get("description"),
                 "device": obj.get("device"),
                 "id": obj.get("id"),
                 "ipv4": obj.get("ipv4"),
