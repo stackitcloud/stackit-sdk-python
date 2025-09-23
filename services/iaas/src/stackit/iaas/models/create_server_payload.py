@@ -34,6 +34,7 @@ from stackit.iaas.models.boot_volume import BootVolume
 from stackit.iaas.models.create_server_payload_networking import (
     CreateServerPayloadNetworking,
 )
+from stackit.iaas.models.server_agent import ServerAgent
 from stackit.iaas.models.server_maintenance import ServerMaintenance
 from stackit.iaas.models.server_network import ServerNetwork
 
@@ -46,6 +47,7 @@ class CreateServerPayload(BaseModel):
     affinity_group: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="The affinity group the server is assigned to.", alias="affinityGroup"
     )
+    agent: Optional[ServerAgent] = None
     availability_zone: Optional[StrictStr] = Field(
         default=None,
         description="This is the availability zone requested during server creation. If none is provided during the creation request and an existing volume will be used as boot volume it will be set to the same availability zone as the volume. For requests with no volumes involved it will be set to the metro availability zone.",
@@ -67,7 +69,7 @@ class CreateServerPayload(BaseModel):
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
     )
     launched_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was launched.", alias="launchedAt"
@@ -118,6 +120,7 @@ class CreateServerPayload(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "affinityGroup",
+        "agent",
         "availabilityZone",
         "bootVolume",
         "createdAt",
@@ -265,6 +268,9 @@ class CreateServerPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of agent
+        if self.agent:
+            _dict["agent"] = self.agent.to_dict()
         # override the default output from pydantic by calling `to_dict()` of boot_volume
         if self.boot_volume:
             _dict["bootVolume"] = self.boot_volume.to_dict()
@@ -295,6 +301,7 @@ class CreateServerPayload(BaseModel):
         _obj = cls.model_validate(
             {
                 "affinityGroup": obj.get("affinityGroup"),
+                "agent": ServerAgent.from_dict(obj["agent"]) if obj.get("agent") is not None else None,
                 "availabilityZone": obj.get("availabilityZone"),
                 "bootVolume": BootVolume.from_dict(obj["bootVolume"]) if obj.get("bootVolume") is not None else None,
                 "createdAt": obj.get("createdAt"),
