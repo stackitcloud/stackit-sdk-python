@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
@@ -42,7 +43,12 @@ class Listener(BaseModel):
         default=None,
         description="Protocol is the highest network protocol we understand to load balance. Currently PROTOCOL_HTTP and PROTOCOL_HTTPS are supported.",
     )
-    __properties: ClassVar[List[str]] = ["http", "https", "name", "port", "protocol"]
+    waf_config_name: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None,
+        description='Enable Web Application Firewall (WAF), referenced to a by name. See "Application Load Balancer - Web Application Firewall API" for more information.',
+        alias="wafConfigName",
+    )
+    __properties: ClassVar[List[str]] = ["http", "https", "name", "port", "protocol", "wafConfigName"]
 
     @field_validator("protocol")
     def protocol_validate_enum(cls, value):
@@ -52,6 +58,16 @@ class Listener(BaseModel):
 
         if value not in set(["PROTOCOL_UNSPECIFIED", "PROTOCOL_HTTP", "PROTOCOL_HTTPS"]):
             raise ValueError("must be one of enum values ('PROTOCOL_UNSPECIFIED', 'PROTOCOL_HTTP', 'PROTOCOL_HTTPS')")
+        return value
+
+    @field_validator("waf_config_name")
+    def waf_config_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$", value):
+            raise ValueError(r"must validate the regular expression /^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$/")
         return value
 
     model_config = ConfigDict(
@@ -120,6 +136,7 @@ class Listener(BaseModel):
                 "name": obj.get("name"),
                 "port": obj.get("port"),
                 "protocol": obj.get("protocol"),
+                "wafConfigName": obj.get("wafConfigName"),
             }
         )
         return _obj
