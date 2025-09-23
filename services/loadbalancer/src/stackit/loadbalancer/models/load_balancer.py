@@ -54,6 +54,10 @@ class LoadBalancer(BaseModel):
         description="External load balancer IP address where this load balancer is exposed. Not changeable after creation.",
         alias="externalAddress",
     )
+    labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per LB. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. ",
+    )
     listeners: Optional[List[Listener]] = Field(
         default=None,
         description="There is a maximum listener count of 20.  Port and protocol limitations:  - UDP listeners cannot have the same port. - TCP-derived listeners cannot have the same port. A TCP-derived listener is any listener that listens on a TCP port. As of now those are: TCP, TCP_PROXY, and PROTOCOL_TLS_PASSTHROUGH. The only exception is, if all listeners for the same port are PROTOCOL_TLS_PASSTHROUGH. - PROTOCOL_TLS_PASSTHROUGH listeners cannot have the same port and at least one common domain name. - PROTOCOL_TLS_PASSTHROUGH listeners can have the same domain name and different ports though (e.g. ports 443 and 8443 for domain example.com). - PROTOCOL_TLS_PASSTHROUGH listeners without a domain name serve as a default listener and you can have only one default listener. ",
@@ -101,6 +105,7 @@ class LoadBalancer(BaseModel):
         "disableTargetSecurityGroupAssignment",
         "errors",
         "externalAddress",
+        "labels",
         "listeners",
         "loadBalancerSecurityGroup",
         "name",
@@ -248,6 +253,7 @@ class LoadBalancer(BaseModel):
                     else None
                 ),
                 "externalAddress": obj.get("externalAddress"),
+                "labels": obj.get("labels"),
                 "listeners": (
                     [Listener.from_dict(_item) for _item in obj["listeners"]]
                     if obj.get("listeners") is not None
