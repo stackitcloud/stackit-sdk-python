@@ -16,44 +16,29 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
-class CreateInstancePayload(BaseModel):
+class PatchOperation(BaseModel):
     """
-    Request a STACKIT Git instance to be created with these properties.
+    Request a STACKIT Git instance to be patch with these properties.
     """  # noqa: E501
 
-    acl: Optional[Annotated[List[StrictStr], Field(max_length=50)]] = Field(
-        default=None, description="A list of CIDR network addresses that are allowed to access the instance."
+    op: StrictStr = Field(description="The patch operation to perform.")
+    path: StrictStr = Field(description="An RFC6901 JSON Pointer to the target location.")
+    value: Optional[StrictStr] = Field(
+        default=None, description="The value to be used for 'add' and 'remove' operations."
     )
-    flavor: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
-        default=None, description="Desired instance flavor. Must be one of the defined enum values"
-    )
-    name: Annotated[str, Field(min_length=5, strict=True, max_length=32)] = Field(
-        description="A user chosen name to distinguish multiple STACKIT Git instances."
-    )
-    __properties: ClassVar[List[str]] = ["acl", "flavor", "name"]
+    __properties: ClassVar[List[str]] = ["op", "path", "value"]
 
-    @field_validator("flavor")
-    def flavor_validate_enum(cls, value):
+    @field_validator("op")
+    def op_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(["git-10", "git-100"]):
-            raise ValueError("must be one of enum values ('git-10', 'git-100')")
-        return value
-
-    @field_validator("name")
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-z]([a-z0-9\-]){0,30}[a-z0-9]+$", value):
-            raise ValueError(r"must validate the regular expression /^[a-z]([a-z0-9\-]){0,30}[a-z0-9]+$/")
+        if value not in set(["add", "remove"]):
+            raise ValueError("must be one of enum values ('add', 'remove')")
         return value
 
     model_config = ConfigDict(
@@ -73,7 +58,7 @@ class CreateInstancePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateInstancePayload from a JSON string"""
+        """Create an instance of PatchOperation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -97,12 +82,12 @@ class CreateInstancePayload(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateInstancePayload from a dict"""
+        """Create an instance of PatchOperation from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"acl": obj.get("acl"), "flavor": obj.get("flavor"), "name": obj.get("name")})
+        _obj = cls.model_validate({"op": obj.get("op"), "path": obj.get("path"), "value": obj.get("value")})
         return _obj
