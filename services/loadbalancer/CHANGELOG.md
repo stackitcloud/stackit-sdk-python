@@ -1,3 +1,6 @@
+## v0.7.0
+- **Feature**: Add new attribute `labels` to `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload` model classes
+
 ## v0.6.0
 - **Version**: Minimal version is now python 3.9
 
