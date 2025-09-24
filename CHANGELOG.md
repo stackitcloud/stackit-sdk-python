@@ -13,6 +13,9 @@
     - **Feature:** Added `PlanId` to `CatalogProductPricingOption` and `SubscriptionProduct`
 - `loadbalancer`: [v0.7.0](services/loadbalancer/CHANGELOG.md#v070)
   - **Feature**: Add new attribute `labels` to `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload` model classes
+- `alb`: [v0.6.0](services/alb/CHANGELOG.md#v060)
+  - **Feature**: Add attribute `labels` to `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload` model classes
+  - **Feature**: Add attribute `waf_config_name` to `Listener` model class
 
 ## Release (2025-09-11)
 - `cdn`: [v1.6.0](services/cdn/CHANGELOG.md#v160)

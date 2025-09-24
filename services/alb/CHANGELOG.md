@@ -1,3 +1,7 @@
+## v0.6.0
+- **Feature**: Add attribute `labels` to `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload` model classes
+- **Feature**: Add attribute `waf_config_name` to `Listener` model class
+
 ## v0.5.0
 - **Version**: Minimal version is now python 3.9
 
