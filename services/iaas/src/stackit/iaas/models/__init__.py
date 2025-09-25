@@ -125,6 +125,7 @@ from stackit.iaas.models.security_group_rule_list_response import (
 )
 from stackit.iaas.models.security_group_rule_protocol import SecurityGroupRuleProtocol
 from stackit.iaas.models.server import Server
+from stackit.iaas.models.server_agent import ServerAgent
 from stackit.iaas.models.server_console_url import ServerConsoleUrl
 from stackit.iaas.models.server_list_response import ServerListResponse
 from stackit.iaas.models.server_maintenance import ServerMaintenance
