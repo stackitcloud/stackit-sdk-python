@@ -29,8 +29,10 @@ __all__ = [
     "ApiAttributeError",
     "ApiException",
     "AddMembersPayload",
+    "AssignableSubject",
     "ErrorResponse",
     "ExistingPermission",
+    "ListAssignableSubjectsResponse",
     "ListMembersResponse",
     "ListPermissionsResponse",
     "ListUserMembershipsResponse",
@@ -64,9 +66,15 @@ from stackit.authorization.exceptions import OpenApiException as OpenApiExceptio
 from stackit.authorization.models.add_members_payload import (
     AddMembersPayload as AddMembersPayload,
 )
+from stackit.authorization.models.assignable_subject import (
+    AssignableSubject as AssignableSubject,
+)
 from stackit.authorization.models.error_response import ErrorResponse as ErrorResponse
 from stackit.authorization.models.existing_permission import (
     ExistingPermission as ExistingPermission,
+)
+from stackit.authorization.models.list_assignable_subjects_response import (
+    ListAssignableSubjectsResponse as ListAssignableSubjectsResponse,
 )
 from stackit.authorization.models.list_members_response import (
     ListMembersResponse as ListMembersResponse,

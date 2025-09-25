@@ -1,4 +1,6 @@
 ## Release (2025-xx-xx)
+- `authorization`: [v0.4.0](services/authorization/CHANGELOG.md#v040)
+  - **Feature**: Add support for assignable subjects 
 - `intake`: [v0.2.0](services/intake/CHANGELOG.md#v020)
   - **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
   - **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request
