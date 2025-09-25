@@ -36,6 +36,7 @@ __all__ = [
     "InternalServerErrorResponse",
     "ListFlavors",
     "ListInstances",
+    "PatchOperation",
     "UnauthorizedResponse",
 ]
 
@@ -67,6 +68,7 @@ from stackit.git.models.internal_server_error_response import (
 )
 from stackit.git.models.list_flavors import ListFlavors as ListFlavors
 from stackit.git.models.list_instances import ListInstances as ListInstances
+from stackit.git.models.patch_operation import PatchOperation as PatchOperation
 from stackit.git.models.unauthorized_response import (
     UnauthorizedResponse as UnauthorizedResponse,
 )
