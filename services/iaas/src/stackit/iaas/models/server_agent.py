@@ -16,36 +16,22 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from typing_extensions import Self
 
 
-class UpdateSnapshotPayload(BaseModel):
+class ServerAgent(BaseModel):
     """
-    Object that represents an update request body of a snapshot.
+    STACKIT server agent options for a server.
     """  # noqa: E501
 
-    labels: Optional[Dict[str, Any]] = Field(
+    provisioned: Optional[StrictBool] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
+        description="Configure the STACKIT server agent provisioning during the first boot of the server. Only works when booting from an images that supports the STACKIT server agent. When `false` the agent IS NOT installed. When `true` the agent IS installed. When its not set the result depend on the used image and its default provisioning setting.",
     )
-    name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
-        default=None, description="The name for a General Object. Matches Names and also UUIDs."
-    )
-    __properties: ClassVar[List[str]] = ["labels", "name"]
-
-    @field_validator("name")
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
-        return value
+    __properties: ClassVar[List[str]] = ["provisioned"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,7 +50,7 @@ class UpdateSnapshotPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateSnapshotPayload from a JSON string"""
+        """Create an instance of ServerAgent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -88,12 +74,12 @@ class UpdateSnapshotPayload(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateSnapshotPayload from a dict"""
+        """Create an instance of ServerAgent from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"labels": obj.get("labels"), "name": obj.get("name")})
+        _obj = cls.model_validate({"provisioned": obj.get("provisioned")})
         return _obj
