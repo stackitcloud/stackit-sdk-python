@@ -15,8 +15,12 @@
 
 # import models into model package
 from stackit.authorization.models.add_members_payload import AddMembersPayload
+from stackit.authorization.models.assignable_subject import AssignableSubject
 from stackit.authorization.models.error_response import ErrorResponse
 from stackit.authorization.models.existing_permission import ExistingPermission
+from stackit.authorization.models.list_assignable_subjects_response import (
+    ListAssignableSubjectsResponse,
+)
 from stackit.authorization.models.list_members_response import ListMembersResponse
 from stackit.authorization.models.list_permissions_response import (
     ListPermissionsResponse,
