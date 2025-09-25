@@ -3,6 +3,8 @@
   - **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
   - **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request
 - `stackitmarketplace`:
+  - [v1.13.0](services/stackitmarketplace/CHANGELOG.md#v1130)
+    - **Feature:** Add `has_demo` attribute to `CatalogProductDetail` model class
   - [v1.12.0](services/stackitmarketplace/CHANGELOG.md#v1120)
     - **Breaking Change:** Change `logo` field type from `Union[StrictBytes, StrictStr]` to `StrictStr` in `CatalogProductDetail`, `CatalogProductDetailsVendor`, and `CatalogProductOverview` models
   - [v1.11.0](services/stackitmarketplace/CHANGELOG.md#v1110)

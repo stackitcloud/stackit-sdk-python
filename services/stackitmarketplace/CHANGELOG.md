@@ -1,3 +1,6 @@
+## v1.13.0
+- **Feature:** Add `has_demo` attribute to `CatalogProductDetail` model class
+
 ## v1.12.0
 - **Breaking Change:** Change `logo` field type from `Union[StrictBytes, StrictStr]` to `StrictStr` in `CatalogProductDetail`, `CatalogProductDetailsVendor`, and `CatalogProductOverview` models
 
