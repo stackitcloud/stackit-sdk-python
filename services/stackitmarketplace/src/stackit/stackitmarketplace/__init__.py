@@ -31,43 +31,16 @@ __all__ = [
     "ApiException",
     "ApproveSubscriptionPayload",
     "Assets",
-    "BecomeVendor",
-    "CatalogPricingOptionHighlight",
-    "CatalogProductDetail",
-    "CatalogProductDetailsVendor",
-    "CatalogProductFacetsValueInner",
-    "CatalogProductHighlight",
-    "CatalogProductOverview",
-    "CatalogProductOverviewVendor",
-    "CatalogProductPricingOption",
-    "CatalogProductSupportResource",
-    "CatalogProductVendorTerms",
-    "ContactSales",
     "DeliveryMethod",
     "ErrorResponse",
-    "FreeTrial",
-    "InquiriesCreateInquiryPayload",
-    "InquiryBecomeVendor",
-    "InquiryContactSales",
-    "InquiryFormType",
-    "InquiryRegisterTesting",
-    "InquiryRequestPrivatePlan",
-    "InquirySuggestProduct",
-    "ListCatalogProductsResponse",
     "ListVendorSubscriptionsResponse",
     "LocalizedVersion",
-    "NoticePeriod",
-    "OfferType",
     "PriceType",
-    "PricingOptionUnit",
     "ProductLifecycleState",
-    "RegisterTesting",
-    "RequestPrivatePlan",
     "ResolveCustomerPayload",
     "ServiceCertificate",
     "SubscriptionLifecycleState",
     "SubscriptionProduct",
-    "SuggestProduct",
     "VendorSubscription",
 ]
 
@@ -92,68 +65,11 @@ from stackit.stackitmarketplace.models.approve_subscription_payload import (
     ApproveSubscriptionPayload as ApproveSubscriptionPayload,
 )
 from stackit.stackitmarketplace.models.assets import Assets as Assets
-from stackit.stackitmarketplace.models.become_vendor import BecomeVendor as BecomeVendor
-from stackit.stackitmarketplace.models.catalog_pricing_option_highlight import (
-    CatalogPricingOptionHighlight as CatalogPricingOptionHighlight,
-)
-from stackit.stackitmarketplace.models.catalog_product_detail import (
-    CatalogProductDetail as CatalogProductDetail,
-)
-from stackit.stackitmarketplace.models.catalog_product_details_vendor import (
-    CatalogProductDetailsVendor as CatalogProductDetailsVendor,
-)
-from stackit.stackitmarketplace.models.catalog_product_facets_value_inner import (
-    CatalogProductFacetsValueInner as CatalogProductFacetsValueInner,
-)
-from stackit.stackitmarketplace.models.catalog_product_highlight import (
-    CatalogProductHighlight as CatalogProductHighlight,
-)
-from stackit.stackitmarketplace.models.catalog_product_overview import (
-    CatalogProductOverview as CatalogProductOverview,
-)
-from stackit.stackitmarketplace.models.catalog_product_overview_vendor import (
-    CatalogProductOverviewVendor as CatalogProductOverviewVendor,
-)
-from stackit.stackitmarketplace.models.catalog_product_pricing_option import (
-    CatalogProductPricingOption as CatalogProductPricingOption,
-)
-from stackit.stackitmarketplace.models.catalog_product_support_resource import (
-    CatalogProductSupportResource as CatalogProductSupportResource,
-)
-from stackit.stackitmarketplace.models.catalog_product_vendor_terms import (
-    CatalogProductVendorTerms as CatalogProductVendorTerms,
-)
-from stackit.stackitmarketplace.models.contact_sales import ContactSales as ContactSales
 from stackit.stackitmarketplace.models.delivery_method import (
     DeliveryMethod as DeliveryMethod,
 )
 from stackit.stackitmarketplace.models.error_response import (
     ErrorResponse as ErrorResponse,
-)
-from stackit.stackitmarketplace.models.free_trial import FreeTrial as FreeTrial
-from stackit.stackitmarketplace.models.inquiries_create_inquiry_payload import (
-    InquiriesCreateInquiryPayload as InquiriesCreateInquiryPayload,
-)
-from stackit.stackitmarketplace.models.inquiry_become_vendor import (
-    InquiryBecomeVendor as InquiryBecomeVendor,
-)
-from stackit.stackitmarketplace.models.inquiry_contact_sales import (
-    InquiryContactSales as InquiryContactSales,
-)
-from stackit.stackitmarketplace.models.inquiry_form_type import (
-    InquiryFormType as InquiryFormType,
-)
-from stackit.stackitmarketplace.models.inquiry_register_testing import (
-    InquiryRegisterTesting as InquiryRegisterTesting,
-)
-from stackit.stackitmarketplace.models.inquiry_request_private_plan import (
-    InquiryRequestPrivatePlan as InquiryRequestPrivatePlan,
-)
-from stackit.stackitmarketplace.models.inquiry_suggest_product import (
-    InquirySuggestProduct as InquirySuggestProduct,
-)
-from stackit.stackitmarketplace.models.list_catalog_products_response import (
-    ListCatalogProductsResponse as ListCatalogProductsResponse,
 )
 from stackit.stackitmarketplace.models.list_vendor_subscriptions_response import (
     ListVendorSubscriptionsResponse as ListVendorSubscriptionsResponse,
@@ -161,20 +77,9 @@ from stackit.stackitmarketplace.models.list_vendor_subscriptions_response import
 from stackit.stackitmarketplace.models.localized_version import (
     LocalizedVersion as LocalizedVersion,
 )
-from stackit.stackitmarketplace.models.notice_period import NoticePeriod as NoticePeriod
-from stackit.stackitmarketplace.models.offer_type import OfferType as OfferType
 from stackit.stackitmarketplace.models.price_type import PriceType as PriceType
-from stackit.stackitmarketplace.models.pricing_option_unit import (
-    PricingOptionUnit as PricingOptionUnit,
-)
 from stackit.stackitmarketplace.models.product_lifecycle_state import (
     ProductLifecycleState as ProductLifecycleState,
-)
-from stackit.stackitmarketplace.models.register_testing import (
-    RegisterTesting as RegisterTesting,
-)
-from stackit.stackitmarketplace.models.request_private_plan import (
-    RequestPrivatePlan as RequestPrivatePlan,
 )
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload as ResolveCustomerPayload,
@@ -187,9 +92,6 @@ from stackit.stackitmarketplace.models.subscription_lifecycle_state import (
 )
 from stackit.stackitmarketplace.models.subscription_product import (
     SubscriptionProduct as SubscriptionProduct,
-)
-from stackit.stackitmarketplace.models.suggest_product import (
-    SuggestProduct as SuggestProduct,
 )
 from stackit.stackitmarketplace.models.vendor_subscription import (
     VendorSubscription as VendorSubscription,
