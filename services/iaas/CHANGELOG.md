@@ -1,3 +1,9 @@
+## v0.9.0
+- Add `created_at` and `updated_at` attribute to `SecurityGroupRule`, `BaseSecurityGroupRule` and `CreateSecurityGroupRulePayload` model classes
+- Add `description` attribute to `NIC`, `CreateNicPayload` and `UpdateNicPayload` model classes
+- New model class `ServerAgent`
+- Add `agent` and `description` attribute to `Server` and `CreateServerPayload` model classes
+
 ## v0.8.1
 - **Internal:** Add workaround to fix upstream OpenAPI generator issue where regex patterns include leading/trailing slashes that need to be removed for validation in `AllowedAddressesInner`, `AreaId`, and `CreateProtocol` models
 

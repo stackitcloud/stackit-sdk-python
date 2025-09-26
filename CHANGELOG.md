@@ -1,6 +1,11 @@
 ## Release (2025-xx-xx)
 - `authorization`: [v0.4.0](services/authorization/CHANGELOG.md#v040)
   - **Feature**: Add support for assignable subjects 
+- `iaas`: [v0.9.0](services/iaas/CHANGELOG.md#v090)
+  - Add `created_at` and `updated_at` attribute to `SecurityGroupRule`, `BaseSecurityGroupRule` and `CreateSecurityGroupRulePayload` model classes
+  - Add `description` attribute to `NIC`, `CreateNicPayload` and `UpdateNicPayload` model classes
+  - New model class `ServerAgent`
+  - Add `agent` and `description` attribute to `Server` and `CreateServerPayload` model classes
 - `intake`: [v0.2.0](services/intake/CHANGELOG.md#v020)
   - **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
   - **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request
