@@ -54,6 +54,10 @@ class CreateLoadBalancerPayload(BaseModel):
         description="External application load balancer IP address where this application load balancer is exposed. Not changeable after creation.",
         alias="externalAddress",
     )
+    labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per ALB.  **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. ",
+    )
     listeners: Optional[List[Listener]] = Field(default=None, description="There is a maximum listener count of 20.  ")
     load_balancer_security_group: Optional[SecurityGroup] = Field(
         default=None,
@@ -98,6 +102,7 @@ class CreateLoadBalancerPayload(BaseModel):
         "disableTargetSecurityGroupAssignment",
         "errors",
         "externalAddress",
+        "labels",
         "listeners",
         "loadBalancerSecurityGroup",
         "name",
@@ -245,6 +250,7 @@ class CreateLoadBalancerPayload(BaseModel):
                     else None
                 ),
                 "externalAddress": obj.get("externalAddress"),
+                "labels": obj.get("labels"),
                 "listeners": (
                     [Listener.from_dict(_item) for _item in obj["listeners"]]
                     if obj.get("listeners") is not None
