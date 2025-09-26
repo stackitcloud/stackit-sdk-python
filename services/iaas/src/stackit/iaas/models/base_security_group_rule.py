@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
@@ -31,6 +32,9 @@ class BaseSecurityGroupRule(BaseModel):
     The base schema for a security group rule.
     """  # noqa: E501
 
+    created_at: Optional[datetime] = Field(
+        default=None, description="Date-time when resource was created.", alias="createdAt"
+    )
     description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
         default=None, description="Description Object. Allows string up to 255 Characters."
     )
@@ -56,7 +60,11 @@ class BaseSecurityGroupRule(BaseModel):
     security_group_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="securityGroupId"
     )
+    updated_at: Optional[datetime] = Field(
+        default=None, description="Date-time when resource was last updated.", alias="updatedAt"
+    )
     __properties: ClassVar[List[str]] = [
+        "createdAt",
         "description",
         "direction",
         "ethertype",
@@ -66,6 +74,7 @@ class BaseSecurityGroupRule(BaseModel):
         "portRange",
         "remoteSecurityGroupId",
         "securityGroupId",
+        "updatedAt",
     ]
 
     @field_validator("id")
@@ -150,11 +159,15 @@ class BaseSecurityGroupRule(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
+                "created_at",
                 "id",
                 "security_group_id",
+                "updated_at",
             ]
         )
 
@@ -182,6 +195,7 @@ class BaseSecurityGroupRule(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "createdAt": obj.get("createdAt"),
                 "description": obj.get("description"),
                 "direction": obj.get("direction"),
                 "ethertype": obj.get("ethertype") if obj.get("ethertype") is not None else "IPv4",
@@ -193,6 +207,7 @@ class BaseSecurityGroupRule(BaseModel):
                 "portRange": PortRange.from_dict(obj["portRange"]) if obj.get("portRange") is not None else None,
                 "remoteSecurityGroupId": obj.get("remoteSecurityGroupId"),
                 "securityGroupId": obj.get("securityGroupId"),
+                "updatedAt": obj.get("updatedAt"),
             }
         )
         return _obj

@@ -33,9 +33,12 @@ class UpdateNicPayload(BaseModel):
     allowed_addresses: Optional[List[AllowedAddressesInner]] = Field(
         default=None, description="A list of IPs or CIDR notations.", alias="allowedAddresses"
     )
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
+    )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
@@ -48,7 +51,14 @@ class UpdateNicPayload(BaseModel):
     security_groups: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
         default=None, description="A list of UUIDs.", alias="securityGroups"
     )
-    __properties: ClassVar[List[str]] = ["allowedAddresses", "labels", "name", "nicSecurity", "securityGroups"]
+    __properties: ClassVar[List[str]] = [
+        "allowedAddresses",
+        "description",
+        "labels",
+        "name",
+        "nicSecurity",
+        "securityGroups",
+    ]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -122,6 +132,7 @@ class UpdateNicPayload(BaseModel):
                     if obj.get("allowedAddresses") is not None
                     else None
                 ),
+                "description": obj.get("description"),
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
                 "nicSecurity": obj.get("nicSecurity"),
