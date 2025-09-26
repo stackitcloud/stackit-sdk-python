@@ -1,3 +1,6 @@
+## v1.14.0
+- **Feature:** Add `has_private_plan_option` attribute to `CatalogProductDetail` model class
+
 ## v1.13.0
 - **Feature:** Add `has_demo` attribute to `CatalogProductDetail` model class
 

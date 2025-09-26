@@ -1,3 +1,6 @@
+## v0.4.0
+- **Feature**: Add support for assignable subjects 
+
 ## v0.3.0
 - **Version**: Minimal version is now python 3.9
 

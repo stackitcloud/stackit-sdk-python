@@ -73,6 +73,9 @@ class CatalogProductDetail(BaseModel):
     has_demo: Optional[StrictBool] = Field(
         default=None, description="If the product has a demoUrl available.", alias="hasDemo"
     )
+    has_private_plan_option: Optional[StrictBool] = Field(
+        default=None, description="If the product has a private plan option.", alias="hasPrivatePlanOption"
+    )
     highlights: List[CatalogProductHighlight] = Field(description="The list of highlights.")
     industries: Optional[List[StrictStr]] = Field(
         default=None, description="The list of industries associated to the product."
@@ -118,6 +121,7 @@ class CatalogProductDetail(BaseModel):
         "documentationUrl",
         "email",
         "hasDemo",
+        "hasPrivatePlanOption",
         "highlights",
         "industries",
         "isProductListing",
@@ -284,6 +288,7 @@ class CatalogProductDetail(BaseModel):
                 "documentationUrl": obj.get("documentationUrl"),
                 "email": obj.get("email"),
                 "hasDemo": obj.get("hasDemo"),
+                "hasPrivatePlanOption": obj.get("hasPrivatePlanOption"),
                 "highlights": (
                     [CatalogProductHighlight.from_dict(_item) for _item in obj["highlights"]]
                     if obj.get("highlights") is not None
