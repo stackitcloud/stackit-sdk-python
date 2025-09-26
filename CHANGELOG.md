@@ -5,6 +5,8 @@
   - **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
   - **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request
 - `stackitmarketplace`:
+  - [v1.14.0](services/stackitmarketplace/CHANGELOG.md#v1140)
+    - **Feature:** Add `has_private_plan_option` attribute to `CatalogProductDetail` model class
   - [v1.13.0](services/stackitmarketplace/CHANGELOG.md#v1130)
     - **Feature:** Add `has_demo` attribute to `CatalogProductDetail` model class
   - [v1.12.0](services/stackitmarketplace/CHANGELOG.md#v1120)
