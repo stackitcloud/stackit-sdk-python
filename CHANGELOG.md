@@ -15,6 +15,8 @@
     - **Feature:** Add new field `DemoUrl` to `CatalogProductDetail` model
   - [v1.10.0](services/stackitmarketplace/CHANGELOG.md#v1100)
     - **Feature:** Added `PlanId` to `CatalogProductPricingOption` and `SubscriptionProduct`
+- `git`: [v0.5.0](services/git/CHANGELOG.md#v050)
+  - **Feature**: Add support for instance patch operation
 - `loadbalancer`: [v0.7.0](services/loadbalancer/CHANGELOG.md#v070)
   - **Feature**: Add new attribute `labels` to `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload` model classes
 
