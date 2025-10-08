@@ -32,6 +32,7 @@ from stackit.cdn.models.distribution_statistics_record_entry import (
 from stackit.cdn.models.distribution_statistics_record_regions import (
     DistributionStatisticsRecordRegions,
 )
+from stackit.cdn.models.distribution_waf import DistributionWaf
 from stackit.cdn.models.domain import Domain
 from stackit.cdn.models.domain_status import DomainStatus
 from stackit.cdn.models.error_details import ErrorDetails
@@ -63,6 +64,7 @@ from stackit.cdn.models.get_statistics_response import GetStatisticsResponse
 from stackit.cdn.models.http_backend import HttpBackend
 from stackit.cdn.models.http_backend_patch import HttpBackendPatch
 from stackit.cdn.models.list_distributions_response import ListDistributionsResponse
+from stackit.cdn.models.list_waf_collections_response import ListWAFCollectionsResponse
 from stackit.cdn.models.loki_log_sink import LokiLogSink
 from stackit.cdn.models.optimizer import Optimizer
 from stackit.cdn.models.optimizer_patch import OptimizerPatch
@@ -86,3 +88,11 @@ from stackit.cdn.models.put_custom_domain_response_certificate import (
 )
 from stackit.cdn.models.region import Region
 from stackit.cdn.models.status_error import StatusError
+from stackit.cdn.models.waf_config import WafConfig
+from stackit.cdn.models.waf_config_patch import WafConfigPatch
+from stackit.cdn.models.waf_mode import WafMode
+from stackit.cdn.models.waf_rule import WAFRule
+from stackit.cdn.models.waf_rule_collection import WAFRuleCollection
+from stackit.cdn.models.waf_rule_group import WAFRuleGroup
+from stackit.cdn.models.waf_status_rule_block import WAFStatusRuleBlock
+from stackit.cdn.models.waf_type import WafType

@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 from stackit.cdn.models.config import Config
+from stackit.cdn.models.distribution_waf import DistributionWaf
 from stackit.cdn.models.domain import Domain
 from stackit.cdn.models.status_error import StatusError
 
@@ -49,6 +50,7 @@ class Distribution(BaseModel):
         description="RFC3339 string which returns the last time the distribution configuration was modified. ",
         alias="updatedAt",
     )
+    waf: Optional[DistributionWaf] = None
     __properties: ClassVar[List[str]] = [
         "config",
         "createdAt",
@@ -58,6 +60,7 @@ class Distribution(BaseModel):
         "projectId",
         "status",
         "updatedAt",
+        "waf",
     ]
 
     @field_validator("status")
@@ -121,6 +124,9 @@ class Distribution(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["errors"] = _items
+        # override the default output from pydantic by calling `to_dict()` of waf
+        if self.waf:
+            _dict["waf"] = self.waf.to_dict()
         return _dict
 
     @classmethod
@@ -146,6 +152,7 @@ class Distribution(BaseModel):
                 "projectId": obj.get("projectId"),
                 "status": obj.get("status"),
                 "updatedAt": obj.get("updatedAt"),
+                "waf": DistributionWaf.from_dict(obj["waf"]) if obj.get("waf") is not None else None,
             }
         )
         return _obj
