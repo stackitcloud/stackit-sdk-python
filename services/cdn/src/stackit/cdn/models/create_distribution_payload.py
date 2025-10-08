@@ -23,6 +23,7 @@ from typing_extensions import Annotated, Self
 from stackit.cdn.models.optimizer import Optimizer
 from stackit.cdn.models.patch_loki_log_sink import PatchLokiLogSink
 from stackit.cdn.models.region import Region
+from stackit.cdn.models.waf_config import WafConfig
 
 
 class CreateDistributionPayload(BaseModel):
@@ -73,6 +74,7 @@ class CreateDistributionPayload(BaseModel):
     regions: Annotated[List[Region], Field(min_length=1)] = Field(
         description="Define in which regions you would like your content to be cached. "
     )
+    waf: Optional[WafConfig] = None
     __properties: ClassVar[List[str]] = [
         "blockedCountries",
         "blockedIPs",
@@ -85,6 +87,7 @@ class CreateDistributionPayload(BaseModel):
         "originRequestHeaders",
         "originUrl",
         "regions",
+        "waf",
     ]
 
     model_config = ConfigDict(
@@ -130,6 +133,9 @@ class CreateDistributionPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of optimizer
         if self.optimizer:
             _dict["optimizer"] = self.optimizer.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of waf
+        if self.waf:
+            _dict["waf"] = self.waf.to_dict()
         return _dict
 
     @classmethod
@@ -154,6 +160,7 @@ class CreateDistributionPayload(BaseModel):
                 "originRequestHeaders": obj.get("originRequestHeaders"),
                 "originUrl": obj.get("originUrl"),
                 "regions": obj.get("regions"),
+                "waf": WafConfig.from_dict(obj["waf"]) if obj.get("waf") is not None else None,
             }
         )
         return _obj
