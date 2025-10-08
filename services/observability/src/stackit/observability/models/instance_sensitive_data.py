@@ -41,6 +41,7 @@ class InstanceSensitiveData(BaseModel):
     jaeger_http_traces_url: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
         default=None, alias="jaegerHttpTracesUrl"
     )
+    jaeger_http_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="jaegerHttpUrl")
     jaeger_traces_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="jaegerTracesUrl")
     jaeger_ui_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="jaegerUiUrl")
     logs_push_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="logsPushUrl")
@@ -69,6 +70,7 @@ class InstanceSensitiveData(BaseModel):
         "grafanaUseStackitSso",
         "instance",
         "jaegerHttpTracesUrl",
+        "jaegerHttpUrl",
         "jaegerTracesUrl",
         "jaegerUiUrl",
         "logsPushUrl",
@@ -151,6 +153,7 @@ class InstanceSensitiveData(BaseModel):
                 "grafanaUseStackitSso": obj.get("grafanaUseStackitSso"),
                 "instance": obj.get("instance"),
                 "jaegerHttpTracesUrl": obj.get("jaegerHttpTracesUrl"),
+                "jaegerHttpUrl": obj.get("jaegerHttpUrl"),
                 "jaegerTracesUrl": obj.get("jaegerTracesUrl"),
                 "jaegerUiUrl": obj.get("jaegerUiUrl"),
                 "logsPushUrl": obj.get("logsPushUrl"),
