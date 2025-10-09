@@ -1,3 +1,8 @@
+## v1.7.0
+- **Feature:** Add models: `DistributionWaf`, `WafConfig`, `WAFConfigPatch`, `WAFMode`, `WAFRule`, `WAFRuleCollection`, `WAFRuleGroup` and `WAFStatusRuleBlock`
+- **Feature:** Add `Waf` attribute to `Config` and `Distribution`
+- **Feature:** Add `WafStatus` to `DistributionRequest` and `ListWafCollections`
+
 ## v1.6.0
 - **Feature:** Added Attribute `LogSink` to `ConfigPatch`
 - **Feature:** Added Attribute `Geofencing` to `DistributionPayload`, `HttpBackend` and `HttpBackendPatch`

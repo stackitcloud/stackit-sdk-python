@@ -3,7 +3,7 @@ name = "stackit-cdn"
 
 [tool.poetry]
 name = "stackit-cdn"
-version = "v1.6.0"
+version = "v1.7.0"
 authors = [
     "STACKIT Developer Tools <developer-tools@stackit.cloud>",
 ]
