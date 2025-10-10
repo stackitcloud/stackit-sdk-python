@@ -40,6 +40,7 @@ __all__ = [
     "DistributionStatisticsRecord",
     "DistributionStatisticsRecordEntry",
     "DistributionStatisticsRecordRegions",
+    "DistributionWaf",
     "Domain",
     "DomainStatus",
     "ErrorDetails",
@@ -59,6 +60,7 @@ __all__ = [
     "HttpBackend",
     "HttpBackendPatch",
     "ListDistributionsResponse",
+    "ListWAFCollectionsResponse",
     "LokiLogSink",
     "Optimizer",
     "OptimizerPatch",
@@ -74,6 +76,14 @@ __all__ = [
     "PutCustomDomainResponseCertificate",
     "Region",
     "StatusError",
+    "WAFRule",
+    "WAFRuleCollection",
+    "WAFRuleGroup",
+    "WAFStatusRuleBlock",
+    "WafConfig",
+    "WafConfigPatch",
+    "WafMode",
+    "WafType",
 ]
 
 # import apis into sdk package
@@ -119,6 +129,7 @@ from stackit.cdn.models.distribution_statistics_record_entry import (
 from stackit.cdn.models.distribution_statistics_record_regions import (
     DistributionStatisticsRecordRegions as DistributionStatisticsRecordRegions,
 )
+from stackit.cdn.models.distribution_waf import DistributionWaf as DistributionWaf
 from stackit.cdn.models.domain import Domain as Domain
 from stackit.cdn.models.domain_status import DomainStatus as DomainStatus
 from stackit.cdn.models.error_details import ErrorDetails as ErrorDetails
@@ -164,6 +175,9 @@ from stackit.cdn.models.http_backend_patch import HttpBackendPatch as HttpBacken
 from stackit.cdn.models.list_distributions_response import (
     ListDistributionsResponse as ListDistributionsResponse,
 )
+from stackit.cdn.models.list_waf_collections_response import (
+    ListWAFCollectionsResponse as ListWAFCollectionsResponse,
+)
 from stackit.cdn.models.loki_log_sink import LokiLogSink as LokiLogSink
 from stackit.cdn.models.optimizer import Optimizer as Optimizer
 from stackit.cdn.models.optimizer_patch import OptimizerPatch as OptimizerPatch
@@ -197,3 +211,15 @@ from stackit.cdn.models.put_custom_domain_response_certificate import (
 )
 from stackit.cdn.models.region import Region as Region
 from stackit.cdn.models.status_error import StatusError as StatusError
+from stackit.cdn.models.waf_config import WafConfig as WafConfig
+from stackit.cdn.models.waf_config_patch import WafConfigPatch as WafConfigPatch
+from stackit.cdn.models.waf_mode import WafMode as WafMode
+from stackit.cdn.models.waf_rule import WAFRule as WAFRule
+from stackit.cdn.models.waf_rule_collection import (
+    WAFRuleCollection as WAFRuleCollection,
+)
+from stackit.cdn.models.waf_rule_group import WAFRuleGroup as WAFRuleGroup
+from stackit.cdn.models.waf_status_rule_block import (
+    WAFStatusRuleBlock as WAFStatusRuleBlock,
+)
+from stackit.cdn.models.waf_type import WafType as WafType

@@ -24,6 +24,7 @@ from stackit.cdn.models.http_backend import HttpBackend
 from stackit.cdn.models.loki_log_sink import LokiLogSink
 from stackit.cdn.models.optimizer import Optimizer
 from stackit.cdn.models.region import Region
+from stackit.cdn.models.waf_config import WafConfig
 
 
 class Config(BaseModel):
@@ -53,6 +54,7 @@ class Config(BaseModel):
     )
     optimizer: Optional[Optimizer] = None
     regions: Annotated[List[Region], Field(min_length=1)]
+    waf: WafConfig
     __properties: ClassVar[List[str]] = [
         "backend",
         "blockedCountries",
@@ -62,6 +64,7 @@ class Config(BaseModel):
         "monthlyLimitBytes",
         "optimizer",
         "regions",
+        "waf",
     ]
 
     model_config = ConfigDict(
@@ -110,6 +113,9 @@ class Config(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of optimizer
         if self.optimizer:
             _dict["optimizer"] = self.optimizer.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of waf
+        if self.waf:
+            _dict["waf"] = self.waf.to_dict()
         # set to None if default_cache_duration (nullable) is None
         # and model_fields_set contains the field
         if self.default_cache_duration is None and "default_cache_duration" in self.model_fields_set:
@@ -141,6 +147,7 @@ class Config(BaseModel):
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": Optimizer.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
                 "regions": obj.get("regions"),
+                "waf": WafConfig.from_dict(obj["waf"]) if obj.get("waf") is not None else None,
             }
         )
         return _obj

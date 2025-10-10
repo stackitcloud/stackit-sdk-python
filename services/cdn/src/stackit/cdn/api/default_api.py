@@ -41,6 +41,7 @@ from stackit.cdn.models.get_logs_search_filters_response import (
 )
 from stackit.cdn.models.get_statistics_response import GetStatisticsResponse
 from stackit.cdn.models.list_distributions_response import ListDistributionsResponse
+from stackit.cdn.models.list_waf_collections_response import ListWAFCollectionsResponse
 from stackit.cdn.models.patch_distribution_payload import PatchDistributionPayload
 from stackit.cdn.models.patch_distribution_response import PatchDistributionResponse
 from stackit.cdn.models.purge_cache_payload import PurgeCachePayload
@@ -1694,6 +1695,12 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
+        with_waf_status: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1712,6 +1719,8 @@ class DefaultApi:
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
+        :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
+        :type with_waf_status: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1737,6 +1746,7 @@ class DefaultApi:
         _param = self._get_distribution_serialize(
             project_id=project_id,
             distribution_id=distribution_id,
+            with_waf_status=with_waf_status,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1762,6 +1772,12 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
+        with_waf_status: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1780,6 +1796,8 @@ class DefaultApi:
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
+        :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
+        :type with_waf_status: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1805,6 +1823,7 @@ class DefaultApi:
         _param = self._get_distribution_serialize(
             project_id=project_id,
             distribution_id=distribution_id,
+            with_waf_status=with_waf_status,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1830,6 +1849,12 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
         distribution_id: StrictStr,
+        with_waf_status: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1848,6 +1873,8 @@ class DefaultApi:
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: str
+        :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
+        :type with_waf_status: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1873,6 +1900,7 @@ class DefaultApi:
         _param = self._get_distribution_serialize(
             project_id=project_id,
             distribution_id=distribution_id,
+            with_waf_status=with_waf_status,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1893,6 +1921,7 @@ class DefaultApi:
         self,
         project_id,
         distribution_id,
+        with_waf_status,
         _request_auth,
         _content_type,
         _headers,
@@ -1916,6 +1945,10 @@ class DefaultApi:
         if distribution_id is not None:
             _path_params["distributionId"] = distribution_id
         # process the query parameters
+        if with_waf_status is not None:
+
+            _query_params.append(("withWafStatus", with_waf_status))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -3122,6 +3155,12 @@ class DefaultApi:
                 description="Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive) "
             ),
         ] = None,
+        with_waf_status: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules."
+            ),
+        ] = None,
         page_identifier: Annotated[
             Optional[StrictStr],
             Field(
@@ -3153,6 +3192,8 @@ class DefaultApi:
         :type project_id: str
         :param page_size: Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
         :type page_size: int
+        :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
+        :type with_waf_status: bool
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
         :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The origin URL is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
@@ -3184,6 +3225,7 @@ class DefaultApi:
         _param = self._list_distributions_serialize(
             project_id=project_id,
             page_size=page_size,
+            with_waf_status=with_waf_status,
             page_identifier=page_identifier,
             sort_by=sort_by,
             sort_order=sort_order,
@@ -3214,6 +3256,12 @@ class DefaultApi:
             Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(
                 description="Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive) "
+            ),
+        ] = None,
+        with_waf_status: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules."
             ),
         ] = None,
         page_identifier: Annotated[
@@ -3247,6 +3295,8 @@ class DefaultApi:
         :type project_id: str
         :param page_size: Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
         :type page_size: int
+        :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
+        :type with_waf_status: bool
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
         :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The origin URL is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
@@ -3278,6 +3328,7 @@ class DefaultApi:
         _param = self._list_distributions_serialize(
             project_id=project_id,
             page_size=page_size,
+            with_waf_status=with_waf_status,
             page_identifier=page_identifier,
             sort_by=sort_by,
             sort_order=sort_order,
@@ -3308,6 +3359,12 @@ class DefaultApi:
             Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(
                 description="Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive) "
+            ),
+        ] = None,
+        with_waf_status: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules."
             ),
         ] = None,
         page_identifier: Annotated[
@@ -3341,6 +3398,8 @@ class DefaultApi:
         :type project_id: str
         :param page_size: Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
         :type page_size: int
+        :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
+        :type with_waf_status: bool
         :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
         :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution ID using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originURL using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The origin URL is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
@@ -3372,6 +3431,7 @@ class DefaultApi:
         _param = self._list_distributions_serialize(
             project_id=project_id,
             page_size=page_size,
+            with_waf_status=with_waf_status,
             page_identifier=page_identifier,
             sort_by=sort_by,
             sort_order=sort_order,
@@ -3394,6 +3454,7 @@ class DefaultApi:
         self,
         project_id,
         page_size,
+        with_waf_status,
         page_identifier,
         sort_by,
         sort_order,
@@ -3422,6 +3483,10 @@ class DefaultApi:
 
             _query_params.append(("pageSize", page_size))
 
+        if with_waf_status is not None:
+
+            _query_params.append(("withWafStatus", with_waf_status))
+
         if page_identifier is not None:
 
             _query_params.append(("pageIdentifier", page_identifier))
@@ -3448,6 +3513,241 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1beta/projects/{projectId}/distributions",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_waf_collections(
+        self,
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListWAFCollectionsResponse:
+        """List all WAF rule collections of the project
+
+        Returns all WAF rule collections available to the project
+
+        :param project_id: Your STACKIT Project ID (required)
+        :type project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_waf_collections_serialize(
+            project_id=project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListWAFCollectionsResponse",
+            "401": "str",
+            "422": "GenericJSONResponse",
+            "500": "GenericJSONResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_waf_collections_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListWAFCollectionsResponse]:
+        """List all WAF rule collections of the project
+
+        Returns all WAF rule collections available to the project
+
+        :param project_id: Your STACKIT Project ID (required)
+        :type project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_waf_collections_serialize(
+            project_id=project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListWAFCollectionsResponse",
+            "401": "str",
+            "422": "GenericJSONResponse",
+            "500": "GenericJSONResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_waf_collections_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all WAF rule collections of the project
+
+        Returns all WAF rule collections available to the project
+
+        :param project_id: Your STACKIT Project ID (required)
+        :type project_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_waf_collections_serialize(
+            project_id=project_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListWAFCollectionsResponse",
+            "401": "str",
+            "422": "GenericJSONResponse",
+            "500": "GenericJSONResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_waf_collections_serialize(
+        self,
+        project_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json", "text/plain"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1beta/projects/{projectId}/waf/collections",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

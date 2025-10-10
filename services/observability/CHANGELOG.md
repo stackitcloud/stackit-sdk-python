@@ -1,3 +1,6 @@
+# v0.11.0
+- **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.
+
 # v0.10.1
 - **Feature:** Add attributes `jaeger_http_traces_url`, `otlp_grpc_traces_url` and `otlp_http_traces_url` to `InstanceSensitiveData` model
 
