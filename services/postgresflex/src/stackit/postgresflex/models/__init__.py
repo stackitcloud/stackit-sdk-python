@@ -92,6 +92,7 @@ from stackit.postgresflex.models.postgres_database_parameter_response import (
 from stackit.postgresflex.models.reset_user_response import ResetUserResponse
 from stackit.postgresflex.models.storage import Storage
 from stackit.postgresflex.models.storage_range import StorageRange
+from stackit.postgresflex.models.storage_update import StorageUpdate
 from stackit.postgresflex.models.update_backup_schedule_payload import (
     UpdateBackupSchedulePayload,
 )
