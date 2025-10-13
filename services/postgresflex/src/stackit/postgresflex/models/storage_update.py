@@ -21,35 +21,19 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
-from stackit.postgresflex.models.acl import ACL
-from stackit.postgresflex.models.storage_update import StorageUpdate
 
-
-class PartialUpdateInstancePayload(BaseModel):
+class StorageUpdate(BaseModel):
     """
-    PartialUpdateInstancePayload
+    StorageUpdate
     """  # noqa: E501
 
-    acl: Optional[ACL] = None
-    backup_schedule: Optional[StrictStr] = Field(default=None, alias="backupSchedule")
-    flavor_id: Optional[StrictStr] = Field(default=None, alias="flavorId")
-    labels: Optional[Dict[str, StrictStr]] = Field(default=None, description="Labels field is not certain/clear")
-    name: Optional[StrictStr] = None
-    options: Optional[Dict[str, StrictStr]] = None
-    replicas: Optional[StrictInt] = None
-    storage: Optional[StorageUpdate] = None
-    version: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = [
-        "acl",
-        "backupSchedule",
-        "flavorId",
-        "labels",
-        "name",
-        "options",
-        "replicas",
-        "storage",
-        "version",
-    ]
+    var_class: Optional[StrictStr] = Field(
+        default=None,
+        description=" ⚠️ **DEPRECATED AND NON-FUNCTIONAL:** Updating the performance class field is not possible. ",
+        alias="class",
+    )
+    size: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["class", "size"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,7 +52,7 @@ class PartialUpdateInstancePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PartialUpdateInstancePayload from a JSON string"""
+        """Create an instance of StorageUpdate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -88,34 +72,16 @@ class PartialUpdateInstancePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of acl
-        if self.acl:
-            _dict["acl"] = self.acl.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of storage
-        if self.storage:
-            _dict["storage"] = self.storage.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PartialUpdateInstancePayload from a dict"""
+        """Create an instance of StorageUpdate from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "acl": ACL.from_dict(obj["acl"]) if obj.get("acl") is not None else None,
-                "backupSchedule": obj.get("backupSchedule"),
-                "flavorId": obj.get("flavorId"),
-                "labels": obj.get("labels"),
-                "name": obj.get("name"),
-                "options": obj.get("options"),
-                "replicas": obj.get("replicas"),
-                "storage": StorageUpdate.from_dict(obj["storage"]) if obj.get("storage") is not None else None,
-                "version": obj.get("version"),
-            }
-        )
+        _obj = cls.model_validate({"class": obj.get("class"), "size": obj.get("size")})
         return _obj
