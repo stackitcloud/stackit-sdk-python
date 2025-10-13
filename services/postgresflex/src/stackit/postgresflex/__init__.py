@@ -78,6 +78,7 @@ __all__ = [
     "ResetUserResponse",
     "Storage",
     "StorageRange",
+    "StorageUpdate",
     "UpdateBackupSchedulePayload",
     "UpdateInstancePayload",
     "UpdateUserPayload",
@@ -231,6 +232,7 @@ from stackit.postgresflex.models.reset_user_response import (
 )
 from stackit.postgresflex.models.storage import Storage as Storage
 from stackit.postgresflex.models.storage_range import StorageRange as StorageRange
+from stackit.postgresflex.models.storage_update import StorageUpdate as StorageUpdate
 from stackit.postgresflex.models.update_backup_schedule_payload import (
     UpdateBackupSchedulePayload as UpdateBackupSchedulePayload,
 )
