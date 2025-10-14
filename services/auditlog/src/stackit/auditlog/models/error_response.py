@@ -15,10 +15,19 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictFloat,
+    StrictInt,
+    StrictStr,
+    field_validator,
+)
 from typing_extensions import Self
 
 
@@ -32,6 +41,19 @@ class ErrorResponse(BaseModel):
     status: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Http status code.")
     timestamp: Optional[datetime] = Field(default=None, description="Timestamp at which the error occurred.")
     __properties: ClassVar[List[str]] = ["message", "path", "status", "timestamp"]
+
+    @field_validator("timestamp", mode="before")
+    def timestamp_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
