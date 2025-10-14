@@ -1,4 +1,7 @@
 ## Release (2025-xx-xx)
+- `postgresflex`: [v1.2.0](services/postgresflex/CHANGELOG.md#v120)
+  - **Breaking Change:** The attribute type for `PartialUpdateInstancePayload` and `UpdateInstancePayload` changed from `Storage` to `StorageUpdate`.
+  - **Deprecation:** `StorageUpdate`: updating the performance class field is not possible.
 - `auditlog`: [v0.1.1](services/auditlog/CHANGELOG.md#v011)
   - **Bugfix:** Prevent year 0 timestamp issue
 - `authorization`: [v0.4.1](services/authorization/CHANGELOG.md#v041)
