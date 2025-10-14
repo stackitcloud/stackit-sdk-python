@@ -17,7 +17,13 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBytes, StrictStr
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBytes,
+    StrictStr,
+)
 from typing_extensions import Self
 
 

@@ -1,3 +1,6 @@
+## v0.4.2
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v0.4.1
 - **Improvement:** Improve error handling for `CreateShortLivedAccessToken`
 

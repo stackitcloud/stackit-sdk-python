@@ -1,3 +1,6 @@
+## v1.3.1
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v1.3.0
 - **Feature:** Add new field `kubernetes` to `Nodepool` model
 

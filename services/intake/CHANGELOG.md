@@ -1,3 +1,6 @@
+## v0.2.1
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v0.2.0
 - **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
 - **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request

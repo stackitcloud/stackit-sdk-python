@@ -61,6 +61,19 @@ class Token(BaseModel):
             raise ValueError("must be one of enum values ('creating', 'active', 'deleting', 'inactive')")
         return value
 
+    @field_validator("valid_until", mode="before")
+    def valid_until_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
+
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,

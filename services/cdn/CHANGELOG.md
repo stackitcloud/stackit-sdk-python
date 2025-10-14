@@ -1,3 +1,6 @@
+## v1.7.1
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v1.7.0
 - **Feature:** Add models: `DistributionWaf`, `WafConfig`, `WAFConfigPatch`, `WAFMode`, `WAFRule`, `WAFRuleCollection`, `WAFRuleGroup` and `WAFStatusRuleBlock`
 - **Feature:** Add `Waf` attribute to `Config` and `Distribution`

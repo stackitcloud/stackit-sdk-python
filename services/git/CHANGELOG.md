@@ -1,3 +1,6 @@
+## v0.5.1
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v0.5.0
 - **Feature**: Add support for instance patch operation
 

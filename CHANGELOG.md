@@ -1,3 +1,31 @@
+## Release (2025-xx-xx)
+- `auditlog`: [v0.1.1](services/auditlog/CHANGELOG.md#v011)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `authorization`: [v0.4.1](services/authorization/CHANGELOG.md#v041)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `cdn`: [v1.7.1](services/cdn/CHANGELOG.md#v171)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `git`: [v0.5.1](services/git/CHANGELOG.md#v051)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `intake`: [v0.2.1](services/intake/CHANGELOG.md#v021)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `kms`: [v0.4.1](services/kms/CHANGELOG.md#v041)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `modelserving`: [v0.2.2](services/modelserving/CHANGELOG.md#v022)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `objectstorage`: [v1.2.1](services/objectstorage/CHANGELOG.md#v121)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `resourcemanager`: [v0.6.1](services/resourcemanager/CHANGELOG.md#v061)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `scf`: [v0.2.1](services/scf/CHANGELOG.md#v021)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `serviceaccount`: [v0.4.2](services/serviceaccount/CHANGELOG.md#v042)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `serviceenablement`: [v1.1.1](services/serviceenablement/CHANGELOG.md#v111)
+  - **Bugfix:** Prevent year 0 timestamp issue
+- `ske`: [v1.3.1](services/ske/CHANGELOG.md#v131)
+  - **Bugfix:** Prevent year 0 timestamp issue
+
 ## Release (2025-10-13)
 - `observability`: [v0.11.0](services/observability/CHANGELOG.md#v0110)
   - **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.
