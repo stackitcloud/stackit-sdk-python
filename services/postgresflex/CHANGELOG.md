@@ -1,3 +1,7 @@
+## v1.2.0
+- **Breaking Change:** The attribute type for `PartialUpdateInstancePayload` and `UpdateInstancePayload` changed from `Storage` to `StorageUpdate`.
+- **Deprecation:** `StorageUpdate`: updating the performance class field is not possible.
+
 ## v1.1.0
 - **Version**: Minimal version is now python 3.9
 

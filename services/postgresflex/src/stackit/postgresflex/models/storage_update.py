@@ -16,26 +16,24 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Set, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    StrictFloat,
-    StrictInt,
-    StrictStr,
-)
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 
-class InstanceDataPoint(BaseModel):
+class StorageUpdate(BaseModel):
     """
-    InstanceDataPoint
+    StorageUpdate
     """  # noqa: E501
 
-    timestamp: Optional[StrictStr] = None
-    value: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties: ClassVar[List[str]] = ["timestamp", "value"]
+    var_class: Optional[StrictStr] = Field(
+        default=None,
+        description=" ⚠️ **DEPRECATED AND NON-FUNCTIONAL:** Updating the performance class field is not possible. ",
+        alias="class",
+    )
+    size: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["class", "size"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +52,7 @@ class InstanceDataPoint(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InstanceDataPoint from a JSON string"""
+        """Create an instance of StorageUpdate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,12 +76,12 @@ class InstanceDataPoint(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InstanceDataPoint from a dict"""
+        """Create an instance of StorageUpdate from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"timestamp": obj.get("timestamp"), "value": obj.get("value")})
+        _obj = cls.model_validate({"class": obj.get("class"), "size": obj.get("size")})
         return _obj
