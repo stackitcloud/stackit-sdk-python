@@ -64,6 +64,19 @@ class AddRoutingTableToAreaPayload(BaseModel):
         "updatedAt",
     ]
 
+    @field_validator("created_at", mode="before")
+    def created_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
+
     @field_validator("id")
     def id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
@@ -81,6 +94,19 @@ class AddRoutingTableToAreaPayload(BaseModel):
         """Validates the regular expression"""
         if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
             raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
+        return value
+
+    @field_validator("updated_at", mode="before")
+    def updated_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
         return value
 
     model_config = ConfigDict(
