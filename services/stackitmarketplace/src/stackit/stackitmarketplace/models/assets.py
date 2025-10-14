@@ -21,7 +21,18 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
-from stackit.stackitmarketplace.models.service_certificate import ServiceCertificate
+from stackit.stackitmarketplace.models.assets_end_user_license_agreement import (
+    AssetsEndUserLicenseAgreement,
+)
+from stackit.stackitmarketplace.models.assets_product_description import (
+    AssetsProductDescription,
+)
+from stackit.stackitmarketplace.models.assets_service_certificate import (
+    AssetsServiceCertificate,
+)
+from stackit.stackitmarketplace.models.assets_service_level_agreement import (
+    AssetsServiceLevelAgreement,
+)
 
 
 class Assets(BaseModel):
@@ -29,8 +40,18 @@ class Assets(BaseModel):
     The assets associated with the product.
     """  # noqa: E501
 
-    service_certificate: Optional[ServiceCertificate] = Field(default=None, alias="serviceCertificate")
-    __properties: ClassVar[List[str]] = ["serviceCertificate"]
+    end_user_license_agreement: Optional[AssetsEndUserLicenseAgreement] = Field(
+        default=None, alias="endUserLicenseAgreement"
+    )
+    product_description: Optional[AssetsProductDescription] = Field(default=None, alias="productDescription")
+    service_certificate: Optional[AssetsServiceCertificate] = Field(default=None, alias="serviceCertificate")
+    service_level_agreement: Optional[AssetsServiceLevelAgreement] = Field(default=None, alias="serviceLevelAgreement")
+    __properties: ClassVar[List[str]] = [
+        "endUserLicenseAgreement",
+        "productDescription",
+        "serviceCertificate",
+        "serviceLevelAgreement",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,9 +90,18 @@ class Assets(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of end_user_license_agreement
+        if self.end_user_license_agreement:
+            _dict["endUserLicenseAgreement"] = self.end_user_license_agreement.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of product_description
+        if self.product_description:
+            _dict["productDescription"] = self.product_description.to_dict()
         # override the default output from pydantic by calling `to_dict()` of service_certificate
         if self.service_certificate:
             _dict["serviceCertificate"] = self.service_certificate.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of service_level_agreement
+        if self.service_level_agreement:
+            _dict["serviceLevelAgreement"] = self.service_level_agreement.to_dict()
         return _dict
 
     @classmethod
@@ -85,11 +115,26 @@ class Assets(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "endUserLicenseAgreement": (
+                    AssetsEndUserLicenseAgreement.from_dict(obj["endUserLicenseAgreement"])
+                    if obj.get("endUserLicenseAgreement") is not None
+                    else None
+                ),
+                "productDescription": (
+                    AssetsProductDescription.from_dict(obj["productDescription"])
+                    if obj.get("productDescription") is not None
+                    else None
+                ),
                 "serviceCertificate": (
-                    ServiceCertificate.from_dict(obj["serviceCertificate"])
+                    AssetsServiceCertificate.from_dict(obj["serviceCertificate"])
                     if obj.get("serviceCertificate") is not None
                     else None
-                )
+                ),
+                "serviceLevelAgreement": (
+                    AssetsServiceLevelAgreement.from_dict(obj["serviceLevelAgreement"])
+                    if obj.get("serviceLevelAgreement") is not None
+                    else None
+                ),
             }
         )
         return _obj

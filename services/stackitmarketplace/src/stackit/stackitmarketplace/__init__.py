@@ -31,6 +31,10 @@ __all__ = [
     "ApiException",
     "ApproveSubscriptionPayload",
     "Assets",
+    "AssetsEndUserLicenseAgreement",
+    "AssetsProductDescription",
+    "AssetsServiceCertificate",
+    "AssetsServiceLevelAgreement",
     "BecomeVendor",
     "CatalogPricingOptionHighlight",
     "CatalogProductDetail",
@@ -64,7 +68,6 @@ __all__ = [
     "RegisterTesting",
     "RequestPrivatePlan",
     "ResolveCustomerPayload",
-    "ServiceCertificate",
     "SubscriptionLifecycleState",
     "SubscriptionProduct",
     "SuggestProduct",
@@ -92,6 +95,18 @@ from stackit.stackitmarketplace.models.approve_subscription_payload import (
     ApproveSubscriptionPayload as ApproveSubscriptionPayload,
 )
 from stackit.stackitmarketplace.models.assets import Assets as Assets
+from stackit.stackitmarketplace.models.assets_end_user_license_agreement import (
+    AssetsEndUserLicenseAgreement as AssetsEndUserLicenseAgreement,
+)
+from stackit.stackitmarketplace.models.assets_product_description import (
+    AssetsProductDescription as AssetsProductDescription,
+)
+from stackit.stackitmarketplace.models.assets_service_certificate import (
+    AssetsServiceCertificate as AssetsServiceCertificate,
+)
+from stackit.stackitmarketplace.models.assets_service_level_agreement import (
+    AssetsServiceLevelAgreement as AssetsServiceLevelAgreement,
+)
 from stackit.stackitmarketplace.models.become_vendor import BecomeVendor as BecomeVendor
 from stackit.stackitmarketplace.models.catalog_pricing_option_highlight import (
     CatalogPricingOptionHighlight as CatalogPricingOptionHighlight,
@@ -178,9 +193,6 @@ from stackit.stackitmarketplace.models.request_private_plan import (
 )
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload as ResolveCustomerPayload,
-)
-from stackit.stackitmarketplace.models.service_certificate import (
-    ServiceCertificate as ServiceCertificate,
 )
 from stackit.stackitmarketplace.models.subscription_lifecycle_state import (
     SubscriptionLifecycleState as SubscriptionLifecycleState,

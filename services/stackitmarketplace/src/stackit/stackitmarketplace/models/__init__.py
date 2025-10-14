@@ -19,6 +19,18 @@ from stackit.stackitmarketplace.models.approve_subscription_payload import (
     ApproveSubscriptionPayload,
 )
 from stackit.stackitmarketplace.models.assets import Assets
+from stackit.stackitmarketplace.models.assets_end_user_license_agreement import (
+    AssetsEndUserLicenseAgreement,
+)
+from stackit.stackitmarketplace.models.assets_product_description import (
+    AssetsProductDescription,
+)
+from stackit.stackitmarketplace.models.assets_service_certificate import (
+    AssetsServiceCertificate,
+)
+from stackit.stackitmarketplace.models.assets_service_level_agreement import (
+    AssetsServiceLevelAgreement,
+)
 from stackit.stackitmarketplace.models.become_vendor import BecomeVendor
 from stackit.stackitmarketplace.models.catalog_pricing_option_highlight import (
     CatalogPricingOptionHighlight,
@@ -88,7 +100,6 @@ from stackit.stackitmarketplace.models.request_private_plan import RequestPrivat
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload,
 )
-from stackit.stackitmarketplace.models.service_certificate import ServiceCertificate
 from stackit.stackitmarketplace.models.subscription_lifecycle_state import (
     SubscriptionLifecycleState,
 )
