@@ -1,3 +1,6 @@
+## v1.2.1
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v1.2.0
 - **Breaking change:** Set `expires` field in `CreateAccessKeyResponse` model to optional
 

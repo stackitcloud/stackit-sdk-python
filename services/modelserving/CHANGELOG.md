@@ -1,3 +1,6 @@
+## v0.2.2
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v0.2.1
 - **Feature:** Extend enums in field `type` in model `Model`: `audio`, `image`
 

@@ -1,3 +1,6 @@
+## v0.2.1
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v0.2.0
 - **Feature:** Add field `OrgId` in model `OrgManager`
 - **Feature:** Add new model `OrganizationCreateBffResponse` and `SpaceCreatedBffResponse`

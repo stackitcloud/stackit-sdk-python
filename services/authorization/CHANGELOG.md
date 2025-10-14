@@ -1,3 +1,6 @@
+## v0.4.1
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v0.4.0
 - **Feature**: Add support for assignable subjects 
 

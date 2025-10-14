@@ -1,3 +1,6 @@
+## v0.6.1
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v0.6.0
 - **Version**: Minimal version is now python 3.9
 

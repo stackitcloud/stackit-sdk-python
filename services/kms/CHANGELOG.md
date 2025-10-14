@@ -1,3 +1,6 @@
+## v0.4.1
+- **Bugfix:** Prevent year 0 timestamp issue
+
 ## v0.4.0
 - Switch to API version `v1` of STACKIT KMS service (previously `v1beta`)
 - **Breaking Change:** Removal of deprecated `Backend` model
