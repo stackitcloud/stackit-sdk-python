@@ -18,7 +18,13 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+)
 from typing_extensions import Self
 
 from stackit.serverbackup.models.backup_policy_backup_properties import (
