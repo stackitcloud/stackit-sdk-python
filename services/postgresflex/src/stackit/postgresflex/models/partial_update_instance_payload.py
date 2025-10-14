@@ -22,7 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 from stackit.postgresflex.models.acl import ACL
-from stackit.postgresflex.models.storage import Storage
+from stackit.postgresflex.models.storage_update import StorageUpdate
 
 
 class PartialUpdateInstancePayload(BaseModel):
@@ -37,7 +37,7 @@ class PartialUpdateInstancePayload(BaseModel):
     name: Optional[StrictStr] = None
     options: Optional[Dict[str, StrictStr]] = None
     replicas: Optional[StrictInt] = None
-    storage: Optional[Storage] = None
+    storage: Optional[StorageUpdate] = None
     version: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
         "acl",
@@ -114,7 +114,7 @@ class PartialUpdateInstancePayload(BaseModel):
                 "name": obj.get("name"),
                 "options": obj.get("options"),
                 "replicas": obj.get("replicas"),
-                "storage": Storage.from_dict(obj["storage"]) if obj.get("storage") is not None else None,
+                "storage": StorageUpdate.from_dict(obj["storage"]) if obj.get("storage") is not None else None,
                 "version": obj.get("version"),
             }
         )
