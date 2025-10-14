@@ -21,7 +21,18 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
-from stackit.stackitmarketplace.models.service_certificate import ServiceCertificate
+from stackit.stackitmarketplace.models.assets_end_user_license_agreement import (
+    AssetsEndUserLicenseAgreement,
+)
+from stackit.stackitmarketplace.models.assets_product_description import (
+    AssetsProductDescription,
+)
+from stackit.stackitmarketplace.models.assets_service_certificate import (
+    AssetsServiceCertificate,
+)
+from stackit.stackitmarketplace.models.assets_service_level_agreement import (
+    AssetsServiceLevelAgreement,
+)
 
 
 class Assets(BaseModel):
@@ -29,8 +40,24 @@ class Assets(BaseModel):
     The assets associated with the product.
     """  # noqa: E501
 
-    service_certificate: Optional[ServiceCertificate] = Field(default=None, alias="serviceCertificate")
-    __properties: ClassVar[List[str]] = ["serviceCertificate"]
+    assets_end_user_license_agreement: Optional[AssetsEndUserLicenseAgreement] = Field(
+        default=None, alias="assetsEndUserLicenseAgreement"
+    )
+    assets_product_description: Optional[AssetsProductDescription] = Field(
+        default=None, alias="assetsProductDescription"
+    )
+    assets_service_certificate: Optional[AssetsServiceCertificate] = Field(
+        default=None, alias="assetsServiceCertificate"
+    )
+    assets_service_level_agreement: Optional[AssetsServiceLevelAgreement] = Field(
+        default=None, alias="assetsServiceLevelAgreement"
+    )
+    __properties: ClassVar[List[str]] = [
+        "assetsEndUserLicenseAgreement",
+        "assetsProductDescription",
+        "assetsServiceCertificate",
+        "assetsServiceLevelAgreement",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,9 +96,18 @@ class Assets(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of service_certificate
-        if self.service_certificate:
-            _dict["serviceCertificate"] = self.service_certificate.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets_end_user_license_agreement
+        if self.assets_end_user_license_agreement:
+            _dict["assetsEndUserLicenseAgreement"] = self.assets_end_user_license_agreement.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets_product_description
+        if self.assets_product_description:
+            _dict["assetsProductDescription"] = self.assets_product_description.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets_service_certificate
+        if self.assets_service_certificate:
+            _dict["assetsServiceCertificate"] = self.assets_service_certificate.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets_service_level_agreement
+        if self.assets_service_level_agreement:
+            _dict["assetsServiceLevelAgreement"] = self.assets_service_level_agreement.to_dict()
         return _dict
 
     @classmethod
@@ -85,11 +121,26 @@ class Assets(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "serviceCertificate": (
-                    ServiceCertificate.from_dict(obj["serviceCertificate"])
-                    if obj.get("serviceCertificate") is not None
+                "assetsEndUserLicenseAgreement": (
+                    AssetsEndUserLicenseAgreement.from_dict(obj["assetsEndUserLicenseAgreement"])
+                    if obj.get("assetsEndUserLicenseAgreement") is not None
                     else None
-                )
+                ),
+                "assetsProductDescription": (
+                    AssetsProductDescription.from_dict(obj["assetsProductDescription"])
+                    if obj.get("assetsProductDescription") is not None
+                    else None
+                ),
+                "assetsServiceCertificate": (
+                    AssetsServiceCertificate.from_dict(obj["assetsServiceCertificate"])
+                    if obj.get("assetsServiceCertificate") is not None
+                    else None
+                ),
+                "assetsServiceLevelAgreement": (
+                    AssetsServiceLevelAgreement.from_dict(obj["assetsServiceLevelAgreement"])
+                    if obj.get("assetsServiceLevelAgreement") is not None
+                    else None
+                ),
             }
         )
         return _obj
