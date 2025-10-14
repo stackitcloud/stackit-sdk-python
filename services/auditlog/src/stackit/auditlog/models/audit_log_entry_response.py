@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
@@ -118,11 +119,37 @@ class AuditLogEntryResponse(BaseModel):
         "visibility",
     ]
 
+    @field_validator("event_time_stamp", mode="before")
+    def event_time_stamp_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
+
     @field_validator("event_type")
     def event_type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(["ADMIN_ACTIVITY", "SYSTEM_EVENT", "POLICY_DENIED"]):
             raise ValueError("must be one of enum values ('ADMIN_ACTIVITY', 'SYSTEM_EVENT', 'POLICY_DENIED')")
+        return value
+
+    @field_validator("received_time_stamp", mode="before")
+    def received_time_stamp_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
         return value
 
     @field_validator("severity")
