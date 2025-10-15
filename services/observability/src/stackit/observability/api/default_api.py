@@ -95,6 +95,9 @@ from stackit.observability.models.list_scrape_configs_response import (
 )
 from stackit.observability.models.logs_config_response import LogsConfigResponse
 from stackit.observability.models.message import Message
+from stackit.observability.models.partial_update_alertrules_request_inner import (
+    PartialUpdateAlertrulesRequestInner,
+)
 from stackit.observability.models.plans_response import PlansResponse
 from stackit.observability.models.receiver import Receiver
 from stackit.observability.models.scrape_configs_response import ScrapeConfigsResponse
@@ -117,9 +120,6 @@ from stackit.observability.models.update_alertgroup_payload import (
 )
 from stackit.observability.models.update_alertgroups_request_inner import (
     UpdateAlertgroupsRequestInner,
-)
-from stackit.observability.models.update_alertgroups_request_inner_rules_inner import (
-    UpdateAlertgroupsRequestInnerRulesInner,
 )
 from stackit.observability.models.update_credentials_remote_write_config_payload import (
     UpdateCredentialsRemoteWriteConfigPayload,
@@ -12509,7 +12509,7 @@ class DefaultApi:
         group_name: StrictStr,
         instance_id: StrictStr,
         project_id: StrictStr,
-        update_alertgroups_request_inner_rules_inner: List[UpdateAlertgroupsRequestInnerRulesInner],
+        partial_update_alertrules_request_inner: List[PartialUpdateAlertrulesRequestInner],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12530,8 +12530,8 @@ class DefaultApi:
         :type instance_id: str
         :param project_id: (required)
         :type project_id: str
-        :param update_alertgroups_request_inner_rules_inner: (required)
-        :type update_alertgroups_request_inner_rules_inner: List[UpdateAlertgroupsRequestInnerRulesInner]
+        :param partial_update_alertrules_request_inner: (required)
+        :type partial_update_alertrules_request_inner: List[PartialUpdateAlertrulesRequestInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12558,7 +12558,7 @@ class DefaultApi:
             group_name=group_name,
             instance_id=instance_id,
             project_id=project_id,
-            update_alertgroups_request_inner_rules_inner=update_alertgroups_request_inner_rules_inner,
+            partial_update_alertrules_request_inner=partial_update_alertrules_request_inner,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -12583,7 +12583,7 @@ class DefaultApi:
         group_name: StrictStr,
         instance_id: StrictStr,
         project_id: StrictStr,
-        update_alertgroups_request_inner_rules_inner: List[UpdateAlertgroupsRequestInnerRulesInner],
+        partial_update_alertrules_request_inner: List[PartialUpdateAlertrulesRequestInner],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12604,8 +12604,8 @@ class DefaultApi:
         :type instance_id: str
         :param project_id: (required)
         :type project_id: str
-        :param update_alertgroups_request_inner_rules_inner: (required)
-        :type update_alertgroups_request_inner_rules_inner: List[UpdateAlertgroupsRequestInnerRulesInner]
+        :param partial_update_alertrules_request_inner: (required)
+        :type partial_update_alertrules_request_inner: List[PartialUpdateAlertrulesRequestInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12632,7 +12632,7 @@ class DefaultApi:
             group_name=group_name,
             instance_id=instance_id,
             project_id=project_id,
-            update_alertgroups_request_inner_rules_inner=update_alertgroups_request_inner_rules_inner,
+            partial_update_alertrules_request_inner=partial_update_alertrules_request_inner,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -12657,7 +12657,7 @@ class DefaultApi:
         group_name: StrictStr,
         instance_id: StrictStr,
         project_id: StrictStr,
-        update_alertgroups_request_inner_rules_inner: List[UpdateAlertgroupsRequestInnerRulesInner],
+        partial_update_alertrules_request_inner: List[PartialUpdateAlertrulesRequestInner],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12678,8 +12678,8 @@ class DefaultApi:
         :type instance_id: str
         :param project_id: (required)
         :type project_id: str
-        :param update_alertgroups_request_inner_rules_inner: (required)
-        :type update_alertgroups_request_inner_rules_inner: List[UpdateAlertgroupsRequestInnerRulesInner]
+        :param partial_update_alertrules_request_inner: (required)
+        :type partial_update_alertrules_request_inner: List[PartialUpdateAlertrulesRequestInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12706,7 +12706,7 @@ class DefaultApi:
             group_name=group_name,
             instance_id=instance_id,
             project_id=project_id,
-            update_alertgroups_request_inner_rules_inner=update_alertgroups_request_inner_rules_inner,
+            partial_update_alertrules_request_inner=partial_update_alertrules_request_inner,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -12726,7 +12726,7 @@ class DefaultApi:
         group_name,
         instance_id,
         project_id,
-        update_alertgroups_request_inner_rules_inner,
+        partial_update_alertrules_request_inner,
         _request_auth,
         _content_type,
         _headers,
@@ -12736,7 +12736,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            "UpdateAlertgroupsRequestInnerRulesInner": "",
+            "PartialUpdateAlertrulesRequestInner": "",
         }
 
         _path_params: Dict[str, str] = {}
@@ -12757,8 +12757,8 @@ class DefaultApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if update_alertgroups_request_inner_rules_inner is not None:
-            _body_params = update_alertgroups_request_inner_rules_inner
+        if partial_update_alertrules_request_inner is not None:
+            _body_params = partial_update_alertrules_request_inner
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:

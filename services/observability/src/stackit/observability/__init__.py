@@ -56,6 +56,7 @@ __all__ = [
     "CreateInstancePayload",
     "CreateInstanceResponse",
     "CreateLogsAlertgroupsPayload",
+    "CreateLogsAlertgroupsPayloadRulesInner",
     "CreateScrapeConfigPayload",
     "CreateScrapeConfigPayloadBasicAuth",
     "CreateScrapeConfigPayloadHttpSdConfigsInner",
@@ -95,6 +96,7 @@ __all__ = [
     "ModelGlobal",
     "OAuth2",
     "OpsgenieConfig",
+    "PartialUpdateAlertrulesRequestInner",
     "PermissionDenied",
     "Plan",
     "PlanModel",
@@ -224,6 +226,9 @@ from stackit.observability.models.create_instance_response import (
 from stackit.observability.models.create_logs_alertgroups_payload import (
     CreateLogsAlertgroupsPayload as CreateLogsAlertgroupsPayload,
 )
+from stackit.observability.models.create_logs_alertgroups_payload_rules_inner import (
+    CreateLogsAlertgroupsPayloadRulesInner as CreateLogsAlertgroupsPayloadRulesInner,
+)
 from stackit.observability.models.create_scrape_config_payload import (
     CreateScrapeConfigPayload as CreateScrapeConfigPayload,
 )
@@ -316,6 +321,9 @@ from stackit.observability.models.model_global import ModelGlobal as ModelGlobal
 from stackit.observability.models.o_auth2 import OAuth2 as OAuth2
 from stackit.observability.models.opsgenie_config import (
     OpsgenieConfig as OpsgenieConfig,
+)
+from stackit.observability.models.partial_update_alertrules_request_inner import (
+    PartialUpdateAlertrulesRequestInner as PartialUpdateAlertrulesRequestInner,
 )
 from stackit.observability.models.permission_denied import (
     PermissionDenied as PermissionDenied,
