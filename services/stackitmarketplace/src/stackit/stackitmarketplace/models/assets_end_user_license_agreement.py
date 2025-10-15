@@ -16,38 +16,21 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
-from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict
 from typing_extensions import Self
 
+from stackit.stackitmarketplace.models.localized_version import LocalizedVersion
 
-class ErrorResponse(BaseModel):
+
+class AssetsEndUserLicenseAgreement(BaseModel):
     """
-    ErrorResponse
+    The related end user license agreement of the (subscription) product.
     """  # noqa: E501
 
-    error: StrictStr = Field(description="Reason phrase of the status code.")
-    message: StrictStr = Field(description="Description of the error.")
-    path: StrictStr = Field(description="Path which was called.")
-    status: StrictInt = Field(description="HTTP response status code.")
-    time_stamp: datetime = Field(description="Timestamp at which the error occurred.", alias="timeStamp")
-    __properties: ClassVar[List[str]] = ["error", "message", "path", "status", "timeStamp"]
-
-    @field_validator("time_stamp", mode="before")
-    def time_stamp_change_year_zero_to_one(cls, value):
-        """Workaround which prevents year 0 issue"""
-        if isinstance(value, str):
-            # Check for year "0000" at the beginning of the string
-            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
-            if value.startswith("0000-01-01T") and re.match(
-                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
-            ):
-                # Workaround: Replace "0000" with "0001"
-                return "0001" + value[4:]  # Take "0001" and append the rest of the string
-        return value
+    version: Optional[LocalizedVersion] = None
+    __properties: ClassVar[List[str]] = ["version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,7 +49,7 @@ class ErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ErrorResponse from a JSON string"""
+        """Create an instance of AssetsEndUserLicenseAgreement from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -86,11 +69,14 @@ class ErrorResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of version
+        if self.version:
+            _dict["version"] = self.version.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ErrorResponse from a dict"""
+        """Create an instance of AssetsEndUserLicenseAgreement from a dict"""
         if obj is None:
             return None
 
@@ -98,12 +84,6 @@ class ErrorResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "error": obj.get("error"),
-                "message": obj.get("message"),
-                "path": obj.get("path"),
-                "status": obj.get("status"),
-                "timeStamp": obj.get("timeStamp"),
-            }
+            {"version": LocalizedVersion.from_dict(obj["version"]) if obj.get("version") is not None else None}
         )
         return _obj

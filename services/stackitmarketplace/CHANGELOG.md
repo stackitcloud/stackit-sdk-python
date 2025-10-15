@@ -1,3 +1,6 @@
+## v1.15.0
+- **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
+
 ## v1.14.0
 - **Feature:** Add `has_private_plan_option` attribute to `CatalogProductDetail` model class
 
