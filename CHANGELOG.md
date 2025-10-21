@@ -20,8 +20,8 @@
   - **Bugfix:** Prevent year 0 timestamp issue
 - `objectstorage`: [v1.2.1](services/objectstorage/CHANGELOG.md#v121)
   - **Bugfix:** Prevent year 0 timestamp issue
-- `resourcemanager`: [v0.6.1](services/resourcemanager/CHANGELOG.md#v061)
-  - **Bugfix:** Prevent year 0 timestamp issue
+- `resourcemanager`: [v0.7.0](services/resourcemanager/CHANGELOG.md#v070)
+  - **Feature:** Add `ContainerSearchResult` model for container search functionality
 - `scf`: [v0.2.1](services/scf/CHANGELOG.md#v021)
   - **Bugfix:** Prevent year 0 timestamp issue
 - `serviceaccount`: [v0.4.2](services/serviceaccount/CHANGELOG.md#v042)
