@@ -1,3 +1,6 @@
+## v0.7.0
+- **Feature:** Add `ContainerSearchResult` model for container search functionality
+
 ## v0.6.1
 - **Bugfix:** Prevent year 0 timestamp issue
 
