@@ -1,5 +1,7 @@
 # v0.12.0
 - **Breaking Change:** `partial_update_alertrules()` method parameter renamed from `update_alertgroups_request_inner_rules_inner` to `partial_update_alertrules_request_inner` and type changed from `UpdateAlertgroupsRequestInnerRulesInner` to `PartialUpdateAlertrulesRequestInner`
+- **Breaking Change:** `CreateLogsAlertgroupsPayload` now uses `CreateLogsAlertgroupsPayloadRulesInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`
+- **Breaking Change:** `UpdateLogsAlertgroupPayload` now uses `CreateLogsAlertgroupsPayloadRulesInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`
 - **Feature:** Field `alert` of `UpdateAlertgroupsRequestInnerRulesInner` is now optional
 - **Feature:** Add `record` field to `UpdateAlertgroupsRequestInnerRulesInner`
 - **Feature:** Add new models `CreateLogsAlertgroupsPayloadRulesInner` and `PartialUpdateAlertrulesRequestInner`
