@@ -239,7 +239,7 @@
   - [v0.4.0](services/alb/CHANGELOG.md#v040)
     - **Feature:** Add new field `load_balancer_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
   - [v0.3.1](services/alb/CHANGELOG.md#v031)
-  - **Internal:** Improve deserializing and error types
+    - **Internal:** Improve deserializing and error types
 - `authorization`: [v0.2.5](services/authorization/CHANGELOG.md#v025)
   - **Internal:** Improve deserializing and error types
 - `certificates`: [v1.0.2](services/certificates/CHANGELOG.md#v102)
@@ -250,7 +250,7 @@
   - [v0.5.0](services/loadbalancer/CHANGELOG.md#v050)
     - **Feature:** Add new field `load_balancer_security_group` in `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` Models
   - [v0.4.1](services/loadbalancer/CHANGELOG.md#v041)
-  - **Internal:** Improve deserializing and error types
+    - **Internal:** Improve deserializing and error types
 - `logme`: [v0.3.2](services/logme/CHANGELOG.md#v032)
   - **Internal:** Improve deserializing and error types
 - `mariadb`: [v0.2.3](services/mariadb/CHANGELOG.md#v023)
@@ -269,7 +269,7 @@
     - **Feature:** Add new methods `get_logs_configs()`, `update_logs_configs()`, `get_traces_configs()`, `update_traces_configs()`, `get_metrics_storage_retention()`, `update_metrics_storage_retention()`, `get_scrape_config()`, `update_scrape_config()`, `list_acl()`, `update_acl()`, `list_alert_config_receivers()`, `list_alert_config_routes()`, `update_alert_config_receiver()`, `update_alert_config_route()`, `list_alertgroups()`, `list_alertrules()`, `list_credentials()`, `list_instances()`
     - **Feature:** Add new models `LogsConfig`, `LogsConfigResponse`, `TraceConfig`, `TracesConfigResponse`, `UpdateLogsConfigsPayload`, `UpdateTracesConfigsPayload`
   - [v0.5.1](services/observability/CHANGELOG.md#v051)
-  - **Internal:** Improve deserializing and error types
+    - **Internal:** Improve deserializing and error types
 - `postgresflex`: [v1.0.2](services/postgresflex/CHANGELOG.md#v102)
   - **Internal:** Improve deserializing and error types
 - `rabbitmq`: [v0.2.2](services/rabbitmq/CHANGELOG.md#v022)
@@ -352,16 +352,16 @@
     - **Improvement:** Add proper noqa comments for docstrings
     - **Improvement:** Update type annotations for better type safety
   - [v0.5.4](services/iaas/CHANGELOG.md#v054)
-  - **Improvement:** Increase max length of `machine_type` and `volume_performance_class` fields from 63 to 127 characters in API methods
-  - **Improvement:** Increase max length of `name` fields from 63 to 127 characters for various models:
-    - `AffinityGroup`, `Backup`, `BootVolume`, `CreateAffinityGroupPayload`, `CreateBackupPayload`
-    `CreateImagePayload`, `CreateNetworkAreaPayload`, `CreateNetworkPayload`, `CreateNicPayload`
-    `CreateSecurityGroupPayload`, `CreateServerPayload`, `CreateSnapshotPayload`, `CreateVolumePayload`
-    `Image`, `MachineType`, `Nic`, `PartialUpdateNetworkAreaPayload`, `PartialUpdateNetworkPayload`
-    `ResizeServerPayload`, `SecurityGroup`, `Server`, `ServerNetwork`, `Snapshot`
-    `UpdateBackupPayload`, `UpdateImagePayload`, `UpdateNicPayload`, `UpdateSecurityGroupPayload`
-    `UpdateServerPayload`, `UpdateSnapshotPayload`, `UpdateVolumePayload`, `Volume`, `VolumePerformanceClass`
-  - **Improvement:** Update regular expression pattern for name validation to allow more flexible naming conventions
+    - **Improvement:** Increase max length of `machine_type` and `volume_performance_class` fields from 63 to 127 characters in API methods
+    - **Improvement:** Increase max length of `name` fields from 63 to 127 characters for various models:
+      - `AffinityGroup`, `Backup`, `BootVolume`, `CreateAffinityGroupPayload`, `CreateBackupPayload`
+      `CreateImagePayload`, `CreateNetworkAreaPayload`, `CreateNetworkPayload`, `CreateNicPayload`
+      `CreateSecurityGroupPayload`, `CreateServerPayload`, `CreateSnapshotPayload`, `CreateVolumePayload`
+      `Image`, `MachineType`, `Nic`, `PartialUpdateNetworkAreaPayload`, `PartialUpdateNetworkPayload`
+      `ResizeServerPayload`, `SecurityGroup`, `Server`, `ServerNetwork`, `Snapshot`
+      `UpdateBackupPayload`, `UpdateImagePayload`, `UpdateNicPayload`, `UpdateSecurityGroupPayload`
+      `UpdateServerPayload`, `UpdateSnapshotPayload`, `UpdateVolumePayload`, `Volume`, `VolumePerformanceClass`
+    - **Improvement:** Update regular expression pattern for name validation to allow more flexible naming conventions
 
 ## Release (2025-06-16)
 - `core`: [v0.2.0](core/CHANGELOG.md#v020-2025-06-12)
