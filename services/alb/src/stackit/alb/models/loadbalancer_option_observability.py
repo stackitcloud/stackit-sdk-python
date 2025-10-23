@@ -26,7 +26,7 @@ from stackit.alb.models.loadbalancer_option_metrics import LoadbalancerOptionMet
 
 class LoadbalancerOptionObservability(BaseModel):
     """
-    We offer Application Load Balancer metrics observability via ARGUS or external solutions. Not changeable after creation.
+    We offer Load Balancer observability via STACKIT Observability or external solutions.
     """  # noqa: E501
 
     logs: Optional[LoadbalancerOptionLogs] = None
