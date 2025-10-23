@@ -32,11 +32,11 @@ class UpdateCredentialsPayload(BaseModel):
     )
     password: Optional[StrictStr] = Field(
         default=None,
-        description="A valid password used for an existing ARGUS instance, which is used during basic auth.",
+        description="A valid password used for an existing STACKIT Observability instance, which is used during basic auth.",
     )
     username: Optional[StrictStr] = Field(
         default=None,
-        description="A valid username used for an existing ARGUS instance, which is used during basic auth.",
+        description="A valid username used for an existing STACKIT Observability instance, which is used during basic auth.",
     )
     __properties: ClassVar[List[str]] = ["displayName", "password", "username"]
 
