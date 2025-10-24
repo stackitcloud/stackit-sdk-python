@@ -33,7 +33,7 @@ class LoadbalancerOptionLogs(BaseModel):
     )
     push_url: Optional[StrictStr] = Field(
         default=None,
-        description="The ARGUS/Loki remote write Push URL you want the logs to be shipped to.",
+        description="The Observability(Logs)/Loki remote write Push URL you want the logs to be shipped to.",
         alias="pushUrl",
     )
     __properties: ClassVar[List[str]] = ["credentialsRef", "pushUrl"]
