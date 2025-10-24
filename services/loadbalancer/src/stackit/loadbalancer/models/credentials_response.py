@@ -36,7 +36,9 @@ class CredentialsResponse(BaseModel):
         default=None, description="Credential name", alias="displayName"
     )
     region: Optional[StrictStr] = Field(default=None, description="Region of the Credential")
-    username: Optional[StrictStr] = Field(default=None, description="The username used for the ARGUS instance")
+    username: Optional[StrictStr] = Field(
+        default=None, description="The username used for the STACKIT Observability instance"
+    )
     __properties: ClassVar[List[str]] = ["credentialsRef", "displayName", "region", "username"]
 
     @field_validator("display_name")
