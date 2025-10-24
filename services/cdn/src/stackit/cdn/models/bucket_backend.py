@@ -20,21 +20,16 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from stackit.cdn.models.config_patch import ConfigPatch
 
-
-class PatchDistributionPayload(BaseModel):
+class BucketBackend(BaseModel):
     """
-    Defines a partial distribution. Set values
+    BucketBackend
     """  # noqa: E501
 
-    config: Optional[ConfigPatch] = None
-    intent_id: Optional[StrictStr] = Field(
-        default=None,
-        description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple modifying requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped. ",
-        alias="intentId",
-    )
-    __properties: ClassVar[List[str]] = ["config", "intentId"]
+    bucket_url: StrictStr = Field(alias="bucketUrl")
+    region: StrictStr
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["bucketUrl", "region", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +48,7 @@ class PatchDistributionPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PatchDistributionPayload from a JSON string"""
+        """Create an instance of BucketBackend from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +68,11 @@ class PatchDistributionPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of config
-        if self.config:
-            _dict["config"] = self.config.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PatchDistributionPayload from a dict"""
+        """Create an instance of BucketBackend from a dict"""
         if obj is None:
             return None
 
@@ -88,9 +80,6 @@ class PatchDistributionPayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "config": ConfigPatch.from_dict(obj["config"]) if obj.get("config") is not None else None,
-                "intentId": obj.get("intentId"),
-            }
+            {"bucketUrl": obj.get("bucketUrl"), "region": obj.get("region"), "type": obj.get("type")}
         )
         return _obj
