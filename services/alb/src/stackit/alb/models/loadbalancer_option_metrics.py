@@ -33,7 +33,7 @@ class LoadbalancerOptionMetrics(BaseModel):
     )
     push_url: Optional[StrictStr] = Field(
         default=None,
-        description="The ARGUS/Prometheus remote write Push URL you want the metrics to be shipped to.",
+        description="The Observability(Metrics)/Prometheus remote write push URL you want the metrics to be shipped to.",
         alias="pushUrl",
     )
     __properties: ClassVar[List[str]] = ["credentialsRef", "pushUrl"]

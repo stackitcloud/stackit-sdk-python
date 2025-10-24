@@ -68,7 +68,7 @@ class DefaultApi:
     ) -> CreateCredentialsResponse:
         """Create credentials for observability of the application load balancer
 
-        Creates and stores credentials for use with Application Load Balancer Observability.  For example, when using ARGUS, credentials must first be created via the ARGUS API  and then stored with this endpoint to be used by the Application Load Balancer.
+        Created credentials can be stored and used for the load balancer observability. For example, when using STACKIT  Observability, credentials first must be created for that STACKIT Observability instance (by using their API or the  STACKIT Portal) and then can be provided to the load balancer by storing them with this endpoint.
 
         :param project_id: (required)
         :type project_id: str
@@ -144,7 +144,7 @@ class DefaultApi:
     ) -> ApiResponse[CreateCredentialsResponse]:
         """Create credentials for observability of the application load balancer
 
-        Creates and stores credentials for use with Application Load Balancer Observability.  For example, when using ARGUS, credentials must first be created via the ARGUS API  and then stored with this endpoint to be used by the Application Load Balancer.
+        Created credentials can be stored and used for the load balancer observability. For example, when using STACKIT  Observability, credentials first must be created for that STACKIT Observability instance (by using their API or the  STACKIT Portal) and then can be provided to the load balancer by storing them with this endpoint.
 
         :param project_id: (required)
         :type project_id: str
@@ -220,7 +220,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create credentials for observability of the application load balancer
 
-        Creates and stores credentials for use with Application Load Balancer Observability.  For example, when using ARGUS, credentials must first be created via the ARGUS API  and then stored with this endpoint to be used by the Application Load Balancer.
+        Created credentials can be stored and used for the load balancer observability. For example, when using STACKIT  Observability, credentials first must be created for that STACKIT Observability instance (by using their API or the  STACKIT Portal) and then can be provided to the load balancer by storing them with this endpoint.
 
         :param project_id: (required)
         :type project_id: str
