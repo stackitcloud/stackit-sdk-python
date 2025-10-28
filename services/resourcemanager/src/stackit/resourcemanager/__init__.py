@@ -28,6 +28,7 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "ContainerSearchResult",
     "CreateFolderPayload",
     "CreateProjectPayload",
     "ErrorResponse",
@@ -65,6 +66,9 @@ from stackit.resourcemanager.exceptions import ApiValueError as ApiValueError
 from stackit.resourcemanager.exceptions import OpenApiException as OpenApiException
 
 # import models into sdk package
+from stackit.resourcemanager.models.container_search_result import (
+    ContainerSearchResult as ContainerSearchResult,
+)
 from stackit.resourcemanager.models.create_folder_payload import (
     CreateFolderPayload as CreateFolderPayload,
 )
