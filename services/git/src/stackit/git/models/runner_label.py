@@ -18,19 +18,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict
-from typing_extensions import Self
-
-from stackit.git.models.flavor import Flavor
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing_extensions import Annotated, Self
 
 
-class ListFlavors(BaseModel):
+class RunnerLabel(BaseModel):
     """
-    A list of STACKIT Git Flavors.
+    Describes a STACKIT Git RunnerLabel.
     """  # noqa: E501
 
-    flavors: List[Flavor]
-    __properties: ClassVar[List[str]] = ["flavors"]
+    description: StrictStr = Field(description="RunnerLabel description.")
+    id: Annotated[str, Field(strict=True, max_length=36)] = Field(description="RunnerLabel id.")
+    label: Annotated[str, Field(strict=True, max_length=64)] = Field(description="RunnerLabel label.")
+    __properties: ClassVar[List[str]] = ["description", "id", "label"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +49,7 @@ class ListFlavors(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ListFlavors from a JSON string"""
+        """Create an instance of RunnerLabel from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +69,11 @@ class ListFlavors(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in flavors (list)
-        _items = []
-        if self.flavors:
-            for _item in self.flavors:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["flavors"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ListFlavors from a dict"""
+        """Create an instance of RunnerLabel from a dict"""
         if obj is None:
             return None
 
@@ -88,10 +81,6 @@ class ListFlavors(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "flavors": (
-                    [Flavor.from_dict(_item) for _item in obj["flavors"]] if obj.get("flavors") is not None else None
-                )
-            }
+            {"description": obj.get("description"), "id": obj.get("id"), "label": obj.get("label")}
         )
         return _obj
