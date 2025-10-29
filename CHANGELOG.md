@@ -17,8 +17,13 @@
       - new model classes `RunnerLabel` and `ListRunnerLabels`
   - [v0.5.1](services/git/CHANGELOG.md#v051)
     - **Bugfix:** Prevent year 0 timestamp issue
-- `intake`: [v0.2.1](services/intake/CHANGELOG.md#v021)
-  - **Bugfix:** Prevent year 0 timestamp issue
+- `intake`: 
+  - [v0.3.0](services/intake/CHANGELOG.md#v030)
+    - Validate `display_name` attribute regular expression using a field validator in model classes `CreateIntakePayload`, `CreateIntakeRunnerPayload` and `CreateIntakeUserPayload`
+    - Set minimum length (`12`) for `password` attribute in model class `CreateIntakeUserPayload`
+    - Set maximum length from `32` to `1024` for `table_name` attribute in `IntakeCatalog` and `IntakeCatalogPatch` model classes
+  - [v0.2.1](services/intake/CHANGELOG.md#v021)
+    - **Bugfix:** Prevent year 0 timestamp issue
 - `kms`: [v0.4.1](services/kms/CHANGELOG.md#v041)
   - **Bugfix:** Prevent year 0 timestamp issue
 - `modelserving`: [v0.2.2](services/modelserving/CHANGELOG.md#v022)
