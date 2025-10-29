@@ -25,31 +25,24 @@ from pydantic import (
 )
 from typing_extensions import Self
 
-from stackit.cdn.models.put_custom_domain_custom_certificate import (
-    PutCustomDomainCustomCertificate,
-)
-from stackit.cdn.models.put_custom_domain_managed_certificate import (
-    PutCustomDomainManagedCertificate,
-)
+from stackit.cdn.models.bucket_backend import BucketBackend
+from stackit.cdn.models.http_backend import HttpBackend
 
 
-PUTCUSTOMDOMAINPAYLOADCERTIFICATE_ONE_OF_SCHEMAS = [
-    "PutCustomDomainCustomCertificate",
-    "PutCustomDomainManagedCertificate",
-]
+CONFIGBACKEND_ONE_OF_SCHEMAS = ["BucketBackend", "HttpBackend"]
 
 
-class PutCustomDomainPayloadCertificate(BaseModel):
+class ConfigBackend(BaseModel):
     """
-    Pass a custom certificate to be served by the CDN when calling the custom domain. Will use a managed certificate when omitted
+    ConfigBackend
     """
 
-    # data type: PutCustomDomainManagedCertificate
-    oneof_schema_1_validator: Optional[PutCustomDomainManagedCertificate] = None
-    # data type: PutCustomDomainCustomCertificate
-    oneof_schema_2_validator: Optional[PutCustomDomainCustomCertificate] = None
-    actual_instance: Optional[Union[PutCustomDomainCustomCertificate, PutCustomDomainManagedCertificate]] = None
-    one_of_schemas: Set[str] = {"PutCustomDomainCustomCertificate", "PutCustomDomainManagedCertificate"}
+    # data type: HttpBackend
+    oneof_schema_1_validator: Optional[HttpBackend] = None
+    # data type: BucketBackend
+    oneof_schema_2_validator: Optional[BucketBackend] = None
+    actual_instance: Optional[Union[BucketBackend, HttpBackend]] = None
+    one_of_schemas: Set[str] = {"BucketBackend", "HttpBackend"}
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -70,23 +63,23 @@ class PutCustomDomainPayloadCertificate(BaseModel):
 
     @field_validator("actual_instance")
     def actual_instance_must_validate_oneof(cls, v):
-        instance = PutCustomDomainPayloadCertificate.model_construct()
+        instance = ConfigBackend.model_construct()
         error_messages = []
         match = 0
-        # validate data type: PutCustomDomainManagedCertificate
-        if not isinstance(v, PutCustomDomainManagedCertificate):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `PutCustomDomainManagedCertificate`")
+        # validate data type: HttpBackend
+        if not isinstance(v, HttpBackend):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `HttpBackend`")
         else:
             match += 1
-        # validate data type: PutCustomDomainCustomCertificate
-        if not isinstance(v, PutCustomDomainCustomCertificate):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `PutCustomDomainCustomCertificate`")
+        # validate data type: BucketBackend
+        if not isinstance(v, BucketBackend):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BucketBackend`")
         else:
             match += 1
         if match == 0:
             # no match
             raise ValueError(
-                "No match found when setting `actual_instance` in PutCustomDomainPayloadCertificate with oneOf schemas: PutCustomDomainCustomCertificate, PutCustomDomainManagedCertificate. Details: "
+                "No match found when setting `actual_instance` in ConfigBackend with oneOf schemas: BucketBackend, HttpBackend. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -103,15 +96,15 @@ class PutCustomDomainPayloadCertificate(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into PutCustomDomainManagedCertificate
+        # deserialize data into HttpBackend
         try:
-            instance.actual_instance = PutCustomDomainManagedCertificate.from_json(json_str)
+            instance.actual_instance = HttpBackend.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into PutCustomDomainCustomCertificate
+        # deserialize data into BucketBackend
         try:
-            instance.actual_instance = PutCustomDomainCustomCertificate.from_json(json_str)
+            instance.actual_instance = BucketBackend.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -119,13 +112,13 @@ class PutCustomDomainPayloadCertificate(BaseModel):
         if match > 1:
             # more than 1 match
             raise ValueError(
-                "Multiple matches found when deserializing the JSON string into PutCustomDomainPayloadCertificate with oneOf schemas: PutCustomDomainCustomCertificate, PutCustomDomainManagedCertificate. Details: "
+                "Multiple matches found when deserializing the JSON string into ConfigBackend with oneOf schemas: BucketBackend, HttpBackend. Details: "
                 + ", ".join(error_messages)
             )
         elif match == 0:
             # no match
             raise ValueError(
-                "No match found when deserializing the JSON string into PutCustomDomainPayloadCertificate with oneOf schemas: PutCustomDomainCustomCertificate, PutCustomDomainManagedCertificate. Details: "
+                "No match found when deserializing the JSON string into ConfigBackend with oneOf schemas: BucketBackend, HttpBackend. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -141,9 +134,7 @@ class PutCustomDomainPayloadCertificate(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(
-        self,
-    ) -> Optional[Union[Dict[str, Any], PutCustomDomainCustomCertificate, PutCustomDomainManagedCertificate]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], BucketBackend, HttpBackend]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

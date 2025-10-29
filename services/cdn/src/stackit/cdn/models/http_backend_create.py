@@ -20,21 +20,27 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from stackit.cdn.models.config_patch import ConfigPatch
 
-
-class PatchDistributionPayload(BaseModel):
+class HttpBackendCreate(BaseModel):
     """
-    Defines a partial distribution. Set values
+    HttpBackendCreate
     """  # noqa: E501
 
-    config: Optional[ConfigPatch] = None
-    intent_id: Optional[StrictStr] = Field(
+    geofencing: Optional[Dict[str, List[StrictStr]]] = Field(
         default=None,
-        description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple modifying requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped. ",
-        alias="intentId",
+        description="An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You cannot have a country be assigned to multiple alternative origins. ",
     )
-    __properties: ClassVar[List[str]] = ["config", "intentId"]
+    origin_request_headers: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text. ",
+        alias="originRequestHeaders",
+    )
+    origin_url: StrictStr = Field(
+        description="The origin of the content that should be made available through the CDN.   Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed.   So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234` ",
+        alias="originUrl",
+    )
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["geofencing", "originRequestHeaders", "originUrl", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +59,7 @@ class PatchDistributionPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PatchDistributionPayload from a JSON string"""
+        """Create an instance of HttpBackendCreate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +79,11 @@ class PatchDistributionPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of config
-        if self.config:
-            _dict["config"] = self.config.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PatchDistributionPayload from a dict"""
+        """Create an instance of HttpBackendCreate from a dict"""
         if obj is None:
             return None
 
@@ -89,8 +92,10 @@ class PatchDistributionPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "config": ConfigPatch.from_dict(obj["config"]) if obj.get("config") is not None else None,
-                "intentId": obj.get("intentId"),
+                "geofencing": obj.get("geofencing"),
+                "originRequestHeaders": obj.get("originRequestHeaders"),
+                "originUrl": obj.get("originUrl"),
+                "type": obj.get("type"),
             }
         )
         return _obj
