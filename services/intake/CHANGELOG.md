@@ -1,3 +1,8 @@
+## v0.3.0
+- Validate `display_name` attribute regular expression using a field validator in model classes `CreateIntakePayload`, `CreateIntakeRunnerPayload` and `CreateIntakeUserPayload`
+- Set minimum length (`12`) for `password` attribute in model class `CreateIntakeUserPayload`
+- Set maximum length from `32` to `1024` for `table_name` attribute in `IntakeCatalog` and `IntakeCatalogPatch` model classes
+ 
 ## v0.2.1
 - **Bugfix:** Prevent year 0 timestamp issue
 
