@@ -1,3 +1,8 @@
+## v0.6.0
+- **Feature:** Add support for list runner labels operation
+  - new API client methods `list_runner_labels`
+  - new model classes `RunnerLabel` and `ListRunnerLabels`
+
 ## v0.5.1
 - **Bugfix:** Prevent year 0 timestamp issue
 

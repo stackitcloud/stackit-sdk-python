@@ -10,8 +10,13 @@
   - **Bugfix:** Prevent year 0 timestamp issue
 - `cdn`: [v1.7.1](services/cdn/CHANGELOG.md#v171)
   - **Bugfix:** Prevent year 0 timestamp issue
-- `git`: [v0.5.1](services/git/CHANGELOG.md#v051)
-  - **Bugfix:** Prevent year 0 timestamp issue
+- `git`: 
+  - [v0.6.0](services/git/CHANGELOG.md#v060)
+    - **Feature:** Add support for list runner labels operation
+      - new API client methods `list_runner_labels`
+      - new model classes `RunnerLabel` and `ListRunnerLabels`
+  - [v0.5.1](services/git/CHANGELOG.md#v051)
+    - **Bugfix:** Prevent year 0 timestamp issue
 - `intake`: [v0.2.1](services/intake/CHANGELOG.md#v021)
   - **Bugfix:** Prevent year 0 timestamp issue
 - `kms`: [v0.4.1](services/kms/CHANGELOG.md#v041)
