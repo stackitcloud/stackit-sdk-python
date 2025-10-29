@@ -1,3 +1,25 @@
+## Release (2025-xx-xx)
+- `cdn`: [v2.0.0](services/cdn/CHANGELOG.md#v200)
+  - **Feature:** Switch from `v1beta` CDN API version to `v1beta2` version.
+  - **Breaking change:** Changed spelling from `WAF` to `Waf` in model class names
+    - `WAFStatusRuleBlock` -> `WafStatusRuleBlock`
+    - `WAFRuleGroup` -> `WafRuleGroup`
+    - `WAFRuleCollection` -> `WafRuleCollection`
+    - `WAFRule` -> `WafRule`
+    - `ListWAFCollectionsResponse` -> `ListWafCollectionsResponse`
+  - **Breaking change:** Changed spelling from model class named `GenericJSONResponse` to `GenericJsonResponse`
+  - **Breaking change:** Removal of attributes from model classes
+    - Remove `description` attribute from `ErrorDetails` model class
+    - Remove `domain` attribute from `PutCustomDomainResponse` and `GetCustomDomainResponse` model classes
+    - Remove `occured_at` attribute from `GetCacheInfoResponseHistoryEntry` model class
+  - **Breaking change:** Removal of API client method `get_logs_search_filters`
+  - **Feature:** Add attributes to model classes
+    - Add `backend` attribute to `CreateDistributionPayload` model class
+  - **Feature:** New model classes
+    - New Loki model classes: `LokiLogSinkCredentials`, `LokiLogSinkCreate`, `LokiLogSinkPatch`
+    - New Backend model classes: `HttpBackendCreate`,  `BucketBackendCreate`, `BucketBackend`, `BucketBackendPatch`, `CreateDistributionPayloadBackend`, `ConfigPatchBackend`, `ConfigBackend`
+    - Other new model classes: `BucketCredentials`
+
 ## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
   - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
