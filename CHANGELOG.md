@@ -22,6 +22,8 @@
       - New Loki model classes: `LokiLogSinkCredentials`, `LokiLogSinkCreate`, `LokiLogSinkPatch`
       - New Backend model classes: `HttpBackendCreate`,  `BucketBackendCreate`, `BucketBackend`, `BucketBackendPatch`, `CreateDistributionPayloadBackend`, `ConfigPatchBackend`, `ConfigBackend`
       - Other new model classes: `BucketCredentials`
+- `alb` [v0.6.1](services/alb/CHANGELOG.md#v061)
+  - Update description of field `WafConfigName` in `Listener` model
 
 ## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
