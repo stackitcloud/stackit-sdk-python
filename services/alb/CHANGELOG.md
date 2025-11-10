@@ -1,3 +1,6 @@
+## v0.6.1
+- **Docs:** Update description of field `WafConfigName` in `Listener` model
+
 ## v0.6.0
 - **Feature:** Add attribute `labels` to `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` model classes
 - **Feature:** Add attribute `waf_config_name` to `Listener` model class

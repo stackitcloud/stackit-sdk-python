@@ -45,7 +45,7 @@ class Listener(BaseModel):
     )
     waf_config_name: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
-        description='Enable Web Application Firewall (WAF), referenced to a by name. See "Application Load Balancer - Web Application Firewall API" for more information.',
+        description='Enable Web Application Firewall (WAF), referenced by name. See "Application Load Balancer - Web Application Firewall API" for more information.',
         alias="wafConfigName",
     )
     __properties: ClassVar[List[str]] = ["http", "https", "name", "port", "protocol", "wafConfigName"]
