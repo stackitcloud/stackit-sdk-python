@@ -12,6 +12,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import (
@@ -358,7 +359,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CatalogProductDetail:
-        """Get a product
+        """(Deprecated) Get a product
 
         Get a product.
 
@@ -387,6 +388,7 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
+        warnings.warn("GET /v1/catalog/products/{productId} is deprecated.", DeprecationWarning)
 
         _param = self._get_catalog_product_serialize(
             product_id=product_id,
@@ -426,7 +428,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[CatalogProductDetail]:
-        """Get a product
+        """(Deprecated) Get a product
 
         Get a product.
 
@@ -455,6 +457,7 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
+        warnings.warn("GET /v1/catalog/products/{productId} is deprecated.", DeprecationWarning)
 
         _param = self._get_catalog_product_serialize(
             product_id=product_id,
@@ -494,7 +497,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get a product
+        """(Deprecated) Get a product
 
         Get a product.
 
@@ -523,6 +526,7 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
+        warnings.warn("GET /v1/catalog/products/{productId} is deprecated.", DeprecationWarning)
 
         _param = self._get_catalog_product_serialize(
             product_id=product_id,
@@ -871,7 +875,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """Create inquiry
+        """(Deprecated) Create inquiry
 
         Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 
@@ -898,6 +902,7 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
+        warnings.warn("POST /v1/inquiries is deprecated.", DeprecationWarning)
 
         _param = self._inquiries_create_inquiry_serialize(
             inquiries_create_inquiry_payload=inquiries_create_inquiry_payload,
@@ -935,7 +940,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """Create inquiry
+        """(Deprecated) Create inquiry
 
         Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 
@@ -962,6 +967,7 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
+        warnings.warn("POST /v1/inquiries is deprecated.", DeprecationWarning)
 
         _param = self._inquiries_create_inquiry_serialize(
             inquiries_create_inquiry_payload=inquiries_create_inquiry_payload,
@@ -999,7 +1005,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create inquiry
+        """(Deprecated) Create inquiry
 
         Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 
@@ -1026,6 +1032,7 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
+        warnings.warn("POST /v1/inquiries is deprecated.", DeprecationWarning)
 
         _param = self._inquiries_create_inquiry_serialize(
             inquiries_create_inquiry_payload=inquiries_create_inquiry_payload,
@@ -1126,7 +1133,7 @@ class DefaultApi:
         filter: Annotated[
             Optional[StrictStr],
             Field(
-                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
+                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
             ),
         ] = None,
         sort: Annotated[
@@ -1145,7 +1152,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ListCatalogProductsResponse:
-        """List all products
+        """(Deprecated) List all products
 
         List all products.
 
@@ -1155,7 +1162,7 @@ class DefaultApi:
         :type limit: float
         :param locale: The language of the response.
         :type locale: str
-        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
+        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
         :type filter: str
         :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
         :type sort: str
@@ -1180,6 +1187,7 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
+        warnings.warn("GET /v1/catalog/products is deprecated.", DeprecationWarning)
 
         _param = self._list_catalog_products_serialize(
             cursor=cursor,
@@ -1229,7 +1237,7 @@ class DefaultApi:
         filter: Annotated[
             Optional[StrictStr],
             Field(
-                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
+                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
             ),
         ] = None,
         sort: Annotated[
@@ -1248,7 +1256,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ListCatalogProductsResponse]:
-        """List all products
+        """(Deprecated) List all products
 
         List all products.
 
@@ -1258,7 +1266,7 @@ class DefaultApi:
         :type limit: float
         :param locale: The language of the response.
         :type locale: str
-        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
+        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
         :type filter: str
         :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
         :type sort: str
@@ -1283,6 +1291,7 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
+        warnings.warn("GET /v1/catalog/products is deprecated.", DeprecationWarning)
 
         _param = self._list_catalog_products_serialize(
             cursor=cursor,
@@ -1332,7 +1341,7 @@ class DefaultApi:
         filter: Annotated[
             Optional[StrictStr],
             Field(
-                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
+                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
             ),
         ] = None,
         sort: Annotated[
@@ -1351,7 +1360,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """List all products
+        """(Deprecated) List all products
 
         List all products.
 
@@ -1361,7 +1370,7 @@ class DefaultApi:
         :type limit: float
         :param locale: The language of the response.
         :type locale: str
-        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).   These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
+        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
         :type filter: str
         :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
         :type sort: str
@@ -1386,6 +1395,7 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
+        warnings.warn("GET /v1/catalog/products is deprecated.", DeprecationWarning)
 
         _param = self._list_catalog_products_serialize(
             cursor=cursor,

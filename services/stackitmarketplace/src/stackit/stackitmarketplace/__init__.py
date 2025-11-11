@@ -67,6 +67,7 @@ __all__ = [
     "RegisterTesting",
     "RequestPrivatePlan",
     "ResolveCustomerPayload",
+    "Scope",
     "ServiceCertificate",
     "SubscriptionLifecycleState",
     "SubscriptionProduct",
@@ -191,6 +192,7 @@ from stackit.stackitmarketplace.models.request_private_plan import (
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload as ResolveCustomerPayload,
 )
+from stackit.stackitmarketplace.models.scope import Scope as Scope
 from stackit.stackitmarketplace.models.service_certificate import (
     ServiceCertificate as ServiceCertificate,
 )

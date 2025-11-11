@@ -24,6 +24,9 @@
       - Other new model classes: `BucketCredentials`
 - `alb` [v0.6.1](services/alb/CHANGELOG.md#v061)
   - **Docs:** Update description of field `WafConfigName` in `Listener` model
+- `stackitmarketplace`: [v1.16.0](services/stackitmarketplace/CHANGELOG.md#v1160)
+  - **Feature:** Add new field `Scope` in `CatalogProductPricingOption` model
+  - **Deprecation:** Deprecated API methods `GetCatalogProduct`, `ListCatalogProducts` and `InquiriesCreateInquiry`
 
 ## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)

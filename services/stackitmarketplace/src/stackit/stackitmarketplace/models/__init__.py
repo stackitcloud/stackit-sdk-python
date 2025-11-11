@@ -97,6 +97,7 @@ from stackit.stackitmarketplace.models.request_private_plan import RequestPrivat
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload,
 )
+from stackit.stackitmarketplace.models.scope import Scope
 from stackit.stackitmarketplace.models.service_certificate import ServiceCertificate
 from stackit.stackitmarketplace.models.subscription_lifecycle_state import (
     SubscriptionLifecycleState,
