@@ -1,3 +1,7 @@
+## v1.16.0
+- **Feature:** Add new field `Scope` in `CatalogProductPricingOption` model
+- **Deprecation:** Deprecated API methods `GetCatalogProduct`, `ListCatalogProducts` and `InquiriesCreateInquiry`
+
 ## v1.15.0
 - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
 
