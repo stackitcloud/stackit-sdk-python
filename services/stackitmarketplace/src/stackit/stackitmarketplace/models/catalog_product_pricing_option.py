@@ -28,6 +28,7 @@ from stackit.stackitmarketplace.models.catalog_pricing_option_highlight import (
 from stackit.stackitmarketplace.models.notice_period import NoticePeriod
 from stackit.stackitmarketplace.models.price_type import PriceType
 from stackit.stackitmarketplace.models.pricing_option_unit import PricingOptionUnit
+from stackit.stackitmarketplace.models.scope import Scope
 
 
 class CatalogProductPricingOption(BaseModel):
@@ -47,6 +48,7 @@ class CatalogProductPricingOption(BaseModel):
         default=None, description="Additional price type information.", alias="pricingPlan"
     )
     rate: Optional[StrictStr] = Field(default=None, description="The price of the product (per unit).")
+    scope: Scope
     sku: StrictStr = Field(description="The concrete variant of the product.")
     sku_info: StrictStr = Field(description="Short description of this offering.", alias="skuInfo")
     sku_info_details: StrictStr = Field(
@@ -62,6 +64,7 @@ class CatalogProductPricingOption(BaseModel):
         "priceType",
         "pricingPlan",
         "rate",
+        "scope",
         "sku",
         "skuInfo",
         "skuInfoDetails",
@@ -149,6 +152,7 @@ class CatalogProductPricingOption(BaseModel):
                 "priceType": obj.get("priceType"),
                 "pricingPlan": obj.get("pricingPlan"),
                 "rate": obj.get("rate"),
+                "scope": obj.get("scope"),
                 "sku": obj.get("sku"),
                 "skuInfo": obj.get("skuInfo"),
                 "skuInfoDetails": obj.get("skuInfoDetails"),

@@ -82,7 +82,7 @@ class CatalogProductDetail(BaseModel):
     )
     is_product_listing: Optional[StrictBool] = Field(
         default=None,
-        description="If true, the product is not fully integrated but only listed. Product listings may not have prices and support information.   Deprecated: Will be removed after 16.12.2025. Please use `offerType` as replacement.",
+        description="If true, the product is not fully integrated but only listed. Product listings may not have prices and support information.  Deprecated: Will be removed after 16.12.2025. Please use `offerType` as replacement.",
         alias="isProductListing",
     )
     lifecycle_state: ProductLifecycleState = Field(alias="lifecycleState")
