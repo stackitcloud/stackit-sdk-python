@@ -1,4 +1,4 @@
-## Release (2025-xx-xx)
+## Release (2025-11-14)
 - `cdn`: 
   - [v2.1.0](services/cdn/CHANGELOG.md#v210)
     - **Breaking change:** Remove unused model classes: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
