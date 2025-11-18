@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    SKE-API
+    STACKIT Kubernetes Engine API
 
     The SKE API provides endpoints to create, update, delete clusters within STACKIT portal projects and to trigger further cluster management tasks.
 
@@ -13,7 +13,13 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import (
+    Field,
+    StrictFloat,
+    StrictInt,
+    StrictStr,
+    validate_call,
+)
 from stackit.core.configuration import Configuration
 from typing_extensions import Annotated
 
@@ -1931,6 +1937,7 @@ class DefaultApi:
     def list_provider_options(
         self,
         region: StrictStr,
+        version_state: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1947,6 +1954,8 @@ class DefaultApi:
 
         :param region: (required)
         :type region: str
+        :param version_state:
+        :type version_state: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1971,6 +1980,7 @@ class DefaultApi:
 
         _param = self._list_provider_options_serialize(
             region=region,
+            version_state=version_state,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1993,6 +2003,7 @@ class DefaultApi:
     def list_provider_options_with_http_info(
         self,
         region: StrictStr,
+        version_state: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2009,6 +2020,8 @@ class DefaultApi:
 
         :param region: (required)
         :type region: str
+        :param version_state:
+        :type version_state: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2033,6 +2046,7 @@ class DefaultApi:
 
         _param = self._list_provider_options_serialize(
             region=region,
+            version_state=version_state,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2055,6 +2069,7 @@ class DefaultApi:
     def list_provider_options_without_preload_content(
         self,
         region: StrictStr,
+        version_state: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2071,6 +2086,8 @@ class DefaultApi:
 
         :param region: (required)
         :type region: str
+        :param version_state:
+        :type version_state: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2095,6 +2112,7 @@ class DefaultApi:
 
         _param = self._list_provider_options_serialize(
             region=region,
+            version_state=version_state,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2112,6 +2130,7 @@ class DefaultApi:
     def _list_provider_options_serialize(
         self,
         region,
+        version_state,
         _request_auth,
         _content_type,
         _headers,
@@ -2133,6 +2152,10 @@ class DefaultApi:
         if region is not None:
             _path_params["region"] = region
         # process the query parameters
+        if version_state is not None:
+
+            _query_params.append(("versionState", version_state))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
