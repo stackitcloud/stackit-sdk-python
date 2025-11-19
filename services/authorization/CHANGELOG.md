@@ -1,3 +1,6 @@
+## v0.5.0
+- Add new `etag` attribute to `Role` model class
+
 ## v0.4.1
 - **Bugfix:** Prevent year 0 timestamp issue
 
