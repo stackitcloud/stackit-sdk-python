@@ -3,7 +3,7 @@
 # flake8: noqa
 
 """
-    SKE-API
+    STACKIT Kubernetes Engine API
 
     The SKE API provides endpoints to create, update, delete clusters within STACKIT portal projects and to trigger further cluster management tasks.
 
@@ -40,6 +40,7 @@ __all__ = [
     "CredentialsRotationState",
     "DNS",
     "Extension",
+    "GetProviderOptionsRequestVersionState",
     "Hibernation",
     "HibernationSchedule",
     "Image",
@@ -101,6 +102,9 @@ from stackit.ske.models.credentials_rotation_state import (
 from stackit.ske.models.cri import CRI as CRI
 from stackit.ske.models.dns import DNS as DNS
 from stackit.ske.models.extension import Extension as Extension
+from stackit.ske.models.get_provider_options_request_version_state import (
+    GetProviderOptionsRequestVersionState as GetProviderOptionsRequestVersionState,
+)
 from stackit.ske.models.hibernation import Hibernation as Hibernation
 from stackit.ske.models.hibernation_schedule import (
     HibernationSchedule as HibernationSchedule,
