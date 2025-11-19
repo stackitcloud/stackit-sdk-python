@@ -1,6 +1,9 @@
 ## Release (2025-XX-XX)
 - `authorization`: [v0.5.0](services/authorization/CHANGELOG.md#v050)
   - Add new `etag` attribute to `Role` model class
+- `ske`: [v1.4.0](services/ske/CHANGELOG.md#v140)
+  - **Feature:** Add new optional `version_state` param to `DefaultApi.list_provider_options` method
+  - **Feature:** Add new enum `GetProviderOptionsRequestVersionState`
 
 ## Release (2025-11-14)
 - `cdn`: 
