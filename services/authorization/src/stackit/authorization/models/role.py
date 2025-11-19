@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 from stackit.authorization.models.permission import Permission
@@ -30,10 +30,11 @@ class Role(BaseModel):
     """  # noqa: E501
 
     description: Annotated[str, Field(strict=True, max_length=255)]
+    etag: Optional[StrictStr] = None
     id: Optional[Annotated[str, Field(strict=True)]] = None
     name: Annotated[str, Field(strict=True)]
     permissions: List[Permission]
-    __properties: ClassVar[List[str]] = ["description", "id", "name", "permissions"]
+    __properties: ClassVar[List[str]] = ["description", "etag", "id", "name", "permissions"]
 
     @field_validator("id")
     def id_validate_regular_expression(cls, value):
@@ -110,6 +111,7 @@ class Role(BaseModel):
         _obj = cls.model_validate(
             {
                 "description": obj.get("description"),
+                "etag": obj.get("etag"),
                 "id": obj.get("id"),
                 "name": obj.get("name"),
                 "permissions": (
