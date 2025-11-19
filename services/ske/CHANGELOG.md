@@ -1,3 +1,7 @@
+## v1.4.0
+- **Feature:** Add new optional `version_state` param to `DefaultApi.list_provider_options` method
+- **Feature:** Add new enum `GetProviderOptionsRequestVersionState`
+
 ## v1.3.1
 - **Bugfix:** Prevent year 0 timestamp issue
 
