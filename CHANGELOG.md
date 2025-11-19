@@ -1,3 +1,7 @@
+## Release (2025-XX-XX)
+- `authorization`: [v0.5.0](services/authorization/CHANGELOG.md#v050)
+  - Add new `etag` attribute to `Role` model class
+
 ## Release (2025-11-14)
 - `cdn`: 
   - [v2.1.0](services/cdn/CHANGELOG.md#v210)
