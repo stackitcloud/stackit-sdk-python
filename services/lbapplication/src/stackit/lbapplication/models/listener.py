@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    Application Load Balancer API
+    STACKIT Application Load Balancer API
 
     ### DEPRECATED! This service, lb-application, is no longer maintained. Please use the alb service, version v2beta2 instead  This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -30,7 +30,9 @@ class Listener(BaseModel):
     """  # noqa: E501
 
     display_name: Optional[StrictStr] = Field(default=None, alias="displayName")
-    http: Optional[Dict[str, Any]] = None
+    http: Optional[Dict[str, Any]] = Field(
+        default=None, description="ProtocolOptionsHTTP options to be configured for the PROTOCOL_HTTP protocol."
+    )
     https: Optional[ProtocolOptionsHTTPS] = None
     name: Optional[StrictStr] = Field(
         default=None,
