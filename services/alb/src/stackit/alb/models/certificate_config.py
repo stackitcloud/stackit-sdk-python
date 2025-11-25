@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    Application Load Balancer API
+    STACKIT Application Load Balancer API
 
     This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -23,7 +23,7 @@ from typing_extensions import Self
 
 class CertificateConfig(BaseModel):
     """
-    CertificateConfig
+    TLS termination certificate configuration.
     """  # noqa: E501
 
     certificate_ids: Optional[List[StrictStr]] = Field(
