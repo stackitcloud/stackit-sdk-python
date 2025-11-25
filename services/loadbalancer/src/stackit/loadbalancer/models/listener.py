@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    Load Balancer API
+    STACKIT Load Balancer API
 
     This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -44,7 +44,7 @@ class Listener(BaseModel):
     )
     server_name_indicators: Optional[List[ServerNameIndicator]] = Field(
         default=None,
-        description="Server Name Idicators config for domains to be routed to the desired target pool for this listener.",
+        description="Server Name Indicators config for domains to be routed to the desired target pool for this listener.",
         alias="serverNameIndicators",
     )
     target_pool: Optional[StrictStr] = Field(

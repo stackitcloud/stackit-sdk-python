@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    Load Balancer API
+    STACKIT Load Balancer API
 
     This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -24,7 +24,7 @@ from typing_extensions import Annotated, Self
 
 class OptionsUDP(BaseModel):
     """
-    OptionsUDP
+    ProtocolOptionsUDP options to be configured for the PROTOCOL_UDP protocol.
     """  # noqa: E501
 
     idle_timeout: Optional[Annotated[str, Field(strict=True)]] = Field(
