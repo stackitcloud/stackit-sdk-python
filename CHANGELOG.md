@@ -1,4 +1,7 @@
 ## Release (2025-XX-XX)
+- `intake`: [v0.4.0](services/intake/CHANGELOG.md#v040)
+  - **Feature:** Add new enum class `PartitioningUpdateType`
+  - **Feature:** Add attributes `partition_by` and `partitioning` to `IntakeCatalogPatch` model class
 - `authorization`: [v0.5.0](services/authorization/CHANGELOG.md#v050)
   - Add new `etag` attribute to `Role` model class
 - `ske`: [v1.4.0](services/ske/CHANGELOG.md#v140)
