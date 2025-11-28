@@ -31,7 +31,7 @@ from stackit.git.models.instance import Instance
 from stackit.git.models.list_flavors import ListFlavors
 from stackit.git.models.list_instances import ListInstances
 from stackit.git.models.list_runner_labels import ListRunnerLabels
-from stackit.git.models.patch_operation import PatchOperation
+from stackit.git.models.patch_instance_payload import PatchInstancePayload
 from stackit.git.rest import RESTResponseType
 
 
@@ -1548,7 +1548,7 @@ class DefaultApi:
         instance_id: Annotated[
             str, Field(min_length=36, strict=True, max_length=36, description="Instance identifier.")
         ],
-        patch_operation: List[PatchOperation],
+        patch_instance_payload: PatchInstancePayload,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1567,8 +1567,8 @@ class DefaultApi:
         :type project_id: str
         :param instance_id: Instance identifier. (required)
         :type instance_id: str
-        :param patch_operation: (required)
-        :type patch_operation: List[PatchOperation]
+        :param patch_instance_payload: (required)
+        :type patch_instance_payload: PatchInstancePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1594,7 +1594,7 @@ class DefaultApi:
         _param = self._patch_instance_serialize(
             project_id=project_id,
             instance_id=instance_id,
-            patch_operation=patch_operation,
+            patch_instance_payload=patch_instance_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1624,7 +1624,7 @@ class DefaultApi:
         instance_id: Annotated[
             str, Field(min_length=36, strict=True, max_length=36, description="Instance identifier.")
         ],
-        patch_operation: List[PatchOperation],
+        patch_instance_payload: PatchInstancePayload,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1643,8 +1643,8 @@ class DefaultApi:
         :type project_id: str
         :param instance_id: Instance identifier. (required)
         :type instance_id: str
-        :param patch_operation: (required)
-        :type patch_operation: List[PatchOperation]
+        :param patch_instance_payload: (required)
+        :type patch_instance_payload: PatchInstancePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1670,7 +1670,7 @@ class DefaultApi:
         _param = self._patch_instance_serialize(
             project_id=project_id,
             instance_id=instance_id,
-            patch_operation=patch_operation,
+            patch_instance_payload=patch_instance_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1700,7 +1700,7 @@ class DefaultApi:
         instance_id: Annotated[
             str, Field(min_length=36, strict=True, max_length=36, description="Instance identifier.")
         ],
-        patch_operation: List[PatchOperation],
+        patch_instance_payload: PatchInstancePayload,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1719,8 +1719,8 @@ class DefaultApi:
         :type project_id: str
         :param instance_id: Instance identifier. (required)
         :type instance_id: str
-        :param patch_operation: (required)
-        :type patch_operation: List[PatchOperation]
+        :param patch_instance_payload: (required)
+        :type patch_instance_payload: PatchInstancePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1746,7 +1746,7 @@ class DefaultApi:
         _param = self._patch_instance_serialize(
             project_id=project_id,
             instance_id=instance_id,
-            patch_operation=patch_operation,
+            patch_instance_payload=patch_instance_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1769,7 +1769,7 @@ class DefaultApi:
         self,
         project_id,
         instance_id,
-        patch_operation,
+        patch_instance_payload,
         _request_auth,
         _content_type,
         _headers,
@@ -1778,9 +1778,7 @@ class DefaultApi:
 
         _host = None
 
-        _collection_formats: Dict[str, str] = {
-            "PatchOperation": "",
-        }
+        _collection_formats: Dict[str, str] = {}
 
         _path_params: Dict[str, str] = {}
         _query_params: List[Tuple[str, str]] = []
@@ -1798,8 +1796,8 @@ class DefaultApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if patch_operation is not None:
-            _body_params = patch_operation
+        if patch_instance_payload is not None:
+            _body_params = patch_instance_payload
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
@@ -1809,7 +1807,9 @@ class DefaultApi:
         if _content_type:
             _header_params["Content-Type"] = _content_type
         else:
-            _default_content_type = self.api_client.select_header_content_type(["application/json-patch+json"])
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json", "application/json-patch+json"]
+            )
             if _default_content_type is not None:
                 _header_params["Content-Type"] = _default_content_type
 
