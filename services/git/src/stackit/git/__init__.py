@@ -33,10 +33,12 @@ __all__ = [
     "Flavor",
     "GenericErrorResponse",
     "Instance",
+    "InstanceFlavor",
     "InternalServerErrorResponse",
     "ListFlavors",
     "ListInstances",
     "ListRunnerLabels",
+    "PatchInstancePayload",
     "PatchOperation",
     "RunnerLabel",
     "UnauthorizedResponse",
@@ -65,12 +67,16 @@ from stackit.git.models.generic_error_response import (
     GenericErrorResponse as GenericErrorResponse,
 )
 from stackit.git.models.instance import Instance as Instance
+from stackit.git.models.instance_flavor import InstanceFlavor as InstanceFlavor
 from stackit.git.models.internal_server_error_response import (
     InternalServerErrorResponse as InternalServerErrorResponse,
 )
 from stackit.git.models.list_flavors import ListFlavors as ListFlavors
 from stackit.git.models.list_instances import ListInstances as ListInstances
 from stackit.git.models.list_runner_labels import ListRunnerLabels as ListRunnerLabels
+from stackit.git.models.patch_instance_payload import (
+    PatchInstancePayload as PatchInstancePayload,
+)
 from stackit.git.models.patch_operation import PatchOperation as PatchOperation
 from stackit.git.models.runner_label import RunnerLabel as RunnerLabel
 from stackit.git.models.unauthorized_response import (

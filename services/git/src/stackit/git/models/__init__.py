@@ -19,12 +19,14 @@ from stackit.git.models.create_instance_payload import CreateInstancePayload
 from stackit.git.models.flavor import Flavor
 from stackit.git.models.generic_error_response import GenericErrorResponse
 from stackit.git.models.instance import Instance
+from stackit.git.models.instance_flavor import InstanceFlavor
 from stackit.git.models.internal_server_error_response import (
     InternalServerErrorResponse,
 )
 from stackit.git.models.list_flavors import ListFlavors
 from stackit.git.models.list_instances import ListInstances
 from stackit.git.models.list_runner_labels import ListRunnerLabels
+from stackit.git.models.patch_instance_payload import PatchInstancePayload
 from stackit.git.models.patch_operation import PatchOperation
 from stackit.git.models.runner_label import RunnerLabel
 from stackit.git.models.unauthorized_response import UnauthorizedResponse

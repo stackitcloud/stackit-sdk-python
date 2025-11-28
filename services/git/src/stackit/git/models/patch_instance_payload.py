@@ -16,35 +16,21 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
-from stackit.git.models.instance_flavor import InstanceFlavor
 
-
-class CreateInstancePayload(BaseModel):
+class PatchInstancePayload(BaseModel):
     """
-    Request a STACKIT Git instance to be created with these properties.
+    Properties to patch on an instance. All fields are optional.
     """  # noqa: E501
 
     acl: Optional[Annotated[List[StrictStr], Field(max_length=50)]] = Field(
         default=None, description="A list of CIDR network addresses that are allowed to access the instance."
     )
-    flavor: Optional[InstanceFlavor] = None
-    name: Annotated[str, Field(min_length=5, strict=True, max_length=32)] = Field(
-        description="A user chosen name to distinguish multiple STACKIT Git instances."
-    )
-    __properties: ClassVar[List[str]] = ["acl", "flavor", "name"]
-
-    @field_validator("name")
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-z]([a-z0-9\-]){0,30}[a-z0-9]+$", value):
-            raise ValueError(r"must validate the regular expression /^[a-z]([a-z0-9\-]){0,30}[a-z0-9]+$/")
-        return value
+    __properties: ClassVar[List[str]] = ["acl"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -63,7 +49,7 @@ class CreateInstancePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateInstancePayload from a JSON string"""
+        """Create an instance of PatchInstancePayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,16 +69,21 @@ class CreateInstancePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if acl (nullable) is None
+        # and model_fields_set contains the field
+        if self.acl is None and "acl" in self.model_fields_set:
+            _dict["acl"] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateInstancePayload from a dict"""
+        """Create an instance of PatchInstancePayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"acl": obj.get("acl"), "flavor": obj.get("flavor"), "name": obj.get("name")})
+        _obj = cls.model_validate({"acl": obj.get("acl")})
         return _obj
