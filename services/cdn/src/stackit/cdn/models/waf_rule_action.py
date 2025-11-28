@@ -19,21 +19,19 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class Region(str, Enum):
+class WAFRuleAction(str, Enum):
     """
-    The following regions exist: - `EU` - Europe - `US` - United States / North America - `AF` - Africa - `SA` - South America - `ASIA` - Asia and Oceania
+    The action a WAF rule can take based on a request
     """
 
     """
     allowed enum values
     """
-    EU = "EU"
-    US = "US"
-    AF = "AF"
-    SA = "SA"
-    ASIA = "ASIA"
+    BLOCKED = "BLOCKED"
+    LOGGED = "LOGGED"
+    ALLOWED = "ALLOWED"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Region from a JSON string"""
+        """Create an instance of WAFRuleAction from a JSON string"""
         return cls(json.loads(json_str))

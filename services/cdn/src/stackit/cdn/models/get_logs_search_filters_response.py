@@ -17,34 +17,36 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
+from stackit.cdn.models.get_logs_search_filters_response_datacenter_block import (
+    GetLogsSearchFiltersResponseDatacenterBlock,
+)
 
-class ErrorDetails(BaseModel):
+
+class GetLogsSearchFiltersResponse(BaseModel):
     """
-    ErrorDetails
+    GetLogsSearchFiltersResponse
     """  # noqa: E501
 
-    de: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
-        default=None, description="German description of the error"
+    cache: List[StrictStr]
+    data_center: GetLogsSearchFiltersResponseDatacenterBlock = Field(alias="dataCenter")
+    remote_country: List[Annotated[str, Field(min_length=2, strict=True, max_length=2)]] = Field(
+        description="List of ISO-3166 Alpha2 Country Codes matching the input filter. Response is ordered in ascending order.   For more Info about the country codes, see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 ",
+        alias="remoteCountry",
     )
-    en: Annotated[str, Field(min_length=1, strict=True)] = Field(description="English description of the error")
-    var_field: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
-        default=None, description="Optional field in the request this error detail refers to", alias="field"
+    status: List[Annotated[int, Field(strict=True, ge=0)]] = Field(
+        description="List of Status Codes matching the input filter. Response is ordered in ascending order."
     )
-    key: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["de", "en", "field", "key"]
+    __properties: ClassVar[List[str]] = ["cache", "dataCenter", "remoteCountry", "status"]
 
-    @field_validator("key")
-    def key_validate_enum(cls, value):
+    @field_validator("cache")
+    def cache_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(
-            ["UNKNOWN", "CUSTOM_DOMAIN_CNAME_MISSING", "INVALID_ARGUMENT", "LOG_SINK_INSTANCE_UNAVAILABLE"]
-        ):
-            raise ValueError(
-                "must be one of enum values ('UNKNOWN', 'CUSTOM_DOMAIN_CNAME_MISSING', 'INVALID_ARGUMENT', 'LOG_SINK_INSTANCE_UNAVAILABLE')"
-            )
+        for i in value:
+            if i not in set(["HIT", "MISS"]):
+                raise ValueError("each list item must be one of ('HIT', 'MISS')")
         return value
 
     model_config = ConfigDict(
@@ -64,7 +66,7 @@ class ErrorDetails(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ErrorDetails from a JSON string"""
+        """Create an instance of GetLogsSearchFiltersResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,11 +86,14 @@ class ErrorDetails(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of data_center
+        if self.data_center:
+            _dict["dataCenter"] = self.data_center.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ErrorDetails from a dict"""
+        """Create an instance of GetLogsSearchFiltersResponse from a dict"""
         if obj is None:
             return None
 
@@ -96,6 +101,15 @@ class ErrorDetails(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"de": obj.get("de"), "en": obj.get("en"), "field": obj.get("field"), "key": obj.get("key")}
+            {
+                "cache": obj.get("cache"),
+                "dataCenter": (
+                    GetLogsSearchFiltersResponseDatacenterBlock.from_dict(obj["dataCenter"])
+                    if obj.get("dataCenter") is not None
+                    else None
+                ),
+                "remoteCountry": obj.get("remoteCountry"),
+                "status": obj.get("status"),
+            }
         )
         return _obj

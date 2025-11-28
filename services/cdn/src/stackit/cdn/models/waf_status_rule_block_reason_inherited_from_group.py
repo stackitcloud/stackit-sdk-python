@@ -21,17 +21,16 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 
-class WafRule(BaseModel):
+class WafStatusRuleBlockReasonInheritedFromGroup(BaseModel):
     """
-    WafRule
+    WafStatusRuleBlockReasonInheritedFromGroup
     """  # noqa: E501
 
-    code: Optional[StrictStr] = Field(
-        default=None, description="Optional CoreRuleSet rule Id in case this is a CRS rule"
+    group_id: StrictStr = Field(
+        description="The Group that caused this rule to be in its current state.", alias="groupId"
     )
-    description: Dict[str, StrictStr] = Field(description="LocalizedString is a map from language to string value")
-    id: StrictStr
-    __properties: ClassVar[List[str]] = ["code", "description", "id"]
+    type: StrictStr = Field(description="This is always `inheritedFromGroup`")
+    __properties: ClassVar[List[str]] = ["groupId", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +49,7 @@ class WafRule(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WafRule from a JSON string"""
+        """Create an instance of WafStatusRuleBlockReasonInheritedFromGroup from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,12 +73,12 @@ class WafRule(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WafRule from a dict"""
+        """Create an instance of WafStatusRuleBlockReasonInheritedFromGroup from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"code": obj.get("code"), "description": obj.get("description"), "id": obj.get("id")})
+        _obj = cls.model_validate({"groupId": obj.get("groupId"), "type": obj.get("type")})
         return _obj

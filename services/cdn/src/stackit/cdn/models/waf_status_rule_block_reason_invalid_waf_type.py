@@ -18,20 +18,22 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
+
+from stackit.cdn.models.waf_type import WafType
 
 
-class WafRule(BaseModel):
+class WafStatusRuleBlockReasonInvalidWafType(BaseModel):
     """
-    WafRule
+    WafStatusRuleBlockReasonInvalidWafType
     """  # noqa: E501
 
-    code: Optional[StrictStr] = Field(
-        default=None, description="Optional CoreRuleSet rule Id in case this is a CRS rule"
+    allowed_waf_types: Annotated[List[WafType], Field(min_length=1)] = Field(
+        description="A list containing all WAF Types which can use this Rule. You must patch you WAF to one of these WAF Types to make use of this rule. Rules show up with this state if they would have been enabled or logOnly otherwise. ",
+        alias="allowedWafTypes",
     )
-    description: Dict[str, StrictStr] = Field(description="LocalizedString is a map from language to string value")
-    id: StrictStr
-    __properties: ClassVar[List[str]] = ["code", "description", "id"]
+    type: StrictStr = Field(description="This is always `invalidWafType`")
+    __properties: ClassVar[List[str]] = ["allowedWafTypes", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +52,7 @@ class WafRule(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WafRule from a JSON string"""
+        """Create an instance of WafStatusRuleBlockReasonInvalidWafType from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,12 +76,12 @@ class WafRule(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WafRule from a dict"""
+        """Create an instance of WafStatusRuleBlockReasonInvalidWafType from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"code": obj.get("code"), "description": obj.get("description"), "id": obj.get("id")})
+        _obj = cls.model_validate({"allowedWafTypes": obj.get("allowedWafTypes"), "type": obj.get("type")})
         return _obj

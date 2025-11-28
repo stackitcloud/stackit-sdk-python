@@ -20,18 +20,21 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
+from stackit.cdn.models.waf_rule_action import WAFRuleAction
 
-class WafRule(BaseModel):
+
+class WAFViolation(BaseModel):
     """
-    WafRule
+    Information about a violated WAF rule in case the WAF is enabled and a rule was triggered (either in BLOCK or LOG_ONLY mode)
     """  # noqa: E501
 
-    code: Optional[StrictStr] = Field(
-        default=None, description="Optional CoreRuleSet rule Id in case this is a CRS rule"
-    )
-    description: Dict[str, StrictStr] = Field(description="LocalizedString is a map from language to string value")
-    id: StrictStr
-    __properties: ClassVar[List[str]] = ["code", "description", "id"]
+    action: WAFRuleAction
+    asn: StrictStr = Field(description="ASN for the request")
+    message: StrictStr = Field(description="Rule specific message explaining the violation")
+    method: StrictStr = Field(description="HTTP Method of the request that triggered the violation")
+    request_headers: Dict[str, StrictStr] = Field(alias="requestHeaders")
+    rule_id: StrictStr = Field(description="ID of the WAF rule that was triggered", alias="ruleId")
+    __properties: ClassVar[List[str]] = ["action", "asn", "message", "method", "requestHeaders", "ruleId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +53,7 @@ class WafRule(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WafRule from a JSON string"""
+        """Create an instance of WAFViolation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,12 +77,21 @@ class WafRule(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WafRule from a dict"""
+        """Create an instance of WAFViolation from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"code": obj.get("code"), "description": obj.get("description"), "id": obj.get("id")})
+        _obj = cls.model_validate(
+            {
+                "action": obj.get("action"),
+                "asn": obj.get("asn"),
+                "message": obj.get("message"),
+                "method": obj.get("method"),
+                "requestHeaders": obj.get("requestHeaders"),
+                "ruleId": obj.get("ruleId"),
+            }
+        )
         return _obj
