@@ -21,17 +21,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 
-class WafRule(BaseModel):
+class GetLogsSearchFiltersResponseDatacenterBlockItem(BaseModel):
     """
-    WafRule
+    A datacenter. The `id` defines the key needed to filter against the logs endpoint, while the `displayName` defines a human-readable Name.
     """  # noqa: E501
 
-    code: Optional[StrictStr] = Field(
-        default=None, description="Optional CoreRuleSet rule Id in case this is a CRS rule"
-    )
-    description: Dict[str, StrictStr] = Field(description="LocalizedString is a map from language to string value")
+    display_name: StrictStr = Field(alias="displayName")
     id: StrictStr
-    __properties: ClassVar[List[str]] = ["code", "description", "id"]
+    __properties: ClassVar[List[str]] = ["displayName", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +47,7 @@ class WafRule(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WafRule from a JSON string"""
+        """Create an instance of GetLogsSearchFiltersResponseDatacenterBlockItem from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,12 +71,12 @@ class WafRule(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WafRule from a dict"""
+        """Create an instance of GetLogsSearchFiltersResponseDatacenterBlockItem from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"code": obj.get("code"), "description": obj.get("description"), "id": obj.get("id")})
+        _obj = cls.model_validate({"displayName": obj.get("displayName"), "id": obj.get("id")})
         return _obj

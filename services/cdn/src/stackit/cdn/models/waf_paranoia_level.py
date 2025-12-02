@@ -19,21 +19,20 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class Region(str, Enum):
+class WafParanoiaLevel(str, Enum):
     """
-    The following regions exist: - `EU` - Europe - `US` - United States / North America - `AF` - Africa - `SA` - South America - `ASIA` - Asia and Oceania
+    The paranoia level defines how aggressively the WAF should action on requests.   It ranges from `L1` (least strict, lowest chance of false positives) to `L4` (most strict, highest chance of false positives). A higher paranoia level is more effective at catching attacks but can also block legitimate traffic.
     """
 
     """
     allowed enum values
     """
-    EU = "EU"
-    US = "US"
-    AF = "AF"
-    SA = "SA"
-    ASIA = "ASIA"
+    L1 = "L1"
+    L2 = "L2"
+    L3 = "L3"
+    L4 = "L4"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Region from a JSON string"""
+        """Create an instance of WafParanoiaLevel from a JSON string"""
         return cls(json.loads(json_str))

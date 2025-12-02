@@ -1,3 +1,23 @@
+## v2.2.0
+- **Feature:** Switch from `v1beta2` CDN API version to `v1` version.
+- **Feature:** Add new function `GetLogsSearchFilters`
+- **Feature:** Add `WafAction` method to `ApiGetLogsRequest` struct
+- **Feature:** Add `Reason` field to `WafStatusRuleBlock` model struct
+- **Feature:** Add fields to `WafConfig` and `WafConfigPatch` model struct:
+  - `AllowedHttpMethods`
+  - `AllowedHttpVersions`
+  - `AllowedRequestContentTypes`
+  - `DisabledRuleCollectionIds`
+  - `DisabledRuleGroupIds`
+  - `DisabledRuleIds`
+  - `EnabledRuleCollectionIds`
+  - `EnabledRuleGroupIds`
+  - `EnabledRuleIds`
+  - `LogOnlyRuleCollectionIds`
+  - `LogOnlyRuleGroupIds`
+  - `LogOnlyRuleIds`
+  - `ParanoiaLevel`
+
 ## v2.1.0
 - **Breaking change:** Remove unused model classes: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
 
