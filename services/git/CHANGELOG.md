@@ -1,3 +1,7 @@
+## v0.7.0
+- **Breaking Change:** Replace `patch_operation` by `patch_instance_payload` in `patch_instance` request
+- **Feature:** Add enums `InstanceFlavor`
+
 ## v0.6.0
 - **Feature:** Add support for list runner labels operation
   - new API client methods `list_runner_labels`
