@@ -1,4 +1,23 @@
 ## Release (2025-XX-XX)
+- `cdn`: [v2.2.0](services/cdn/CHANGELOG.md#v220)
+  - **Feature:** Switch from `v1beta2` CDN API version to `v1` version.
+  - **Feature:** Add new function `GetLogsSearchFilters`
+  - **Feature:** Add `WafAction` method to `ApiGetLogsRequest` struct
+  - **Feature:** Add `Reason` field to `WafStatusRuleBlock` model struct
+  - **Feature:** Add fields to `WafConfig` and `WafConfigPatch` model struct:
+    - `AllowedHttpMethods`
+    - `AllowedHttpVersions`
+    - `AllowedRequestContentTypes`
+    - `DisabledRuleCollectionIds`
+    - `DisabledRuleGroupIds`
+    - `DisabledRuleIds`
+    - `EnabledRuleCollectionIds`
+    - `EnabledRuleGroupIds`
+    - `EnabledRuleIds`
+    - `LogOnlyRuleCollectionIds`
+    - `LogOnlyRuleGroupIds`
+    - `LogOnlyRuleIds`
+    - `ParanoiaLevel`
 - `intake`: [v0.4.0](services/intake/CHANGELOG.md#v040)
   - **Feature:** Add new enum class `PartitioningUpdateType`
   - **Feature:** Add attributes `partition_by` and `partitioning` to `IntakeCatalogPatch` model class
