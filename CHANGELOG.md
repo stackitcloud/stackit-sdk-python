@@ -26,6 +26,9 @@
 - `ske`: [v1.4.0](services/ske/CHANGELOG.md#v140)
   - **Feature:** Add new optional `version_state` param to `DefaultApi.list_provider_options` method
   - **Feature:** Add new enum `GetProviderOptionsRequestVersionState`
+- `git`: [v0.7.0](services/git/CHANGELOG.md#v070)
+  - **Breaking Change:** Replace `patch_operation` by `patch_instance_payload` in `patch_instance` request
+  - **Feature:** Add enums `InstanceFlavor`
 
 ## Release (2025-11-14)
 - `iaas`: [v1.0.0](services/iaas/CHANGELOG.md#v100)
