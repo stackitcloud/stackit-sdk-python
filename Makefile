@@ -25,6 +25,8 @@ lint-services:
 	flake8 --toml-config core/pyproject.toml --black-config core/pyproject.toml examples; 
 	# lint services
 	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};poetry install --no-root --only dev; flake8 .; cd ../..; done
+	# lint versions
+	@./scripts/lint-versions.sh
 
 test:
 	echo "Testing service ${service}"
