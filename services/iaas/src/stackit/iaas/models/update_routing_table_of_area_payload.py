@@ -32,8 +32,8 @@ class UpdateRoutingTableOfAreaPayload(BaseModel):
         default=None, description="Description Object. Allows string up to 255 Characters."
     )
     dynamic_routes: Optional[StrictBool] = Field(
-        default=None,
-        description="The update config setting for a routing table which allows propagation of dynamic routes to this routing table.",
+        default=True,
+        description="A config setting for a routing table which allows propagation of dynamic routes to this routing table.",
         alias="dynamicRoutes",
     )
     labels: Optional[Dict[str, Any]] = Field(
@@ -43,12 +43,7 @@ class UpdateRoutingTableOfAreaPayload(BaseModel):
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
-    system_routes: Optional[StrictBool] = Field(
-        default=None,
-        description="The update config setting for a routing table which allows installation of automatic system routes for connectivity between projects in the same SNA.",
-        alias="systemRoutes",
-    )
-    __properties: ClassVar[List[str]] = ["description", "dynamicRoutes", "labels", "name", "systemRoutes"]
+    __properties: ClassVar[List[str]] = ["description", "dynamicRoutes", "labels", "name"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -111,10 +106,9 @@ class UpdateRoutingTableOfAreaPayload(BaseModel):
         _obj = cls.model_validate(
             {
                 "description": obj.get("description"),
-                "dynamicRoutes": obj.get("dynamicRoutes"),
+                "dynamicRoutes": obj.get("dynamicRoutes") if obj.get("dynamicRoutes") is not None else True,
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
-                "systemRoutes": obj.get("systemRoutes"),
             }
         )
         return _obj

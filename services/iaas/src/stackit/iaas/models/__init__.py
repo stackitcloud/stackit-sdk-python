@@ -94,7 +94,6 @@ from stackit.iaas.models.image_agent import ImageAgent
 from stackit.iaas.models.image_checksum import ImageChecksum
 from stackit.iaas.models.image_config import ImageConfig
 from stackit.iaas.models.image_create_response import ImageCreateResponse
-from stackit.iaas.models.image_from_volume_payload import ImageFromVolumePayload
 from stackit.iaas.models.image_list_response import ImageListResponse
 from stackit.iaas.models.image_share import ImageShare
 from stackit.iaas.models.image_share_consumer import ImageShareConsumer
