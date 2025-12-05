@@ -80,7 +80,6 @@ __all__ = [
     "ImageChecksum",
     "ImageConfig",
     "ImageCreateResponse",
-    "ImageFromVolumePayload",
     "ImageListResponse",
     "ImageShare",
     "ImageShareConsumer",
@@ -313,9 +312,6 @@ from stackit.iaas.models.image_checksum import ImageChecksum as ImageChecksum
 from stackit.iaas.models.image_config import ImageConfig as ImageConfig
 from stackit.iaas.models.image_create_response import (
     ImageCreateResponse as ImageCreateResponse,
-)
-from stackit.iaas.models.image_from_volume_payload import (
-    ImageFromVolumePayload as ImageFromVolumePayload,
 )
 from stackit.iaas.models.image_list_response import (
     ImageListResponse as ImageListResponse,
