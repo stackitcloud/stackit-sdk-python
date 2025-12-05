@@ -28,7 +28,7 @@ from stackit.observability.models.update_alertgroups_request_inner_rules_inner i
 
 class CreateAlertgroupsPayload(BaseModel):
     """
-    Alert group that should be created or updated `Additional Validators:` * total config should not be bigger than 500000 characters as string since this the limitation of prometheus.
+    Alert group that should be created or updated. `Additional Validators:` * total config should not be bigger than 500000 characters as string since this the limitation of prometheus.
     """  # noqa: E501
 
     interval: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(
