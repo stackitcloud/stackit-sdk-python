@@ -23,6 +23,8 @@ from stackit.scf.models.create_organization_payload import CreateOrganizationPay
 from stackit.scf.models.create_space_payload import CreateSpacePayload
 from stackit.scf.models.create_space_role_payload import CreateSpaceRolePayload
 from stackit.scf.models.error_response import ErrorResponse
+from stackit.scf.models.isolation_segment import IsolationSegment
+from stackit.scf.models.isolation_segments_list import IsolationSegmentsList
 from stackit.scf.models.org_manager import OrgManager
 from stackit.scf.models.org_manager_delete_response import OrgManagerDeleteResponse
 from stackit.scf.models.org_manager_response import OrgManagerResponse
