@@ -35,6 +35,8 @@ __all__ = [
     "CreateSpacePayload",
     "CreateSpaceRolePayload",
     "ErrorResponse",
+    "IsolationSegment",
+    "IsolationSegmentsList",
     "OrgManager",
     "OrgManagerDeleteResponse",
     "OrgManagerResponse",
@@ -101,6 +103,10 @@ from stackit.scf.models.create_space_role_payload import (
     CreateSpaceRolePayload as CreateSpaceRolePayload,
 )
 from stackit.scf.models.error_response import ErrorResponse as ErrorResponse
+from stackit.scf.models.isolation_segment import IsolationSegment as IsolationSegment
+from stackit.scf.models.isolation_segments_list import (
+    IsolationSegmentsList as IsolationSegmentsList,
+)
 from stackit.scf.models.org_manager import OrgManager as OrgManager
 from stackit.scf.models.org_manager_delete_response import (
     OrgManagerDeleteResponse as OrgManagerDeleteResponse,
