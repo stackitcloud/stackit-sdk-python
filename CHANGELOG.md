@@ -1,4 +1,6 @@
-## Release (2025-XX-XX)
+## Release (2025-12-08)
+- `scf`: [v0.3.0](services/scf/CHANGELOG.md#v030)
+  - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
 - `cdn`: [v2.2.0](services/cdn/CHANGELOG.md#v220)
   - **Feature:** Switch from `v1beta2` CDN API version to `v1` version.
   - **Feature:** Add new function `GetLogsSearchFilters`
