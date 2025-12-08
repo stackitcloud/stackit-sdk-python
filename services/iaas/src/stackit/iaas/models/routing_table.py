@@ -54,11 +54,7 @@ class RoutingTable(BaseModel):
     name: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
     )
-    system_routes: Optional[StrictBool] = Field(
-        default=True,
-        description="A config setting for a routing table which allows installation of automatic system routes for connectivity between projects in the same SNA.",
-        alias="systemRoutes",
-    )
+    system_routes: Optional[StrictBool] = Field(default=True, alias="systemRoutes")
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
