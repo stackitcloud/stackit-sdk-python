@@ -1,3 +1,8 @@
+## v1.1.0
+- **Feature:** Add `CreateIsolatedNetwork` functionality
+- **Feature:** Add `ImageFromVolumePayload` functionality
+- **Feature:** Add `SystemRoutes` to `UpdateRoutingTableOfAreaPayload`
+
 ## v1.0.0
 - **Breaking Change:** Add required `region` parameter to most API methods in `DefaultApi` class.
 - **Breaking Change:** Removal of API methods from `DefaultApi` class: `list_snapshots`, `update_image_scope_local`, `update_image_scope_public`.
