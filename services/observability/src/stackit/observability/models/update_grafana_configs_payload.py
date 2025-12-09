@@ -34,12 +34,12 @@ class UpdateGrafanaConfigsPayload(BaseModel):
     generic_oauth: Optional[UpdateGrafanaConfigsPayloadGenericOauth] = Field(default=None, alias="genericOauth")
     public_read_access: Optional[StrictBool] = Field(
         default=None,
-        description="If it's true, anyone can access the Grafana dashboards without logging in. If it is wrong, a login is required.",
+        description="If it's true, anyone can access the Grafana dashboards without logging in.  If it is wrong, a login is required.",
         alias="publicReadAccess",
     )
     use_stackit_sso: Optional[StrictBool] = Field(
         default=None,
-        description="If it's true, it overwrites the current genericOauth config and configures STACKIT SSO for this instance.",
+        description="If it's true, it overwrites the current genericOauth config and configures  STACKIT SSO for this instance.",
         alias="useStackitSso",
     )
     __properties: ClassVar[List[str]] = ["genericOauth", "publicReadAccess", "useStackitSso"]
