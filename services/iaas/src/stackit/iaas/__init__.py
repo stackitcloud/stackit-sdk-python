@@ -3,7 +3,7 @@
 # flake8: noqa
 
 """
-    IaaS-API
+    STACKIT IaaS API
 
     This API allows you to create and modify IaaS resources.
 
@@ -46,6 +46,7 @@ __all__ = [
     "CreateAffinityGroupPayload",
     "CreateBackupPayload",
     "CreateImagePayload",
+    "CreateIsolatedNetworkPayload",
     "CreateKeyPairPayload",
     "CreateNetworkAreaPayload",
     "CreateNetworkAreaRangePayload",
@@ -227,6 +228,9 @@ from stackit.iaas.models.create_backup_payload import (
 )
 from stackit.iaas.models.create_image_payload import (
     CreateImagePayload as CreateImagePayload,
+)
+from stackit.iaas.models.create_isolated_network_payload import (
+    CreateIsolatedNetworkPayload as CreateIsolatedNetworkPayload,
 )
 from stackit.iaas.models.create_key_pair_payload import (
     CreateKeyPairPayload as CreateKeyPairPayload,

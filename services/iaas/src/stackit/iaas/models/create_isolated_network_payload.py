@@ -19,28 +19,33 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing_extensions import Annotated, Self
 
+from stackit.iaas.models.create_network_ipv4 import CreateNetworkIPv4
 
-class BackupSource(BaseModel):
+
+class CreateIsolatedNetworkPayload(BaseModel):
     """
-    The source object of a backup.
+    Object that represents the request body for a single isolated network create.
     """  # noqa: E501
 
-    id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
-        description="Universally Unique Identifier (UUID)."
+    dhcp: Optional[StrictBool] = Field(default=None, description="Enable or disable DHCP for a network.")
+    ipv4: Optional[CreateNetworkIPv4] = None
+    labels: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
     )
-    type: StrictStr = Field(description="The source types of a backup. Possible values: `volume`, `snapshot`.")
-    __properties: ClassVar[List[str]] = ["id", "type"]
+    name: Annotated[str, Field(strict=True, max_length=127)] = Field(
+        description="The name for a General Object. Matches Names and also UUIDs."
+    )
+    __properties: ClassVar[List[str]] = ["dhcp", "ipv4", "labels", "name"]
 
-    @field_validator("id")
-    def id_validate_regular_expression(cls, value):
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
-            raise ValueError(
-                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
-            )
+        if not re.match(r"^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z0-9]+([ \/._-]*[A-Za-z0-9]+)*$/")
         return value
 
     model_config = ConfigDict(
@@ -60,7 +65,7 @@ class BackupSource(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BackupSource from a JSON string"""
+        """Create an instance of CreateIsolatedNetworkPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,16 +85,26 @@ class BackupSource(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of ipv4
+        if self.ipv4:
+            _dict["ipv4"] = self.ipv4.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BackupSource from a dict"""
+        """Create an instance of CreateIsolatedNetworkPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"id": obj.get("id"), "type": obj.get("type")})
+        _obj = cls.model_validate(
+            {
+                "dhcp": obj.get("dhcp"),
+                "ipv4": CreateNetworkIPv4.from_dict(obj["ipv4"]) if obj.get("ipv4") is not None else None,
+                "labels": obj.get("labels"),
+                "name": obj.get("name"),
+            }
+        )
         return _obj

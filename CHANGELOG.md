@@ -1,3 +1,9 @@
+## Release (2025-xx-xx)
+- `iaas`: [v1.1.0](services/iaas/CHANGELOG.md#v110)
+  - **Feature:** Add `CreateIsolatedNetwork` functionality
+  - **Feature:** Add `ImageFromVolumePayload` functionality
+  - **Feature:** Add `SystemRoutes` to `UpdateRoutingTableOfAreaPayload`
+
 ## Release (2025-12-08)
 - `scf`: [v0.3.0](services/scf/CHANGELOG.md#v030)
   - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
