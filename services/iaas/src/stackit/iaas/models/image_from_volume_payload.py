@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    IaaS-API
+    STACKIT IaaS API
 
     This API allows you to create and modify IaaS resources.
 
@@ -35,28 +35,18 @@ class ImageFromVolumePayload(BaseModel):
     Object that represents the upload request of an image to a volume. Used for creating an image from a volume.
     """  # noqa: E501
 
-    container_format: Optional[StrictStr] = Field(
-        default="bare",
-        description="Object that represents a container format. Possible values: `bare`, `ofv`, `ova`.",
-        alias="containerFormat",
-    )
     disk_format: Optional[StrictStr] = Field(
         default=None,
         description="Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.",
         alias="diskFormat",
     )
-    force: Optional[StrictBool] = False
     name: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
     )
     protected: Optional[StrictBool] = Field(
         default=False, description="When true the created image is prevented from being deleted."
     )
-    visibility: Optional[StrictStr] = Field(
-        default="private",
-        description="Object that represents Visibility. Possible values: `public`, `private`, `community`, `shared`.",
-    )
-    __properties: ClassVar[List[str]] = ["containerFormat", "diskFormat", "force", "name", "protected", "visibility"]
+    __properties: ClassVar[List[str]] = ["diskFormat", "name", "protected"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -115,12 +105,9 @@ class ImageFromVolumePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "containerFormat": obj.get("containerFormat") if obj.get("containerFormat") is not None else "bare",
                 "diskFormat": obj.get("diskFormat"),
-                "force": obj.get("force") if obj.get("force") is not None else False,
                 "name": obj.get("name"),
                 "protected": obj.get("protected") if obj.get("protected") is not None else False,
-                "visibility": obj.get("visibility") if obj.get("visibility") is not None else "private",
             }
         )
         return _obj
