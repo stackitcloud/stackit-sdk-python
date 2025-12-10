@@ -33,23 +33,28 @@ class UpdateGrafanaConfigsPayloadGenericOauth(BaseModel):
     UpdateGrafanaConfigsPayloadGenericOauth
     """  # noqa: E501
 
+    allow_assign_grafana_admin: Optional[StrictBool] = Field(
+        default=False,
+        description="Set to true to enable automatic sync of the Grafana server administrator role.  If this option is set to true and the result of evaluating role_attribute_path for  a user is GrafanaAdmin, Grafana grants the user the server administrator privileges and  organization administrator role. If this option is set to false and the result of  evaluating role_attribute_path for a user is GrafanaAdmin, Grafana grants the user  only organization administrator role.",
+        alias="allowAssignGrafanaAdmin",
+    )
     api_url: StrictStr = Field(
         description="Set api_url to the resource that returns OpenID UserInfo compatible information.", alias="apiUrl"
     )
     auth_url: StrictStr = Field(description="Authentication endpoint of idp.", alias="authUrl")
-    enabled: StrictBool = Field(description="enable or disable generic oauth login")
+    enabled: StrictBool = Field(description="Enable or disable generic oauth login")
     name: Optional[StrictStr] = Field(default=None, description="Display name for the oAuth provider")
     oauth_client_id: StrictStr = Field(description="Oauth client id for auth endpoint.", alias="oauthClientId")
     oauth_client_secret: StrictStr = Field(
         description="Oauth client secret for auth endpoint.", alias="oauthClientSecret"
     )
     role_attribute_path: StrictStr = Field(
-        description="Grafana checks for the presence of a role using the JMESPath specified via the role_attribute_path configuration option. The JMESPath is applied to the id_token first. If there is no match, then the UserInfo endpoint specified via the api_url configuration option is tried next. The result after evaluation of the role_attribute_path JMESPath expression should be a valid Grafana role, for example, Viewer, Editor or Admin For example: contains(roles[\\*], 'grafana-admin') && 'Admin' || contains(roles[\\*], 'grafana-editor') && 'Editor' || contains(roles[\\*], 'grafana-viewer') && 'Viewer'",
+        description="Grafana checks for the presence of a role using the JMESPath specified via the  role_attribute_path configuration option. The JMESPath is applied to the id_token first.  If there is no match, then the UserInfo endpoint specified via the api_url configuration  option is tried next. The result after evaluation of the role_attribute_path JMESPath  expression should be a valid Grafana role, for example, Viewer, Editor or Admin For example: contains(roles[\\*], 'grafana-admin') && 'Admin' || contains(roles[\\*],  'grafana-editor') && 'Editor' || contains(roles[\\*], 'grafana-viewer') && 'Viewer'",
         alias="roleAttributePath",
     )
     role_attribute_strict: Optional[StrictBool] = Field(
         default=True,
-        description="If  therole_attribute_path property does not return a role, then the user is assigned the Viewer role by default. You can disable the role assignment by setting role_attribute_strict = true. It denies user access if no role or an invalid role is returned.",
+        description="If the role_attribute_path property does not return a role, then the user is assigned the Viewer role by default. You can disable the role assignment by setting role_attribute_strict = true. It denies user access if no role or an invalid role is returned.",
         alias="roleAttributeStrict",
     )
     scopes: Optional[StrictStr] = Field(
@@ -57,9 +62,10 @@ class UpdateGrafanaConfigsPayloadGenericOauth(BaseModel):
     )
     token_url: StrictStr = Field(description="Token endpoint of the idp.", alias="tokenUrl")
     use_pkce: Optional[StrictBool] = Field(
-        default=None, description="enable or disable Proof Key for Code Exchange", alias="usePkce"
+        default=None, description="Enable or disable Proof Key for Code Exchange", alias="usePkce"
     )
     __properties: ClassVar[List[str]] = [
+        "allowAssignGrafanaAdmin",
         "apiUrl",
         "authUrl",
         "enabled",
@@ -123,6 +129,9 @@ class UpdateGrafanaConfigsPayloadGenericOauth(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "allowAssignGrafanaAdmin": (
+                    obj.get("allowAssignGrafanaAdmin") if obj.get("allowAssignGrafanaAdmin") is not None else False
+                ),
                 "apiUrl": obj.get("apiUrl"),
                 "authUrl": obj.get("authUrl"),
                 "enabled": obj.get("enabled"),
