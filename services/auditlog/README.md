@@ -3,7 +3,7 @@ API Endpoints to retrieve recorded actions and resulting changes in the system.
 
 ### Documentation
 The user documentation with explanations how to use the api can be found 
-[here](https://docs.stackit.cloud/stackit/en/retrieve-audit-log-per-api-request-134415907.html).
+[here](https://docs.stackit.cloud/platform/audit-log/retrieve-audit-log/).
 
 ### Audit Logging
 Changes on organizations, folders and projects and respective cloud resources are logged and collected in the audit 

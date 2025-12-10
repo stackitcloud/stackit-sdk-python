@@ -1,7 +1,7 @@
 # stackit.rabbitmq
 The STACKIT RabbitMQ API provides endpoints to list service offerings, manage service instances and service credentials within STACKIT portal projects.
 
-For more information, please visit [https://docs.stackit.cloud/stackit/en/support-area-72063304.html](https://docs.stackit.cloud/stackit/en/support-area-72063304.html)
+For more information, please visit [https://docs.stackit.cloud/support/](https://docs.stackit.cloud/support/)
 
 This package is part of the STACKIT Python SDK. For additional information, please visit the [GitHub repository](https://github.com/stackitcloud/stackit-sdk-python) of the SDK.
 
