@@ -1,7 +1,7 @@
 # stackit.git
 Manage STACKIT Git instances.
 
-For more information, please visit [https://docs.stackit.cloud/products/developer-platform/git/](https://docs.stackit.cloud/products/developer-platform/git/)
+For more information, please visit [https://docs.stackit.cloud/stackit/en/git-261161358.html](https://docs.stackit.cloud/stackit/en/git-261161358.html)
 
 This package is part of the STACKIT Python SDK. For additional information, please visit the [GitHub repository](https://github.com/stackitcloud/stackit-sdk-python) of the SDK.
 
