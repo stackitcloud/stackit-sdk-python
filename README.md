@@ -49,7 +49,7 @@ The only thing you need is a STACKIT account and valid credentials.
 
 ## Authorization
 
-To authenticate to the SDK, you will need a [service account](https://docs.stackit.cloud/stackit/en/service-accounts-134415819.html). Create it in the STACKIT Portal and assign it the necessary permissions, e.g. `project.owner`.
+To authenticate to the SDK, you will need a [service account](https://docs.stackit.cloud/platform/access-and-identity/service-accounts/). Create it in the STACKIT Portal and assign it the necessary permissions, e.g. `project.owner`.
 
 There are multiple ways to authenticate:
 
@@ -85,12 +85,12 @@ When creating the service account key, a new pair can be created automatically, 
 This will make it much easier to configure the key flow authentication in the SDK, by just providing the service account key.
 
 > **Optionally**, you can provide your own private key when creating the service account key, which will then require you to also provide it explicitly to the SDK, additionally to the service account key.
-> Check the STACKIT Knowledge Base for an [example of how to create your own key-pair](https://docs.stackit.cloud/stackit/en/usage-of-the-service-account-keys-in-stackit-175112464.html#UsageoftheserviceaccountkeysinSTACKIT-CreatinganRSAkey-pair).
+> Check the STACKIT Docs for an [example of how to create your own key-pair](https://docs.stackit.cloud/platform/access-and-identity/service-accounts/how-tos/manage-service-account-keys/).
 
 To configure the key flow, follow this steps:
 
 1. Create a service account key:
-    - Use the STACKIT Portal: go to the `Service Accounts` tab, choose a `Service Account` and go to `Service Account Keys` to create a key. For more details, see [Create a service account key](https://docs.stackit.cloud/stackit/en/create-a-service-account-key-175112456.html).
+    - Use the STACKIT Portal: go to the `Service Accounts` tab, choose a `Service Account` and go to `Service Account Keys` to create a key. For more details, see [Create a service account key](https://docs.stackit.cloud/platform/access-and-identity/service-accounts/how-tos/manage-service-account-keys/).
 2. Save the content of the service account key by copying it and saving it in a JSON file. The expected format of the service account key is **JSON** with the following structure:
 
     ```json
