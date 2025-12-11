@@ -56,6 +56,7 @@ from stackit.scf.models.space_role_create_bff_request import SpaceRoleCreateBffR
 from stackit.scf.models.space_role_create_bff_response import SpaceRoleCreateBffResponse
 from stackit.scf.models.space_role_create_response import SpaceRoleCreateResponse
 from stackit.scf.models.space_role_type import SpaceRoleType
+from stackit.scf.models.space_with_isolation_segment import SpaceWithIsolationSegment
 from stackit.scf.models.spaces_list import SpacesList
 from stackit.scf.models.update_organization_payload import UpdateOrganizationPayload
 from stackit.scf.models.update_space_payload import UpdateSpacePayload
