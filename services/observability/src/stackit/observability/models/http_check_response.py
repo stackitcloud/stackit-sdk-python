@@ -31,9 +31,10 @@ class HttpCheckResponse(BaseModel):
     HttpCheckResponse
     """  # noqa: E501
 
+    http_check: Optional[HttpCheckChildResponse] = Field(default=None, alias="httpCheck")
     http_checks: Annotated[List[HttpCheckChildResponse], Field(max_length=100)] = Field(alias="httpChecks")
     message: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["httpChecks", "message"]
+    __properties: ClassVar[List[str]] = ["httpCheck", "httpChecks", "message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +73,9 @@ class HttpCheckResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of http_check
+        if self.http_check:
+            _dict["httpCheck"] = self.http_check.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in http_checks (list)
         _items = []
         if self.http_checks:
@@ -92,6 +96,9 @@ class HttpCheckResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "httpCheck": (
+                    HttpCheckChildResponse.from_dict(obj["httpCheck"]) if obj.get("httpCheck") is not None else None
+                ),
                 "httpChecks": (
                     [HttpCheckChildResponse.from_dict(_item) for _item in obj["httpChecks"]]
                     if obj.get("httpChecks") is not None
