@@ -66,6 +66,7 @@ __all__ = [
     "SpaceRoleCreateBffResponse",
     "SpaceRoleCreateResponse",
     "SpaceRoleType",
+    "SpaceWithIsolationSegment",
     "SpacesList",
     "UpdateOrganizationPayload",
     "UpdateSpacePayload",
@@ -162,6 +163,9 @@ from stackit.scf.models.space_role_create_response import (
     SpaceRoleCreateResponse as SpaceRoleCreateResponse,
 )
 from stackit.scf.models.space_role_type import SpaceRoleType as SpaceRoleType
+from stackit.scf.models.space_with_isolation_segment import (
+    SpaceWithIsolationSegment as SpaceWithIsolationSegment,
+)
 from stackit.scf.models.spaces_list import SpacesList as SpacesList
 from stackit.scf.models.update_organization_payload import (
     UpdateOrganizationPayload as UpdateOrganizationPayload,
