@@ -1,3 +1,6 @@
+## v0.4.0
+- **Feature:** Add new model class `SpaceWithIsolationSegment`
+
 ## v0.3.0
 - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
 

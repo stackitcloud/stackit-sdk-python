@@ -1,4 +1,6 @@
 ## Release (2025-xx-xx)
+- `scf`: [v0.4.0](services/scf/CHANGELOG.md#v040)
+  - **Feature:** Add new model class `SpaceWithIsolationSegment`
 - `iaas`: [v1.1.0](services/iaas/CHANGELOG.md#v110)
   - **Feature:** Add `CreateIsolatedNetwork` functionality
   - **Feature:** Add `ImageFromVolumePayload` functionality
