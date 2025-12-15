@@ -1,3 +1,6 @@
+## v0.5.0
+- **Feature:** Add regex field validator for `display_name` attribute in model classes `CreateKeyPayload`, `CreateKeyRingPayload`, `CreateWrappingKeyPayload`
+
 ## v0.4.1
 - **Bugfix:** Prevent year 0 timestamp issue
 
