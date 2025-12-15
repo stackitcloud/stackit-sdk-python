@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import (
@@ -23,6 +24,7 @@ from pydantic import (
     Field,
     StrictBool,
     StrictStr,
+    field_validator,
 )
 from typing_extensions import Annotated, Self
 
@@ -43,7 +45,8 @@ class CreateKeyPayload(BaseModel):
         default=None, description="A user chosen description to distinguish multiple keys."
     )
     display_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
-        description="The display name to distinguish multiple keys.", alias="displayName"
+        description="The display name to distinguish multiple keys. Valid characters: letters, digits, underscores and hyphens.",
+        alias="displayName",
     )
     import_only: Optional[StrictBool] = Field(
         default=False, description="States whether versions can be created or only imported.", alias="importOnly"
@@ -59,6 +62,13 @@ class CreateKeyPayload(BaseModel):
         "protection",
         "purpose",
     ]
+
+    @field_validator("display_name")
+    def display_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^[a-zA-Z0-9_-]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9_-]+$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
