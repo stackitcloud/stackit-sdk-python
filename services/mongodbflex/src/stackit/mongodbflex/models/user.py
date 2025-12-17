@@ -34,7 +34,7 @@ class User(BaseModel):
     port: Optional[StrictInt] = None
     roles: Optional[List[StrictStr]] = Field(
         default=None,
-        description="The roles defined for a user. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**",
+        description="The roles defined for a user. Currently only one role in the list is supported, therefore only the first role from this list is used. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**",
     )
     uri: Optional[StrictStr] = None
     username: Optional[StrictStr] = None
