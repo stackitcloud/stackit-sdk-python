@@ -22,7 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
 
-class UpdateAlertgroupsRequestInnerRulesInner(BaseModel):
+class CreateLogsAlertgroupsPayloadRulesInner(BaseModel):
     """
     Rule definition. Must be either an Alerting Rule (using 'alert') or a Recording Rule (using 'record'). `Additional Validators:` * total config (all alert groups/rules) should not be bigger than 500000 characters as string since this the limitation of prometheus.
     """  # noqa: E501
@@ -36,7 +36,7 @@ class UpdateAlertgroupsRequestInnerRulesInner(BaseModel):
         description="Map of key:value. Annotations to add to each alert. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters * is not allowed to use when 'record' is used in this rule",
     )
     expr: Annotated[str, Field(min_length=1, strict=True, max_length=600)] = Field(
-        description="The PromQL expression to evaluate to create alerts when using the 'alert' attribute in this rule, or to create a metric when using the 'record' attribute."
+        description="The LogQL expression to evaluate to create alerts when using the 'alert' attribute in this rule, or to create a metric when using the 'record' attribute."
     )
     var_for: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(
         default="0s",
@@ -70,7 +70,7 @@ class UpdateAlertgroupsRequestInnerRulesInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateAlertgroupsRequestInnerRulesInner from a JSON string"""
+        """Create an instance of CreateLogsAlertgroupsPayloadRulesInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -94,7 +94,7 @@ class UpdateAlertgroupsRequestInnerRulesInner(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateAlertgroupsRequestInnerRulesInner from a dict"""
+        """Create an instance of CreateLogsAlertgroupsPayloadRulesInner from a dict"""
         if obj is None:
             return None
 
