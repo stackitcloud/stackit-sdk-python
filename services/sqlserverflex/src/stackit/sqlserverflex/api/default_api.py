@@ -4487,6 +4487,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The UUID of the project.")],
         instance_id: Annotated[StrictStr, Field(description="The UUID of the instance.")],
+        region: Annotated[StrictStr, Field(description="The region which should be addressed")],
         metric: Annotated[
             StrictStr,
             Field(
@@ -4530,6 +4531,8 @@ class DefaultApi:
         :type project_id: str
         :param instance_id: The UUID of the instance. (required)
         :type instance_id: str
+        :param region: The region which should be addressed (required)
+        :type region: str
         :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'. (required)
         :type metric: str
         :param granularity: The granularity in ISO8601 e.g. 5 minutes are 'PT5M'. (required)
@@ -4565,6 +4568,7 @@ class DefaultApi:
         _param = self._list_metrics_serialize(
             project_id=project_id,
             instance_id=instance_id,
+            region=region,
             metric=metric,
             granularity=granularity,
             period=period,
@@ -4594,6 +4598,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The UUID of the project.")],
         instance_id: Annotated[StrictStr, Field(description="The UUID of the instance.")],
+        region: Annotated[StrictStr, Field(description="The region which should be addressed")],
         metric: Annotated[
             StrictStr,
             Field(
@@ -4637,6 +4642,8 @@ class DefaultApi:
         :type project_id: str
         :param instance_id: The UUID of the instance. (required)
         :type instance_id: str
+        :param region: The region which should be addressed (required)
+        :type region: str
         :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'. (required)
         :type metric: str
         :param granularity: The granularity in ISO8601 e.g. 5 minutes are 'PT5M'. (required)
@@ -4672,6 +4679,7 @@ class DefaultApi:
         _param = self._list_metrics_serialize(
             project_id=project_id,
             instance_id=instance_id,
+            region=region,
             metric=metric,
             granularity=granularity,
             period=period,
@@ -4701,6 +4709,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The UUID of the project.")],
         instance_id: Annotated[StrictStr, Field(description="The UUID of the instance.")],
+        region: Annotated[StrictStr, Field(description="The region which should be addressed")],
         metric: Annotated[
             StrictStr,
             Field(
@@ -4744,6 +4753,8 @@ class DefaultApi:
         :type project_id: str
         :param instance_id: The UUID of the instance. (required)
         :type instance_id: str
+        :param region: The region which should be addressed (required)
+        :type region: str
         :param metric: The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'. (required)
         :type metric: str
         :param granularity: The granularity in ISO8601 e.g. 5 minutes are 'PT5M'. (required)
@@ -4779,6 +4790,7 @@ class DefaultApi:
         _param = self._list_metrics_serialize(
             project_id=project_id,
             instance_id=instance_id,
+            region=region,
             metric=metric,
             granularity=granularity,
             period=period,
@@ -4803,6 +4815,7 @@ class DefaultApi:
         self,
         project_id,
         instance_id,
+        region,
         metric,
         granularity,
         period,
@@ -4830,6 +4843,8 @@ class DefaultApi:
             _path_params["projectId"] = project_id
         if instance_id is not None:
             _path_params["instanceId"] = instance_id
+        if region is not None:
+            _path_params["region"] = region
         if metric is not None:
             _path_params["metric"] = metric
         # process the query parameters
@@ -4862,7 +4877,7 @@ class DefaultApi:
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/v2/projects/{projectId}/instances/{instanceId}/metrics/{metric}",
+            resource_path="/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/metrics/{metric}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
