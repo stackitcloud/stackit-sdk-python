@@ -38,8 +38,8 @@ class WrappingKey(BaseModel):
     created_at: datetime = Field(
         description="The date and time the creation of the wrapping key was triggered.", alias="createdAt"
     )
-    description: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(
-        default=None, description="A user chosen description to distinguish multiple wrapping keys."
+    description: Annotated[str, Field(strict=True, max_length=256)] = Field(
+        description="A user chosen description to distinguish multiple wrapping keys."
     )
     display_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
         description="The display name to distinguish multiple wrapping keys.", alias="displayName"
@@ -50,9 +50,7 @@ class WrappingKey(BaseModel):
         description="The unique id of the key ring this wrapping key is assigned to.", alias="keyRingId"
     )
     protection: Protection
-    public_key: Optional[StrictStr] = Field(
-        default=None, description="The public key of the wrapping key.", alias="publicKey"
-    )
+    public_key: StrictStr = Field(description="The public key of the wrapping key.", alias="publicKey")
     purpose: WrappingPurpose
     state: StrictStr = Field(description="The current state of the wrapping key.")
     __properties: ClassVar[List[str]] = [
@@ -134,8 +132,13 @@ class WrappingKey(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "public_key",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,

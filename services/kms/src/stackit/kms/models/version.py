@@ -44,7 +44,7 @@ class Version(BaseModel):
         description="The scheduled date when a version's key material will be erased completely from the backend",
         alias="destroyDate",
     )
-    disabled: Optional[StrictBool] = Field(default=False, description="States whether versions is enabled or disabled.")
+    disabled: StrictBool = Field(description="States whether versions is enabled or disabled.")
     key_id: StrictStr = Field(description="The unique id of the key this version is assigned to.", alias="keyId")
     key_ring_id: StrictStr = Field(
         description="The unique id of the key ring the key of this version is assigned to.", alias="keyRingId"
