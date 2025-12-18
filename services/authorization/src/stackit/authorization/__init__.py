@@ -28,10 +28,14 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "AddCustomRoleResponse",
     "AddMembersPayload",
+    "AddRolePayload",
     "AssignableSubject",
+    "DeleteRoleResponse",
     "ErrorResponse",
     "ExistingPermission",
+    "GetRoleResponse",
     "ListAssignableSubjectsResponse",
     "ListMembersResponse",
     "ListPermissionsResponse",
@@ -40,9 +44,12 @@ __all__ = [
     "Member",
     "MembersResponse",
     "Permission",
+    "PermissionRequest",
     "RemoveMembersPayload",
     "Role",
     "RolesResponse",
+    "UpdateRolePayload",
+    "UpdateRoleResponse",
     "UserMembership",
     "UserPermission",
     "Zookie",
@@ -63,15 +70,27 @@ from stackit.authorization.exceptions import ApiValueError as ApiValueError
 from stackit.authorization.exceptions import OpenApiException as OpenApiException
 
 # import models into sdk package
+from stackit.authorization.models.add_custom_role_response import (
+    AddCustomRoleResponse as AddCustomRoleResponse,
+)
 from stackit.authorization.models.add_members_payload import (
     AddMembersPayload as AddMembersPayload,
+)
+from stackit.authorization.models.add_role_payload import (
+    AddRolePayload as AddRolePayload,
 )
 from stackit.authorization.models.assignable_subject import (
     AssignableSubject as AssignableSubject,
 )
+from stackit.authorization.models.delete_role_response import (
+    DeleteRoleResponse as DeleteRoleResponse,
+)
 from stackit.authorization.models.error_response import ErrorResponse as ErrorResponse
 from stackit.authorization.models.existing_permission import (
     ExistingPermission as ExistingPermission,
+)
+from stackit.authorization.models.get_role_response import (
+    GetRoleResponse as GetRoleResponse,
 )
 from stackit.authorization.models.list_assignable_subjects_response import (
     ListAssignableSubjectsResponse as ListAssignableSubjectsResponse,
@@ -93,11 +112,20 @@ from stackit.authorization.models.members_response import (
     MembersResponse as MembersResponse,
 )
 from stackit.authorization.models.permission import Permission as Permission
+from stackit.authorization.models.permission_request import (
+    PermissionRequest as PermissionRequest,
+)
 from stackit.authorization.models.remove_members_payload import (
     RemoveMembersPayload as RemoveMembersPayload,
 )
 from stackit.authorization.models.role import Role as Role
 from stackit.authorization.models.roles_response import RolesResponse as RolesResponse
+from stackit.authorization.models.update_role_payload import (
+    UpdateRolePayload as UpdateRolePayload,
+)
+from stackit.authorization.models.update_role_response import (
+    UpdateRoleResponse as UpdateRoleResponse,
+)
 from stackit.authorization.models.user_membership import (
     UserMembership as UserMembership,
 )
