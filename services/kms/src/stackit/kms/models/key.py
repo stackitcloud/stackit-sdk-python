@@ -50,15 +50,15 @@ class Key(BaseModel):
         description="This date is set when a key is pending deletion and refers to the scheduled date of deletion",
         alias="deletionDate",
     )
-    description: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(
-        default=None, description="A user chosen description to distinguish multiple keys."
+    description: Annotated[str, Field(strict=True, max_length=256)] = Field(
+        description="A user chosen description to distinguish multiple keys."
     )
     display_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
         description="The display name to distinguish multiple keys.", alias="displayName"
     )
     id: StrictStr = Field(description="A auto generated unique id which identifies the keys.")
-    import_only: Optional[StrictBool] = Field(
-        default=False, description="States whether versions can be created or only imported.", alias="importOnly"
+    import_only: StrictBool = Field(
+        description="States whether versions can be created or only imported.", alias="importOnly"
     )
     key_ring_id: StrictStr = Field(
         description="The unique id of the key ring this key is assigned to.", alias="keyRingId"
