@@ -1,3 +1,6 @@
+## v0.6.0
+- **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
+
 ## v0.5.0
 - Add new `etag` attribute to `Role` model class
 
