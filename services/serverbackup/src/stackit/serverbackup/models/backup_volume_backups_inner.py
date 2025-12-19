@@ -42,10 +42,19 @@ class BackupVolumeBackupsInner(BaseModel):
             return value
 
         if value not in set(
-            ["creating", "available", "deleting", "error", "restoring", "error_deleting", "error-creating"]
+            [
+                "creating",
+                "available",
+                "deleting",
+                "error",
+                "restoring",
+                "error_deleting",
+                "error-creating",
+                "error-deleting",
+            ]
         ):
             raise ValueError(
-                "must be one of enum values ('creating', 'available', 'deleting', 'error', 'restoring', 'error_deleting', 'error-creating')"
+                "must be one of enum values ('creating', 'available', 'deleting', 'error', 'restoring', 'error_deleting', 'error-creating', 'error-deleting')"
             )
         return value
 
