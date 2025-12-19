@@ -19,6 +19,9 @@
   - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 - `authorization`: [v0.6.0](services/authorization/CHANGELOG.md#v060)
   - **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
+- `serverbackup`: [v1.2.0](services/serverbackup/CHANGELOG.md#v120)
+  - **Improvement:** Add new enums for backup status: `in-progress`, `error-restoring`, `error-deleting`
+  - **Improvement:** Add new enums for backup volume status: `error-deleting`
 
 ## Release (2025-12-08)
 - `scf`: [v0.3.0](services/scf/CHANGELOG.md#v030)
