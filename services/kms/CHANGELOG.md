@@ -1,9 +1,3 @@
-## v0.6.0
-- Set fields `description` and `import_only` to required in response struct `Key`
-- Set fields `description` and `public_key` to required in response struct `WrappingKey`
-- Set field `description` to required in response struct `KeyRing`
-- Set field `disabled` to required in response struct `Version`
-
 ## v0.5.0
 - **Feature:** Add regex field validator for `display_name` attribute in model classes `CreateKeyPayload`, `CreateKeyRingPayload`, `CreateWrappingKeyPayload`
 
