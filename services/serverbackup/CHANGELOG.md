@@ -1,3 +1,7 @@
+## v1.2.0
+- **Improvement:** Extend backup status enums: `in-progress`, `error-restoring`, `error-deleting`
+- **Improvement:** Extend backup volume status enums: `error-deleting`
+
 ## v1.1.0
 - **Version**: Minimal version is now python 3.9
 
