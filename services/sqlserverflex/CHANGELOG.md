@@ -1,3 +1,6 @@
+## v1.1.1
+- **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
+
 ## v1.1.0
 - **Version**: Minimal version is now python 3.9
 
