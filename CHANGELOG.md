@@ -5,8 +5,14 @@
   - **Feature:** Add `CreateIsolatedNetwork` functionality
   - **Feature:** Add `ImageFromVolumePayload` functionality
   - **Feature:** Add `SystemRoutes` to `UpdateRoutingTableOfAreaPayload`
-- `kms`: [v0.5.0](services/kms/CHANGELOG.md#v050)
-  - **Feature:** Add regex field validator for `display_name` attribute in model classes `CreateKeyPayload`, `CreateKeyRingPayload`, `CreateWrappingKeyPayload`
+- `kms`:
+  - [v0.6.0](services/kms/CHANGELOG.md#v060)
+    - Set fields `description` and `import_only` to required in response struct `Key`
+    - Set fields `description` and `public_key` to required in response struct `WrappingKey`
+    - Set field `description` to required in response struct `KeyRing`
+    - Set field `disabled` to required in response struct `Version`
+  - [v0.5.0](services/kms/CHANGELOG.md#v050)
+    - **Feature:** Add regex field validator for `display_name` attribute in model classes `CreateKeyPayload`, `CreateKeyRingPayload`, `CreateWrappingKeyPayload`
 - `sqlserverflex`: [v1.1.1](services/sqlserverflex/CHANGELOG.md#v111)
   - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
 - `mongodbflex`: [v1.2.2](services/mongodbflex/CHANGELOG.md#v122)

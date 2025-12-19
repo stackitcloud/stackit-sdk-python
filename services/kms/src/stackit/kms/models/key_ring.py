@@ -31,8 +31,8 @@ class KeyRing(BaseModel):
     created_at: datetime = Field(
         description="The date and time the creation of the key ring was triggered.", alias="createdAt"
     )
-    description: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(
-        default=None, description="A user chosen description to distinguish multiple key rings."
+    description: Annotated[str, Field(strict=True, max_length=256)] = Field(
+        description="A user chosen description to distinguish multiple key rings."
     )
     display_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
         description="The display name to distinguish multiple key rings.", alias="displayName"
