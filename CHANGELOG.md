@@ -17,6 +17,8 @@
   - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
 - `mongodbflex`: [v1.2.2](services/mongodbflex/CHANGELOG.md#v122)
   - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
+- `authorization`: [v0.6.0](services/authorization/CHANGELOG.md#v060)
+  - **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
 - `serverbackup`: [v1.2.0](services/serverbackup/CHANGELOG.md#v120)
   - **Improvement:** Add new enums for backup status: `in-progress`, `error-restoring`, `error-deleting`
   - **Improvement:** Add new enums for backup volume status: `error-deleting`
