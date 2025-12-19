@@ -9,6 +9,8 @@
   - **Feature:** Add regex field validator for `display_name` attribute in model classes `CreateKeyPayload`, `CreateKeyRingPayload`, `CreateWrappingKeyPayload`
 - `sqlserverflex`: [v1.1.1](services/sqlserverflex/CHANGELOG.md#v111)
   - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
+- `mongodbflex`: [v1.2.2](services/mongodbflex/CHANGELOG.md#v122)
+  - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 
 ## Release (2025-12-08)
 - `scf`: [v0.3.0](services/scf/CHANGELOG.md#v030)

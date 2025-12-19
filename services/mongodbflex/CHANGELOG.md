@@ -1,3 +1,6 @@
+## v1.2.2
+- **Docs:** Extend description of `roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
+
 ## v1.2.1
 - **Improvement:** Improve documentation for user roles field with descriptions of available values and behavior
 
