@@ -7,6 +7,8 @@
   - **Feature:** Add `SystemRoutes` to `UpdateRoutingTableOfAreaPayload`
 - `kms`: [v0.5.0](services/kms/CHANGELOG.md#v050)
   - **Feature:** Add regex field validator for `display_name` attribute in model classes `CreateKeyPayload`, `CreateKeyRingPayload`, `CreateWrappingKeyPayload`
+- `mongodbflex`: [v1.2.2](services/mongodbflex/CHANGELOG.md#v122)
+  - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 
 ## Release (2025-12-08)
 - `scf`: [v0.3.0](services/scf/CHANGELOG.md#v030)
