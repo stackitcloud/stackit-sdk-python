@@ -14,10 +14,14 @@
 
 
 # import models into model package
+from stackit.authorization.models.add_custom_role_response import AddCustomRoleResponse
 from stackit.authorization.models.add_members_payload import AddMembersPayload
+from stackit.authorization.models.add_role_payload import AddRolePayload
 from stackit.authorization.models.assignable_subject import AssignableSubject
+from stackit.authorization.models.delete_role_response import DeleteRoleResponse
 from stackit.authorization.models.error_response import ErrorResponse
 from stackit.authorization.models.existing_permission import ExistingPermission
+from stackit.authorization.models.get_role_response import GetRoleResponse
 from stackit.authorization.models.list_assignable_subjects_response import (
     ListAssignableSubjectsResponse,
 )
@@ -34,9 +38,12 @@ from stackit.authorization.models.list_user_permissions_response import (
 from stackit.authorization.models.member import Member
 from stackit.authorization.models.members_response import MembersResponse
 from stackit.authorization.models.permission import Permission
+from stackit.authorization.models.permission_request import PermissionRequest
 from stackit.authorization.models.remove_members_payload import RemoveMembersPayload
 from stackit.authorization.models.role import Role
 from stackit.authorization.models.roles_response import RolesResponse
+from stackit.authorization.models.update_role_payload import UpdateRolePayload
+from stackit.authorization.models.update_role_response import UpdateRoleResponse
 from stackit.authorization.models.user_membership import UserMembership
 from stackit.authorization.models.user_permission import UserPermission
 from stackit.authorization.models.zookie import Zookie
