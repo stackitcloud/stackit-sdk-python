@@ -27,6 +27,7 @@ class GrafanaOauth(BaseModel):
     GrafanaOauth
     """  # noqa: E501
 
+    allow_assign_grafana_admin: Optional[StrictBool] = Field(default=False, alias="allowAssignGrafanaAdmin")
     api_url: Annotated[str, Field(min_length=1, strict=True, max_length=300)] = Field(alias="apiUrl")
     auth_url: Annotated[str, Field(min_length=1, strict=True, max_length=300)] = Field(alias="authUrl")
     enabled: StrictBool
@@ -43,6 +44,7 @@ class GrafanaOauth(BaseModel):
     token_url: Annotated[str, Field(min_length=1, strict=True, max_length=300)] = Field(alias="tokenUrl")
     use_pkce: Optional[StrictBool] = Field(default=None, alias="usePkce")
     __properties: ClassVar[List[str]] = [
+        "allowAssignGrafanaAdmin",
         "apiUrl",
         "authUrl",
         "enabled",
@@ -106,6 +108,9 @@ class GrafanaOauth(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "allowAssignGrafanaAdmin": (
+                    obj.get("allowAssignGrafanaAdmin") if obj.get("allowAssignGrafanaAdmin") is not None else False
+                ),
                 "apiUrl": obj.get("apiUrl"),
                 "authUrl": obj.get("authUrl"),
                 "enabled": obj.get("enabled"),
