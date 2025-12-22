@@ -18,7 +18,13 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+)
 from typing_extensions import Annotated, Self
 
 
@@ -27,12 +33,17 @@ class UpdateInstancePayload(BaseModel):
     Create update instance body.
     """  # noqa: E501
 
+    grafana_admin_enabled: Optional[StrictBool] = Field(
+        default=True,
+        description="When set to false, the Grafana server admin created during provisioning will be deleted. It's recommended to set this to false and use STACKIT SSO (`Owner` or `Observability Grafana Server Admin` role) instead. It is still possible to manually create a new Grafana admin user  via the Grafana UI later. Once set to false, it is not possible to set it to true again.",
+        alias="grafanaAdminEnabled",
+    )
     name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=200)]] = Field(
         default=None, description="Name of the service"
     )
-    parameter: Optional[Dict[str, Any]] = Field(default=None, description="additional parameters")
-    plan_id: StrictStr = Field(description="uuid of the plan to create/update", alias="planId")
-    __properties: ClassVar[List[str]] = ["name", "parameter", "planId"]
+    parameter: Optional[Dict[str, Any]] = Field(default=None, description="Additional parameters")
+    plan_id: Optional[StrictStr] = Field(default=None, description="UUID of the plan to update", alias="planId")
+    __properties: ClassVar[List[str]] = ["grafanaAdminEnabled", "name", "parameter", "planId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,6 +94,13 @@ class UpdateInstancePayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"name": obj.get("name"), "parameter": obj.get("parameter"), "planId": obj.get("planId")}
+            {
+                "grafanaAdminEnabled": (
+                    obj.get("grafanaAdminEnabled") if obj.get("grafanaAdminEnabled") is not None else True
+                ),
+                "name": obj.get("name"),
+                "parameter": obj.get("parameter"),
+                "planId": obj.get("planId"),
+            }
         )
         return _obj

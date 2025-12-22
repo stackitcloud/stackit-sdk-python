@@ -31,9 +31,10 @@ class CertCheckResponse(BaseModel):
     CertCheckResponse
     """  # noqa: E501
 
+    cert_check: Optional[CertCheckChildResponse] = Field(default=None, alias="certCheck")
     cert_checks: Annotated[List[CertCheckChildResponse], Field(max_length=100)] = Field(alias="certChecks")
     message: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["certChecks", "message"]
+    __properties: ClassVar[List[str]] = ["certCheck", "certChecks", "message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +73,9 @@ class CertCheckResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of cert_check
+        if self.cert_check:
+            _dict["certCheck"] = self.cert_check.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in cert_checks (list)
         _items = []
         if self.cert_checks:
@@ -92,6 +96,9 @@ class CertCheckResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "certCheck": (
+                    CertCheckChildResponse.from_dict(obj["certCheck"]) if obj.get("certCheck") is not None else None
+                ),
                 "certChecks": (
                     [CertCheckChildResponse.from_dict(_item) for _item in obj["certChecks"]]
                     if obj.get("certChecks") is not None
