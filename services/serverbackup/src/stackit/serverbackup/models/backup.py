@@ -64,10 +64,13 @@ class Backup(BaseModel):
                 "backing up",
                 "inconsistent",
                 "error-creating",
+                "in-progress",
+                "error-restoring",
+                "error-deleting",
             ]
         ):
             raise ValueError(
-                "must be one of enum values ('creating', 'available', 'deleting', 'error', 'restoring', 'error_deleting', 'backing up', 'inconsistent', 'error-creating')"
+                "must be one of enum values ('creating', 'available', 'deleting', 'error', 'restoring', 'error_deleting', 'backing up', 'inconsistent', 'error-creating', 'in-progress', 'error-restoring', 'error-deleting')"
             )
         return value
 
