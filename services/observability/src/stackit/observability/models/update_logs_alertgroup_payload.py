@@ -21,21 +21,21 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.observability.models.update_alertgroups_request_inner_rules_inner import (
-    UpdateAlertgroupsRequestInnerRulesInner,
+from stackit.observability.models.create_logs_alertgroups_payload_rules_inner import (
+    CreateLogsAlertgroupsPayloadRulesInner,
 )
 
 
 class UpdateLogsAlertgroupPayload(BaseModel):
     """
-    Alert group that should be created or updated `Additional Validators:` * total config should not be bigger than 500000 characters as string since this the limitation of prometheus.
+    Alert group that should be created or updated. `Additional Validators:` * total config should not be bigger than 500000 characters as string since this the limitation of prometheus.
     """  # noqa: E501
 
     interval: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(
         default="60s",
         description="How often rules in the group are evaluated. `Additional Validators:` * must be a valid time string * should be >=60s",
     )
-    rules: List[UpdateAlertgroupsRequestInnerRulesInner] = Field(description="rules for the alert group")
+    rules: List[CreateLogsAlertgroupsPayloadRulesInner] = Field(description="rules for the alert group")
     __properties: ClassVar[List[str]] = ["interval", "rules"]
 
     model_config = ConfigDict(
@@ -97,7 +97,7 @@ class UpdateLogsAlertgroupPayload(BaseModel):
             {
                 "interval": obj.get("interval") if obj.get("interval") is not None else "60s",
                 "rules": (
-                    [UpdateAlertgroupsRequestInnerRulesInner.from_dict(_item) for _item in obj["rules"]]
+                    [CreateLogsAlertgroupsPayloadRulesInner.from_dict(_item) for _item in obj["rules"]]
                     if obj.get("rules") is not None
                     else None
                 ),
