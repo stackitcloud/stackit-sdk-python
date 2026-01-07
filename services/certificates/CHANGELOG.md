@@ -1,3 +1,7 @@
+## v1.2.0
+- **Feature:** Switch from `v2beta` API version to `v2` version.
+- **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
+
 ## v1.1.0
 - **Version**: Minimal version is now python 3.9
 
