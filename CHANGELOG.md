@@ -1,4 +1,7 @@
 ## Release (2025-xx-xx)
+- `certificates`: [v1.2.0](services/certificates/CHANGELOG.md#v120)
+  - **Feature:** Switch from `v2beta` API version to `v2` version.
+  - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
 - `scf`: [v0.4.0](services/scf/CHANGELOG.md#v040)
   - **Feature:** Add new model class `SpaceWithIsolationSegment`
 - `iaas`: [v1.1.0](services/iaas/CHANGELOG.md#v110)
