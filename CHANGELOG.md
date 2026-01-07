@@ -1,4 +1,6 @@
 ## Release (2026-xx-xx)
+- `sfs`: [v0.1.0](services/sfs/CHANGELOG.md#v010)
+  - **New:** STACKIT File Storage (SFS) service
 - `alb` [v0.7.0](services/alb/CHANGELOG.md#v070)
   - **Feature:** Switch from `v2beta` API version to `v2` version.
   - **Feature:** `MaxCredentials` field added to `GetQuotaResponse`
