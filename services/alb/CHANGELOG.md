@@ -1,3 +1,10 @@
+## v0.7.0
+- **Feature:** Switch from `v2beta` API version to `v2` version.
+- **Feature:** `MaxCredentials` field added to `GetQuotaResponse`
+- **Breaking change:** added `version` to LoadBalancer constructor
+- **Breaking change:** renamed `exact` to `exactMatch` in Path model
+- **Breaking change:** removed `pathPrefix` from Rule model
+
 ## v0.6.1
 - **Docs:** Update description of field `WafConfigName` in `Listener` model
 
