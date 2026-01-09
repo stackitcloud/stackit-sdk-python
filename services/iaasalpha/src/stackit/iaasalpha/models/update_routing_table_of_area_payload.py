@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    IaaS-API
+    STACKIT IaaS API
 
     This API allows you to create and modify IaaS resources.
 
@@ -19,7 +19,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing_extensions import Annotated, Self
 
 
@@ -31,14 +31,24 @@ class UpdateRoutingTableOfAreaPayload(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
         default=None, description="Description Object. Allows string up to 255 Characters."
     )
+    dynamic_routes: Optional[StrictBool] = Field(
+        default=None,
+        description="The update config setting for a routing table which allows propagation of dynamic routes to this routing table.",
+        alias="dynamicRoutes",
+    )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.",
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
-    __properties: ClassVar[List[str]] = ["description", "labels", "name"]
+    system_routes: Optional[StrictBool] = Field(
+        default=None,
+        description="The update config setting for a routing table which allows installation of automatic system routes for connectivity between projects in the same SNA.",
+        alias="systemRoutes",
+    )
+    __properties: ClassVar[List[str]] = ["description", "dynamicRoutes", "labels", "name", "systemRoutes"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -99,6 +109,12 @@ class UpdateRoutingTableOfAreaPayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"description": obj.get("description"), "labels": obj.get("labels"), "name": obj.get("name")}
+            {
+                "description": obj.get("description"),
+                "dynamicRoutes": obj.get("dynamicRoutes"),
+                "labels": obj.get("labels"),
+                "name": obj.get("name"),
+                "systemRoutes": obj.get("systemRoutes"),
+            }
         )
         return _obj
