@@ -1,4 +1,7 @@
 ## Release (2026-xx-xx)
+- `secretsmanager` [v0.4.0](services/secretsmanager/CHANGELOG.md#v040)
+    - **Feature:** added KmsKey model
+    - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
 - `sfs`: [v0.1.0](services/sfs/CHANGELOG.md#v010)
   - **New:** STACKIT File Storage (SFS) service
 - `alb` [v0.7.0](services/alb/CHANGELOG.md#v070)

@@ -20,6 +20,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
+from stackit.secretsmanager.models.kms_key_payload import KmsKeyPayload
+
 
 class Instance(BaseModel):
     """
@@ -37,6 +39,7 @@ class Instance(BaseModel):
         alias="creationStartDate",
     )
     id: StrictStr = Field(description="A auto generated unique id which identifies the secrets manager instances.")
+    kms_key: Optional[KmsKeyPayload] = Field(default=None, alias="kmsKey")
     name: StrictStr = Field(description="A user chosen name to distinguish multiple secrets manager instances.")
     secret_count: StrictInt = Field(
         description="The number of secrets currently stored inside of the instance. This value will be updated once per hour.",
@@ -51,6 +54,7 @@ class Instance(BaseModel):
         "creationFinishedDate",
         "creationStartDate",
         "id",
+        "kmsKey",
         "name",
         "secretCount",
         "secretsEngine",
@@ -96,6 +100,9 @@ class Instance(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of kms_key
+        if self.kms_key:
+            _dict["kmsKey"] = self.kms_key.to_dict()
         return _dict
 
     @classmethod
@@ -113,6 +120,7 @@ class Instance(BaseModel):
                 "creationFinishedDate": obj.get("creationFinishedDate"),
                 "creationStartDate": obj.get("creationStartDate"),
                 "id": obj.get("id"),
+                "kmsKey": KmsKeyPayload.from_dict(obj["kmsKey"]) if obj.get("kmsKey") is not None else None,
                 "name": obj.get("name"),
                 "secretCount": obj.get("secretCount"),
                 "secretsEngine": obj.get("secretsEngine"),

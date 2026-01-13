@@ -1,3 +1,7 @@
+## v0.4.0
+- **Feature:** added KmsKey model
+- **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
+
 ## v0.3.0
 - **Version**: Minimal version is now python 3.9
 

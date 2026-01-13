@@ -21,6 +21,7 @@ from stackit.secretsmanager.models.create_acl_payload import CreateACLPayload
 from stackit.secretsmanager.models.create_instance_payload import CreateInstancePayload
 from stackit.secretsmanager.models.create_user_payload import CreateUserPayload
 from stackit.secretsmanager.models.instance import Instance
+from stackit.secretsmanager.models.kms_key_payload import KmsKeyPayload
 from stackit.secretsmanager.models.list_acls_response import ListACLsResponse
 from stackit.secretsmanager.models.list_instances_response import ListInstancesResponse
 from stackit.secretsmanager.models.list_users_response import ListUsersResponse
