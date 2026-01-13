@@ -35,6 +35,7 @@ __all__ = [
     "CreateInstancePayload",
     "CreateUserPayload",
     "Instance",
+    "KmsKeyPayload",
     "ListACLsResponse",
     "ListInstancesResponse",
     "ListUsersResponse",
@@ -74,6 +75,7 @@ from stackit.secretsmanager.models.create_user_payload import (
     CreateUserPayload as CreateUserPayload,
 )
 from stackit.secretsmanager.models.instance import Instance as Instance
+from stackit.secretsmanager.models.kms_key_payload import KmsKeyPayload as KmsKeyPayload
 from stackit.secretsmanager.models.list_acls_response import (
     ListACLsResponse as ListACLsResponse,
 )
