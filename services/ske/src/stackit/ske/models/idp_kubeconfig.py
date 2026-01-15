@@ -20,17 +20,14 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing_extensions import Self
 
-from stackit.ske.models.machine_image_version import MachineImageVersion
 
-
-class MachineImage(BaseModel):
+class IDPKubeconfig(BaseModel):
     """
-    MachineImage
+    IDPKubeconfig
     """  # noqa: E501
 
-    name: Optional[StrictStr] = None
-    versions: Optional[List[MachineImageVersion]] = None
-    __properties: ClassVar[List[str]] = ["name", "versions"]
+    kubeconfig: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["kubeconfig"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +46,7 @@ class MachineImage(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MachineImage from a JSON string"""
+        """Create an instance of IDPKubeconfig from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,32 +66,16 @@ class MachineImage(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in versions (list)
-        _items = []
-        if self.versions:
-            for _item in self.versions:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["versions"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MachineImage from a dict"""
+        """Create an instance of IDPKubeconfig from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "name": obj.get("name"),
-                "versions": (
-                    [MachineImageVersion.from_dict(_item) for _item in obj["versions"]]
-                    if obj.get("versions") is not None
-                    else None
-                ),
-            }
-        )
+        _obj = cls.model_validate({"kubeconfig": obj.get("kubeconfig")})
         return _obj
