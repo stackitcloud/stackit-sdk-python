@@ -1,4 +1,6 @@
 ## Release (2026-xx-xx)
+- `logs`: [v0.1.0](services/logs/CHANGELOG.md#v010)
+  - **New**: STACKIT Logs service
 - `edge`: [v0.1.0](services/edge/CHANGELOG.md#v010)
     - **New**: STACKIT Edge Cloud (STEC) service
 - `observability`: [v0.12.0](services/observability/CHANGELOG.md#v0120)
