@@ -22,36 +22,31 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
 
-class UpdateAlertgroupsRequestInnerRulesInner(BaseModel):
+class PartialUpdateAlertrulesRequestInner(BaseModel):
     """
-    Rule definition. Must be either an Alerting Rule (using 'alert') or a Recording Rule (using 'record'). `Additional Validators:` * total config (all alert groups/rules) should not be bigger than 500000 characters as string since this the limitation of prometheus.
+    Alert rule. `Additional Validators:` * total config (all alert groups/rules) should not be bigger than 500000 characters as string since this the limitation of prometheus.
     """  # noqa: E501
 
-    alert: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=200)]] = Field(
-        default=None,
-        description="The name of the alert. When this attribute is used, an Alerting Rule will be  created. `Additional Validators:` * is the identifier and so unique in the group * should only include the characters: a-zA-Z0-9- * required when 'record' is not used in this rule, otherwise not allowed",
+    alert: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(
+        description="The name of the alert. `Additional Validators:` * is the identifier and so unique in the group * should only include the characters: a-zA-Z0-9-"
     )
     annotations: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Map of key:value. Annotations to add to each alert. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters * is not allowed to use when 'record' is used in this rule",
+        description="map of key:value. Annotations to add to each alert. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters",
     )
     expr: Annotated[str, Field(min_length=1, strict=True, max_length=2000)] = Field(
-        description="The PromQL expression to evaluate to create alerts when using the 'alert' attribute in this rule, or to create a metric when using the 'record' attribute."
+        description="The PromQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts."
     )
     var_for: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(
         default="0s",
-        description="Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending. `Additional Validators:` * must be a valid time string * is not allowed to use when 'record' is used in this rule",
+        description="Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending. `Additional Validators:` * must be a valid time string",
         alias="for",
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Map of key:value. Labels to add or overwrite for each alert or metric. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters",
+        description="map of key:value. Labels to add or overwrite for each alert. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters",
     )
-    record: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=300)]] = Field(
-        default=None,
-        description="The name of the metric. When this attribute is used, an Recording Rule will be  created. `Additional Validators:` * is the identifier and so unique in the group * should only include the characters: a-zA-Z0-9:_ * required when 'alert' is not used in this rule, otherwise not allowed",
-    )
-    __properties: ClassVar[List[str]] = ["alert", "annotations", "expr", "for", "labels", "record"]
+    __properties: ClassVar[List[str]] = ["alert", "annotations", "expr", "for", "labels"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,7 +65,7 @@ class UpdateAlertgroupsRequestInnerRulesInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateAlertgroupsRequestInnerRulesInner from a JSON string"""
+        """Create an instance of PartialUpdateAlertrulesRequestInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -94,7 +89,7 @@ class UpdateAlertgroupsRequestInnerRulesInner(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateAlertgroupsRequestInnerRulesInner from a dict"""
+        """Create an instance of PartialUpdateAlertrulesRequestInner from a dict"""
         if obj is None:
             return None
 
@@ -108,7 +103,6 @@ class UpdateAlertgroupsRequestInnerRulesInner(BaseModel):
                 "expr": obj.get("expr"),
                 "for": obj.get("for") if obj.get("for") is not None else "0s",
                 "labels": obj.get("labels"),
-                "record": obj.get("record"),
             }
         )
         return _obj
