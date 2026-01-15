@@ -1,4 +1,6 @@
 ## Release (2026-xx-xx)
+- `edge`: [v0.1.0](services/edge/CHANGELOG.md#v010)
+    - **New**: STACKIT Edge Cloud (STEC) service
 - `observability`: [v0.12.0](services/observability/CHANGELOG.md#v0120)
   - **Breaking change:** The `PartialUpdateAlertrules` takes now `PartialUpdateAlertrulesRequestInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`
   - **Breaking change:** The type of `Rules` in `CreateLogsAlertgroupsPayload` and `UpdateLogsAlertgroupPayload` has changed from `[]UpdateAlertgroupsRequestInnerRulesInner` to `[]CreateLogsAlertgroupsPayloadRulesInner`
