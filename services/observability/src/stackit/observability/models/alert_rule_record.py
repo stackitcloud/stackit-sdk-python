@@ -29,7 +29,7 @@ class AlertRuleRecord(BaseModel):
 
     alert: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=200)]] = None
     annotations: Optional[Dict[str, Annotated[str, Field(min_length=1, strict=True)]]] = None
-    expr: Annotated[str, Field(min_length=1, strict=True, max_length=600)]
+    expr: Annotated[str, Field(min_length=1, strict=True, max_length=2000)]
     var_for: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(default=None, alias="for")
     labels: Optional[Dict[str, Annotated[str, Field(min_length=1, strict=True)]]] = None
     record: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=300)]] = None
