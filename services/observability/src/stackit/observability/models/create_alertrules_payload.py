@@ -34,7 +34,7 @@ class CreateAlertrulesPayload(BaseModel):
         default=None,
         description="map of key:value. Annotations to add to each alert. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters",
     )
-    expr: Annotated[str, Field(min_length=1, strict=True, max_length=600)] = Field(
+    expr: Annotated[str, Field(min_length=1, strict=True, max_length=2000)] = Field(
         description="The PromQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts."
     )
     var_for: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(
