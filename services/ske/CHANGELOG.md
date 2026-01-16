@@ -1,3 +1,6 @@
+## v1.5.0
+- **Feature:** Add field `identity` to model `ClusterStatus`
+
 ## v1.4.0
 - **Feature:** Add new optional `version_state` param to `DefaultApi.list_provider_options` method
 - **Feature:** Add new enum `GetProviderOptionsRequestVersionState`

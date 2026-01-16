@@ -1,4 +1,6 @@
 ## Release (2026-xx-xx)
+- `ske`: [v1.5.0](services/ske/CHANGELOG.md#v150)
+  - **Feature:** Add field `identity` to model `ClusterStatus`
 - `logs`: [v0.1.0](services/logs/CHANGELOG.md#v010)
   - **New**: STACKIT Logs service
 - `edge`: [v0.1.0](services/edge/CHANGELOG.md#v010)
