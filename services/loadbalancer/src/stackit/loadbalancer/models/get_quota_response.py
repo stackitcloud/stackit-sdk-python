@@ -27,6 +27,11 @@ class GetQuotaResponse(BaseModel):
     GetQuotaResponse
     """  # noqa: E501
 
+    max_credentials: Optional[Annotated[int, Field(le=999, strict=True, ge=-1)]] = Field(
+        default=None,
+        description="The maximum number of observability credentials that can be stored in this project.",
+        alias="maxCredentials",
+    )
     max_load_balancers: Optional[Annotated[int, Field(le=1000000, strict=True, ge=-1)]] = Field(
         default=None,
         description="The maximum number of load balancing servers in this project. Unlimited if set to -1.",
@@ -36,7 +41,24 @@ class GetQuotaResponse(BaseModel):
         default=None, description="Project identifier", alias="projectId"
     )
     region: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Region")
-    __properties: ClassVar[List[str]] = ["maxLoadBalancers", "projectId", "region"]
+    used_credentials: Optional[Annotated[int, Field(le=1000000, strict=True, ge=-1)]] = Field(
+        default=None,
+        description="The number of observability credentials that are currently existing in this project.",
+        alias="usedCredentials",
+    )
+    used_load_balancers: Optional[Annotated[int, Field(le=1000000, strict=True, ge=-1)]] = Field(
+        default=None,
+        description="The number of load balancing servers that are currently existing in this project.",
+        alias="usedLoadBalancers",
+    )
+    __properties: ClassVar[List[str]] = [
+        "maxCredentials",
+        "maxLoadBalancers",
+        "projectId",
+        "region",
+        "usedCredentials",
+        "usedLoadBalancers",
+    ]
 
     @field_validator("project_id")
     def project_id_validate_regular_expression(cls, value):
@@ -117,9 +139,12 @@ class GetQuotaResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "maxCredentials": obj.get("maxCredentials"),
                 "maxLoadBalancers": obj.get("maxLoadBalancers"),
                 "projectId": obj.get("projectId"),
                 "region": obj.get("region"),
+                "usedCredentials": obj.get("usedCredentials"),
+                "usedLoadBalancers": obj.get("usedLoadBalancers"),
             }
         )
         return _obj
