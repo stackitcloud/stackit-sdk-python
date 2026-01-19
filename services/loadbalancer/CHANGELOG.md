@@ -1,3 +1,6 @@
+## v0.8.0
+- **Feature:** Add new fields `max_credentials`, `used_credentials` and `used_load_balancers` to `GetQuotaResponse` model
+
 ## v0.7.0
 - **Feature**: Add new attribute `labels` to `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload` model classes
 
