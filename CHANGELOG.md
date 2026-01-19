@@ -24,12 +24,15 @@
     - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
 - `sfs`: [v0.1.0](services/sfs/CHANGELOG.md#v010)
   - **New:** STACKIT File Storage (SFS) service
-- `alb` [v0.7.0](services/alb/CHANGELOG.md#v070)
-  - **Feature:** Switch from `v2beta` API version to `v2` version.
-  - **Feature:** `MaxCredentials` field added to `GetQuotaResponse`
-  - **Breaking change:** added `version` to LoadBalancer constructor
-  - **Breaking change:** renamed `exact` to `exactMatch` in Path model
-  - **Breaking change:** removed `pathPrefix` from Rule model
+- `alb`:
+  - [v0.8.0](services/alb/CHANGELOG.md#v080)
+    - **Feature:** Add new fields `used_credentials` and `used_load_balancers` to `GetQuotaResponse` model
+  - [v0.7.0](services/alb/CHANGELOG.md#v070)
+    - **Feature:** Switch from `v2beta` API version to `v2` version.
+    - **Feature:** `MaxCredentials` field added to `GetQuotaResponse`
+    - **Breaking change:** added `version` to LoadBalancer constructor
+    - **Breaking change:** renamed `exact` to `exactMatch` in Path model
+    - **Breaking change:** removed `pathPrefix` from Rule model
 - `certificates`: [v1.2.0](services/certificates/CHANGELOG.md#v120)
   - **Feature:** Switch from `v2beta` API version to `v2` version.
   - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
