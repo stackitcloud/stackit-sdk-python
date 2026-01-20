@@ -1,4 +1,6 @@
 ## Release (2026-xx-xx)
+- `serverbackup`: [v1.1.1](services/serverbackup/CHANGELOG.md#v111)
+  - **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
 - `loadbalancer`: [v0.8.0](services/loadbalancer/CHANGELOG.md#v080)
   - **Feature:** Add new fields `max_credentials`, `used_credentials` and `used_load_balancers` to `GetQuotaResponse` model
 - `ske`: [v1.5.0](services/ske/CHANGELOG.md#v150)
