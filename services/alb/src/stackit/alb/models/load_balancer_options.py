@@ -34,7 +34,11 @@ class LoadBalancerOptions(BaseModel):
     """  # noqa: E501
 
     access_control: Optional[LoadbalancerOptionAccessControl] = Field(default=None, alias="accessControl")
-    ephemeral_address: Optional[StrictBool] = Field(default=None, alias="ephemeralAddress")
+    ephemeral_address: Optional[StrictBool] = Field(
+        default=None,
+        description="This option automates the handling of the external IP address for an Application Load Balancer. If set to true a new IP address will be automatically created. It will also be automatically deleted when the Load Balancer is deleted.",
+        alias="ephemeralAddress",
+    )
     observability: Optional[LoadbalancerOptionObservability] = None
     private_network_only: Optional[StrictBool] = Field(
         default=None,
