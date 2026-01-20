@@ -1,3 +1,6 @@
+## v1.1.1
+- **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
+
 ## v1.1.0
 - **Version**: Minimal version is now python 3.9
 
