@@ -20,7 +20,7 @@ for file in $(find . -print | sed 's|^./||' | grep -E "(^services/[^/]+/pyprojec
 
     # special handling for CDN (is in v2 by accident)
     if [[ "$dirpath" == "services/cdn" ]]; then
-        if [[ ! "$version" =~ ^v[0-2]\.[0-9]+\.[0-9]+$ ]]; then
+        if [[ ! "$version" =~ ^v?[0-2]\.[0-9]+\.[0-9]+$ ]]; then
             echo ">> $dirpath"
             echo "The version '$version' is invalid."
             exit 1
@@ -29,7 +29,7 @@ for file in $(find . -print | sed 's|^./||' | grep -E "(^services/[^/]+/pyprojec
     fi
 
     # verify version
-    if [[ ! "$version" =~ ^v[0-1]\.[0-9]+\.[0-9]+$ ]]; then
+    if [[ ! "$version" =~ ^v?[0-1]\.[0-9]+\.[0-9]+$ ]]; then
         echo ">> $dirpath"
         echo "The version '$version' is invalid."
         exit 1
