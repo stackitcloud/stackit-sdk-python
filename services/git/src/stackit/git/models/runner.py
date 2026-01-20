@@ -24,45 +24,16 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 
-class Instance(BaseModel):
+class Runner(BaseModel):
     """
-    Describes a STACKIT Git instance.
+    Describes a runner associated to a STACKIT Git instance.
     """  # noqa: E501
 
-    acl: List[StrictStr] = Field(description="Restricted ACL for instance access.")
-    consumed_disk: StrictStr = Field(description="How many bytes of disk space is consumed. Read Only.")
-    consumed_object_storage: StrictStr = Field(description="How many bytes of Object Storage is consumed. Read Only.")
-    created_at: datetime = Field(
-        description="The date and time the creation of the STACKIT Git instance was triggered."
-    )
-    flavor: StrictStr = Field(description="Instance flavor.")
-    id: Annotated[str, Field(strict=True, max_length=36)] = Field(
-        description="A auto generated unique id which identifies the STACKIT Git instances."
-    )
-    name: Annotated[str, Field(strict=True, max_length=32)] = Field(
-        description="A user chosen name to distinguish multiple STACKIT Git instances."
-    )
-    state: Annotated[str, Field(strict=True, max_length=32)] = Field(
-        description="The current state of the STACKIT Git instance."
-    )
-    url: Annotated[str, Field(strict=True, max_length=2048)] = Field(
-        description="The URL for reaching the STACKIT Git instance."
-    )
-    version: Annotated[str, Field(strict=True, max_length=20)] = Field(
-        description="The current version of STACKIT Git deployed to the instance."
-    )
-    __properties: ClassVar[List[str]] = [
-        "acl",
-        "consumed_disk",
-        "consumed_object_storage",
-        "created_at",
-        "flavor",
-        "id",
-        "name",
-        "state",
-        "url",
-        "version",
-    ]
+    created_at: datetime
+    id: Annotated[str, Field(strict=True, max_length=36)]
+    labels: List[StrictStr]
+    status: StrictStr = Field(description="The current status of the runner.")
+    __properties: ClassVar[List[str]] = ["created_at", "id", "labels", "status"]
 
     @field_validator("created_at", mode="before")
     def created_at_change_year_zero_to_one(cls, value):
@@ -75,15 +46,6 @@ class Instance(BaseModel):
             ):
                 # Workaround: Replace "0000" with "0001"
                 return "0001" + value[4:]  # Take "0001" and append the rest of the string
-        return value
-
-    @field_validator("state")
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["Creating", "WaitingForResources", "Updating", "Deleting", "Ready", "Error"]):
-            raise ValueError(
-                "must be one of enum values ('Creating', 'WaitingForResources', 'Updating', 'Deleting', 'Ready', 'Error')"
-            )
         return value
 
     model_config = ConfigDict(
@@ -103,7 +65,7 @@ class Instance(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Instance from a JSON string"""
+        """Create an instance of Runner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -127,7 +89,7 @@ class Instance(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Instance from a dict"""
+        """Create an instance of Runner from a dict"""
         if obj is None:
             return None
 
@@ -136,16 +98,10 @@ class Instance(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "acl": obj.get("acl"),
-                "consumed_disk": obj.get("consumed_disk"),
-                "consumed_object_storage": obj.get("consumed_object_storage"),
                 "created_at": obj.get("created_at"),
-                "flavor": obj.get("flavor"),
                 "id": obj.get("id"),
-                "name": obj.get("name"),
-                "state": obj.get("state"),
-                "url": obj.get("url"),
-                "version": obj.get("version"),
+                "labels": obj.get("labels"),
+                "status": obj.get("status"),
             }
         )
         return _obj
