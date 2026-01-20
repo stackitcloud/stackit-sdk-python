@@ -55,19 +55,18 @@ class Backup(BaseModel):
         """Validates the enum"""
         if value not in set(
             [
-                "creating",
-                "available",
-                "deleting",
-                "error",
-                "restoring",
-                "error_deleting",
-                "backing up",
+                "in-progress",
                 "inconsistent",
+                "available",
+                "error",
+                "error-restoring",
                 "error-creating",
+                "error-deleting",
+                "unrecognized",
             ]
         ):
             raise ValueError(
-                "must be one of enum values ('creating', 'available', 'deleting', 'error', 'restoring', 'error_deleting', 'backing up', 'inconsistent', 'error-creating')"
+                "must be one of enum values ('in-progress', 'inconsistent', 'available', 'error', 'error-restoring', 'error-creating', 'error-deleting', 'unrecognized')"
             )
         return value
 
