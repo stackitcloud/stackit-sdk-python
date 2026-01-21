@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
@@ -26,8 +27,8 @@ class KmsKeyPayload(BaseModel):
     The key for secret encryption and decryption.
     """  # noqa: E501
 
-    key_id: StrictStr = Field(description="The key UUID.", alias="keyId")
-    key_ring_id: StrictStr = Field(description="The key ring UUID the key is part of.", alias="keyRingId")
+    key_id: UUID = Field(description="The key UUID.", alias="keyId")
+    key_ring_id: UUID = Field(description="The key ring UUID the key is part of.", alias="keyRingId")
     key_version: StrictInt = Field(description="The Key version number.", alias="keyVersion")
     service_account_email: StrictStr = Field(
         description="The Service account email that will consume the key. Must be in the same project as the Secrets Manager instance.",
