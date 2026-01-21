@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
@@ -40,7 +41,7 @@ class Project(BaseModel):
     lifecycle_state: LifecycleState = Field(alias="lifecycleState")
     name: StrictStr = Field(description="Project name.")
     parent: Parent
-    project_id: StrictStr = Field(description="Globally unique, project identifier.", alias="projectId")
+    project_id: UUID = Field(description="Globally unique, project identifier.", alias="projectId")
     update_time: datetime = Field(description="Timestamp at which the project was last modified.", alias="updateTime")
     __properties: ClassVar[List[str]] = [
         "containerId",

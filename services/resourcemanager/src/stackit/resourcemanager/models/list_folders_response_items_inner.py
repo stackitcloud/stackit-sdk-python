@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
@@ -32,7 +33,7 @@ class ListFoldersResponseItemsInner(BaseModel):
 
     container_id: StrictStr = Field(description="Globally unique folder identifier.", alias="containerId")
     creation_time: datetime = Field(description="Timestamp at which the folder was created.", alias="creationTime")
-    folder_id: StrictStr = Field(description="Globally unique folder identifier.", alias="folderId")
+    folder_id: UUID = Field(description="Globally unique folder identifier.", alias="folderId")
     labels: Optional[Dict[str, StrictStr]] = Field(
         default=None,
         description="Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.",

@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
@@ -29,7 +30,7 @@ class Parent(BaseModel):
     container_id: StrictStr = Field(
         description="User-friendly identifier of either organization or folder (will replace id).", alias="containerId"
     )
-    id: StrictStr = Field(description="Identifier of either organization or folder.")
+    id: UUID = Field(description="Identifier of either organization or folder.")
     type: StrictStr = Field(description="Container type of parent container.")
     __properties: ClassVar[List[str]] = ["containerId", "id", "type"]
 

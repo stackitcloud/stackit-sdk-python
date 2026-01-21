@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
@@ -34,9 +35,9 @@ class ParentListInner(BaseModel):
         description="User-friendly parent identifier of either organization or folder (will replace parentId).",
         alias="containerParentId",
     )
-    id: StrictStr = Field(description="Identifier.")
+    id: UUID = Field(description="Identifier.")
     name: StrictStr = Field(description="Parent container name.")
-    parent_id: Optional[StrictStr] = Field(
+    parent_id: Optional[UUID] = Field(
         default=None, description="Identifier of the parent resource container.", alias="parentId"
     )
     type: StrictStr = Field(description="Parent container type.")
