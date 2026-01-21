@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -28,7 +29,7 @@ from pydantic import (
     StrictStr,
     field_validator,
 )
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 from stackit.iaasalpha.models.network_ipv4 import NetworkIPv4
 from stackit.iaasalpha.models.network_ipv6 import NetworkIPv6
@@ -43,9 +44,7 @@ class Network(BaseModel):
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
     dhcp: Optional[StrictBool] = Field(default=None, description="Enable or disable DHCP for a network.")
-    id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
-        description="Universally Unique Identifier (UUID)."
-    )
+    id: UUID = Field(description="Universally Unique Identifier (UUID).")
     ipv4: Optional[NetworkIPv4] = None
     ipv6: Optional[NetworkIPv6] = None
     labels: Optional[Dict[str, Any]] = Field(
@@ -56,7 +55,7 @@ class Network(BaseModel):
     routed: Optional[StrictBool] = Field(
         default=None, description="Shows if the network is routed and therefore accessible from other networks."
     )
-    routing_table_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    routing_table_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="routingTableId"
     )
     status: StrictStr = Field(
