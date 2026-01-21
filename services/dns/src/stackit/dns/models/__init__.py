@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.dns.models.clone_zone_payload import CloneZonePayload
 from stackit.dns.models.create_label_payload import CreateLabelPayload
