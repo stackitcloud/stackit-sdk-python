@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.serverbackup.models.backup import Backup
 from stackit.serverbackup.models.backup_job import BackupJob
