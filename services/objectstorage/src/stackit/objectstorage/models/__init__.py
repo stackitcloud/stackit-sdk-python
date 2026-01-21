@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.objectstorage.models.access_key import AccessKey
 from stackit.objectstorage.models.bucket import Bucket
