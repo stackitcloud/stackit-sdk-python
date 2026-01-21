@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing_extensions import Annotated, Self
@@ -44,7 +45,7 @@ class PartialUpdateNetworkPayload(BaseModel):
     routed: Optional[StrictBool] = Field(
         default=None, description="Shows if the network is routed and therefore accessible from other networks."
     )
-    routing_table_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    routing_table_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="routingTableId"
     )
     __properties: ClassVar[List[str]] = ["dhcp", "ipv4", "ipv6", "labels", "name", "routed", "routingTableId"]

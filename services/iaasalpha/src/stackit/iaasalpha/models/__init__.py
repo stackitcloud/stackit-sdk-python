@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.iaasalpha.models.add_routes_to_routing_table_payload import (
     AddRoutesToRoutingTablePayload,
