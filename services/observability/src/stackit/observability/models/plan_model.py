@@ -17,8 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing_extensions import Annotated, Self
 
 
@@ -42,11 +43,11 @@ class PlanModel(BaseModel):
     grafana_global_orgs: StrictInt = Field(alias="grafanaGlobalOrgs")
     grafana_global_sessions: StrictInt = Field(alias="grafanaGlobalSessions")
     grafana_global_users: StrictInt = Field(alias="grafanaGlobalUsers")
-    id: StrictStr
+    id: UUID
     logs_alert: StrictInt = Field(alias="logsAlert")
     logs_storage: StrictInt = Field(alias="logsStorage")
     name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=500)]] = None
-    plan_id: StrictStr = Field(alias="planId")
+    plan_id: UUID = Field(alias="planId")
     samples_per_scrape: StrictInt = Field(alias="samplesPerScrape")
     target_number: StrictInt = Field(alias="targetNumber")
     total_metric_samples: StrictInt = Field(alias="totalMetricSamples")
