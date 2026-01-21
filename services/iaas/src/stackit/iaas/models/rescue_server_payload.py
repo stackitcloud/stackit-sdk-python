@@ -18,9 +18,10 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
 class RescueServerPayload(BaseModel):
@@ -28,9 +29,7 @@ class RescueServerPayload(BaseModel):
     RescueServerPayload
     """  # noqa: E501
 
-    image: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
-        description="Universally Unique Identifier (UUID)."
-    )
+    image: UUID = Field(description="Universally Unique Identifier (UUID).")
     __properties: ClassVar[List[str]] = ["image"]
 
     @field_validator("image")

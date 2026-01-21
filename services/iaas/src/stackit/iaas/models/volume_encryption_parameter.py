@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -36,16 +37,16 @@ class VolumeEncryptionParameter(BaseModel):
     Parameter to connect to a key-encryption-key within the STACKIT-KMS to create encrypted volumes. If no key_payload is set, a random passphrase is generated, which will be encrypted against the STACKIT-KMS. These parameter never leave the backend again. So these parameters are not in the responses.
     """  # noqa: E501
 
-    kek_key_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
+    kek_key_id: UUID = Field(
         description="UUID of the Key within the STACKIT-KMS to use for the encryption.", alias="kekKeyId"
     )
     kek_key_version: StrictInt = Field(
         description="Version of the key within the STACKIT-KMS to use for the encryption.", alias="kekKeyVersion"
     )
-    kek_keyring_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
+    kek_keyring_id: UUID = Field(
         description="UUID of the keyring where the key is located within the STACKTI-KMS.", alias="kekKeyringId"
     )
-    kek_project_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    kek_project_id: Optional[UUID] = Field(
         default=None,
         description="Id of the project, where the key in the STACKIT-KMS belongs to, in case the key is located in a different project. By default the same project ID is used, like for the volume itself. Defining a key in a different project is only allowed for privileged internal projects.",
         alias="kekProjectId",

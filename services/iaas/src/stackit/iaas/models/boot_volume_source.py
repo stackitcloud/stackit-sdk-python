@@ -18,9 +18,10 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
 class BootVolumeSource(BaseModel):
@@ -28,9 +29,7 @@ class BootVolumeSource(BaseModel):
     The source object of a boot volume.
     """  # noqa: E501
 
-    id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
-        description="Universally Unique Identifier (UUID)."
-    )
+    id: UUID = Field(description="Universally Unique Identifier (UUID).")
     type: StrictStr = Field(description="The source types of a boot volume. Possible values: `image`, `volume`.")
     __properties: ClassVar[List[str]] = ["id", "type"]
 

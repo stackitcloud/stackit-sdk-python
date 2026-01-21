@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -28,7 +29,7 @@ from pydantic import (
     StrictStr,
     field_validator,
 )
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 from stackit.iaas.models.area_id import AreaId
 
@@ -42,9 +43,7 @@ class Project(BaseModel):
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
-    id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
-        description="Universally Unique Identifier (UUID)."
-    )
+    id: UUID = Field(description="Universally Unique Identifier (UUID).")
     internet_access: Optional[StrictBool] = Field(default=None, alias="internetAccess")
     status: StrictStr = Field(
         description="The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`."

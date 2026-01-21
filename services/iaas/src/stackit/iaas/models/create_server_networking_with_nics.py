@@ -17,9 +17,10 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
 class CreateServerNetworkingWithNics(BaseModel):
@@ -27,9 +28,7 @@ class CreateServerNetworkingWithNics(BaseModel):
     The initial networking setup for the server creation with a network interface.
     """  # noqa: E501
 
-    nic_ids: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
-        default=None, description="A list of UUIDs.", alias="nicIds"
-    )
+    nic_ids: Optional[List[UUID]] = Field(default=None, description="A list of UUIDs.", alias="nicIds")
     __properties: ClassVar[List[str]] = ["nicIds"]
 
     model_config = ConfigDict(

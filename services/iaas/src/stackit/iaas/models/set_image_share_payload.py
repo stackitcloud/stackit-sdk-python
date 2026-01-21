@@ -17,9 +17,10 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
 class SetImageSharePayload(BaseModel):
@@ -32,9 +33,7 @@ class SetImageSharePayload(BaseModel):
         description="Image is shared with all projects inside the image owners organization.",
         alias="parentOrganization",
     )
-    projects: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
-        default=None, description="List of all projects the Image is shared with."
-    )
+    projects: Optional[List[UUID]] = Field(default=None, description="List of all projects the Image is shared with.")
     __properties: ClassVar[List[str]] = ["parentOrganization", "projects"]
 
     model_config = ConfigDict(

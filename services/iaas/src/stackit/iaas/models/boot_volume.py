@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -42,9 +43,7 @@ class BootVolume(BaseModel):
         description="Delete the volume during the termination of the server. Defaults to false.",
         alias="deleteOnTermination",
     )
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     performance_class: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None,
         description="The name for a General Object. Matches Names and also UUIDs.",

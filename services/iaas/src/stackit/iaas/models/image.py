@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -50,9 +51,7 @@ class Image(BaseModel):
     disk_format: StrictStr = Field(
         description="Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.", alias="diskFormat"
     )
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     import_progress: Optional[StrictInt] = Field(
         default=None, description="Indicates Image Import Progress in percent.", alias="importProgress"
     )
@@ -65,9 +64,7 @@ class Image(BaseModel):
     name: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
     )
-    owner: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    owner: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     protected: Optional[StrictBool] = Field(
         default=None, description="When true the image is prevented from being deleted."
     )

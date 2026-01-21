@@ -19,9 +19,10 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
 class ImageShareConsumer(BaseModel):
@@ -29,15 +30,13 @@ class ImageShareConsumer(BaseModel):
     The details of an Image share consumer.
     """  # noqa: E501
 
-    consumer_project_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    consumer_project_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="consumerProjectId"
     )
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
-    image_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID).", alias="imageId"
-    )
+    image_id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).", alias="imageId")
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )

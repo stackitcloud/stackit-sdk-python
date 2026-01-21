@@ -18,9 +18,10 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
 class VolumeAttachment(BaseModel):
@@ -33,10 +34,10 @@ class VolumeAttachment(BaseModel):
         description="Delete the volume during the termination of the server. Defaults to false.",
         alias="deleteOnTermination",
     )
-    server_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    server_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="serverId"
     )
-    volume_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    volume_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="volumeId"
     )
     __properties: ClassVar[List[str]] = ["deleteOnTermination", "serverId", "volumeId"]

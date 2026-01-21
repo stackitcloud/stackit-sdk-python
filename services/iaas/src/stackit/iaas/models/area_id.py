@@ -18,6 +18,7 @@ import json
 import pprint
 import re
 from typing import Any, Dict, Optional, Set, Union
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -26,12 +27,14 @@ from pydantic import (
     ValidationError,
     field_validator,
 )
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 from stackit.iaas.models.static_area_id import StaticAreaID
 
+from typing import Annotated
 
-AREAID_ONE_OF_SCHEMAS = ["StaticAreaID", "str"]
+
+AREAID_ONE_OF_SCHEMAS = ["StaticAreaID", "UUID"]
 
 
 class AreaId(BaseModel):
@@ -39,12 +42,12 @@ class AreaId(BaseModel):
     The identifier (ID) of an area.
     """
 
-    # data type: str
+    # data type: UUID
     # BEGIN of the workaround until upstream issues are fixed:
     # https://github.com/OpenAPITools/openapi-generator/issues/19034 from Jun 28, 2024
     # and https://github.com/OpenAPITools/openapi-generator/issues/19842 from Oct 11, 2024
     # Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-227
-    oneof_schema_1_validator: Optional[Annotated[str, Field(strict=True)]] = Field(
+    oneof_schema_1_validator: Optional[Annotated[UUID, Field(strict=True)]] = Field(
         default=None,
         description="Universally Unique Identifier (UUID).",
         pattern=re.sub(r"^\/|\/$", "", r"/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"),
@@ -52,8 +55,8 @@ class AreaId(BaseModel):
     # END of the workaround
     # data type: StaticAreaID
     oneof_schema_2_validator: Optional[StaticAreaID] = None
-    actual_instance: Optional[Union[StaticAreaID, str]] = None
-    one_of_schemas: Set[str] = {"StaticAreaID", "str"}
+    actual_instance: Optional[Union[StaticAreaID, UUID]] = None
+    one_of_schemas: Set[str] = {"StaticAreaID", "UUID"}
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -75,7 +78,7 @@ class AreaId(BaseModel):
         instance = AreaId.model_construct()
         error_messages = []
         match = 0
-        # validate data type: str
+        # validate data type: UUID
         try:
             instance.oneof_schema_1_validator = v
             match += 1
@@ -89,7 +92,7 @@ class AreaId(BaseModel):
         if match == 0:
             # no match
             raise ValueError(
-                "No match found when setting `actual_instance` in AreaId with oneOf schemas: StaticAreaID, str. Details: "
+                "No match found when setting `actual_instance` in AreaId with oneOf schemas: StaticAreaID, UUID. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -106,7 +109,7 @@ class AreaId(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into str
+        # deserialize data into UUID
         try:
             # validation
             instance.oneof_schema_1_validator = json.loads(json_str)
@@ -125,13 +128,13 @@ class AreaId(BaseModel):
         if match > 1:
             # more than 1 match
             raise ValueError(
-                "Multiple matches found when deserializing the JSON string into AreaId with oneOf schemas: StaticAreaID, str. Details: "
+                "Multiple matches found when deserializing the JSON string into AreaId with oneOf schemas: StaticAreaID, UUID. Details: "
                 + ", ".join(error_messages)
             )
         elif match == 0:
             # no match
             raise ValueError(
-                "No match found when deserializing the JSON string into AreaId with oneOf schemas: StaticAreaID, str. Details: "
+                "No match found when deserializing the JSON string into AreaId with oneOf schemas: StaticAreaID, UUID. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -147,7 +150,7 @@ class AreaId(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], StaticAreaID, str]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], StaticAreaID, UUID]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

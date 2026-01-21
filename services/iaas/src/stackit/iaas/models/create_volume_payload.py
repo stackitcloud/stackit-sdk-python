@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -53,9 +54,7 @@ class CreateVolumePayload(BaseModel):
     )
     encrypted: Optional[StrictBool] = Field(default=None, description="Indicates if a volume is encrypted.")
     encryption_parameters: Optional[VolumeEncryptionParameter] = Field(default=None, alias="encryptionParameters")
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     image_config: Optional[ImageConfig] = Field(default=None, alias="imageConfig")
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
@@ -69,7 +68,7 @@ class CreateVolumePayload(BaseModel):
         description="The name for a General Object. Matches Names and also UUIDs.",
         alias="performanceClass",
     )
-    server_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    server_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="serverId"
     )
     size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.")

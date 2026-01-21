@@ -13,6 +13,7 @@
 """  # noqa: E501
 
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import (
     Field,
@@ -178,19 +179,10 @@ class DefaultApi:
     @validate_call
     def add_network_to_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -206,13 +198,13 @@ class DefaultApi:
         Create and attach a network interface from the specified network to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -264,19 +256,10 @@ class DefaultApi:
     @validate_call
     def add_network_to_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -292,13 +275,13 @@ class DefaultApi:
         Create and attach a network interface from the specified network to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -350,19 +333,10 @@ class DefaultApi:
     @validate_call
     def add_network_to_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -378,13 +352,13 @@ class DefaultApi:
         Create and attach a network interface from the specified network to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -491,19 +465,10 @@ class DefaultApi:
     @validate_call
     def add_nic_to_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -519,13 +484,13 @@ class DefaultApi:
         Attach an existing network interface to a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -578,19 +543,10 @@ class DefaultApi:
     @validate_call
     def add_nic_to_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -606,13 +562,13 @@ class DefaultApi:
         Attach an existing network interface to a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -665,19 +621,10 @@ class DefaultApi:
     @validate_call
     def add_nic_to_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -693,13 +640,13 @@ class DefaultApi:
         Attach an existing network interface to a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -807,18 +754,10 @@ class DefaultApi:
     @validate_call
     def add_public_ip_to_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -834,13 +773,13 @@ class DefaultApi:
         Associate a public IP to a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -893,18 +832,10 @@ class DefaultApi:
     @validate_call
     def add_public_ip_to_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -920,13 +851,13 @@ class DefaultApi:
         Associate a public IP to a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -979,18 +910,10 @@ class DefaultApi:
     @validate_call
     def add_public_ip_to_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1006,13 +929,13 @@ class DefaultApi:
         Associate a public IP to a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1120,25 +1043,10 @@ class DefaultApi:
     @validate_call
     def add_routes_to_routing_table(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         add_routes_to_routing_table_payload: Annotated[
             AddRoutesToRoutingTablePayload, Field(description="Request an addition of routes to a routing table.")
         ],
@@ -1157,13 +1065,13 @@ class DefaultApi:
         Create new routes in an existing routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param add_routes_to_routing_table_payload: Request an addition of routes to a routing table. (required)
         :type add_routes_to_routing_table_payload: AddRoutesToRoutingTablePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -1219,25 +1127,10 @@ class DefaultApi:
     @validate_call
     def add_routes_to_routing_table_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         add_routes_to_routing_table_payload: Annotated[
             AddRoutesToRoutingTablePayload, Field(description="Request an addition of routes to a routing table.")
         ],
@@ -1256,13 +1149,13 @@ class DefaultApi:
         Create new routes in an existing routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param add_routes_to_routing_table_payload: Request an addition of routes to a routing table. (required)
         :type add_routes_to_routing_table_payload: AddRoutesToRoutingTablePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -1318,25 +1211,10 @@ class DefaultApi:
     @validate_call
     def add_routes_to_routing_table_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         add_routes_to_routing_table_payload: Annotated[
             AddRoutesToRoutingTablePayload, Field(description="Request an addition of routes to a routing table.")
         ],
@@ -1355,13 +1233,13 @@ class DefaultApi:
         Create new routes in an existing routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param add_routes_to_routing_table_payload: Request an addition of routes to a routing table. (required)
         :type add_routes_to_routing_table_payload: AddRoutesToRoutingTablePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -1483,18 +1361,8 @@ class DefaultApi:
     @validate_call
     def add_routing_table_to_area(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         add_routing_table_to_area_payload: Annotated[
             AddRoutingTableToAreaPayload, Field(description="Request an addition of a routing table to an area.")
@@ -1514,9 +1382,9 @@ class DefaultApi:
         Create a new routing table in an existing network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param add_routing_table_to_area_payload: Request an addition of a routing table to an area. (required)
@@ -1573,18 +1441,8 @@ class DefaultApi:
     @validate_call
     def add_routing_table_to_area_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         add_routing_table_to_area_payload: Annotated[
             AddRoutingTableToAreaPayload, Field(description="Request an addition of a routing table to an area.")
@@ -1604,9 +1462,9 @@ class DefaultApi:
         Create a new routing table in an existing network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param add_routing_table_to_area_payload: Request an addition of a routing table to an area. (required)
@@ -1663,18 +1521,8 @@ class DefaultApi:
     @validate_call
     def add_routing_table_to_area_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         add_routing_table_to_area_payload: Annotated[
             AddRoutingTableToAreaPayload, Field(description="Request an addition of a routing table to an area.")
@@ -1694,9 +1542,9 @@ class DefaultApi:
         Create a new routing table in an existing network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param add_routing_table_to_area_payload: Request an addition of a routing table to an area. (required)
@@ -1816,24 +1664,10 @@ class DefaultApi:
     @validate_call
     def add_security_group_to_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1849,13 +1683,13 @@ class DefaultApi:
         Add an existing server to an existing security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1908,24 +1742,10 @@ class DefaultApi:
     @validate_call
     def add_security_group_to_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1941,13 +1761,13 @@ class DefaultApi:
         Add an existing server to an existing security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2000,24 +1820,10 @@ class DefaultApi:
     @validate_call
     def add_security_group_to_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2033,13 +1839,13 @@ class DefaultApi:
         Add an existing server to an existing security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2147,15 +1953,9 @@ class DefaultApi:
     @validate_call
     def add_service_account_to_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         service_account_mail: Annotated[
             str, Field(strict=True, max_length=255, description="The e-mail address of a service account.")
         ],
@@ -2174,11 +1974,11 @@ class DefaultApi:
         Attach an additional service account to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param service_account_mail: The e-mail address of a service account. (required)
         :type service_account_mail: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2233,15 +2033,9 @@ class DefaultApi:
     @validate_call
     def add_service_account_to_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         service_account_mail: Annotated[
             str, Field(strict=True, max_length=255, description="The e-mail address of a service account.")
         ],
@@ -2260,11 +2054,11 @@ class DefaultApi:
         Attach an additional service account to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param service_account_mail: The e-mail address of a service account. (required)
         :type service_account_mail: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2319,15 +2113,9 @@ class DefaultApi:
     @validate_call
     def add_service_account_to_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         service_account_mail: Annotated[
             str, Field(strict=True, max_length=255, description="The e-mail address of a service account.")
         ],
@@ -2346,11 +2134,11 @@ class DefaultApi:
         Attach an additional service account to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param service_account_mail: The e-mail address of a service account. (required)
         :type service_account_mail: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2460,19 +2248,10 @@ class DefaultApi:
     @validate_call
     def add_volume_to_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         add_volume_to_server_payload: Annotated[
             Optional[AddVolumeToServerPayload], Field(description="Request a volume attachment creation.")
         ] = None,
@@ -2491,13 +2270,13 @@ class DefaultApi:
         Attach an existing volume to an existing server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param add_volume_to_server_payload: Request a volume attachment creation.
         :type add_volume_to_server_payload: AddVolumeToServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -2553,19 +2332,10 @@ class DefaultApi:
     @validate_call
     def add_volume_to_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         add_volume_to_server_payload: Annotated[
             Optional[AddVolumeToServerPayload], Field(description="Request a volume attachment creation.")
         ] = None,
@@ -2584,13 +2354,13 @@ class DefaultApi:
         Attach an existing volume to an existing server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param add_volume_to_server_payload: Request a volume attachment creation.
         :type add_volume_to_server_payload: AddVolumeToServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -2646,19 +2416,10 @@ class DefaultApi:
     @validate_call
     def add_volume_to_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         add_volume_to_server_payload: Annotated[
             Optional[AddVolumeToServerPayload], Field(description="Request a volume attachment creation.")
         ] = None,
@@ -2677,13 +2438,13 @@ class DefaultApi:
         Attach an existing volume to an existing server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param add_volume_to_server_payload: Request a volume attachment creation.
         :type add_volume_to_server_payload: AddVolumeToServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -2805,10 +2566,7 @@ class DefaultApi:
     @validate_call
     def create_affinity_group(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_affinity_group_payload: Annotated[
             CreateAffinityGroupPayload, Field(description="Request a affinity group creation.")
@@ -2828,7 +2586,7 @@ class DefaultApi:
         Create a new server affinity group in the given project ID.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_affinity_group_payload: Request a affinity group creation. (required)
@@ -2883,10 +2641,7 @@ class DefaultApi:
     @validate_call
     def create_affinity_group_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_affinity_group_payload: Annotated[
             CreateAffinityGroupPayload, Field(description="Request a affinity group creation.")
@@ -2906,7 +2661,7 @@ class DefaultApi:
         Create a new server affinity group in the given project ID.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_affinity_group_payload: Request a affinity group creation. (required)
@@ -2961,10 +2716,7 @@ class DefaultApi:
     @validate_call
     def create_affinity_group_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_affinity_group_payload: Annotated[
             CreateAffinityGroupPayload, Field(description="Request a affinity group creation.")
@@ -2984,7 +2736,7 @@ class DefaultApi:
         Create a new server affinity group in the given project ID.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_affinity_group_payload: Request a affinity group creation. (required)
@@ -3099,10 +2851,7 @@ class DefaultApi:
     @validate_call
     def create_backup(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_backup_payload: Annotated[CreateBackupPayload, Field(description="Request a backup creation.")],
         _request_timeout: Union[
@@ -3120,7 +2869,7 @@ class DefaultApi:
         Create a new Backup in a project. If a snapshot ID is provided create the backup from the snapshot.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_backup_payload: Request a backup creation. (required)
@@ -3175,10 +2924,7 @@ class DefaultApi:
     @validate_call
     def create_backup_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_backup_payload: Annotated[CreateBackupPayload, Field(description="Request a backup creation.")],
         _request_timeout: Union[
@@ -3196,7 +2942,7 @@ class DefaultApi:
         Create a new Backup in a project. If a snapshot ID is provided create the backup from the snapshot.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_backup_payload: Request a backup creation. (required)
@@ -3251,10 +2997,7 @@ class DefaultApi:
     @validate_call
     def create_backup_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_backup_payload: Annotated[CreateBackupPayload, Field(description="Request a backup creation.")],
         _request_timeout: Union[
@@ -3272,7 +3015,7 @@ class DefaultApi:
         Create a new Backup in a project. If a snapshot ID is provided create the backup from the snapshot.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_backup_payload: Request a backup creation. (required)
@@ -3387,10 +3130,7 @@ class DefaultApi:
     @validate_call
     def create_image(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_image_payload: Annotated[CreateImagePayload, Field(description="Request an image creation.")],
         _request_timeout: Union[
@@ -3408,7 +3148,7 @@ class DefaultApi:
         Create a new Image in a project. This call, if successful, returns a pre-signed URL for the customer to upload the image.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_image_payload: Request an image creation. (required)
@@ -3464,10 +3204,7 @@ class DefaultApi:
     @validate_call
     def create_image_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_image_payload: Annotated[CreateImagePayload, Field(description="Request an image creation.")],
         _request_timeout: Union[
@@ -3485,7 +3222,7 @@ class DefaultApi:
         Create a new Image in a project. This call, if successful, returns a pre-signed URL for the customer to upload the image.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_image_payload: Request an image creation. (required)
@@ -3541,10 +3278,7 @@ class DefaultApi:
     @validate_call
     def create_image_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_image_payload: Annotated[CreateImagePayload, Field(description="Request an image creation.")],
         _request_timeout: Union[
@@ -3562,7 +3296,7 @@ class DefaultApi:
         Create a new Image in a project. This call, if successful, returns a pre-signed URL for the customer to upload the image.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_image_payload: Request an image creation. (required)
@@ -3678,10 +3412,7 @@ class DefaultApi:
     @validate_call
     def create_isolated_network(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_isolated_network_payload: Annotated[
             CreateIsolatedNetworkPayload, Field(description="Request a single isolated network creation.")
@@ -3701,7 +3432,7 @@ class DefaultApi:
         Creates an isolated network which is not connected to other networks in this project. We recommend using this endpoint only if you are fully aware of its purpose and the consequences of its execution.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_isolated_network_payload: Request a single isolated network creation. (required)
@@ -3757,10 +3488,7 @@ class DefaultApi:
     @validate_call
     def create_isolated_network_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_isolated_network_payload: Annotated[
             CreateIsolatedNetworkPayload, Field(description="Request a single isolated network creation.")
@@ -3780,7 +3508,7 @@ class DefaultApi:
         Creates an isolated network which is not connected to other networks in this project. We recommend using this endpoint only if you are fully aware of its purpose and the consequences of its execution.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_isolated_network_payload: Request a single isolated network creation. (required)
@@ -3836,10 +3564,7 @@ class DefaultApi:
     @validate_call
     def create_isolated_network_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_isolated_network_payload: Annotated[
             CreateIsolatedNetworkPayload, Field(description="Request a single isolated network creation.")
@@ -3859,7 +3584,7 @@ class DefaultApi:
         Creates an isolated network which is not connected to other networks in this project. We recommend using this endpoint only if you are fully aware of its purpose and the consequences of its execution.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_isolated_network_payload: Request a single isolated network creation. (required)
@@ -4227,10 +3952,7 @@ class DefaultApi:
     @validate_call
     def create_network(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_payload: Annotated[CreateNetworkPayload, Field(description="Request a network creation.")],
         _request_timeout: Union[
@@ -4248,7 +3970,7 @@ class DefaultApi:
         Create a new network in a project. `nameservers` will be filled from `defaultNameservers` of the respective area if not specified. If the project has `internetAccess` enabled and this is the first network in the project this might incur cost.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_payload: Request a network creation. (required)
@@ -4304,10 +4026,7 @@ class DefaultApi:
     @validate_call
     def create_network_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_payload: Annotated[CreateNetworkPayload, Field(description="Request a network creation.")],
         _request_timeout: Union[
@@ -4325,7 +4044,7 @@ class DefaultApi:
         Create a new network in a project. `nameservers` will be filled from `defaultNameservers` of the respective area if not specified. If the project has `internetAccess` enabled and this is the first network in the project this might incur cost.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_payload: Request a network creation. (required)
@@ -4381,10 +4100,7 @@ class DefaultApi:
     @validate_call
     def create_network_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_payload: Annotated[CreateNetworkPayload, Field(description="Request a network creation.")],
         _request_timeout: Union[
@@ -4402,7 +4118,7 @@ class DefaultApi:
         Create a new network in a project. `nameservers` will be filled from `defaultNameservers` of the respective area if not specified. If the project has `internetAccess` enabled and this is the first network in the project this might incur cost.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_payload: Request a network creation. (required)
@@ -4518,12 +4234,7 @@ class DefaultApi:
     @validate_call
     def create_network_area(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
         create_network_area_payload: Annotated[
             CreateNetworkAreaPayload, Field(description="Request an Area creation.")
         ],
@@ -4542,7 +4253,7 @@ class DefaultApi:
         Create a new network area in an organization. You can specify `\"preview/routingtables\"=\"true\"` as a label to enable the preview routing tables feature. This feature cannot be enabled or disabled afterwards.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param create_network_area_payload: Request an Area creation. (required)
         :type create_network_area_payload: CreateNetworkAreaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4594,12 +4305,7 @@ class DefaultApi:
     @validate_call
     def create_network_area_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
         create_network_area_payload: Annotated[
             CreateNetworkAreaPayload, Field(description="Request an Area creation.")
         ],
@@ -4618,7 +4324,7 @@ class DefaultApi:
         Create a new network area in an organization. You can specify `\"preview/routingtables\"=\"true\"` as a label to enable the preview routing tables feature. This feature cannot be enabled or disabled afterwards.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param create_network_area_payload: Request an Area creation. (required)
         :type create_network_area_payload: CreateNetworkAreaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4670,12 +4376,7 @@ class DefaultApi:
     @validate_call
     def create_network_area_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
         create_network_area_payload: Annotated[
             CreateNetworkAreaPayload, Field(description="Request an Area creation.")
         ],
@@ -4694,7 +4395,7 @@ class DefaultApi:
         Create a new network area in an organization. You can specify `\"preview/routingtables\"=\"true\"` as a label to enable the preview routing tables feature. This feature cannot be enabled or disabled afterwards.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param create_network_area_payload: Request an Area creation. (required)
         :type create_network_area_payload: CreateNetworkAreaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4803,18 +4504,8 @@ class DefaultApi:
     @validate_call
     def create_network_area_range(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_area_range_payload: Annotated[
             CreateNetworkAreaRangePayload, Field(description="Request an addition of network ranges to an area.")
@@ -4834,9 +4525,9 @@ class DefaultApi:
         Create a new network range in an existing network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_area_range_payload: Request an addition of network ranges to an area. (required)
@@ -4893,18 +4584,8 @@ class DefaultApi:
     @validate_call
     def create_network_area_range_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_area_range_payload: Annotated[
             CreateNetworkAreaRangePayload, Field(description="Request an addition of network ranges to an area.")
@@ -4924,9 +4605,9 @@ class DefaultApi:
         Create a new network range in an existing network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_area_range_payload: Request an addition of network ranges to an area. (required)
@@ -4983,18 +4664,8 @@ class DefaultApi:
     @validate_call
     def create_network_area_range_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_area_range_payload: Annotated[
             CreateNetworkAreaRangePayload, Field(description="Request an addition of network ranges to an area.")
@@ -5014,9 +4685,9 @@ class DefaultApi:
         Create a new network range in an existing network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_area_range_payload: Request an addition of network ranges to an area. (required)
@@ -5136,18 +4807,8 @@ class DefaultApi:
     @validate_call
     def create_network_area_region(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_area_region_payload: Annotated[
             CreateNetworkAreaRegionPayload,
@@ -5168,9 +4829,9 @@ class DefaultApi:
         Configure a new region for a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_area_region_payload: Request to add a new regional network area configuration. (required)
@@ -5227,18 +4888,8 @@ class DefaultApi:
     @validate_call
     def create_network_area_region_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_area_region_payload: Annotated[
             CreateNetworkAreaRegionPayload,
@@ -5259,9 +4910,9 @@ class DefaultApi:
         Configure a new region for a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_area_region_payload: Request to add a new regional network area configuration. (required)
@@ -5318,18 +4969,8 @@ class DefaultApi:
     @validate_call
     def create_network_area_region_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_area_region_payload: Annotated[
             CreateNetworkAreaRegionPayload,
@@ -5350,9 +4991,9 @@ class DefaultApi:
         Configure a new region for a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_area_region_payload: Request to add a new regional network area configuration. (required)
@@ -5472,18 +5113,8 @@ class DefaultApi:
     @validate_call
     def create_network_area_route(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_area_route_payload: Annotated[
             CreateNetworkAreaRoutePayload, Field(description="Request an addition of routes to an area.")
@@ -5503,9 +5134,9 @@ class DefaultApi:
         Create one or several new network routes in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_area_route_payload: Request an addition of routes to an area. (required)
@@ -5562,18 +5193,8 @@ class DefaultApi:
     @validate_call
     def create_network_area_route_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_area_route_payload: Annotated[
             CreateNetworkAreaRoutePayload, Field(description="Request an addition of routes to an area.")
@@ -5593,9 +5214,9 @@ class DefaultApi:
         Create one or several new network routes in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_area_route_payload: Request an addition of routes to an area. (required)
@@ -5652,18 +5273,8 @@ class DefaultApi:
     @validate_call
     def create_network_area_route_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_network_area_route_payload: Annotated[
             CreateNetworkAreaRoutePayload, Field(description="Request an addition of routes to an area.")
@@ -5683,9 +5294,9 @@ class DefaultApi:
         Create one or several new network routes in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_network_area_route_payload: Request an addition of routes to an area. (required)
@@ -5805,15 +5416,9 @@ class DefaultApi:
     @validate_call
     def create_nic(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         create_nic_payload: Annotated[CreateNicPayload, Field(description="Request a network interface creation.")],
         _request_timeout: Union[
             None,
@@ -5830,11 +5435,11 @@ class DefaultApi:
         Create a new network interface in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param create_nic_payload: Request a network interface creation. (required)
         :type create_nic_payload: CreateNicPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -5890,15 +5495,9 @@ class DefaultApi:
     @validate_call
     def create_nic_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         create_nic_payload: Annotated[CreateNicPayload, Field(description="Request a network interface creation.")],
         _request_timeout: Union[
             None,
@@ -5915,11 +5514,11 @@ class DefaultApi:
         Create a new network interface in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param create_nic_payload: Request a network interface creation. (required)
         :type create_nic_payload: CreateNicPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -5975,15 +5574,9 @@ class DefaultApi:
     @validate_call
     def create_nic_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         create_nic_payload: Annotated[CreateNicPayload, Field(description="Request a network interface creation.")],
         _request_timeout: Union[
             None,
@@ -6000,11 +5593,11 @@ class DefaultApi:
         Create a new network interface in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param create_nic_payload: Request a network interface creation. (required)
         :type create_nic_payload: CreateNicPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -6123,10 +5716,7 @@ class DefaultApi:
     @validate_call
     def create_public_ip(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_public_ip_payload: Annotated[CreatePublicIPPayload, Field(description="Request a public IP creation.")],
         _request_timeout: Union[
@@ -6144,7 +5734,7 @@ class DefaultApi:
         Create a new public IP in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_public_ip_payload: Request a public IP creation. (required)
@@ -6200,10 +5790,7 @@ class DefaultApi:
     @validate_call
     def create_public_ip_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_public_ip_payload: Annotated[CreatePublicIPPayload, Field(description="Request a public IP creation.")],
         _request_timeout: Union[
@@ -6221,7 +5808,7 @@ class DefaultApi:
         Create a new public IP in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_public_ip_payload: Request a public IP creation. (required)
@@ -6277,10 +5864,7 @@ class DefaultApi:
     @validate_call
     def create_public_ip_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_public_ip_payload: Annotated[CreatePublicIPPayload, Field(description="Request a public IP creation.")],
         _request_timeout: Union[
@@ -6298,7 +5882,7 @@ class DefaultApi:
         Create a new public IP in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_public_ip_payload: Request a public IP creation. (required)
@@ -6414,10 +5998,7 @@ class DefaultApi:
     @validate_call
     def create_security_group(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_security_group_payload: Annotated[
             CreateSecurityGroupPayload, Field(description="Request a security group creation.")
@@ -6437,7 +6018,7 @@ class DefaultApi:
         Create a new security group in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_security_group_payload: Request a security group creation. (required)
@@ -6492,10 +6073,7 @@ class DefaultApi:
     @validate_call
     def create_security_group_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_security_group_payload: Annotated[
             CreateSecurityGroupPayload, Field(description="Request a security group creation.")
@@ -6515,7 +6093,7 @@ class DefaultApi:
         Create a new security group in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_security_group_payload: Request a security group creation. (required)
@@ -6570,10 +6148,7 @@ class DefaultApi:
     @validate_call
     def create_security_group_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_security_group_payload: Annotated[
             CreateSecurityGroupPayload, Field(description="Request a security group creation.")
@@ -6593,7 +6168,7 @@ class DefaultApi:
         Create a new security group in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_security_group_payload: Request a security group creation. (required)
@@ -6708,20 +6283,9 @@ class DefaultApi:
     @validate_call
     def create_security_group_rule(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         create_security_group_rule_payload: Annotated[
             CreateSecurityGroupRulePayload, Field(description="Request for a security group rule creation.")
         ],
@@ -6740,11 +6304,11 @@ class DefaultApi:
         Create a new security group rule in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param create_security_group_rule_payload: Request for a security group rule creation. (required)
         :type create_security_group_rule_payload: CreateSecurityGroupRulePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -6798,20 +6362,9 @@ class DefaultApi:
     @validate_call
     def create_security_group_rule_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         create_security_group_rule_payload: Annotated[
             CreateSecurityGroupRulePayload, Field(description="Request for a security group rule creation.")
         ],
@@ -6830,11 +6383,11 @@ class DefaultApi:
         Create a new security group rule in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param create_security_group_rule_payload: Request for a security group rule creation. (required)
         :type create_security_group_rule_payload: CreateSecurityGroupRulePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -6888,20 +6441,9 @@ class DefaultApi:
     @validate_call
     def create_security_group_rule_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         create_security_group_rule_payload: Annotated[
             CreateSecurityGroupRulePayload, Field(description="Request for a security group rule creation.")
         ],
@@ -6920,11 +6462,11 @@ class DefaultApi:
         Create a new security group rule in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param create_security_group_rule_payload: Request for a security group rule creation. (required)
         :type create_security_group_rule_payload: CreateSecurityGroupRulePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -7041,10 +6583,7 @@ class DefaultApi:
     @validate_call
     def create_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_server_payload: Annotated[CreateServerPayload, Field(description="Request a server creation.")],
         _request_timeout: Union[
@@ -7062,7 +6601,7 @@ class DefaultApi:
         Create a new server in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_server_payload: Request a server creation. (required)
@@ -7117,10 +6656,7 @@ class DefaultApi:
     @validate_call
     def create_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_server_payload: Annotated[CreateServerPayload, Field(description="Request a server creation.")],
         _request_timeout: Union[
@@ -7138,7 +6674,7 @@ class DefaultApi:
         Create a new server in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_server_payload: Request a server creation. (required)
@@ -7193,10 +6729,7 @@ class DefaultApi:
     @validate_call
     def create_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_server_payload: Annotated[CreateServerPayload, Field(description="Request a server creation.")],
         _request_timeout: Union[
@@ -7214,7 +6747,7 @@ class DefaultApi:
         Create a new server in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_server_payload: Request a server creation. (required)
@@ -7329,10 +6862,7 @@ class DefaultApi:
     @validate_call
     def create_snapshot(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_snapshot_payload: Annotated[CreateSnapshotPayload, Field(description="Request a snapshot creation.")],
         _request_timeout: Union[
@@ -7350,7 +6880,7 @@ class DefaultApi:
         Create a new Snapshot from a Volume in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_snapshot_payload: Request a snapshot creation. (required)
@@ -7405,10 +6935,7 @@ class DefaultApi:
     @validate_call
     def create_snapshot_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_snapshot_payload: Annotated[CreateSnapshotPayload, Field(description="Request a snapshot creation.")],
         _request_timeout: Union[
@@ -7426,7 +6953,7 @@ class DefaultApi:
         Create a new Snapshot from a Volume in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_snapshot_payload: Request a snapshot creation. (required)
@@ -7481,10 +7008,7 @@ class DefaultApi:
     @validate_call
     def create_snapshot_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_snapshot_payload: Annotated[CreateSnapshotPayload, Field(description="Request a snapshot creation.")],
         _request_timeout: Union[
@@ -7502,7 +7026,7 @@ class DefaultApi:
         Create a new Snapshot from a Volume in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_snapshot_payload: Request a snapshot creation. (required)
@@ -7617,10 +7141,7 @@ class DefaultApi:
     @validate_call
     def create_volume(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_volume_payload: Annotated[CreateVolumePayload, Field(description="Request a volume creation.")],
         _request_timeout: Union[
@@ -7638,7 +7159,7 @@ class DefaultApi:
         Create a new volume in a project. If a volume source is not provided, an empty volume will be created. The size property is required if no source or an image source is provided.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_volume_payload: Request a volume creation. (required)
@@ -7693,10 +7214,7 @@ class DefaultApi:
     @validate_call
     def create_volume_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_volume_payload: Annotated[CreateVolumePayload, Field(description="Request a volume creation.")],
         _request_timeout: Union[
@@ -7714,7 +7232,7 @@ class DefaultApi:
         Create a new volume in a project. If a volume source is not provided, an empty volume will be created. The size property is required if no source or an image source is provided.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_volume_payload: Request a volume creation. (required)
@@ -7769,10 +7287,7 @@ class DefaultApi:
     @validate_call
     def create_volume_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         create_volume_payload: Annotated[CreateVolumePayload, Field(description="Request a volume creation.")],
         _request_timeout: Union[
@@ -7790,7 +7305,7 @@ class DefaultApi:
         Create a new volume in a project. If a volume source is not provided, an empty volume will be created. The size property is required if no source or an image source is provided.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param create_volume_payload: Request a volume creation. (required)
@@ -7905,15 +7420,9 @@ class DefaultApi:
     @validate_call
     def deallocate_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7929,11 +7438,11 @@ class DefaultApi:
         Deallocate an existing server. The server will be removed from the hypervisor so only the volume will be billed.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7985,15 +7494,9 @@ class DefaultApi:
     @validate_call
     def deallocate_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8009,11 +7512,11 @@ class DefaultApi:
         Deallocate an existing server. The server will be removed from the hypervisor so only the volume will be billed.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8065,15 +7568,9 @@ class DefaultApi:
     @validate_call
     def deallocate_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8089,11 +7586,11 @@ class DefaultApi:
         Deallocate an existing server. The server will be removed from the hypervisor so only the volume will be billed.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8197,20 +7694,9 @@ class DefaultApi:
     @validate_call
     def delete_affinity_group(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        affinity_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Affinity Group.",
-            ),
-        ],
+        affinity_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Affinity Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8226,11 +7712,11 @@ class DefaultApi:
         Delete a affinity group in the given project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
-        :type affinity_group_id: str
+        :type affinity_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8281,20 +7767,9 @@ class DefaultApi:
     @validate_call
     def delete_affinity_group_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        affinity_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Affinity Group.",
-            ),
-        ],
+        affinity_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Affinity Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8310,11 +7785,11 @@ class DefaultApi:
         Delete a affinity group in the given project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
-        :type affinity_group_id: str
+        :type affinity_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8365,20 +7840,9 @@ class DefaultApi:
     @validate_call
     def delete_affinity_group_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        affinity_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Affinity Group.",
-            ),
-        ],
+        affinity_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Affinity Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8394,11 +7858,11 @@ class DefaultApi:
         Delete a affinity group in the given project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
-        :type affinity_group_id: str
+        :type affinity_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8501,15 +7965,9 @@ class DefaultApi:
     @validate_call
     def delete_backup(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         force: Annotated[Optional[StrictBool], Field(description="Force action.")] = None,
         _request_timeout: Union[
             None,
@@ -8526,11 +7984,11 @@ class DefaultApi:
         Delete a backup that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param force: Force action.
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -8584,15 +8042,9 @@ class DefaultApi:
     @validate_call
     def delete_backup_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         force: Annotated[Optional[StrictBool], Field(description="Force action.")] = None,
         _request_timeout: Union[
             None,
@@ -8609,11 +8061,11 @@ class DefaultApi:
         Delete a backup that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param force: Force action.
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -8667,15 +8119,9 @@ class DefaultApi:
     @validate_call
     def delete_backup_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         force: Annotated[Optional[StrictBool], Field(description="Force action.")] = None,
         _request_timeout: Union[
             None,
@@ -8692,11 +8138,11 @@ class DefaultApi:
         Delete a backup that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param force: Force action.
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -8807,14 +8253,9 @@ class DefaultApi:
     @validate_call
     def delete_image(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8830,11 +8271,11 @@ class DefaultApi:
         Delete an image that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8885,14 +8326,9 @@ class DefaultApi:
     @validate_call
     def delete_image_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8908,11 +8344,11 @@ class DefaultApi:
         Delete an image that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8963,14 +8399,9 @@ class DefaultApi:
     @validate_call
     def delete_image_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8986,11 +8417,11 @@ class DefaultApi:
         Delete an image that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9093,14 +8524,9 @@ class DefaultApi:
     @validate_call
     def delete_image_share(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9116,11 +8542,11 @@ class DefaultApi:
         Remove the image share. New scope will be local.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9171,14 +8597,9 @@ class DefaultApi:
     @validate_call
     def delete_image_share_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9194,11 +8615,11 @@ class DefaultApi:
         Remove the image share. New scope will be local.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9249,14 +8670,9 @@ class DefaultApi:
     @validate_call
     def delete_image_share_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9272,11 +8688,11 @@ class DefaultApi:
         Remove the image share. New scope will be local.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9379,22 +8795,11 @@ class DefaultApi:
     @validate_call
     def delete_image_share_consumer(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         consumer_project_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Project that consumes an image share.")
         ],
         _request_timeout: Union[
             None,
@@ -9411,13 +8816,13 @@ class DefaultApi:
         Remove consumer from a shared image.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
-        :type consumer_project_id: str
+        :type consumer_project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9469,22 +8874,11 @@ class DefaultApi:
     @validate_call
     def delete_image_share_consumer_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         consumer_project_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Project that consumes an image share.")
         ],
         _request_timeout: Union[
             None,
@@ -9501,13 +8895,13 @@ class DefaultApi:
         Remove consumer from a shared image.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
-        :type consumer_project_id: str
+        :type consumer_project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9559,22 +8953,11 @@ class DefaultApi:
     @validate_call
     def delete_image_share_consumer_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         consumer_project_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Project that consumes an image share.")
         ],
         _request_timeout: Union[
             None,
@@ -9591,13 +8974,13 @@ class DefaultApi:
         Remove consumer from a shared image.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
-        :type consumer_project_id: str
+        :type consumer_project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9945,15 +9328,9 @@ class DefaultApi:
     @validate_call
     def delete_network(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9969,11 +9346,11 @@ class DefaultApi:
         Delete a network. If the network is still in use, the deletion will fail.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10025,15 +9402,9 @@ class DefaultApi:
     @validate_call
     def delete_network_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10049,11 +9420,11 @@ class DefaultApi:
         Delete a network. If the network is still in use, the deletion will fail.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10105,15 +9476,9 @@ class DefaultApi:
     @validate_call
     def delete_network_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10129,11 +9494,11 @@ class DefaultApi:
         Delete a network. If the network is still in use, the deletion will fail.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10237,18 +9602,8 @@ class DefaultApi:
     @validate_call
     def delete_network_area(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10264,9 +9619,9 @@ class DefaultApi:
         Delete an existing network area in an organization. This is only possible if no projects are using the area anymore.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10317,18 +9672,8 @@ class DefaultApi:
     @validate_call
     def delete_network_area_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10344,9 +9689,9 @@ class DefaultApi:
         Delete an existing network area in an organization. This is only possible if no projects are using the area anymore.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10397,18 +9742,8 @@ class DefaultApi:
     @validate_call
     def delete_network_area_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10424,9 +9759,9 @@ class DefaultApi:
         Delete an existing network area in an organization. This is only possible if no projects are using the area anymore.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10526,25 +9861,10 @@ class DefaultApi:
     @validate_call
     def delete_network_area_range(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_range_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
-            ),
-        ],
+        network_range_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Range.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10560,13 +9880,13 @@ class DefaultApi:
         Delete a network range of a network area. The deletion will fail if the network range is still used.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
-        :type network_range_id: str
+        :type network_range_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10619,25 +9939,10 @@ class DefaultApi:
     @validate_call
     def delete_network_area_range_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_range_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
-            ),
-        ],
+        network_range_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Range.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10653,13 +9958,13 @@ class DefaultApi:
         Delete a network range of a network area. The deletion will fail if the network range is still used.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
-        :type network_range_id: str
+        :type network_range_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10712,25 +10017,10 @@ class DefaultApi:
     @validate_call
     def delete_network_area_range_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_range_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
-            ),
-        ],
+        network_range_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Range.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10746,13 +10036,13 @@ class DefaultApi:
         Delete a network range of a network area. The deletion will fail if the network range is still used.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
-        :type network_range_id: str
+        :type network_range_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10860,18 +10150,8 @@ class DefaultApi:
     @validate_call
     def delete_network_area_region(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -10888,9 +10168,9 @@ class DefaultApi:
         Delete a current configuration of region for a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -10944,18 +10224,8 @@ class DefaultApi:
     @validate_call
     def delete_network_area_region_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -10972,9 +10242,9 @@ class DefaultApi:
         Delete a current configuration of region for a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -11028,18 +10298,8 @@ class DefaultApi:
     @validate_call
     def delete_network_area_region_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -11056,9 +10316,9 @@ class DefaultApi:
         Delete a current configuration of region for a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -11164,22 +10424,10 @@ class DefaultApi:
     @validate_call
     def delete_network_area_route(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11195,13 +10443,13 @@ class DefaultApi:
         Delete a network route of a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11253,22 +10501,10 @@ class DefaultApi:
     @validate_call
     def delete_network_area_route_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11284,13 +10520,13 @@ class DefaultApi:
         Delete a network route of a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11342,22 +10578,10 @@ class DefaultApi:
     @validate_call
     def delete_network_area_route_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11373,13 +10597,13 @@ class DefaultApi:
         Delete a network route of a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11486,19 +10710,10 @@ class DefaultApi:
     @validate_call
     def delete_nic(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11514,13 +10729,13 @@ class DefaultApi:
         Delete a network interface that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11572,19 +10787,10 @@ class DefaultApi:
     @validate_call
     def delete_nic_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11600,13 +10806,13 @@ class DefaultApi:
         Delete a network interface that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11658,19 +10864,10 @@ class DefaultApi:
     @validate_call
     def delete_nic_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11686,13 +10883,13 @@ class DefaultApi:
         Delete a network interface that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11799,14 +10996,9 @@ class DefaultApi:
     @validate_call
     def delete_public_ip(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11822,11 +11014,11 @@ class DefaultApi:
         Delete a public IP that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11877,14 +11069,9 @@ class DefaultApi:
     @validate_call
     def delete_public_ip_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11900,11 +11087,11 @@ class DefaultApi:
         Delete a public IP that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11955,14 +11142,9 @@ class DefaultApi:
     @validate_call
     def delete_public_ip_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11978,11 +11160,11 @@ class DefaultApi:
         Delete a public IP that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12085,28 +11267,11 @@ class DefaultApi:
     @validate_call
     def delete_route_from_routing_table(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12122,15 +11287,15 @@ class DefaultApi:
         Delete a route in an existing routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12183,28 +11348,11 @@ class DefaultApi:
     @validate_call
     def delete_route_from_routing_table_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12220,15 +11368,15 @@ class DefaultApi:
         Delete a route in an existing routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12281,28 +11429,11 @@ class DefaultApi:
     @validate_call
     def delete_route_from_routing_table_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12318,15 +11449,15 @@ class DefaultApi:
         Delete a route in an existing routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12437,25 +11568,10 @@ class DefaultApi:
     @validate_call
     def delete_routing_table_from_area(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12471,13 +11587,13 @@ class DefaultApi:
         Delete a routing table of a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12529,25 +11645,10 @@ class DefaultApi:
     @validate_call
     def delete_routing_table_from_area_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12563,13 +11664,13 @@ class DefaultApi:
         Delete a routing table of a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12621,25 +11722,10 @@ class DefaultApi:
     @validate_call
     def delete_routing_table_from_area_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12655,13 +11741,13 @@ class DefaultApi:
         Delete a routing table of a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12768,20 +11854,9 @@ class DefaultApi:
     @validate_call
     def delete_security_group(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12797,11 +11872,11 @@ class DefaultApi:
         Delete a security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12853,20 +11928,9 @@ class DefaultApi:
     @validate_call
     def delete_security_group_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12882,11 +11946,11 @@ class DefaultApi:
         Delete a security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12938,20 +12002,9 @@ class DefaultApi:
     @validate_call
     def delete_security_group_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12967,11 +12020,11 @@ class DefaultApi:
         Delete a security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13075,28 +12128,11 @@ class DefaultApi:
     @validate_call
     def delete_security_group_rule(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         security_group_rule_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group Rule.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Security Group Rule.")
         ],
         _request_timeout: Union[
             None,
@@ -13113,13 +12149,13 @@ class DefaultApi:
         Delete a security group rule.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param security_group_rule_id: The identifier (ID) of a STACKIT Security Group Rule. (required)
-        :type security_group_rule_id: str
+        :type security_group_rule_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13171,28 +12207,11 @@ class DefaultApi:
     @validate_call
     def delete_security_group_rule_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         security_group_rule_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group Rule.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Security Group Rule.")
         ],
         _request_timeout: Union[
             None,
@@ -13209,13 +12228,13 @@ class DefaultApi:
         Delete a security group rule.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param security_group_rule_id: The identifier (ID) of a STACKIT Security Group Rule. (required)
-        :type security_group_rule_id: str
+        :type security_group_rule_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13267,28 +12286,11 @@ class DefaultApi:
     @validate_call
     def delete_security_group_rule_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         security_group_rule_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group Rule.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Security Group Rule.")
         ],
         _request_timeout: Union[
             None,
@@ -13305,13 +12307,13 @@ class DefaultApi:
         Delete a security group rule.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param security_group_rule_id: The identifier (ID) of a STACKIT Security Group Rule. (required)
-        :type security_group_rule_id: str
+        :type security_group_rule_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13418,15 +12420,9 @@ class DefaultApi:
     @validate_call
     def delete_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13442,11 +12438,11 @@ class DefaultApi:
         Delete a server. Volumes won't be deleted.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13497,15 +12493,9 @@ class DefaultApi:
     @validate_call
     def delete_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13521,11 +12511,11 @@ class DefaultApi:
         Delete a server. Volumes won't be deleted.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13576,15 +12566,9 @@ class DefaultApi:
     @validate_call
     def delete_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13600,11 +12584,11 @@ class DefaultApi:
         Delete a server. Volumes won't be deleted.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13707,15 +12691,9 @@ class DefaultApi:
     @validate_call
     def delete_snapshot(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        snapshot_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
-        ],
+        snapshot_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Snapshot.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13731,11 +12709,11 @@ class DefaultApi:
         Delete a snapshot that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
-        :type snapshot_id: str
+        :type snapshot_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13786,15 +12764,9 @@ class DefaultApi:
     @validate_call
     def delete_snapshot_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        snapshot_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
-        ],
+        snapshot_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Snapshot.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13810,11 +12782,11 @@ class DefaultApi:
         Delete a snapshot that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
-        :type snapshot_id: str
+        :type snapshot_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13865,15 +12837,9 @@ class DefaultApi:
     @validate_call
     def delete_snapshot_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        snapshot_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
-        ],
+        snapshot_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Snapshot.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13889,11 +12855,11 @@ class DefaultApi:
         Delete a snapshot that is part of the project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
-        :type snapshot_id: str
+        :type snapshot_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13996,15 +12962,9 @@ class DefaultApi:
     @validate_call
     def delete_volume(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14020,11 +12980,11 @@ class DefaultApi:
         Delete a volume inside a project. The deletion will fail if the volume is still in use.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14076,15 +13036,9 @@ class DefaultApi:
     @validate_call
     def delete_volume_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14100,11 +13054,11 @@ class DefaultApi:
         Delete a volume inside a project. The deletion will fail if the volume is still in use.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14156,15 +13110,9 @@ class DefaultApi:
     @validate_call
     def delete_volume_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14180,11 +13128,11 @@ class DefaultApi:
         Delete a volume inside a project. The deletion will fail if the volume is still in use.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14288,20 +13236,9 @@ class DefaultApi:
     @validate_call
     def get_affinity_group(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        affinity_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Affinity Group.",
-            ),
-        ],
+        affinity_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Affinity Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14317,11 +13254,11 @@ class DefaultApi:
         Get the affinity group created in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
-        :type affinity_group_id: str
+        :type affinity_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14372,20 +13309,9 @@ class DefaultApi:
     @validate_call
     def get_affinity_group_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        affinity_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Affinity Group.",
-            ),
-        ],
+        affinity_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Affinity Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14401,11 +13327,11 @@ class DefaultApi:
         Get the affinity group created in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
-        :type affinity_group_id: str
+        :type affinity_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14456,20 +13382,9 @@ class DefaultApi:
     @validate_call
     def get_affinity_group_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        affinity_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Affinity Group.",
-            ),
-        ],
+        affinity_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Affinity Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14485,11 +13400,11 @@ class DefaultApi:
         Get the affinity group created in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param affinity_group_id: The identifier (ID) of a STACKIT Affinity Group. (required)
-        :type affinity_group_id: str
+        :type affinity_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14592,19 +13507,10 @@ class DefaultApi:
     @validate_call
     def get_attached_volume(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14620,13 +13526,13 @@ class DefaultApi:
         Get the details of an existing Volume Attachment.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14678,19 +13584,10 @@ class DefaultApi:
     @validate_call
     def get_attached_volume_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14706,13 +13603,13 @@ class DefaultApi:
         Get the details of an existing Volume Attachment.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14764,19 +13661,10 @@ class DefaultApi:
     @validate_call
     def get_attached_volume_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14792,13 +13680,13 @@ class DefaultApi:
         Get the details of an existing Volume Attachment.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14905,15 +13793,9 @@ class DefaultApi:
     @validate_call
     def get_backup(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14929,11 +13811,11 @@ class DefaultApi:
         Get details about a block device backup.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14984,15 +13866,9 @@ class DefaultApi:
     @validate_call
     def get_backup_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15008,11 +13884,11 @@ class DefaultApi:
         Get details about a block device backup.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15063,15 +13939,9 @@ class DefaultApi:
     @validate_call
     def get_backup_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15087,11 +13957,11 @@ class DefaultApi:
         Get details about a block device backup.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15194,14 +14064,9 @@ class DefaultApi:
     @validate_call
     def get_image(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15217,11 +14082,11 @@ class DefaultApi:
         Get details about a specific Image inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15272,14 +14137,9 @@ class DefaultApi:
     @validate_call
     def get_image_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15295,11 +14155,11 @@ class DefaultApi:
         Get details about a specific Image inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15350,14 +14210,9 @@ class DefaultApi:
     @validate_call
     def get_image_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15373,11 +14228,11 @@ class DefaultApi:
         Get details about a specific Image inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15480,14 +14335,9 @@ class DefaultApi:
     @validate_call
     def get_image_share(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15503,11 +14353,11 @@ class DefaultApi:
         Get share details about an shared image.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15558,14 +14408,9 @@ class DefaultApi:
     @validate_call
     def get_image_share_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15581,11 +14426,11 @@ class DefaultApi:
         Get share details about an shared image.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15636,14 +14481,9 @@ class DefaultApi:
     @validate_call
     def get_image_share_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15659,11 +14499,11 @@ class DefaultApi:
         Get share details about an shared image.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15766,22 +14606,11 @@ class DefaultApi:
     @validate_call
     def get_image_share_consumer(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         consumer_project_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Project that consumes an image share.")
         ],
         _request_timeout: Union[
             None,
@@ -15798,13 +14627,13 @@ class DefaultApi:
         Get details about an image share consumer.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
-        :type consumer_project_id: str
+        :type consumer_project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15856,22 +14685,11 @@ class DefaultApi:
     @validate_call
     def get_image_share_consumer_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         consumer_project_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Project that consumes an image share.")
         ],
         _request_timeout: Union[
             None,
@@ -15888,13 +14706,13 @@ class DefaultApi:
         Get details about an image share consumer.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
-        :type consumer_project_id: str
+        :type consumer_project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15946,22 +14764,11 @@ class DefaultApi:
     @validate_call
     def get_image_share_consumer_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         consumer_project_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Project that consumes an image share.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Project that consumes an image share.")
         ],
         _request_timeout: Union[
             None,
@@ -15978,13 +14785,13 @@ class DefaultApi:
         Get details about an image share consumer.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param consumer_project_id: The identifier (ID) of a STACKIT Project that consumes an image share. (required)
-        :type consumer_project_id: str
+        :type consumer_project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16332,10 +15139,7 @@ class DefaultApi:
     @validate_call
     def get_machine_type(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         machine_type: Annotated[str, Field(strict=True, max_length=127, description="STACKIT machine type Name.")],
         _request_timeout: Union[
@@ -16353,7 +15157,7 @@ class DefaultApi:
         Get details about a specific machine type.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param machine_type: STACKIT machine type Name. (required)
@@ -16408,10 +15212,7 @@ class DefaultApi:
     @validate_call
     def get_machine_type_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         machine_type: Annotated[str, Field(strict=True, max_length=127, description="STACKIT machine type Name.")],
         _request_timeout: Union[
@@ -16429,7 +15230,7 @@ class DefaultApi:
         Get details about a specific machine type.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param machine_type: STACKIT machine type Name. (required)
@@ -16484,10 +15285,7 @@ class DefaultApi:
     @validate_call
     def get_machine_type_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         machine_type: Annotated[str, Field(strict=True, max_length=127, description="STACKIT machine type Name.")],
         _request_timeout: Union[
@@ -16505,7 +15303,7 @@ class DefaultApi:
         Get details about a specific machine type.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param machine_type: STACKIT machine type Name. (required)
@@ -16612,15 +15410,9 @@ class DefaultApi:
     @validate_call
     def get_network(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16636,11 +15428,11 @@ class DefaultApi:
         Get details about a network of a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16691,15 +15483,9 @@ class DefaultApi:
     @validate_call
     def get_network_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16715,11 +15501,11 @@ class DefaultApi:
         Get details about a network of a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16770,15 +15556,9 @@ class DefaultApi:
     @validate_call
     def get_network_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16794,11 +15574,11 @@ class DefaultApi:
         Get details about a network of a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16901,18 +15681,8 @@ class DefaultApi:
     @validate_call
     def get_network_area(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16928,9 +15698,9 @@ class DefaultApi:
         Get details about a network area in an organization.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16980,18 +15750,8 @@ class DefaultApi:
     @validate_call
     def get_network_area_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -17007,9 +15767,9 @@ class DefaultApi:
         Get details about a network area in an organization.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -17059,18 +15819,8 @@ class DefaultApi:
     @validate_call
     def get_network_area_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -17086,9 +15836,9 @@ class DefaultApi:
         Get details about a network area in an organization.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -17187,25 +15937,10 @@ class DefaultApi:
     @validate_call
     def get_network_area_range(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_range_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
-            ),
-        ],
+        network_range_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Range.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -17221,13 +15956,13 @@ class DefaultApi:
         Get details about a network range in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
-        :type network_range_id: str
+        :type network_range_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -17279,25 +16014,10 @@ class DefaultApi:
     @validate_call
     def get_network_area_range_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_range_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
-            ),
-        ],
+        network_range_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Range.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -17313,13 +16033,13 @@ class DefaultApi:
         Get details about a network range in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
-        :type network_range_id: str
+        :type network_range_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -17371,25 +16091,10 @@ class DefaultApi:
     @validate_call
     def get_network_area_range_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_range_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Range."
-            ),
-        ],
+        network_range_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Range.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -17405,13 +16110,13 @@ class DefaultApi:
         Get details about a network range in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_range_id: The identifier (ID) of a STACKIT Network Range. (required)
-        :type network_range_id: str
+        :type network_range_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -17518,18 +16223,8 @@ class DefaultApi:
     @validate_call
     def get_network_area_region(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -17546,9 +16241,9 @@ class DefaultApi:
         Get details about a configured region in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -17601,18 +16296,8 @@ class DefaultApi:
     @validate_call
     def get_network_area_region_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -17629,9 +16314,9 @@ class DefaultApi:
         Get details about a configured region in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -17684,18 +16369,8 @@ class DefaultApi:
     @validate_call
     def get_network_area_region_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -17712,9 +16387,9 @@ class DefaultApi:
         Get details about a configured region in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -17819,22 +16494,10 @@ class DefaultApi:
     @validate_call
     def get_network_area_route(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -17850,13 +16513,13 @@ class DefaultApi:
         Get details about a network route defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -17908,22 +16571,10 @@ class DefaultApi:
     @validate_call
     def get_network_area_route_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -17939,13 +16590,13 @@ class DefaultApi:
         Get details about a network route defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -17997,22 +16648,10 @@ class DefaultApi:
     @validate_call
     def get_network_area_route_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18028,13 +16667,13 @@ class DefaultApi:
         Get details about a network route defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -18141,19 +16780,10 @@ class DefaultApi:
     @validate_call
     def get_nic(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18169,13 +16799,13 @@ class DefaultApi:
         Get details about a network interface inside a network.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -18227,19 +16857,10 @@ class DefaultApi:
     @validate_call
     def get_nic_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18255,13 +16876,13 @@ class DefaultApi:
         Get details about a network interface inside a network.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -18313,19 +16934,10 @@ class DefaultApi:
     @validate_call
     def get_nic_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18341,13 +16953,13 @@ class DefaultApi:
         Get details about a network interface inside a network.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -18454,12 +17066,7 @@ class DefaultApi:
     @validate_call
     def get_organization_request(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
         request_id: Annotated[
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Request."),
@@ -18479,7 +17086,7 @@ class DefaultApi:
         Lookup an organization request ID from a previous request. This allows to find resource IDs of resources generated during a organization request.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param request_id: The identifier (ID) of a STACKIT Request. (required)
         :type request_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -18531,12 +17138,7 @@ class DefaultApi:
     @validate_call
     def get_organization_request_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
         request_id: Annotated[
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Request."),
@@ -18556,7 +17158,7 @@ class DefaultApi:
         Lookup an organization request ID from a previous request. This allows to find resource IDs of resources generated during a organization request.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param request_id: The identifier (ID) of a STACKIT Request. (required)
         :type request_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -18608,12 +17210,7 @@ class DefaultApi:
     @validate_call
     def get_organization_request_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
         request_id: Annotated[
             str,
             Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Request."),
@@ -18633,7 +17230,7 @@ class DefaultApi:
         Lookup an organization request ID from a previous request. This allows to find resource IDs of resources generated during a organization request.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param request_id: The identifier (ID) of a STACKIT Request. (required)
         :type request_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -18734,10 +17331,7 @@ class DefaultApi:
     @validate_call
     def get_project_details(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18753,7 +17347,7 @@ class DefaultApi:
         Get details about a STACKIT project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -18802,10 +17396,7 @@ class DefaultApi:
     @validate_call
     def get_project_details_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18821,7 +17412,7 @@ class DefaultApi:
         Get details about a STACKIT project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -18870,10 +17461,7 @@ class DefaultApi:
     @validate_call
     def get_project_details_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18889,7 +17477,7 @@ class DefaultApi:
         Get details about a STACKIT project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -18984,15 +17572,9 @@ class DefaultApi:
     @validate_call
     def get_project_nic(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19008,11 +17590,11 @@ class DefaultApi:
         Get details about a network interface inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19063,15 +17645,9 @@ class DefaultApi:
     @validate_call
     def get_project_nic_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19087,11 +17663,11 @@ class DefaultApi:
         Get details about a network interface inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19142,15 +17718,9 @@ class DefaultApi:
     @validate_call
     def get_project_nic_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19166,11 +17736,11 @@ class DefaultApi:
         Get details about a network interface inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19273,10 +17843,7 @@ class DefaultApi:
     @validate_call
     def get_project_request(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         request_id: Annotated[
             str,
@@ -19297,7 +17864,7 @@ class DefaultApi:
         Lookup a project request ID from a previous request. This allows to find resource IDs of resources generated during a projects request.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param request_id: The identifier (ID) of a STACKIT Request. (required)
@@ -19352,10 +17919,7 @@ class DefaultApi:
     @validate_call
     def get_project_request_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         request_id: Annotated[
             str,
@@ -19376,7 +17940,7 @@ class DefaultApi:
         Lookup a project request ID from a previous request. This allows to find resource IDs of resources generated during a projects request.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param request_id: The identifier (ID) of a STACKIT Request. (required)
@@ -19431,10 +17995,7 @@ class DefaultApi:
     @validate_call
     def get_project_request_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         request_id: Annotated[
             str,
@@ -19455,7 +18016,7 @@ class DefaultApi:
         Lookup a project request ID from a previous request. This allows to find resource IDs of resources generated during a projects request.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param request_id: The identifier (ID) of a STACKIT Request. (required)
@@ -19562,14 +18123,9 @@ class DefaultApi:
     @validate_call
     def get_public_ip(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19585,11 +18141,11 @@ class DefaultApi:
         Get details about a public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19640,14 +18196,9 @@ class DefaultApi:
     @validate_call
     def get_public_ip_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19663,11 +18214,11 @@ class DefaultApi:
         Get details about a public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19718,14 +18269,9 @@ class DefaultApi:
     @validate_call
     def get_public_ip_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19741,11 +18287,11 @@ class DefaultApi:
         Get details about a public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19848,28 +18394,11 @@ class DefaultApi:
     @validate_call
     def get_route_of_routing_table(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19885,15 +18414,15 @@ class DefaultApi:
         Get details about a route defined in a routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19946,28 +18475,11 @@ class DefaultApi:
     @validate_call
     def get_route_of_routing_table_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19983,15 +18495,15 @@ class DefaultApi:
         Get details about a route defined in a routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -20044,28 +18556,11 @@ class DefaultApi:
     @validate_call
     def get_route_of_routing_table_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -20081,15 +18576,15 @@ class DefaultApi:
         Get details about a route defined in a routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -20200,25 +18695,10 @@ class DefaultApi:
     @validate_call
     def get_routing_table_of_area(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -20234,13 +18714,13 @@ class DefaultApi:
         Get details about a routing table defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -20292,25 +18772,10 @@ class DefaultApi:
     @validate_call
     def get_routing_table_of_area_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -20326,13 +18791,13 @@ class DefaultApi:
         Get details about a routing table defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -20384,25 +18849,10 @@ class DefaultApi:
     @validate_call
     def get_routing_table_of_area_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -20418,13 +18868,13 @@ class DefaultApi:
         Get details about a routing table defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -20531,20 +18981,9 @@ class DefaultApi:
     @validate_call
     def get_security_group(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -20560,11 +18999,11 @@ class DefaultApi:
         Get details about a security group of a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -20615,20 +19054,9 @@ class DefaultApi:
     @validate_call
     def get_security_group_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -20644,11 +19072,11 @@ class DefaultApi:
         Get details about a security group of a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -20699,20 +19127,9 @@ class DefaultApi:
     @validate_call
     def get_security_group_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -20728,11 +19145,11 @@ class DefaultApi:
         Get details about a security group of a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -20835,28 +19252,11 @@ class DefaultApi:
     @validate_call
     def get_security_group_rule(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         security_group_rule_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group Rule.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Security Group Rule.")
         ],
         _request_timeout: Union[
             None,
@@ -20873,13 +19273,13 @@ class DefaultApi:
         Get details about a security group rule of a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param security_group_rule_id: The identifier (ID) of a STACKIT Security Group Rule. (required)
-        :type security_group_rule_id: str
+        :type security_group_rule_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -20931,28 +19331,11 @@ class DefaultApi:
     @validate_call
     def get_security_group_rule_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         security_group_rule_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group Rule.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Security Group Rule.")
         ],
         _request_timeout: Union[
             None,
@@ -20969,13 +19352,13 @@ class DefaultApi:
         Get details about a security group rule of a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param security_group_rule_id: The identifier (ID) of a STACKIT Security Group Rule. (required)
-        :type security_group_rule_id: str
+        :type security_group_rule_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -21027,28 +19410,11 @@ class DefaultApi:
     @validate_call
     def get_security_group_rule_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         security_group_rule_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group Rule.",
-            ),
+            UUID, Field(description="The identifier (ID) of a STACKIT Security Group Rule.")
         ],
         _request_timeout: Union[
             None,
@@ -21065,13 +19431,13 @@ class DefaultApi:
         Get details about a security group rule of a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param security_group_rule_id: The identifier (ID) of a STACKIT Security Group Rule. (required)
-        :type security_group_rule_id: str
+        :type security_group_rule_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -21178,15 +19544,9 @@ class DefaultApi:
     @validate_call
     def get_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         details: Annotated[Optional[StrictBool], Field(description="Show detailed information about server.")] = None,
         _request_timeout: Union[
             None,
@@ -21203,11 +19563,11 @@ class DefaultApi:
         Get details about a server by its ID.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param details: Show detailed information about server.
         :type details: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -21261,15 +19621,9 @@ class DefaultApi:
     @validate_call
     def get_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         details: Annotated[Optional[StrictBool], Field(description="Show detailed information about server.")] = None,
         _request_timeout: Union[
             None,
@@ -21286,11 +19640,11 @@ class DefaultApi:
         Get details about a server by its ID.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param details: Show detailed information about server.
         :type details: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -21344,15 +19698,9 @@ class DefaultApi:
     @validate_call
     def get_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         details: Annotated[Optional[StrictBool], Field(description="Show detailed information about server.")] = None,
         _request_timeout: Union[
             None,
@@ -21369,11 +19717,11 @@ class DefaultApi:
         Get details about a server by its ID.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param details: Show detailed information about server.
         :type details: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -21484,15 +19832,9 @@ class DefaultApi:
     @validate_call
     def get_server_console(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -21508,11 +19850,11 @@ class DefaultApi:
         Get a URL for server remote console.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -21563,15 +19905,9 @@ class DefaultApi:
     @validate_call
     def get_server_console_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -21587,11 +19923,11 @@ class DefaultApi:
         Get a URL for server remote console.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -21642,15 +19978,9 @@ class DefaultApi:
     @validate_call
     def get_server_console_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -21666,11 +19996,11 @@ class DefaultApi:
         Get a URL for server remote console.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -21773,15 +20103,9 @@ class DefaultApi:
     @validate_call
     def get_server_log(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         length: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(
@@ -21803,11 +20127,11 @@ class DefaultApi:
         Get server console log.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param length: Request the server log. By default the length is limited to 2000 lines. Set to 0 to retrieve the complete log.
         :type length: int
         :param _request_timeout: timeout setting for this request. If one
@@ -21861,15 +20185,9 @@ class DefaultApi:
     @validate_call
     def get_server_log_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         length: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(
@@ -21891,11 +20209,11 @@ class DefaultApi:
         Get server console log.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param length: Request the server log. By default the length is limited to 2000 lines. Set to 0 to retrieve the complete log.
         :type length: int
         :param _request_timeout: timeout setting for this request. If one
@@ -21949,15 +20267,9 @@ class DefaultApi:
     @validate_call
     def get_server_log_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         length: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(
@@ -21979,11 +20291,11 @@ class DefaultApi:
         Get server console log.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param length: Request the server log. By default the length is limited to 2000 lines. Set to 0 to retrieve the complete log.
         :type length: int
         :param _request_timeout: timeout setting for this request. If one
@@ -22094,15 +20406,9 @@ class DefaultApi:
     @validate_call
     def get_snapshot(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        snapshot_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
-        ],
+        snapshot_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Snapshot.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -22118,11 +20424,11 @@ class DefaultApi:
         Get details about a block device snapshot.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
-        :type snapshot_id: str
+        :type snapshot_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -22173,15 +20479,9 @@ class DefaultApi:
     @validate_call
     def get_snapshot_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        snapshot_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
-        ],
+        snapshot_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Snapshot.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -22197,11 +20497,11 @@ class DefaultApi:
         Get details about a block device snapshot.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
-        :type snapshot_id: str
+        :type snapshot_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -22252,15 +20552,9 @@ class DefaultApi:
     @validate_call
     def get_snapshot_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        snapshot_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
-        ],
+        snapshot_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Snapshot.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -22276,11 +20570,11 @@ class DefaultApi:
         Get details about a block device snapshot.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
-        :type snapshot_id: str
+        :type snapshot_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -22383,15 +20677,9 @@ class DefaultApi:
     @validate_call
     def get_volume(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -22407,11 +20695,11 @@ class DefaultApi:
         Get details about a block device volume.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -22462,15 +20750,9 @@ class DefaultApi:
     @validate_call
     def get_volume_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -22486,11 +20768,11 @@ class DefaultApi:
         Get details about a block device volume.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -22541,15 +20823,9 @@ class DefaultApi:
     @validate_call
     def get_volume_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -22565,11 +20841,11 @@ class DefaultApi:
         Get details about a block device volume.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -22672,10 +20948,7 @@ class DefaultApi:
     @validate_call
     def get_volume_performance_class(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         volume_performance_class: Annotated[
             str, Field(strict=True, max_length=127, description="The name of a STACKIT Volume performance class.")
@@ -22695,7 +20968,7 @@ class DefaultApi:
         Get details about a specific volume performance class.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_performance_class: The name of a STACKIT Volume performance class. (required)
@@ -22750,10 +21023,7 @@ class DefaultApi:
     @validate_call
     def get_volume_performance_class_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         volume_performance_class: Annotated[
             str, Field(strict=True, max_length=127, description="The name of a STACKIT Volume performance class.")
@@ -22773,7 +21043,7 @@ class DefaultApi:
         Get details about a specific volume performance class.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_performance_class: The name of a STACKIT Volume performance class. (required)
@@ -22828,10 +21098,7 @@ class DefaultApi:
     @validate_call
     def get_volume_performance_class_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         volume_performance_class: Annotated[
             str, Field(strict=True, max_length=127, description="The name of a STACKIT Volume performance class.")
@@ -22851,7 +21118,7 @@ class DefaultApi:
         Get details about a specific volume performance class.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_performance_class: The name of a STACKIT Volume performance class. (required)
@@ -22958,14 +21225,8 @@ class DefaultApi:
     @validate_call
     def image_from_volume(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         image_from_volume_payload: Annotated[
             Optional[ImageFromVolumePayload], Field(description="Create an image from a volume.")
@@ -22985,9 +21246,9 @@ class DefaultApi:
         Create an image out a a volume.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_from_volume_payload: Create an image from a volume.
@@ -23044,14 +21305,8 @@ class DefaultApi:
     @validate_call
     def image_from_volume_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         image_from_volume_payload: Annotated[
             Optional[ImageFromVolumePayload], Field(description="Create an image from a volume.")
@@ -23071,9 +21326,9 @@ class DefaultApi:
         Create an image out a a volume.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_from_volume_payload: Create an image from a volume.
@@ -23130,14 +21385,8 @@ class DefaultApi:
     @validate_call
     def image_from_volume_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         image_from_volume_payload: Annotated[
             Optional[ImageFromVolumePayload], Field(description="Create an image from a volume.")
@@ -23157,9 +21406,9 @@ class DefaultApi:
         Create an image out a a volume.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_from_volume_payload: Create an image from a volume.
@@ -23279,10 +21528,7 @@ class DefaultApi:
     @validate_call
     def list_affinity_groups(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -23299,7 +21545,7 @@ class DefaultApi:
         Get the affinity groups created in a project. Affinity groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -23352,10 +21598,7 @@ class DefaultApi:
     @validate_call
     def list_affinity_groups_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -23372,7 +21615,7 @@ class DefaultApi:
         Get the affinity groups created in a project. Affinity groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -23425,10 +21668,7 @@ class DefaultApi:
     @validate_call
     def list_affinity_groups_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -23445,7 +21685,7 @@ class DefaultApi:
         Get the affinity groups created in a project. Affinity groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -23547,15 +21787,9 @@ class DefaultApi:
     @validate_call
     def list_attached_volumes(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -23571,11 +21805,11 @@ class DefaultApi:
         Get a list of all volume attachments of a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -23626,15 +21860,9 @@ class DefaultApi:
     @validate_call
     def list_attached_volumes_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -23650,11 +21878,11 @@ class DefaultApi:
         Get a list of all volume attachments of a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -23705,15 +21933,9 @@ class DefaultApi:
     @validate_call
     def list_attached_volumes_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -23729,11 +21951,11 @@ class DefaultApi:
         Get a list of all volume attachments of a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -24077,10 +22299,7 @@ class DefaultApi:
     @validate_call
     def list_backups(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -24098,7 +22317,7 @@ class DefaultApi:
         Get a list of all backups inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -24153,10 +22372,7 @@ class DefaultApi:
     @validate_call
     def list_backups_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -24174,7 +22390,7 @@ class DefaultApi:
         Get a list of all backups inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -24229,10 +22445,7 @@ class DefaultApi:
     @validate_call
     def list_backups_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -24250,7 +22463,7 @@ class DefaultApi:
         Get a list of all backups inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -24359,10 +22572,7 @@ class DefaultApi:
     @validate_call
     def list_images(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         all: Annotated[Optional[StrictBool], Field(description="List all Images.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
@@ -24381,7 +22591,7 @@ class DefaultApi:
         Get a list of all images inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param all: List all Images.
@@ -24439,10 +22649,7 @@ class DefaultApi:
     @validate_call
     def list_images_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         all: Annotated[Optional[StrictBool], Field(description="List all Images.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
@@ -24461,7 +22668,7 @@ class DefaultApi:
         Get a list of all images inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param all: List all Images.
@@ -24519,10 +22726,7 @@ class DefaultApi:
     @validate_call
     def list_images_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         all: Annotated[Optional[StrictBool], Field(description="List all Images.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
@@ -24541,7 +22745,7 @@ class DefaultApi:
         Get a list of all images inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param all: List all Images.
@@ -24901,10 +23105,7 @@ class DefaultApi:
     @validate_call
     def list_machine_types(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         filter: Annotated[
             Optional[StrictStr],
@@ -24927,7 +23128,7 @@ class DefaultApi:
         Get a list of all machine type available in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param filter: Filter resources by fields. A subset of expr-lang is supported. See https://expr-lang.org/docs/language-definition for usage details.
@@ -24982,10 +23183,7 @@ class DefaultApi:
     @validate_call
     def list_machine_types_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         filter: Annotated[
             Optional[StrictStr],
@@ -25008,7 +23206,7 @@ class DefaultApi:
         Get a list of all machine type available in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param filter: Filter resources by fields. A subset of expr-lang is supported. See https://expr-lang.org/docs/language-definition for usage details.
@@ -25063,10 +23261,7 @@ class DefaultApi:
     @validate_call
     def list_machine_types_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         filter: Annotated[
             Optional[StrictStr],
@@ -25089,7 +23284,7 @@ class DefaultApi:
         Get a list of all machine type available in a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param filter: Filter resources by fields. A subset of expr-lang is supported. See https://expr-lang.org/docs/language-definition for usage details.
@@ -25198,18 +23393,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_projects(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -25225,9 +23410,9 @@ class DefaultApi:
         Get a list of all projects using a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25277,18 +23462,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_projects_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -25304,9 +23479,9 @@ class DefaultApi:
         Get a list of all projects using a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25356,18 +23531,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_projects_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -25383,9 +23548,9 @@ class DefaultApi:
         Get a list of all projects using a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25484,18 +23649,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_ranges(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -25512,9 +23667,9 @@ class DefaultApi:
         Get a list of all network ranges in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -25567,18 +23722,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_ranges_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -25595,9 +23740,9 @@ class DefaultApi:
         Get a list of all network ranges in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -25650,18 +23795,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_ranges_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -25678,9 +23813,9 @@ class DefaultApi:
         Get a list of all network ranges in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -25785,18 +23920,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_regions(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -25812,9 +23937,9 @@ class DefaultApi:
         Get a list of all configured regions.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25864,18 +23989,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_regions_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -25891,9 +24006,9 @@ class DefaultApi:
         Get a list of all configured regions.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25943,18 +24058,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_regions_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -25970,9 +24075,9 @@ class DefaultApi:
         Get a list of all configured regions.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -26071,18 +24176,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_routes(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -26100,9 +24195,9 @@ class DefaultApi:
         Get a list of all network routes defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -26158,18 +24253,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_routes_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -26187,9 +24272,9 @@ class DefaultApi:
         Get a list of all network routes defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -26245,18 +24330,8 @@ class DefaultApi:
     @validate_call
     def list_network_area_routes_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -26274,9 +24349,9 @@ class DefaultApi:
         Get a list of all network routes defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -26389,12 +24464,7 @@ class DefaultApi:
     @validate_call
     def list_network_areas(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -26411,7 +24481,7 @@ class DefaultApi:
         Get a list of all visible network areas defined in an organization.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -26463,12 +24533,7 @@ class DefaultApi:
     @validate_call
     def list_network_areas_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -26485,7 +24550,7 @@ class DefaultApi:
         Get a list of all visible network areas defined in an organization.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -26537,12 +24602,7 @@ class DefaultApi:
     @validate_call
     def list_network_areas_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -26559,7 +24619,7 @@ class DefaultApi:
         Get a list of all visible network areas defined in an organization.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -26662,10 +24722,7 @@ class DefaultApi:
     @validate_call
     def list_networks(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -26683,7 +24740,7 @@ class DefaultApi:
         Get a list of all networks inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -26738,10 +24795,7 @@ class DefaultApi:
     @validate_call
     def list_networks_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -26759,7 +24813,7 @@ class DefaultApi:
         Get a list of all networks inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -26814,10 +24868,7 @@ class DefaultApi:
     @validate_call
     def list_networks_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -26835,7 +24886,7 @@ class DefaultApi:
         Get a list of all networks inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -26944,15 +24995,9 @@ class DefaultApi:
     @validate_call
     def list_nics(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -26969,11 +25014,11 @@ class DefaultApi:
         Get a list of all network interfaces inside a network.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -27027,15 +25072,9 @@ class DefaultApi:
     @validate_call
     def list_nics_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -27052,11 +25091,11 @@ class DefaultApi:
         Get a list of all network interfaces inside a network.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -27110,15 +25149,9 @@ class DefaultApi:
     @validate_call
     def list_nics_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -27135,11 +25168,11 @@ class DefaultApi:
         Get a list of all network interfaces inside a network.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -27250,10 +25283,7 @@ class DefaultApi:
     @validate_call
     def list_project_nics(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -27271,7 +25301,7 @@ class DefaultApi:
         Get a list of all network interfaces inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -27326,10 +25356,7 @@ class DefaultApi:
     @validate_call
     def list_project_nics_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -27347,7 +25374,7 @@ class DefaultApi:
         Get a list of all network interfaces inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -27402,10 +25429,7 @@ class DefaultApi:
     @validate_call
     def list_project_nics_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -27423,7 +25447,7 @@ class DefaultApi:
         Get a list of all network interfaces inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -27749,10 +25773,7 @@ class DefaultApi:
     @validate_call
     def list_public_ips(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -27770,7 +25791,7 @@ class DefaultApi:
         Get a list of all public IPs inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -27825,10 +25846,7 @@ class DefaultApi:
     @validate_call
     def list_public_ips_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -27846,7 +25864,7 @@ class DefaultApi:
         Get a list of all public IPs inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -27901,10 +25919,7 @@ class DefaultApi:
     @validate_call
     def list_public_ips_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -27922,7 +25937,7 @@ class DefaultApi:
         Get a list of all public IPs inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -28031,10 +26046,7 @@ class DefaultApi:
     @validate_call
     def list_quotas(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -28051,7 +26063,7 @@ class DefaultApi:
         List quota limits and usage for project resources.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -28103,10 +26115,7 @@ class DefaultApi:
     @validate_call
     def list_quotas_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -28123,7 +26132,7 @@ class DefaultApi:
         List quota limits and usage for project resources.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -28175,10 +26184,7 @@ class DefaultApi:
     @validate_call
     def list_quotas_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         _request_timeout: Union[
             None,
@@ -28195,7 +26201,7 @@ class DefaultApi:
         List quota limits and usage for project resources.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param _request_timeout: timeout setting for this request. If one
@@ -28296,25 +26302,10 @@ class DefaultApi:
     @validate_call
     def list_routes_of_routing_table(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -28331,13 +26322,13 @@ class DefaultApi:
         Get a list of all routes in a routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -28392,25 +26383,10 @@ class DefaultApi:
     @validate_call
     def list_routes_of_routing_table_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -28427,13 +26403,13 @@ class DefaultApi:
         Get a list of all routes in a routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -28488,25 +26464,10 @@ class DefaultApi:
     @validate_call
     def list_routes_of_routing_table_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
             None,
@@ -28523,13 +26484,13 @@ class DefaultApi:
         Get a list of all routes in a routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param label_selector: Filter resources by labels.
         :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
@@ -28644,18 +26605,8 @@ class DefaultApi:
     @validate_call
     def list_routing_tables_of_area(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -28673,9 +26624,9 @@ class DefaultApi:
         Get a list of all routing tables in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -28731,18 +26682,8 @@ class DefaultApi:
     @validate_call
     def list_routing_tables_of_area_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -28760,9 +26701,9 @@ class DefaultApi:
         Get a list of all routing tables in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -28818,18 +26759,8 @@ class DefaultApi:
     @validate_call
     def list_routing_tables_of_area_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -28847,9 +26778,9 @@ class DefaultApi:
         Get a list of all routing tables in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -28962,20 +26893,9 @@ class DefaultApi:
     @validate_call
     def list_security_group_rules(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -28991,11 +26911,11 @@ class DefaultApi:
         Get a list of all rules inside a security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -29046,20 +26966,9 @@ class DefaultApi:
     @validate_call
     def list_security_group_rules_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -29075,11 +26984,11 @@ class DefaultApi:
         Get a list of all rules inside a security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -29130,20 +27039,9 @@ class DefaultApi:
     @validate_call
     def list_security_group_rules_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -29159,11 +27057,11 @@ class DefaultApi:
         Get a list of all rules inside a security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -29266,10 +27164,7 @@ class DefaultApi:
     @validate_call
     def list_security_groups(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -29287,7 +27182,7 @@ class DefaultApi:
         Get a list of all security groups inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -29342,10 +27237,7 @@ class DefaultApi:
     @validate_call
     def list_security_groups_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -29363,7 +27255,7 @@ class DefaultApi:
         Get a list of all security groups inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -29418,10 +27310,7 @@ class DefaultApi:
     @validate_call
     def list_security_groups_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -29439,7 +27328,7 @@ class DefaultApi:
         Get a list of all security groups inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -29548,15 +27437,9 @@ class DefaultApi:
     @validate_call
     def list_server_nics(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -29572,11 +27455,11 @@ class DefaultApi:
         Get all network interfaces attached to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -29627,15 +27510,9 @@ class DefaultApi:
     @validate_call
     def list_server_nics_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -29651,11 +27528,11 @@ class DefaultApi:
         Get all network interfaces attached to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -29706,15 +27583,9 @@ class DefaultApi:
     @validate_call
     def list_server_nics_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -29730,11 +27601,11 @@ class DefaultApi:
         Get all network interfaces attached to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -29837,15 +27708,9 @@ class DefaultApi:
     @validate_call
     def list_server_service_accounts(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -29861,11 +27726,11 @@ class DefaultApi:
         Get the list of the service accounts of the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -29916,15 +27781,9 @@ class DefaultApi:
     @validate_call
     def list_server_service_accounts_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -29940,11 +27799,11 @@ class DefaultApi:
         Get the list of the service accounts of the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -29995,15 +27854,9 @@ class DefaultApi:
     @validate_call
     def list_server_service_accounts_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -30019,11 +27872,11 @@ class DefaultApi:
         Get the list of the service accounts of the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -30126,10 +27979,7 @@ class DefaultApi:
     @validate_call
     def list_servers(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         details: Annotated[Optional[StrictBool], Field(description="Show detailed information about server.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
@@ -30148,7 +27998,7 @@ class DefaultApi:
         Get a list of all servers inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param details: Show detailed information about server.
@@ -30206,10 +28056,7 @@ class DefaultApi:
     @validate_call
     def list_servers_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         details: Annotated[Optional[StrictBool], Field(description="Show detailed information about server.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
@@ -30228,7 +28075,7 @@ class DefaultApi:
         Get a list of all servers inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param details: Show detailed information about server.
@@ -30286,10 +28133,7 @@ class DefaultApi:
     @validate_call
     def list_servers_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         details: Annotated[Optional[StrictBool], Field(description="Show detailed information about server.")] = None,
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
@@ -30308,7 +28152,7 @@ class DefaultApi:
         Get a list of all servers inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param details: Show detailed information about server.
@@ -30425,10 +28269,7 @@ class DefaultApi:
     @validate_call
     def list_snapshots_in_project(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -30446,7 +28287,7 @@ class DefaultApi:
         Get a list of all snapshots inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -30501,10 +28342,7 @@ class DefaultApi:
     @validate_call
     def list_snapshots_in_project_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -30522,7 +28360,7 @@ class DefaultApi:
         Get a list of all snapshots inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -30577,10 +28415,7 @@ class DefaultApi:
     @validate_call
     def list_snapshots_in_project_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -30598,7 +28433,7 @@ class DefaultApi:
         Get a list of all snapshots inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -30707,10 +28542,7 @@ class DefaultApi:
     @validate_call
     def list_volume_performance_classes(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -30728,7 +28560,7 @@ class DefaultApi:
         Get a list of all volume performance classes available inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -30783,10 +28615,7 @@ class DefaultApi:
     @validate_call
     def list_volume_performance_classes_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -30804,7 +28633,7 @@ class DefaultApi:
         Get a list of all volume performance classes available inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -30859,10 +28688,7 @@ class DefaultApi:
     @validate_call
     def list_volume_performance_classes_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -30880,7 +28706,7 @@ class DefaultApi:
         Get a list of all volume performance classes available inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -30989,10 +28815,7 @@ class DefaultApi:
     @validate_call
     def list_volumes(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -31010,7 +28833,7 @@ class DefaultApi:
         Get a list of all volumes inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -31065,10 +28888,7 @@ class DefaultApi:
     @validate_call
     def list_volumes_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -31086,7 +28906,7 @@ class DefaultApi:
         Get a list of all volumes inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -31141,10 +28961,7 @@ class DefaultApi:
     @validate_call
     def list_volumes_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         label_selector: Annotated[Optional[StrictStr], Field(description="Filter resources by labels.")] = None,
         _request_timeout: Union[
@@ -31162,7 +28979,7 @@ class DefaultApi:
         Get a list of all volumes inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param label_selector: Filter resources by labels.
@@ -31271,15 +29088,9 @@ class DefaultApi:
     @validate_call
     def partial_update_network(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         partial_update_network_payload: Annotated[
             PartialUpdateNetworkPayload, Field(description="Request an update of a network.")
         ],
@@ -31298,11 +29109,11 @@ class DefaultApi:
         Update the settings of a network inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param partial_update_network_payload: Request an update of a network. (required)
         :type partial_update_network_payload: PartialUpdateNetworkPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -31356,15 +29167,9 @@ class DefaultApi:
     @validate_call
     def partial_update_network_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         partial_update_network_payload: Annotated[
             PartialUpdateNetworkPayload, Field(description="Request an update of a network.")
         ],
@@ -31383,11 +29188,11 @@ class DefaultApi:
         Update the settings of a network inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param partial_update_network_payload: Request an update of a network. (required)
         :type partial_update_network_payload: PartialUpdateNetworkPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -31441,15 +29246,9 @@ class DefaultApi:
     @validate_call
     def partial_update_network_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         partial_update_network_payload: Annotated[
             PartialUpdateNetworkPayload, Field(description="Request an update of a network.")
         ],
@@ -31468,11 +29267,11 @@ class DefaultApi:
         Update the settings of a network inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param partial_update_network_payload: Request an update of a network. (required)
         :type partial_update_network_payload: PartialUpdateNetworkPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -31589,18 +29388,8 @@ class DefaultApi:
     @validate_call
     def partial_update_network_area(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         partial_update_network_area_payload: Annotated[
             PartialUpdateNetworkAreaPayload, Field(description="Request to update an Area.")
         ],
@@ -31619,9 +29408,9 @@ class DefaultApi:
         Update the settings of a network area in an organization.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param partial_update_network_area_payload: Request to update an Area. (required)
         :type partial_update_network_area_payload: PartialUpdateNetworkAreaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -31674,18 +29463,8 @@ class DefaultApi:
     @validate_call
     def partial_update_network_area_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         partial_update_network_area_payload: Annotated[
             PartialUpdateNetworkAreaPayload, Field(description="Request to update an Area.")
         ],
@@ -31704,9 +29483,9 @@ class DefaultApi:
         Update the settings of a network area in an organization.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param partial_update_network_area_payload: Request to update an Area. (required)
         :type partial_update_network_area_payload: PartialUpdateNetworkAreaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -31759,18 +29538,8 @@ class DefaultApi:
     @validate_call
     def partial_update_network_area_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         partial_update_network_area_payload: Annotated[
             PartialUpdateNetworkAreaPayload, Field(description="Request to update an Area.")
         ],
@@ -31789,9 +29558,9 @@ class DefaultApi:
         Update the settings of a network area in an organization.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param partial_update_network_area_payload: Request to update an Area. (required)
         :type partial_update_network_area_payload: PartialUpdateNetworkAreaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -31904,15 +29673,9 @@ class DefaultApi:
     @validate_call
     def reboot_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         action: Annotated[Optional[StrictStr], Field(description="Defines if it is a soft or a hard reboot.")] = None,
         _request_timeout: Union[
             None,
@@ -31929,11 +29692,11 @@ class DefaultApi:
         Reboot the server. A soft reboot will attempt to gracefully shut down the server by passing the command to the operating system. A hard reboot will power cycle the server without waiting for the operating system to shutdown properly.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param action: Defines if it is a soft or a hard reboot.
         :type action: str
         :param _request_timeout: timeout setting for this request. If one
@@ -31988,15 +29751,9 @@ class DefaultApi:
     @validate_call
     def reboot_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         action: Annotated[Optional[StrictStr], Field(description="Defines if it is a soft or a hard reboot.")] = None,
         _request_timeout: Union[
             None,
@@ -32013,11 +29770,11 @@ class DefaultApi:
         Reboot the server. A soft reboot will attempt to gracefully shut down the server by passing the command to the operating system. A hard reboot will power cycle the server without waiting for the operating system to shutdown properly.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param action: Defines if it is a soft or a hard reboot.
         :type action: str
         :param _request_timeout: timeout setting for this request. If one
@@ -32072,15 +29829,9 @@ class DefaultApi:
     @validate_call
     def reboot_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         action: Annotated[Optional[StrictStr], Field(description="Defines if it is a soft or a hard reboot.")] = None,
         _request_timeout: Union[
             None,
@@ -32097,11 +29848,11 @@ class DefaultApi:
         Reboot the server. A soft reboot will attempt to gracefully shut down the server by passing the command to the operating system. A hard reboot will power cycle the server without waiting for the operating system to shutdown properly.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param action: Defines if it is a soft or a hard reboot.
         :type action: str
         :param _request_timeout: timeout setting for this request. If one
@@ -32213,19 +29964,10 @@ class DefaultApi:
     @validate_call
     def remove_network_from_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32241,13 +29983,13 @@ class DefaultApi:
         Detach and delete all network interfaces associated with the specified network from the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -32299,19 +30041,10 @@ class DefaultApi:
     @validate_call
     def remove_network_from_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32327,13 +30060,13 @@ class DefaultApi:
         Detach and delete all network interfaces associated with the specified network from the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -32385,19 +30118,10 @@ class DefaultApi:
     @validate_call
     def remove_network_from_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32413,13 +30137,13 @@ class DefaultApi:
         Detach and delete all network interfaces associated with the specified network from the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -32526,19 +30250,10 @@ class DefaultApi:
     @validate_call
     def remove_nic_from_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32554,13 +30269,13 @@ class DefaultApi:
         Detach a network interface from a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -32612,19 +30327,10 @@ class DefaultApi:
     @validate_call
     def remove_nic_from_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32640,13 +30346,13 @@ class DefaultApi:
         Detach a network interface from a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -32698,19 +30404,10 @@ class DefaultApi:
     @validate_call
     def remove_nic_from_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32726,13 +30423,13 @@ class DefaultApi:
         Detach a network interface from a server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -32839,18 +30536,10 @@ class DefaultApi:
     @validate_call
     def remove_public_ip_from_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32866,13 +30555,13 @@ class DefaultApi:
         Dissociate a public IP on an existing server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -32925,18 +30614,10 @@ class DefaultApi:
     @validate_call
     def remove_public_ip_from_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32952,13 +30633,13 @@ class DefaultApi:
         Dissociate a public IP on an existing server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -33011,18 +30692,10 @@ class DefaultApi:
     @validate_call
     def remove_public_ip_from_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -33038,13 +30711,13 @@ class DefaultApi:
         Dissociate a public IP on an existing server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -33152,24 +30825,10 @@ class DefaultApi:
     @validate_call
     def remove_security_group_from_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -33185,13 +30844,13 @@ class DefaultApi:
         Remove a server from a attached security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -33244,24 +30903,10 @@ class DefaultApi:
     @validate_call
     def remove_security_group_from_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -33277,13 +30922,13 @@ class DefaultApi:
         Remove a server from a attached security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -33336,24 +30981,10 @@ class DefaultApi:
     @validate_call
     def remove_security_group_from_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -33369,13 +31000,13 @@ class DefaultApi:
         Remove a server from a attached security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -33483,15 +31114,9 @@ class DefaultApi:
     @validate_call
     def remove_service_account_from_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         service_account_mail: Annotated[
             str, Field(strict=True, max_length=255, description="The e-mail address of a service account.")
         ],
@@ -33510,11 +31135,11 @@ class DefaultApi:
         Detach an additional service account from the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param service_account_mail: The e-mail address of a service account. (required)
         :type service_account_mail: str
         :param _request_timeout: timeout setting for this request. If one
@@ -33569,15 +31194,9 @@ class DefaultApi:
     @validate_call
     def remove_service_account_from_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         service_account_mail: Annotated[
             str, Field(strict=True, max_length=255, description="The e-mail address of a service account.")
         ],
@@ -33596,11 +31215,11 @@ class DefaultApi:
         Detach an additional service account from the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param service_account_mail: The e-mail address of a service account. (required)
         :type service_account_mail: str
         :param _request_timeout: timeout setting for this request. If one
@@ -33655,15 +31274,9 @@ class DefaultApi:
     @validate_call
     def remove_service_account_from_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         service_account_mail: Annotated[
             str, Field(strict=True, max_length=255, description="The e-mail address of a service account.")
         ],
@@ -33682,11 +31295,11 @@ class DefaultApi:
         Detach an additional service account from the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param service_account_mail: The e-mail address of a service account. (required)
         :type service_account_mail: str
         :param _request_timeout: timeout setting for this request. If one
@@ -33796,19 +31409,10 @@ class DefaultApi:
     @validate_call
     def remove_volume_from_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -33824,13 +31428,13 @@ class DefaultApi:
         Detach an existing volume from an existing server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -33883,19 +31487,10 @@ class DefaultApi:
     @validate_call
     def remove_volume_from_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -33911,13 +31506,13 @@ class DefaultApi:
         Detach an existing volume from an existing server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -33970,19 +31565,10 @@ class DefaultApi:
     @validate_call
     def remove_volume_from_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -33998,13 +31584,13 @@ class DefaultApi:
         Detach an existing volume from an existing server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -34112,15 +31698,9 @@ class DefaultApi:
     @validate_call
     def rescue_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         rescue_server_payload: Annotated[RescueServerPayload, Field(description="Request a server rescue.")],
         _request_timeout: Union[
             None,
@@ -34137,11 +31717,11 @@ class DefaultApi:
         Rescue an existing server. It is shutdown and the initial image is attached as the boot volume, while the boot volume is attached as secondary volume and the server is booted.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param rescue_server_payload: Request a server rescue. (required)
         :type rescue_server_payload: RescueServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -34196,15 +31776,9 @@ class DefaultApi:
     @validate_call
     def rescue_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         rescue_server_payload: Annotated[RescueServerPayload, Field(description="Request a server rescue.")],
         _request_timeout: Union[
             None,
@@ -34221,11 +31795,11 @@ class DefaultApi:
         Rescue an existing server. It is shutdown and the initial image is attached as the boot volume, while the boot volume is attached as secondary volume and the server is booted.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param rescue_server_payload: Request a server rescue. (required)
         :type rescue_server_payload: RescueServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -34280,15 +31854,9 @@ class DefaultApi:
     @validate_call
     def rescue_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         rescue_server_payload: Annotated[RescueServerPayload, Field(description="Request a server rescue.")],
         _request_timeout: Union[
             None,
@@ -34305,11 +31873,11 @@ class DefaultApi:
         Rescue an existing server. It is shutdown and the initial image is attached as the boot volume, while the boot volume is attached as secondary volume and the server is booted.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param rescue_server_payload: Request a server rescue. (required)
         :type rescue_server_payload: RescueServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -34427,15 +31995,9 @@ class DefaultApi:
     @validate_call
     def resize_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         resize_server_payload: Annotated[ResizeServerPayload, Field(description="Request a resize of a server.")],
         _request_timeout: Union[
             None,
@@ -34452,11 +32014,11 @@ class DefaultApi:
         Resize the server to the given machine type.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param resize_server_payload: Request a resize of a server. (required)
         :type resize_server_payload: ResizeServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -34511,15 +32073,9 @@ class DefaultApi:
     @validate_call
     def resize_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         resize_server_payload: Annotated[ResizeServerPayload, Field(description="Request a resize of a server.")],
         _request_timeout: Union[
             None,
@@ -34536,11 +32092,11 @@ class DefaultApi:
         Resize the server to the given machine type.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param resize_server_payload: Request a resize of a server. (required)
         :type resize_server_payload: ResizeServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -34595,15 +32151,9 @@ class DefaultApi:
     @validate_call
     def resize_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         resize_server_payload: Annotated[ResizeServerPayload, Field(description="Request a resize of a server.")],
         _request_timeout: Union[
             None,
@@ -34620,11 +32170,11 @@ class DefaultApi:
         Resize the server to the given machine type.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param resize_server_payload: Request a resize of a server. (required)
         :type resize_server_payload: ResizeServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -34742,15 +32292,9 @@ class DefaultApi:
     @validate_call
     def resize_volume(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         resize_volume_payload: Annotated[
             Optional[ResizeVolumePayload], Field(description="Request a volume resize.")
         ] = None,
@@ -34769,11 +32313,11 @@ class DefaultApi:
         Update the size of a block device volume. The new volume size must be larger than the current size.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param resize_volume_payload: Request a volume resize.
         :type resize_volume_payload: ResizeVolumePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -34828,15 +32372,9 @@ class DefaultApi:
     @validate_call
     def resize_volume_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         resize_volume_payload: Annotated[
             Optional[ResizeVolumePayload], Field(description="Request a volume resize.")
         ] = None,
@@ -34855,11 +32393,11 @@ class DefaultApi:
         Update the size of a block device volume. The new volume size must be larger than the current size.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param resize_volume_payload: Request a volume resize.
         :type resize_volume_payload: ResizeVolumePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -34914,15 +32452,9 @@ class DefaultApi:
     @validate_call
     def resize_volume_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         resize_volume_payload: Annotated[
             Optional[ResizeVolumePayload], Field(description="Request a volume resize.")
         ] = None,
@@ -34941,11 +32473,11 @@ class DefaultApi:
         Update the size of a block device volume. The new volume size must be larger than the current size.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param resize_volume_payload: Request a volume resize.
         :type resize_volume_payload: ResizeVolumePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -35063,15 +32595,9 @@ class DefaultApi:
     @validate_call
     def restore_backup(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -35087,11 +32613,11 @@ class DefaultApi:
         Restores a Backup to the existing Volume it references to. The use of this endpoint is disruptive as the volume needs to be detached. If a new volume is to be created use the volumes endpoint with the option to create from backup.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -35142,15 +32668,9 @@ class DefaultApi:
     @validate_call
     def restore_backup_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -35166,11 +32686,11 @@ class DefaultApi:
         Restores a Backup to the existing Volume it references to. The use of this endpoint is disruptive as the volume needs to be detached. If a new volume is to be created use the volumes endpoint with the option to create from backup.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -35221,15 +32741,9 @@ class DefaultApi:
     @validate_call
     def restore_backup_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -35245,11 +32759,11 @@ class DefaultApi:
         Restores a Backup to the existing Volume it references to. The use of this endpoint is disruptive as the volume needs to be detached. If a new volume is to be created use the volumes endpoint with the option to create from backup.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -35352,14 +32866,9 @@ class DefaultApi:
     @validate_call
     def set_image_share(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         set_image_share_payload: Annotated[SetImageSharePayload, Field(description="Settings for an Image Share.")],
         _request_timeout: Union[
             None,
@@ -35376,11 +32885,11 @@ class DefaultApi:
         Set share of an Image. New Options will replace existing settings.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param set_image_share_payload: Settings for an Image Share. (required)
         :type set_image_share_payload: SetImageSharePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -35434,14 +32943,9 @@ class DefaultApi:
     @validate_call
     def set_image_share_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         set_image_share_payload: Annotated[SetImageSharePayload, Field(description="Settings for an Image Share.")],
         _request_timeout: Union[
             None,
@@ -35458,11 +32962,11 @@ class DefaultApi:
         Set share of an Image. New Options will replace existing settings.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param set_image_share_payload: Settings for an Image Share. (required)
         :type set_image_share_payload: SetImageSharePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -35516,14 +33020,9 @@ class DefaultApi:
     @validate_call
     def set_image_share_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         set_image_share_payload: Annotated[SetImageSharePayload, Field(description="Settings for an Image Share.")],
         _request_timeout: Union[
             None,
@@ -35540,11 +33039,11 @@ class DefaultApi:
         Set share of an Image. New Options will replace existing settings.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param set_image_share_payload: Settings for an Image Share. (required)
         :type set_image_share_payload: SetImageSharePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -35661,15 +33160,9 @@ class DefaultApi:
     @validate_call
     def start_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -35685,11 +33178,11 @@ class DefaultApi:
         Start an existing server or allocates the server if deallocated.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -35741,15 +33234,9 @@ class DefaultApi:
     @validate_call
     def start_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -35765,11 +33252,11 @@ class DefaultApi:
         Start an existing server or allocates the server if deallocated.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -35821,15 +33308,9 @@ class DefaultApi:
     @validate_call
     def start_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -35845,11 +33326,11 @@ class DefaultApi:
         Start an existing server or allocates the server if deallocated.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -35953,15 +33434,9 @@ class DefaultApi:
     @validate_call
     def stop_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -35977,11 +33452,11 @@ class DefaultApi:
         Stops an existing server. The server will remain on the Hypervisor and will be charged full price for all resources attached to it. The attached resources will remain reserved. Useful particularly for vGPU servers.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -36033,15 +33508,9 @@ class DefaultApi:
     @validate_call
     def stop_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -36057,11 +33526,11 @@ class DefaultApi:
         Stops an existing server. The server will remain on the Hypervisor and will be charged full price for all resources attached to it. The attached resources will remain reserved. Useful particularly for vGPU servers.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -36113,15 +33582,9 @@ class DefaultApi:
     @validate_call
     def stop_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -36137,11 +33600,11 @@ class DefaultApi:
         Stops an existing server. The server will remain on the Hypervisor and will be charged full price for all resources attached to it. The attached resources will remain reserved. Useful particularly for vGPU servers.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -36245,15 +33708,9 @@ class DefaultApi:
     @validate_call
     def unrescue_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -36269,11 +33726,11 @@ class DefaultApi:
         Unrescue an existing server. The original boot volume is attached as boot volume of the server and the server is booted up.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -36325,15 +33782,9 @@ class DefaultApi:
     @validate_call
     def unrescue_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -36349,11 +33800,11 @@ class DefaultApi:
         Unrescue an existing server. The original boot volume is attached as boot volume of the server and the server is booted up.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -36405,15 +33856,9 @@ class DefaultApi:
     @validate_call
     def unrescue_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -36429,11 +33874,11 @@ class DefaultApi:
         Unrescue an existing server. The original boot volume is attached as boot volume of the server and the server is booted up.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -36537,19 +33982,10 @@ class DefaultApi:
     @validate_call
     def update_attached_volume(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         update_attached_volume_payload: Annotated[
             UpdateAttachedVolumePayload, Field(description="Request a volume attachment update.")
         ],
@@ -36568,13 +34004,13 @@ class DefaultApi:
         Update the properties of an existing Volume Attachment.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param update_attached_volume_payload: Request a volume attachment update. (required)
         :type update_attached_volume_payload: UpdateAttachedVolumePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -36629,19 +34065,10 @@ class DefaultApi:
     @validate_call
     def update_attached_volume_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         update_attached_volume_payload: Annotated[
             UpdateAttachedVolumePayload, Field(description="Request a volume attachment update.")
         ],
@@ -36660,13 +34087,13 @@ class DefaultApi:
         Update the properties of an existing Volume Attachment.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param update_attached_volume_payload: Request a volume attachment update. (required)
         :type update_attached_volume_payload: UpdateAttachedVolumePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -36721,19 +34148,10 @@ class DefaultApi:
     @validate_call
     def update_attached_volume_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         update_attached_volume_payload: Annotated[
             UpdateAttachedVolumePayload, Field(description="Request a volume attachment update.")
         ],
@@ -36752,13 +34170,13 @@ class DefaultApi:
         Update the properties of an existing Volume Attachment.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param update_attached_volume_payload: Request a volume attachment update. (required)
         :type update_attached_volume_payload: UpdateAttachedVolumePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -36879,15 +34297,9 @@ class DefaultApi:
     @validate_call
     def update_backup(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         update_backup_payload: Annotated[UpdateBackupPayload, Field(description="Request an update of a backup.")],
         _request_timeout: Union[
             None,
@@ -36904,11 +34316,11 @@ class DefaultApi:
         Update name or labels of the backup.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param update_backup_payload: Request an update of a backup. (required)
         :type update_backup_payload: UpdateBackupPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -36962,15 +34374,9 @@ class DefaultApi:
     @validate_call
     def update_backup_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         update_backup_payload: Annotated[UpdateBackupPayload, Field(description="Request an update of a backup.")],
         _request_timeout: Union[
             None,
@@ -36987,11 +34393,11 @@ class DefaultApi:
         Update name or labels of the backup.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param update_backup_payload: Request an update of a backup. (required)
         :type update_backup_payload: UpdateBackupPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -37045,15 +34451,9 @@ class DefaultApi:
     @validate_call
     def update_backup_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        backup_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Backup."),
-        ],
+        backup_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Backup.")],
         update_backup_payload: Annotated[UpdateBackupPayload, Field(description="Request an update of a backup.")],
         _request_timeout: Union[
             None,
@@ -37070,11 +34470,11 @@ class DefaultApi:
         Update name or labels of the backup.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param backup_id: The identifier (ID) of a STACKIT Backup. (required)
-        :type backup_id: str
+        :type backup_id: UUID
         :param update_backup_payload: Request an update of a backup. (required)
         :type update_backup_payload: UpdateBackupPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -37191,14 +34591,9 @@ class DefaultApi:
     @validate_call
     def update_image(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         update_image_payload: Annotated[UpdateImagePayload, Field(description="Request an update of an Image.")],
         _request_timeout: Union[
             None,
@@ -37215,11 +34610,11 @@ class DefaultApi:
         Update the properties of an existing Image inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param update_image_payload: Request an update of an Image. (required)
         :type update_image_payload: UpdateImagePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -37273,14 +34668,9 @@ class DefaultApi:
     @validate_call
     def update_image_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         update_image_payload: Annotated[UpdateImagePayload, Field(description="Request an update of an Image.")],
         _request_timeout: Union[
             None,
@@ -37297,11 +34687,11 @@ class DefaultApi:
         Update the properties of an existing Image inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param update_image_payload: Request an update of an Image. (required)
         :type update_image_payload: UpdateImagePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -37355,14 +34745,9 @@ class DefaultApi:
     @validate_call
     def update_image_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         update_image_payload: Annotated[UpdateImagePayload, Field(description="Request an update of an Image.")],
         _request_timeout: Union[
             None,
@@ -37379,11 +34764,11 @@ class DefaultApi:
         Update the properties of an existing Image inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param update_image_payload: Request an update of an Image. (required)
         :type update_image_payload: UpdateImagePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -37500,14 +34885,9 @@ class DefaultApi:
     @validate_call
     def update_image_share(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         update_image_share_payload: Annotated[UpdateImageSharePayload, Field(description="Update an Image Share.")],
         _request_timeout: Union[
             None,
@@ -37524,11 +34904,11 @@ class DefaultApi:
         Update share of an Image. Projects will be appended to existing list.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param update_image_share_payload: Update an Image Share. (required)
         :type update_image_share_payload: UpdateImageSharePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -37582,14 +34962,9 @@ class DefaultApi:
     @validate_call
     def update_image_share_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         update_image_share_payload: Annotated[UpdateImageSharePayload, Field(description="Update an Image Share.")],
         _request_timeout: Union[
             None,
@@ -37606,11 +34981,11 @@ class DefaultApi:
         Update share of an Image. Projects will be appended to existing list.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param update_image_share_payload: Update an Image Share. (required)
         :type update_image_share_payload: UpdateImageSharePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -37664,14 +35039,9 @@ class DefaultApi:
     @validate_call
     def update_image_share_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        image_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Image.")
-        ],
+        image_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Image.")],
         update_image_share_payload: Annotated[UpdateImageSharePayload, Field(description="Update an Image Share.")],
         _request_timeout: Union[
             None,
@@ -37688,11 +35058,11 @@ class DefaultApi:
         Update share of an Image. Projects will be appended to existing list.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param image_id: The identifier (ID) of a STACKIT Image. (required)
-        :type image_id: str
+        :type image_id: UUID
         :param update_image_share_payload: Update an Image Share. (required)
         :type update_image_share_payload: UpdateImageSharePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -38079,18 +35449,8 @@ class DefaultApi:
     @validate_call
     def update_network_area_region(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         update_network_area_region_payload: Annotated[
             UpdateNetworkAreaRegionPayload, Field(description="Request an update of a regional network area.")
@@ -38110,9 +35470,9 @@ class DefaultApi:
         Update a new region for a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param update_network_area_region_payload: Request an update of a regional network area. (required)
@@ -38169,18 +35529,8 @@ class DefaultApi:
     @validate_call
     def update_network_area_region_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         update_network_area_region_payload: Annotated[
             UpdateNetworkAreaRegionPayload, Field(description="Request an update of a regional network area.")
@@ -38200,9 +35550,9 @@ class DefaultApi:
         Update a new region for a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param update_network_area_region_payload: Request an update of a regional network area. (required)
@@ -38259,18 +35609,8 @@ class DefaultApi:
     @validate_call
     def update_network_area_region_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         update_network_area_region_payload: Annotated[
             UpdateNetworkAreaRegionPayload, Field(description="Request an update of a regional network area.")
@@ -38290,9 +35630,9 @@ class DefaultApi:
         Update a new region for a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param update_network_area_region_payload: Request an update of a regional network area. (required)
@@ -38412,22 +35752,10 @@ class DefaultApi:
     @validate_call
     def update_network_area_route(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         update_network_area_route_payload: Annotated[
             UpdateNetworkAreaRoutePayload, Field(description="Request an update of a network route.")
         ],
@@ -38446,13 +35774,13 @@ class DefaultApi:
         Update a network route defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param update_network_area_route_payload: Request an update of a network route. (required)
         :type update_network_area_route_payload: UpdateNetworkAreaRoutePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -38507,22 +35835,10 @@ class DefaultApi:
     @validate_call
     def update_network_area_route_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         update_network_area_route_payload: Annotated[
             UpdateNetworkAreaRoutePayload, Field(description="Request an update of a network route.")
         ],
@@ -38541,13 +35857,13 @@ class DefaultApi:
         Update a network route defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param update_network_area_route_payload: Request an update of a network route. (required)
         :type update_network_area_route_payload: UpdateNetworkAreaRoutePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -38602,22 +35918,10 @@ class DefaultApi:
     @validate_call
     def update_network_area_route_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         update_network_area_route_payload: Annotated[
             UpdateNetworkAreaRoutePayload, Field(description="Request an update of a network route.")
         ],
@@ -38636,13 +35940,13 @@ class DefaultApi:
         Update a network route defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param update_network_area_route_payload: Request an update of a network route. (required)
         :type update_network_area_route_payload: UpdateNetworkAreaRoutePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -38763,19 +36067,10 @@ class DefaultApi:
     @validate_call
     def update_nic(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         update_nic_payload: Annotated[UpdateNicPayload, Field(description="Request an update of a network interface.")],
         _request_timeout: Union[
             None,
@@ -38792,13 +36087,13 @@ class DefaultApi:
         Update the properties of an existing network interface inside a network.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param update_nic_payload: Request an update of a network interface. (required)
         :type update_nic_payload: UpdateNicPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -38854,19 +36149,10 @@ class DefaultApi:
     @validate_call
     def update_nic_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         update_nic_payload: Annotated[UpdateNicPayload, Field(description="Request an update of a network interface.")],
         _request_timeout: Union[
             None,
@@ -38883,13 +36169,13 @@ class DefaultApi:
         Update the properties of an existing network interface inside a network.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param update_nic_payload: Request an update of a network interface. (required)
         :type update_nic_payload: UpdateNicPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -38945,19 +36231,10 @@ class DefaultApi:
     @validate_call
     def update_nic_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        network_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network."),
-        ],
-        nic_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a network interface."),
-        ],
+        network_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network.")],
+        nic_id: Annotated[UUID, Field(description="The identifier (ID) of a network interface.")],
         update_nic_payload: Annotated[UpdateNicPayload, Field(description="Request an update of a network interface.")],
         _request_timeout: Union[
             None,
@@ -38974,13 +36251,13 @@ class DefaultApi:
         Update the properties of an existing network interface inside a network.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param network_id: The identifier (ID) of a STACKIT Network. (required)
-        :type network_id: str
+        :type network_id: UUID
         :param nic_id: The identifier (ID) of a network interface. (required)
-        :type nic_id: str
+        :type nic_id: UUID
         :param update_nic_payload: Request an update of a network interface. (required)
         :type update_nic_payload: UpdateNicPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -39102,14 +36379,9 @@ class DefaultApi:
     @validate_call
     def update_public_ip(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         update_public_ip_payload: Annotated[
             UpdatePublicIPPayload, Field(description="Request an update of a public IP.")
         ],
@@ -39128,11 +36400,11 @@ class DefaultApi:
         Update the properties of an existing public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param update_public_ip_payload: Request an update of a public IP. (required)
         :type update_public_ip_payload: UpdatePublicIPPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -39186,14 +36458,9 @@ class DefaultApi:
     @validate_call
     def update_public_ip_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         update_public_ip_payload: Annotated[
             UpdatePublicIPPayload, Field(description="Request an update of a public IP.")
         ],
@@ -39212,11 +36479,11 @@ class DefaultApi:
         Update the properties of an existing public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param update_public_ip_payload: Request an update of a public IP. (required)
         :type update_public_ip_payload: UpdatePublicIPPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -39270,14 +36537,9 @@ class DefaultApi:
     @validate_call
     def update_public_ip_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        public_ip_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a Public IP.")
-        ],
+        public_ip_id: Annotated[UUID, Field(description="The identifier (ID) of a Public IP.")],
         update_public_ip_payload: Annotated[
             UpdatePublicIPPayload, Field(description="Request an update of a public IP.")
         ],
@@ -39296,11 +36558,11 @@ class DefaultApi:
         Update the properties of an existing public IP inside a project.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param public_ip_id: The identifier (ID) of a Public IP. (required)
-        :type public_ip_id: str
+        :type public_ip_id: UUID
         :param update_public_ip_payload: Request an update of a public IP. (required)
         :type update_public_ip_payload: UpdatePublicIPPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -39417,28 +36679,11 @@ class DefaultApi:
     @validate_call
     def update_route_of_routing_table(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         update_route_of_routing_table_payload: Annotated[
             UpdateRouteOfRoutingTablePayload, Field(description="Request an update of a route in a routing table.")
         ],
@@ -39457,15 +36702,15 @@ class DefaultApi:
         Update a route defined in a routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param update_route_of_routing_table_payload: Request an update of a route in a routing table. (required)
         :type update_route_of_routing_table_payload: UpdateRouteOfRoutingTablePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -39521,28 +36766,11 @@ class DefaultApi:
     @validate_call
     def update_route_of_routing_table_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         update_route_of_routing_table_payload: Annotated[
             UpdateRouteOfRoutingTablePayload, Field(description="Request an update of a route in a routing table.")
         ],
@@ -39561,15 +36789,15 @@ class DefaultApi:
         Update a route defined in a routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param update_route_of_routing_table_payload: Request an update of a route in a routing table. (required)
         :type update_route_of_routing_table_payload: UpdateRouteOfRoutingTablePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -39625,28 +36853,11 @@ class DefaultApi:
     @validate_call
     def update_route_of_routing_table_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
-        route_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Route.")
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
+        route_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Route.")],
         update_route_of_routing_table_payload: Annotated[
             UpdateRouteOfRoutingTablePayload, Field(description="Request an update of a route in a routing table.")
         ],
@@ -39665,15 +36876,15 @@ class DefaultApi:
         Update a route defined in a routing table.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param route_id: The identifier (ID) of a STACKIT Route. (required)
-        :type route_id: str
+        :type route_id: UUID
         :param update_route_of_routing_table_payload: Request an update of a route in a routing table. (required)
         :type update_route_of_routing_table_payload: UpdateRouteOfRoutingTablePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -39798,25 +37009,10 @@ class DefaultApi:
     @validate_call
     def update_routing_table_of_area(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         update_routing_table_of_area_payload: Annotated[
             UpdateRoutingTableOfAreaPayload, Field(description="Request an update of a routing table.")
         ],
@@ -39835,13 +37031,13 @@ class DefaultApi:
         Update a routing table defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param update_routing_table_of_area_payload: Request an update of a routing table. (required)
         :type update_routing_table_of_area_payload: UpdateRoutingTableOfAreaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -39896,25 +37092,10 @@ class DefaultApi:
     @validate_call
     def update_routing_table_of_area_with_http_info(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         update_routing_table_of_area_payload: Annotated[
             UpdateRoutingTableOfAreaPayload, Field(description="Request an update of a routing table.")
         ],
@@ -39933,13 +37114,13 @@ class DefaultApi:
         Update a routing table defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param update_routing_table_of_area_payload: Request an update of a routing table. (required)
         :type update_routing_table_of_area_payload: UpdateRoutingTableOfAreaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -39994,25 +37175,10 @@ class DefaultApi:
     @validate_call
     def update_routing_table_of_area_without_preload_content(
         self,
-        organization_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Organization."
-            ),
-        ],
-        area_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Network Area."
-            ),
-        ],
+        organization_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Organization.")],
+        area_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Network Area.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        routing_table_id: Annotated[
-            str,
-            Field(
-                min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Routing Table."
-            ),
-        ],
+        routing_table_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Routing Table.")],
         update_routing_table_of_area_payload: Annotated[
             UpdateRoutingTableOfAreaPayload, Field(description="Request an update of a routing table.")
         ],
@@ -40031,13 +37197,13 @@ class DefaultApi:
         Update a routing table defined in a network area.
 
         :param organization_id: The identifier (ID) of a STACKIT Organization. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param area_id: The identifier (ID) of a STACKIT Network Area. (required)
-        :type area_id: str
+        :type area_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param routing_table_id: The identifier (ID) of a STACKIT Routing Table. (required)
-        :type routing_table_id: str
+        :type routing_table_id: UUID
         :param update_routing_table_of_area_payload: Request an update of a routing table. (required)
         :type update_routing_table_of_area_payload: UpdateRoutingTableOfAreaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -40158,20 +37324,9 @@ class DefaultApi:
     @validate_call
     def update_security_group(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         update_security_group_payload: Annotated[
             UpdateSecurityGroupPayload, Field(description="Request an update of a security group.")
         ],
@@ -40190,11 +37345,11 @@ class DefaultApi:
         Update labels of the security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param update_security_group_payload: Request an update of a security group. (required)
         :type update_security_group_payload: UpdateSecurityGroupPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -40248,20 +37403,9 @@ class DefaultApi:
     @validate_call
     def update_security_group_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         update_security_group_payload: Annotated[
             UpdateSecurityGroupPayload, Field(description="Request an update of a security group.")
         ],
@@ -40280,11 +37424,11 @@ class DefaultApi:
         Update labels of the security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param update_security_group_payload: Request an update of a security group. (required)
         :type update_security_group_payload: UpdateSecurityGroupPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -40338,20 +37482,9 @@ class DefaultApi:
     @validate_call
     def update_security_group_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        security_group_id: Annotated[
-            str,
-            Field(
-                min_length=36,
-                strict=True,
-                max_length=36,
-                description="The identifier (ID) of a STACKIT Security Group.",
-            ),
-        ],
+        security_group_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Security Group.")],
         update_security_group_payload: Annotated[
             UpdateSecurityGroupPayload, Field(description="Request an update of a security group.")
         ],
@@ -40370,11 +37503,11 @@ class DefaultApi:
         Update labels of the security group.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param security_group_id: The identifier (ID) of a STACKIT Security Group. (required)
-        :type security_group_id: str
+        :type security_group_id: UUID
         :param update_security_group_payload: Request an update of a security group. (required)
         :type update_security_group_payload: UpdateSecurityGroupPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -40491,15 +37624,9 @@ class DefaultApi:
     @validate_call
     def update_server(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         update_server_payload: Annotated[UpdateServerPayload, Field(description="Request an update of a server.")],
         _request_timeout: Union[
             None,
@@ -40516,11 +37643,11 @@ class DefaultApi:
         Update name or labels of the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param update_server_payload: Request an update of a server. (required)
         :type update_server_payload: UpdateServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -40574,15 +37701,9 @@ class DefaultApi:
     @validate_call
     def update_server_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         update_server_payload: Annotated[UpdateServerPayload, Field(description="Request an update of a server.")],
         _request_timeout: Union[
             None,
@@ -40599,11 +37720,11 @@ class DefaultApi:
         Update name or labels of the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param update_server_payload: Request an update of a server. (required)
         :type update_server_payload: UpdateServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -40657,15 +37778,9 @@ class DefaultApi:
     @validate_call
     def update_server_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        server_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Server."),
-        ],
+        server_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Server.")],
         update_server_payload: Annotated[UpdateServerPayload, Field(description="Request an update of a server.")],
         _request_timeout: Union[
             None,
@@ -40682,11 +37797,11 @@ class DefaultApi:
         Update name or labels of the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param server_id: The identifier (ID) of a STACKIT Server. (required)
-        :type server_id: str
+        :type server_id: UUID
         :param update_server_payload: Request an update of a server. (required)
         :type update_server_payload: UpdateServerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -40803,15 +37918,9 @@ class DefaultApi:
     @validate_call
     def update_snapshot(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        snapshot_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
-        ],
+        snapshot_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Snapshot.")],
         update_snapshot_payload: Annotated[
             UpdateSnapshotPayload, Field(description="Request an update of a snapshot.")
         ],
@@ -40830,11 +37939,11 @@ class DefaultApi:
         Update information like name or labels of the snapshot.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
-        :type snapshot_id: str
+        :type snapshot_id: UUID
         :param update_snapshot_payload: Request an update of a snapshot. (required)
         :type update_snapshot_payload: UpdateSnapshotPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -40888,15 +37997,9 @@ class DefaultApi:
     @validate_call
     def update_snapshot_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        snapshot_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
-        ],
+        snapshot_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Snapshot.")],
         update_snapshot_payload: Annotated[
             UpdateSnapshotPayload, Field(description="Request an update of a snapshot.")
         ],
@@ -40915,11 +38018,11 @@ class DefaultApi:
         Update information like name or labels of the snapshot.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
-        :type snapshot_id: str
+        :type snapshot_id: UUID
         :param update_snapshot_payload: Request an update of a snapshot. (required)
         :type update_snapshot_payload: UpdateSnapshotPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -40973,15 +38076,9 @@ class DefaultApi:
     @validate_call
     def update_snapshot_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        snapshot_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Snapshot."),
-        ],
+        snapshot_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Snapshot.")],
         update_snapshot_payload: Annotated[
             UpdateSnapshotPayload, Field(description="Request an update of a snapshot.")
         ],
@@ -41000,11 +38097,11 @@ class DefaultApi:
         Update information like name or labels of the snapshot.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param snapshot_id: The identifier (ID) of a STACKIT Snapshot. (required)
-        :type snapshot_id: str
+        :type snapshot_id: UUID
         :param update_snapshot_payload: Request an update of a snapshot. (required)
         :type update_snapshot_payload: UpdateSnapshotPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -41121,15 +38218,9 @@ class DefaultApi:
     @validate_call
     def update_volume(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         update_volume_payload: Annotated[UpdateVolumePayload, Field(description="Request an update of a volume.")],
         _request_timeout: Union[
             None,
@@ -41146,11 +38237,11 @@ class DefaultApi:
         Update name, description or labels of the volume.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param update_volume_payload: Request an update of a volume. (required)
         :type update_volume_payload: UpdateVolumePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -41204,15 +38295,9 @@ class DefaultApi:
     @validate_call
     def update_volume_with_http_info(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         update_volume_payload: Annotated[UpdateVolumePayload, Field(description="Request an update of a volume.")],
         _request_timeout: Union[
             None,
@@ -41229,11 +38314,11 @@ class DefaultApi:
         Update name, description or labels of the volume.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param update_volume_payload: Request an update of a volume. (required)
         :type update_volume_payload: UpdateVolumePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -41287,15 +38372,9 @@ class DefaultApi:
     @validate_call
     def update_volume_without_preload_content(
         self,
-        project_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Project."),
-        ],
+        project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
-        volume_id: Annotated[
-            str,
-            Field(min_length=36, strict=True, max_length=36, description="The identifier (ID) of a STACKIT Volume."),
-        ],
+        volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
         update_volume_payload: Annotated[UpdateVolumePayload, Field(description="Request an update of a volume.")],
         _request_timeout: Union[
             None,
@@ -41312,11 +38391,11 @@ class DefaultApi:
         Update name, description or labels of the volume.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: The STACKIT Region of the resources. (required)
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
-        :type volume_id: str
+        :type volume_id: UUID
         :param update_volume_payload: Request an update of a volume. (required)
         :type update_volume_payload: UpdateVolumePayload
         :param _request_timeout: timeout setting for this request. If one

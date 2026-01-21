@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -43,12 +44,8 @@ class NIC(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
         default=None, description="Description Object. Allows string up to 255 Characters."
     )
-    device: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    device: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     ipv4: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Object that represents an IP address."
     )
@@ -65,7 +62,7 @@ class NIC(BaseModel):
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
-    network_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    network_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="networkId"
     )
     nic_security: Optional[StrictBool] = Field(
@@ -73,9 +70,7 @@ class NIC(BaseModel):
         description="If this is set to false, then no security groups will apply to this network interface.",
         alias="nicSecurity",
     )
-    security_groups: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
-        default=None, description="A list of UUIDs.", alias="securityGroups"
-    )
+    security_groups: Optional[List[UUID]] = Field(default=None, description="A list of UUIDs.", alias="securityGroups")
     status: Optional[StrictStr] = Field(default=None, description="Possible values: `ACTIVE`, `DOWN`.")
     type: Optional[StrictStr] = Field(
         default=None, description="Possible values: `server`, `metadata`, `gateway`, `none`."
