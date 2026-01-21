@@ -12,6 +12,7 @@
 """  # noqa: E501
 
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from stackit.core.configuration import Configuration
@@ -73,7 +74,7 @@ class DefaultApi:
         project_id: StrictStr,
         region: StrictStr,
         create_credentials_payload: CreateCredentialsPayload,
-        x_request_id: Optional[StrictStr] = None,
+        x_request_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -95,7 +96,7 @@ class DefaultApi:
         :param create_credentials_payload: (required)
         :type create_credentials_payload: CreateCredentialsPayload
         :param x_request_id:
-        :type x_request_id: str
+        :type x_request_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -149,7 +150,7 @@ class DefaultApi:
         project_id: StrictStr,
         region: StrictStr,
         create_credentials_payload: CreateCredentialsPayload,
-        x_request_id: Optional[StrictStr] = None,
+        x_request_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -171,7 +172,7 @@ class DefaultApi:
         :param create_credentials_payload: (required)
         :type create_credentials_payload: CreateCredentialsPayload
         :param x_request_id:
-        :type x_request_id: str
+        :type x_request_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -225,7 +226,7 @@ class DefaultApi:
         project_id: StrictStr,
         region: StrictStr,
         create_credentials_payload: CreateCredentialsPayload,
-        x_request_id: Optional[StrictStr] = None,
+        x_request_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -247,7 +248,7 @@ class DefaultApi:
         :param create_credentials_payload: (required)
         :type create_credentials_payload: CreateCredentialsPayload
         :param x_request_id:
-        :type x_request_id: str
+        :type x_request_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -364,7 +365,7 @@ class DefaultApi:
         project_id: StrictStr,
         region: StrictStr,
         create_load_balancer_payload: CreateLoadBalancerPayload,
-        x_request_id: Optional[StrictStr] = None,
+        x_request_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -386,7 +387,7 @@ class DefaultApi:
         :param create_load_balancer_payload: (required)
         :type create_load_balancer_payload: CreateLoadBalancerPayload
         :param x_request_id:
-        :type x_request_id: str
+        :type x_request_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -441,7 +442,7 @@ class DefaultApi:
         project_id: StrictStr,
         region: StrictStr,
         create_load_balancer_payload: CreateLoadBalancerPayload,
-        x_request_id: Optional[StrictStr] = None,
+        x_request_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -463,7 +464,7 @@ class DefaultApi:
         :param create_load_balancer_payload: (required)
         :type create_load_balancer_payload: CreateLoadBalancerPayload
         :param x_request_id:
-        :type x_request_id: str
+        :type x_request_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -518,7 +519,7 @@ class DefaultApi:
         project_id: StrictStr,
         region: StrictStr,
         create_load_balancer_payload: CreateLoadBalancerPayload,
-        x_request_id: Optional[StrictStr] = None,
+        x_request_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -540,7 +541,7 @@ class DefaultApi:
         :param create_load_balancer_payload: (required)
         :type create_load_balancer_payload: CreateLoadBalancerPayload
         :param x_request_id:
-        :type x_request_id: str
+        :type x_request_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

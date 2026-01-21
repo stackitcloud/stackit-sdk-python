@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.loadbalancer.models.active_health_check import ActiveHealthCheck
 from stackit.loadbalancer.models.create_credentials_payload import (
