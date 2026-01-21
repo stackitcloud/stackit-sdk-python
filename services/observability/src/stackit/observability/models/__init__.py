@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.observability.models.alert import Alert
 from stackit.observability.models.alert_config_receivers_response import (
