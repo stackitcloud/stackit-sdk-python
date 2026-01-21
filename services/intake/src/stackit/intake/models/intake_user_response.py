@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -40,7 +41,7 @@ class IntakeUserResponse(BaseModel):
     display_name: Annotated[str, Field(min_length=1, strict=True, max_length=32)] = Field(
         description="The display name is a short name chosen by the user to identify the resource.", alias="displayName"
     )
-    id: StrictStr = Field(description="A auto generated unique id which identifies the resource.")
+    id: UUID = Field(description="A auto generated unique id which identifies the resource.")
     labels: Optional[Dict[str, StrictStr]] = Field(
         default=None, description="Labels are a set of key-value pairs assigned to resources."
     )

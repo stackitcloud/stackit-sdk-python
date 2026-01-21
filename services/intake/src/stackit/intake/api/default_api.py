@@ -12,6 +12,7 @@
 """  # noqa: E501
 
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import (
     Field,
@@ -57,9 +58,7 @@ class DefaultApi:
     @validate_call
     def create_intake(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_intake_payload: CreateIntakePayload,
         _request_timeout: Union[
@@ -77,7 +76,7 @@ class DefaultApi:
         Creates a new intake within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param create_intake_payload: (required)
@@ -131,9 +130,7 @@ class DefaultApi:
     @validate_call
     def create_intake_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_intake_payload: CreateIntakePayload,
         _request_timeout: Union[
@@ -151,7 +148,7 @@ class DefaultApi:
         Creates a new intake within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param create_intake_payload: (required)
@@ -205,9 +202,7 @@ class DefaultApi:
     @validate_call
     def create_intake_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_intake_payload: CreateIntakePayload,
         _request_timeout: Union[
@@ -225,7 +220,7 @@ class DefaultApi:
         Creates a new intake within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param create_intake_payload: (required)
@@ -339,9 +334,7 @@ class DefaultApi:
     @validate_call
     def create_intake_runner(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_intake_runner_payload: CreateIntakeRunnerPayload,
         _request_timeout: Union[
@@ -359,7 +352,7 @@ class DefaultApi:
         Creates a new intake runner within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param create_intake_runner_payload: (required)
@@ -413,9 +406,7 @@ class DefaultApi:
     @validate_call
     def create_intake_runner_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_intake_runner_payload: CreateIntakeRunnerPayload,
         _request_timeout: Union[
@@ -433,7 +424,7 @@ class DefaultApi:
         Creates a new intake runner within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param create_intake_runner_payload: (required)
@@ -487,9 +478,7 @@ class DefaultApi:
     @validate_call
     def create_intake_runner_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_intake_runner_payload: CreateIntakeRunnerPayload,
         _request_timeout: Union[
@@ -507,7 +496,7 @@ class DefaultApi:
         Creates a new intake runner within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param create_intake_runner_payload: (required)
@@ -621,11 +610,9 @@ class DefaultApi:
     @validate_call
     def create_intake_user(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         create_intake_user_payload: CreateIntakeUserPayload,
         _request_timeout: Union[
             None,
@@ -642,11 +629,11 @@ class DefaultApi:
         Creates a new user for this intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param create_intake_user_payload: (required)
         :type create_intake_user_payload: CreateIntakeUserPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -699,11 +686,9 @@ class DefaultApi:
     @validate_call
     def create_intake_user_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         create_intake_user_payload: CreateIntakeUserPayload,
         _request_timeout: Union[
             None,
@@ -720,11 +705,11 @@ class DefaultApi:
         Creates a new user for this intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param create_intake_user_payload: (required)
         :type create_intake_user_payload: CreateIntakeUserPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -777,11 +762,9 @@ class DefaultApi:
     @validate_call
     def create_intake_user_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         create_intake_user_payload: CreateIntakeUserPayload,
         _request_timeout: Union[
             None,
@@ -798,11 +781,11 @@ class DefaultApi:
         Creates a new user for this intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param create_intake_user_payload: (required)
         :type create_intake_user_payload: CreateIntakeUserPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -918,11 +901,9 @@ class DefaultApi:
     @validate_call
     def delete_intake(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         force: Annotated[
             Optional[StrictBool],
             Field(
@@ -944,11 +925,11 @@ class DefaultApi:
         Deletes the given intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param force: If true, deletes all child resources. If false, the resource remains in a 'deletion state' while child resources exist.
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1001,11 +982,9 @@ class DefaultApi:
     @validate_call
     def delete_intake_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         force: Annotated[
             Optional[StrictBool],
             Field(
@@ -1027,11 +1006,11 @@ class DefaultApi:
         Deletes the given intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param force: If true, deletes all child resources. If false, the resource remains in a 'deletion state' while child resources exist.
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1084,11 +1063,9 @@ class DefaultApi:
     @validate_call
     def delete_intake_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         force: Annotated[
             Optional[StrictBool],
             Field(
@@ -1110,11 +1087,11 @@ class DefaultApi:
         Deletes the given intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param force: If true, deletes all child resources. If false, the resource remains in a 'deletion state' while child resources exist.
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1220,11 +1197,9 @@ class DefaultApi:
     @validate_call
     def delete_intake_runner(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_runner_id: Annotated[StrictStr, Field(description="The intake runner UUID.")],
+        intake_runner_id: Annotated[UUID, Field(description="The intake runner UUID.")],
         force: Annotated[
             Optional[StrictBool],
             Field(
@@ -1246,11 +1221,11 @@ class DefaultApi:
         Deletes the given intake runner.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_runner_id: The intake runner UUID. (required)
-        :type intake_runner_id: str
+        :type intake_runner_id: UUID
         :param force: If true, deletes all child resources. If false, the resource remains in a 'deletion state' while child resources exist.
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1303,11 +1278,9 @@ class DefaultApi:
     @validate_call
     def delete_intake_runner_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_runner_id: Annotated[StrictStr, Field(description="The intake runner UUID.")],
+        intake_runner_id: Annotated[UUID, Field(description="The intake runner UUID.")],
         force: Annotated[
             Optional[StrictBool],
             Field(
@@ -1329,11 +1302,11 @@ class DefaultApi:
         Deletes the given intake runner.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_runner_id: The intake runner UUID. (required)
-        :type intake_runner_id: str
+        :type intake_runner_id: UUID
         :param force: If true, deletes all child resources. If false, the resource remains in a 'deletion state' while child resources exist.
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1386,11 +1359,9 @@ class DefaultApi:
     @validate_call
     def delete_intake_runner_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_runner_id: Annotated[StrictStr, Field(description="The intake runner UUID.")],
+        intake_runner_id: Annotated[UUID, Field(description="The intake runner UUID.")],
         force: Annotated[
             Optional[StrictBool],
             Field(
@@ -1412,11 +1383,11 @@ class DefaultApi:
         Deletes the given intake runner.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_runner_id: The intake runner UUID. (required)
-        :type intake_runner_id: str
+        :type intake_runner_id: UUID
         :param force: If true, deletes all child resources. If false, the resource remains in a 'deletion state' while child resources exist.
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1522,12 +1493,10 @@ class DefaultApi:
     @validate_call
     def delete_intake_user(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
-        intake_user_id: Annotated[StrictStr, Field(description="The intake user UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
+        intake_user_id: Annotated[UUID, Field(description="The intake user UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1543,13 +1512,13 @@ class DefaultApi:
         Deletes the given intake user.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param intake_user_id: The intake user UUID. (required)
-        :type intake_user_id: str
+        :type intake_user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1600,12 +1569,10 @@ class DefaultApi:
     @validate_call
     def delete_intake_user_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
-        intake_user_id: Annotated[StrictStr, Field(description="The intake user UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
+        intake_user_id: Annotated[UUID, Field(description="The intake user UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1621,13 +1588,13 @@ class DefaultApi:
         Deletes the given intake user.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param intake_user_id: The intake user UUID. (required)
-        :type intake_user_id: str
+        :type intake_user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1678,12 +1645,10 @@ class DefaultApi:
     @validate_call
     def delete_intake_user_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
-        intake_user_id: Annotated[StrictStr, Field(description="The intake user UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
+        intake_user_id: Annotated[UUID, Field(description="The intake user UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1699,13 +1664,13 @@ class DefaultApi:
         Deletes the given intake user.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param intake_user_id: The intake user UUID. (required)
-        :type intake_user_id: str
+        :type intake_user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1807,11 +1772,9 @@ class DefaultApi:
     @validate_call
     def get_intake(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1827,11 +1790,11 @@ class DefaultApi:
         Returns the details for the given intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1880,11 +1843,9 @@ class DefaultApi:
     @validate_call
     def get_intake_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1900,11 +1861,11 @@ class DefaultApi:
         Returns the details for the given intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1953,11 +1914,9 @@ class DefaultApi:
     @validate_call
     def get_intake_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1973,11 +1932,11 @@ class DefaultApi:
         Returns the details for the given intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2078,11 +2037,9 @@ class DefaultApi:
     @validate_call
     def get_intake_runner(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_runner_id: Annotated[StrictStr, Field(description="The intake runner UUID.")],
+        intake_runner_id: Annotated[UUID, Field(description="The intake runner UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2098,11 +2055,11 @@ class DefaultApi:
         Returns the details for the given intake runner.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_runner_id: The intake runner UUID. (required)
-        :type intake_runner_id: str
+        :type intake_runner_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2151,11 +2108,9 @@ class DefaultApi:
     @validate_call
     def get_intake_runner_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_runner_id: Annotated[StrictStr, Field(description="The intake runner UUID.")],
+        intake_runner_id: Annotated[UUID, Field(description="The intake runner UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2171,11 +2126,11 @@ class DefaultApi:
         Returns the details for the given intake runner.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_runner_id: The intake runner UUID. (required)
-        :type intake_runner_id: str
+        :type intake_runner_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2224,11 +2179,9 @@ class DefaultApi:
     @validate_call
     def get_intake_runner_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_runner_id: Annotated[StrictStr, Field(description="The intake runner UUID.")],
+        intake_runner_id: Annotated[UUID, Field(description="The intake runner UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2244,11 +2197,11 @@ class DefaultApi:
         Returns the details for the given intake runner.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_runner_id: The intake runner UUID. (required)
-        :type intake_runner_id: str
+        :type intake_runner_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2349,12 +2302,10 @@ class DefaultApi:
     @validate_call
     def get_intake_user(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
-        intake_user_id: Annotated[StrictStr, Field(description="The intake user UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
+        intake_user_id: Annotated[UUID, Field(description="The intake user UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2370,13 +2321,13 @@ class DefaultApi:
         Returns the details for the given user.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param intake_user_id: The intake user UUID. (required)
-        :type intake_user_id: str
+        :type intake_user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2426,12 +2377,10 @@ class DefaultApi:
     @validate_call
     def get_intake_user_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
-        intake_user_id: Annotated[StrictStr, Field(description="The intake user UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
+        intake_user_id: Annotated[UUID, Field(description="The intake user UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2447,13 +2396,13 @@ class DefaultApi:
         Returns the details for the given user.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param intake_user_id: The intake user UUID. (required)
-        :type intake_user_id: str
+        :type intake_user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2503,12 +2452,10 @@ class DefaultApi:
     @validate_call
     def get_intake_user_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
-        intake_user_id: Annotated[StrictStr, Field(description="The intake user UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
+        intake_user_id: Annotated[UUID, Field(description="The intake user UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2524,13 +2471,13 @@ class DefaultApi:
         Returns the details for the given user.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param intake_user_id: The intake user UUID. (required)
-        :type intake_user_id: str
+        :type intake_user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2635,9 +2582,7 @@ class DefaultApi:
     @validate_call
     def list_intake_runners(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         page_token: Annotated[
             Optional[Annotated[str, Field(strict=True, max_length=1024)]],
@@ -2662,7 +2607,7 @@ class DefaultApi:
         Returns a list of all intake runners within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param page_token: A token to retrieve the next page of results.
@@ -2717,9 +2662,7 @@ class DefaultApi:
     @validate_call
     def list_intake_runners_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         page_token: Annotated[
             Optional[Annotated[str, Field(strict=True, max_length=1024)]],
@@ -2744,7 +2687,7 @@ class DefaultApi:
         Returns a list of all intake runners within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param page_token: A token to retrieve the next page of results.
@@ -2799,9 +2742,7 @@ class DefaultApi:
     @validate_call
     def list_intake_runners_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         page_token: Annotated[
             Optional[Annotated[str, Field(strict=True, max_length=1024)]],
@@ -2826,7 +2767,7 @@ class DefaultApi:
         Returns a list of all intake runners within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param page_token: A token to retrieve the next page of results.
@@ -2940,11 +2881,9 @@ class DefaultApi:
     @validate_call
     def list_intake_users(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         page_token: Annotated[
             Optional[Annotated[str, Field(strict=True, max_length=1024)]],
             Field(description="A token to retrieve the next page of results."),
@@ -2968,11 +2907,11 @@ class DefaultApi:
         Returns a list of all intake users within the project and intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param page_token: A token to retrieve the next page of results.
         :type page_token: str
         :param page_size: Maximum number of items to return
@@ -3026,11 +2965,9 @@ class DefaultApi:
     @validate_call
     def list_intake_users_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         page_token: Annotated[
             Optional[Annotated[str, Field(strict=True, max_length=1024)]],
             Field(description="A token to retrieve the next page of results."),
@@ -3054,11 +2991,11 @@ class DefaultApi:
         Returns a list of all intake users within the project and intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param page_token: A token to retrieve the next page of results.
         :type page_token: str
         :param page_size: Maximum number of items to return
@@ -3112,11 +3049,9 @@ class DefaultApi:
     @validate_call
     def list_intake_users_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         page_token: Annotated[
             Optional[Annotated[str, Field(strict=True, max_length=1024)]],
             Field(description="A token to retrieve the next page of results."),
@@ -3140,11 +3075,11 @@ class DefaultApi:
         Returns a list of all intake users within the project and intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param page_token: A token to retrieve the next page of results.
         :type page_token: str
         :param page_size: Maximum number of items to return
@@ -3260,9 +3195,7 @@ class DefaultApi:
     @validate_call
     def list_intakes(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         page_token: Annotated[
             Optional[Annotated[str, Field(strict=True, max_length=1024)]],
@@ -3287,7 +3220,7 @@ class DefaultApi:
         Returns a list of all intakes within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param page_token: A token to retrieve the next page of results.
@@ -3342,9 +3275,7 @@ class DefaultApi:
     @validate_call
     def list_intakes_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         page_token: Annotated[
             Optional[Annotated[str, Field(strict=True, max_length=1024)]],
@@ -3369,7 +3300,7 @@ class DefaultApi:
         Returns a list of all intakes within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param page_token: A token to retrieve the next page of results.
@@ -3424,9 +3355,7 @@ class DefaultApi:
     @validate_call
     def list_intakes_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         page_token: Annotated[
             Optional[Annotated[str, Field(strict=True, max_length=1024)]],
@@ -3451,7 +3380,7 @@ class DefaultApi:
         Returns a list of all intakes within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param page_token: A token to retrieve the next page of results.
@@ -3565,11 +3494,9 @@ class DefaultApi:
     @validate_call
     def update_intake(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         update_intake_payload: UpdateIntakePayload,
         _request_timeout: Union[
             None,
@@ -3586,11 +3513,11 @@ class DefaultApi:
         Updates the given intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param update_intake_payload: (required)
         :type update_intake_payload: UpdateIntakePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3643,11 +3570,9 @@ class DefaultApi:
     @validate_call
     def update_intake_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         update_intake_payload: UpdateIntakePayload,
         _request_timeout: Union[
             None,
@@ -3664,11 +3589,11 @@ class DefaultApi:
         Updates the given intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param update_intake_payload: (required)
         :type update_intake_payload: UpdateIntakePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3721,11 +3646,9 @@ class DefaultApi:
     @validate_call
     def update_intake_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
         update_intake_payload: UpdateIntakePayload,
         _request_timeout: Union[
             None,
@@ -3742,11 +3665,11 @@ class DefaultApi:
         Updates the given intake.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param update_intake_payload: (required)
         :type update_intake_payload: UpdateIntakePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3862,11 +3785,9 @@ class DefaultApi:
     @validate_call
     def update_intake_runner(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_runner_id: Annotated[StrictStr, Field(description="The intake runner UUID.")],
+        intake_runner_id: Annotated[UUID, Field(description="The intake runner UUID.")],
         update_intake_runner_payload: UpdateIntakeRunnerPayload,
         _request_timeout: Union[
             None,
@@ -3883,11 +3804,11 @@ class DefaultApi:
         Updates a intake runner within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_runner_id: The intake runner UUID. (required)
-        :type intake_runner_id: str
+        :type intake_runner_id: UUID
         :param update_intake_runner_payload: (required)
         :type update_intake_runner_payload: UpdateIntakeRunnerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3940,11 +3861,9 @@ class DefaultApi:
     @validate_call
     def update_intake_runner_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_runner_id: Annotated[StrictStr, Field(description="The intake runner UUID.")],
+        intake_runner_id: Annotated[UUID, Field(description="The intake runner UUID.")],
         update_intake_runner_payload: UpdateIntakeRunnerPayload,
         _request_timeout: Union[
             None,
@@ -3961,11 +3880,11 @@ class DefaultApi:
         Updates a intake runner within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_runner_id: The intake runner UUID. (required)
-        :type intake_runner_id: str
+        :type intake_runner_id: UUID
         :param update_intake_runner_payload: (required)
         :type update_intake_runner_payload: UpdateIntakeRunnerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4018,11 +3937,9 @@ class DefaultApi:
     @validate_call
     def update_intake_runner_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_runner_id: Annotated[StrictStr, Field(description="The intake runner UUID.")],
+        intake_runner_id: Annotated[UUID, Field(description="The intake runner UUID.")],
         update_intake_runner_payload: UpdateIntakeRunnerPayload,
         _request_timeout: Union[
             None,
@@ -4039,11 +3956,11 @@ class DefaultApi:
         Updates a intake runner within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_runner_id: The intake runner UUID. (required)
-        :type intake_runner_id: str
+        :type intake_runner_id: UUID
         :param update_intake_runner_payload: (required)
         :type update_intake_runner_payload: UpdateIntakeRunnerPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4159,12 +4076,10 @@ class DefaultApi:
     @validate_call
     def update_intake_user(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
-        intake_user_id: Annotated[StrictStr, Field(description="The intake user UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
+        intake_user_id: Annotated[UUID, Field(description="The intake user UUID.")],
         update_intake_user_payload: UpdateIntakeUserPayload,
         _request_timeout: Union[
             None,
@@ -4181,13 +4096,13 @@ class DefaultApi:
         Updates the given intake user.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param intake_user_id: The intake user UUID. (required)
-        :type intake_user_id: str
+        :type intake_user_id: UUID
         :param update_intake_user_payload: (required)
         :type update_intake_user_payload: UpdateIntakeUserPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4241,12 +4156,10 @@ class DefaultApi:
     @validate_call
     def update_intake_user_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
-        intake_user_id: Annotated[StrictStr, Field(description="The intake user UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
+        intake_user_id: Annotated[UUID, Field(description="The intake user UUID.")],
         update_intake_user_payload: UpdateIntakeUserPayload,
         _request_timeout: Union[
             None,
@@ -4263,13 +4176,13 @@ class DefaultApi:
         Updates the given intake user.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param intake_user_id: The intake user UUID. (required)
-        :type intake_user_id: str
+        :type intake_user_id: UUID
         :param update_intake_user_payload: (required)
         :type update_intake_user_payload: UpdateIntakeUserPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4323,12 +4236,10 @@ class DefaultApi:
     @validate_call
     def update_intake_user_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        intake_id: Annotated[StrictStr, Field(description="The intake UUID.")],
-        intake_user_id: Annotated[StrictStr, Field(description="The intake user UUID.")],
+        intake_id: Annotated[UUID, Field(description="The intake UUID.")],
+        intake_user_id: Annotated[UUID, Field(description="The intake user UUID.")],
         update_intake_user_payload: UpdateIntakeUserPayload,
         _request_timeout: Union[
             None,
@@ -4345,13 +4256,13 @@ class DefaultApi:
         Updates the given intake user.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param intake_id: The intake UUID. (required)
-        :type intake_id: str
+        :type intake_id: UUID
         :param intake_user_id: The intake user UUID. (required)
-        :type intake_user_id: str
+        :type intake_user_id: UUID
         :param update_intake_user_payload: (required)
         :type update_intake_user_payload: UpdateIntakeUserPayload
         :param _request_timeout: timeout setting for this request. If one
