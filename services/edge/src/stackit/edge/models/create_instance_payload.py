@@ -16,8 +16,9 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
 
@@ -32,7 +33,7 @@ class CreateInstancePayload(BaseModel):
     display_name: Annotated[str, Field(min_length=4, strict=True, max_length=8)] = Field(
         description="The displayed name to distinguish multiple instances.", alias="displayName"
     )
-    plan_id: StrictStr = Field(description="Service Plan configures the size of the Instance.", alias="planId")
+    plan_id: UUID = Field(description="Service Plan configures the size of the Instance.", alias="planId")
     __properties: ClassVar[List[str]] = ["description", "displayName", "planId"]
 
     model_config = ConfigDict(
