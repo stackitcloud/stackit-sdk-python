@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
@@ -27,7 +28,7 @@ class User(BaseModel):
     """  # noqa: E501
 
     email: StrictStr = Field(description="The email of the user.")
-    internal_id: StrictStr = Field(description="The UUID of the user.", alias="internalId")
+    internal_id: UUID = Field(description="The UUID of the user.", alias="internalId")
     __properties: ClassVar[List[str]] = ["email", "internalId"]
 
     model_config = ConfigDict(

@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -39,7 +40,7 @@ class Instance(BaseModel):
     id: Annotated[str, Field(strict=True, max_length=16)] = Field(
         description="A auto generated unique id which identifies the instance."
     )
-    plan_id: StrictStr = Field(description="Service Plan configures the size of the Instance.", alias="planId")
+    plan_id: UUID = Field(description="Service Plan configures the size of the Instance.", alias="planId")
     status: StrictStr = Field(description="The current status of the instance.")
     __properties: ClassVar[List[str]] = [
         "created",

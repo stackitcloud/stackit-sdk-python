@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
@@ -27,7 +28,7 @@ class Plan(BaseModel):
     """  # noqa: E501
 
     description: Optional[StrictStr] = Field(default=None, description="Description")
-    id: Optional[StrictStr] = Field(default=None, description="Service Plan Identifier")
+    id: Optional[UUID] = Field(default=None, description="Service Plan Identifier")
     max_edge_hosts: Optional[StrictInt] = Field(
         default=None, description="Maximum number of EdgeHosts", alias="maxEdgeHosts"
     )
