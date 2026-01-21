@@ -17,6 +17,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -31,9 +32,7 @@ class CreateCertificatePayload(BaseModel):
     private_key: Optional[StrictStr] = Field(
         default=None, description="The PEM encoded private key part", alias="privateKey"
     )
-    project_id: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Project identifier", alias="projectId"
-    )
+    project_id: Optional[UUID] = Field(default=None, description="Project identifier", alias="projectId")
     public_key: Optional[StrictStr] = Field(
         default=None, description="The PEM encoded public key part", alias="publicKey"
     )
