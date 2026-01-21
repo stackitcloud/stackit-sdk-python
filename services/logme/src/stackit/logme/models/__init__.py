@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.logme.models.backup import Backup
 from stackit.logme.models.create_backup_response_item import CreateBackupResponseItem
