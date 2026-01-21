@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -45,8 +46,8 @@ class Version(BaseModel):
         alias="destroyDate",
     )
     disabled: StrictBool = Field(description="States whether versions is enabled or disabled.")
-    key_id: StrictStr = Field(description="The unique id of the key this version is assigned to.", alias="keyId")
-    key_ring_id: StrictStr = Field(
+    key_id: UUID = Field(description="The unique id of the key this version is assigned to.", alias="keyId")
+    key_ring_id: UUID = Field(
         description="The unique id of the key ring the key of this version is assigned to.", alias="keyRingId"
     )
     number: StrictInt = Field(description="A sequential number which identifies the key versions.")

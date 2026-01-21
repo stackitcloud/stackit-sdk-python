@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.kms.models.access_scope import AccessScope
 from stackit.kms.models.algorithm import Algorithm

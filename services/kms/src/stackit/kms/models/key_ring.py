@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -37,7 +38,7 @@ class KeyRing(BaseModel):
     display_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
         description="The display name to distinguish multiple key rings.", alias="displayName"
     )
-    id: StrictStr = Field(description="A auto generated unique id which identifies the key ring.")
+    id: UUID = Field(description="A auto generated unique id which identifies the key ring.")
     state: StrictStr = Field(description="The current state of the key ring.")
     __properties: ClassVar[List[str]] = ["createdAt", "description", "displayName", "id", "state"]
 
