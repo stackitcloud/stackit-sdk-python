@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
@@ -27,10 +28,10 @@ class OrganizationQuota(BaseModel):
     OrganizationQuota
     """  # noqa: E501
 
-    org_id: StrictStr = Field(alias="orgId")
-    platform_id: StrictStr = Field(alias="platformId")
-    project_id: StrictStr = Field(alias="projectId")
-    quota_id: StrictStr = Field(alias="quotaId")
+    org_id: UUID = Field(alias="orgId")
+    platform_id: UUID = Field(alias="platformId")
+    project_id: UUID = Field(alias="projectId")
+    quota_id: UUID = Field(alias="quotaId")
     region: StrictStr
     __properties: ClassVar[List[str]] = ["orgId", "platformId", "projectId", "quotaId", "region"]
 

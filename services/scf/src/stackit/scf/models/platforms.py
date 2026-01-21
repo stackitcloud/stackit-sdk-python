@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
@@ -30,7 +31,7 @@ class Platforms(BaseModel):
     api_url: StrictStr = Field(alias="apiUrl")
     console_url: Optional[StrictStr] = Field(default=None, alias="consoleUrl")
     display_name: StrictStr = Field(alias="displayName")
-    guid: StrictStr
+    guid: UUID
     region: StrictStr
     system_id: StrictStr = Field(alias="systemId")
     __properties: ClassVar[List[str]] = ["apiUrl", "consoleUrl", "displayName", "guid", "region", "systemId"]

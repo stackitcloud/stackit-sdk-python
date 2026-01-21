@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
@@ -29,10 +30,10 @@ class OrgRoleResponse(BaseModel):
     OrgRoleResponse
     """  # noqa: E501
 
-    guid: StrictStr
-    org_id: StrictStr = Field(alias="orgId")
-    platform_id: StrictStr = Field(alias="platformId")
-    project_id: StrictStr = Field(alias="projectId")
+    guid: UUID
+    org_id: UUID = Field(alias="orgId")
+    platform_id: UUID = Field(alias="platformId")
+    project_id: UUID = Field(alias="projectId")
     region: StrictStr
     type: OrgRoleType
     __properties: ClassVar[List[str]] = ["guid", "orgId", "platformId", "projectId", "region", "type"]

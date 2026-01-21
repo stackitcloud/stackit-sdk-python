@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
@@ -30,7 +31,7 @@ class CreateSpaceRolePayload(BaseModel):
     """  # noqa: E501
 
     type: SpaceRoleType
-    user_guid: Optional[StrictStr] = Field(default=None, alias="userGuid")
+    user_guid: Optional[UUID] = Field(default=None, alias="userGuid")
     user_name: Optional[StrictStr] = Field(default=None, alias="userName")
     __properties: ClassVar[List[str]] = ["type", "userGuid", "userName"]
 
