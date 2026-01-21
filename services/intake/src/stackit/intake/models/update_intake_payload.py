@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
@@ -38,7 +39,7 @@ class UpdateIntakePayload(BaseModel):
         description="The display name is a short name chosen by the user to identify the resource.",
         alias="displayName",
     )
-    intake_runner_id: StrictStr = Field(
+    intake_runner_id: UUID = Field(
         description="The unique id of the intake runner this intake should run on.", alias="intakeRunnerId"
     )
     labels: Optional[Dict[str, StrictStr]] = Field(
