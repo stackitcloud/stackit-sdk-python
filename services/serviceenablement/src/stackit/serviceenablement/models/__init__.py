@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.serviceenablement.models.action_error import ActionError
 from stackit.serviceenablement.models.check_service import CheckService
