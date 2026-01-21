@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -35,7 +36,7 @@ class ChatModelDetails(BaseModel):
     context_length: StrictInt = Field(alias="contextLength")
     description: Annotated[str, Field(strict=True, max_length=2000)]
     displayed_name: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(alias="displayedName")
-    id: StrictStr = Field(description="generated uuid to identify a model")
+    id: UUID = Field(description="generated uuid to identify a model")
     name: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(description="huggingface name")
     quantization_method: Optional[StrictStr] = Field(default=None, alias="quantizationMethod")
     region: StrictStr

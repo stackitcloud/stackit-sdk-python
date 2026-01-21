@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.modelserving.models.chat_model_details import ChatModelDetails
 from stackit.modelserving.models.create_token_payload import CreateTokenPayload

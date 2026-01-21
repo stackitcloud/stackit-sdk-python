@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -31,7 +32,7 @@ class TokenCreated(BaseModel):
 
     content: Annotated[str, Field(min_length=1, strict=True, max_length=200)]
     description: Optional[Annotated[str, Field(strict=True, max_length=2000)]] = None
-    id: StrictStr
+    id: UUID
     name: Annotated[str, Field(min_length=1, strict=True, max_length=200)]
     region: StrictStr
     state: StrictStr
