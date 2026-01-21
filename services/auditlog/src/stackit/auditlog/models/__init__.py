@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.auditlog.models.audit_log_entry_context_response import (
     AuditLogEntryContextResponse,
