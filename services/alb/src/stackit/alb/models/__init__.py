@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.alb.models.active_health_check import ActiveHealthCheck
 from stackit.alb.models.certificate_config import CertificateConfig
