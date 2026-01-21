@@ -18,15 +18,9 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    StrictBool,
-    StrictStr,
-    field_validator,
-)
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing_extensions import Self
 
 
@@ -39,7 +33,7 @@ class AccessTokenMetadata(BaseModel):
         description="If true, access token can be used for authorized API calls, if false, the token is not usable anymore."
     )
     created_at: datetime = Field(description="Creation time of the access token.", alias="createdAt")
-    id: StrictStr = Field(description="Unique ID of the access token. Also used as JTI field.")
+    id: UUID = Field(description="Unique ID of the access token. Also used as JTI field.")
     valid_until: datetime = Field(
         description="Approximate expiration time of the access token. Check the JWT for actual validity date.",
         alias="validUntil",

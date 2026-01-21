@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
@@ -34,7 +35,7 @@ class CreateServiceAccountKeyResponseCredentials(BaseModel):
         description="Private key. Only present, if the service account API was generating the key. Not recoverable later.",
         alias="privateKey",
     )
-    sub: StrictStr = Field(description="Service account id")
+    sub: UUID = Field(description="Service account id")
     __properties: ClassVar[List[str]] = ["aud", "iss", "kid", "privateKey", "sub"]
 
     model_config = ConfigDict(

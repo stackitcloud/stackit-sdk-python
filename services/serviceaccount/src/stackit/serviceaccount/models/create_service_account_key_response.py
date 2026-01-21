@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -42,7 +43,7 @@ class CreateServiceAccountKeyResponse(BaseModel):
     active: StrictBool
     created_at: datetime = Field(description="Creation time of the key", alias="createdAt")
     credentials: CreateServiceAccountKeyResponseCredentials
-    id: StrictStr = Field(description="Unique ID of the key.")
+    id: UUID = Field(description="Unique ID of the key.")
     key_algorithm: StrictStr = Field(alias="keyAlgorithm")
     key_origin: StrictStr = Field(alias="keyOrigin")
     key_type: StrictStr = Field(alias="keyType")

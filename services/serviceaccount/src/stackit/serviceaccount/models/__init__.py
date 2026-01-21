@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.serviceaccount.models.access_token import AccessToken
 from stackit.serviceaccount.models.access_token_metadata import AccessTokenMetadata
