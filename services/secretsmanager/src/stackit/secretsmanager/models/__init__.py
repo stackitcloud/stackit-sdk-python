@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.secretsmanager.models.acl import ACL
 from stackit.secretsmanager.models.bad_request import BadRequest

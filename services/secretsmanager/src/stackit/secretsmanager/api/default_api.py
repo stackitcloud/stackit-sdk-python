@@ -12,6 +12,7 @@
 """  # noqa: E501
 
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from stackit.core.configuration import Configuration
@@ -52,9 +53,9 @@ class DefaultApi:
     def create_acl(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         create_acl_payload: CreateACLPayload,
         _request_timeout: Union[
             None,
@@ -71,9 +72,9 @@ class DefaultApi:
         Creates a new Secrets Manager acl within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param create_acl_payload: (required)
         :type create_acl_payload: CreateACLPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -127,9 +128,9 @@ class DefaultApi:
     def create_acl_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         create_acl_payload: CreateACLPayload,
         _request_timeout: Union[
             None,
@@ -146,9 +147,9 @@ class DefaultApi:
         Creates a new Secrets Manager acl within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param create_acl_payload: (required)
         :type create_acl_payload: CreateACLPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -202,9 +203,9 @@ class DefaultApi:
     def create_acl_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         create_acl_payload: CreateACLPayload,
         _request_timeout: Union[
             None,
@@ -221,9 +222,9 @@ class DefaultApi:
         Creates a new Secrets Manager acl within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param create_acl_payload: (required)
         :type create_acl_payload: CreateACLPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -337,7 +338,7 @@ class DefaultApi:
     def create_instance(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
         create_instance_payload: CreateInstancePayload,
         _request_timeout: Union[
@@ -355,7 +356,7 @@ class DefaultApi:
         Creates a new Secrets Manager instance within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param create_instance_payload: (required)
         :type create_instance_payload: CreateInstancePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -406,7 +407,7 @@ class DefaultApi:
     def create_instance_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
         create_instance_payload: CreateInstancePayload,
         _request_timeout: Union[
@@ -424,7 +425,7 @@ class DefaultApi:
         Creates a new Secrets Manager instance within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param create_instance_payload: (required)
         :type create_instance_payload: CreateInstancePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -475,7 +476,7 @@ class DefaultApi:
     def create_instance_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
         create_instance_payload: CreateInstancePayload,
         _request_timeout: Union[
@@ -493,7 +494,7 @@ class DefaultApi:
         Creates a new Secrets Manager instance within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param create_instance_payload: (required)
         :type create_instance_payload: CreateInstancePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -601,9 +602,9 @@ class DefaultApi:
     def create_user(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         create_user_payload: CreateUserPayload,
         _request_timeout: Union[
             None,
@@ -620,9 +621,9 @@ class DefaultApi:
         Creates a new user for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param create_user_payload: (required)
         :type create_user_payload: CreateUserPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -676,9 +677,9 @@ class DefaultApi:
     def create_user_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         create_user_payload: CreateUserPayload,
         _request_timeout: Union[
             None,
@@ -695,9 +696,9 @@ class DefaultApi:
         Creates a new user for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param create_user_payload: (required)
         :type create_user_payload: CreateUserPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -751,9 +752,9 @@ class DefaultApi:
     def create_user_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         create_user_payload: CreateUserPayload,
         _request_timeout: Union[
             None,
@@ -770,9 +771,9 @@ class DefaultApi:
         Creates a new user for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param create_user_payload: (required)
         :type create_user_payload: CreateUserPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -886,10 +887,10 @@ class DefaultApi:
     def delete_acl(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        acl_id: Annotated[StrictStr, Field(description="The acl UUID of the Secrets Manager instance.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        acl_id: Annotated[UUID, Field(description="The acl UUID of the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -905,11 +906,11 @@ class DefaultApi:
         Deletes the given acl.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param acl_id: The acl UUID of the Secrets Manager instance. (required)
-        :type acl_id: str
+        :type acl_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -960,10 +961,10 @@ class DefaultApi:
     def delete_acl_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        acl_id: Annotated[StrictStr, Field(description="The acl UUID of the Secrets Manager instance.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        acl_id: Annotated[UUID, Field(description="The acl UUID of the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -979,11 +980,11 @@ class DefaultApi:
         Deletes the given acl.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param acl_id: The acl UUID of the Secrets Manager instance. (required)
-        :type acl_id: str
+        :type acl_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1034,10 +1035,10 @@ class DefaultApi:
     def delete_acl_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        acl_id: Annotated[StrictStr, Field(description="The acl UUID of the Secrets Manager instance.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        acl_id: Annotated[UUID, Field(description="The acl UUID of the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1053,11 +1054,11 @@ class DefaultApi:
         Deletes the given acl.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param acl_id: The acl UUID of the Secrets Manager instance. (required)
-        :type acl_id: str
+        :type acl_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1160,9 +1161,9 @@ class DefaultApi:
     def delete_instance(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1178,9 +1179,9 @@ class DefaultApi:
         Deletes the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1230,9 +1231,9 @@ class DefaultApi:
     def delete_instance_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1248,9 +1249,9 @@ class DefaultApi:
         Deletes the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1300,9 +1301,9 @@ class DefaultApi:
     def delete_instance_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1318,9 +1319,9 @@ class DefaultApi:
         Deletes the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1419,12 +1420,10 @@ class DefaultApi:
     def delete_user(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        user_id: Annotated[
-            StrictStr, Field(description="The user UUID with permissions on the Secrets Manager instance.")
-        ],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        user_id: Annotated[UUID, Field(description="The user UUID with permissions on the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1440,11 +1439,11 @@ class DefaultApi:
         Deletes the given user.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param user_id: The user UUID with permissions on the Secrets Manager instance. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1495,12 +1494,10 @@ class DefaultApi:
     def delete_user_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        user_id: Annotated[
-            StrictStr, Field(description="The user UUID with permissions on the Secrets Manager instance.")
-        ],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        user_id: Annotated[UUID, Field(description="The user UUID with permissions on the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1516,11 +1513,11 @@ class DefaultApi:
         Deletes the given user.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param user_id: The user UUID with permissions on the Secrets Manager instance. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1571,12 +1568,10 @@ class DefaultApi:
     def delete_user_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        user_id: Annotated[
-            StrictStr, Field(description="The user UUID with permissions on the Secrets Manager instance.")
-        ],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        user_id: Annotated[UUID, Field(description="The user UUID with permissions on the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1592,11 +1587,11 @@ class DefaultApi:
         Deletes the given user.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param user_id: The user UUID with permissions on the Secrets Manager instance. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1699,10 +1694,10 @@ class DefaultApi:
     def get_acl(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        acl_id: Annotated[StrictStr, Field(description="The acl UUID of the Secrets Manager instance.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        acl_id: Annotated[UUID, Field(description="The acl UUID of the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1718,11 +1713,11 @@ class DefaultApi:
         Returns the details for the given acl.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param acl_id: The acl UUID of the Secrets Manager instance. (required)
-        :type acl_id: str
+        :type acl_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1773,10 +1768,10 @@ class DefaultApi:
     def get_acl_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        acl_id: Annotated[StrictStr, Field(description="The acl UUID of the Secrets Manager instance.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        acl_id: Annotated[UUID, Field(description="The acl UUID of the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1792,11 +1787,11 @@ class DefaultApi:
         Returns the details for the given acl.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param acl_id: The acl UUID of the Secrets Manager instance. (required)
-        :type acl_id: str
+        :type acl_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1847,10 +1842,10 @@ class DefaultApi:
     def get_acl_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        acl_id: Annotated[StrictStr, Field(description="The acl UUID of the Secrets Manager instance.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        acl_id: Annotated[UUID, Field(description="The acl UUID of the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1866,11 +1861,11 @@ class DefaultApi:
         Returns the details for the given acl.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param acl_id: The acl UUID of the Secrets Manager instance. (required)
-        :type acl_id: str
+        :type acl_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1973,9 +1968,9 @@ class DefaultApi:
     def get_instance(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1991,9 +1986,9 @@ class DefaultApi:
         Returns the details for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2043,9 +2038,9 @@ class DefaultApi:
     def get_instance_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2061,9 +2056,9 @@ class DefaultApi:
         Returns the details for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2113,9 +2108,9 @@ class DefaultApi:
     def get_instance_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2131,9 +2126,9 @@ class DefaultApi:
         Returns the details for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2232,12 +2227,10 @@ class DefaultApi:
     def get_user(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        user_id: Annotated[
-            StrictStr, Field(description="The user UUID with permissions on the Secrets Manager instance.")
-        ],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        user_id: Annotated[UUID, Field(description="The user UUID with permissions on the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2253,11 +2246,11 @@ class DefaultApi:
         Returns the details for the given user.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param user_id: The user UUID with permissions on the Secrets Manager instance. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2308,12 +2301,10 @@ class DefaultApi:
     def get_user_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        user_id: Annotated[
-            StrictStr, Field(description="The user UUID with permissions on the Secrets Manager instance.")
-        ],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        user_id: Annotated[UUID, Field(description="The user UUID with permissions on the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2329,11 +2320,11 @@ class DefaultApi:
         Returns the details for the given user.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param user_id: The user UUID with permissions on the Secrets Manager instance. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2384,12 +2375,10 @@ class DefaultApi:
     def get_user_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        user_id: Annotated[
-            StrictStr, Field(description="The user UUID with permissions on the Secrets Manager instance.")
-        ],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        user_id: Annotated[UUID, Field(description="The user UUID with permissions on the Secrets Manager instance.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2405,11 +2394,11 @@ class DefaultApi:
         Returns the details for the given user.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param user_id: The user UUID with permissions on the Secrets Manager instance. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2512,9 +2501,9 @@ class DefaultApi:
     def list_acls(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2530,9 +2519,9 @@ class DefaultApi:
         Returns the acls for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2582,9 +2571,9 @@ class DefaultApi:
     def list_acls_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2600,9 +2589,9 @@ class DefaultApi:
         Returns the acls for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2652,9 +2641,9 @@ class DefaultApi:
     def list_acls_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2670,9 +2659,9 @@ class DefaultApi:
         Returns the acls for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2771,7 +2760,7 @@ class DefaultApi:
     def list_instances(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
         _request_timeout: Union[
             None,
@@ -2788,7 +2777,7 @@ class DefaultApi:
         Returns a list of all Secrets Manager instances within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2836,7 +2825,7 @@ class DefaultApi:
     def list_instances_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
         _request_timeout: Union[
             None,
@@ -2853,7 +2842,7 @@ class DefaultApi:
         Returns a list of all Secrets Manager instances within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2901,7 +2890,7 @@ class DefaultApi:
     def list_instances_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
         _request_timeout: Union[
             None,
@@ -2918,7 +2907,7 @@ class DefaultApi:
         Returns a list of all Secrets Manager instances within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3012,9 +3001,9 @@ class DefaultApi:
     def list_users(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3030,9 +3019,9 @@ class DefaultApi:
         Returns the users for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3082,9 +3071,9 @@ class DefaultApi:
     def list_users_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3100,9 +3089,9 @@ class DefaultApi:
         Returns the users for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3152,9 +3141,9 @@ class DefaultApi:
     def list_users_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3170,9 +3159,9 @@ class DefaultApi:
         Returns the users for the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3271,10 +3260,10 @@ class DefaultApi:
     def update_acl(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        acl_id: Annotated[StrictStr, Field(description="The acl UUID of the Secrets Manager instance.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        acl_id: Annotated[UUID, Field(description="The acl UUID of the Secrets Manager instance.")],
         update_acl_payload: UpdateACLPayload,
         _request_timeout: Union[
             None,
@@ -3291,11 +3280,11 @@ class DefaultApi:
         Updates the ip ranges for the acl.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param acl_id: The acl UUID of the Secrets Manager instance. (required)
-        :type acl_id: str
+        :type acl_id: UUID
         :param update_acl_payload: (required)
         :type update_acl_payload: UpdateACLPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3349,10 +3338,10 @@ class DefaultApi:
     def update_acl_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        acl_id: Annotated[StrictStr, Field(description="The acl UUID of the Secrets Manager instance.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        acl_id: Annotated[UUID, Field(description="The acl UUID of the Secrets Manager instance.")],
         update_acl_payload: UpdateACLPayload,
         _request_timeout: Union[
             None,
@@ -3369,11 +3358,11 @@ class DefaultApi:
         Updates the ip ranges for the acl.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param acl_id: The acl UUID of the Secrets Manager instance. (required)
-        :type acl_id: str
+        :type acl_id: UUID
         :param update_acl_payload: (required)
         :type update_acl_payload: UpdateACLPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3427,10 +3416,10 @@ class DefaultApi:
     def update_acl_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        acl_id: Annotated[StrictStr, Field(description="The acl UUID of the Secrets Manager instance.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        acl_id: Annotated[UUID, Field(description="The acl UUID of the Secrets Manager instance.")],
         update_acl_payload: UpdateACLPayload,
         _request_timeout: Union[
             None,
@@ -3447,11 +3436,11 @@ class DefaultApi:
         Updates the ip ranges for the acl.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param acl_id: The acl UUID of the Secrets Manager instance. (required)
-        :type acl_id: str
+        :type acl_id: UUID
         :param update_acl_payload: (required)
         :type update_acl_payload: UpdateACLPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3568,9 +3557,9 @@ class DefaultApi:
     def update_acls(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         update_acls_payload: UpdateACLsPayload,
         _request_timeout: Union[
             None,
@@ -3587,9 +3576,9 @@ class DefaultApi:
         Changes a list of ACLs within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param update_acls_payload: (required)
         :type update_acls_payload: UpdateACLsPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3643,9 +3632,9 @@ class DefaultApi:
     def update_acls_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         update_acls_payload: UpdateACLsPayload,
         _request_timeout: Union[
             None,
@@ -3662,9 +3651,9 @@ class DefaultApi:
         Changes a list of ACLs within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param update_acls_payload: (required)
         :type update_acls_payload: UpdateACLsPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3718,9 +3707,9 @@ class DefaultApi:
     def update_acls_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         update_acls_payload: UpdateACLsPayload,
         _request_timeout: Union[
             None,
@@ -3737,9 +3726,9 @@ class DefaultApi:
         Changes a list of ACLs within the project.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param update_acls_payload: (required)
         :type update_acls_payload: UpdateACLsPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3853,9 +3842,9 @@ class DefaultApi:
     def update_instance(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         update_instance_payload: UpdateInstancePayload,
         _request_timeout: Union[
             None,
@@ -3872,9 +3861,9 @@ class DefaultApi:
         Updates the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param update_instance_payload: (required)
         :type update_instance_payload: UpdateInstancePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3927,9 +3916,9 @@ class DefaultApi:
     def update_instance_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         update_instance_payload: UpdateInstancePayload,
         _request_timeout: Union[
             None,
@@ -3946,9 +3935,9 @@ class DefaultApi:
         Updates the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param update_instance_payload: (required)
         :type update_instance_payload: UpdateInstancePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4001,9 +3990,9 @@ class DefaultApi:
     def update_instance_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
         update_instance_payload: UpdateInstancePayload,
         _request_timeout: Union[
             None,
@@ -4020,9 +4009,9 @@ class DefaultApi:
         Updates the given Secrets Manager instance.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param update_instance_payload: (required)
         :type update_instance_payload: UpdateInstancePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4135,12 +4124,10 @@ class DefaultApi:
     def update_user(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        user_id: Annotated[
-            StrictStr, Field(description="The user UUID with permissions on the Secrets Manager instance.")
-        ],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        user_id: Annotated[UUID, Field(description="The user UUID with permissions on the Secrets Manager instance.")],
         update_user_payload: UpdateUserPayload,
         _request_timeout: Union[
             None,
@@ -4157,11 +4144,11 @@ class DefaultApi:
         Updates the details for the given user.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param user_id: The user UUID with permissions on the Secrets Manager instance. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param update_user_payload: (required)
         :type update_user_payload: UpdateUserPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4215,12 +4202,10 @@ class DefaultApi:
     def update_user_with_http_info(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        user_id: Annotated[
-            StrictStr, Field(description="The user UUID with permissions on the Secrets Manager instance.")
-        ],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        user_id: Annotated[UUID, Field(description="The user UUID with permissions on the Secrets Manager instance.")],
         update_user_payload: UpdateUserPayload,
         _request_timeout: Union[
             None,
@@ -4237,11 +4222,11 @@ class DefaultApi:
         Updates the details for the given user.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param user_id: The user UUID with permissions on the Secrets Manager instance. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param update_user_payload: (required)
         :type update_user_payload: UpdateUserPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4295,12 +4280,10 @@ class DefaultApi:
     def update_user_without_preload_content(
         self,
         project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
+            UUID, Field(description="The STACKIT portal project UUID the Secrets Manager instance is part of.")
         ],
-        instance_id: Annotated[StrictStr, Field(description="The Secrets Manager instance UUID.")],
-        user_id: Annotated[
-            StrictStr, Field(description="The user UUID with permissions on the Secrets Manager instance.")
-        ],
+        instance_id: Annotated[UUID, Field(description="The Secrets Manager instance UUID.")],
+        user_id: Annotated[UUID, Field(description="The user UUID with permissions on the Secrets Manager instance.")],
         update_user_payload: UpdateUserPayload,
         _request_timeout: Union[
             None,
@@ -4317,11 +4300,11 @@ class DefaultApi:
         Updates the details for the given user.
 
         :param project_id: The STACKIT portal project UUID the Secrets Manager instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param instance_id: The Secrets Manager instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param user_id: The user UUID with permissions on the Secrets Manager instance. (required)
-        :type user_id: str
+        :type user_id: UUID
         :param update_user_payload: (required)
         :type update_user_payload: UpdateUserPayload
         :param _request_timeout: timeout setting for this request. If one
