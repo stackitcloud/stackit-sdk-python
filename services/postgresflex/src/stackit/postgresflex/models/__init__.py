@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.postgresflex.models.acl import ACL
 from stackit.postgresflex.models.api_configuration import ApiConfiguration
