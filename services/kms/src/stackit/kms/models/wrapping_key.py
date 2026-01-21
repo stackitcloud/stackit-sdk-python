@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -45,8 +46,8 @@ class WrappingKey(BaseModel):
         description="The display name to distinguish multiple wrapping keys.", alias="displayName"
     )
     expires_at: datetime = Field(description="The date and time the wrapping key will expire.", alias="expiresAt")
-    id: StrictStr = Field(description="A auto generated unique id which identifies the wrapping keys.")
-    key_ring_id: StrictStr = Field(
+    id: UUID = Field(description="A auto generated unique id which identifies the wrapping keys.")
+    key_ring_id: UUID = Field(
         description="The unique id of the key ring this wrapping key is assigned to.", alias="keyRingId"
     )
     protection: Protection
