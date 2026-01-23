@@ -13,6 +13,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 __version__ = "1.0.0"
 
 # Define package exports
