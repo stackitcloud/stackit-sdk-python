@@ -13,6 +13,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 # import models into model package
 from stackit.sqlserverflex.models.acl import ACL
 from stackit.sqlserverflex.models.backup import Backup
