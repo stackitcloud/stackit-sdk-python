@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.cdn.models.bucket_backend import BucketBackend
 from stackit.cdn.models.bucket_backend_create import BucketBackendCreate

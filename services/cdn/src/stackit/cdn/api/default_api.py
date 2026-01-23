@@ -13,6 +13,7 @@
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import (
     Field,
@@ -329,7 +330,7 @@ class DefaultApi:
     def delete_custom_domain(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         intent_id: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -349,7 +350,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param domain: (required)
         :type domain: str
         :param intent_id:
@@ -404,7 +405,7 @@ class DefaultApi:
     def delete_custom_domain_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         intent_id: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -424,7 +425,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param domain: (required)
         :type domain: str
         :param intent_id:
@@ -479,7 +480,7 @@ class DefaultApi:
     def delete_custom_domain_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         intent_id: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -499,7 +500,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param domain: (required)
         :type domain: str
         :param intent_id:
@@ -611,7 +612,7 @@ class DefaultApi:
     def delete_distribution(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         intent_id: Annotated[
             Optional[StrictStr],
             Field(
@@ -635,7 +636,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param intent_id: While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped.
         :type intent_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -687,7 +688,7 @@ class DefaultApi:
     def delete_distribution_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         intent_id: Annotated[
             Optional[StrictStr],
             Field(
@@ -711,7 +712,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param intent_id: While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped.
         :type intent_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -763,7 +764,7 @@ class DefaultApi:
     def delete_distribution_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         intent_id: Annotated[
             Optional[StrictStr],
             Field(
@@ -787,7 +788,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param intent_id: While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped.
         :type intent_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -893,7 +894,7 @@ class DefaultApi:
     def find_cache_paths(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         path: Annotated[StrictStr, Field(description="A substring of the search query. ")],
         _request_timeout: Union[
             None,
@@ -912,7 +913,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param path: A substring of the search query.  (required)
         :type path: str
         :param _request_timeout: timeout setting for this request. If one
@@ -964,7 +965,7 @@ class DefaultApi:
     def find_cache_paths_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         path: Annotated[StrictStr, Field(description="A substring of the search query. ")],
         _request_timeout: Union[
             None,
@@ -983,7 +984,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param path: A substring of the search query.  (required)
         :type path: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1035,7 +1036,7 @@ class DefaultApi:
     def find_cache_paths_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         path: Annotated[StrictStr, Field(description="A substring of the search query. ")],
         _request_timeout: Union[
             None,
@@ -1054,7 +1055,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param path: A substring of the search query.  (required)
         :type path: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1160,7 +1161,7 @@ class DefaultApi:
     def get_cache_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         purge_path: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -1179,7 +1180,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param purge_path:
         :type purge_path: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1231,7 +1232,7 @@ class DefaultApi:
     def get_cache_info_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         purge_path: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -1250,7 +1251,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param purge_path:
         :type purge_path: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1302,7 +1303,7 @@ class DefaultApi:
     def get_cache_info_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         purge_path: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -1321,7 +1322,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param purge_path:
         :type purge_path: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1427,7 +1428,7 @@ class DefaultApi:
     def get_custom_domain(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         _request_timeout: Union[
             None,
@@ -1446,7 +1447,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param domain: (required)
         :type domain: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1499,7 +1500,7 @@ class DefaultApi:
     def get_custom_domain_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         _request_timeout: Union[
             None,
@@ -1518,7 +1519,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param domain: (required)
         :type domain: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1571,7 +1572,7 @@ class DefaultApi:
     def get_custom_domain_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         _request_timeout: Union[
             None,
@@ -1590,7 +1591,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param domain: (required)
         :type domain: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1695,7 +1696,7 @@ class DefaultApi:
     def get_distribution(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         with_waf_status: Annotated[
             Optional[StrictBool],
             Field(
@@ -1719,7 +1720,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
         :type with_waf_status: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1772,7 +1773,7 @@ class DefaultApi:
     def get_distribution_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         with_waf_status: Annotated[
             Optional[StrictBool],
             Field(
@@ -1796,7 +1797,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
         :type with_waf_status: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1849,7 +1850,7 @@ class DefaultApi:
     def get_distribution_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         with_waf_status: Annotated[
             Optional[StrictBool],
             Field(
@@ -1873,7 +1874,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
         :type with_waf_status: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1980,7 +1981,7 @@ class DefaultApi:
     def get_logs(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution Id")],
+        distribution_id: Annotated[UUID, Field(description="Your CDN distribution Id")],
         var_from: Annotated[
             Optional[datetime], Field(description="the start of the time range for which logs should be returned")
         ] = None,
@@ -2055,7 +2056,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: Your CDN distribution Id (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param var_from: the start of the time range for which logs should be returned
         :type var_from: datetime
         :param to: the end of the time range for which logs should be returned. If not specified,  \"now\" is used.
@@ -2137,7 +2138,7 @@ class DefaultApi:
     def get_logs_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution Id")],
+        distribution_id: Annotated[UUID, Field(description="Your CDN distribution Id")],
         var_from: Annotated[
             Optional[datetime], Field(description="the start of the time range for which logs should be returned")
         ] = None,
@@ -2212,7 +2213,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: Your CDN distribution Id (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param var_from: the start of the time range for which logs should be returned
         :type var_from: datetime
         :param to: the end of the time range for which logs should be returned. If not specified,  \"now\" is used.
@@ -2294,7 +2295,7 @@ class DefaultApi:
     def get_logs_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution Id")],
+        distribution_id: Annotated[UUID, Field(description="Your CDN distribution Id")],
         var_from: Annotated[
             Optional[datetime], Field(description="the start of the time range for which logs should be returned")
         ] = None,
@@ -2369,7 +2370,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: Your CDN distribution Id (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param var_from: the start of the time range for which logs should be returned
         :type var_from: datetime
         :param to: the end of the time range for which logs should be returned. If not specified,  \"now\" is used.
@@ -2559,7 +2560,7 @@ class DefaultApi:
     def get_logs_search_filters(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID.")],
-        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution ID.")],
+        distribution_id: Annotated[UUID, Field(description="Your CDN distribution ID.")],
         filter: Annotated[
             Optional[StrictStr],
             Field(description="Optional search string. Will search the **values** for the text input."),
@@ -2580,7 +2581,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project ID. (required)
         :type project_id: str
         :param distribution_id: Your CDN distribution ID. (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param filter: Optional search string. Will search the **values** for the text input.
         :type filter: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2633,7 +2634,7 @@ class DefaultApi:
     def get_logs_search_filters_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID.")],
-        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution ID.")],
+        distribution_id: Annotated[UUID, Field(description="Your CDN distribution ID.")],
         filter: Annotated[
             Optional[StrictStr],
             Field(description="Optional search string. Will search the **values** for the text input."),
@@ -2654,7 +2655,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project ID. (required)
         :type project_id: str
         :param distribution_id: Your CDN distribution ID. (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param filter: Optional search string. Will search the **values** for the text input.
         :type filter: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2707,7 +2708,7 @@ class DefaultApi:
     def get_logs_search_filters_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project ID.")],
-        distribution_id: Annotated[StrictStr, Field(description="Your CDN distribution ID.")],
+        distribution_id: Annotated[UUID, Field(description="Your CDN distribution ID.")],
         filter: Annotated[
             Optional[StrictStr],
             Field(description="Optional search string. Will search the **values** for the text input."),
@@ -2728,7 +2729,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project ID. (required)
         :type project_id: str
         :param distribution_id: Your CDN distribution ID. (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param filter: Optional search string. Will search the **values** for the text input.
         :type filter: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2835,7 +2836,7 @@ class DefaultApi:
     def get_statistics(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         var_from: Annotated[
             datetime, Field(description="the start of the time range for which statistics should be returned")
         ],
@@ -2868,7 +2869,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param var_from: the start of the time range for which statistics should be returned (required)
         :type var_from: datetime
         :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
@@ -2926,7 +2927,7 @@ class DefaultApi:
     def get_statistics_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         var_from: Annotated[
             datetime, Field(description="the start of the time range for which statistics should be returned")
         ],
@@ -2959,7 +2960,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param var_from: the start of the time range for which statistics should be returned (required)
         :type var_from: datetime
         :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
@@ -3017,7 +3018,7 @@ class DefaultApi:
     def get_statistics_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         var_from: Annotated[
             datetime, Field(description="the start of the time range for which statistics should be returned")
         ],
@@ -3050,7 +3051,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param var_from: the start of the time range for which statistics should be returned (required)
         :type var_from: datetime
         :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
@@ -4064,7 +4065,7 @@ class DefaultApi:
     def purge_cache(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         purge_cache_payload: Optional[PurgeCachePayload] = None,
         _request_timeout: Union[
             None,
@@ -4083,7 +4084,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param purge_cache_payload:
         :type purge_cache_payload: PurgeCachePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4135,7 +4136,7 @@ class DefaultApi:
     def purge_cache_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         purge_cache_payload: Optional[PurgeCachePayload] = None,
         _request_timeout: Union[
             None,
@@ -4154,7 +4155,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param purge_cache_payload:
         :type purge_cache_payload: PurgeCachePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4206,7 +4207,7 @@ class DefaultApi:
     def purge_cache_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         purge_cache_payload: Optional[PurgeCachePayload] = None,
         _request_timeout: Union[
             None,
@@ -4225,7 +4226,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param purge_cache_payload:
         :type purge_cache_payload: PurgeCachePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4337,7 +4338,7 @@ class DefaultApi:
     def put_custom_domain(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         put_custom_domain_payload: Optional[PutCustomDomainPayload] = None,
         _request_timeout: Union[
@@ -4357,7 +4358,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param domain: (required)
         :type domain: str
         :param put_custom_domain_payload:
@@ -4412,7 +4413,7 @@ class DefaultApi:
     def put_custom_domain_with_http_info(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         put_custom_domain_payload: Optional[PutCustomDomainPayload] = None,
         _request_timeout: Union[
@@ -4432,7 +4433,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param domain: (required)
         :type domain: str
         :param put_custom_domain_payload:
@@ -4487,7 +4488,7 @@ class DefaultApi:
     def put_custom_domain_without_preload_content(
         self,
         project_id: Annotated[StrictStr, Field(description="Your STACKIT Project Id")],
-        distribution_id: StrictStr,
+        distribution_id: UUID,
         domain: Annotated[str, Field(strict=True, max_length=72)],
         put_custom_domain_payload: Optional[PutCustomDomainPayload] = None,
         _request_timeout: Union[
@@ -4507,7 +4508,7 @@ class DefaultApi:
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
         :param distribution_id: (required)
-        :type distribution_id: str
+        :type distribution_id: UUID
         :param domain: (required)
         :type domain: str
         :param put_custom_domain_payload:
