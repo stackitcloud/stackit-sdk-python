@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing_extensions import Annotated, Self
@@ -37,9 +38,7 @@ class CreateSecurityGroupPayload(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
         default=None, description="Description Object. Allows string up to 255 Characters."
     )
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
         description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",

@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing_extensions import Annotated, Self
@@ -40,15 +41,11 @@ class ServerNetwork(BaseModel):
         default=None, description="String that represents an IPv6 address."
     )
     mac: Annotated[str, Field(strict=True)] = Field(description="Object that represents an MAC address.")
-    network_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
-        description="Universally Unique Identifier (UUID).", alias="networkId"
-    )
+    network_id: UUID = Field(description="Universally Unique Identifier (UUID).", alias="networkId")
     network_name: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs.", alias="networkName"
     )
-    nic_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
-        description="Universally Unique Identifier (UUID).", alias="nicId"
-    )
+    nic_id: UUID = Field(description="Universally Unique Identifier (UUID).", alias="nicId")
     nic_security: StrictBool = Field(
         description="If this is set to false, then no security groups will apply to this server network interface.",
         alias="nicSecurity",
@@ -56,9 +53,7 @@ class ServerNetwork(BaseModel):
     public_ip: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Object that represents an IP address.", alias="publicIp"
     )
-    security_groups: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
-        default=None, description="A list of UUIDs.", alias="securityGroups"
-    )
+    security_groups: Optional[List[UUID]] = Field(default=None, description="A list of UUIDs.", alias="securityGroups")
     __properties: ClassVar[List[str]] = [
         "allowedAddresses",
         "ipv4",

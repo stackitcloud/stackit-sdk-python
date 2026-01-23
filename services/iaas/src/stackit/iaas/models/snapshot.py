@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -32,9 +33,7 @@ class Snapshot(BaseModel):
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
         description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
@@ -50,9 +49,7 @@ class Snapshot(BaseModel):
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
-    volume_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(
-        description="Universally Unique Identifier (UUID).", alias="volumeId"
-    )
+    volume_id: UUID = Field(description="Universally Unique Identifier (UUID).", alias="volumeId")
     __properties: ClassVar[List[str]] = ["createdAt", "id", "labels", "name", "size", "status", "updatedAt", "volumeId"]
 
     @field_validator("created_at", mode="before")

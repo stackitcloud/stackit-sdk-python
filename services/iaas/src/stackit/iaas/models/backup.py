@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -44,9 +45,7 @@ class Backup(BaseModel):
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
     encrypted: Optional[StrictBool] = Field(default=None, description="Indicates if a volume is encrypted.")
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
         description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
@@ -55,7 +54,7 @@ class Backup(BaseModel):
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
     size: Optional[StrictInt] = Field(default=None, description="Size in Gigabyte.")
-    snapshot_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    snapshot_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="snapshotId"
     )
     status: Optional[StrictStr] = Field(
@@ -65,7 +64,7 @@ class Backup(BaseModel):
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
-    volume_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    volume_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="volumeId"
     )
     __properties: ClassVar[List[str]] = [

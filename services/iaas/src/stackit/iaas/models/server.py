@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -42,7 +43,7 @@ class Server(BaseModel):
     Representation of a single server object.
     """  # noqa: E501
 
-    affinity_group: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    affinity_group: Optional[UUID] = Field(
         default=None, description="The affinity group the server is assigned to.", alias="affinityGroup"
     )
     agent: Optional[ServerAgent] = None
@@ -56,12 +57,8 @@ class Server(BaseModel):
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
     error_message: Optional[StrictStr] = Field(default=None, description="An error message.", alias="errorMessage")
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
-    image_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID).", alias="imageId"
-    )
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
+    image_id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).", alias="imageId")
     keypair_name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The SSH keypair used during the server creation.", alias="keypairName"
     )
@@ -113,9 +110,7 @@ class Server(BaseModel):
         description="User Data that is provided to the server. Must be base64 encoded and is passed via cloud-init to the server. Only shown when detailed information is requested.",
         alias="userData",
     )
-    volumes: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
-        default=None, description="The list of volumes attached to the server."
-    )
+    volumes: Optional[List[UUID]] = Field(default=None, description="The list of volumes attached to the server.")
     __properties: ClassVar[List[str]] = [
         "affinityGroup",
         "agent",

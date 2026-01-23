@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
@@ -28,9 +29,7 @@ class CreatePublicIPPayload(BaseModel):
     Object that represents a public IP.
     """  # noqa: E501
 
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     ip: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="String that represents an IPv4 address."
     )
@@ -38,7 +37,7 @@ class CreatePublicIPPayload(BaseModel):
         default=None,
         description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
     )
-    network_interface: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    network_interface: Optional[UUID] = Field(
         default=None, description="Associate the public IP with a network interface (ID).", alias="networkInterface"
     )
     __properties: ClassVar[List[str]] = ["id", "ip", "labels", "networkInterface"]
