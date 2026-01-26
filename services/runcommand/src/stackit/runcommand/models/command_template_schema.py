@@ -32,9 +32,9 @@ class CommandTemplateSchema(BaseModel):
     description: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     os_type: Optional[List[StrictStr]] = Field(default=None, alias="osType")
-    parameter_schema: Optional[ParametersSchema] = Field(default=None, alias="parameterSchema")
+    parameters_schema: Optional[ParametersSchema] = Field(default=None, alias="parametersSchema")
     title: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["description", "name", "osType", "parameterSchema", "title"]
+    __properties: ClassVar[List[str]] = ["description", "name", "osType", "parametersSchema", "title"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,9 +73,9 @@ class CommandTemplateSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of parameter_schema
-        if self.parameter_schema:
-            _dict["parameterSchema"] = self.parameter_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of parameters_schema
+        if self.parameters_schema:
+            _dict["parametersSchema"] = self.parameters_schema.to_dict()
         return _dict
 
     @classmethod
@@ -92,9 +92,9 @@ class CommandTemplateSchema(BaseModel):
                 "description": obj.get("description"),
                 "name": obj.get("name"),
                 "osType": obj.get("osType"),
-                "parameterSchema": (
-                    ParametersSchema.from_dict(obj["parameterSchema"])
-                    if obj.get("parameterSchema") is not None
+                "parametersSchema": (
+                    ParametersSchema.from_dict(obj["parametersSchema"])
+                    if obj.get("parametersSchema") is not None
                     else None
                 ),
                 "title": obj.get("title"),
