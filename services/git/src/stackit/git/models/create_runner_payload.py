@@ -18,19 +18,17 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing_extensions import Self
 
-from stackit.git.models.flavor import Flavor
 
-
-class ListFlavors(BaseModel):
+class CreateRunnerPayload(BaseModel):
     """
-    A list of STACKIT Git Flavors.
+    Request a runner to be created supporting the requested list of runtime labels.
     """  # noqa: E501
 
-    flavors: List[Flavor]
-    __properties: ClassVar[List[str]] = ["flavors"]
+    labels: List[StrictStr]
+    __properties: ClassVar[List[str]] = ["labels"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +47,7 @@ class ListFlavors(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ListFlavors from a JSON string"""
+        """Create an instance of CreateRunnerPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,29 +67,16 @@ class ListFlavors(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in flavors (list)
-        _items = []
-        if self.flavors:
-            for _item in self.flavors:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["flavors"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ListFlavors from a dict"""
+        """Create an instance of CreateRunnerPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "flavors": (
-                    [Flavor.from_dict(_item) for _item in obj["flavors"]] if obj.get("flavors") is not None else None
-                )
-            }
-        )
+        _obj = cls.model_validate({"labels": obj.get("labels")})
         return _obj
