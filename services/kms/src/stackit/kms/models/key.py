@@ -50,8 +50,8 @@ class Key(BaseModel):
         description="This date is set when a key is pending deletion and refers to the scheduled date of deletion",
         alias="deletionDate",
     )
-    description: Annotated[str, Field(strict=True, max_length=256)] = Field(
-        description="A user chosen description to distinguish multiple keys."
+    description: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(
+        default=None, description="A user chosen description to distinguish multiple keys."
     )
     display_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
         description="The display name to distinguish multiple keys.", alias="displayName"
