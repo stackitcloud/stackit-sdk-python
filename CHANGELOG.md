@@ -1,4 +1,4 @@
-## Release (2026-xx-xx)
+## Release (2026-01-27)
 - `serverbackup`: [v1.1.1](services/serverbackup/CHANGELOG.md#v111)
   - **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
 - `loadbalancer`: [v0.8.0](services/loadbalancer/CHANGELOG.md#v080)
