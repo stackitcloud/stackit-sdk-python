@@ -38,8 +38,8 @@ class WrappingKey(BaseModel):
     created_at: datetime = Field(
         description="The date and time the creation of the wrapping key was triggered.", alias="createdAt"
     )
-    description: Annotated[str, Field(strict=True, max_length=256)] = Field(
-        description="A user chosen description to distinguish multiple wrapping keys."
+    description: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(
+        default=None, description="A user chosen description to distinguish multiple wrapping keys."
     )
     display_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
         description="The display name to distinguish multiple wrapping keys.", alias="displayName"
