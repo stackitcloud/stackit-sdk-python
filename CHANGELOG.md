@@ -1,3 +1,8 @@
+## Release (2026-xx-xx)
+
+- `kms`: [v0.7.0](services/kms/CHANGELOG.md#v070)
+  - Set fields `description` to optional in for `Key`, `KeyRing` and `WrappingKey`
+
 ## Release (2026-01-27)
 - `serverbackup`: [v1.1.1](services/serverbackup/CHANGELOG.md#v111)
   - **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
