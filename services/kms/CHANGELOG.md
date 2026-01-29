@@ -1,3 +1,6 @@
+## v0.7.0
+- Set fields `description` to optional in for `Key`, `KeyRing` and `WrappingKey`
+
 ## v0.6.0
 - Set fields `description` and `import_only` to required in response struct `Key`
 - Set fields `description` and `public_key` to required in response struct `WrappingKey`

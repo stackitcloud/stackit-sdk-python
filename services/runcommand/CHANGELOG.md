@@ -1,3 +1,6 @@
+## v1.1.1
+- **Bugfix**: Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
+
 ## v1.1.0
 - **Version**: Minimal version is now python 3.9
 
