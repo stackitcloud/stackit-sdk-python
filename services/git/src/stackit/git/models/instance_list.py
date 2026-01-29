@@ -18,22 +18,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.git.models.feature_toggle import FeatureToggle
+from stackit.git.models.instance import Instance
 
 
-class PatchInstancePayload(BaseModel):
+class InstanceList(BaseModel):
     """
-    Properties to patch on an instance. All fields are optional.
+    A list of STACKIT Git instances.
     """  # noqa: E501
 
-    acl: Optional[Annotated[List[StrictStr], Field(max_length=50)]] = Field(
-        default=None, description="A list of CIDR network addresses that are allowed to access the instance."
-    )
-    feature_toggle: Optional[FeatureToggle] = None
-    __properties: ClassVar[List[str]] = ["acl", "feature_toggle"]
+    instances: Annotated[List[Instance], Field(max_length=50)]
+    __properties: ClassVar[List[str]] = ["instances"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +49,7 @@ class PatchInstancePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PatchInstancePayload from a JSON string"""
+        """Create an instance of InstanceList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,19 +69,18 @@ class PatchInstancePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of feature_toggle
-        if self.feature_toggle:
-            _dict["feature_toggle"] = self.feature_toggle.to_dict()
-        # set to None if acl (nullable) is None
-        # and model_fields_set contains the field
-        if self.acl is None and "acl" in self.model_fields_set:
-            _dict["acl"] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in instances (list)
+        _items = []
+        if self.instances:
+            for _item in self.instances:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["instances"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PatchInstancePayload from a dict"""
+        """Create an instance of InstanceList from a dict"""
         if obj is None:
             return None
 
@@ -93,10 +89,11 @@ class PatchInstancePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "acl": obj.get("acl"),
-                "feature_toggle": (
-                    FeatureToggle.from_dict(obj["feature_toggle"]) if obj.get("feature_toggle") is not None else None
-                ),
+                "instances": (
+                    [Instance.from_dict(_item) for _item in obj["instances"]]
+                    if obj.get("instances") is not None
+                    else None
+                )
             }
         )
         return _obj
