@@ -21,19 +21,36 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
-from stackit.git.models.feature_toggle import FeatureToggle
 
-
-class PatchInstancePayload(BaseModel):
+class CreateAuthenticationPayload(BaseModel):
     """
-    Properties to patch on an instance. All fields are optional.
+    Properties to patch on an authentication. All fields are optional.
     """  # noqa: E501
 
-    acl: Optional[Annotated[List[StrictStr], Field(max_length=50)]] = Field(
-        default=None, description="A list of CIDR network addresses that are allowed to access the instance."
+    auto_discover_url: StrictStr = Field(
+        description="The well-known configuration url to use for this authentication definition."
     )
-    feature_toggle: Optional[FeatureToggle] = None
-    __properties: ClassVar[List[str]] = ["acl", "feature_toggle"]
+    client_id: StrictStr = Field(description="The IDP client id to use.")
+    client_secret: StrictStr = Field(description="The IDP client secret to use.")
+    icon_url: Optional[StrictStr] = Field(
+        default=None, description="The url of the icon to use for this authentication definition."
+    )
+    name: Annotated[str, Field(strict=True, max_length=32)] = Field(
+        description="The name to identify an authentication definition associated with a STACKIT Git instance."
+    )
+    provider: Optional[StrictStr] = Field(default="openidConnect", description="The Oauth2 provider to use.")
+    scopes: Optional[StrictStr] = Field(
+        default="openid profile email", description="Scopes defines the OIDC scopes to request."
+    )
+    __properties: ClassVar[List[str]] = [
+        "auto_discover_url",
+        "client_id",
+        "client_secret",
+        "icon_url",
+        "name",
+        "provider",
+        "scopes",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +69,7 @@ class PatchInstancePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PatchInstancePayload from a JSON string"""
+        """Create an instance of CreateAuthenticationPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,19 +89,11 @@ class PatchInstancePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of feature_toggle
-        if self.feature_toggle:
-            _dict["feature_toggle"] = self.feature_toggle.to_dict()
-        # set to None if acl (nullable) is None
-        # and model_fields_set contains the field
-        if self.acl is None and "acl" in self.model_fields_set:
-            _dict["acl"] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PatchInstancePayload from a dict"""
+        """Create an instance of CreateAuthenticationPayload from a dict"""
         if obj is None:
             return None
 
@@ -93,10 +102,13 @@ class PatchInstancePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "acl": obj.get("acl"),
-                "feature_toggle": (
-                    FeatureToggle.from_dict(obj["feature_toggle"]) if obj.get("feature_toggle") is not None else None
-                ),
+                "auto_discover_url": obj.get("auto_discover_url"),
+                "client_id": obj.get("client_id"),
+                "client_secret": obj.get("client_secret"),
+                "icon_url": obj.get("icon_url"),
+                "name": obj.get("name"),
+                "provider": obj.get("provider") if obj.get("provider") is not None else "openidConnect",
+                "scopes": obj.get("scopes") if obj.get("scopes") is not None else "openid profile email",
             }
         )
         return _obj
