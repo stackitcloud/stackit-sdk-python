@@ -18,17 +18,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field
+from typing_extensions import Annotated, Self
+
+from stackit.git.models.authentication import Authentication
 
 
-class UnauthorizedResponse(BaseModel):
+class AuthenticationList(BaseModel):
     """
-    The request could not be authorized.
+    A list of authentications belonging to an Instance.
     """  # noqa: E501
 
-    error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["error"]
+    authentication: Annotated[List[Authentication], Field(max_length=50)]
+    __properties: ClassVar[List[str]] = ["authentication"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +49,7 @@ class UnauthorizedResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UnauthorizedResponse from a JSON string"""
+        """Create an instance of AuthenticationList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -67,16 +69,31 @@ class UnauthorizedResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in authentication (list)
+        _items = []
+        if self.authentication:
+            for _item in self.authentication:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["authentication"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UnauthorizedResponse from a dict"""
+        """Create an instance of AuthenticationList from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"error": obj.get("error")})
+        _obj = cls.model_validate(
+            {
+                "authentication": (
+                    [Authentication.from_dict(_item) for _item in obj["authentication"]]
+                    if obj.get("authentication") is not None
+                    else None
+                )
+            }
+        )
         return _obj

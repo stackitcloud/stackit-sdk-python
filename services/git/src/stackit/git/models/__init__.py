@@ -15,18 +15,23 @@
 
 
 # import models into model package
+from stackit.git.models.authentication import Authentication
+from stackit.git.models.authentication_list import AuthenticationList
+from stackit.git.models.create_authentication_payload import CreateAuthenticationPayload
 from stackit.git.models.create_instance_payload import CreateInstancePayload
+from stackit.git.models.create_runner_payload import CreateRunnerPayload
+from stackit.git.models.feature_toggle import FeatureToggle
 from stackit.git.models.flavor import Flavor
+from stackit.git.models.flavors_list import FlavorsList
 from stackit.git.models.generic_error_response import GenericErrorResponse
 from stackit.git.models.instance import Instance
-from stackit.git.models.instance_flavor import InstanceFlavor
+from stackit.git.models.instance_list import InstanceList
 from stackit.git.models.internal_server_error_response import (
     InternalServerErrorResponse,
 )
-from stackit.git.models.list_flavors import ListFlavors
-from stackit.git.models.list_instances import ListInstances
-from stackit.git.models.list_runner_labels import ListRunnerLabels
+from stackit.git.models.patch_authentication_payload import PatchAuthenticationPayload
 from stackit.git.models.patch_instance_payload import PatchInstancePayload
 from stackit.git.models.patch_operation import PatchOperation
-from stackit.git.models.runner_label import RunnerLabel
-from stackit.git.models.unauthorized_response import UnauthorizedResponse
+from stackit.git.models.runner import Runner
+from stackit.git.models.runner_runtime import RunnerRuntime
+from stackit.git.models.runner_runtime_list import RunnerRuntimeList
