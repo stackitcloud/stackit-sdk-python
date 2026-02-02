@@ -53,8 +53,8 @@ class Listener(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^[0-9a-z](?:(?:[0-9a-z]|-){0,18}[0-9a-z])?$", value):
-            raise ValueError(r"must validate the regular expression /^[0-9a-z](?:(?:[0-9a-z]|-){0,18}[0-9a-z])?$/")
+        if not re.match(r"^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$", value):
+            raise ValueError(r"must validate the regular expression /^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$/")
         return value
 
     @field_validator("protocol")
