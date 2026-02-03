@@ -1,5 +1,9 @@
 ## Release (2026-xx-xx)
 
+- `alb`: [v0.8.1](services/alb/CHANGELOG.md#v081)
+  - Update regular expressions to allow longer names
+- `loadbalancer`: [v0.8.1](services/loadbalancer/CHANGELOG.md#v081)
+  - Update regular expressions to allow longer names
 - `runcommand`: [v1.1.1](services/runcommand/CHANGELOG.md#v111)
   - **Bugfix**: Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
 - `kms`: [v0.7.0](services/kms/CHANGELOG.md#v070)

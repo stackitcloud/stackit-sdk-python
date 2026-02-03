@@ -1,3 +1,6 @@
+## v0.8.1
+- Update regular expressions to allow longer names
+
 ## v0.8.0
 - **Feature:** Add new fields `used_credentials` and `used_load_balancers` to `GetQuotaResponse` model
 
