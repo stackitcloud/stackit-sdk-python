@@ -17,44 +17,21 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field
+from typing_extensions import Self
+
+from stackit.cdn.models.redirect_rule import RedirectRule
 
 
-class StatusError(BaseModel):
+class RedirectConfig(BaseModel):
     """
-    StatusError
+    A wrapper for a list of redirect rules that allows for redirect settings on a distribution.
     """  # noqa: E501
 
-    de: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
-        default=None,
-        description="A german translation string corresponding to the error key. Note that we do not guarantee german translations are present.",
+    rules: Optional[List[RedirectRule]] = Field(
+        default=None, description="A list of redirect rules. The order of rules matters for evaluation."
     )
-    en: Annotated[str, Field(min_length=1, strict=True)] = Field(
-        description="An english translation string corresponding to the error key. An english translation key is always present."
-    )
-    key: Annotated[str, Field(min_length=1, strict=True)] = Field(
-        description="An enum value that describes a Status Error."
-    )
-    __properties: ClassVar[List[str]] = ["de", "en", "key"]
-
-    @field_validator("key")
-    def key_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(
-            [
-                "UNKNOWN",
-                "CUSTOM_DOMAIN_CNAME_MISSING",
-                "CUSTOM_DOMAIN_ALREADY_IN_USE",
-                "PUBLIC_BETA_QUOTA_REACHED",
-                "LOG_SINK_INSTANCE_UNAVAILABLE",
-                "EXTERNAL_QUOTA_REACHED",
-            ]
-        ):
-            raise ValueError(
-                "must be one of enum values ('UNKNOWN', 'CUSTOM_DOMAIN_CNAME_MISSING', 'CUSTOM_DOMAIN_ALREADY_IN_USE', 'PUBLIC_BETA_QUOTA_REACHED', 'LOG_SINK_INSTANCE_UNAVAILABLE', 'EXTERNAL_QUOTA_REACHED')"
-            )
-        return value
+    __properties: ClassVar[List[str]] = ["rules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,7 +50,7 @@ class StatusError(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of StatusError from a JSON string"""
+        """Create an instance of RedirectConfig from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -93,16 +70,29 @@ class StatusError(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in rules (list)
+        _items = []
+        if self.rules:
+            for _item in self.rules:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["rules"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of StatusError from a dict"""
+        """Create an instance of RedirectConfig from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"de": obj.get("de"), "en": obj.get("en"), "key": obj.get("key")})
+        _obj = cls.model_validate(
+            {
+                "rules": (
+                    [RedirectRule.from_dict(_item) for _item in obj["rules"]] if obj.get("rules") is not None else None
+                )
+            }
+        )
         return _obj

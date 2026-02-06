@@ -23,6 +23,7 @@ from typing_extensions import Annotated, Self
 from stackit.cdn.models.config_backend import ConfigBackend
 from stackit.cdn.models.loki_log_sink import LokiLogSink
 from stackit.cdn.models.optimizer import Optimizer
+from stackit.cdn.models.redirect_config import RedirectConfig
 from stackit.cdn.models.region import Region
 from stackit.cdn.models.waf_config import WafConfig
 
@@ -53,6 +54,7 @@ class Config(BaseModel):
         alias="monthlyLimitBytes",
     )
     optimizer: Optional[Optimizer] = None
+    redirects: Optional[RedirectConfig] = None
     regions: Annotated[List[Region], Field(min_length=1)]
     waf: WafConfig
     __properties: ClassVar[List[str]] = [
@@ -63,6 +65,7 @@ class Config(BaseModel):
         "logSink",
         "monthlyLimitBytes",
         "optimizer",
+        "redirects",
         "regions",
         "waf",
     ]
@@ -113,6 +116,9 @@ class Config(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of optimizer
         if self.optimizer:
             _dict["optimizer"] = self.optimizer.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of redirects
+        if self.redirects:
+            _dict["redirects"] = self.redirects.to_dict()
         # override the default output from pydantic by calling `to_dict()` of waf
         if self.waf:
             _dict["waf"] = self.waf.to_dict()
@@ -146,6 +152,7 @@ class Config(BaseModel):
                 "logSink": LokiLogSink.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": Optimizer.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
+                "redirects": RedirectConfig.from_dict(obj["redirects"]) if obj.get("redirects") is not None else None,
                 "regions": obj.get("regions"),
                 "waf": WafConfig.from_dict(obj["waf"]) if obj.get("waf") is not None else None,
             }
