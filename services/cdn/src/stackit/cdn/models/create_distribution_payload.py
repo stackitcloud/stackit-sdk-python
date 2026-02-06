@@ -25,6 +25,7 @@ from stackit.cdn.models.create_distribution_payload_backend import (
 )
 from stackit.cdn.models.loki_log_sink_create import LokiLogSinkCreate
 from stackit.cdn.models.optimizer import Optimizer
+from stackit.cdn.models.redirect_config import RedirectConfig
 from stackit.cdn.models.region import Region
 from stackit.cdn.models.waf_config import WafConfig
 
@@ -62,6 +63,7 @@ class CreateDistributionPayload(BaseModel):
         alias="monthlyLimitBytes",
     )
     optimizer: Optional[Optimizer] = None
+    redirects: Optional[RedirectConfig] = None
     regions: Annotated[List[Region], Field(min_length=1)] = Field(
         description="Define in which regions you would like your content to be cached. "
     )
@@ -75,6 +77,7 @@ class CreateDistributionPayload(BaseModel):
         "logSink",
         "monthlyLimitBytes",
         "optimizer",
+        "redirects",
         "regions",
         "waf",
     ]
@@ -125,6 +128,9 @@ class CreateDistributionPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of optimizer
         if self.optimizer:
             _dict["optimizer"] = self.optimizer.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of redirects
+        if self.redirects:
+            _dict["redirects"] = self.redirects.to_dict()
         # override the default output from pydantic by calling `to_dict()` of waf
         if self.waf:
             _dict["waf"] = self.waf.to_dict()
@@ -153,6 +159,7 @@ class CreateDistributionPayload(BaseModel):
                 "logSink": LokiLogSinkCreate.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": Optimizer.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
+                "redirects": RedirectConfig.from_dict(obj["redirects"]) if obj.get("redirects") is not None else None,
                 "regions": obj.get("regions"),
                 "waf": WafConfig.from_dict(obj["waf"]) if obj.get("waf") is not None else None,
             }
