@@ -17,44 +17,22 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
+from stackit.cdn.models.match_condition import MatchCondition
 
-class StatusError(BaseModel):
+
+class Matcher(BaseModel):
     """
-    StatusError
+    A matcher containing a list of string values to compare against the request path.
     """  # noqa: E501
 
-    de: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
-        default=None,
-        description="A german translation string corresponding to the error key. Note that we do not guarantee german translations are present.",
+    value_match_condition: Optional[MatchCondition] = Field(default=MatchCondition.ANY, alias="valueMatchCondition")
+    values: Annotated[List[StrictStr], Field(min_length=1)] = Field(
+        description='A list of glob patterns to match against the request path. At least one value is required. Examples: "/shop/*" or "*/img/*"'
     )
-    en: Annotated[str, Field(min_length=1, strict=True)] = Field(
-        description="An english translation string corresponding to the error key. An english translation key is always present."
-    )
-    key: Annotated[str, Field(min_length=1, strict=True)] = Field(
-        description="An enum value that describes a Status Error."
-    )
-    __properties: ClassVar[List[str]] = ["de", "en", "key"]
-
-    @field_validator("key")
-    def key_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(
-            [
-                "UNKNOWN",
-                "CUSTOM_DOMAIN_CNAME_MISSING",
-                "CUSTOM_DOMAIN_ALREADY_IN_USE",
-                "PUBLIC_BETA_QUOTA_REACHED",
-                "LOG_SINK_INSTANCE_UNAVAILABLE",
-                "EXTERNAL_QUOTA_REACHED",
-            ]
-        ):
-            raise ValueError(
-                "must be one of enum values ('UNKNOWN', 'CUSTOM_DOMAIN_CNAME_MISSING', 'CUSTOM_DOMAIN_ALREADY_IN_USE', 'PUBLIC_BETA_QUOTA_REACHED', 'LOG_SINK_INSTANCE_UNAVAILABLE', 'EXTERNAL_QUOTA_REACHED')"
-            )
-        return value
+    __properties: ClassVar[List[str]] = ["valueMatchCondition", "values"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,7 +51,7 @@ class StatusError(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of StatusError from a JSON string"""
+        """Create an instance of Matcher from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -97,12 +75,19 @@ class StatusError(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of StatusError from a dict"""
+        """Create an instance of Matcher from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"de": obj.get("de"), "en": obj.get("en"), "key": obj.get("key")})
+        _obj = cls.model_validate(
+            {
+                "valueMatchCondition": (
+                    obj.get("valueMatchCondition") if obj.get("valueMatchCondition") is not None else MatchCondition.ANY
+                ),
+                "values": obj.get("values"),
+            }
+        )
         return _obj
