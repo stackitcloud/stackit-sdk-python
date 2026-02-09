@@ -19,18 +19,20 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
-class RunnerLabel(BaseModel):
+class RunnerRuntime(BaseModel):
     """
-    Describes a STACKIT Git RunnerLabel.
+    Describes a STACKIT Git Runner runtime.
     """  # noqa: E501
 
-    description: StrictStr = Field(description="RunnerLabel description.")
-    id: Annotated[str, Field(strict=True, max_length=36)] = Field(description="RunnerLabel id.")
-    label: Annotated[str, Field(strict=True, max_length=64)] = Field(description="RunnerLabel label.")
-    __properties: ClassVar[List[str]] = ["description", "id", "label"]
+    availability: StrictStr = Field(description="Indicates the availability of the runner label")
+    description: StrictStr = Field(description="Human-friendly description of the runtime and it's capabilities.")
+    display_name: StrictStr = Field(description="Human-friendly name of the runtime.")
+    id: StrictStr = Field(description="Runtime identifier.")
+    label: StrictStr = Field(description="Runtime label.")
+    __properties: ClassVar[List[str]] = ["availability", "description", "display_name", "id", "label"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +51,7 @@ class RunnerLabel(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RunnerLabel from a JSON string"""
+        """Create an instance of RunnerRuntime from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,7 +75,7 @@ class RunnerLabel(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RunnerLabel from a dict"""
+        """Create an instance of RunnerRuntime from a dict"""
         if obj is None:
             return None
 
@@ -81,6 +83,12 @@ class RunnerLabel(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"description": obj.get("description"), "id": obj.get("id"), "label": obj.get("label")}
+            {
+                "availability": obj.get("availability"),
+                "description": obj.get("description"),
+                "display_name": obj.get("display_name"),
+                "id": obj.get("id"),
+                "label": obj.get("label"),
+            }
         )
         return _obj
