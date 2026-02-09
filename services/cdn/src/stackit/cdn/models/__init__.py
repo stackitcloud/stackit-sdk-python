@@ -85,6 +85,8 @@ from stackit.cdn.models.loki_log_sink import LokiLogSink
 from stackit.cdn.models.loki_log_sink_create import LokiLogSinkCreate
 from stackit.cdn.models.loki_log_sink_credentials import LokiLogSinkCredentials
 from stackit.cdn.models.loki_log_sink_patch import LokiLogSinkPatch
+from stackit.cdn.models.match_condition import MatchCondition
+from stackit.cdn.models.matcher import Matcher
 from stackit.cdn.models.optimizer import Optimizer
 from stackit.cdn.models.optimizer_patch import OptimizerPatch
 from stackit.cdn.models.patch_distribution_payload import PatchDistributionPayload
@@ -104,6 +106,8 @@ from stackit.cdn.models.put_custom_domain_response import PutCustomDomainRespons
 from stackit.cdn.models.put_custom_domain_response_certificate import (
     PutCustomDomainResponseCertificate,
 )
+from stackit.cdn.models.redirect_config import RedirectConfig
+from stackit.cdn.models.redirect_rule import RedirectRule
 from stackit.cdn.models.region import Region
 from stackit.cdn.models.status_error import StatusError
 from stackit.cdn.models.waf_config import WafConfig
