@@ -21,30 +21,30 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.observability.models.create_scrape_config_payload_basic_auth import (
-    CreateScrapeConfigPayloadBasicAuth,
+from stackit.observability.models.partial_update_scrape_configs_request_inner_basic_auth import (
+    PartialUpdateScrapeConfigsRequestInnerBasicAuth,
 )
-from stackit.observability.models.create_scrape_config_payload_http_sd_configs_inner_oauth2 import (
-    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2,
+from stackit.observability.models.partial_update_scrape_configs_request_inner_http_sd_configs_inner_oauth2 import (
+    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2,
 )
-from stackit.observability.models.create_scrape_config_payload_http_sd_configs_inner_oauth2_tls_config import (
-    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig,
+from stackit.observability.models.partial_update_scrape_configs_request_inner_http_sd_configs_inner_oauth2_tls_config import (
+    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig,
 )
 
 
-class CreateScrapeConfigPayloadHttpSdConfigsInner(BaseModel):
+class PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner(BaseModel):
     """
-    CreateScrapeConfigPayloadHttpSdConfigsInner
+    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
     """  # noqa: E501
 
-    basic_auth: Optional[CreateScrapeConfigPayloadBasicAuth] = Field(default=None, alias="basicAuth")
-    oauth2: Optional[CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2] = None
+    basic_auth: Optional[PartialUpdateScrapeConfigsRequestInnerBasicAuth] = Field(default=None, alias="basicAuth")
+    oauth2: Optional[PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2] = None
     refresh_interval: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(
         default="60s",
         description="Refresh interval to re-query the endpoint. E.g. 60s `Additional Validators:` * must be a valid time format* must be >= 60s",
         alias="refreshInterval",
     )
-    tls_config: Optional[CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig] = Field(
+    tls_config: Optional[PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig] = Field(
         default=None, alias="tlsConfig"
     )
     url: Annotated[str, Field(strict=True, max_length=400)] = Field(
@@ -69,7 +69,7 @@ class CreateScrapeConfigPayloadHttpSdConfigsInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadHttpSdConfigsInner from a JSON string"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -102,7 +102,7 @@ class CreateScrapeConfigPayloadHttpSdConfigsInner(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadHttpSdConfigsInner from a dict"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner from a dict"""
         if obj is None:
             return None
 
@@ -112,18 +112,18 @@ class CreateScrapeConfigPayloadHttpSdConfigsInner(BaseModel):
         _obj = cls.model_validate(
             {
                 "basicAuth": (
-                    CreateScrapeConfigPayloadBasicAuth.from_dict(obj["basicAuth"])
+                    PartialUpdateScrapeConfigsRequestInnerBasicAuth.from_dict(obj["basicAuth"])
                     if obj.get("basicAuth") is not None
                     else None
                 ),
                 "oauth2": (
-                    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2.from_dict(obj["oauth2"])
+                    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2.from_dict(obj["oauth2"])
                     if obj.get("oauth2") is not None
                     else None
                 ),
                 "refreshInterval": obj.get("refreshInterval") if obj.get("refreshInterval") is not None else "60s",
                 "tlsConfig": (
-                    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig.from_dict(obj["tlsConfig"])
+                    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig.from_dict(obj["tlsConfig"])
                     if obj.get("tlsConfig") is not None
                     else None
                 ),
