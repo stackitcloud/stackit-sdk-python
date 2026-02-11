@@ -21,17 +21,29 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.observability.models.alertrule_response import AlertruleResponse
 
-
-class AlertRulesResponse(BaseModel):
+class UpdateAlertrulePayload(BaseModel):
     """
-    AlertRulesResponse
+    Alert rule. `Additional Validators:` * total config (all alert groups/rules) should not be bigger than 500000 characters as string since this the limitation of prometheus.
     """  # noqa: E501
 
-    data: List[AlertruleResponse]
-    message: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["data", "message"]
+    annotations: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="map of key:value. Annotations to add to each alert. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters",
+    )
+    expr: Annotated[str, Field(min_length=1, strict=True, max_length=2000)] = Field(
+        description="The PromQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts."
+    )
+    var_for: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(
+        default="0s",
+        description="Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending. `Additional Validators:` * must be a valid time string",
+        alias="for",
+    )
+    labels: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="map of key:value. Labels to add or overwrite for each alert. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters",
+    )
+    __properties: ClassVar[List[str]] = ["annotations", "expr", "for", "labels"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +62,7 @@ class AlertRulesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a JSON string"""
+        """Create an instance of UpdateAlertrulePayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,18 +82,11 @@ class AlertRulesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
-        _items = []
-        if self.data:
-            for _item in self.data:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["data"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a dict"""
+        """Create an instance of UpdateAlertrulePayload from a dict"""
         if obj is None:
             return None
 
@@ -90,12 +95,10 @@ class AlertRulesResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "data": (
-                    [AlertruleResponse.from_dict(_item) for _item in obj["data"]]
-                    if obj.get("data") is not None
-                    else None
-                ),
-                "message": obj.get("message"),
+                "annotations": obj.get("annotations"),
+                "expr": obj.get("expr"),
+                "for": obj.get("for") if obj.get("for") is not None else "0s",
+                "labels": obj.get("labels"),
             }
         )
         return _obj

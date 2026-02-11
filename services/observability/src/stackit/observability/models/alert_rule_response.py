@@ -24,12 +24,12 @@ from typing_extensions import Annotated, Self
 from stackit.observability.models.alertrule_response import AlertruleResponse
 
 
-class AlertRulesResponse(BaseModel):
+class AlertRuleResponse(BaseModel):
     """
-    AlertRulesResponse
+    AlertRuleResponse
     """  # noqa: E501
 
-    data: List[AlertruleResponse]
+    data: AlertruleResponse
     message: Annotated[str, Field(min_length=1, strict=True)]
     __properties: ClassVar[List[str]] = ["data", "message"]
 
@@ -50,7 +50,7 @@ class AlertRulesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a JSON string"""
+        """Create an instance of AlertRuleResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,18 +70,14 @@ class AlertRulesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of data
         if self.data:
-            for _item in self.data:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["data"] = _items
+            _dict["data"] = self.data.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a dict"""
+        """Create an instance of AlertRuleResponse from a dict"""
         if obj is None:
             return None
 
@@ -90,11 +86,7 @@ class AlertRulesResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "data": (
-                    [AlertruleResponse.from_dict(_item) for _item in obj["data"]]
-                    if obj.get("data") is not None
-                    else None
-                ),
+                "data": AlertruleResponse.from_dict(obj["data"]) if obj.get("data") is not None else None,
                 "message": obj.get("message"),
             }
         )
