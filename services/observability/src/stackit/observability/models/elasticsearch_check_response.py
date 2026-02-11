@@ -21,17 +21,22 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.observability.models.alertrule_response import AlertruleResponse
+from stackit.observability.models.elasticsearch_check_child_response import (
+    ElasticsearchCheckChildResponse,
+)
 
 
-class AlertRulesResponse(BaseModel):
+class ElasticsearchCheckResponse(BaseModel):
     """
-    AlertRulesResponse
+    ElasticsearchCheckResponse
     """  # noqa: E501
 
-    data: List[AlertruleResponse]
+    elasticsearch_check: Optional[ElasticsearchCheckChildResponse] = Field(default=None, alias="elasticsearchCheck")
+    elasticsearch_checks: Annotated[List[ElasticsearchCheckChildResponse], Field(max_length=100)] = Field(
+        alias="elasticsearchChecks"
+    )
     message: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["data", "message"]
+    __properties: ClassVar[List[str]] = ["elasticsearchCheck", "elasticsearchChecks", "message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +55,7 @@ class AlertRulesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a JSON string"""
+        """Create an instance of ElasticsearchCheckResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,18 +75,21 @@ class AlertRulesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
+        # override the default output from pydantic by calling `to_dict()` of elasticsearch_check
+        if self.elasticsearch_check:
+            _dict["elasticsearchCheck"] = self.elasticsearch_check.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in elasticsearch_checks (list)
         _items = []
-        if self.data:
-            for _item in self.data:
+        if self.elasticsearch_checks:
+            for _item in self.elasticsearch_checks:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict["data"] = _items
+            _dict["elasticsearchChecks"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a dict"""
+        """Create an instance of ElasticsearchCheckResponse from a dict"""
         if obj is None:
             return None
 
@@ -90,9 +98,14 @@ class AlertRulesResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "data": (
-                    [AlertruleResponse.from_dict(_item) for _item in obj["data"]]
-                    if obj.get("data") is not None
+                "elasticsearchCheck": (
+                    ElasticsearchCheckChildResponse.from_dict(obj["elasticsearchCheck"])
+                    if obj.get("elasticsearchCheck") is not None
+                    else None
+                ),
+                "elasticsearchChecks": (
+                    [ElasticsearchCheckChildResponse.from_dict(_item) for _item in obj["elasticsearchChecks"]]
+                    if obj.get("elasticsearchChecks") is not None
                     else None
                 ),
                 "message": obj.get("message"),
