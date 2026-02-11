@@ -34,9 +34,14 @@ class CreateUpdateSchedulePayload(BaseModel):
     """  # noqa: E501
 
     enabled: StrictBool
-    maintenance_window: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(alias="maintenanceWindow")
+    maintenance_window: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(
+        description="Updates start within the defined hourly window. Depending on the updates, the process may exceed this timeframe and require an automatic restart.",
+        alias="maintenanceWindow",
+    )
     name: StrictStr
-    rrule: StrictStr
+    rrule: StrictStr = Field(
+        description="An rrule (Recurrence Rule) is a standardized string format used in iCalendar (RFC 5545) to define repeating events, and you can generate one by using a dedicated library or by using online generator tools to specify parameters like frequency, interval, and end dates"
+    )
     __properties: ClassVar[List[str]] = ["enabled", "maintenanceWindow", "name", "rrule"]
 
     model_config = ConfigDict(
