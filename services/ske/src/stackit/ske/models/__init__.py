@@ -13,6 +13,8 @@
 """  # noqa: E501
 
 
+from stackit.ske.models.access_scope import AccessScope
+
 # import models into model package
 from stackit.ske.models.acl import ACL
 from stackit.ske.models.availability_zone import AvailabilityZone
@@ -54,5 +56,6 @@ from stackit.ske.models.provider_options import ProviderOptions
 from stackit.ske.models.runtime_error import RuntimeError
 from stackit.ske.models.taint import Taint
 from stackit.ske.models.time_window import TimeWindow
+from stackit.ske.models.v2_control_plane_network import V2ControlPlaneNetwork
 from stackit.ske.models.volume import Volume
 from stackit.ske.models.volume_type import VolumeType
