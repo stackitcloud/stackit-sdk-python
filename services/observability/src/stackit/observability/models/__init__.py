@@ -25,9 +25,22 @@ from stackit.observability.models.alert_config_route_response import (
 from stackit.observability.models.alert_group import AlertGroup
 from stackit.observability.models.alert_group_response import AlertGroupResponse
 from stackit.observability.models.alert_groups_response import AlertGroupsResponse
-from stackit.observability.models.alert_rule import AlertRule
+from stackit.observability.models.alert_record_response import AlertRecordResponse
+from stackit.observability.models.alert_records_response import AlertRecordsResponse
 from stackit.observability.models.alert_rule_record import AlertRuleRecord
+from stackit.observability.models.alert_rule_response import AlertRuleResponse
 from stackit.observability.models.alert_rules_response import AlertRulesResponse
+from stackit.observability.models.alertrecord_response import AlertrecordResponse
+from stackit.observability.models.alertrule_response import AlertruleResponse
+from stackit.observability.models.backup_response import BackupResponse
+from stackit.observability.models.backup_retention_response import (
+    BackupRetentionResponse,
+)
+from stackit.observability.models.backup_schedule import BackupSchedule
+from stackit.observability.models.backup_schedule_post_response import (
+    BackupSchedulePostResponse,
+)
+from stackit.observability.models.backup_schedule_response import BackupScheduleResponse
 from stackit.observability.models.basic_auth import BasicAuth
 from stackit.observability.models.cert_check_child_response import (
     CertCheckChildResponse,
@@ -54,8 +67,14 @@ from stackit.observability.models.create_alert_config_route_payload_routes_inner
 from stackit.observability.models.create_alertgroups_payload import (
     CreateAlertgroupsPayload,
 )
+from stackit.observability.models.create_alertrecord_payload import (
+    CreateAlertrecordPayload,
+)
 from stackit.observability.models.create_alertrules_payload import (
     CreateAlertrulesPayload,
+)
+from stackit.observability.models.create_backup_schedule_payload import (
+    CreateBackupSchedulePayload,
 )
 from stackit.observability.models.create_cert_check400_response import (
     CreateCertCheck400Response,
@@ -69,6 +88,9 @@ from stackit.observability.models.create_credentials_payload import (
 from stackit.observability.models.create_credentials_response import (
     CreateCredentialsResponse,
 )
+from stackit.observability.models.create_elasticsearch_check_payload import (
+    CreateElasticsearchCheckPayload,
+)
 from stackit.observability.models.create_http_check_payload import (
     CreateHttpCheckPayload,
 )
@@ -80,26 +102,29 @@ from stackit.observability.models.create_logs_alertgroups_payload import (
 from stackit.observability.models.create_logs_alertgroups_payload_rules_inner import (
     CreateLogsAlertgroupsPayloadRulesInner,
 )
+from stackit.observability.models.create_mongodb_check_payload import (
+    CreateMongodbCheckPayload,
+)
+from stackit.observability.models.create_mysql_check_payload import (
+    CreateMysqlCheckPayload,
+)
+from stackit.observability.models.create_network_check_payload import (
+    CreateNetworkCheckPayload,
+)
+from stackit.observability.models.create_ping_check_payload import (
+    CreatePingCheckPayload,
+)
+from stackit.observability.models.create_postgresql_check_payload import (
+    CreatePostgresqlCheckPayload,
+)
+from stackit.observability.models.create_rabbitmq_check_payload import (
+    CreateRabbitmqCheckPayload,
+)
+from stackit.observability.models.create_redis_check_payload import (
+    CreateRedisCheckPayload,
+)
 from stackit.observability.models.create_scrape_config_payload import (
     CreateScrapeConfigPayload,
-)
-from stackit.observability.models.create_scrape_config_payload_basic_auth import (
-    CreateScrapeConfigPayloadBasicAuth,
-)
-from stackit.observability.models.create_scrape_config_payload_http_sd_configs_inner import (
-    CreateScrapeConfigPayloadHttpSdConfigsInner,
-)
-from stackit.observability.models.create_scrape_config_payload_http_sd_configs_inner_oauth2 import (
-    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2,
-)
-from stackit.observability.models.create_scrape_config_payload_http_sd_configs_inner_oauth2_tls_config import (
-    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig,
-)
-from stackit.observability.models.create_scrape_config_payload_metrics_relabel_configs_inner import (
-    CreateScrapeConfigPayloadMetricsRelabelConfigsInner,
-)
-from stackit.observability.models.create_scrape_config_payload_static_configs_inner import (
-    CreateScrapeConfigPayloadStaticConfigsInner,
 )
 from stackit.observability.models.credentials import Credentials
 from stackit.observability.models.credentials_remote_write_config import (
@@ -110,6 +135,12 @@ from stackit.observability.models.credentials_remote_write_delete_response impor
 )
 from stackit.observability.models.delete_scrape_config_response import (
     DeleteScrapeConfigResponse,
+)
+from stackit.observability.models.elasticsearch_check_child_response import (
+    ElasticsearchCheckChildResponse,
+)
+from stackit.observability.models.elasticsearch_check_response import (
+    ElasticsearchCheckResponse,
 )
 from stackit.observability.models.email_config import EmailConfig
 from stackit.observability.models.error import Error
@@ -149,18 +180,73 @@ from stackit.observability.models.logs_config_response import LogsConfigResponse
 from stackit.observability.models.message import Message
 from stackit.observability.models.metrics_relabel_config import MetricsRelabelConfig
 from stackit.observability.models.model_global import ModelGlobal
+from stackit.observability.models.mongodb_check_child_response import (
+    MongodbCheckChildResponse,
+)
+from stackit.observability.models.mongodb_check_response import MongodbCheckResponse
+from stackit.observability.models.mysql_check_child_response import (
+    MysqlCheckChildResponse,
+)
+from stackit.observability.models.mysql_check_response import MysqlCheckResponse
+from stackit.observability.models.network_check_child_response import (
+    NetworkCheckChildResponse,
+)
+from stackit.observability.models.network_check_response import NetworkCheckResponse
 from stackit.observability.models.o_auth2 import OAuth2
+from stackit.observability.models.offerings import Offerings
 from stackit.observability.models.opsgenie_config import OpsgenieConfig
+from stackit.observability.models.partial_update_alertrecords_request_inner import (
+    PartialUpdateAlertrecordsRequestInner,
+)
 from stackit.observability.models.partial_update_alertrules_request_inner import (
     PartialUpdateAlertrulesRequestInner,
 )
+from stackit.observability.models.partial_update_scrape_configs_request_inner import (
+    PartialUpdateScrapeConfigsRequestInner,
+)
+from stackit.observability.models.partial_update_scrape_configs_request_inner_basic_auth import (
+    PartialUpdateScrapeConfigsRequestInnerBasicAuth,
+)
+from stackit.observability.models.partial_update_scrape_configs_request_inner_http_sd_configs_inner import (
+    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner,
+)
+from stackit.observability.models.partial_update_scrape_configs_request_inner_http_sd_configs_inner_oauth2 import (
+    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2,
+)
+from stackit.observability.models.partial_update_scrape_configs_request_inner_http_sd_configs_inner_oauth2_tls_config import (
+    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig,
+)
+from stackit.observability.models.partial_update_scrape_configs_request_inner_metrics_relabel_configs_inner import (
+    PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner,
+)
+from stackit.observability.models.partial_update_scrape_configs_request_inner_static_configs_inner import (
+    PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner,
+)
 from stackit.observability.models.permission_denied import PermissionDenied
+from stackit.observability.models.ping_check_child_response import (
+    PingCheckChildResponse,
+)
+from stackit.observability.models.ping_check_response import PingCheckResponse
 from stackit.observability.models.plan import Plan
 from stackit.observability.models.plan_model import PlanModel
 from stackit.observability.models.plans_response import PlansResponse
+from stackit.observability.models.postgresql_check_child_response import (
+    PostgresqlCheckChildResponse,
+)
+from stackit.observability.models.postgresql_check_response import (
+    PostgresqlCheckResponse,
+)
 from stackit.observability.models.project_instance_full import ProjectInstanceFull
+from stackit.observability.models.rabbit_mq_check_child_response import (
+    RabbitMQCheckChildResponse,
+)
+from stackit.observability.models.rabbitmq_check_response import RabbitmqCheckResponse
 from stackit.observability.models.receiver import Receiver
 from stackit.observability.models.receivers import Receivers
+from stackit.observability.models.redis_check_child_response import (
+    RedisCheckChildResponse,
+)
+from stackit.observability.models.redis_check_response import RedisCheckResponse
 from stackit.observability.models.route import Route
 from stackit.observability.models.route_serializer import RouteSerializer
 from stackit.observability.models.scrape_configs_response import ScrapeConfigsResponse
@@ -206,6 +292,10 @@ from stackit.observability.models.update_alertgroups_request_inner import (
 from stackit.observability.models.update_alertgroups_request_inner_rules_inner import (
     UpdateAlertgroupsRequestInnerRulesInner,
 )
+from stackit.observability.models.update_alertrecord_payload import (
+    UpdateAlertrecordPayload,
+)
+from stackit.observability.models.update_alertrule_payload import UpdateAlertrulePayload
 from stackit.observability.models.update_credentials_remote_write_config_payload import (
     UpdateCredentialsRemoteWriteConfigPayload,
 )

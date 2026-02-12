@@ -21,17 +21,20 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.observability.models.alertrule_response import AlertruleResponse
+from stackit.observability.models.network_check_child_response import (
+    NetworkCheckChildResponse,
+)
 
 
-class AlertRulesResponse(BaseModel):
+class NetworkCheckResponse(BaseModel):
     """
-    AlertRulesResponse
+    NetworkCheckResponse
     """  # noqa: E501
 
-    data: List[AlertruleResponse]
     message: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["data", "message"]
+    network_check: Optional[NetworkCheckChildResponse] = Field(default=None, alias="networkCheck")
+    network_checks: Annotated[List[NetworkCheckChildResponse], Field(max_length=100)] = Field(alias="networkChecks")
+    __properties: ClassVar[List[str]] = ["message", "networkCheck", "networkChecks"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +53,7 @@ class AlertRulesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a JSON string"""
+        """Create an instance of NetworkCheckResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,18 +73,21 @@ class AlertRulesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
+        # override the default output from pydantic by calling `to_dict()` of network_check
+        if self.network_check:
+            _dict["networkCheck"] = self.network_check.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in network_checks (list)
         _items = []
-        if self.data:
-            for _item in self.data:
+        if self.network_checks:
+            for _item in self.network_checks:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict["data"] = _items
+            _dict["networkChecks"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a dict"""
+        """Create an instance of NetworkCheckResponse from a dict"""
         if obj is None:
             return None
 
@@ -90,12 +96,17 @@ class AlertRulesResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "data": (
-                    [AlertruleResponse.from_dict(_item) for _item in obj["data"]]
-                    if obj.get("data") is not None
+                "message": obj.get("message"),
+                "networkCheck": (
+                    NetworkCheckChildResponse.from_dict(obj["networkCheck"])
+                    if obj.get("networkCheck") is not None
                     else None
                 ),
-                "message": obj.get("message"),
+                "networkChecks": (
+                    [NetworkCheckChildResponse.from_dict(_item) for _item in obj["networkChecks"]]
+                    if obj.get("networkChecks") is not None
+                    else None
+                ),
             }
         )
         return _obj
