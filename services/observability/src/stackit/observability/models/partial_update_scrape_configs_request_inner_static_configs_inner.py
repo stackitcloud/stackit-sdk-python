@@ -21,17 +21,20 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.observability.models.alertrule_response import AlertruleResponse
 
-
-class AlertRulesResponse(BaseModel):
+class PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner(BaseModel):
     """
-    AlertRulesResponse
+    PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner
     """  # noqa: E501
 
-    data: List[AlertruleResponse]
-    message: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["data", "message"]
+    labels: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="Labels assigned to all metrics scraped from the targets. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters",
+    )
+    targets: List[Annotated[str, Field(min_length=1, strict=True, max_length=500)]] = Field(
+        description="The targets specified by the static config."
+    )
+    __properties: ClassVar[List[str]] = ["labels", "targets"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +53,7 @@ class AlertRulesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a JSON string"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,32 +73,16 @@ class AlertRulesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
-        _items = []
-        if self.data:
-            for _item in self.data:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["data"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a dict"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "data": (
-                    [AlertruleResponse.from_dict(_item) for _item in obj["data"]]
-                    if obj.get("data") is not None
-                    else None
-                ),
-                "message": obj.get("message"),
-            }
-        )
+        _obj = cls.model_validate({"labels": obj.get("labels"), "targets": obj.get("targets")})
         return _obj
