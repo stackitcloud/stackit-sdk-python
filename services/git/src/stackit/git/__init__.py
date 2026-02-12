@@ -29,19 +29,24 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "Authentication",
+    "AuthenticationList",
+    "CreateAuthenticationPayload",
     "CreateInstancePayload",
+    "CreateRunnerPayload",
+    "FeatureToggle",
     "Flavor",
+    "FlavorsList",
     "GenericErrorResponse",
     "Instance",
-    "InstanceFlavor",
+    "InstanceList",
     "InternalServerErrorResponse",
-    "ListFlavors",
-    "ListInstances",
-    "ListRunnerLabels",
+    "PatchAuthenticationPayload",
     "PatchInstancePayload",
     "PatchOperation",
-    "RunnerLabel",
-    "UnauthorizedResponse",
+    "Runner",
+    "RunnerRuntime",
+    "RunnerRuntimeList",
 ]
 
 # import apis into sdk package
@@ -59,26 +64,39 @@ from stackit.git.exceptions import ApiValueError as ApiValueError
 from stackit.git.exceptions import OpenApiException as OpenApiException
 
 # import models into sdk package
+from stackit.git.models.authentication import Authentication as Authentication
+from stackit.git.models.authentication_list import (
+    AuthenticationList as AuthenticationList,
+)
+from stackit.git.models.create_authentication_payload import (
+    CreateAuthenticationPayload as CreateAuthenticationPayload,
+)
 from stackit.git.models.create_instance_payload import (
     CreateInstancePayload as CreateInstancePayload,
 )
+from stackit.git.models.create_runner_payload import (
+    CreateRunnerPayload as CreateRunnerPayload,
+)
+from stackit.git.models.feature_toggle import FeatureToggle as FeatureToggle
 from stackit.git.models.flavor import Flavor as Flavor
+from stackit.git.models.flavors_list import FlavorsList as FlavorsList
 from stackit.git.models.generic_error_response import (
     GenericErrorResponse as GenericErrorResponse,
 )
 from stackit.git.models.instance import Instance as Instance
-from stackit.git.models.instance_flavor import InstanceFlavor as InstanceFlavor
+from stackit.git.models.instance_list import InstanceList as InstanceList
 from stackit.git.models.internal_server_error_response import (
     InternalServerErrorResponse as InternalServerErrorResponse,
 )
-from stackit.git.models.list_flavors import ListFlavors as ListFlavors
-from stackit.git.models.list_instances import ListInstances as ListInstances
-from stackit.git.models.list_runner_labels import ListRunnerLabels as ListRunnerLabels
+from stackit.git.models.patch_authentication_payload import (
+    PatchAuthenticationPayload as PatchAuthenticationPayload,
+)
 from stackit.git.models.patch_instance_payload import (
     PatchInstancePayload as PatchInstancePayload,
 )
 from stackit.git.models.patch_operation import PatchOperation as PatchOperation
-from stackit.git.models.runner_label import RunnerLabel as RunnerLabel
-from stackit.git.models.unauthorized_response import (
-    UnauthorizedResponse as UnauthorizedResponse,
+from stackit.git.models.runner import Runner as Runner
+from stackit.git.models.runner_runtime import RunnerRuntime as RunnerRuntime
+from stackit.git.models.runner_runtime_list import (
+    RunnerRuntimeList as RunnerRuntimeList,
 )
