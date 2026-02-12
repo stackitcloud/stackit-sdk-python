@@ -19,24 +19,18 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class ClusterStatusState(str, Enum):
+class AccessScope(str, Enum):
     """
-    ClusterStatusState
+    The access scope of the Control Plane. It defines if the Kubernetes control plane is public or only available inside a STACKIT Network Area. ⚠️ Note: This feature is in private preview. Supplying this object is only permitted for enabled accounts. If your account does not have access, the request will be rejected.
     """
 
     """
     allowed enum values
     """
-    STATE_HEALTHY = "STATE_HEALTHY"
-    STATE_CREATING = "STATE_CREATING"
-    STATE_DELETING = "STATE_DELETING"
-    STATE_UNHEALTHY = "STATE_UNHEALTHY"
-    STATE_RECONCILING = "STATE_RECONCILING"
-    STATE_HIBERNATED = "STATE_HIBERNATED"
-    STATE_HIBERNATING = "STATE_HIBERNATING"
-    STATE_WAKINGUP = "STATE_WAKINGUP"
+    PUBLIC = "PUBLIC"
+    SNA = "SNA"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of ClusterStatusState from a JSON string"""
+        """Create an instance of AccessScope from a JSON string"""
         return cls(json.loads(json_str))
