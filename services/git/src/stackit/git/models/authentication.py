@@ -23,51 +23,41 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
-from stackit.git.models.feature_toggle import FeatureToggle
 
-
-class Instance(BaseModel):
+class Authentication(BaseModel):
     """
-    Describes a STACKIT Git instance.
+    Describes an authentication definition associated to a STACKIT Git instance. The provider type will be an openidConnect type.
     """  # noqa: E501
 
-    acl: List[StrictStr] = Field(description="Restricted ACL for instance access.")
-    consumed_disk: StrictStr = Field(description="How many bytes of disk space is consumed. Read Only.")
-    consumed_object_storage: StrictStr = Field(description="How many bytes of Object Storage is consumed. Read Only.")
-    created: datetime = Field(description="The date and time the creation of the STACKIT Git instance was triggered.")
-    feature_toggle: FeatureToggle
-    flavor: StrictStr = Field(description="Instance flavor.")
+    auto_discover_url: StrictStr = Field(
+        description="The well-known configuration url to use for this authentication definition."
+    )
+    client_id: StrictStr = Field(description="The IDP client id to use.")
+    created_at: datetime
+    icon_url: StrictStr = Field(description="The url of the icon to use for this authentication definition.")
     id: Annotated[str, Field(strict=True, max_length=36)] = Field(
-        description="A auto generated unique id which identifies the STACKIT Git instances."
+        description="An auto generated unique uuid which identifies the authentication definition in STACKIT Git instances."
     )
     name: Annotated[str, Field(strict=True, max_length=32)] = Field(
-        description="A user chosen name to distinguish multiple STACKIT Git instances."
+        description="The name to identify an authentication definition associated with a STACKIT Git instance."
     )
-    state: Annotated[str, Field(strict=True, max_length=32)] = Field(
-        description="The current state of the STACKIT Git instance."
-    )
-    url: Annotated[str, Field(strict=True, max_length=2048)] = Field(
-        description="The URL for reaching the STACKIT Git instance."
-    )
-    version: Annotated[str, Field(strict=True, max_length=20)] = Field(
-        description="The current version of STACKIT Git deployed to the instance."
-    )
+    provider: StrictStr = Field(description="The Oauth2 provider to use.")
+    scopes: StrictStr = Field(description="Scopes defines the OIDC scopes to request.")
+    status: StrictStr = Field(description="The current status of the authentication definition.")
     __properties: ClassVar[List[str]] = [
-        "acl",
-        "consumed_disk",
-        "consumed_object_storage",
-        "created",
-        "feature_toggle",
-        "flavor",
+        "auto_discover_url",
+        "client_id",
+        "created_at",
+        "icon_url",
         "id",
         "name",
-        "state",
-        "url",
-        "version",
+        "provider",
+        "scopes",
+        "status",
     ]
 
-    @field_validator("created", mode="before")
-    def created_change_year_zero_to_one(cls, value):
+    @field_validator("created_at", mode="before")
+    def created_at_change_year_zero_to_one(cls, value):
         """Workaround which prevents year 0 issue"""
         if isinstance(value, str):
             # Check for year "0000" at the beginning of the string
@@ -77,15 +67,6 @@ class Instance(BaseModel):
             ):
                 # Workaround: Replace "0000" with "0001"
                 return "0001" + value[4:]  # Take "0001" and append the rest of the string
-        return value
-
-    @field_validator("state")
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["Creating", "WaitingForResources", "Updating", "Deleting", "Ready", "Error"]):
-            raise ValueError(
-                "must be one of enum values ('Creating', 'WaitingForResources', 'Updating', 'Deleting', 'Ready', 'Error')"
-            )
         return value
 
     model_config = ConfigDict(
@@ -105,7 +86,7 @@ class Instance(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Instance from a JSON string"""
+        """Create an instance of Authentication from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -125,14 +106,11 @@ class Instance(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of feature_toggle
-        if self.feature_toggle:
-            _dict["feature_toggle"] = self.feature_toggle.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Instance from a dict"""
+        """Create an instance of Authentication from a dict"""
         if obj is None:
             return None
 
@@ -141,19 +119,15 @@ class Instance(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "acl": obj.get("acl"),
-                "consumed_disk": obj.get("consumed_disk"),
-                "consumed_object_storage": obj.get("consumed_object_storage"),
-                "created": obj.get("created"),
-                "feature_toggle": (
-                    FeatureToggle.from_dict(obj["feature_toggle"]) if obj.get("feature_toggle") is not None else None
-                ),
-                "flavor": obj.get("flavor"),
+                "auto_discover_url": obj.get("auto_discover_url"),
+                "client_id": obj.get("client_id"),
+                "created_at": obj.get("created_at"),
+                "icon_url": obj.get("icon_url"),
                 "id": obj.get("id"),
                 "name": obj.get("name"),
-                "state": obj.get("state"),
-                "url": obj.get("url"),
-                "version": obj.get("version"),
+                "provider": obj.get("provider"),
+                "scopes": obj.get("scopes"),
+                "status": obj.get("status"),
             }
         )
         return _obj
