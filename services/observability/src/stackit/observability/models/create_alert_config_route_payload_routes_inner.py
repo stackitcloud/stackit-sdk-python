@@ -27,7 +27,11 @@ class CreateAlertConfigRoutePayloadRoutesInner(BaseModel):
     As in one level above
     """  # noqa: E501
 
-    var_continue: Optional[StrictBool] = Field(default=False, description="As in one level above", alias="continue")
+    var_continue: Optional[StrictBool] = Field(
+        default=False,
+        description="Whether an alert should continue matching subsequent sibling nodes.",
+        alias="continue",
+    )
     group_by: Optional[List[Annotated[str, Field(min_length=1, strict=True, max_length=200)]]] = Field(
         default=None, alias="groupBy"
     )

@@ -18,23 +18,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from typing_extensions import Self
 
 
-class CreateScrapeConfigPayloadStaticConfigsInner(BaseModel):
+class PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
     """
-    CreateScrapeConfigPayloadStaticConfigsInner
+    Configures the scrape request's TLS settings.
     """  # noqa: E501
 
-    labels: Optional[Dict[str, Any]] = Field(
-        default=None,
-        description="Labels assigned to all metrics scraped from the targets. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters",
+    insecure_skip_verify: Optional[StrictBool] = Field(
+        default=False, description="Disable validation of the server certificate.", alias="insecureSkipVerify"
     )
-    targets: List[Annotated[str, Field(min_length=1, strict=True, max_length=500)]] = Field(
-        description="The targets specified by the static config."
-    )
-    __properties: ClassVar[List[str]] = ["labels", "targets"]
+    __properties: ClassVar[List[str]] = ["insecureSkipVerify"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +49,7 @@ class CreateScrapeConfigPayloadStaticConfigsInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadStaticConfigsInner from a JSON string"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,12 +73,18 @@ class CreateScrapeConfigPayloadStaticConfigsInner(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadStaticConfigsInner from a dict"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"labels": obj.get("labels"), "targets": obj.get("targets")})
+        _obj = cls.model_validate(
+            {
+                "insecureSkipVerify": (
+                    obj.get("insecureSkipVerify") if obj.get("insecureSkipVerify") is not None else False
+                )
+            }
+        )
         return _obj
