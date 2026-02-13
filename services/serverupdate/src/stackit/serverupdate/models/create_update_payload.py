@@ -28,7 +28,10 @@ class CreateUpdatePayload(BaseModel):
     """  # noqa: E501
 
     backup_before_update: Optional[StrictBool] = Field(default=None, alias="backupBeforeUpdate")
-    maintenance_window: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(alias="maintenanceWindow")
+    maintenance_window: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(
+        description="Updates start within the defined hourly window. Depending on the updates, the process may exceed this timeframe and require an automatic restart.",
+        alias="maintenanceWindow",
+    )
     __properties: ClassVar[List[str]] = ["backupBeforeUpdate", "maintenanceWindow"]
 
     model_config = ConfigDict(
