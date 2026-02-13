@@ -17,20 +17,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
-from stackit.ske.models.v2_control_plane_network import V2ControlPlaneNetwork
+from stackit.ske.models.access_scope import AccessScope
 
 
-class Network(BaseModel):
+class V2ControlPlaneNetwork(BaseModel):
     """
-    Network
+    V2ControlPlaneNetwork
     """  # noqa: E501
 
-    control_plane: Optional[V2ControlPlaneNetwork] = Field(default=None, alias="controlPlane")
-    id: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["controlPlane", "id"]
+    access_scope: Optional[AccessScope] = Field(default=None, alias="accessScope")
+    __properties: ClassVar[List[str]] = ["accessScope"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +48,7 @@ class Network(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Network from a JSON string"""
+        """Create an instance of V2ControlPlaneNetwork from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,28 +68,16 @@ class Network(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of control_plane
-        if self.control_plane:
-            _dict["controlPlane"] = self.control_plane.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Network from a dict"""
+        """Create an instance of V2ControlPlaneNetwork from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "controlPlane": (
-                    V2ControlPlaneNetwork.from_dict(obj["controlPlane"])
-                    if obj.get("controlPlane") is not None
-                    else None
-                ),
-                "id": obj.get("id"),
-            }
-        )
+        _obj = cls.model_validate({"accessScope": obj.get("accessScope")})
         return _obj
