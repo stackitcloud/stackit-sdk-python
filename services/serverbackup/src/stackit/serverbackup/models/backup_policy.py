@@ -43,7 +43,10 @@ class BackupPolicy(BaseModel):
     enabled: Optional[StrictBool] = None
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
-    rrule: Optional[StrictStr] = None
+    rrule: Optional[StrictStr] = Field(
+        default=None,
+        description="An rrule (Recurrence Rule) is a standardized string format used in iCalendar (RFC 5545) to define repeating events, and you can generate one by using a dedicated library or by using online generator tools to specify parameters like frequency, interval, and end dates",
+    )
     __properties: ClassVar[List[str]] = ["backupProperties", "default", "description", "enabled", "id", "name", "rrule"]
 
     model_config = ConfigDict(
