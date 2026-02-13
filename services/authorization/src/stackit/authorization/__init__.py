@@ -31,12 +31,10 @@ __all__ = [
     "AddCustomRoleResponse",
     "AddMembersPayload",
     "AddRolePayload",
-    "AssignableSubject",
     "DeleteRoleResponse",
     "ErrorResponse",
     "ExistingPermission",
     "GetRoleResponse",
-    "ListAssignableSubjectsResponse",
     "ListMembersResponse",
     "ListPermissionsResponse",
     "ListUserMembershipsResponse",
@@ -79,9 +77,6 @@ from stackit.authorization.models.add_members_payload import (
 from stackit.authorization.models.add_role_payload import (
     AddRolePayload as AddRolePayload,
 )
-from stackit.authorization.models.assignable_subject import (
-    AssignableSubject as AssignableSubject,
-)
 from stackit.authorization.models.delete_role_response import (
     DeleteRoleResponse as DeleteRoleResponse,
 )
@@ -91,9 +86,6 @@ from stackit.authorization.models.existing_permission import (
 )
 from stackit.authorization.models.get_role_response import (
     GetRoleResponse as GetRoleResponse,
-)
-from stackit.authorization.models.list_assignable_subjects_response import (
-    ListAssignableSubjectsResponse as ListAssignableSubjectsResponse,
 )
 from stackit.authorization.models.list_members_response import (
     ListMembersResponse as ListMembersResponse,
