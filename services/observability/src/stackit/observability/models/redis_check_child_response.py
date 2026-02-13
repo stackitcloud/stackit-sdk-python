@@ -22,17 +22,16 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
 
-class AlertRule(BaseModel):
+class RedisCheckChildResponse(BaseModel):
     """
-    AlertRule
+    RedisCheckChildResponse
     """  # noqa: E501
 
-    alert: Annotated[str, Field(min_length=1, strict=True, max_length=200)]
-    annotations: Optional[Dict[str, Annotated[str, Field(min_length=1, strict=True)]]] = None
-    expr: Annotated[str, Field(min_length=1, strict=True, max_length=2000)]
-    var_for: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(default="0s", alias="for")
-    labels: Optional[Dict[str, Annotated[str, Field(min_length=1, strict=True)]]] = None
-    __properties: ClassVar[List[str]] = ["alert", "annotations", "expr", "for", "labels"]
+    id: Annotated[str, Field(min_length=1, strict=True)]
+    password: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    server: Annotated[str, Field(min_length=1, strict=True)]
+    username: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    __properties: ClassVar[List[str]] = ["id", "password", "server", "username"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +50,7 @@ class AlertRule(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AlertRule from a JSON string"""
+        """Create an instance of RedisCheckChildResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +74,7 @@ class AlertRule(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AlertRule from a dict"""
+        """Create an instance of RedisCheckChildResponse from a dict"""
         if obj is None:
             return None
 
@@ -84,11 +83,10 @@ class AlertRule(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "alert": obj.get("alert"),
-                "annotations": obj.get("annotations"),
-                "expr": obj.get("expr"),
-                "for": obj.get("for") if obj.get("for") is not None else "0s",
-                "labels": obj.get("labels"),
+                "id": obj.get("id"),
+                "password": obj.get("password"),
+                "server": obj.get("server"),
+                "username": obj.get("username"),
             }
         )
         return _obj

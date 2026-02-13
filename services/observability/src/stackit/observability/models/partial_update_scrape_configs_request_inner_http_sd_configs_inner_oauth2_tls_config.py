@@ -22,7 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing_extensions import Self
 
 
-class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
+class PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
     """
     Configures the scrape request's TLS settings.
     """  # noqa: E501
@@ -49,7 +49,7 @@ class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig from a JSON string"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,7 +73,7 @@ class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig from a dict"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig from a dict"""
         if obj is None:
             return None
 

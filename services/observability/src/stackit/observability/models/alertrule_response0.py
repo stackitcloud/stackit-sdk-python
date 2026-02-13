@@ -21,17 +21,18 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.observability.models.alertrule_response import AlertruleResponse
 
-
-class AlertRulesResponse(BaseModel):
+class AlertruleResponse(BaseModel):
     """
-    AlertRulesResponse
+    AlertruleResponse
     """  # noqa: E501
 
-    data: List[AlertruleResponse]
-    message: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["data", "message"]
+    alert: Annotated[str, Field(min_length=1, strict=True, max_length=200)]
+    annotations: Optional[Dict[str, Annotated[str, Field(min_length=1, strict=True)]]] = None
+    expr: Annotated[str, Field(min_length=1, strict=True, max_length=2000)]
+    var_for: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=8)]] = Field(default="0s", alias="for")
+    labels: Optional[Dict[str, Annotated[str, Field(min_length=1, strict=True)]]] = None
+    __properties: ClassVar[List[str]] = ["alert", "annotations", "expr", "for", "labels"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +51,7 @@ class AlertRulesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a JSON string"""
+        """Create an instance of AlertruleResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,18 +71,11 @@ class AlertRulesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
-        _items = []
-        if self.data:
-            for _item in self.data:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["data"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AlertRulesResponse from a dict"""
+        """Create an instance of AlertruleResponse from a dict"""
         if obj is None:
             return None
 
@@ -90,12 +84,11 @@ class AlertRulesResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "data": (
-                    [AlertruleResponse.from_dict(_item) for _item in obj["data"]]
-                    if obj.get("data") is not None
-                    else None
-                ),
-                "message": obj.get("message"),
+                "alert": obj.get("alert"),
+                "annotations": obj.get("annotations"),
+                "expr": obj.get("expr"),
+                "for": obj.get("for") if obj.get("for") is not None else "0s",
+                "labels": obj.get("labels"),
             }
         )
         return _obj
