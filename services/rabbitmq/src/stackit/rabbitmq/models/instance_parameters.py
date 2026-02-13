@@ -62,7 +62,7 @@ class InstanceParameters(BaseModel):
     )
     syslog: Optional[List[StrictStr]] = None
     tls_ciphers: Optional[List[StrictStr]] = Field(default=None, alias="tls-ciphers")
-    tls_protocols: Optional[StrictStr] = Field(default=None, alias="tls-protocols")
+    tls_protocols: Optional[List[StrictStr]] = Field(default=None, alias="tls-protocols")
     __properties: ClassVar[List[str]] = [
         "consumer_timeout",
         "enable_monitoring",
@@ -111,8 +111,9 @@ class InstanceParameters(BaseModel):
         if value is None:
             return value
 
-        if value not in set(["tlsv1.2", "tlsv1.3"]):
-            raise ValueError("must be one of enum values ('tlsv1.2', 'tlsv1.3')")
+        for i in value:
+            if i not in set(["tlsv1.2", "tlsv1.3"]):
+                raise ValueError("each list item must be one of ('tlsv1.2', 'tlsv1.3')")
         return value
 
     model_config = ConfigDict(
