@@ -30,9 +30,9 @@ from pydantic import (
 from typing_extensions import Annotated, Self
 
 
-class CreateScrapeConfigPayloadMetricsRelabelConfigsInner(BaseModel):
+class PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner(BaseModel):
     """
-    CreateScrapeConfigPayloadMetricsRelabelConfigsInner
+    PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner
     """  # noqa: E501
 
     action: Optional[StrictStr] = Field(
@@ -101,7 +101,7 @@ class CreateScrapeConfigPayloadMetricsRelabelConfigsInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadMetricsRelabelConfigsInner from a JSON string"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -125,7 +125,7 @@ class CreateScrapeConfigPayloadMetricsRelabelConfigsInner(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadMetricsRelabelConfigsInner from a dict"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner from a dict"""
         if obj is None:
             return None
 

@@ -21,32 +21,20 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.observability.models.create_scrape_config_payload_http_sd_configs_inner_oauth2_tls_config import (
-    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig,
+from stackit.observability.models.redis_check_child_response import (
+    RedisCheckChildResponse,
 )
 
 
-class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2(BaseModel):
+class RedisCheckResponse(BaseModel):
     """
-    OAuth 2.0 authentication using the client credentials grant type. Prometheus fetches an access token from the specified endpoint with the given client access and secret keys. `Additional Validators:` * if oauth2 is in the body no other authentication method should be in the body
+    RedisCheckResponse
     """  # noqa: E501
 
-    client_id: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(
-        description="clientId", alias="clientId"
-    )
-    client_secret: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(
-        description="clientSecret", alias="clientSecret"
-    )
-    scopes: Optional[List[Annotated[str, Field(min_length=1, strict=True, max_length=200)]]] = Field(
-        default=None, description="The URL to fetch the token from."
-    )
-    tls_config: Optional[CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig] = Field(
-        default=None, alias="tlsConfig"
-    )
-    token_url: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(
-        description="The URL to fetch the token from.", alias="tokenUrl"
-    )
-    __properties: ClassVar[List[str]] = ["clientId", "clientSecret", "scopes", "tlsConfig", "tokenUrl"]
+    message: Annotated[str, Field(min_length=1, strict=True)]
+    redis_check: Optional[RedisCheckChildResponse] = Field(default=None, alias="redisCheck")
+    redis_checks: Annotated[List[RedisCheckChildResponse], Field(max_length=100)] = Field(alias="redisChecks")
+    __properties: ClassVar[List[str]] = ["message", "redisCheck", "redisChecks"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -65,7 +53,7 @@ class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 from a JSON string"""
+        """Create an instance of RedisCheckResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -85,14 +73,21 @@ class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of tls_config
-        if self.tls_config:
-            _dict["tlsConfig"] = self.tls_config.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of redis_check
+        if self.redis_check:
+            _dict["redisCheck"] = self.redis_check.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in redis_checks (list)
+        _items = []
+        if self.redis_checks:
+            for _item in self.redis_checks:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["redisChecks"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 from a dict"""
+        """Create an instance of RedisCheckResponse from a dict"""
         if obj is None:
             return None
 
@@ -101,15 +96,15 @@ class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "clientId": obj.get("clientId"),
-                "clientSecret": obj.get("clientSecret"),
-                "scopes": obj.get("scopes"),
-                "tlsConfig": (
-                    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig.from_dict(obj["tlsConfig"])
-                    if obj.get("tlsConfig") is not None
+                "message": obj.get("message"),
+                "redisCheck": (
+                    RedisCheckChildResponse.from_dict(obj["redisCheck"]) if obj.get("redisCheck") is not None else None
+                ),
+                "redisChecks": (
+                    [RedisCheckChildResponse.from_dict(_item) for _item in obj["redisChecks"]]
+                    if obj.get("redisChecks") is not None
                     else None
                 ),
-                "tokenUrl": obj.get("tokenUrl"),
             }
         )
         return _obj
