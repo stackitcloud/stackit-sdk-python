@@ -23,6 +23,7 @@ from typing_extensions import Annotated, Self
 from stackit.cdn.models.config_patch_backend import ConfigPatchBackend
 from stackit.cdn.models.loki_log_sink_patch import LokiLogSinkPatch
 from stackit.cdn.models.optimizer_patch import OptimizerPatch
+from stackit.cdn.models.redirect_config import RedirectConfig
 from stackit.cdn.models.region import Region
 from stackit.cdn.models.waf_config_patch import WafConfigPatch
 
@@ -55,6 +56,7 @@ class ConfigPatch(BaseModel):
         alias="monthlyLimitBytes",
     )
     optimizer: Optional[OptimizerPatch] = None
+    redirects: Optional[RedirectConfig] = None
     regions: Optional[Annotated[List[Region], Field(min_length=1)]] = None
     waf: Optional[WafConfigPatch] = None
     __properties: ClassVar[List[str]] = [
@@ -65,6 +67,7 @@ class ConfigPatch(BaseModel):
         "logSink",
         "monthlyLimitBytes",
         "optimizer",
+        "redirects",
         "regions",
         "waf",
     ]
@@ -115,6 +118,9 @@ class ConfigPatch(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of optimizer
         if self.optimizer:
             _dict["optimizer"] = self.optimizer.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of redirects
+        if self.redirects:
+            _dict["redirects"] = self.redirects.to_dict()
         # override the default output from pydantic by calling `to_dict()` of waf
         if self.waf:
             _dict["waf"] = self.waf.to_dict()
@@ -153,6 +159,7 @@ class ConfigPatch(BaseModel):
                 "logSink": LokiLogSinkPatch.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": OptimizerPatch.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
+                "redirects": RedirectConfig.from_dict(obj["redirects"]) if obj.get("redirects") is not None else None,
                 "regions": obj.get("regions"),
                 "waf": WafConfigPatch.from_dict(obj["waf"]) if obj.get("waf") is not None else None,
             }
