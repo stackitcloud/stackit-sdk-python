@@ -42,6 +42,7 @@ class KeyAuth(AuthBase):
     DEFAULT_TOKEN_ENDPOINT = "https://service-account.api.stackit.cloud/token"  # noqa S105 false positive
     TOKEN_EXPIRY_CHECK_INTERVAL = timedelta(seconds=60)
     EXPIRATION_LEEWAY = timedelta(minutes=5)
+    MAX_REFRESH_RETRIES = 3
 
     timeout: Optional[int] = 30
     initial_token: Optional[str]
@@ -73,6 +74,8 @@ class KeyAuth(AuthBase):
 
     def __call__(self, r: Request) -> Request:
         with self.lock:
+            if self.refresh_future is not None and self.refresh_future.done():
+                self.refresh_future.result()
             if self.__is_token_expired(self.access_token):
                 if self.refresh_future is None or self.refresh_future.done():
                     self.refresh_future = self.executor.submit(self.__refresh_token)
@@ -108,13 +111,15 @@ class KeyAuth(AuthBase):
             self.access_token = response_json["access_token"]
             self.refresh_token = response_json["refresh_token"]
         except requests.RequestException as e:
-            print(f"Initial token fetch failed: {e}")
+            raise requests.RequestException("Initial token fetch failed") from e
 
     def __start_token_refresh_task(self):
         def token_refresh_task():
             while True:
                 time.sleep(self.TOKEN_EXPIRY_CHECK_INTERVAL.total_seconds())
                 with self.lock:
+                    if self.refresh_future is not None and self.refresh_future.done():
+                        self.refresh_future.result()
                     if self.__is_token_expired(self.access_token) and (
                         self.refresh_future is None or self.refresh_future.done()
                     ):
@@ -135,16 +140,19 @@ class KeyAuth(AuthBase):
             "refresh_token": self.refresh_token,
         }
 
-        try:
-            response = requests.post(self.token_endpoint, data=body, timeout=self.timeout)
-            response.raise_for_status()
-            response_data = response.json()
-            new_token = response_data.get("access_token")
-            # with self.lock:
-            self.access_token = new_token
-            print("Token successfully refreshed!")
-        except requests.RequestException as e:
-            print(f"Token refresh failed: {e}")
+        last_exception = None
+        for _ in range(self.MAX_REFRESH_RETRIES):
+            try:
+                response = requests.post(self.token_endpoint, data=body, timeout=self.timeout)
+                response.raise_for_status()
+                response_data = response.json()
+                new_token = response_data.get("access_token")
+                self.access_token = new_token
+                return
+            except requests.RequestException as e:
+                last_exception = e
+
+        raise requests.RequestException("Token refresh failed after retries") from last_exception
 
     def __is_token_expired(self, token: str) -> bool:
         try:
