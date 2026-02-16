@@ -2,6 +2,9 @@
 
 - `alb`: [v0.8.1](services/alb/CHANGELOG.md#v081)
   - Update regular expressions to allow longer names
+- `cdn`; [v2.3.0](services/cdn/CHANGELOG.md#v230)
+  - **Feature:** Add support for `redirects` in `config`, `config_patch` and `create_distribution_payload` models
+    - new related models `redirect_config`,` redirect_rule`, `matcher` and `match_condition`
 - `loadbalancer`: [v0.8.1](services/loadbalancer/CHANGELOG.md#v081)
   - Update regular expressions to allow longer names
 - `runcommand`: [v1.1.1](services/runcommand/CHANGELOG.md#v111)
