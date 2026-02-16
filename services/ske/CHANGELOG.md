@@ -1,3 +1,8 @@
+## v1.6.0
+- **Feature:** new model `AccessScope`
+- **Feature:** new model `V2ControlPlaneNetwork`
+- **Feature:** added field `control_plane` of type `V2ControlPlaneNetwork` to model `Network`
+
 ## v1.5.0
 - **Feature:** Add field `identity` to model `ClusterStatus`
 

@@ -15,6 +15,10 @@
   - **Breaking change:** Remove `ListSnapshotSchedules` method
   - **Breaking change:** Remove field `SnapshotScheduleName` from `CreateResourcePoolPayload` and `UpdateResourcePoolPayload` model
   - **Breaking change:** Remove field `SnapshotSchedule` from `CreateResourcePoolResponseResourcePool`, `GetResourcePoolResponseResourcePool`, `UpdateResourcePoolResponseResourcePoolGetStateRetType` and `ResourcePool` model
+- `ske`: [v1.6.0](services/ske/CHANGELOG.md#v160)
+  - **Feature:** new model `AccessScope`
+  - **Feature:** new model `V2ControlPlaneNetwork`
+  - **Feature:** added field `control_plane` of type `V2ControlPlaneNetwork` to model `Network`
 
 
 ## Release (2026-01-27)
