@@ -48,10 +48,11 @@ class StatusError(BaseModel):
                 "CUSTOM_DOMAIN_ALREADY_IN_USE",
                 "PUBLIC_BETA_QUOTA_REACHED",
                 "LOG_SINK_INSTANCE_UNAVAILABLE",
+                "EXTERNAL_QUOTA_REACHED",
             ]
         ):
             raise ValueError(
-                "must be one of enum values ('UNKNOWN', 'CUSTOM_DOMAIN_CNAME_MISSING', 'CUSTOM_DOMAIN_ALREADY_IN_USE', 'PUBLIC_BETA_QUOTA_REACHED', 'LOG_SINK_INSTANCE_UNAVAILABLE')"
+                "must be one of enum values ('UNKNOWN', 'CUSTOM_DOMAIN_CNAME_MISSING', 'CUSTOM_DOMAIN_ALREADY_IN_USE', 'PUBLIC_BETA_QUOTA_REACHED', 'LOG_SINK_INSTANCE_UNAVAILABLE', 'EXTERNAL_QUOTA_REACHED')"
             )
         return value
 
