@@ -15,6 +15,8 @@
   - Set fields `description` to optional in for `Key`, `KeyRing` and `WrappingKey`
 - `logs`: [v0.2.0](services/logs/CHANGELOG.md#v020)
   - **Feature:** Switch from `v1beta` version to `v1` version of the API.
+- `rabbitmq`: [v0.4.0](services/rabbitmq/CHANGELOG.md#v040)
+  - **Breaking Change:** `tls_protocols` on `instance_parameters` is now a list of strings instead of a single string
 - `sfs`: [v0.2.0](services/sfs/CHANGELOG.md#v020)
   - **Feature:** Switch from `v1beta` API version to `v1` version.
   - **Breaking change:** Remove `ListSnapshotSchedules` method
