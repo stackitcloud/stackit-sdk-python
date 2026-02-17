@@ -1,3 +1,6 @@
+## v0.4.0
+- **Breaking Change:** `tls_protocols` on `instance_parameters` is now a list of strings instead of a single string
+
 ## v0.3.0
 - **Version**: Minimal version is now python 3.9
 
