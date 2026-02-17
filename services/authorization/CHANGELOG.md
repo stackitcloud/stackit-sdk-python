@@ -1,3 +1,6 @@
+## v0.7.0
+- **Breaking change:** removed operation `get_assignable_subjects` and related models `assignable_subject`, `list_assignable_subjects_response`
+
 ## v0.6.0
 - **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
 

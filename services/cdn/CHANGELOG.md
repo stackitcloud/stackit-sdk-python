@@ -1,3 +1,7 @@
+## v2.3.0
+- **Feature:** Add support for `redirects` in `config`, `config_patch` and `create_distribution_payload` models
+  - new related models `redirect_config`,` redirect_rule`, `matcher` and `match_condition`
+
 ## v2.2.0
 - **Feature:** Switch from `v1beta2` CDN API version to `v1` version.
 - **Feature:** Add new function `GetLogsSearchFilters`
