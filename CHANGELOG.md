@@ -2,6 +2,8 @@
 
 - `alb`: [v0.8.1](services/alb/CHANGELOG.md#v081)
   - Update regular expressions to allow longer names
+- `authorization`: [v0.7.0](services/authorization/CHANGELOG.md#v070)
+  - **Breaking change:** removed operation `get_assignable_subjects` and related models `assignable_subject`, `list_assignable_subjects_response`
 - `loadbalancer`: [v0.8.1](services/loadbalancer/CHANGELOG.md#v081)
   - Update regular expressions to allow longer names
 - `runcommand`: [v1.1.1](services/runcommand/CHANGELOG.md#v111)
