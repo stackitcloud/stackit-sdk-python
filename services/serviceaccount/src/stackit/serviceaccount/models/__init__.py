@@ -21,6 +21,18 @@ from stackit.serviceaccount.models.auth_error_error import AuthErrorError
 from stackit.serviceaccount.models.create_access_token_payload import (
     CreateAccessTokenPayload,
 )
+from stackit.serviceaccount.models.create_federated_identity_provider_payload import (
+    CreateFederatedIdentityProviderPayload,
+)
+from stackit.serviceaccount.models.create_federated_identity_provider_payload_assertions_inner import (
+    CreateFederatedIdentityProviderPayloadAssertionsInner,
+)
+from stackit.serviceaccount.models.create_federated_identity_provider_response import (
+    CreateFederatedIdentityProviderResponse,
+)
+from stackit.serviceaccount.models.create_federated_identity_provider_response_assertions_inner import (
+    CreateFederatedIdentityProviderResponseAssertionsInner,
+)
 from stackit.serviceaccount.models.create_service_account_key_payload import (
     CreateServiceAccountKeyPayload,
 )
@@ -37,6 +49,9 @@ from stackit.serviceaccount.models.create_short_lived_access_token_response impo
     CreateShortLivedAccessTokenResponse,
 )
 from stackit.serviceaccount.models.error import Error
+from stackit.serviceaccount.models.federated_list_federated_identity_providers_response import (
+    FederatedListFederatedIdentityProvidersResponse,
+)
 from stackit.serviceaccount.models.get_service_account_key_response import (
     GetServiceAccountKeyResponse,
 )
@@ -53,6 +68,9 @@ from stackit.serviceaccount.models.list_service_account_keys_response import (
 )
 from stackit.serviceaccount.models.list_service_accounts_response import (
     ListServiceAccountsResponse,
+)
+from stackit.serviceaccount.models.partial_update_service_account_federated_identity_provider_payload import (
+    PartialUpdateServiceAccountFederatedIdentityProviderPayload,
 )
 from stackit.serviceaccount.models.partial_update_service_account_key_payload import (
     PartialUpdateServiceAccountKeyPayload,
