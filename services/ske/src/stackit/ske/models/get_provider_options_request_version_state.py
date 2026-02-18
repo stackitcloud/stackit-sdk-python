@@ -27,7 +27,6 @@ class GetProviderOptionsRequestVersionState(str, Enum):
     """
     allowed enum values
     """
-    UNSPECIFIED = "UNSPECIFIED"
     SUPPORTED = "SUPPORTED"
 
     @classmethod

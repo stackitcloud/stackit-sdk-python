@@ -1,5 +1,9 @@
-## Release (2026-xx-xx)
+## Release (2026-02-18)
 
+- `ske`: [v1.6.0](services/ske/CHANGELOG.md#v160)
+  - **Feature:** New model `AccessScope`
+  - **Feature:** New model `V2ControlPlaneNetwork`
+  - **Feature:** Added field `ControlPlane` of type `V2ControlPlaneNetwork` to model `Network`
 - `alb`: [v0.8.1](services/alb/CHANGELOG.md#v081)
   - Update regular expressions to allow longer names
 - `authorization`: [v0.7.0](services/authorization/CHANGELOG.md#v070)
