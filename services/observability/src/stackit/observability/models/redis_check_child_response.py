@@ -18,19 +18,20 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field
+from typing_extensions import Annotated, Self
 
 
-class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
+class RedisCheckChildResponse(BaseModel):
     """
-    Configures the scrape request's TLS settings.
+    RedisCheckChildResponse
     """  # noqa: E501
 
-    insecure_skip_verify: Optional[StrictBool] = Field(
-        default=False, description="Disable validation of the server certificate.", alias="insecureSkipVerify"
-    )
-    __properties: ClassVar[List[str]] = ["insecureSkipVerify"]
+    id: Annotated[str, Field(min_length=1, strict=True)]
+    password: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    server: Annotated[str, Field(min_length=1, strict=True)]
+    username: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    __properties: ClassVar[List[str]] = ["id", "password", "server", "username"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +50,7 @@ class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig from a JSON string"""
+        """Create an instance of RedisCheckChildResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,7 +74,7 @@ class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig from a dict"""
+        """Create an instance of RedisCheckChildResponse from a dict"""
         if obj is None:
             return None
 
@@ -82,9 +83,10 @@ class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "insecureSkipVerify": (
-                    obj.get("insecureSkipVerify") if obj.get("insecureSkipVerify") is not None else False
-                )
+                "id": obj.get("id"),
+                "password": obj.get("password"),
+                "server": obj.get("server"),
+                "username": obj.get("username"),
             }
         )
         return _obj
