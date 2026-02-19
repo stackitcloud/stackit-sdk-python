@@ -1,3 +1,11 @@
+## Release (2026-xx-xx)
+
+- `serviceaccount`: [v0.5.0](services/serviceaccount/CHANGELOG.md#v050)
+  - **Feature:** add support for Federated Identity Providers
+    - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`,`PartialUpdateServiceAccountFederatedIdentityProvider`
+    - new models: `CreateFederatedIdentityProviderPayload`, `CreateFederatedIdentityProviderPayloadAssertionsInner`, `CreateFederatedIdentityProviderResponse`, `CreateFederatedIdentityProviderResponseAssertionsInner`, `FederatedListFederatedIdentityProvidersResponse`, `PartialUpdateServiceAccountFederatedIdentityProviderPayload`
+
+
 ## Release (2026-02-18)
 
 - `ske`: [v1.6.0](services/ske/CHANGELOG.md#v160)
