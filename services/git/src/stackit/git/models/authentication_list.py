@@ -18,19 +18,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
+from stackit.git.models.authentication import Authentication
 
-class RunnerLabel(BaseModel):
+
+class AuthenticationList(BaseModel):
     """
-    Describes a STACKIT Git RunnerLabel.
+    A list of authentications belonging to an Instance.
     """  # noqa: E501
 
-    description: StrictStr = Field(description="RunnerLabel description.")
-    id: Annotated[str, Field(strict=True, max_length=36)] = Field(description="RunnerLabel id.")
-    label: Annotated[str, Field(strict=True, max_length=64)] = Field(description="RunnerLabel label.")
-    __properties: ClassVar[List[str]] = ["description", "id", "label"]
+    authentication: Annotated[List[Authentication], Field(max_length=50)]
+    __properties: ClassVar[List[str]] = ["authentication"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +49,7 @@ class RunnerLabel(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RunnerLabel from a JSON string"""
+        """Create an instance of AuthenticationList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,11 +69,18 @@ class RunnerLabel(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in authentication (list)
+        _items = []
+        if self.authentication:
+            for _item in self.authentication:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["authentication"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RunnerLabel from a dict"""
+        """Create an instance of AuthenticationList from a dict"""
         if obj is None:
             return None
 
@@ -81,6 +88,12 @@ class RunnerLabel(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"description": obj.get("description"), "id": obj.get("id"), "label": obj.get("label")}
+            {
+                "authentication": (
+                    [Authentication.from_dict(_item) for _item in obj["authentication"]]
+                    if obj.get("authentication") is not None
+                    else None
+                )
+            }
         )
         return _obj
