@@ -18,19 +18,17 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing_extensions import Self
 
-from stackit.git.models.runner_label import RunnerLabel
 
-
-class ListRunnerLabels(BaseModel):
+class AlreadyExistsError(BaseModel):
     """
-    A list of STACKIT Git RunnerLabels.
+    Error response when a resource already exists.
     """  # noqa: E501
 
-    runner_labels: List[RunnerLabel] = Field(alias="runner-labels")
-    __properties: ClassVar[List[str]] = ["runner-labels"]
+    message: StrictStr
+    __properties: ClassVar[List[str]] = ["message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +47,7 @@ class ListRunnerLabels(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ListRunnerLabels from a JSON string"""
+        """Create an instance of AlreadyExistsError from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,31 +67,16 @@ class ListRunnerLabels(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in runner_labels (list)
-        _items = []
-        if self.runner_labels:
-            for _item in self.runner_labels:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["runner-labels"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ListRunnerLabels from a dict"""
+        """Create an instance of AlreadyExistsError from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "runner-labels": (
-                    [RunnerLabel.from_dict(_item) for _item in obj["runner-labels"]]
-                    if obj.get("runner-labels") is not None
-                    else None
-                )
-            }
-        )
+        _obj = cls.model_validate({"message": obj.get("message")})
         return _obj
