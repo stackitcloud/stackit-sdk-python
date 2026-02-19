@@ -33,20 +33,26 @@ from typing_extensions import Annotated, Self
 from stackit.observability.models.partial_update_scrape_configs_request_inner_basic_auth import (
     PartialUpdateScrapeConfigsRequestInnerBasicAuth,
 )
+from stackit.observability.models.partial_update_scrape_configs_request_inner_http_sd_configs_inner import (
+    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner,
+)
+from stackit.observability.models.partial_update_scrape_configs_request_inner_http_sd_configs_inner_oauth2 import (
+    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2,
+)
 from stackit.observability.models.partial_update_scrape_configs_request_inner_http_sd_configs_inner_oauth2_tls_config import (
     PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig,
 )
 from stackit.observability.models.partial_update_scrape_configs_request_inner_metrics_relabel_configs_inner import (
     PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner,
 )
-from stackit.observability.models.update_scrape_config_payload_static_configs_inner import (
-    UpdateScrapeConfigPayloadStaticConfigsInner,
+from stackit.observability.models.partial_update_scrape_configs_request_inner_static_configs_inner import (
+    PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner,
 )
 
 
-class UpdateScrapeConfigPayload(BaseModel):
+class PartialUpdateScrapeConfigsRequestInner(BaseModel):
     """
-    UpdateScrapeConfigPayload
+    PartialUpdateScrapeConfigsRequestInner
     """  # noqa: E501
 
     basic_auth: Optional[PartialUpdateScrapeConfigsRequestInnerBasicAuth] = Field(default=None, alias="basicAuth")
@@ -65,12 +71,24 @@ class UpdateScrapeConfigPayload(BaseModel):
         description="honor_timestamps controls whether Prometheus respects the timestamps present in scraped data. If honor_timestamps is set to 'true', the timestamps of the metrics exposed by the target will be used.",
         alias="honorTimeStamps",
     )
-    metrics_path: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(
-        description="The HTTP resource path on which to fetch metrics from targets. E.g. /metrics", alias="metricsPath"
+    http_sd_configs: Optional[List[PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner]] = Field(
+        default=None,
+        description="HTTP-based service discovery provides a more generic way to configure static targets and serves as an interface to plug in custom service discovery mechanisms.",
+        alias="httpSdConfigs",
+    )
+    job_name: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(
+        description="The job name assigned to scraped metrics by default. `Additional Validators:` * must be unique * key and values should only include the characters: a-zA-Z0-9-",
+        alias="jobName",
+    )
+    metrics_path: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=200)]] = Field(
+        default="/metrics",
+        description="The HTTP resource path on which to fetch metrics from targets. E.g. /metrics",
+        alias="metricsPath",
     )
     metrics_relabel_configs: Optional[List[PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner]] = Field(
         default=None, description="List of metric relabel configurations", alias="metricsRelabelConfigs"
     )
+    oauth2: Optional[PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2] = None
     params: Optional[Dict[str, Any]] = Field(
         default=None,
         description="Optional http params `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters",
@@ -89,7 +107,7 @@ class UpdateScrapeConfigPayload(BaseModel):
         description="Per-scrape timeout when scraping this job. `Additional Validators:` * must be a valid time format* must be smaller than scrapeInterval",
         alias="scrapeTimeout",
     )
-    static_configs: List[UpdateScrapeConfigPayloadStaticConfigsInner] = Field(
+    static_configs: List[PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner] = Field(
         description="A list of scrape configurations.", alias="staticConfigs"
     )
     tls_config: Optional[PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig] = Field(
@@ -100,8 +118,11 @@ class UpdateScrapeConfigPayload(BaseModel):
         "bearerToken",
         "honorLabels",
         "honorTimeStamps",
+        "httpSdConfigs",
+        "jobName",
         "metricsPath",
         "metricsRelabelConfigs",
+        "oauth2",
         "params",
         "sampleLimit",
         "scheme",
@@ -135,7 +156,7 @@ class UpdateScrapeConfigPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateScrapeConfigPayload from a JSON string"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -158,6 +179,13 @@ class UpdateScrapeConfigPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of basic_auth
         if self.basic_auth:
             _dict["basicAuth"] = self.basic_auth.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in http_sd_configs (list)
+        _items = []
+        if self.http_sd_configs:
+            for _item in self.http_sd_configs:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["httpSdConfigs"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in metrics_relabel_configs (list)
         _items = []
         if self.metrics_relabel_configs:
@@ -165,6 +193,9 @@ class UpdateScrapeConfigPayload(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["metricsRelabelConfigs"] = _items
+        # override the default output from pydantic by calling `to_dict()` of oauth2
+        if self.oauth2:
+            _dict["oauth2"] = self.oauth2.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in static_configs (list)
         _items = []
         if self.static_configs:
@@ -179,7 +210,7 @@ class UpdateScrapeConfigPayload(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateScrapeConfigPayload from a dict"""
+        """Create an instance of PartialUpdateScrapeConfigsRequestInner from a dict"""
         if obj is None:
             return None
 
@@ -196,6 +227,15 @@ class UpdateScrapeConfigPayload(BaseModel):
                 "bearerToken": obj.get("bearerToken"),
                 "honorLabels": obj.get("honorLabels") if obj.get("honorLabels") is not None else False,
                 "honorTimeStamps": obj.get("honorTimeStamps") if obj.get("honorTimeStamps") is not None else False,
+                "httpSdConfigs": (
+                    [
+                        PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner.from_dict(_item)
+                        for _item in obj["httpSdConfigs"]
+                    ]
+                    if obj.get("httpSdConfigs") is not None
+                    else None
+                ),
+                "jobName": obj.get("jobName"),
                 "metricsPath": obj.get("metricsPath") if obj.get("metricsPath") is not None else "/metrics",
                 "metricsRelabelConfigs": (
                     [
@@ -205,13 +245,21 @@ class UpdateScrapeConfigPayload(BaseModel):
                     if obj.get("metricsRelabelConfigs") is not None
                     else None
                 ),
+                "oauth2": (
+                    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2.from_dict(obj["oauth2"])
+                    if obj.get("oauth2") is not None
+                    else None
+                ),
                 "params": obj.get("params"),
                 "sampleLimit": obj.get("sampleLimit"),
                 "scheme": obj.get("scheme"),
                 "scrapeInterval": obj.get("scrapeInterval"),
                 "scrapeTimeout": obj.get("scrapeTimeout"),
                 "staticConfigs": (
-                    [UpdateScrapeConfigPayloadStaticConfigsInner.from_dict(_item) for _item in obj["staticConfigs"]]
+                    [
+                        PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner.from_dict(_item)
+                        for _item in obj["staticConfigs"]
+                    ]
                     if obj.get("staticConfigs") is not None
                     else None
                 ),
