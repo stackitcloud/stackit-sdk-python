@@ -35,9 +35,8 @@ class CreateSharePayload(BaseModel):
         default=None,
         description="An optional object that represents the labels associated with the share  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'",
     )
-    name: Optional[StrictStr] = Field(default=None, description="Name of the Share")
-    space_hard_limit_gigabytes: Optional[StrictInt] = Field(
-        default=None,
+    name: StrictStr = Field(description="Name of the Share")
+    space_hard_limit_gigabytes: StrictInt = Field(
         description="Space hard limit for the Share. If zero, the Share will have access to the full space of the Resource Pool it lives in.   (unit: gibibytes)",
         alias="spaceHardLimitGigabytes",
     )
