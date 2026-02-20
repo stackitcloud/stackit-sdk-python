@@ -16,20 +16,38 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
 from typing_extensions import Self
 
 
-class InternalServerErrorResponse(BaseModel):
+class UnauthorizedErrorResponse(BaseModel):
     """
-    Internal server error.
+    Unauthorized Error Response.
     """  # noqa: E501
 
-    details: Optional[StrictStr] = None
     error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["details", "error"]
+    message: StrictStr
+    path: Optional[StrictStr] = None
+    status: Optional[StrictInt] = None
+    timestamp: Optional[datetime] = None
+    __properties: ClassVar[List[str]] = ["error", "message", "path", "status", "timestamp"]
+
+    @field_validator("timestamp", mode="before")
+    def timestamp_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +66,7 @@ class InternalServerErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InternalServerErrorResponse from a JSON string"""
+        """Create an instance of UnauthorizedErrorResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,12 +90,20 @@ class InternalServerErrorResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InternalServerErrorResponse from a dict"""
+        """Create an instance of UnauthorizedErrorResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"details": obj.get("details"), "error": obj.get("error")})
+        _obj = cls.model_validate(
+            {
+                "error": obj.get("error"),
+                "message": obj.get("message"),
+                "path": obj.get("path"),
+                "status": obj.get("status"),
+                "timestamp": obj.get("timestamp"),
+            }
+        )
         return _obj
