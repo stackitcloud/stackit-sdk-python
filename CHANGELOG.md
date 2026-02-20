@@ -1,5 +1,7 @@
 ## Release (2026-xx-xx)
 
+- `sfs`: [v0.3.0](services/sfs/CHANGELOG.md#v030)
+  - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
 - `serviceaccount`: [v0.5.0](services/serviceaccount/CHANGELOG.md#v050)
   - **Feature:** add support for Federated Identity Providers
     - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`,`PartialUpdateServiceAccountFederatedIdentityProvider`
