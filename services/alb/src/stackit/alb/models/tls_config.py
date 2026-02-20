@@ -27,9 +27,9 @@ from pydantic import (
 from typing_extensions import Self
 
 
-class TargetPoolTlsConfig(BaseModel):
+class TlsConfig(BaseModel):
     """
-    TLSConfig used for the target pool.
+    Set this to configure TLS settings.
     """  # noqa: E501
 
     custom_ca: Optional[StrictStr] = Field(
@@ -65,7 +65,7 @@ class TargetPoolTlsConfig(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TargetPoolTlsConfig from a JSON string"""
+        """Create an instance of TlsConfig from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -89,7 +89,7 @@ class TargetPoolTlsConfig(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TargetPoolTlsConfig from a dict"""
+        """Create an instance of TlsConfig from a dict"""
         if obj is None:
             return None
 
