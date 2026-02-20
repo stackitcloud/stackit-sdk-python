@@ -18,19 +18,26 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field
+from typing_extensions import Annotated, Self
 
 
-class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
+class PartialUpdateAlertRecordsRequestInner(BaseModel):
     """
-    Configures the scrape request's TLS settings.
+    Record. `Additional Validators:` * total config (all alert groups/rules/records) should not be bigger than 500000 characters as string since this the limitation of prometheus.
     """  # noqa: E501
 
-    insecure_skip_verify: Optional[StrictBool] = Field(
-        default=False, description="Disable validation of the server certificate.", alias="insecureSkipVerify"
+    expr: Annotated[str, Field(min_length=1, strict=True, max_length=2000)] = Field(
+        description="The PromQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts."
     )
-    __properties: ClassVar[List[str]] = ["insecureSkipVerify"]
+    labels: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="map of key:value. Labels to add or overwrite for each alert. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters ",
+    )
+    record: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(
+        description="The name of the record. `Additional Validators:` * is the identifier and so unique in the group "
+    )
+    __properties: ClassVar[List[str]] = ["expr", "labels", "record"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +56,7 @@ class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig from a JSON string"""
+        """Create an instance of PartialUpdateAlertRecordsRequestInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,18 +80,12 @@ class CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig from a dict"""
+        """Create an instance of PartialUpdateAlertRecordsRequestInner from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "insecureSkipVerify": (
-                    obj.get("insecureSkipVerify") if obj.get("insecureSkipVerify") is not None else False
-                )
-            }
-        )
+        _obj = cls.model_validate({"expr": obj.get("expr"), "labels": obj.get("labels"), "record": obj.get("record")})
         return _obj
