@@ -1,55 +1,67 @@
 [project]
 name = "stackit-auditlog"
-
-[tool.poetry]
-name = "stackit-auditlog"
 version = "v0.1.1"
-authors = [
-    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
-]
 description = "Audit Log API"
+authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
+requires-python = ">=3.9,<4"
 readme = "README.md"
-#license = "NoLicense"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
-packages = [
-  { include = "stackit", from="src" }
+dependencies = [
+    "stackit-core>=0.0.1a",
+    "requests>=2.32.3",
+    "pydantic>=2.9.2",
+    "python-dateutil>=2.9.0.post0",
 ]
-
-[tool.poetry.dependencies]
-python = "^3.9"
-stackit-core = ">=0.0.1a"
-requests = ">=2.32.3"
-pydantic = ">=2.9.2"
-python-dateutil = ">=2.9.0.post0"
-
-[tool.poetry.group.dev.dependencies]
-black = ">=24.8.0"
-pytest = ">=8.3.3"
-flake8 = [
-  { version= ">=5.0.3", python="<3.12"},
-  { version= ">=6.0.1", python=">=3.12"}
-]
-flake8-black = ">=0.3.6"
-flake8-pyproject = ">=1.2.3"
-autoimport = ">=1.6.1"
-flake8-eol = ">=0.0.8"
-flake8-eradicate = ">=1.5.0"
-flake8-bandit = ">=4.1.1"
-flake8-bugbear = ">=23.1.14"
-flake8-quotes = ">=3.4.0"
-isort = ">=5.13.2"
 
 [project.urls]
 Homepage = "https://github.com/stackitcloud/stackit-sdk-python"
 Issues = "https://github.com/stackitcloud/stackit-sdk-python/issues"
 
+[dependency-groups]
+dev = [
+    "black>=24.8.0",
+    "pytest>=8.3.3",
+    "flake8>=5.0.3 ; python_full_version < '3.12'",
+    "flake8>=6.0.1 ; python_full_version >= '3.12'",
+    "flake8-black>=0.3.6",
+    "flake8-pyproject>=1.2.3",
+    "autoimport>=1.6.1",
+    "flake8-eol>=0.0.8",
+    "flake8-eradicate>=1.5.0",
+    "flake8-bandit>=4.1.1",
+    "flake8-bugbear>=23.1.14",
+    "flake8-quotes>=3.4.0",
+    "isort>=5.13.2",
+]
+
+[tool.uv]
+default-groups = "all"
+
+[tool.uv.sources]
+stackit-core = { path = "../../core" }
+
+[tool.hatch.build.targets.sdist]
+include = ["src/stackit"]
+
+[tool.hatch.build.targets.wheel]
+include = ["src/stackit"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src/stackit" = "stackit"
+
 [build-system]
-requires = ["setuptools", "poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 pythonpath = [

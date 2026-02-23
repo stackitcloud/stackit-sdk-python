@@ -24,7 +24,7 @@ fi
 
 # Change into the directory and run the command
 cd "$path" || exit 1
-version=$(poetry version)
+version=$(uv version)
 
 # Get the version number
 version_number="${version##* }"
