@@ -16,20 +16,37 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing_extensions import Annotated, Self
 
 
-class InternalServerErrorResponse(BaseModel):
+class Runner(BaseModel):
     """
-    Internal server error.
+    Describes a runner associated to a STACKIT Git instance.
     """  # noqa: E501
 
-    details: Optional[StrictStr] = None
-    error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["details", "error"]
+    created_at: datetime
+    id: Annotated[str, Field(strict=True, max_length=36)]
+    labels: List[StrictStr]
+    status: StrictStr = Field(description="The current status of the runner.")
+    __properties: ClassVar[List[str]] = ["created_at", "id", "labels", "status"]
+
+    @field_validator("created_at", mode="before")
+    def created_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +65,7 @@ class InternalServerErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InternalServerErrorResponse from a JSON string"""
+        """Create an instance of Runner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,12 +89,19 @@ class InternalServerErrorResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InternalServerErrorResponse from a dict"""
+        """Create an instance of Runner from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"details": obj.get("details"), "error": obj.get("error")})
+        _obj = cls.model_validate(
+            {
+                "created_at": obj.get("created_at"),
+                "id": obj.get("id"),
+                "labels": obj.get("labels"),
+                "status": obj.get("status"),
+            }
+        )
         return _obj
