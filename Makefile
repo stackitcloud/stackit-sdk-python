@@ -22,7 +22,7 @@ lint-services:
 	# lint core
 	cd core && uv run flake8 .
 	# lint examples. Use configuration from core
-	uv run flake8 --toml-config core/pyproject.toml --black-config core/pyproject.toml examples;
+	cd core && uv run flake8 --toml-config pyproject.toml --black-config pyproject.toml ../examples;
 	# lint services
 	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};uv run flake8 .; cd ../..; done
 	# lint versions

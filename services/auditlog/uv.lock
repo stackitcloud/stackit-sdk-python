@@ -1344,7 +1344,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.9.2" },
     { name = "python-dateutil", specifier = ">=2.9.0.post0" },
     { name = "requests", specifier = ">=2.32.3" },
-    { name = "stackit-core", specifier = ">=0.0.1a0" },
+    { name = "stackit-core", directory = "../../core" },
 ]
 
 [package.metadata.requires-dev]
@@ -1367,7 +1367,7 @@ dev = [
 [[package]]
 name = "stackit-core"
 version = "0.2.0"
-source = { registry = "https://pypi.org/simple" }
+source = { directory = "../../core" }
 dependencies = [
     { name = "cryptography" },
     { name = "pydantic" },
@@ -1375,9 +1375,31 @@ dependencies = [
     { name = "requests" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/24/90/20f9ec7387eec4067cfd3d29055d0e2b5e1e0322c601a7f48125fd8ea35f/stackit_core-0.2.0.tar.gz", hash = "sha256:b8af91877cdb060d6969a303d8cf20bc0b33b345afd91f679c44a987381e2d47", size = 8987, upload-time = "2025-06-12T08:24:45.251Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/ab/b4/7b53187ce68956870d864ccb9ccfb68066c9df9de1c9568fd2feb03c4504/stackit_core-0.2.0-py3-none-any.whl", hash = "sha256:04632fc6742790d08ddfcb7f2313e04d1254827397a80250f838a2f81b92645b", size = 10240, upload-time = "2025-06-12T08:24:44.214Z" },
+
+[package.metadata]
+requires-dist = [
+    { name = "cryptography", specifier = ">=43.0.1" },
+    { name = "pydantic", specifier = ">=2.9.2" },
+    { name = "pyjwt", specifier = ">=2.9.0" },
+    { name = "requests", specifier = ">=2.32.3" },
+    { name = "urllib3", specifier = ">=2.2.3" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "autoimport", specifier = ">=1.6.1" },
+    { name = "black", specifier = ">=24.8.0" },
+    { name = "flake8", marker = "python_full_version < '3.12'", specifier = ">=5.0.3" },
+    { name = "flake8", marker = "python_full_version >= '3.12'", specifier = ">=6.0.1" },
+    { name = "flake8-bandit", specifier = ">=4.1.1" },
+    { name = "flake8-black", specifier = ">=0.3.6" },
+    { name = "flake8-bugbear", specifier = ">=23.1.14" },
+    { name = "flake8-eol", specifier = ">=0.0.8" },
+    { name = "flake8-eradicate", specifier = ">=1.5.0" },
+    { name = "flake8-pyproject", specifier = ">=1.2.3" },
+    { name = "flake8-quotes", specifier = ">=3.4.0" },
+    { name = "isort", specifier = ">=5.13.2" },
+    { name = "pytest", specifier = ">=8.3.3" },
 ]
 
 [[package]]

@@ -869,8 +869,8 @@ wheels = [
 
 [[package]]
 name = "stackit-core"
-version = "0.1.0"
-source = { registry = "https://pypi.org/simple" }
+version = "0.2.0"
+source = { directory = "../../core" }
 dependencies = [
     { name = "cryptography" },
     { name = "pydantic" },
@@ -878,9 +878,31 @@ dependencies = [
     { name = "requests" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0c/b2/6ab4da3631f9aa130a03ac3aa9086896aa4a5311401cc600a2654868b18c/stackit_core-0.1.0.tar.gz", hash = "sha256:98023987c45a87bfe4d3e8c1b7a796a222f52ccd8a797a556a5b5fdc81a77255", size = 8936, upload-time = "2024-12-04T17:20:17.894Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e5/8d/4b28bb840bd6491f4a55288cdf5442ac1efd7c131286acba84145ab0fe82/stackit_core-0.1.0-py3-none-any.whl", hash = "sha256:2568bce2e1ab05293930ffa5a572c0bf057885b941579ad1f929a6fa96cf7fdf", size = 9977, upload-time = "2024-12-04T17:20:16.377Z" },
+
+[package.metadata]
+requires-dist = [
+    { name = "cryptography", specifier = ">=43.0.1" },
+    { name = "pydantic", specifier = ">=2.9.2" },
+    { name = "pyjwt", specifier = ">=2.9.0" },
+    { name = "requests", specifier = ">=2.32.3" },
+    { name = "urllib3", specifier = ">=2.2.3" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "autoimport", specifier = ">=1.6.1" },
+    { name = "black", specifier = ">=24.8.0" },
+    { name = "flake8", marker = "python_full_version < '3.12'", specifier = ">=5.0.3" },
+    { name = "flake8", marker = "python_full_version >= '3.12'", specifier = ">=6.0.1" },
+    { name = "flake8-bandit", specifier = ">=4.1.1" },
+    { name = "flake8-black", specifier = ">=0.3.6" },
+    { name = "flake8-bugbear", specifier = ">=23.1.14" },
+    { name = "flake8-eol", specifier = ">=0.0.8" },
+    { name = "flake8-eradicate", specifier = ">=1.5.0" },
+    { name = "flake8-pyproject", specifier = ">=1.2.3" },
+    { name = "flake8-quotes", specifier = ">=3.4.0" },
+    { name = "isort", specifier = ">=5.13.2" },
+    { name = "pytest", specifier = ">=8.3.3" },
 ]
 
 [[package]]
@@ -915,7 +937,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.9.2" },
     { name = "python-dateutil", specifier = ">=2.9.0.post0" },
     { name = "requests", specifier = ">=2.32.3" },
-    { name = "stackit-core", specifier = ">=0.0.1a0" },
+    { name = "stackit-core", directory = "../../core" },
 ]
 
 [package.metadata.requires-dev]
