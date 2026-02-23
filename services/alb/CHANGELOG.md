@@ -1,3 +1,8 @@
+## v0.9.0
+- **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
+- **Feature:** Add new field `Tls` to `HttpHealthCheck`
+- **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
+
 ## v0.8.1
 - Update regular expressions to allow longer names
 

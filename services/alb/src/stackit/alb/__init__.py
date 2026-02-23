@@ -63,7 +63,7 @@ __all__ = [
     "Status",
     "Target",
     "TargetPool",
-    "TargetPoolTlsConfig",
+    "TlsConfig",
     "UpdateCredentialsPayload",
     "UpdateCredentialsResponse",
     "UpdateLoadBalancerPayload",
@@ -156,9 +156,7 @@ from stackit.alb.models.security_group import SecurityGroup as SecurityGroup
 from stackit.alb.models.status import Status as Status
 from stackit.alb.models.target import Target as Target
 from stackit.alb.models.target_pool import TargetPool as TargetPool
-from stackit.alb.models.target_pool_tls_config import (
-    TargetPoolTlsConfig as TargetPoolTlsConfig,
-)
+from stackit.alb.models.tls_config import TlsConfig as TlsConfig
 from stackit.alb.models.update_credentials_payload import (
     UpdateCredentialsPayload as UpdateCredentialsPayload,
 )
