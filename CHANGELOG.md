@@ -4,6 +4,8 @@
   - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
   - **Feature:** Add new field `Tls` to `HttpHealthCheck`
   - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
+- `loadbalancer`: [v0.9.0](services/loadbalancer/CHANGELOG.md#v090)
+  - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
 - `sfs`: [v0.3.0](services/sfs/CHANGELOG.md#v030)
   - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
 - `serviceaccount`: [v0.5.0](services/serviceaccount/CHANGELOG.md#v050)
