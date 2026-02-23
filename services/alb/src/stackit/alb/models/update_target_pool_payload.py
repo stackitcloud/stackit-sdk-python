@@ -23,7 +23,7 @@ from typing_extensions import Annotated, Self
 
 from stackit.alb.models.active_health_check import ActiveHealthCheck
 from stackit.alb.models.target import Target
-from stackit.alb.models.target_pool_tls_config import TargetPoolTlsConfig
+from stackit.alb.models.tls_config import TlsConfig
 
 
 class UpdateTargetPoolPayload(BaseModel):
@@ -41,7 +41,7 @@ class UpdateTargetPoolPayload(BaseModel):
     targets: Optional[List[Target]] = Field(
         default=None, description="List of all targets which will be used in the pool. Limited to 250."
     )
-    tls_config: Optional[TargetPoolTlsConfig] = Field(default=None, alias="tlsConfig")
+    tls_config: Optional[TlsConfig] = Field(default=None, alias="tlsConfig")
     __properties: ClassVar[List[str]] = ["activeHealthCheck", "name", "targetPort", "targets", "tlsConfig"]
 
     @field_validator("name")
@@ -127,9 +127,7 @@ class UpdateTargetPoolPayload(BaseModel):
                 "targets": (
                     [Target.from_dict(_item) for _item in obj["targets"]] if obj.get("targets") is not None else None
                 ),
-                "tlsConfig": (
-                    TargetPoolTlsConfig.from_dict(obj["tlsConfig"]) if obj.get("tlsConfig") is not None else None
-                ),
+                "tlsConfig": TlsConfig.from_dict(obj["tlsConfig"]) if obj.get("tlsConfig") is not None else None,
             }
         )
         return _obj

@@ -53,7 +53,7 @@ from stackit.alb.models.security_group import SecurityGroup
 from stackit.alb.models.status import Status
 from stackit.alb.models.target import Target
 from stackit.alb.models.target_pool import TargetPool
-from stackit.alb.models.target_pool_tls_config import TargetPoolTlsConfig
+from stackit.alb.models.tls_config import TlsConfig
 from stackit.alb.models.update_credentials_payload import UpdateCredentialsPayload
 from stackit.alb.models.update_credentials_response import UpdateCredentialsResponse
 from stackit.alb.models.update_load_balancer_payload import UpdateLoadBalancerPayload
