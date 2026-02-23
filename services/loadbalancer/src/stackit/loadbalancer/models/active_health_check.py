@@ -18,8 +18,10 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
 from typing_extensions import Annotated, Self
+
+from stackit.loadbalancer.models.http_health_checks import HttpHealthChecks
 
 
 class ActiveHealthCheck(BaseModel):
@@ -27,9 +29,13 @@ class ActiveHealthCheck(BaseModel):
     ActiveHealthCheck
     """  # noqa: E501
 
+    alt_port: Optional[StrictInt] = Field(
+        default=None, description="Overrides the default port used for health check probes.", alias="altPort"
+    )
     healthy_threshold: Optional[Annotated[int, Field(le=1000000, strict=True, ge=1)]] = Field(
         default=None, description="Healthy threshold of the health checking", alias="healthyThreshold"
     )
+    http_health_checks: Optional[HttpHealthChecks] = Field(default=None, alias="httpHealthChecks")
     interval: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Interval duration of health checking in seconds"
     )
@@ -45,7 +51,9 @@ class ActiveHealthCheck(BaseModel):
         default=None, description="Unhealthy threshold of the health checking", alias="unhealthyThreshold"
     )
     __properties: ClassVar[List[str]] = [
+        "altPort",
         "healthyThreshold",
+        "httpHealthChecks",
         "interval",
         "intervalJitter",
         "timeout",
@@ -119,6 +127,9 @@ class ActiveHealthCheck(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of http_health_checks
+        if self.http_health_checks:
+            _dict["httpHealthChecks"] = self.http_health_checks.to_dict()
         return _dict
 
     @classmethod
@@ -132,7 +143,13 @@ class ActiveHealthCheck(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "altPort": obj.get("altPort"),
                 "healthyThreshold": obj.get("healthyThreshold"),
+                "httpHealthChecks": (
+                    HttpHealthChecks.from_dict(obj["httpHealthChecks"])
+                    if obj.get("httpHealthChecks") is not None
+                    else None
+                ),
                 "interval": obj.get("interval"),
                 "intervalJitter": obj.get("intervalJitter"),
                 "timeout": obj.get("timeout"),
