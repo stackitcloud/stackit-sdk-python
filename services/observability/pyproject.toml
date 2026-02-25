@@ -1,6 +1,12 @@
 [project]
 name = "stackit-observability"
-version = "v0.12.0"
+
+[tool.poetry]
+name = "stackit-observability"
+version = "v0.13.0"
+authors = [
+    "STACKIT Developer Tools <developer-tools@stackit.cloud>",
+]
 description = "STACKIT Observability API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4.0"

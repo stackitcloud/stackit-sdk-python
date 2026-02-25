@@ -1,3 +1,52 @@
+## v0.13.0
+- **Feature:** manage alert records
+    - New API client methods: `create_alert_record`, `delete_alert_record`, `delete_alert_records`, `get_alert_record`, `list_alert_records`, `update_alert_record`, `partial_update_alert_records`
+    - New model classes: `AlertRecord`, `AlertRecordResponse`, `AlertRecordsResponse`, `CreateAlertRecordPayload`, `UpdateAlertRecordPayload`, `PartialUpdateAlertRecordsRequestInner`
+- **Feature:** manage alert rules
+    - New API client methods: `get_alertrule`, `update_alertrule`, `delete_alertrule`
+    - New model classes: `AlertRuleResponse`, `UpdateAlertrulePayload`
+- **Feature:** manage backups
+    - New API client methods: `create_backup`,`create_backup_schedule`, `list_backup_retentions`, `list_backup_schedules`, `list_backups`, `restore_backup`
+    - New model classes: `BackupResponse`, `BackupRetentionResponse`, `BackupSchedule`, `BackupSchedulePostResponse`, `BackupScheduleResponse`, `CreateBackupSchedulePayload`
+- **Feature:** to manage checks
+    - MongoDB
+        - New API client methods: `create_mongodb_check`, `delete_mongodb_check`, `list_mongodb_checks`
+        - New model classes: `CreateMongodbCheckPayload`, `MongodbCheckChildResponse`, `MongodbCheckResponse`
+    - RabbitMQ
+        - New API client methods: `create_rabbitmq_check`, `delete_rabbitmq_check`, `list_rabbitmq_checks`
+        - New model classes: `CreateRabbitmqCheckPayload`, `RabbitMQCheckChildResponse`, `RabbitmqCheckResponse`
+    - Network
+        - New API client methods: `list_network_checks`, `delete_network_check`, `create_network_check`
+        - New model classes: `CreateNetworkCheckPayload`, `NetworkCheckChildResponse`, `NetworkCheckResponse`
+    - Redis
+        - New API client methods: `create_redis_check`, `list_redis_checks`, `delete_redis_check`
+        - New model classes: `CreateRedisCheckPayload`, `RedisCheckChildResponse`, `RedisCheckResponse`
+    - MySQL
+        - New API client methods: `create_mysql_check`, `delete_mysql_check`, `list_mysql_checks`
+        - New model classes: `CreateMysqlCheckPayload`, `MysqlCheckChildResponse`, `MysqlCheckResponse`
+    - Ping
+        - New API client methods: `create_ping_check`, `delete_ping_check`, `list_ping_checks`
+        - New model classes: `CreatePingCheckPayload`, `PingCheckChildResponse`, `PingCheckResponse`
+    - Elasticsearch
+        - New API client methods: `create_elasticsearch_check`, `delete_elasticsearch_check`, `list_elasticsearch_checks`
+        - New model classes: `CreateElasticsearchCheckPayload`, `ElasticsearchCheckChildResponse`, `ElasticsearchCheckResponse`
+    - PostgreSQL
+        - New API client methods: `create_postgresql_check`, `delete_postgresql_check`, `list_postgresql_checks`
+        - New model classes: `CreatePostgresqlCheckPayload`, `PostgresqlCheckChildResponse`, `PostgresqlCheckResponse`
+- **Feature:** List offerings
+    - New API client method: `list_offerings`
+    - New model struct: `Offerings`
+- **Feature:** Manage scrape configs
+    - New API client method: `delete_scrape_configs`, `partial_update_scrape_configs`
+    - New model struct: `PartialUpdateScrapeConfigsRequestInner`
+- **Breaking changes**:
+    - rename `CreateScrapeConfigPayloadBasicAuth` to `PartialUpdateScrapeConfigsRequestInnerBasicAuth`
+    - rename `CreateScrapeConfigPayloadHttpSdConfigsInner` to `PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner`
+    - rename `CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2` to `PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2`
+    - rename `CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig` to `PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig`
+    - rename `CreateScrapeConfigPayloadMetricsRelabelConfigsInner` to `PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner`
+    - rename `CreateScrapeConfigPayloadStaticConfigsInner` to `PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner`
+
 ## v0.12.0
 - **Breaking change:** The `PartialUpdateAlertrules` takes now `PartialUpdateAlertrulesRequestInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`
 - **Breaking change:** The type of `Rules` in `CreateLogsAlertgroupsPayload` and `UpdateLogsAlertgroupPayload` has changed from `[]UpdateAlertgroupsRequestInnerRulesInner` to `[]CreateLogsAlertgroupsPayloadRulesInner`
