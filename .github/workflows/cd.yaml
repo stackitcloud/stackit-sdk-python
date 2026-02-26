@@ -20,6 +20,7 @@ jobs:
         with:
           version: "0.10.4"
           python-version: "3.9"
+          enable-cache: "false"
       - name: Push tag for each updated package
         env:
           GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
