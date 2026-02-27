@@ -22,8 +22,6 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
-from stackit.git.models.instance_flavor import InstanceFlavor
-
 
 class CreateInstancePayload(BaseModel):
     """
@@ -33,11 +31,21 @@ class CreateInstancePayload(BaseModel):
     acl: Optional[Annotated[List[StrictStr], Field(max_length=50)]] = Field(
         default=None, description="A list of CIDR network addresses that are allowed to access the instance."
     )
-    flavor: Optional[InstanceFlavor] = None
+    flavor: Optional[StrictStr] = None
     name: Annotated[str, Field(min_length=5, strict=True, max_length=32)] = Field(
         description="A user chosen name to distinguish multiple STACKIT Git instances."
     )
     __properties: ClassVar[List[str]] = ["acl", "flavor", "name"]
+
+    @field_validator("flavor")
+    def flavor_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["git-10", "git-100"]):
+            raise ValueError("must be one of enum values ('git-10', 'git-100')")
+        return value
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
