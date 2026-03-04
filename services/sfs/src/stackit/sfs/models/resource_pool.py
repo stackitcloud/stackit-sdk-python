@@ -73,7 +73,7 @@ class ResourcePool(BaseModel):
         default=None, description="Time when the size can be reduced again.", alias="sizeReducibleAt"
     )
     snapshots_are_visible: Optional[StrictBool] = Field(
-        default=None,
+        default=False,
         description="Whether the .snapshot directory is visible when mounting the resource pool.  Setting this value to false might prevent you from accessing the snapshots (e.g.  for security reasons). Additionally, the access to the snapshots is always controlled  by the export policy of the resource pool. That means, if snapshots are visible and  the export policy allows for reading the resource pool, then it also allows reading  the snapshot of all shares.",
         alias="snapshotsAreVisible",
     )
@@ -209,7 +209,9 @@ class ResourcePool(BaseModel):
                 ),
                 "performanceClassDowngradableAt": obj.get("performanceClassDowngradableAt"),
                 "sizeReducibleAt": obj.get("sizeReducibleAt"),
-                "snapshotsAreVisible": obj.get("snapshotsAreVisible"),
+                "snapshotsAreVisible": (
+                    obj.get("snapshotsAreVisible") if obj.get("snapshotsAreVisible") is not None else False
+                ),
                 "space": ResourcePoolSpace.from_dict(obj["space"]) if obj.get("space") is not None else None,
                 "state": obj.get("state"),
             }

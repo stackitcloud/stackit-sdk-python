@@ -1,7 +1,79 @@
 ## Release (2026-xx-xx)
 
+- `alb`: [v0.9.0](services/alb/CHANGELOG.md#v090)
+  - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
+  - **Feature:** Add new field `Tls` to `HttpHealthCheck`
+  - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
+- `loadbalancer`: [v0.9.0](services/loadbalancer/CHANGELOG.md#v090)
+  - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+- `sfs`: [v0.3.0](services/sfs/CHANGELOG.md#v030)
+  - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
+- `serviceaccount`: [v0.5.0](services/serviceaccount/CHANGELOG.md#v050)
+  - **Feature:** add support for Federated Identity Providers
+    - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`,`PartialUpdateServiceAccountFederatedIdentityProvider`
+    - new models: `CreateFederatedIdentityProviderPayload`, `CreateFederatedIdentityProviderPayloadAssertionsInner`, `CreateFederatedIdentityProviderResponse`, `CreateFederatedIdentityProviderResponseAssertionsInner`, `FederatedListFederatedIdentityProvidersResponse`, `PartialUpdateServiceAccountFederatedIdentityProviderPayload`
+- `observability`: [v0.13.0](services/observability/CHANGELOG.md#v0130)
+- **Feature:** manage alert records
+  - New API client methods: `create_alert_record`, `delete_alert_record`, `delete_alert_records`, `get_alert_record`, `list_alert_records`, `update_alert_record`, `partial_update_alert_records`
+  - New model classes: `AlertRecord`, `AlertRecordResponse`, `AlertRecordsResponse`, `CreateAlertRecordPayload`, `UpdateAlertRecordPayload`, `PartialUpdateAlertRecordsRequestInner`
+- **Feature:** manage alert rules
+  - New API client methods: `get_alertrule`, `update_alertrule`, `delete_alertrule`
+  - New model classes: `AlertRuleResponse`, `UpdateAlertrulePayload`
+- **Feature:** manage backups
+  - New API client methods: `create_backup`,`create_backup_schedule`, `list_backup_retentions`, `list_backup_schedules`, `list_backups`, `restore_backup`
+  - New model classes: `BackupResponse`, `BackupRetentionResponse`, `BackupSchedule`, `BackupSchedulePostResponse`, `BackupScheduleResponse`, `CreateBackupSchedulePayload`
+- **Feature:** to manage checks
+  - MongoDB
+    - New API client methods: `create_mongodb_check`, `delete_mongodb_check`, `list_mongodb_checks`
+    - New model classes: `CreateMongodbCheckPayload`, `MongodbCheckChildResponse`, `MongodbCheckResponse`
+  - RabbitMQ
+    - New API client methods: `create_rabbitmq_check`, `delete_rabbitmq_check`, `list_rabbitmq_checks`
+    - New model classes: `CreateRabbitmqCheckPayload`, `RabbitMQCheckChildResponse`, `RabbitmqCheckResponse`
+  - Network
+    - New API client methods: `list_network_checks`, `delete_network_check`, `create_network_check`
+    - New model classes: `CreateNetworkCheckPayload`, `NetworkCheckChildResponse`, `NetworkCheckResponse`
+  - Redis
+    - New API client methods: `create_redis_check`, `list_redis_checks`, `delete_redis_check`
+    - New model classes: `CreateRedisCheckPayload`, `RedisCheckChildResponse`, `RedisCheckResponse`
+  - MySQL
+    - New API client methods: `create_mysql_check`, `delete_mysql_check`, `list_mysql_checks`
+    - New model classes: `CreateMysqlCheckPayload`, `MysqlCheckChildResponse`, `MysqlCheckResponse`
+  - Ping
+    - New API client methods: `create_ping_check`, `delete_ping_check`, `list_ping_checks`
+    - New model classes: `CreatePingCheckPayload`, `PingCheckChildResponse`, `PingCheckResponse`
+  - Elasticsearch
+    - New API client methods: `create_elasticsearch_check`, `delete_elasticsearch_check`, `list_elasticsearch_checks`
+    - New model classes: `CreateElasticsearchCheckPayload`, `ElasticsearchCheckChildResponse`, `ElasticsearchCheckResponse`
+  - PostgreSQL
+    - New API client methods: `create_postgresql_check`, `delete_postgresql_check`, `list_postgresql_checks`
+    - New model classes: `CreatePostgresqlCheckPayload`, `PostgresqlCheckChildResponse`, `PostgresqlCheckResponse`
+- **Feature:** List offerings
+  - New API client method: `list_offerings`
+  - New model struct: `Offerings`
+- **Feature:** Manage scrape configs
+  - New API client method: `delete_scrape_configs`, `partial_update_scrape_configs`
+  - New model struct: `PartialUpdateScrapeConfigsRequestInner`
+- **Breaking changes**:
+  - rename `CreateScrapeConfigPayloadBasicAuth` to `PartialUpdateScrapeConfigsRequestInnerBasicAuth`
+  - rename `CreateScrapeConfigPayloadHttpSdConfigsInner` to `PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner`
+  - rename `CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2` to `PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2`
+  - rename `CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig` to `PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig`
+  - rename `CreateScrapeConfigPayloadMetricsRelabelConfigsInner` to `PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner`
+  - rename `CreateScrapeConfigPayloadStaticConfigsInner` to `PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner`
+
+## Release (2026-02-18)
+
+- `ske`: [v1.6.0](services/ske/CHANGELOG.md#v160)
+  - **Feature:** New model `AccessScope`
+  - **Feature:** New model `V2ControlPlaneNetwork`
+  - **Feature:** Added field `ControlPlane` of type `V2ControlPlaneNetwork` to model `Network`
 - `alb`: [v0.8.1](services/alb/CHANGELOG.md#v081)
   - Update regular expressions to allow longer names
+- `authorization`: [v0.7.0](services/authorization/CHANGELOG.md#v070)
+  - **Breaking change:** removed operation `get_assignable_subjects` and related models `assignable_subject`, `list_assignable_subjects_response`
+- `cdn`; [v2.3.0](services/cdn/CHANGELOG.md#v230)
+  - **Feature:** Add support for `redirects` in `config`, `config_patch` and `create_distribution_payload` models
+    - new related models `redirect_config`,` redirect_rule`, `matcher` and `match_condition`
 - `loadbalancer`: [v0.8.1](services/loadbalancer/CHANGELOG.md#v081)
   - Update regular expressions to allow longer names
 - `runcommand`: [v1.1.1](services/runcommand/CHANGELOG.md#v111)
@@ -10,6 +82,8 @@
   - Set fields `description` to optional in for `Key`, `KeyRing` and `WrappingKey`
 - `logs`: [v0.2.0](services/logs/CHANGELOG.md#v020)
   - **Feature:** Switch from `v1beta` version to `v1` version of the API.
+- `rabbitmq`: [v0.4.0](services/rabbitmq/CHANGELOG.md#v040)
+  - **Breaking Change:** `tls_protocols` on `instance_parameters` is now a list of strings instead of a single string
 - `sfs`: [v0.2.0](services/sfs/CHANGELOG.md#v020)
   - **Feature:** Switch from `v1beta` API version to `v1` version.
   - **Breaking change:** Remove `ListSnapshotSchedules` method

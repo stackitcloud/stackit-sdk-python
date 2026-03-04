@@ -17,8 +17,10 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
+
+from stackit.ske.models.v2_control_plane_network import V2ControlPlaneNetwork
 
 
 class Network(BaseModel):
@@ -26,8 +28,9 @@ class Network(BaseModel):
     Network
     """  # noqa: E501
 
+    control_plane: Optional[V2ControlPlaneNetwork] = Field(default=None, alias="controlPlane")
     id: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id"]
+    __properties: ClassVar[List[str]] = ["controlPlane", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,6 +69,9 @@ class Network(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of control_plane
+        if self.control_plane:
+            _dict["controlPlane"] = self.control_plane.to_dict()
         return _dict
 
     @classmethod
@@ -77,5 +83,14 @@ class Network(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"id": obj.get("id")})
+        _obj = cls.model_validate(
+            {
+                "controlPlane": (
+                    V2ControlPlaneNetwork.from_dict(obj["controlPlane"])
+                    if obj.get("controlPlane") is not None
+                    else None
+                ),
+                "id": obj.get("id"),
+            }
+        )
         return _obj

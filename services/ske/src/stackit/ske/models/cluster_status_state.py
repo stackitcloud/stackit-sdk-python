@@ -27,7 +27,6 @@ class ClusterStatusState(str, Enum):
     """
     allowed enum values
     """
-    STATE_UNSPECIFIED = "STATE_UNSPECIFIED"
     STATE_HEALTHY = "STATE_HEALTHY"
     STATE_CREATING = "STATE_CREATING"
     STATE_DELETING = "STATE_DELETING"

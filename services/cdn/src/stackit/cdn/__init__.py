@@ -75,6 +75,8 @@ __all__ = [
     "LokiLogSinkCreate",
     "LokiLogSinkCredentials",
     "LokiLogSinkPatch",
+    "MatchCondition",
+    "Matcher",
     "Optimizer",
     "OptimizerPatch",
     "PatchDistributionPayload",
@@ -86,6 +88,8 @@ __all__ = [
     "PutCustomDomainPayloadCertificate",
     "PutCustomDomainResponse",
     "PutCustomDomainResponseCertificate",
+    "RedirectConfig",
+    "RedirectRule",
     "Region",
     "StatusError",
     "WAFRuleAction",
@@ -231,6 +235,8 @@ from stackit.cdn.models.loki_log_sink_credentials import (
     LokiLogSinkCredentials as LokiLogSinkCredentials,
 )
 from stackit.cdn.models.loki_log_sink_patch import LokiLogSinkPatch as LokiLogSinkPatch
+from stackit.cdn.models.match_condition import MatchCondition as MatchCondition
+from stackit.cdn.models.matcher import Matcher as Matcher
 from stackit.cdn.models.optimizer import Optimizer as Optimizer
 from stackit.cdn.models.optimizer_patch import OptimizerPatch as OptimizerPatch
 from stackit.cdn.models.patch_distribution_payload import (
@@ -260,6 +266,8 @@ from stackit.cdn.models.put_custom_domain_response import (
 from stackit.cdn.models.put_custom_domain_response_certificate import (
     PutCustomDomainResponseCertificate as PutCustomDomainResponseCertificate,
 )
+from stackit.cdn.models.redirect_config import RedirectConfig as RedirectConfig
+from stackit.cdn.models.redirect_rule import RedirectRule as RedirectRule
 from stackit.cdn.models.region import Region as Region
 from stackit.cdn.models.status_error import StatusError as StatusError
 from stackit.cdn.models.waf_config import WafConfig as WafConfig

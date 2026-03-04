@@ -33,7 +33,7 @@ class CreateAlertConfigRoutePayload(BaseModel):
 
     var_continue: Optional[StrictBool] = Field(
         default=False,
-        description="Whether an alert should continue matching subsequent sibling nodes.",
+        description="The continue parameter cannot be set to true on the root route because there are no subsequent sibling nodes to match. It must always be false.",
         alias="continue",
     )
     group_by: Optional[List[Annotated[str, Field(min_length=1, strict=True, max_length=200)]]] = Field(

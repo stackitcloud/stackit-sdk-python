@@ -24,10 +24,10 @@ fi
 
 # Change into the directory and run the command
 cd "$path" || exit 1
-version=$(poetry version)
+version=$(uv version)
 
 # Get the version number
-version_number="${version##* }"
+version_number="v${version##* }"
 
 # Get the path and version string
 path_version="$path$version_number"

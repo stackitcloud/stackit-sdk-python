@@ -20,6 +20,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
+from stackit.alb.models.tls_config import TlsConfig
+
 
 class HttpHealthChecks(BaseModel):
     """
@@ -30,7 +32,8 @@ class HttpHealthChecks(BaseModel):
         default=None, description="List of HTTP status codes that indicate a healthy response", alias="okStatuses"
     )
     path: Optional[StrictStr] = Field(default=None, description="Path to send the health check request to")
-    __properties: ClassVar[List[str]] = ["okStatuses", "path"]
+    tls: Optional[TlsConfig] = None
+    __properties: ClassVar[List[str]] = ["okStatuses", "path", "tls"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +72,9 @@ class HttpHealthChecks(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of tls
+        if self.tls:
+            _dict["tls"] = self.tls.to_dict()
         return _dict
 
     @classmethod
@@ -80,5 +86,11 @@ class HttpHealthChecks(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"okStatuses": obj.get("okStatuses"), "path": obj.get("path")})
+        _obj = cls.model_validate(
+            {
+                "okStatuses": obj.get("okStatuses"),
+                "path": obj.get("path"),
+                "tls": TlsConfig.from_dict(obj["tls"]) if obj.get("tls") is not None else None,
+            }
+        )
         return _obj

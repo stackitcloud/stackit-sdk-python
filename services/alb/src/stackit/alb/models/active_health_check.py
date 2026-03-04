@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
 from typing_extensions import Annotated, Self
 
 from stackit.alb.models.http_health_checks import HttpHealthChecks
@@ -29,6 +29,9 @@ class ActiveHealthCheck(BaseModel):
     Set this to customize active health checks for targets in this pool.
     """  # noqa: E501
 
+    alt_port: Optional[StrictInt] = Field(
+        default=None, description="Overrides the default port used for health check probes.", alias="altPort"
+    )
     healthy_threshold: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
         default=None, description="Healthy threshold of the health checking", alias="healthyThreshold"
     )
@@ -48,6 +51,7 @@ class ActiveHealthCheck(BaseModel):
         default=None, description="Unhealthy threshold of the health checking", alias="unhealthyThreshold"
     )
     __properties: ClassVar[List[str]] = [
+        "altPort",
         "healthyThreshold",
         "httpHealthChecks",
         "interval",
@@ -139,6 +143,7 @@ class ActiveHealthCheck(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "altPort": obj.get("altPort"),
                 "healthyThreshold": obj.get("healthyThreshold"),
                 "httpHealthChecks": (
                     HttpHealthChecks.from_dict(obj["httpHealthChecks"])

@@ -1,3 +1,6 @@
+## v0.9.0
+- **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+
 ## v0.8.1
 - Update regular expressions to allow longer names
 

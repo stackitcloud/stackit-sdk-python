@@ -28,6 +28,7 @@ from stackit.loadbalancer.models.credentials_response import CredentialsResponse
 from stackit.loadbalancer.models.get_credentials_response import GetCredentialsResponse
 from stackit.loadbalancer.models.get_quota_response import GetQuotaResponse
 from stackit.loadbalancer.models.google_protobuf_any import GoogleProtobufAny
+from stackit.loadbalancer.models.http_health_checks import HttpHealthChecks
 from stackit.loadbalancer.models.list_credentials_response import (
     ListCredentialsResponse,
 )
@@ -59,6 +60,7 @@ from stackit.loadbalancer.models.session_persistence import SessionPersistence
 from stackit.loadbalancer.models.status import Status
 from stackit.loadbalancer.models.target import Target
 from stackit.loadbalancer.models.target_pool import TargetPool
+from stackit.loadbalancer.models.tls_config import TlsConfig
 from stackit.loadbalancer.models.update_credentials_payload import (
     UpdateCredentialsPayload,
 )

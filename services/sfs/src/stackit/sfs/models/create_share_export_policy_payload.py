@@ -34,7 +34,7 @@ class CreateShareExportPolicyPayload(BaseModel):
         default=None,
         description="An optional object that represents the labels associated with the share export policy  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'",
     )
-    name: Optional[StrictStr] = Field(default=None, description="Name of the Share Export Policy")
+    name: StrictStr = Field(description="Name of the Share Export Policy")
     rules: Optional[List[CreateShareExportPolicyRequestRule]] = Field(
         default=None,
         description='List of rules of the Share Export Policy. The order of the rules within the array does not matter - what matters  is the field "order" within each rule',

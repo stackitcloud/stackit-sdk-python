@@ -36,6 +36,7 @@ __all__ = [
     "GetCredentialsResponse",
     "GetQuotaResponse",
     "GoogleProtobufAny",
+    "HttpHealthChecks",
     "ListCredentialsResponse",
     "ListLoadBalancersResponse",
     "ListPlansResponse",
@@ -57,6 +58,7 @@ __all__ = [
     "Status",
     "Target",
     "TargetPool",
+    "TlsConfig",
     "UpdateCredentialsPayload",
     "UpdateCredentialsResponse",
     "UpdateLoadBalancerPayload",
@@ -102,6 +104,9 @@ from stackit.loadbalancer.models.get_quota_response import (
 from stackit.loadbalancer.models.google_protobuf_any import (
     GoogleProtobufAny as GoogleProtobufAny,
 )
+from stackit.loadbalancer.models.http_health_checks import (
+    HttpHealthChecks as HttpHealthChecks,
+)
 from stackit.loadbalancer.models.list_credentials_response import (
     ListCredentialsResponse as ListCredentialsResponse,
 )
@@ -145,6 +150,7 @@ from stackit.loadbalancer.models.session_persistence import (
 from stackit.loadbalancer.models.status import Status as Status
 from stackit.loadbalancer.models.target import Target as Target
 from stackit.loadbalancer.models.target_pool import TargetPool as TargetPool
+from stackit.loadbalancer.models.tls_config import TlsConfig as TlsConfig
 from stackit.loadbalancer.models.update_credentials_payload import (
     UpdateCredentialsPayload as UpdateCredentialsPayload,
 )

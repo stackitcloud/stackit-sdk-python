@@ -29,6 +29,7 @@ __all__ = [
     "ApiAttributeError",
     "ApiException",
     "ACL",
+    "AccessScope",
     "AvailabilityZone",
     "CRI",
     "Cluster",
@@ -64,6 +65,7 @@ __all__ = [
     "RuntimeError",
     "Taint",
     "TimeWindow",
+    "V2ControlPlaneNetwork",
     "Volume",
     "VolumeType",
 ]
@@ -81,6 +83,7 @@ from stackit.ske.exceptions import ApiKeyError as ApiKeyError
 from stackit.ske.exceptions import ApiTypeError as ApiTypeError
 from stackit.ske.exceptions import ApiValueError as ApiValueError
 from stackit.ske.exceptions import OpenApiException as OpenApiException
+from stackit.ske.models.access_scope import AccessScope as AccessScope
 
 # import models into sdk package
 from stackit.ske.models.acl import ACL as ACL
@@ -139,5 +142,8 @@ from stackit.ske.models.provider_options import ProviderOptions as ProviderOptio
 from stackit.ske.models.runtime_error import RuntimeError as RuntimeError
 from stackit.ske.models.taint import Taint as Taint
 from stackit.ske.models.time_window import TimeWindow as TimeWindow
+from stackit.ske.models.v2_control_plane_network import (
+    V2ControlPlaneNetwork as V2ControlPlaneNetwork,
+)
 from stackit.ske.models.volume import Volume as Volume
 from stackit.ske.models.volume_type import VolumeType as VolumeType

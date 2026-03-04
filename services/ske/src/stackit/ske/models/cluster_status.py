@@ -40,7 +40,7 @@ class ClusterStatus(BaseModel):
     ClusterStatus
     """  # noqa: E501
 
-    aggregated: Optional[ClusterStatusState] = ClusterStatusState.STATE_UNSPECIFIED
+    aggregated: Optional[ClusterStatusState] = None
     creation_time: Optional[datetime] = Field(
         default=None, description="Format: `2024-02-15T11:06:29Z`", alias="creationTime"
     )
@@ -147,9 +147,7 @@ class ClusterStatus(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "aggregated": (
-                    obj.get("aggregated") if obj.get("aggregated") is not None else ClusterStatusState.STATE_UNSPECIFIED
-                ),
+                "aggregated": obj.get("aggregated"),
                 "creationTime": obj.get("creationTime"),
                 "credentialsRotation": (
                     CredentialsRotationState.from_dict(obj["credentialsRotation"])

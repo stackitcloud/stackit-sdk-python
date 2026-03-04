@@ -30,14 +30,14 @@ from pydantic import (
 )
 from typing_extensions import Annotated, Self
 
-from stackit.observability.models.create_scrape_config_payload_basic_auth import (
-    CreateScrapeConfigPayloadBasicAuth,
+from stackit.observability.models.partial_update_scrape_configs_request_inner_basic_auth import (
+    PartialUpdateScrapeConfigsRequestInnerBasicAuth,
 )
-from stackit.observability.models.create_scrape_config_payload_http_sd_configs_inner_oauth2_tls_config import (
-    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig,
+from stackit.observability.models.partial_update_scrape_configs_request_inner_http_sd_configs_inner_oauth2_tls_config import (
+    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig,
 )
-from stackit.observability.models.create_scrape_config_payload_metrics_relabel_configs_inner import (
-    CreateScrapeConfigPayloadMetricsRelabelConfigsInner,
+from stackit.observability.models.partial_update_scrape_configs_request_inner_metrics_relabel_configs_inner import (
+    PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner,
 )
 from stackit.observability.models.update_scrape_config_payload_static_configs_inner import (
     UpdateScrapeConfigPayloadStaticConfigsInner,
@@ -49,7 +49,7 @@ class UpdateScrapeConfigPayload(BaseModel):
     UpdateScrapeConfigPayload
     """  # noqa: E501
 
-    basic_auth: Optional[CreateScrapeConfigPayloadBasicAuth] = Field(default=None, alias="basicAuth")
+    basic_auth: Optional[PartialUpdateScrapeConfigsRequestInnerBasicAuth] = Field(default=None, alias="basicAuth")
     bearer_token: Optional[StrictStr] = Field(
         default=None,
         description="Sets the 'Authorization' header on every scrape request with the configured bearer token. It is mutually exclusive with 'bearer_token_file'. `Additional Validators:` * needs to be a valid bearer token * if bearerToken is in the body no other authentication method should be in the body",
@@ -68,7 +68,7 @@ class UpdateScrapeConfigPayload(BaseModel):
     metrics_path: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(
         description="The HTTP resource path on which to fetch metrics from targets. E.g. /metrics", alias="metricsPath"
     )
-    metrics_relabel_configs: Optional[List[CreateScrapeConfigPayloadMetricsRelabelConfigsInner]] = Field(
+    metrics_relabel_configs: Optional[List[PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner]] = Field(
         default=None, description="List of metric relabel configurations", alias="metricsRelabelConfigs"
     )
     params: Optional[Dict[str, Any]] = Field(
@@ -92,7 +92,7 @@ class UpdateScrapeConfigPayload(BaseModel):
     static_configs: List[UpdateScrapeConfigPayloadStaticConfigsInner] = Field(
         description="A list of scrape configurations.", alias="staticConfigs"
     )
-    tls_config: Optional[CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig] = Field(
+    tls_config: Optional[PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig] = Field(
         default=None, alias="tlsConfig"
     )
     __properties: ClassVar[List[str]] = [
@@ -189,7 +189,7 @@ class UpdateScrapeConfigPayload(BaseModel):
         _obj = cls.model_validate(
             {
                 "basicAuth": (
-                    CreateScrapeConfigPayloadBasicAuth.from_dict(obj["basicAuth"])
+                    PartialUpdateScrapeConfigsRequestInnerBasicAuth.from_dict(obj["basicAuth"])
                     if obj.get("basicAuth") is not None
                     else None
                 ),
@@ -199,7 +199,7 @@ class UpdateScrapeConfigPayload(BaseModel):
                 "metricsPath": obj.get("metricsPath") if obj.get("metricsPath") is not None else "/metrics",
                 "metricsRelabelConfigs": (
                     [
-                        CreateScrapeConfigPayloadMetricsRelabelConfigsInner.from_dict(_item)
+                        PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner.from_dict(_item)
                         for _item in obj["metricsRelabelConfigs"]
                     ]
                     if obj.get("metricsRelabelConfigs") is not None
@@ -216,7 +216,7 @@ class UpdateScrapeConfigPayload(BaseModel):
                     else None
                 ),
                 "tlsConfig": (
-                    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig.from_dict(obj["tlsConfig"])
+                    PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig.from_dict(obj["tlsConfig"])
                     if obj.get("tlsConfig") is not None
                     else None
                 ),
