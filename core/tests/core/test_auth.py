@@ -2,11 +2,13 @@ from pathlib import Path, PurePath
 
 import pytest
 import json
+import jwt
+import requests
 from unittest.mock import patch, mock_open, Mock
 
 from requests.auth import HTTPBasicAuth
 
-from stackit.core.auth_methods.key_auth import KeyAuth
+from stackit.core.auth_methods.key_auth import KeyAuth, ServiceAccountKey
 from stackit.core.auth_methods.token_auth import TokenAuth
 from stackit.core.authorization import Authorization
 from stackit.core.configuration import Configuration
@@ -262,3 +264,32 @@ class TestAuth:
         config = Configuration(service_account_key_path="/non/existent/path/to/file")
         with pytest.raises(FileNotFoundError):
             Authorization(config)
+
+    def test_token_refresh_fails_after_retries(self, service_account_key_file_json):
+        service_account_key = ServiceAccountKey.model_validate_json(service_account_key_file_json)
+        service_account_key.credentials.private_key = "test-private-key"
+
+        def set_initial_token(auth):
+            auth.initial_token = "test-initial-token"
+
+        with patch.object(KeyAuth, "_KeyAuth__create_initial_token", new=set_initial_token), patch.object(
+            KeyAuth, "_KeyAuth__start_token_refresh_task", return_value=None
+        ), patch("requests.post") as mock_post:
+            init_response = Mock()
+            init_response.raise_for_status.return_value = None
+            init_response.json.return_value = {
+                "access_token": jwt.encode({"exp": 4102444800}, "secret", algorithm="HS256"),
+                "refresh_token": jwt.encode({"exp": 4102444800}, "secret", algorithm="HS256"),
+            }
+            mock_post.return_value = init_response
+
+            auth = KeyAuth(service_account_key)
+            auth.refresh_token = jwt.encode({"exp": 4102444800}, "secret", algorithm="HS256")
+
+            mock_post.reset_mock()
+            mock_post.side_effect = requests.RequestException("refresh failed")
+
+            with pytest.raises(requests.RequestException):
+                auth._KeyAuth__refresh_token()
+
+            assert mock_post.call_count == KeyAuth.MAX_REFRESH_RETRIES
