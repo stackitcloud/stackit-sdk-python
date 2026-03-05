@@ -13,6 +13,7 @@
 """  # noqa: E501
 
 
+from stackit.ske.models.access import Access
 from stackit.ske.models.access_scope import AccessScope
 
 # import models into model package
@@ -36,6 +37,7 @@ from stackit.ske.models.get_provider_options_request_version_state import (
 from stackit.ske.models.hibernation import Hibernation
 from stackit.ske.models.hibernation_schedule import HibernationSchedule
 from stackit.ske.models.idp import IDP
+from stackit.ske.models.idp_kubeconfig import IDPKubeconfig
 from stackit.ske.models.image import Image
 from stackit.ske.models.kubeconfig import Kubeconfig
 from stackit.ske.models.kubernetes import Kubernetes
