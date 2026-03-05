@@ -17,21 +17,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing_extensions import Self
 
+from stackit.ske.models.idp import IDP
 
-class ClusterError(BaseModel):
+
+class Access(BaseModel):
     """
-    ClusterError
+    Access
     """  # noqa: E501
 
-    code: Optional[StrictStr] = Field(
-        default=None,
-        description='Possible values: `"SKE_INFRA_SNA_NETWORK_NOT_FOUND"`, `"SKE_INFRA_SNA_NETWORK_NO_ROUTER"`, `"SKE_NODE_NO_VALID_HOST_FOUND"`, `"SKE_NODE_MISCONFIGURED_PDB"`, `"SKE_NODE_MACHINE_TYPE_NOT_FOUND"`, `"SKE_NETWORK_NO_DNS_CONFIGURED"`, `"SKE_NETWORK_NO_AVAILABLE_IPS"`, `"SKE_NODE_MEMORY_PRESSURE"`, `"SKE_NODE_DISK_PRESSURE"`, `"SKE_NODE_PID_PRESSURE"`, `"SKE_OBSERVABILITY_INSTANCE_NOT_FOUND"`, `"SKE_OBSERVABILITY_INSTANCE_NOT_READY"`, `"SKE_DNS_ZONE_NOT_FOUND"`, `"SKE_FETCHING_ERRORS_NOT_POSSIBLE"`',
-    )
-    message: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["code", "message"]
+    idp: Optional[IDP] = None
+    __properties: ClassVar[List[str]] = ["idp"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +48,7 @@ class ClusterError(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClusterError from a JSON string"""
+        """Create an instance of Access from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,16 +68,19 @@ class ClusterError(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of idp
+        if self.idp:
+            _dict["idp"] = self.idp.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClusterError from a dict"""
+        """Create an instance of Access from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"code": obj.get("code"), "message": obj.get("message")})
+        _obj = cls.model_validate({"idp": IDP.from_dict(obj["idp"]) if obj.get("idp") is not None else None})
         return _obj
