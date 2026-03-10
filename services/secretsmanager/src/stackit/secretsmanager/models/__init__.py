@@ -15,9 +15,17 @@
 
 # import models into model package
 from stackit.secretsmanager.models.acl import ACL
+from stackit.secretsmanager.models.approle import Approle
+from stackit.secretsmanager.models.approle_list import ApproleList
+from stackit.secretsmanager.models.approle_secret import ApproleSecret
+from stackit.secretsmanager.models.approle_secret_list import ApproleSecretList
 from stackit.secretsmanager.models.bad_request import BadRequest
 from stackit.secretsmanager.models.conflict import Conflict
 from stackit.secretsmanager.models.create_acl_payload import CreateACLPayload
+from stackit.secretsmanager.models.create_approle_payload import CreateApprolePayload
+from stackit.secretsmanager.models.create_approle_secret_payload import (
+    CreateApproleSecretPayload,
+)
 from stackit.secretsmanager.models.create_instance_payload import CreateInstancePayload
 from stackit.secretsmanager.models.create_user_payload import CreateUserPayload
 from stackit.secretsmanager.models.instance import Instance
@@ -28,6 +36,7 @@ from stackit.secretsmanager.models.list_users_response import ListUsersResponse
 from stackit.secretsmanager.models.not_found import NotFound
 from stackit.secretsmanager.models.update_acl_payload import UpdateACLPayload
 from stackit.secretsmanager.models.update_acls_payload import UpdateACLsPayload
+from stackit.secretsmanager.models.update_approle_payload import UpdateApprolePayload
 from stackit.secretsmanager.models.update_instance_payload import UpdateInstancePayload
 from stackit.secretsmanager.models.update_user_payload import UpdateUserPayload
 from stackit.secretsmanager.models.user import User
