@@ -20,8 +20,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.serviceaccount.models.create_federated_identity_provider_response import (
-    CreateFederatedIdentityProviderResponse,
+from stackit.serviceaccount.models.federated_identity_provider import (
+    FederatedIdentityProvider,
 )
 
 
@@ -33,7 +33,7 @@ class FederatedListFederatedIdentityProvidersResponse(BaseModel):
     items_per_page: Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]] = Field(
         alias="itemsPerPage"
     )
-    resources: List[CreateFederatedIdentityProviderResponse]
+    resources: List[FederatedIdentityProvider]
     start_index: Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]] = Field(
         alias="startIndex"
     )
@@ -101,7 +101,7 @@ class FederatedListFederatedIdentityProvidersResponse(BaseModel):
             {
                 "itemsPerPage": obj.get("itemsPerPage") if obj.get("itemsPerPage") is not None else 1,
                 "resources": (
-                    [CreateFederatedIdentityProviderResponse.from_dict(_item) for _item in obj["resources"]]
+                    [FederatedIdentityProvider.from_dict(_item) for _item in obj["resources"]]
                     if obj.get("resources") is not None
                     else None
                 ),

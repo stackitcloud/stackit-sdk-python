@@ -27,12 +27,6 @@ from stackit.serviceaccount.models.create_federated_identity_provider_payload im
 from stackit.serviceaccount.models.create_federated_identity_provider_payload_assertions_inner import (
     CreateFederatedIdentityProviderPayloadAssertionsInner,
 )
-from stackit.serviceaccount.models.create_federated_identity_provider_response import (
-    CreateFederatedIdentityProviderResponse,
-)
-from stackit.serviceaccount.models.create_federated_identity_provider_response_assertions_inner import (
-    CreateFederatedIdentityProviderResponseAssertionsInner,
-)
 from stackit.serviceaccount.models.create_service_account_key_payload import (
     CreateServiceAccountKeyPayload,
 )
@@ -49,6 +43,12 @@ from stackit.serviceaccount.models.create_short_lived_access_token_response impo
     CreateShortLivedAccessTokenResponse,
 )
 from stackit.serviceaccount.models.error import Error
+from stackit.serviceaccount.models.federated_identity_provider import (
+    FederatedIdentityProvider,
+)
+from stackit.serviceaccount.models.federated_identity_provider_assertions_inner import (
+    FederatedIdentityProviderAssertionsInner,
+)
 from stackit.serviceaccount.models.federated_list_federated_identity_providers_response import (
     FederatedListFederatedIdentityProvidersResponse,
 )
