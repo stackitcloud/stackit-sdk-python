@@ -35,10 +35,8 @@ class ImageFromVolumePayload(BaseModel):
     Object that represents the upload request of an image to a volume. Used for creating an image from a volume.
     """  # noqa: E501
 
-    disk_format: Optional[StrictStr] = Field(
-        default=None,
-        description="Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.",
-        alias="diskFormat",
+    disk_format: StrictStr = Field(
+        description="Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.", alias="diskFormat"
     )
     name: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
