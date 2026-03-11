@@ -43,13 +43,16 @@ class Backup(BaseModel):
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
+    )
     encrypted: Optional[StrictBool] = Field(default=None, description="Indicates if a volume is encrypted.")
     id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
         default=None, description="Universally Unique Identifier (UUID)."
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
@@ -71,6 +74,7 @@ class Backup(BaseModel):
     __properties: ClassVar[List[str]] = [
         "availabilityZone",
         "createdAt",
+        "description",
         "encrypted",
         "id",
         "labels",
@@ -227,6 +231,7 @@ class Backup(BaseModel):
             {
                 "availabilityZone": obj.get("availabilityZone"),
                 "createdAt": obj.get("createdAt"),
+                "description": obj.get("description"),
                 "encrypted": obj.get("encrypted"),
                 "id": obj.get("id"),
                 "labels": obj.get("labels"),
