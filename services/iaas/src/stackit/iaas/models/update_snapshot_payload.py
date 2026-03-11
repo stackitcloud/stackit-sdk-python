@@ -28,14 +28,17 @@ class UpdateSnapshotPayload(BaseModel):
     Object that represents an update request body of a snapshot.
     """  # noqa: E501
 
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
+    )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
-    __properties: ClassVar[List[str]] = ["labels", "name"]
+    __properties: ClassVar[List[str]] = ["description", "labels", "name"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -95,5 +98,7 @@ class UpdateSnapshotPayload(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"labels": obj.get("labels"), "name": obj.get("name")})
+        _obj = cls.model_validate(
+            {"description": obj.get("description"), "labels": obj.get("labels"), "name": obj.get("name")}
+        )
         return _obj
