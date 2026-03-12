@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -17,7 +17,13 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+)
 from typing_extensions import Self
 
 
@@ -28,8 +34,13 @@ class PutCustomDomainCustomCertificate(BaseModel):
 
     certificate: StrictStr = Field(description="base64-encoded PEM-encoded certificate")
     key: StrictStr = Field(description="base64-encoded PEM encoded key")
+    skip_dns_check: Optional[StrictBool] = Field(
+        default=None,
+        description="When adding a new custom domain, we do a check to verify that your Domain points to the managed domain via a CNAME or ALIAS. If this is not the case, the call would usually reject.   This additional property is an escape hatch to this functionality. It's useful for when you are migrating onto STACKIT CDN. It allows you to migrate without  downtime.  By providing a custom certificate with `skipDnsCheck` set to `true`, we will  not check the Record for correctness. Then, once the CDN is set up, you can change the CNAME Record on your DNS and update the Custom Domain entry to  disable this check, or switch to a managed certificate.  This field is optional. If not set, the check is **not** skipped. ",
+        alias="skipDnsCheck",
+    )
     type: StrictStr
-    __properties: ClassVar[List[str]] = ["certificate", "key", "type"]
+    __properties: ClassVar[List[str]] = ["certificate", "key", "skipDnsCheck", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +91,11 @@ class PutCustomDomainCustomCertificate(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"certificate": obj.get("certificate"), "key": obj.get("key"), "type": obj.get("type")}
+            {
+                "certificate": obj.get("certificate"),
+                "key": obj.get("key"),
+                "skipDnsCheck": obj.get("skipDnsCheck"),
+                "type": obj.get("type"),
+            }
         )
         return _obj
