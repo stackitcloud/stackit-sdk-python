@@ -1,13 +1,9 @@
 ## Release (2026-xx-xx)
 
-- `iaas`: [v1.1.1](services/iaas/CHANGELOG.md#v111)
+- `iaas`: [v1.2.0](services/iaas/CHANGELOG.md#v120)
   - **Feature:** Add `description` attribute to ModelClasses:
-    - `Backup`
-    - `CreateBackupPayload`
-    - `CreateSnapshotPayload`
-    - `Snapshot`
-    - `UpdateBackupPayload`
-    - `UpdateSnapshotPayload`
+  - `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`
+  - `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload`
   - **Bugfix:** Flagged `disk_format` as necessary for `ImageFromVolumePayload`
   - **Improvement:** Updated description for labels
 - `alb`: [v0.9.0](services/alb/CHANGELOG.md#v090)

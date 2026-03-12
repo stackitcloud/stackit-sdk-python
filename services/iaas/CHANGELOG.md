@@ -1,11 +1,7 @@
-## v1.1.1
+## v1.2.0
 - **Feature:** Add `description` attribute to ModelClasses:
-  - `Backup`
-  - `CreateBackupPayload`
-  - `CreateSnapshotPayload`
-  - `Snapshot`
-  - `UpdateBackupPayload`
-  - `UpdateSnapshotPayload`
+  - `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`
+  - `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload`
 - **Bugfix:** Flagged `disk_format` as necessary for `ImageFromVolumePayload`
 - **Improvement:** Updated description for labels
 
