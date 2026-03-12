@@ -1,3 +1,14 @@
+## v1.1.1
+- **Feature:** Add `description` attribute to ModelClasses:
+  - `Backup`
+  - `CreateBackupPayload`
+  - `CreateSnapshotPayload`
+  - `Snapshot`
+  - `UpdateBackupPayload`
+  - `UpdateSnapshotPayload`
+- **Bugfix:** Flagged `disk_format` as necessary for `ImageFromVolumePayload`
+- **Improvement:** Updated description for labels
+
 ## v1.1.0
 - **Feature:** Add `CreateIsolatedNetwork` functionality
 - **Feature:** Add `ImageFromVolumePayload` functionality
