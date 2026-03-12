@@ -30,15 +30,18 @@ class CreateBackupPayload(BaseModel):
     Object that represents a backup create request body.
     """  # noqa: E501
 
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
+    )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.",
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.",
     )
     name: Optional[Annotated[str, Field(strict=True, max_length=127)]] = Field(
         default=None, description="The name for a General Object. Matches Names and also UUIDs."
     )
     source: BackupSource
-    __properties: ClassVar[List[str]] = ["labels", "name", "source"]
+    __properties: ClassVar[List[str]] = ["description", "labels", "name", "source"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -103,6 +106,7 @@ class CreateBackupPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "description": obj.get("description"),
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
                 "source": BackupSource.from_dict(obj["source"]) if obj.get("source") is not None else None,
