@@ -1,3 +1,6 @@
+## v0.5.0
+- **Breaking Change**: Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
+
 ## v0.4.0
 - **Feature:** Add new enum class `PartitioningUpdateType`
 - **Feature:** Add attributes `partition_by` and `partitioning` to `IntakeCatalogPatch` model class

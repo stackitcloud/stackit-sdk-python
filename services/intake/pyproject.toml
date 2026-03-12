@@ -1,6 +1,6 @@
 [project]
 name = "stackit-intake"
-version = "v0.4.0"
+version = "v0.5.0"
 description = "STACKIT Intake API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4"
@@ -107,5 +107,5 @@ inline-quotes = '"'
 docstring-quotes = '"""'
 multiline-quotes = '"""'
 ban-relative-imports = true
-# Exclude generated code 
+# Exclude generated code
 extend-exclude = [ "src/stackit/*/models/*", "src/stackit/*/api/*", "src/stackit/*/*.py" ]
