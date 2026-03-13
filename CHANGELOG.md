@@ -1,7 +1,8 @@
 ## Release (2026-xx-xx)
 
 - `serviceaccount`: [v0.6.0](services/kms/CHANGELOG.md#v060)
-  - **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` including all related variables / files
+  - **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` and update file path accordingly
+  - **Breaking Change:** rename `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner` and update file path accordingly
   - **Feature:** add `id` for `FederatedIdentityProvider`
 - `intake`: [v0.5.0](services/intake/CHANGELOG.md#v050)
   - **Breaking Change**: Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
