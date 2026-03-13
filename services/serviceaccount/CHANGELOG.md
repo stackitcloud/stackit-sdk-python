@@ -1,3 +1,7 @@
+## v0.6.0
+- **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` including all related variables / files
+- **Feature:** add `id` for `FederatedIdentityProvider`
+
 ## v0.5.0
 - **Feature:** add support for Federated Identity Providers
   - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`,`PartialUpdateServiceAccountFederatedIdentityProvider`
