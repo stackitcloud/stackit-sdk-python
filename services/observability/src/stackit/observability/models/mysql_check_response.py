@@ -79,9 +79,9 @@ class MysqlCheckResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in mysql_checks (list)
         _items = []
         if self.mysql_checks:
-            for _item in self.mysql_checks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_mysql_checks in self.mysql_checks:
+                if _item_mysql_checks:
+                    _items.append(_item_mysql_checks.to_dict())
             _dict["mysqlChecks"] = _items
         return _dict
 
