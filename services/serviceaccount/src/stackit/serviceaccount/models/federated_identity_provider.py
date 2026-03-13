@@ -18,28 +18,30 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
-from stackit.serviceaccount.models.create_federated_identity_provider_response_assertions_inner import (
-    CreateFederatedIdentityProviderResponseAssertionsInner,
+from stackit.serviceaccount.models.federated_identity_provider_assertions_inner import (
+    FederatedIdentityProviderAssertionsInner,
 )
 
 
-class CreateFederatedIdentityProviderResponse(BaseModel):
+class FederatedIdentityProvider(BaseModel):
     """
-    CreateFederatedIdentityProviderResponse
+    FederatedIdentityProvider
     """  # noqa: E501
 
-    assertions: List[CreateFederatedIdentityProviderResponseAssertionsInner] = Field(
+    assertions: List[FederatedIdentityProviderAssertionsInner] = Field(
         description="list of assertions of the federated identity provider"
     )
     created_at: datetime = Field(description="Creation time of the federated identity provider.", alias="createdAt")
+    id: Optional[UUID] = Field(default=None, description="Unique ID of the federated identity provider.")
     issuer: StrictStr = Field(description="Issuer of the federated identity provider.")
     name: StrictStr = Field(description="Unique name of the federated identity provider.")
     updated_at: datetime = Field(description="Last update time of the federated identity provider.", alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["assertions", "createdAt", "issuer", "name", "updatedAt"]
+    __properties: ClassVar[List[str]] = ["assertions", "createdAt", "id", "issuer", "name", "updatedAt"]
 
     @field_validator("created_at", mode="before")
     def created_at_change_year_zero_to_one(cls, value):
@@ -84,7 +86,7 @@ class CreateFederatedIdentityProviderResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateFederatedIdentityProviderResponse from a JSON string"""
+        """Create an instance of FederatedIdentityProvider from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -107,15 +109,15 @@ class CreateFederatedIdentityProviderResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in assertions (list)
         _items = []
         if self.assertions:
-            for _item in self.assertions:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_assertions in self.assertions:
+                if _item_assertions:
+                    _items.append(_item_assertions.to_dict())
             _dict["assertions"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateFederatedIdentityProviderResponse from a dict"""
+        """Create an instance of FederatedIdentityProvider from a dict"""
         if obj is None:
             return None
 
@@ -125,14 +127,12 @@ class CreateFederatedIdentityProviderResponse(BaseModel):
         _obj = cls.model_validate(
             {
                 "assertions": (
-                    [
-                        CreateFederatedIdentityProviderResponseAssertionsInner.from_dict(_item)
-                        for _item in obj["assertions"]
-                    ]
+                    [FederatedIdentityProviderAssertionsInner.from_dict(_item) for _item in obj["assertions"]]
                     if obj.get("assertions") is not None
                     else None
                 ),
                 "createdAt": obj.get("createdAt"),
+                "id": obj.get("id"),
                 "issuer": obj.get("issuer"),
                 "name": obj.get("name"),
                 "updatedAt": obj.get("updatedAt"),

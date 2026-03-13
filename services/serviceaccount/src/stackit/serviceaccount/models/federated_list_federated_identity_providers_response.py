@@ -20,8 +20,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
-from stackit.serviceaccount.models.create_federated_identity_provider_response import (
-    CreateFederatedIdentityProviderResponse,
+from stackit.serviceaccount.models.federated_identity_provider import (
+    FederatedIdentityProvider,
 )
 
 
@@ -33,7 +33,7 @@ class FederatedListFederatedIdentityProvidersResponse(BaseModel):
     items_per_page: Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]] = Field(
         alias="itemsPerPage"
     )
-    resources: List[CreateFederatedIdentityProviderResponse]
+    resources: List[FederatedIdentityProvider]
     start_index: Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]] = Field(
         alias="startIndex"
     )
@@ -82,9 +82,9 @@ class FederatedListFederatedIdentityProvidersResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in resources (list)
         _items = []
         if self.resources:
-            for _item in self.resources:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_resources in self.resources:
+                if _item_resources:
+                    _items.append(_item_resources.to_dict())
             _dict["resources"] = _items
         return _dict
 
@@ -101,7 +101,7 @@ class FederatedListFederatedIdentityProvidersResponse(BaseModel):
             {
                 "itemsPerPage": obj.get("itemsPerPage") if obj.get("itemsPerPage") is not None else 1,
                 "resources": (
-                    [CreateFederatedIdentityProviderResponse.from_dict(_item) for _item in obj["resources"]]
+                    [FederatedIdentityProvider.from_dict(_item) for _item in obj["resources"]]
                     if obj.get("resources") is not None
                     else None
                 ),

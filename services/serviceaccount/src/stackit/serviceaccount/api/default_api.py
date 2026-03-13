@@ -12,6 +12,7 @@
 """  # noqa: E501
 
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import (
     Field,
@@ -32,9 +33,6 @@ from stackit.serviceaccount.models.create_access_token_payload import (
 from stackit.serviceaccount.models.create_federated_identity_provider_payload import (
     CreateFederatedIdentityProviderPayload,
 )
-from stackit.serviceaccount.models.create_federated_identity_provider_response import (
-    CreateFederatedIdentityProviderResponse,
-)
 from stackit.serviceaccount.models.create_service_account_key_payload import (
     CreateServiceAccountKeyPayload,
 )
@@ -46,6 +44,9 @@ from stackit.serviceaccount.models.create_service_account_payload import (
 )
 from stackit.serviceaccount.models.create_short_lived_access_token_response import (
     CreateShortLivedAccessTokenResponse,
+)
+from stackit.serviceaccount.models.federated_identity_provider import (
+    FederatedIdentityProvider,
 )
 from stackit.serviceaccount.models.federated_list_federated_identity_providers_response import (
     FederatedListFederatedIdentityProvidersResponse,
@@ -391,7 +392,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CreateFederatedIdentityProviderResponse:
+    ) -> FederatedIdentityProvider:
         """Create a new Federated Identity Provider
 
         Federate the service account with an identity provider.
@@ -435,7 +436,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "CreateFederatedIdentityProviderResponse",
+            "201": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -466,7 +467,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CreateFederatedIdentityProviderResponse]:
+    ) -> ApiResponse[FederatedIdentityProvider]:
         """Create a new Federated Identity Provider
 
         Federate the service account with an identity provider.
@@ -510,7 +511,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "CreateFederatedIdentityProviderResponse",
+            "201": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -585,7 +586,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "CreateFederatedIdentityProviderResponse",
+            "201": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -1528,7 +1529,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The ID of the Service Account.")],
-        access_token_id: Annotated[StrictStr, Field(description="The ID of the Access Token.")],
+        access_token_id: Annotated[UUID, Field(description="The ID of the Access Token.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1548,7 +1549,7 @@ class DefaultApi:
         :param service_account_email: The ID of the Service Account. (required)
         :type service_account_email: str
         :param access_token_id: The ID of the Access Token. (required)
-        :type access_token_id: str
+        :type access_token_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1601,7 +1602,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The ID of the Service Account.")],
-        access_token_id: Annotated[StrictStr, Field(description="The ID of the Access Token.")],
+        access_token_id: Annotated[UUID, Field(description="The ID of the Access Token.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1621,7 +1622,7 @@ class DefaultApi:
         :param service_account_email: The ID of the Service Account. (required)
         :type service_account_email: str
         :param access_token_id: The ID of the Access Token. (required)
-        :type access_token_id: str
+        :type access_token_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1674,7 +1675,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The ID of the Service Account.")],
-        access_token_id: Annotated[StrictStr, Field(description="The ID of the Access Token.")],
+        access_token_id: Annotated[UUID, Field(description="The ID of the Access Token.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1694,7 +1695,7 @@ class DefaultApi:
         :param service_account_email: The ID of the Service Account. (required)
         :type service_account_email: str
         :param access_token_id: The ID of the Access Token. (required)
-        :type access_token_id: str
+        :type access_token_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2052,7 +2053,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        key_id: Annotated[StrictStr, Field(description="ID of the key.")],
+        key_id: Annotated[UUID, Field(description="ID of the key.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2072,7 +2073,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param key_id: ID of the key. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2123,7 +2124,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        key_id: Annotated[StrictStr, Field(description="ID of the key.")],
+        key_id: Annotated[UUID, Field(description="ID of the key.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2143,7 +2144,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param key_id: ID of the key. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2194,7 +2195,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        key_id: Annotated[StrictStr, Field(description="ID of the key.")],
+        key_id: Annotated[UUID, Field(description="ID of the key.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2214,7 +2215,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param key_id: ID of the key. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2317,7 +2318,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        federation_id: Annotated[StrictStr, Field(description="ID of the Federated Identity Provider.")],
+        federation_id: Annotated[UUID, Field(description="ID of the Federated Identity Provider.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2337,7 +2338,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param federation_id: ID of the Federated Identity Provider. (required)
-        :type federation_id: str
+        :type federation_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2389,7 +2390,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        federation_id: Annotated[StrictStr, Field(description="ID of the Federated Identity Provider.")],
+        federation_id: Annotated[UUID, Field(description="ID of the Federated Identity Provider.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2409,7 +2410,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param federation_id: ID of the Federated Identity Provider. (required)
-        :type federation_id: str
+        :type federation_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2461,7 +2462,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        federation_id: Annotated[StrictStr, Field(description="ID of the Federated Identity Provider.")],
+        federation_id: Annotated[UUID, Field(description="ID of the Federated Identity Provider.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2481,7 +2482,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param federation_id: ID of the Federated Identity Provider. (required)
-        :type federation_id: str
+        :type federation_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2811,7 +2812,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        key_id: Annotated[StrictStr, Field(description="ID of the key.")],
+        key_id: Annotated[UUID, Field(description="ID of the key.")],
         format: Annotated[Optional[StrictStr], Field(description="Requested format for the public key")] = None,
         _request_timeout: Union[
             None,
@@ -2832,7 +2833,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param key_id: ID of the key. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param format: Requested format for the public key
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2886,7 +2887,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        key_id: Annotated[StrictStr, Field(description="ID of the key.")],
+        key_id: Annotated[UUID, Field(description="ID of the key.")],
         format: Annotated[Optional[StrictStr], Field(description="Requested format for the public key")] = None,
         _request_timeout: Union[
             None,
@@ -2907,7 +2908,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param key_id: ID of the key. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param format: Requested format for the public key
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2961,7 +2962,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        key_id: Annotated[StrictStr, Field(description="ID of the key.")],
+        key_id: Annotated[UUID, Field(description="ID of the key.")],
         format: Annotated[Optional[StrictStr], Field(description="Requested format for the public key")] = None,
         _request_timeout: Union[
             None,
@@ -2982,7 +2983,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param key_id: ID of the key. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param format: Requested format for the public key
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4084,7 +4085,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        federation_id: Annotated[StrictStr, Field(description="ID of the Federated Identity Provider.")],
+        federation_id: Annotated[UUID, Field(description="ID of the Federated Identity Provider.")],
         partial_update_service_account_federated_identity_provider_payload: Annotated[
             Optional[PartialUpdateServiceAccountFederatedIdentityProviderPayload],
             Field(description="Delete a Federated Identity Provider"),
@@ -4098,7 +4099,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CreateFederatedIdentityProviderResponse:
+    ) -> FederatedIdentityProvider:
         """Update Service Account Federated Identity Provider
 
         Update a Federated Identity Provider.
@@ -4108,7 +4109,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param federation_id: ID of the Federated Identity Provider. (required)
-        :type federation_id: str
+        :type federation_id: UUID
         :param partial_update_service_account_federated_identity_provider_payload: Delete a Federated Identity Provider
         :type partial_update_service_account_federated_identity_provider_payload: PartialUpdateServiceAccountFederatedIdentityProviderPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4145,7 +4146,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CreateFederatedIdentityProviderResponse",
+            "200": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -4164,7 +4165,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        federation_id: Annotated[StrictStr, Field(description="ID of the Federated Identity Provider.")],
+        federation_id: Annotated[UUID, Field(description="ID of the Federated Identity Provider.")],
         partial_update_service_account_federated_identity_provider_payload: Annotated[
             Optional[PartialUpdateServiceAccountFederatedIdentityProviderPayload],
             Field(description="Delete a Federated Identity Provider"),
@@ -4178,7 +4179,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CreateFederatedIdentityProviderResponse]:
+    ) -> ApiResponse[FederatedIdentityProvider]:
         """Update Service Account Federated Identity Provider
 
         Update a Federated Identity Provider.
@@ -4188,7 +4189,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param federation_id: ID of the Federated Identity Provider. (required)
-        :type federation_id: str
+        :type federation_id: UUID
         :param partial_update_service_account_federated_identity_provider_payload: Delete a Federated Identity Provider
         :type partial_update_service_account_federated_identity_provider_payload: PartialUpdateServiceAccountFederatedIdentityProviderPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4225,7 +4226,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CreateFederatedIdentityProviderResponse",
+            "200": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -4244,7 +4245,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        federation_id: Annotated[StrictStr, Field(description="ID of the Federated Identity Provider.")],
+        federation_id: Annotated[UUID, Field(description="ID of the Federated Identity Provider.")],
         partial_update_service_account_federated_identity_provider_payload: Annotated[
             Optional[PartialUpdateServiceAccountFederatedIdentityProviderPayload],
             Field(description="Delete a Federated Identity Provider"),
@@ -4268,7 +4269,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param federation_id: ID of the Federated Identity Provider. (required)
-        :type federation_id: str
+        :type federation_id: UUID
         :param partial_update_service_account_federated_identity_provider_payload: Delete a Federated Identity Provider
         :type partial_update_service_account_federated_identity_provider_payload: PartialUpdateServiceAccountFederatedIdentityProviderPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4305,7 +4306,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CreateFederatedIdentityProviderResponse",
+            "200": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -4387,7 +4388,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        key_id: Annotated[StrictStr, Field(description="ID of the key.")],
+        key_id: Annotated[UUID, Field(description="ID of the key.")],
         partial_update_service_account_key_payload: Annotated[
             Optional[PartialUpdateServiceAccountKeyPayload], Field(description="Service account request")
         ] = None,
@@ -4410,7 +4411,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param key_id: ID of the key. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param partial_update_service_account_key_payload: Service account request
         :type partial_update_service_account_key_payload: PartialUpdateServiceAccountKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4465,7 +4466,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        key_id: Annotated[StrictStr, Field(description="ID of the key.")],
+        key_id: Annotated[UUID, Field(description="ID of the key.")],
         partial_update_service_account_key_payload: Annotated[
             Optional[PartialUpdateServiceAccountKeyPayload], Field(description="Service account request")
         ] = None,
@@ -4488,7 +4489,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param key_id: ID of the key. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param partial_update_service_account_key_payload: Service account request
         :type partial_update_service_account_key_payload: PartialUpdateServiceAccountKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4543,7 +4544,7 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="The ID of the project.")],
         service_account_email: Annotated[StrictStr, Field(description="The email of the service account.")],
-        key_id: Annotated[StrictStr, Field(description="ID of the key.")],
+        key_id: Annotated[UUID, Field(description="ID of the key.")],
         partial_update_service_account_key_payload: Annotated[
             Optional[PartialUpdateServiceAccountKeyPayload], Field(description="Service account request")
         ] = None,
@@ -4566,7 +4567,7 @@ class DefaultApi:
         :param service_account_email: The email of the service account. (required)
         :type service_account_email: str
         :param key_id: ID of the key. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param partial_update_service_account_key_payload: Service account request
         :type partial_update_service_account_key_payload: PartialUpdateServiceAccountKeyPayload
         :param _request_timeout: timeout setting for this request. If one
