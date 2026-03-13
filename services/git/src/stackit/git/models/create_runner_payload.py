@@ -18,19 +18,17 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
-
-from stackit.git.models.instance import Instance
+from pydantic import BaseModel, ConfigDict, StrictStr
+from typing_extensions import Self
 
 
-class ListInstances(BaseModel):
+class CreateRunnerPayload(BaseModel):
     """
-    A list of STACKIT Git instances.
+    Request a runner to be created supporting the requested list of runtime labels.
     """  # noqa: E501
 
-    instances: Annotated[List[Instance], Field(max_length=50)]
-    __properties: ClassVar[List[str]] = ["instances"]
+    labels: List[StrictStr]
+    __properties: ClassVar[List[str]] = ["labels"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +47,7 @@ class ListInstances(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ListInstances from a JSON string"""
+        """Create an instance of CreateRunnerPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,31 +67,16 @@ class ListInstances(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in instances (list)
-        _items = []
-        if self.instances:
-            for _item_instances in self.instances:
-                if _item_instances:
-                    _items.append(_item_instances.to_dict())
-            _dict["instances"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ListInstances from a dict"""
+        """Create an instance of CreateRunnerPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "instances": (
-                    [Instance.from_dict(_item) for _item in obj["instances"]]
-                    if obj.get("instances") is not None
-                    else None
-                )
-            }
-        )
+        _obj = cls.model_validate({"labels": obj.get("labels")})
         return _obj

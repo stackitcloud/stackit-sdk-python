@@ -16,21 +16,38 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
-
-from stackit.git.models.instance import Instance
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing_extensions import Self
 
 
-class ListInstances(BaseModel):
+class Runner(BaseModel):
     """
-    A list of STACKIT Git instances.
+    Describes a runner associated to a STACKIT Git instance.
     """  # noqa: E501
 
-    instances: Annotated[List[Instance], Field(max_length=50)]
-    __properties: ClassVar[List[str]] = ["instances"]
+    created_at: datetime
+    id: UUID
+    labels: List[StrictStr]
+    status: StrictStr = Field(description="The current status of the runner.")
+    __properties: ClassVar[List[str]] = ["created_at", "id", "labels", "status"]
+
+    @field_validator("created_at", mode="before")
+    def created_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +66,7 @@ class ListInstances(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ListInstances from a JSON string"""
+        """Create an instance of Runner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +86,11 @@ class ListInstances(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in instances (list)
-        _items = []
-        if self.instances:
-            for _item_instances in self.instances:
-                if _item_instances:
-                    _items.append(_item_instances.to_dict())
-            _dict["instances"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ListInstances from a dict"""
+        """Create an instance of Runner from a dict"""
         if obj is None:
             return None
 
@@ -89,11 +99,10 @@ class ListInstances(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "instances": (
-                    [Instance.from_dict(_item) for _item in obj["instances"]]
-                    if obj.get("instances") is not None
-                    else None
-                )
+                "created_at": obj.get("created_at"),
+                "id": obj.get("id"),
+                "labels": obj.get("labels"),
+                "status": obj.get("status"),
             }
         )
         return _obj

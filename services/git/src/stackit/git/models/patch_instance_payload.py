@@ -21,6 +21,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
+from stackit.git.models.feature_toggle import FeatureToggle
+
 
 class PatchInstancePayload(BaseModel):
     """
@@ -30,7 +32,8 @@ class PatchInstancePayload(BaseModel):
     acl: Optional[Annotated[List[StrictStr], Field(max_length=50)]] = Field(
         default=None, description="A list of CIDR network addresses that are allowed to access the instance."
     )
-    __properties: ClassVar[List[str]] = ["acl"]
+    feature_toggle: Optional[FeatureToggle] = None
+    __properties: ClassVar[List[str]] = ["acl", "feature_toggle"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +72,9 @@ class PatchInstancePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of feature_toggle
+        if self.feature_toggle:
+            _dict["feature_toggle"] = self.feature_toggle.to_dict()
         # set to None if acl (nullable) is None
         # and model_fields_set contains the field
         if self.acl is None and "acl" in self.model_fields_set:
@@ -85,5 +91,12 @@ class PatchInstancePayload(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"acl": obj.get("acl")})
+        _obj = cls.model_validate(
+            {
+                "acl": obj.get("acl"),
+                "feature_toggle": (
+                    FeatureToggle.from_dict(obj["feature_toggle"]) if obj.get("feature_toggle") is not None else None
+                ),
+            }
+        )
         return _obj
