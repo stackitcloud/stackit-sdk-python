@@ -3,7 +3,7 @@
 - `ske`: [v1.7.0](services/ske/CHANGELOG.md#v170)
   - **Feature:** New model `Access`
   - **Feature:** New model `IDPKubeconfig`
-  - **Feature:** Added field `access` of type `Access` to model `Cluster`
+  - **Feature:** Added attribute `access` of type `Access` to model `Cluster`
 - `alb`: [v0.9.0](services/alb/CHANGELOG.md#v090)
   - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
   - **Feature:** Add new field `Tls` to `HttpHealthCheck`
