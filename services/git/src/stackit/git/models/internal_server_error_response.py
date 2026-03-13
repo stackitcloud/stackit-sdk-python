@@ -27,8 +27,9 @@ class InternalServerErrorResponse(BaseModel):
     Internal server error.
     """  # noqa: E501
 
+    details: Optional[StrictStr] = None
     error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["error"]
+    __properties: ClassVar[List[str]] = ["details", "error"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,5 +79,5 @@ class InternalServerErrorResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"error": obj.get("error")})
+        _obj = cls.model_validate({"details": obj.get("details"), "error": obj.get("error")})
         return _obj

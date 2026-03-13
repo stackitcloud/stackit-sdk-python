@@ -72,9 +72,9 @@ class ListFlavors(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in flavors (list)
         _items = []
         if self.flavors:
-            for _item in self.flavors:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_flavors in self.flavors:
+                if _item_flavors:
+                    _items.append(_item_flavors.to_dict())
             _dict["flavors"] = _items
         return _dict
 
