@@ -3,7 +3,8 @@
 - `ske`: [v1.7.0](services/ske/CHANGELOG.md#v170)
   - **Feature:** New model `Access`
   - **Feature:** New model `IDPKubeconfig`
-  - **Feature:** Added attribute `access` of type `Access` to model `Cluster`
+  - **Feature:** Add attribute `access` of type `Access` to model `Cluster`
+  - **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
 - `alb`: [v0.9.0](services/alb/CHANGELOG.md#v090)
   - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
   - **Feature:** Add new field `Tls` to `HttpHealthCheck`
