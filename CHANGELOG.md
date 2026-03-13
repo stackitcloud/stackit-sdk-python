@@ -1,5 +1,7 @@
 ## Release (2026-xx-xx)
 
+- `kms`: [v0.8.0](services/kms/CHANGELOG.md#v080)
+  - **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
 - `intake`: [v0.5.0](services/intake/CHANGELOG.md#v050)
   - **Breaking Change**: Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
 - `iaas`: [v1.2.0](services/iaas/CHANGELOG.md#v120)
