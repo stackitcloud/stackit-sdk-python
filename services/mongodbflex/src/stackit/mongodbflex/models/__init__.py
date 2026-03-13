@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.mongodbflex.models.acl import ACL
 from stackit.mongodbflex.models.backup import Backup
