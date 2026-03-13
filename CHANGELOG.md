@@ -1,5 +1,10 @@
 ## Release (2026-xx-xx)
 
+- `ske`: [v1.7.0](services/ske/CHANGELOG.md#v170)
+  - **Feature:** New model `Access`
+  - **Feature:** New model `IDPKubeconfig`
+  - **Feature:** Add attribute `access` of type `Access` to model `Cluster`
+  - **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
 - `serviceaccount`: [v0.6.0](services/kms/CHANGELOG.md#v060)
   - **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` and update file path accordingly
   - **Breaking Change:** rename `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner` and update file path accordingly
