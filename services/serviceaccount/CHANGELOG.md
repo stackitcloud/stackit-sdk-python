@@ -1,3 +1,8 @@
+## v0.6.0
+- **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` and update file path accordingly
+- **Breaking Change:** rename `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner` and update file path accordingly
+- **Feature:** add `id` for `FederatedIdentityProvider`
+
 ## v0.5.0
 - **Feature:** add support for Federated Identity Providers
   - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`,`PartialUpdateServiceAccountFederatedIdentityProvider`
