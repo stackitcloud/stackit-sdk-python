@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.runcommand.models.command_details import CommandDetails
 from stackit.runcommand.models.command_template import CommandTemplate
