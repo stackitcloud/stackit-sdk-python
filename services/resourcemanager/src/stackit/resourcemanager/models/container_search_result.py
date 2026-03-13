@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
@@ -30,10 +31,10 @@ class ContainerSearchResult(BaseModel):
 
     container_id: StrictStr = Field(description="Globally unique user-friendly identifier.", alias="containerId")
     container_type: StrictStr = Field(description="Resource container type.", alias="containerType")
-    id: StrictStr = Field(description="Globally unique identifier.")
+    id: UUID = Field(description="Globally unique identifier.")
     lifecycle_state: Optional[LifecycleState] = Field(default=None, alias="lifecycleState")
     name: StrictStr = Field(description="Resource container name.")
-    organization_id: Optional[StrictStr] = Field(
+    organization_id: Optional[UUID] = Field(
         default=None, description="Id of the organization the container is in.", alias="organizationId"
     )
     __properties: ClassVar[List[str]] = [
