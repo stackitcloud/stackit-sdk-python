@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -33,7 +34,7 @@ class Model(BaseModel):
     category: StrictStr
     description: Annotated[str, Field(strict=True, max_length=2000)]
     displayed_name: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(alias="displayedName")
-    id: StrictStr = Field(description="generated uuid to identify a model")
+    id: UUID = Field(description="generated uuid to identify a model")
     name: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(description="huggingface name")
     region: StrictStr
     skus: List[SKU]
@@ -121,9 +122,9 @@ class Model(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in skus (list)
         _items = []
         if self.skus:
-            for _item in self.skus:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_skus in self.skus:
+                if _item_skus:
+                    _items.append(_item_skus.to_dict())
             _dict["skus"] = _items
         return _dict
 
