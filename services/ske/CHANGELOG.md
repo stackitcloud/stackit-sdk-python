@@ -1,3 +1,8 @@
+## v1.7.0
+- **Feature:** New model `Access`
+- **Feature:** New model `IDPKubeconfig`
+- **Feature:** Added field `access` of type `Access` to model `Cluster`
+
 ## v1.6.0
 - **Feature:** New model `AccessScope`
 - **Feature:** New model `V2ControlPlaneNetwork`
