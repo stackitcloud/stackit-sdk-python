@@ -73,9 +73,9 @@ class ListPerformanceClassesResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in performance_classes (list)
         _items = []
         if self.performance_classes:
-            for _item in self.performance_classes:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_performance_classes in self.performance_classes:
+                if _item_performance_classes:
+                    _items.append(_item_performance_classes.to_dict())
             _dict["performanceClasses"] = _items
         return _dict
 

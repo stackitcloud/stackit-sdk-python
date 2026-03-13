@@ -73,9 +73,9 @@ class ListResourcePoolSnapshotsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in resource_pool_snapshots (list)
         _items = []
         if self.resource_pool_snapshots:
-            for _item in self.resource_pool_snapshots:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_resource_pool_snapshots in self.resource_pool_snapshots:
+                if _item_resource_pool_snapshots:
+                    _items.append(_item_resource_pool_snapshots.to_dict())
             _dict["resourcePoolSnapshots"] = _items
         return _dict
 

@@ -71,9 +71,9 @@ class ListSharesResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in shares (list)
         _items = []
         if self.shares:
-            for _item in self.shares:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_shares in self.shares:
+                if _item_shares:
+                    _items.append(_item_shares.to_dict())
             _dict["shares"] = _items
         return _dict
 
