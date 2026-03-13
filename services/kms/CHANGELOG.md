@@ -1,3 +1,6 @@
+## v0.8.0
+- **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
+
 ## v0.7.0
 - Set fields `description` to optional in for `Key`, `KeyRing` and `WrappingKey`
 
