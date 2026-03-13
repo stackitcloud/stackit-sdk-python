@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -103,9 +103,9 @@ class RedirectRule(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in matchers (list)
         _items = []
         if self.matchers:
-            for _item in self.matchers:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_matchers in self.matchers:
+                if _item_matchers:
+                    _items.append(_item_matchers.to_dict())
             _dict["matchers"] = _items
         return _dict
 
