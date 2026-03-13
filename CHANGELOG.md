@@ -26,6 +26,9 @@
   - **Feature:** add support for Federated Identity Providers
     - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`,`PartialUpdateServiceAccountFederatedIdentityProvider`
     - new models: `CreateFederatedIdentityProviderPayload`, `CreateFederatedIdentityProviderPayloadAssertionsInner`, `CreateFederatedIdentityProviderResponse`, `CreateFederatedIdentityProviderResponseAssertionsInner`, `FederatedListFederatedIdentityProvidersResponse`, `PartialUpdateServiceAccountFederatedIdentityProviderPayload`
+- `sqlserverflex`: [v1.1.2](services/sqlserverflex/CHANGELOG.md#v112)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `observability`: [v0.13.0](services/observability/CHANGELOG.md#v0130)
 - **Feature:** manage alert records
   - New API client methods: `create_alert_record`, `delete_alert_record`, `delete_alert_records`, `get_alert_record`, `list_alert_records`, `update_alert_record`, `partial_update_alert_records`
