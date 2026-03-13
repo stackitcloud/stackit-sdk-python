@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -17,7 +17,13 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+)
 from typing_extensions import Annotated, Self
 
 
@@ -26,11 +32,15 @@ class GetCustomDomainCustomCertificate(BaseModel):
     Returned if a custom certificate is used. Response does not contain the certificate or key.
     """  # noqa: E501
 
+    skip_dns_check: StrictBool = Field(
+        description="Returns if the CNAME Check has been disabled for this Custom Domain. This is usually set for migrations to allow for no downtime.",
+        alias="skipDnsCheck",
+    )
     type: StrictStr
     version: Annotated[int, Field(strict=True, ge=1)] = Field(
         description="Whenever a new custom certificate is added the version is increased by 1."
     )
-    __properties: ClassVar[List[str]] = ["type", "version"]
+    __properties: ClassVar[List[str]] = ["skipDnsCheck", "type", "version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,5 +90,11 @@ class GetCustomDomainCustomCertificate(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"type": obj.get("type"), "version": obj.get("version")})
+        _obj = cls.model_validate(
+            {
+                "skipDnsCheck": obj.get("skipDnsCheck") if obj.get("skipDnsCheck") is not None else False,
+                "type": obj.get("type"),
+                "version": obj.get("version"),
+            }
+        )
         return _obj

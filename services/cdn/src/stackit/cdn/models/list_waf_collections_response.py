@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -71,9 +71,9 @@ class ListWafCollectionsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in collections (list)
         _items = []
         if self.collections:
-            for _item in self.collections:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_collections in self.collections:
+                if _item_collections:
+                    _items.append(_item_collections.to_dict())
             _dict["collections"] = _items
         return _dict
 

@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -72,9 +72,9 @@ class ListDistributionsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in distributions (list)
         _items = []
         if self.distributions:
-            for _item in self.distributions:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_distributions in self.distributions:
+                if _item_distributions:
+                    _items.append(_item_distributions.to_dict())
             _dict["distributions"] = _items
         return _dict
 

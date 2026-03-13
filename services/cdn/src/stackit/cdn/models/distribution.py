@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -140,16 +140,16 @@ class Distribution(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in domains (list)
         _items = []
         if self.domains:
-            for _item in self.domains:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_domains in self.domains:
+                if _item_domains:
+                    _items.append(_item_domains.to_dict())
             _dict["domains"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
         _items = []
         if self.errors:
-            for _item in self.errors:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_errors in self.errors:
+                if _item_errors:
+                    _items.append(_item_errors.to_dict())
             _dict["errors"] = _items
         # override the default output from pydantic by calling `to_dict()` of waf
         if self.waf:

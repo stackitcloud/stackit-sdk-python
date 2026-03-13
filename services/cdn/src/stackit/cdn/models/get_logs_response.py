@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -72,9 +72,9 @@ class GetLogsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in logs (list)
         _items = []
         if self.logs:
-            for _item in self.logs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_logs in self.logs:
+                if _item_logs:
+                    _items.append(_item_logs.to_dict())
             _dict["logs"] = _items
         return _dict
 
