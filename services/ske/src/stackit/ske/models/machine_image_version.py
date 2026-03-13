@@ -99,9 +99,9 @@ class MachineImageVersion(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in cri (list)
         _items = []
         if self.cri:
-            for _item in self.cri:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_cri in self.cri:
+                if _item_cri:
+                    _items.append(_item_cri.to_dict())
             _dict["cri"] = _items
         return _dict
 
