@@ -17,20 +17,19 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing_extensions import Self
 
-from stackit.ske.models.machine_image_version import MachineImageVersion
+from stackit.ske.models.idp import IDP
 
 
-class MachineImage(BaseModel):
+class Access(BaseModel):
     """
-    MachineImage
+    Access
     """  # noqa: E501
 
-    name: Optional[StrictStr] = None
-    versions: Optional[List[MachineImageVersion]] = None
-    __properties: ClassVar[List[str]] = ["name", "versions"]
+    idp: Optional[IDP] = None
+    __properties: ClassVar[List[str]] = ["idp"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +48,7 @@ class MachineImage(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MachineImage from a JSON string"""
+        """Create an instance of Access from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,32 +68,19 @@ class MachineImage(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in versions (list)
-        _items = []
-        if self.versions:
-            for _item_versions in self.versions:
-                if _item_versions:
-                    _items.append(_item_versions.to_dict())
-            _dict["versions"] = _items
+        # override the default output from pydantic by calling `to_dict()` of idp
+        if self.idp:
+            _dict["idp"] = self.idp.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MachineImage from a dict"""
+        """Create an instance of Access from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "name": obj.get("name"),
-                "versions": (
-                    [MachineImageVersion.from_dict(_item) for _item in obj["versions"]]
-                    if obj.get("versions") is not None
-                    else None
-                ),
-            }
-        )
+        _obj = cls.model_validate({"idp": IDP.from_dict(obj["idp"]) if obj.get("idp") is not None else None})
         return _obj
