@@ -72,9 +72,9 @@ class ApiInstalledListResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in installed (list)
         _items = []
         if self.installed:
-            for _item in self.installed:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_installed in self.installed:
+                if _item_installed:
+                    _items.append(_item_installed.to_dict())
             _dict["installed"] = _items
         return _dict
 
