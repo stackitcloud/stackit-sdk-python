@@ -32,9 +32,6 @@ from stackit.serviceaccount.models.create_access_token_payload import (
 from stackit.serviceaccount.models.create_federated_identity_provider_payload import (
     CreateFederatedIdentityProviderPayload,
 )
-from stackit.serviceaccount.models.create_federated_identity_provider_response import (
-    CreateFederatedIdentityProviderResponse,
-)
 from stackit.serviceaccount.models.create_service_account_key_payload import (
     CreateServiceAccountKeyPayload,
 )
@@ -46,6 +43,9 @@ from stackit.serviceaccount.models.create_service_account_payload import (
 )
 from stackit.serviceaccount.models.create_short_lived_access_token_response import (
     CreateShortLivedAccessTokenResponse,
+)
+from stackit.serviceaccount.models.federated_identity_provider import (
+    FederatedIdentityProvider,
 )
 from stackit.serviceaccount.models.federated_list_federated_identity_providers_response import (
     FederatedListFederatedIdentityProvidersResponse,
@@ -391,7 +391,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CreateFederatedIdentityProviderResponse:
+    ) -> FederatedIdentityProvider:
         """Create a new Federated Identity Provider
 
         Federate the service account with an identity provider.
@@ -435,7 +435,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "CreateFederatedIdentityProviderResponse",
+            "201": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -466,7 +466,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CreateFederatedIdentityProviderResponse]:
+    ) -> ApiResponse[FederatedIdentityProvider]:
         """Create a new Federated Identity Provider
 
         Federate the service account with an identity provider.
@@ -510,7 +510,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "CreateFederatedIdentityProviderResponse",
+            "201": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -585,7 +585,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "CreateFederatedIdentityProviderResponse",
+            "201": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -4098,7 +4098,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CreateFederatedIdentityProviderResponse:
+    ) -> FederatedIdentityProvider:
         """Update Service Account Federated Identity Provider
 
         Update a Federated Identity Provider.
@@ -4145,7 +4145,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CreateFederatedIdentityProviderResponse",
+            "200": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -4178,7 +4178,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CreateFederatedIdentityProviderResponse]:
+    ) -> ApiResponse[FederatedIdentityProvider]:
         """Update Service Account Federated Identity Provider
 
         Update a Federated Identity Provider.
@@ -4225,7 +4225,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CreateFederatedIdentityProviderResponse",
+            "200": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",
@@ -4305,7 +4305,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CreateFederatedIdentityProviderResponse",
+            "200": "FederatedIdentityProvider",
             "400": "Error",
             "401": "AuthError",
             "403": "Error",

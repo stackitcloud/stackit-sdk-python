@@ -35,14 +35,14 @@ __all__ = [
     "CreateAccessTokenPayload",
     "CreateFederatedIdentityProviderPayload",
     "CreateFederatedIdentityProviderPayloadAssertionsInner",
-    "CreateFederatedIdentityProviderResponse",
-    "CreateFederatedIdentityProviderResponseAssertionsInner",
     "CreateServiceAccountKeyPayload",
     "CreateServiceAccountKeyResponse",
     "CreateServiceAccountKeyResponseCredentials",
     "CreateServiceAccountPayload",
     "CreateShortLivedAccessTokenResponse",
     "Error",
+    "FederatedIdentityProvider",
+    "FederatedIdentityProviderAssertionsInner",
     "FederatedListFederatedIdentityProvidersResponse",
     "GetServiceAccountKeyResponse",
     "GetServiceAccountKeyResponseCredentials",
@@ -90,12 +90,6 @@ from stackit.serviceaccount.models.create_federated_identity_provider_payload im
 from stackit.serviceaccount.models.create_federated_identity_provider_payload_assertions_inner import (
     CreateFederatedIdentityProviderPayloadAssertionsInner as CreateFederatedIdentityProviderPayloadAssertionsInner,
 )
-from stackit.serviceaccount.models.create_federated_identity_provider_response import (
-    CreateFederatedIdentityProviderResponse as CreateFederatedIdentityProviderResponse,
-)
-from stackit.serviceaccount.models.create_federated_identity_provider_response_assertions_inner import (
-    CreateFederatedIdentityProviderResponseAssertionsInner as CreateFederatedIdentityProviderResponseAssertionsInner,
-)
 from stackit.serviceaccount.models.create_service_account_key_payload import (
     CreateServiceAccountKeyPayload as CreateServiceAccountKeyPayload,
 )
@@ -112,6 +106,12 @@ from stackit.serviceaccount.models.create_short_lived_access_token_response impo
     CreateShortLivedAccessTokenResponse as CreateShortLivedAccessTokenResponse,
 )
 from stackit.serviceaccount.models.error import Error as Error
+from stackit.serviceaccount.models.federated_identity_provider import (
+    FederatedIdentityProvider as FederatedIdentityProvider,
+)
+from stackit.serviceaccount.models.federated_identity_provider_assertions_inner import (
+    FederatedIdentityProviderAssertionsInner as FederatedIdentityProviderAssertionsInner,
+)
 from stackit.serviceaccount.models.federated_list_federated_identity_providers_response import (
     FederatedListFederatedIdentityProvidersResponse as FederatedListFederatedIdentityProvidersResponse,
 )

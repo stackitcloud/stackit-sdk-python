@@ -21,9 +21,9 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 
-class CreateFederatedIdentityProviderResponseAssertionsInner(BaseModel):
+class FederatedIdentityProviderAssertionsInner(BaseModel):
     """
-    CreateFederatedIdentityProviderResponseAssertionsInner
+    FederatedIdentityProviderAssertionsInner
     """  # noqa: E501
 
     item: StrictStr = Field(description="Item to compare")
@@ -48,7 +48,7 @@ class CreateFederatedIdentityProviderResponseAssertionsInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateFederatedIdentityProviderResponseAssertionsInner from a JSON string"""
+        """Create an instance of FederatedIdentityProviderAssertionsInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,7 +72,7 @@ class CreateFederatedIdentityProviderResponseAssertionsInner(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateFederatedIdentityProviderResponseAssertionsInner from a dict"""
+        """Create an instance of FederatedIdentityProviderAssertionsInner from a dict"""
         if obj is None:
             return None
 

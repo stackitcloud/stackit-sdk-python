@@ -5,6 +5,20 @@
   - **Feature:** New model `IDPKubeconfig`
   - **Feature:** Add attribute `access` of type `Access` to model `Cluster`
   - **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
+- `serviceaccount`: [v0.6.0](services/kms/CHANGELOG.md#v060)
+  - **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` and update file path accordingly
+  - **Breaking Change:** rename `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner` and update file path accordingly
+  - **Feature:** add `id` for `FederatedIdentityProvider`
+- `kms`: [v0.8.0](services/kms/CHANGELOG.md#v080)
+  - **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
+- `intake`: [v0.5.0](services/intake/CHANGELOG.md#v050)
+  - **Breaking Change**: Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
+- `iaas`: [v1.2.0](services/iaas/CHANGELOG.md#v120)
+  - **Feature:** Add `description` attribute to ModelClasses:
+  - `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`
+  - `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload`
+  - **Bugfix:** Flagged `disk_format` as necessary for `ImageFromVolumePayload`
+  - **Improvement:** Updated description for labels
 - `alb`: [v0.9.0](services/alb/CHANGELOG.md#v090)
   - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
   - **Feature:** Add new field `Tls` to `HttpHealthCheck`
