@@ -73,9 +73,9 @@ class ListLabelsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in labels (list)
         _items = []
         if self.labels:
-            for _item in self.labels:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_labels in self.labels:
+                if _item_labels:
+                    _items.append(_item_labels.to_dict())
             _dict["labels"] = _items
         return _dict
 
