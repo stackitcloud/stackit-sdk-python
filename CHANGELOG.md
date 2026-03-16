@@ -6,6 +6,9 @@
 - `auditlog`: [v0.1.2](services/auditlog/CHANGELOG.md#v012)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
+- `authorization`: [v0.7.1](services/authorization/CHANGELOG.md#v071)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `serviceaccount`:
   - [v0.6.1](services/serviceaccount/CHANGELOG.md#v061)
     - **Feature:** client now supports UUID and decimal types
