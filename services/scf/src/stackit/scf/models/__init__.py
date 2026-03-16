@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.scf.models.apply_organization_quota_payload import (
     ApplyOrganizationQuotaPayload,

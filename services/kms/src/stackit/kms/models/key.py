@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -56,13 +57,11 @@ class Key(BaseModel):
     display_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
         description="The display name to distinguish multiple keys.", alias="displayName"
     )
-    id: StrictStr = Field(description="A auto generated unique id which identifies the keys.")
+    id: UUID = Field(description="A auto generated unique id which identifies the keys.")
     import_only: StrictBool = Field(
         description="States whether versions can be created or only imported.", alias="importOnly"
     )
-    key_ring_id: StrictStr = Field(
-        description="The unique id of the key ring this key is assigned to.", alias="keyRingId"
-    )
+    key_ring_id: UUID = Field(description="The unique id of the key ring this key is assigned to.", alias="keyRingId")
     protection: Protection
     purpose: Purpose
     state: StrictStr = Field(description="The current state of the key.")

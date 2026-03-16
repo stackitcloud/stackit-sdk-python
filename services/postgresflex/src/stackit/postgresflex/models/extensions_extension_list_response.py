@@ -72,9 +72,9 @@ class ExtensionsExtensionListResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in list (list)
         _items = []
         if self.list:
-            for _item in self.list:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_list in self.list:
+                if _item_list:
+                    _items.append(_item_list.to_dict())
             _dict["list"] = _items
         return _dict
 

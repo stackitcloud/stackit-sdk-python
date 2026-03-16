@@ -17,8 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
 
@@ -27,7 +28,7 @@ class EnableServiceResourcePayload(BaseModel):
     EnableServiceResourcePayload
     """  # noqa: E501
 
-    update_policy_id: Optional[StrictStr] = Field(default=None, alias="updatePolicyId")
+    update_policy_id: Optional[UUID] = Field(default=None, alias="updatePolicyId")
     __properties: ClassVar[List[str]] = ["updatePolicyId"]
 
     model_config = ConfigDict(
