@@ -1,5 +1,8 @@
 ## Release (2026-xx-xx)
 
+- `alb`: [v0.9.1](services/alb/CHANGELOG.md#v091)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `serviceaccount`:
   - [v0.6.1](services/serviceaccount/CHANGELOG.md#v061)
     - **Feature:** client now supports UUID and decimal types
