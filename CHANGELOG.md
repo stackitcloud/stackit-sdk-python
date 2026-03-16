@@ -1,9 +1,18 @@
 ## Release (2026-xx-xx)
 
-- `serviceaccount`: [v0.6.0](services/kms/CHANGELOG.md#v060)
-  - **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` and update file path accordingly
-  - **Breaking Change:** rename `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner` and update file path accordingly
-  - **Feature:** add `id` for `FederatedIdentityProvider`
+- `serviceaccount`:
+  - [v0.6.1](services/serviceaccount/CHANGELOG.md#v061)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
+  - [v0.6.0](services/kms/CHANGELOG.md#v060)
+    - **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` and update file path accordingly
+    - **Breaking Change:** rename `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner` and update file path accordingly
+    - **Feature:** add `id` for `FederatedIdentityProvider`
+- `ske`: [v1.7.0](services/ske/CHANGELOG.md#v170)
+  - **Feature:** New model `Access`
+  - **Feature:** New model `IDPKubeconfig`
+  - **Feature:** Add attribute `access` of type `Access` to model `Cluster`
+  - **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
 - `kms`: [v0.8.0](services/kms/CHANGELOG.md#v080)
   - **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
 - `intake`: [v0.5.0](services/intake/CHANGELOG.md#v050)
@@ -26,6 +35,12 @@
   - **Feature:** add support for Federated Identity Providers
     - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`,`PartialUpdateServiceAccountFederatedIdentityProvider`
     - new models: `CreateFederatedIdentityProviderPayload`, `CreateFederatedIdentityProviderPayloadAssertionsInner`, `CreateFederatedIdentityProviderResponse`, `CreateFederatedIdentityProviderResponseAssertionsInner`, `FederatedListFederatedIdentityProvidersResponse`, `PartialUpdateServiceAccountFederatedIdentityProviderPayload`
+- `serverupdate`: [v1.1.1](services/serverupdate/CHANGELOG.md#v111)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+- `sqlserverflex`: [v1.1.2](services/sqlserverflex/CHANGELOG.md#v112)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `observability`: [v0.13.0](services/observability/CHANGELOG.md#v0130)
 - **Feature:** manage alert records
   - New API client methods: `create_alert_record`, `delete_alert_record`, `delete_alert_records`, `get_alert_record`, `list_alert_records`, `update_alert_record`, `partial_update_alert_records`
