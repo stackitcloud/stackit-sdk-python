@@ -29,6 +29,9 @@
   - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
 - `loadbalancer`: [v0.9.0](services/loadbalancer/CHANGELOG.md#v090)
   - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+- `runcommand`: [v1.1.2](services/runcommand/CHANGELOG.md#v112)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `scf`: [v0.4.1](services/scf/CHANGELOG.md#v041)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
