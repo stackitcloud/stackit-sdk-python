@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -37,7 +38,7 @@ class AccessToken(BaseModel):
 
     active: StrictBool = Field(description="Newly created access tokens are valid, and can be revoked if needed.")
     created_at: datetime = Field(description="Creation time of the access token.", alias="createdAt")
-    id: StrictStr = Field(description="Unique ID of the access token. Also used as JTI field.")
+    id: UUID = Field(description="Unique ID of the access token. Also used as JTI field.")
     token: StrictStr = Field(
         description="The access token in JWT format. Use this with `Bearer` prefix for API calls. Store it, as it is not recoverable later."
     )

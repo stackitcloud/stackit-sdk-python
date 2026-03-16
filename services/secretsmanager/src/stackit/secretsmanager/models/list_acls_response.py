@@ -71,9 +71,9 @@ class ListACLsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in acls (list)
         _items = []
         if self.acls:
-            for _item in self.acls:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_acls in self.acls:
+                if _item_acls:
+                    _items.append(_item_acls.to_dict())
             _dict["acls"] = _items
         return _dict
 

@@ -1,3 +1,7 @@
+## v1.1.2
+- **Feature:** client now supports UUID and decimal types
+- **Bugfix:** timeouts now passed to requests library
+
 ## v1.1.1
 - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
 
