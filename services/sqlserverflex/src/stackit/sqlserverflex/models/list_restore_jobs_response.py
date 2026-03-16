@@ -72,9 +72,9 @@ class ListRestoreJobsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in running_restores (list)
         _items = []
         if self.running_restores:
-            for _item in self.running_restores:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_running_restores in self.running_restores:
+                if _item_running_restores:
+                    _items.append(_item_running_restores.to_dict())
             _dict["runningRestores"] = _items
         return _dict
 
