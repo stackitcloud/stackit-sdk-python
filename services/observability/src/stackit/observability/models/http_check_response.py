@@ -79,9 +79,9 @@ class HttpCheckResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in http_checks (list)
         _items = []
         if self.http_checks:
-            for _item in self.http_checks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_http_checks in self.http_checks:
+                if _item_http_checks:
+                    _items.append(_item_http_checks.to_dict())
             _dict["httpChecks"] = _items
         return _dict
 

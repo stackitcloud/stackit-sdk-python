@@ -72,9 +72,9 @@ class InstanceMetricsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in hosts (list)
         _items = []
         if self.hosts:
-            for _item in self.hosts:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_hosts in self.hosts:
+                if _item_hosts:
+                    _items.append(_item_hosts.to_dict())
             _dict["hosts"] = _items
         return _dict
 

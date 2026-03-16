@@ -73,9 +73,9 @@ class ListTokenResp(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in tokens (list)
         _items = []
         if self.tokens:
-            for _item in self.tokens:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_tokens in self.tokens:
+                if _item_tokens:
+                    _items.append(_item_tokens.to_dict())
             _dict["tokens"] = _items
         return _dict
 

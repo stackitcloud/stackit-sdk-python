@@ -79,9 +79,9 @@ class MongodbCheckResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in mongodb_checks (list)
         _items = []
         if self.mongodb_checks:
-            for _item in self.mongodb_checks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_mongodb_checks in self.mongodb_checks:
+                if _item_mongodb_checks:
+                    _items.append(_item_mongodb_checks.to_dict())
             _dict["mongodbChecks"] = _items
         return _dict
 

@@ -1,6 +1,6 @@
 [project]
 name = "stackit-mariadb"
-version = "v0.3.0"
+version = "v0.3.1"
 description = "STACKIT MariaDB API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4.0"

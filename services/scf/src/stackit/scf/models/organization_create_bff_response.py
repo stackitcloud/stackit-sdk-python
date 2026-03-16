@@ -77,9 +77,9 @@ class OrganizationCreateBffResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each value in roles (dict)
         _field_dict = {}
         if self.roles:
-            for _key in self.roles:
-                if self.roles[_key]:
-                    _field_dict[_key] = self.roles[_key].to_dict()
+            for _key_roles in self.roles:
+                if self.roles[_key_roles]:
+                    _field_dict[_key_roles] = self.roles[_key_roles].to_dict()
             _dict["roles"] = _field_dict
         return _dict
 
