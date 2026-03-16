@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -41,7 +42,7 @@ class LogsInstance(BaseModel):
     display_name: Annotated[str, Field(min_length=1, strict=True, max_length=32)] = Field(
         description="The displayed name of the Logs instance.", alias="displayName"
     )
-    id: StrictStr = Field(description="A auto generated unique id which identifies the Logs instance.")
+    id: UUID = Field(description="A auto generated unique id which identifies the Logs instance.")
     ingest_otlp_url: Optional[StrictStr] = Field(
         default=None, description="The Logs instance's ingest logs via OTLP URL", alias="ingestOtlpUrl"
     )
