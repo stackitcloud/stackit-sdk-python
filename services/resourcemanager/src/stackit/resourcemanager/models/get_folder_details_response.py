@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
@@ -33,7 +34,7 @@ class GetFolderDetailsResponse(BaseModel):
 
     container_id: StrictStr = Field(description="Globally unique user-friendly identifier.", alias="containerId")
     creation_time: datetime = Field(description="Timestamp at which the folder was created.", alias="creationTime")
-    folder_id: StrictStr = Field(description="Globally unique folder identifier.", alias="folderId")
+    folder_id: UUID = Field(description="Globally unique folder identifier.", alias="folderId")
     labels: Optional[Dict[str, StrictStr]] = Field(
         default=None,
         description="Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.",
@@ -122,9 +123,9 @@ class GetFolderDetailsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in parents (list)
         _items = []
         if self.parents:
-            for _item in self.parents:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_parents in self.parents:
+                if _item_parents:
+                    _items.append(_item_parents.to_dict())
             _dict["parents"] = _items
         return _dict
 
