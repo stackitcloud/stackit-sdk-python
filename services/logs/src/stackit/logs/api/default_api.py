@@ -12,6 +12,7 @@
 """  # noqa: E501
 
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import (
     Field,
@@ -52,11 +53,9 @@ class DefaultApi:
     @validate_call
     def create_access_token(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         create_access_token_payload: CreateAccessTokenPayload,
         _request_timeout: Union[
             None,
@@ -73,11 +72,11 @@ class DefaultApi:
         Create a new Logs instance access token
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param create_access_token_payload: (required)
         :type create_access_token_payload: CreateAccessTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -131,11 +130,9 @@ class DefaultApi:
     @validate_call
     def create_access_token_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         create_access_token_payload: CreateAccessTokenPayload,
         _request_timeout: Union[
             None,
@@ -152,11 +149,11 @@ class DefaultApi:
         Create a new Logs instance access token
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param create_access_token_payload: (required)
         :type create_access_token_payload: CreateAccessTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -210,11 +207,9 @@ class DefaultApi:
     @validate_call
     def create_access_token_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         create_access_token_payload: CreateAccessTokenPayload,
         _request_timeout: Union[
             None,
@@ -231,11 +226,11 @@ class DefaultApi:
         Create a new Logs instance access token
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param create_access_token_payload: (required)
         :type create_access_token_payload: CreateAccessTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -352,9 +347,7 @@ class DefaultApi:
     @validate_call
     def create_logs_instance(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_logs_instance_payload: CreateLogsInstancePayload,
         _request_timeout: Union[
@@ -372,7 +365,7 @@ class DefaultApi:
         Creates a new Logs instance within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param create_logs_instance_payload: (required)
@@ -427,9 +420,7 @@ class DefaultApi:
     @validate_call
     def create_logs_instance_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_logs_instance_payload: CreateLogsInstancePayload,
         _request_timeout: Union[
@@ -447,7 +438,7 @@ class DefaultApi:
         Creates a new Logs instance within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param create_logs_instance_payload: (required)
@@ -502,9 +493,7 @@ class DefaultApi:
     @validate_call
     def create_logs_instance_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_logs_instance_payload: CreateLogsInstancePayload,
         _request_timeout: Union[
@@ -522,7 +511,7 @@ class DefaultApi:
         Creates a new Logs instance within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param create_logs_instance_payload: (required)
@@ -637,12 +626,10 @@ class DefaultApi:
     @validate_call
     def delete_access_token(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
-        t_id: Annotated[StrictStr, Field(description="The access token UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
+        t_id: Annotated[UUID, Field(description="The access token UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -658,13 +645,13 @@ class DefaultApi:
         Deletes a Logs instance access token
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param t_id: The access token UUID. (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -716,12 +703,10 @@ class DefaultApi:
     @validate_call
     def delete_access_token_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
-        t_id: Annotated[StrictStr, Field(description="The access token UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
+        t_id: Annotated[UUID, Field(description="The access token UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -737,13 +722,13 @@ class DefaultApi:
         Deletes a Logs instance access token
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param t_id: The access token UUID. (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -795,12 +780,10 @@ class DefaultApi:
     @validate_call
     def delete_access_token_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
-        t_id: Annotated[StrictStr, Field(description="The access token UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
+        t_id: Annotated[UUID, Field(description="The access token UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -816,13 +799,13 @@ class DefaultApi:
         Deletes a Logs instance access token
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param t_id: The access token UUID. (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -929,11 +912,9 @@ class DefaultApi:
     @validate_call
     def delete_all_access_tokens(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -949,11 +930,11 @@ class DefaultApi:
         Deletes all access tokens available for a Logs instance
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1004,11 +985,9 @@ class DefaultApi:
     @validate_call
     def delete_all_access_tokens_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1024,11 +1003,11 @@ class DefaultApi:
         Deletes all access tokens available for a Logs instance
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1079,11 +1058,9 @@ class DefaultApi:
     @validate_call
     def delete_all_access_tokens_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1099,11 +1076,11 @@ class DefaultApi:
         Deletes all access tokens available for a Logs instance
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1206,11 +1183,9 @@ class DefaultApi:
     @validate_call
     def delete_all_expired_access_tokens(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1226,11 +1201,11 @@ class DefaultApi:
         Deletes all expired access tokens
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1281,11 +1256,9 @@ class DefaultApi:
     @validate_call
     def delete_all_expired_access_tokens_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1301,11 +1274,11 @@ class DefaultApi:
         Deletes all expired access tokens
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1356,11 +1329,9 @@ class DefaultApi:
     @validate_call
     def delete_all_expired_access_tokens_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1376,11 +1347,11 @@ class DefaultApi:
         Deletes all expired access tokens
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1483,11 +1454,9 @@ class DefaultApi:
     @validate_call
     def delete_logs_instance(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1503,11 +1472,11 @@ class DefaultApi:
         Deletes the given Logs instance.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1558,11 +1527,9 @@ class DefaultApi:
     @validate_call
     def delete_logs_instance_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1578,11 +1545,11 @@ class DefaultApi:
         Deletes the given Logs instance.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1633,11 +1600,9 @@ class DefaultApi:
     @validate_call
     def delete_logs_instance_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1653,11 +1618,11 @@ class DefaultApi:
         Deletes the given Logs instance.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1760,12 +1725,10 @@ class DefaultApi:
     @validate_call
     def get_access_token(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
-        t_id: Annotated[StrictStr, Field(description="The access token UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
+        t_id: Annotated[UUID, Field(description="The access token UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1781,13 +1744,13 @@ class DefaultApi:
         Get the information of the given access token.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param t_id: The access token UUID. (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1839,12 +1802,10 @@ class DefaultApi:
     @validate_call
     def get_access_token_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
-        t_id: Annotated[StrictStr, Field(description="The access token UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
+        t_id: Annotated[UUID, Field(description="The access token UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1860,13 +1821,13 @@ class DefaultApi:
         Get the information of the given access token.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param t_id: The access token UUID. (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1918,12 +1879,10 @@ class DefaultApi:
     @validate_call
     def get_access_token_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
-        t_id: Annotated[StrictStr, Field(description="The access token UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
+        t_id: Annotated[UUID, Field(description="The access token UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1939,13 +1898,13 @@ class DefaultApi:
         Get the information of the given access token.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param t_id: The access token UUID. (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2052,11 +2011,9 @@ class DefaultApi:
     @validate_call
     def get_logs_instance(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2072,11 +2029,11 @@ class DefaultApi:
         Returns the details for the given Logs instance.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2126,11 +2083,9 @@ class DefaultApi:
     @validate_call
     def get_logs_instance_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2146,11 +2101,11 @@ class DefaultApi:
         Returns the details for the given Logs instance.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2200,11 +2155,9 @@ class DefaultApi:
     @validate_call
     def get_logs_instance_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2220,11 +2173,11 @@ class DefaultApi:
         Returns the details for the given Logs instance.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2326,11 +2279,9 @@ class DefaultApi:
     @validate_call
     def list_access_tokens(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2346,11 +2297,11 @@ class DefaultApi:
         Returns a list of access tokens created for a Logs instance
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2401,11 +2352,9 @@ class DefaultApi:
     @validate_call
     def list_access_tokens_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2421,11 +2370,11 @@ class DefaultApi:
         Returns a list of access tokens created for a Logs instance
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2476,11 +2425,9 @@ class DefaultApi:
     @validate_call
     def list_access_tokens_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2496,11 +2443,11 @@ class DefaultApi:
         Returns a list of access tokens created for a Logs instance
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2603,9 +2550,7 @@ class DefaultApi:
     @validate_call
     def list_logs_instances(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         _request_timeout: Union[
             None,
@@ -2622,7 +2567,7 @@ class DefaultApi:
         Returns a list of all Logs instances within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2672,9 +2617,7 @@ class DefaultApi:
     @validate_call
     def list_logs_instances_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         _request_timeout: Union[
             None,
@@ -2691,7 +2634,7 @@ class DefaultApi:
         Returns a list of all Logs instances within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2741,9 +2684,7 @@ class DefaultApi:
     @validate_call
     def list_logs_instances_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         _request_timeout: Union[
             None,
@@ -2760,7 +2701,7 @@ class DefaultApi:
         Returns a list of all Logs instances within the project.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2859,12 +2800,10 @@ class DefaultApi:
     @validate_call
     def update_access_token(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
-        t_id: Annotated[StrictStr, Field(description="The access token UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
+        t_id: Annotated[UUID, Field(description="The access token UUID.")],
         update_access_token_payload: UpdateAccessTokenPayload,
         _request_timeout: Union[
             None,
@@ -2881,13 +2820,13 @@ class DefaultApi:
         Updates the given access token.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param t_id: The access token UUID. (required)
-        :type t_id: str
+        :type t_id: UUID
         :param update_access_token_payload: (required)
         :type update_access_token_payload: UpdateAccessTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -2942,12 +2881,10 @@ class DefaultApi:
     @validate_call
     def update_access_token_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
-        t_id: Annotated[StrictStr, Field(description="The access token UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
+        t_id: Annotated[UUID, Field(description="The access token UUID.")],
         update_access_token_payload: UpdateAccessTokenPayload,
         _request_timeout: Union[
             None,
@@ -2964,13 +2901,13 @@ class DefaultApi:
         Updates the given access token.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param t_id: The access token UUID. (required)
-        :type t_id: str
+        :type t_id: UUID
         :param update_access_token_payload: (required)
         :type update_access_token_payload: UpdateAccessTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3025,12 +2962,10 @@ class DefaultApi:
     @validate_call
     def update_access_token_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
-        t_id: Annotated[StrictStr, Field(description="The access token UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
+        t_id: Annotated[UUID, Field(description="The access token UUID.")],
         update_access_token_payload: UpdateAccessTokenPayload,
         _request_timeout: Union[
             None,
@@ -3047,13 +2982,13 @@ class DefaultApi:
         Updates the given access token.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param t_id: The access token UUID. (required)
-        :type t_id: str
+        :type t_id: UUID
         :param update_access_token_payload: (required)
         :type update_access_token_payload: UpdateAccessTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3174,11 +3109,9 @@ class DefaultApi:
     @validate_call
     def update_logs_instance(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         update_logs_instance_payload: UpdateLogsInstancePayload,
         _request_timeout: Union[
             None,
@@ -3195,11 +3128,11 @@ class DefaultApi:
         Updates the given Logs instance.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param update_logs_instance_payload: (required)
         :type update_logs_instance_payload: UpdateLogsInstancePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3253,11 +3186,9 @@ class DefaultApi:
     @validate_call
     def update_logs_instance_with_http_info(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         update_logs_instance_payload: UpdateLogsInstancePayload,
         _request_timeout: Union[
             None,
@@ -3274,11 +3205,11 @@ class DefaultApi:
         Updates the given Logs instance.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param update_logs_instance_payload: (required)
         :type update_logs_instance_payload: UpdateLogsInstancePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -3332,11 +3263,9 @@ class DefaultApi:
     @validate_call
     def update_logs_instance_without_preload_content(
         self,
-        project_id: Annotated[
-            StrictStr, Field(description="The STACKIT portal project UUID the resource is located in.")
-        ],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
-        instance_id: Annotated[StrictStr, Field(description="The Logs Instance UUID.")],
+        instance_id: Annotated[UUID, Field(description="The Logs Instance UUID.")],
         update_logs_instance_payload: UpdateLogsInstancePayload,
         _request_timeout: Union[
             None,
@@ -3353,11 +3282,11 @@ class DefaultApi:
         Updates the given Logs instance.
 
         :param project_id: The STACKIT portal project UUID the resource is located in. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the resource is located in. (required)
         :type region_id: str
         :param instance_id: The Logs Instance UUID. (required)
-        :type instance_id: str
+        :type instance_id: UUID
         :param update_logs_instance_payload: (required)
         :type update_logs_instance_payload: UpdateLogsInstancePayload
         :param _request_timeout: timeout setting for this request. If one
