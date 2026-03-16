@@ -17,9 +17,10 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
 class Network(BaseModel):
@@ -27,9 +28,7 @@ class Network(BaseModel):
     Network
     """  # noqa: E501
 
-    network_id: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Openstack network ID", alias="networkId"
-    )
+    network_id: Optional[UUID] = Field(default=None, description="Openstack network ID", alias="networkId")
     role: Optional[StrictStr] = Field(
         default=None,
         description="The role defines how the load balancer is using the network. Currently only ROLE_LISTENERS_AND_TARGETS is supported.",
