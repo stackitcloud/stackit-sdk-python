@@ -79,9 +79,9 @@ class RabbitmqCheckResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in rabbitmq_checks (list)
         _items = []
         if self.rabbitmq_checks:
-            for _item in self.rabbitmq_checks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_rabbitmq_checks in self.rabbitmq_checks:
+                if _item_rabbitmq_checks:
+                    _items.append(_item_rabbitmq_checks.to_dict())
             _dict["rabbitmqChecks"] = _items
         return _dict
 
