@@ -79,9 +79,9 @@ class NetworkCheckResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in network_checks (list)
         _items = []
         if self.network_checks:
-            for _item in self.network_checks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_network_checks in self.network_checks:
+                if _item_network_checks:
+                    _items.append(_item_network_checks.to_dict())
             _dict["networkChecks"] = _items
         return _dict
 

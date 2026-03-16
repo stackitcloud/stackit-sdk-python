@@ -1,6 +1,6 @@
 [project]
 name = "stackit-resourcemanager"
-version = "v0.7.0"
+version = "v0.7.1"
 description = "Resource Manager API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4.0"

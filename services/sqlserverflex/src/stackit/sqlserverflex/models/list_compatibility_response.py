@@ -74,9 +74,9 @@ class ListCompatibilityResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in compatibilities (list)
         _items = []
         if self.compatibilities:
-            for _item in self.compatibilities:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_compatibilities in self.compatibilities:
+                if _item_compatibilities:
+                    _items.append(_item_compatibilities.to_dict())
             _dict["compatibilities"] = _items
         return _dict
 

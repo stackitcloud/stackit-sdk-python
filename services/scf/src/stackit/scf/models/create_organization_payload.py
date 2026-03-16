@@ -17,8 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
 
@@ -28,7 +29,7 @@ class CreateOrganizationPayload(BaseModel):
     """  # noqa: E501
 
     name: Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    platform_id: Optional[StrictStr] = Field(default=None, alias="platformId")
+    platform_id: Optional[UUID] = Field(default=None, alias="platformId")
     __properties: ClassVar[List[str]] = ["name", "platformId"]
 
     model_config = ConfigDict(
