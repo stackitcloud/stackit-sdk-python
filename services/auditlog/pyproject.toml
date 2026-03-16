@@ -1,6 +1,6 @@
 [project]
 name = "stackit-auditlog"
-version = "v0.1.1"
+version = "v0.1.2"
 description = "Audit Log API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4"
