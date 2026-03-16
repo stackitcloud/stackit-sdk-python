@@ -74,9 +74,9 @@ class HostMetric(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in datapoints (list)
         _items = []
         if self.datapoints:
-            for _item in self.datapoints:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_datapoints in self.datapoints:
+                if _item_datapoints:
+                    _items.append(_item_datapoints.to_dict())
             _dict["datapoints"] = _items
         return _dict
 

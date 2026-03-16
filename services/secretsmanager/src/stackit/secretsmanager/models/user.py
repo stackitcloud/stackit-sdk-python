@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -33,7 +34,7 @@ class User(BaseModel):
     """  # noqa: E501
 
     description: StrictStr = Field(description="A user chosen description to differentiate between multiple users.")
-    id: StrictStr = Field(description="A auto generated unique id which identifies the users.")
+    id: UUID = Field(description="A auto generated unique id which identifies the users.")
     password: StrictStr = Field(description="A auto generated password for logging in with the user.")
     username: StrictStr = Field(description="A auto generated username for logging in with the user.")
     write: StrictBool = Field(

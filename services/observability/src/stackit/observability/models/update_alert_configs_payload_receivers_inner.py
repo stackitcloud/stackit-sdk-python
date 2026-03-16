@@ -91,23 +91,23 @@ class UpdateAlertConfigsPayloadReceiversInner(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in email_configs (list)
         _items = []
         if self.email_configs:
-            for _item in self.email_configs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_email_configs in self.email_configs:
+                if _item_email_configs:
+                    _items.append(_item_email_configs.to_dict())
             _dict["emailConfigs"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in opsgenie_configs (list)
         _items = []
         if self.opsgenie_configs:
-            for _item in self.opsgenie_configs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_opsgenie_configs in self.opsgenie_configs:
+                if _item_opsgenie_configs:
+                    _items.append(_item_opsgenie_configs.to_dict())
             _dict["opsgenieConfigs"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in web_hook_configs (list)
         _items = []
         if self.web_hook_configs:
-            for _item in self.web_hook_configs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_web_hook_configs in self.web_hook_configs:
+                if _item_web_hook_configs:
+                    _items.append(_item_web_hook_configs.to_dict())
             _dict["webHookConfigs"] = _items
         return _dict
 
