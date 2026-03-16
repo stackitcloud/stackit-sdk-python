@@ -27,8 +27,12 @@
   - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
   - **Feature:** Add new field `Tls` to `HttpHealthCheck`
   - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
-- `loadbalancer`: [v0.9.0](services/loadbalancer/CHANGELOG.md#v090)
-  - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+- `loadbalancer`:
+  - [v0.9.1](services/loadbalancer/CHANGELOG.md#v091)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
+  - [v0.9.0](services/loadbalancer/CHANGELOG.md#v090)
+    - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
 - `logme`: [v0.4.1](services/logme/CHANGELOG.md#v041)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
