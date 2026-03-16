@@ -71,9 +71,9 @@ class KeyRingList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in key_rings (list)
         _items = []
         if self.key_rings:
-            for _item in self.key_rings:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_key_rings in self.key_rings:
+                if _item_key_rings:
+                    _items.append(_item_key_rings.to_dict())
             _dict["keyRings"] = _items
         return _dict
 

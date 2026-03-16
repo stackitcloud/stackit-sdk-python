@@ -103,9 +103,9 @@ class Rule(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in headers (list)
         _items = []
         if self.headers:
-            for _item in self.headers:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_headers in self.headers:
+                if _item_headers:
+                    _items.append(_item_headers.to_dict())
             _dict["headers"] = _items
         # override the default output from pydantic by calling `to_dict()` of path
         if self.path:
@@ -113,9 +113,9 @@ class Rule(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in query_parameters (list)
         _items = []
         if self.query_parameters:
-            for _item in self.query_parameters:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_query_parameters in self.query_parameters:
+                if _item_query_parameters:
+                    _items.append(_item_query_parameters.to_dict())
             _dict["queryParameters"] = _items
         return _dict
 

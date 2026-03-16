@@ -81,16 +81,16 @@ class Alert(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in inhibit_rules (list)
         _items = []
         if self.inhibit_rules:
-            for _item in self.inhibit_rules:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_inhibit_rules in self.inhibit_rules:
+                if _item_inhibit_rules:
+                    _items.append(_item_inhibit_rules.to_dict())
             _dict["inhibitRules"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in receivers (list)
         _items = []
         if self.receivers:
-            for _item in self.receivers:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_receivers in self.receivers:
+                if _item_receivers:
+                    _items.append(_item_receivers.to_dict())
             _dict["receivers"] = _items
         # override the default output from pydantic by calling `to_dict()` of route
         if self.route:

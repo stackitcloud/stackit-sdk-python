@@ -1,3 +1,7 @@
+## v0.13.1
+- **Feature:** client now supports UUID and decimal types
+- **Bugfix:** timeouts now passed to requests library
+
 ## v0.13.0
 - **Feature:** manage alert records
     - New API client methods: `create_alert_record`, `delete_alert_record`, `delete_alert_records`, `get_alert_record`, `list_alert_records`, `update_alert_record`, `partial_update_alert_records`

@@ -82,9 +82,9 @@ class Status(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in details (list)
         _items = []
         if self.details:
-            for _item in self.details:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_details in self.details:
+                if _item_details:
+                    _items.append(_item_details.to_dict())
             _dict["details"] = _items
         return _dict
 

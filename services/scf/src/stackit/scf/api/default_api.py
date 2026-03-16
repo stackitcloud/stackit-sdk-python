@@ -13,6 +13,7 @@
 """  # noqa: E501
 
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
 from stackit.core.configuration import Configuration
@@ -65,9 +66,9 @@ class DefaultApi:
     @validate_call
     def apply_organization_quota(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         apply_organization_quota_payload: ApplyOrganizationQuotaPayload,
         _request_timeout: Union[
             None,
@@ -84,11 +85,11 @@ class DefaultApi:
         Change the organization quota of an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param apply_organization_quota_payload: (required)
         :type apply_organization_quota_payload: ApplyOrganizationQuotaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -142,9 +143,9 @@ class DefaultApi:
     @validate_call
     def apply_organization_quota_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         apply_organization_quota_payload: ApplyOrganizationQuotaPayload,
         _request_timeout: Union[
             None,
@@ -161,11 +162,11 @@ class DefaultApi:
         Change the organization quota of an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param apply_organization_quota_payload: (required)
         :type apply_organization_quota_payload: ApplyOrganizationQuotaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -219,9 +220,9 @@ class DefaultApi:
     @validate_call
     def apply_organization_quota_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         apply_organization_quota_payload: ApplyOrganizationQuotaPayload,
         _request_timeout: Union[
             None,
@@ -238,11 +239,11 @@ class DefaultApi:
         Change the organization quota of an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param apply_organization_quota_payload: (required)
         :type apply_organization_quota_payload: ApplyOrganizationQuotaPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -359,9 +360,9 @@ class DefaultApi:
     @validate_call
     def create_org_manager(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -377,11 +378,11 @@ class DefaultApi:
         Creates organization manager within an organization.  The organization manager will be backed by a CF user. There is only one organization manager per organization. The organization manager gets assigned the CF role Org Manager.  This endpoint does synchronously several non-atomic steps behind the scenes. If any of those steps fail, the 'Delete Organization Manager' needs to be called first to clean up the failed creation attempt and afterwards the creation can be retried.  The password needs to be stored by the API callee since it cannot be retrieved after creation.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -432,9 +433,9 @@ class DefaultApi:
     @validate_call
     def create_org_manager_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -450,11 +451,11 @@ class DefaultApi:
         Creates organization manager within an organization.  The organization manager will be backed by a CF user. There is only one organization manager per organization. The organization manager gets assigned the CF role Org Manager.  This endpoint does synchronously several non-atomic steps behind the scenes. If any of those steps fail, the 'Delete Organization Manager' needs to be called first to clean up the failed creation attempt and afterwards the creation can be retried.  The password needs to be stored by the API callee since it cannot be retrieved after creation.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -505,9 +506,9 @@ class DefaultApi:
     @validate_call
     def create_org_manager_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -523,11 +524,11 @@ class DefaultApi:
         Creates organization manager within an organization.  The organization manager will be backed by a CF user. There is only one organization manager per organization. The organization manager gets assigned the CF role Org Manager.  This endpoint does synchronously several non-atomic steps behind the scenes. If any of those steps fail, the 'Delete Organization Manager' needs to be called first to clean up the failed creation attempt and afterwards the creation can be retried.  The password needs to be stored by the API callee since it cannot be retrieved after creation.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -630,9 +631,9 @@ class DefaultApi:
     @validate_call
     def create_org_role(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         create_org_role_payload: CreateOrgRolePayload,
         _request_timeout: Union[
             None,
@@ -649,11 +650,11 @@ class DefaultApi:
         Assign organization role within an organization. If the role is already assigned, the existing role GUID gets returned.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param create_org_role_payload: (required)
         :type create_org_role_payload: CreateOrgRolePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -707,9 +708,9 @@ class DefaultApi:
     @validate_call
     def create_org_role_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         create_org_role_payload: CreateOrgRolePayload,
         _request_timeout: Union[
             None,
@@ -726,11 +727,11 @@ class DefaultApi:
         Assign organization role within an organization. If the role is already assigned, the existing role GUID gets returned.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param create_org_role_payload: (required)
         :type create_org_role_payload: CreateOrgRolePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -784,9 +785,9 @@ class DefaultApi:
     @validate_call
     def create_org_role_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         create_org_role_payload: CreateOrgRolePayload,
         _request_timeout: Union[
             None,
@@ -803,11 +804,11 @@ class DefaultApi:
         Assign organization role within an organization. If the role is already assigned, the existing role GUID gets returned.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param create_org_role_payload: (required)
         :type create_org_role_payload: CreateOrgRolePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -924,7 +925,7 @@ class DefaultApi:
     @validate_call
     def create_organization(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
         create_organization_payload: CreateOrganizationPayload,
         _request_timeout: Union[
@@ -942,7 +943,7 @@ class DefaultApi:
         Creates an organization without assigning any CF roles or creating a space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param create_organization_payload: (required)
@@ -997,7 +998,7 @@ class DefaultApi:
     @validate_call
     def create_organization_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
         create_organization_payload: CreateOrganizationPayload,
         _request_timeout: Union[
@@ -1015,7 +1016,7 @@ class DefaultApi:
         Creates an organization without assigning any CF roles or creating a space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param create_organization_payload: (required)
@@ -1070,7 +1071,7 @@ class DefaultApi:
     @validate_call
     def create_organization_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
         create_organization_payload: CreateOrganizationPayload,
         _request_timeout: Union[
@@ -1088,7 +1089,7 @@ class DefaultApi:
         Creates an organization without assigning any CF roles or creating a space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param create_organization_payload: (required)
@@ -1203,9 +1204,9 @@ class DefaultApi:
     @validate_call
     def create_space(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         create_space_payload: CreateSpacePayload,
         _request_timeout: Union[
             None,
@@ -1222,11 +1223,11 @@ class DefaultApi:
         Create space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param create_space_payload: (required)
         :type create_space_payload: CreateSpacePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -1280,9 +1281,9 @@ class DefaultApi:
     @validate_call
     def create_space_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         create_space_payload: CreateSpacePayload,
         _request_timeout: Union[
             None,
@@ -1299,11 +1300,11 @@ class DefaultApi:
         Create space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param create_space_payload: (required)
         :type create_space_payload: CreateSpacePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -1357,9 +1358,9 @@ class DefaultApi:
     @validate_call
     def create_space_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         create_space_payload: CreateSpacePayload,
         _request_timeout: Union[
             None,
@@ -1376,11 +1377,11 @@ class DefaultApi:
         Create space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param create_space_payload: (required)
         :type create_space_payload: CreateSpacePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -1497,10 +1498,10 @@ class DefaultApi:
     @validate_call
     def create_space_role(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         create_space_role_payload: CreateSpaceRolePayload,
         _request_timeout: Union[
             None,
@@ -1517,13 +1518,13 @@ class DefaultApi:
         Assign space role within an space. If the role is already assigned, the existing role GUID gets returned.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param create_space_role_payload: (required)
         :type create_space_role_payload: CreateSpaceRolePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -1578,10 +1579,10 @@ class DefaultApi:
     @validate_call
     def create_space_role_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         create_space_role_payload: CreateSpaceRolePayload,
         _request_timeout: Union[
             None,
@@ -1598,13 +1599,13 @@ class DefaultApi:
         Assign space role within an space. If the role is already assigned, the existing role GUID gets returned.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param create_space_role_payload: (required)
         :type create_space_role_payload: CreateSpaceRolePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -1659,10 +1660,10 @@ class DefaultApi:
     @validate_call
     def create_space_role_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         create_space_role_payload: CreateSpaceRolePayload,
         _request_timeout: Union[
             None,
@@ -1679,13 +1680,13 @@ class DefaultApi:
         Assign space role within an space. If the role is already assigned, the existing role GUID gets returned.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param create_space_role_payload: (required)
         :type create_space_role_payload: CreateSpaceRolePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -1806,9 +1807,9 @@ class DefaultApi:
     @validate_call
     def delete_org_manager(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1824,11 +1825,11 @@ class DefaultApi:
         Delete the organization manager.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1880,9 +1881,9 @@ class DefaultApi:
     @validate_call
     def delete_org_manager_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1898,11 +1899,11 @@ class DefaultApi:
         Delete the organization manager.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1954,9 +1955,9 @@ class DefaultApi:
     @validate_call
     def delete_org_manager_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1972,11 +1973,11 @@ class DefaultApi:
         Delete the organization manager.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2080,9 +2081,9 @@ class DefaultApi:
     @validate_call
     def delete_organization(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2098,11 +2099,11 @@ class DefaultApi:
         Delete an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2153,9 +2154,9 @@ class DefaultApi:
     @validate_call
     def delete_organization_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2171,11 +2172,11 @@ class DefaultApi:
         Delete an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2226,9 +2227,9 @@ class DefaultApi:
     @validate_call
     def delete_organization_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2244,11 +2245,11 @@ class DefaultApi:
         Delete an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2351,10 +2352,10 @@ class DefaultApi:
     @validate_call
     def delete_space(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2370,13 +2371,13 @@ class DefaultApi:
         Delete space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2428,10 +2429,10 @@ class DefaultApi:
     @validate_call
     def delete_space_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2447,13 +2448,13 @@ class DefaultApi:
         Delete space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2505,10 +2506,10 @@ class DefaultApi:
     @validate_call
     def delete_space_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2524,13 +2525,13 @@ class DefaultApi:
         Delete space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2637,9 +2638,9 @@ class DefaultApi:
     @validate_call
     def get_org_manager(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2655,11 +2656,11 @@ class DefaultApi:
         Returns the organization manager within an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2710,9 +2711,9 @@ class DefaultApi:
     @validate_call
     def get_org_manager_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2728,11 +2729,11 @@ class DefaultApi:
         Returns the organization manager within an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2783,9 +2784,9 @@ class DefaultApi:
     @validate_call
     def get_org_manager_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2801,11 +2802,11 @@ class DefaultApi:
         Returns the organization manager within an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2908,9 +2909,9 @@ class DefaultApi:
     @validate_call
     def get_organization(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2926,11 +2927,11 @@ class DefaultApi:
         Returns an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2981,9 +2982,9 @@ class DefaultApi:
     @validate_call
     def get_organization_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2999,11 +3000,11 @@ class DefaultApi:
         Returns an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3054,9 +3055,9 @@ class DefaultApi:
     @validate_call
     def get_organization_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3072,11 +3073,11 @@ class DefaultApi:
         Returns an organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3179,10 +3180,10 @@ class DefaultApi:
     @validate_call
     def get_organization_quota(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        quota_id: StrictStr,
+        organization_id: UUID,
+        quota_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3198,13 +3199,13 @@ class DefaultApi:
         Returns an organization quota.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param quota_id: (required)
-        :type quota_id: str
+        :type quota_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3256,10 +3257,10 @@ class DefaultApi:
     @validate_call
     def get_organization_quota_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        quota_id: StrictStr,
+        organization_id: UUID,
+        quota_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3275,13 +3276,13 @@ class DefaultApi:
         Returns an organization quota.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param quota_id: (required)
-        :type quota_id: str
+        :type quota_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3333,10 +3334,10 @@ class DefaultApi:
     @validate_call
     def get_organization_quota_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        quota_id: StrictStr,
+        organization_id: UUID,
+        quota_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3352,13 +3353,13 @@ class DefaultApi:
         Returns an organization quota.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param quota_id: (required)
-        :type quota_id: str
+        :type quota_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3465,9 +3466,9 @@ class DefaultApi:
     @validate_call
     def get_organization_usage_summary(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3483,11 +3484,11 @@ class DefaultApi:
         Returns an organization usage summary.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3538,9 +3539,9 @@ class DefaultApi:
     @validate_call
     def get_organization_usage_summary_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3556,11 +3557,11 @@ class DefaultApi:
         Returns an organization usage summary.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3611,9 +3612,9 @@ class DefaultApi:
     @validate_call
     def get_organization_usage_summary_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3629,11 +3630,11 @@ class DefaultApi:
         Returns an organization usage summary.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3736,9 +3737,9 @@ class DefaultApi:
     @validate_call
     def get_platform(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        platform_id: StrictStr,
+        platform_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3754,11 +3755,11 @@ class DefaultApi:
         Fetch a single platform
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param platform_id: (required)
-        :type platform_id: str
+        :type platform_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3809,9 +3810,9 @@ class DefaultApi:
     @validate_call
     def get_platform_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        platform_id: StrictStr,
+        platform_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3827,11 +3828,11 @@ class DefaultApi:
         Fetch a single platform
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param platform_id: (required)
-        :type platform_id: str
+        :type platform_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3882,9 +3883,9 @@ class DefaultApi:
     @validate_call
     def get_platform_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        platform_id: StrictStr,
+        platform_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3900,11 +3901,11 @@ class DefaultApi:
         Fetch a single platform
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param platform_id: (required)
-        :type platform_id: str
+        :type platform_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4007,10 +4008,10 @@ class DefaultApi:
     @validate_call
     def get_platform_quota(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        platform_id: StrictStr,
-        quota_id: StrictStr,
+        platform_id: UUID,
+        quota_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4026,13 +4027,13 @@ class DefaultApi:
         Returns an organization quota on a platform.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param platform_id: (required)
-        :type platform_id: str
+        :type platform_id: UUID
         :param quota_id: (required)
-        :type quota_id: str
+        :type quota_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4084,10 +4085,10 @@ class DefaultApi:
     @validate_call
     def get_platform_quota_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        platform_id: StrictStr,
-        quota_id: StrictStr,
+        platform_id: UUID,
+        quota_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4103,13 +4104,13 @@ class DefaultApi:
         Returns an organization quota on a platform.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param platform_id: (required)
-        :type platform_id: str
+        :type platform_id: UUID
         :param quota_id: (required)
-        :type quota_id: str
+        :type quota_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4161,10 +4162,10 @@ class DefaultApi:
     @validate_call
     def get_platform_quota_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        platform_id: StrictStr,
-        quota_id: StrictStr,
+        platform_id: UUID,
+        quota_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4180,13 +4181,13 @@ class DefaultApi:
         Returns an organization quota on a platform.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param platform_id: (required)
-        :type platform_id: str
+        :type platform_id: UUID
         :param quota_id: (required)
-        :type quota_id: str
+        :type quota_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4293,10 +4294,10 @@ class DefaultApi:
     @validate_call
     def get_space(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4312,13 +4313,13 @@ class DefaultApi:
         Returns a space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4370,10 +4371,10 @@ class DefaultApi:
     @validate_call
     def get_space_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4389,13 +4390,13 @@ class DefaultApi:
         Returns a space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4447,10 +4448,10 @@ class DefaultApi:
     @validate_call
     def get_space_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4466,13 +4467,13 @@ class DefaultApi:
         Returns a space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4579,9 +4580,9 @@ class DefaultApi:
     @validate_call
     def list_organization_quotas(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4597,11 +4598,11 @@ class DefaultApi:
         Returns a list of organization quotas.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4652,9 +4653,9 @@ class DefaultApi:
     @validate_call
     def list_organization_quotas_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4670,11 +4671,11 @@ class DefaultApi:
         Returns a list of organization quotas.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4725,9 +4726,9 @@ class DefaultApi:
     @validate_call
     def list_organization_quotas_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4743,11 +4744,11 @@ class DefaultApi:
         Returns a list of organization quotas.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4850,7 +4851,7 @@ class DefaultApi:
     @validate_call
     def list_organizations(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
         with_details: Annotated[
             Optional[StrictBool],
@@ -4884,7 +4885,7 @@ class DefaultApi:
         Returns a list of organizations for a specific STACKIT project.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param with_details: Adds the details to the response that can be queried from the Cloud Controller API
@@ -4948,7 +4949,7 @@ class DefaultApi:
     @validate_call
     def list_organizations_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
         with_details: Annotated[
             Optional[StrictBool],
@@ -4982,7 +4983,7 @@ class DefaultApi:
         Returns a list of organizations for a specific STACKIT project.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param with_details: Adds the details to the response that can be queried from the Cloud Controller API
@@ -5046,7 +5047,7 @@ class DefaultApi:
     @validate_call
     def list_organizations_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
         with_details: Annotated[
             Optional[StrictBool],
@@ -5080,7 +5081,7 @@ class DefaultApi:
         Returns a list of organizations for a specific STACKIT project.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param with_details: Adds the details to the response that can be queried from the Cloud Controller API
@@ -5213,9 +5214,9 @@ class DefaultApi:
     @validate_call
     def list_platform_quotas(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        platform_id: StrictStr,
+        platform_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5231,11 +5232,11 @@ class DefaultApi:
         Returns a list of organization quotas on a platform.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param platform_id: (required)
-        :type platform_id: str
+        :type platform_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5286,9 +5287,9 @@ class DefaultApi:
     @validate_call
     def list_platform_quotas_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        platform_id: StrictStr,
+        platform_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5304,11 +5305,11 @@ class DefaultApi:
         Returns a list of organization quotas on a platform.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param platform_id: (required)
-        :type platform_id: str
+        :type platform_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5359,9 +5360,9 @@ class DefaultApi:
     @validate_call
     def list_platform_quotas_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        platform_id: StrictStr,
+        platform_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5377,11 +5378,11 @@ class DefaultApi:
         Returns a list of organization quotas on a platform.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param platform_id: (required)
-        :type platform_id: str
+        :type platform_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5484,7 +5485,7 @@ class DefaultApi:
     @validate_call
     def list_platforms(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
         page: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Which page is returned")
@@ -5508,7 +5509,7 @@ class DefaultApi:
         List all platforms available for a STACKIT project
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param page: Which page is returned
@@ -5566,7 +5567,7 @@ class DefaultApi:
     @validate_call
     def list_platforms_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
         page: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Which page is returned")
@@ -5590,7 +5591,7 @@ class DefaultApi:
         List all platforms available for a STACKIT project
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param page: Which page is returned
@@ -5648,7 +5649,7 @@ class DefaultApi:
     @validate_call
     def list_platforms_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
         page: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Which page is returned")
@@ -5672,7 +5673,7 @@ class DefaultApi:
         List all platforms available for a STACKIT project
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param page: Which page is returned
@@ -5789,9 +5790,9 @@ class DefaultApi:
     @validate_call
     def list_spaces(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         page: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Which page is returned")
         ] = None,
@@ -5814,11 +5815,11 @@ class DefaultApi:
         Returns a list of spaces for a specific organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param page: Which page is returned
         :type page: int
         :param per_page: Elements to be returned per page
@@ -5875,9 +5876,9 @@ class DefaultApi:
     @validate_call
     def list_spaces_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         page: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Which page is returned")
         ] = None,
@@ -5900,11 +5901,11 @@ class DefaultApi:
         Returns a list of spaces for a specific organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param page: Which page is returned
         :type page: int
         :param per_page: Elements to be returned per page
@@ -5961,9 +5962,9 @@ class DefaultApi:
     @validate_call
     def list_spaces_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         page: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Which page is returned")
         ] = None,
@@ -5986,11 +5987,11 @@ class DefaultApi:
         Returns a list of spaces for a specific organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param page: Which page is returned
         :type page: int
         :param per_page: Elements to be returned per page
@@ -6109,9 +6110,9 @@ class DefaultApi:
     @validate_call
     def update_organization(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         update_organization_payload: UpdateOrganizationPayload,
         _request_timeout: Union[
             None,
@@ -6128,11 +6129,11 @@ class DefaultApi:
         Update organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param update_organization_payload: (required)
         :type update_organization_payload: UpdateOrganizationPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -6186,9 +6187,9 @@ class DefaultApi:
     @validate_call
     def update_organization_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         update_organization_payload: UpdateOrganizationPayload,
         _request_timeout: Union[
             None,
@@ -6205,11 +6206,11 @@ class DefaultApi:
         Update organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param update_organization_payload: (required)
         :type update_organization_payload: UpdateOrganizationPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -6263,9 +6264,9 @@ class DefaultApi:
     @validate_call
     def update_organization_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
+        organization_id: UUID,
         update_organization_payload: UpdateOrganizationPayload,
         _request_timeout: Union[
             None,
@@ -6282,11 +6283,11 @@ class DefaultApi:
         Update organization.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param update_organization_payload: (required)
         :type update_organization_payload: UpdateOrganizationPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -6403,10 +6404,10 @@ class DefaultApi:
     @validate_call
     def update_space(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         update_space_payload: UpdateSpacePayload,
         _request_timeout: Union[
             None,
@@ -6423,13 +6424,13 @@ class DefaultApi:
         Update space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param update_space_payload: (required)
         :type update_space_payload: UpdateSpacePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -6484,10 +6485,10 @@ class DefaultApi:
     @validate_call
     def update_space_with_http_info(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         update_space_payload: UpdateSpacePayload,
         _request_timeout: Union[
             None,
@@ -6504,13 +6505,13 @@ class DefaultApi:
         Update space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param update_space_payload: (required)
         :type update_space_payload: UpdateSpacePayload
         :param _request_timeout: timeout setting for this request. If one
@@ -6565,10 +6566,10 @@ class DefaultApi:
     @validate_call
     def update_space_without_preload_content(
         self,
-        project_id: StrictStr,
+        project_id: UUID,
         region: StrictStr,
-        organization_id: StrictStr,
-        space_id: StrictStr,
+        organization_id: UUID,
+        space_id: UUID,
         update_space_payload: UpdateSpacePayload,
         _request_timeout: Union[
             None,
@@ -6585,13 +6586,13 @@ class DefaultApi:
         Update space.
 
         :param project_id: (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region: (required)
         :type region: str
         :param organization_id: (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param space_id: (required)
-        :type space_id: str
+        :type space_id: UUID
         :param update_space_payload: (required)
         :type update_space_payload: UpdateSpacePayload
         :param _request_timeout: timeout setting for this request. If one

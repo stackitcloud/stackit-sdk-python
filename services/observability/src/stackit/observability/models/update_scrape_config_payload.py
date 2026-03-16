@@ -161,16 +161,16 @@ class UpdateScrapeConfigPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in metrics_relabel_configs (list)
         _items = []
         if self.metrics_relabel_configs:
-            for _item in self.metrics_relabel_configs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_metrics_relabel_configs in self.metrics_relabel_configs:
+                if _item_metrics_relabel_configs:
+                    _items.append(_item_metrics_relabel_configs.to_dict())
             _dict["metricsRelabelConfigs"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in static_configs (list)
         _items = []
         if self.static_configs:
-            for _item in self.static_configs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_static_configs in self.static_configs:
+                if _item_static_configs:
+                    _items.append(_item_static_configs.to_dict())
             _dict["staticConfigs"] = _items
         # override the default output from pydantic by calling `to_dict()` of tls_config
         if self.tls_config:
