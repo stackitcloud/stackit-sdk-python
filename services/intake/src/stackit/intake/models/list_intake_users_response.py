@@ -74,9 +74,9 @@ class ListIntakeUsersResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in intake_users (list)
         _items = []
         if self.intake_users:
-            for _item in self.intake_users:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_intake_users in self.intake_users:
+                if _item_intake_users:
+                    _items.append(_item_intake_users.to_dict())
             _dict["intakeUsers"] = _items
         return _dict
 
