@@ -17,8 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
 
@@ -27,7 +28,7 @@ class ApplyOrganizationQuotaPayload(BaseModel):
     ApplyOrganizationQuotaPayload
     """  # noqa: E501
 
-    quota_id: StrictStr = Field(alias="quotaId")
+    quota_id: UUID = Field(alias="quotaId")
     __properties: ClassVar[List[str]] = ["quotaId"]
 
     model_config = ConfigDict(

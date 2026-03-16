@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
@@ -36,7 +37,7 @@ class FederatedIdentityProvider(BaseModel):
         description="list of assertions of the federated identity provider"
     )
     created_at: datetime = Field(description="Creation time of the federated identity provider.", alias="createdAt")
-    id: Optional[StrictStr] = Field(default=None, description="Unique ID of the federated identity provider.")
+    id: Optional[UUID] = Field(default=None, description="Unique ID of the federated identity provider.")
     issuer: StrictStr = Field(description="Issuer of the federated identity provider.")
     name: StrictStr = Field(description="Unique name of the federated identity provider.")
     updated_at: datetime = Field(description="Last update time of the federated identity provider.", alias="updatedAt")
@@ -108,9 +109,9 @@ class FederatedIdentityProvider(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in assertions (list)
         _items = []
         if self.assertions:
-            for _item in self.assertions:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_assertions in self.assertions:
+                if _item_assertions:
+                    _items.append(_item_assertions.to_dict())
             _dict["assertions"] = _items
         return _dict
 

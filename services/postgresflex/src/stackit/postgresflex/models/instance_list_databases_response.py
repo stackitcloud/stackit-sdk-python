@@ -72,9 +72,9 @@ class InstanceListDatabasesResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in databases (list)
         _items = []
         if self.databases:
-            for _item in self.databases:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_databases in self.databases:
+                if _item_databases:
+                    _items.append(_item_databases.to_dict())
             _dict["databases"] = _items
         return _dict
 

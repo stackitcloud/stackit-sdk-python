@@ -73,9 +73,9 @@ class BackupListBackupsResponseGrouped(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in backups (list)
         _items = []
         if self.backups:
-            for _item in self.backups:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_backups in self.backups:
+                if _item_backups:
+                    _items.append(_item_backups.to_dict())
             _dict["backups"] = _items
         return _dict
 
