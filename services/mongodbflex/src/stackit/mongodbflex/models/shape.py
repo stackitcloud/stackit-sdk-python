@@ -97,9 +97,9 @@ class Shape(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in operations (list)
         _items = []
         if self.operations:
-            for _item in self.operations:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_operations in self.operations:
+                if _item_operations:
+                    _items.append(_item_operations.to_dict())
             _dict["operations"] = _items
         return _dict
 

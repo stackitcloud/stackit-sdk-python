@@ -81,16 +81,16 @@ class HandlersInstancesSuggestedIndexesResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in shapes (list)
         _items = []
         if self.shapes:
-            for _item in self.shapes:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_shapes in self.shapes:
+                if _item_shapes:
+                    _items.append(_item_shapes.to_dict())
             _dict["shapes"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in suggested_indexes (list)
         _items = []
         if self.suggested_indexes:
-            for _item in self.suggested_indexes:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_suggested_indexes in self.suggested_indexes:
+                if _item_suggested_indexes:
+                    _items.append(_item_suggested_indexes.to_dict())
             _dict["suggestedIndexes"] = _items
         return _dict
 
