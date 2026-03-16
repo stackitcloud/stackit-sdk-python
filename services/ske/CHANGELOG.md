@@ -1,3 +1,9 @@
+## v1.7.0
+- **Feature:** New model `Access`
+- **Feature:** New model `IDPKubeconfig`
+- **Feature:** Add attribute `access` of type `Access` to model `Cluster`
+- **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
+
 ## v1.6.0
 - **Feature:** New model `AccessScope`
 - **Feature:** New model `V2ControlPlaneNetwork`
