@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
@@ -27,7 +28,7 @@ class ACL(BaseModel):
     """  # noqa: E501
 
     cidr: StrictStr = Field(description="The given IP/IP Range that is permitted to access.")
-    id: StrictStr = Field(description="A auto generated unique id which identifies the acl.")
+    id: UUID = Field(description="A auto generated unique id which identifies the acl.")
     __properties: ClassVar[List[str]] = ["cidr", "id"]
 
     model_config = ConfigDict(

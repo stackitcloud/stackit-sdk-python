@@ -13,6 +13,7 @@
 """  # noqa: E501
 
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from stackit.core.configuration import Configuration
@@ -52,7 +53,7 @@ class DefaultApi:
     def create_token(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
         create_token_payload: Optional[CreateTokenPayload] = None,
         _request_timeout: Union[
             None,
@@ -71,7 +72,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param create_token_payload:
         :type create_token_payload: CreateTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -124,7 +125,7 @@ class DefaultApi:
     def create_token_with_http_info(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
         create_token_payload: Optional[CreateTokenPayload] = None,
         _request_timeout: Union[
             None,
@@ -143,7 +144,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param create_token_payload:
         :type create_token_payload: CreateTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -196,7 +197,7 @@ class DefaultApi:
     def create_token_without_preload_content(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
         create_token_payload: Optional[CreateTokenPayload] = None,
         _request_timeout: Union[
             None,
@@ -215,7 +216,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param create_token_payload:
         :type create_token_payload: CreateTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -328,8 +329,8 @@ class DefaultApi:
     def delete_token(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        t_id: Annotated[StrictStr, Field(description="token id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
+        t_id: Annotated[UUID, Field(description="token id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -347,9 +348,9 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param t_id: token id (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -400,8 +401,8 @@ class DefaultApi:
     def delete_token_with_http_info(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        t_id: Annotated[StrictStr, Field(description="token id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
+        t_id: Annotated[UUID, Field(description="token id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -419,9 +420,9 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param t_id: token id (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -472,8 +473,8 @@ class DefaultApi:
     def delete_token_without_preload_content(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        t_id: Annotated[StrictStr, Field(description="token id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
+        t_id: Annotated[UUID, Field(description="token id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -491,9 +492,9 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param t_id: token id (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -596,7 +597,7 @@ class DefaultApi:
     def get_chat_model(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        model_id: Annotated[StrictStr, Field(description="model id")],
+        model_id: Annotated[UUID, Field(description="model id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -614,7 +615,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param model_id: model id (required)
-        :type model_id: str
+        :type model_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -663,7 +664,7 @@ class DefaultApi:
     def get_chat_model_with_http_info(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        model_id: Annotated[StrictStr, Field(description="model id")],
+        model_id: Annotated[UUID, Field(description="model id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -681,7 +682,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param model_id: model id (required)
-        :type model_id: str
+        :type model_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -730,7 +731,7 @@ class DefaultApi:
     def get_chat_model_without_preload_content(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        model_id: Annotated[StrictStr, Field(description="model id")],
+        model_id: Annotated[UUID, Field(description="model id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -748,7 +749,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param model_id: model id (required)
-        :type model_id: str
+        :type model_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -846,7 +847,7 @@ class DefaultApi:
     def get_embedding_model(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        model_id: Annotated[StrictStr, Field(description="model id")],
+        model_id: Annotated[UUID, Field(description="model id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -864,7 +865,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param model_id: model id (required)
-        :type model_id: str
+        :type model_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -913,7 +914,7 @@ class DefaultApi:
     def get_embedding_model_with_http_info(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        model_id: Annotated[StrictStr, Field(description="model id")],
+        model_id: Annotated[UUID, Field(description="model id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -931,7 +932,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param model_id: model id (required)
-        :type model_id: str
+        :type model_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -980,7 +981,7 @@ class DefaultApi:
     def get_embedding_model_without_preload_content(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        model_id: Annotated[StrictStr, Field(description="model id")],
+        model_id: Annotated[UUID, Field(description="model id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -998,7 +999,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param model_id: model id (required)
-        :type model_id: str
+        :type model_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1096,8 +1097,8 @@ class DefaultApi:
     def get_token(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        t_id: Annotated[StrictStr, Field(description="token id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
+        t_id: Annotated[UUID, Field(description="token id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1115,9 +1116,9 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param t_id: token id (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1168,8 +1169,8 @@ class DefaultApi:
     def get_token_with_http_info(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        t_id: Annotated[StrictStr, Field(description="token id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
+        t_id: Annotated[UUID, Field(description="token id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1187,9 +1188,9 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param t_id: token id (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1240,8 +1241,8 @@ class DefaultApi:
     def get_token_without_preload_content(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        t_id: Annotated[StrictStr, Field(description="token id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
+        t_id: Annotated[UUID, Field(description="token id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1259,9 +1260,9 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param t_id: token id (required)
-        :type t_id: str
+        :type t_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1599,7 +1600,7 @@ class DefaultApi:
     def list_tokens(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1617,7 +1618,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1666,7 +1667,7 @@ class DefaultApi:
     def list_tokens_with_http_info(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1684,7 +1685,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1733,7 +1734,7 @@ class DefaultApi:
     def list_tokens_without_preload_content(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1751,7 +1752,7 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1849,8 +1850,8 @@ class DefaultApi:
     def partial_update_token(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        t_id: Annotated[StrictStr, Field(description="token id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
+        t_id: Annotated[UUID, Field(description="token id")],
         partial_update_token_payload: Optional[PartialUpdateTokenPayload] = None,
         _request_timeout: Union[
             None,
@@ -1869,9 +1870,9 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param t_id: token id (required)
-        :type t_id: str
+        :type t_id: UUID
         :param partial_update_token_payload:
         :type partial_update_token_payload: PartialUpdateTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -1925,8 +1926,8 @@ class DefaultApi:
     def partial_update_token_with_http_info(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        t_id: Annotated[StrictStr, Field(description="token id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
+        t_id: Annotated[UUID, Field(description="token id")],
         partial_update_token_payload: Optional[PartialUpdateTokenPayload] = None,
         _request_timeout: Union[
             None,
@@ -1945,9 +1946,9 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param t_id: token id (required)
-        :type t_id: str
+        :type t_id: UUID
         :param partial_update_token_payload:
         :type partial_update_token_payload: PartialUpdateTokenPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -2001,8 +2002,8 @@ class DefaultApi:
     def partial_update_token_without_preload_content(
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
-        project_id: Annotated[StrictStr, Field(description="portal project id")],
-        t_id: Annotated[StrictStr, Field(description="token id")],
+        project_id: Annotated[UUID, Field(description="portal project id")],
+        t_id: Annotated[UUID, Field(description="token id")],
         partial_update_token_payload: Optional[PartialUpdateTokenPayload] = None,
         _request_timeout: Union[
             None,
@@ -2021,9 +2022,9 @@ class DefaultApi:
         :param region_id: region name (required)
         :type region_id: str
         :param project_id: portal project id (required)
-        :type project_id: str
+        :type project_id: UUID
         :param t_id: token id (required)
-        :type t_id: str
+        :type t_id: UUID
         :param partial_update_token_payload:
         :type partial_update_token_payload: PartialUpdateTokenPayload
         :param _request_timeout: timeout setting for this request. If one

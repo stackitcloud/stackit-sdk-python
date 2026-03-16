@@ -1,6 +1,6 @@
 [project]
 name = "stackit-sqlserverflex"
-version = "v1.1.1"
+version = "v1.1.2"
 description = "STACKIT MSSQL Service API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4.0"

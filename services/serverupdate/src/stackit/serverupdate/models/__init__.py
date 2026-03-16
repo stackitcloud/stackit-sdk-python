@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.serverupdate.models.create_update_payload import CreateUpdatePayload
 from stackit.serverupdate.models.create_update_schedule_payload import (

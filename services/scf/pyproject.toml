@@ -1,6 +1,6 @@
 [project]
 name = "stackit-scf"
-version = "v0.4.0"
+version = "v0.4.1"
 description = "STACKIT Cloud Foundry API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4"

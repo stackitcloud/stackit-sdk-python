@@ -17,6 +17,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
@@ -37,9 +38,7 @@ class GetQuotaResponse(BaseModel):
         description="The maximum number of load balancing servers in this project.",
         alias="maxLoadBalancers",
     )
-    project_id: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Project identifier", alias="projectId"
-    )
+    project_id: Optional[UUID] = Field(default=None, description="Project identifier", alias="projectId")
     region: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Region")
     used_credentials: Optional[Annotated[int, Field(le=1000000, strict=True, ge=-1)]] = Field(
         default=None,
