@@ -73,9 +73,9 @@ class InstanceHost(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in host_metrics (list)
         _items = []
         if self.host_metrics:
-            for _item in self.host_metrics:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_host_metrics in self.host_metrics:
+                if _item_host_metrics:
+                    _items.append(_item_host_metrics.to_dict())
             _dict["hostMetrics"] = _items
         return _dict
 
