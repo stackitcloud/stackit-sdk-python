@@ -19,8 +19,12 @@
     - **Bugfix:** timeouts now passed to requests library
   - [v0.8.0](services/kms/CHANGELOG.md#v080)
     - **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
-- `intake`: [v0.5.0](services/intake/CHANGELOG.md#v050)
-  - **Breaking Change**: Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
+- `intake`:
+  - [v0.5.1](services/intake/CHANGELOG.md#v051)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
+  - [v0.5.0](services/intake/CHANGELOG.md#v050)
+    - **Breaking Change**: Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
 - `iaas`: [v1.2.0](services/iaas/CHANGELOG.md#v120)
   - **Feature:** Add `description` attribute to ModelClasses:
   - `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`
