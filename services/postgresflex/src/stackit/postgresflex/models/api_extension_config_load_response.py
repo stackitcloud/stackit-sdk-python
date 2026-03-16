@@ -74,9 +74,9 @@ class ApiExtensionConfigLoadResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in configuration (list)
         _items = []
         if self.configuration:
-            for _item in self.configuration:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_configuration in self.configuration:
+                if _item_configuration:
+                    _items.append(_item_configuration.to_dict())
             _dict["configuration"] = _items
         return _dict
 
