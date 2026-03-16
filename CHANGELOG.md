@@ -31,6 +31,9 @@
   - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
 - `sfs`: [v0.3.0](services/sfs/CHANGELOG.md#v030)
   - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
+- `secretsmanager`: [v0.4.1](services/secretsmanager/CHANGELOG.md#v041)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `serviceaccount`: [v0.5.0](services/serviceaccount/CHANGELOG.md#v050)
   - **Feature:** add support for Federated Identity Providers
     - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`,`PartialUpdateServiceAccountFederatedIdentityProvider`
