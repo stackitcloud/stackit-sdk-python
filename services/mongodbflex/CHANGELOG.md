@@ -1,3 +1,7 @@
+## v1.2.3
+- **Feature:** client now supports UUID and decimal types
+- **Bugfix:** timeouts now passed to requests library
+
 ## v1.2.2
 - **Docs:** Extend description of `roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 
