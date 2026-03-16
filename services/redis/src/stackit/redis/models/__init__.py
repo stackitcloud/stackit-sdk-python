@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.redis.models.backup import Backup
 from stackit.redis.models.create_backup_response_item import CreateBackupResponseItem
