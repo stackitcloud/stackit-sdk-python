@@ -71,9 +71,9 @@ class UpdateACLsPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in cidrs (list)
         _items = []
         if self.cidrs:
-            for _item in self.cidrs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_cidrs in self.cidrs:
+                if _item_cidrs:
+                    _items.append(_item_cidrs.to_dict())
             _dict["cidrs"] = _items
         return _dict
 

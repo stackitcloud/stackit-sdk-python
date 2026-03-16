@@ -71,9 +71,9 @@ class ListCredentialsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in credentials_list (list)
         _items = []
         if self.credentials_list:
-            for _item in self.credentials_list:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_credentials_list in self.credentials_list:
+                if _item_credentials_list:
+                    _items.append(_item_credentials_list.to_dict())
             _dict["credentialsList"] = _items
         return _dict
 

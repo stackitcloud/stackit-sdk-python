@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.authorization.models.add_custom_role_response import AddCustomRoleResponse
 from stackit.authorization.models.add_members_payload import AddMembersPayload

@@ -1,3 +1,7 @@
+## v0.8.1
+- **Feature:** client now supports UUID and decimal types
+- **Bugfix:** timeouts now passed to requests library
+
 ## v0.8.0
 - **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
 

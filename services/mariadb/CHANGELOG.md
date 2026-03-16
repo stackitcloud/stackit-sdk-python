@@ -1,3 +1,7 @@
+## v0.3.1
+- **Feature:** client now supports UUID and decimal types
+- **Bugfix:** timeouts now passed to requests library
+
 ## v0.3.0
 - **Version**: Minimal version is now python 3.9
 
