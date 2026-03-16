@@ -1,3 +1,7 @@
+## v1.1.2
+- **Feature:** client now supports UUID and decimal types
+- **Bugfix:** timeouts now passed to requests library
+
 ## v1.1.1
 - **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
 

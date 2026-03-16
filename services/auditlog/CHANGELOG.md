@@ -1,3 +1,7 @@
+## v0.1.2
+- **Feature:** client now supports UUID and decimal types
+- **Bugfix:** timeouts now passed to requests library
+
 ## v0.1.1
 - **Bugfix:** Prevent year 0 timestamp issue 
 

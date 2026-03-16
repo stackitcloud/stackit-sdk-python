@@ -73,9 +73,9 @@ class ListPlansResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in valid_plans (list)
         _items = []
         if self.valid_plans:
-            for _item in self.valid_plans:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_valid_plans in self.valid_plans:
+                if _item_valid_plans:
+                    _items.append(_item_valid_plans.to_dict())
             _dict["validPlans"] = _items
         return _dict
 

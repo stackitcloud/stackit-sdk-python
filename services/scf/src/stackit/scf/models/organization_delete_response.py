@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
@@ -27,9 +28,9 @@ class OrganizationDeleteResponse(BaseModel):
     OrganizationDeleteResponse
     """  # noqa: E501
 
-    guid: StrictStr
-    platform_id: StrictStr = Field(alias="platformId")
-    project_id: StrictStr = Field(alias="projectId")
+    guid: UUID
+    platform_id: UUID = Field(alias="platformId")
+    project_id: UUID = Field(alias="projectId")
     region: StrictStr
     __properties: ClassVar[List[str]] = ["guid", "platformId", "projectId", "region"]
 

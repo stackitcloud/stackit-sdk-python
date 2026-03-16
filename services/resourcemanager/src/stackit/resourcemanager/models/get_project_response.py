@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
@@ -42,7 +43,7 @@ class GetProjectResponse(BaseModel):
     name: StrictStr = Field(description="Project name.")
     parent: Parent
     parents: Optional[List[ParentListInner]] = None
-    project_id: StrictStr = Field(description="Globally unique identifier.", alias="projectId")
+    project_id: UUID = Field(description="Globally unique identifier.", alias="projectId")
     update_time: datetime = Field(description="Timestamp at which the project was last modified.", alias="updateTime")
     __properties: ClassVar[List[str]] = [
         "containerId",
@@ -125,9 +126,9 @@ class GetProjectResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in parents (list)
         _items = []
         if self.parents:
-            for _item in self.parents:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_parents in self.parents:
+                if _item_parents:
+                    _items.append(_item_parents.to_dict())
             _dict["parents"] = _items
         return _dict
 
