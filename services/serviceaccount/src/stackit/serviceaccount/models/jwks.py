@@ -71,9 +71,9 @@ class JWKS(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in keys (list)
         _items = []
         if self.keys:
-            for _item in self.keys:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_keys in self.keys:
+                if _item_keys:
+                    _items.append(_item_keys.to_dict())
             _dict["keys"] = _items
         return _dict
 
