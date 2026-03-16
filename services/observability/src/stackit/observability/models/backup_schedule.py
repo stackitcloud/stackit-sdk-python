@@ -17,8 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
 
@@ -28,7 +29,7 @@ class BackupSchedule(BaseModel):
     """  # noqa: E501
 
     schedule: Annotated[str, Field(min_length=1, strict=True, max_length=100)]
-    schedule_id: StrictStr = Field(alias="scheduleId")
+    schedule_id: UUID = Field(alias="scheduleId")
     __properties: ClassVar[List[str]] = ["schedule", "scheduleId"]
 
     model_config = ConfigDict(
