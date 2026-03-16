@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -46,7 +47,7 @@ class AccessToken(BaseModel):
         description="The displayed name of the access token.", alias="displayName"
     )
     expires: StrictBool = Field(description="Indicates if the access token can expire.")
-    id: StrictStr = Field(description="An auto generated unique id which identifies the access token.")
+    id: UUID = Field(description="An auto generated unique id which identifies the access token.")
     permissions: List[StrictStr] = Field(description="The access permissions granted to the access token.")
     status: StrictStr
     valid_until: Optional[datetime] = Field(
