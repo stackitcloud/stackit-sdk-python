@@ -29,6 +29,9 @@
   - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
 - `loadbalancer`: [v0.9.0](services/loadbalancer/CHANGELOG.md#v090)
   - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+- `opensearch`: [v1.2.2](services/opensearch/CHANGELOG.md#v122)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `postresflex`: [v1.2.1](services/postgresflex/CHANGELOG.md#v121)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
