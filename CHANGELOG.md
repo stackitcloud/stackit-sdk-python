@@ -29,6 +29,9 @@
   - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
 - `loadbalancer`: [v0.9.0](services/loadbalancer/CHANGELOG.md#v090)
   - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+- `redis`: [v0.3.1](services/redis/CHANGELOG.md#v031)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `resourcemanager`: [v0.7.1](services/resourcemanager/CHANGELOG.md#v071)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
