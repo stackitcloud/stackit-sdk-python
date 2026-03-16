@@ -72,9 +72,9 @@ class ListCollationsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in collations (list)
         _items = []
         if self.collations:
-            for _item in self.collations:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_collations in self.collations:
+                if _item_collations:
+                    _items.append(_item_collations.to_dict())
             _dict["collations"] = _items
         return _dict
 

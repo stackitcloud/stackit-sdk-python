@@ -128,9 +128,9 @@ class CreateAlertConfigRoutePayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in routes (list)
         _items = []
         if self.routes:
-            for _item in self.routes:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_routes in self.routes:
+                if _item_routes:
+                    _items.append(_item_routes.to_dict())
             _dict["routes"] = _items
         return _dict
 

@@ -79,9 +79,9 @@ class RedisCheckResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in redis_checks (list)
         _items = []
         if self.redis_checks:
-            for _item in self.redis_checks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_redis_checks in self.redis_checks:
+                if _item_redis_checks:
+                    _items.append(_item_redis_checks.to_dict())
             _dict["redisChecks"] = _items
         return _dict
 
