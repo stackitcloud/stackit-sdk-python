@@ -1,9 +1,18 @@
 ## Release (2026-xx-xx)
 
-- `serviceaccount`: [v0.6.0](services/kms/CHANGELOG.md#v060)
-  - **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` and update file path accordingly
-  - **Breaking Change:** rename `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner` and update file path accordingly
-  - **Feature:** add `id` for `FederatedIdentityProvider`
+- `serviceaccount`:
+  - [v0.6.1](services/serviceaccount/CHANGELOG.md#v061)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
+  - [v0.6.0](services/kms/CHANGELOG.md#v060)
+    - **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` and update file path accordingly
+    - **Breaking Change:** rename `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner` and update file path accordingly
+    - **Feature:** add `id` for `FederatedIdentityProvider`
+- `ske`: [v1.7.0](services/ske/CHANGELOG.md#v170)
+  - **Feature:** New model `Access`
+  - **Feature:** New model `IDPKubeconfig`
+  - **Feature:** Add attribute `access` of type `Access` to model `Cluster`
+  - **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
 - `kms`: [v0.8.0](services/kms/CHANGELOG.md#v080)
   - **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
 - `intake`: [v0.5.0](services/intake/CHANGELOG.md#v050)
@@ -20,12 +29,45 @@
   - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
 - `loadbalancer`: [v0.9.0](services/loadbalancer/CHANGELOG.md#v090)
   - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+- `postresflex`: [v1.2.1](services/postgresflex/CHANGELOG.md#v121)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+- `rabbitmq`: [v0.4.1](services/rabbitmq/CHANGELOG.md#v041)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+- `redis`: [v0.3.1](services/redis/CHANGELOG.md#v031)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+- `resourcemanager`: [v0.7.1](services/resourcemanager/CHANGELOG.md#v071)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+- `runcommand`: [v1.1.2](services/runcommand/CHANGELOG.md#v112)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+- `scf`: [v0.4.1](services/scf/CHANGELOG.md#v041)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `sfs`: [v0.3.0](services/sfs/CHANGELOG.md#v030)
   - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
+- `secretsmanager`: [v0.4.1](services/secretsmanager/CHANGELOG.md#v041)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `serviceaccount`: [v0.5.0](services/serviceaccount/CHANGELOG.md#v050)
   - **Feature:** add support for Federated Identity Providers
     - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`,`PartialUpdateServiceAccountFederatedIdentityProvider`
     - new models: `CreateFederatedIdentityProviderPayload`, `CreateFederatedIdentityProviderPayloadAssertionsInner`, `CreateFederatedIdentityProviderResponse`, `CreateFederatedIdentityProviderResponseAssertionsInner`, `FederatedListFederatedIdentityProvidersResponse`, `PartialUpdateServiceAccountFederatedIdentityProviderPayload`
+- `serviceenablement`: [v1.1.2](services/serviceenablement/CHANGELOG.md#v112)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+- `serverbackup`: [v1.1.2](services/serverbackup/CHANGELOG.md#v112)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+- `serverupdate`: [v1.1.1](services/serverupdate/CHANGELOG.md#v111)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+- `sqlserverflex`: [v1.1.2](services/sqlserverflex/CHANGELOG.md#v112)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `observability`: [v0.13.0](services/observability/CHANGELOG.md#v0130)
 - **Feature:** manage alert records
   - New API client methods: `create_alert_record`, `delete_alert_record`, `delete_alert_records`, `get_alert_record`, `list_alert_records`, `update_alert_record`, `partial_update_alert_records`
