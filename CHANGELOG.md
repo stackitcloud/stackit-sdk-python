@@ -13,8 +13,12 @@
   - **Feature:** New model `IDPKubeconfig`
   - **Feature:** Add attribute `access` of type `Access` to model `Cluster`
   - **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
-- `kms`: [v0.8.0](services/kms/CHANGELOG.md#v080)
-  - **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
+- `kms`:
+  - [v0.8.1](services/kms/CHANGELOG.md#v081)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
+  - [v0.8.0](services/kms/CHANGELOG.md#v080)
+    - **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
 - `intake`: [v0.5.0](services/intake/CHANGELOG.md#v050)
   - **Breaking Change**: Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
 - `iaas`: [v1.2.0](services/iaas/CHANGELOG.md#v120)
