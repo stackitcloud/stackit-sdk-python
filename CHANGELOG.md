@@ -35,6 +35,9 @@
   - **Feature:** add support for Federated Identity Providers
     - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`,`PartialUpdateServiceAccountFederatedIdentityProvider`
     - new models: `CreateFederatedIdentityProviderPayload`, `CreateFederatedIdentityProviderPayloadAssertionsInner`, `CreateFederatedIdentityProviderResponse`, `CreateFederatedIdentityProviderResponseAssertionsInner`, `FederatedListFederatedIdentityProvidersResponse`, `PartialUpdateServiceAccountFederatedIdentityProviderPayload`
+- `serverupdate`: [v1.1.1](services/serverupdate/CHANGELOG.md#v111)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `sqlserverflex`: [v1.1.2](services/sqlserverflex/CHANGELOG.md#v112)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
