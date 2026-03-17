@@ -71,9 +71,9 @@ class ListOfferingsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in offerings (list)
         _items = []
         if self.offerings:
-            for _item in self.offerings:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_offerings in self.offerings:
+                if _item_offerings:
+                    _items.append(_item_offerings.to_dict())
             _dict["offerings"] = _items
         return _dict
 

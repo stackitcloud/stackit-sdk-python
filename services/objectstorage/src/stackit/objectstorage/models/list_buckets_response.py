@@ -72,9 +72,9 @@ class ListBucketsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in buckets (list)
         _items = []
         if self.buckets:
-            for _item in self.buckets:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_buckets in self.buckets:
+                if _item_buckets:
+                    _items.append(_item_buckets.to_dict())
             _dict["buckets"] = _items
         return _dict
 

@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing_extensions import Annotated, Self
@@ -48,9 +49,7 @@ class UpdateNicPayload(BaseModel):
         description="If this is set to false, then no security groups will apply to this network interface.",
         alias="nicSecurity",
     )
-    security_groups: Optional[List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]]] = Field(
-        default=None, description="A list of UUIDs.", alias="securityGroups"
-    )
+    security_groups: Optional[List[UUID]] = Field(default=None, description="A list of UUIDs.", alias="securityGroups")
     __properties: ClassVar[List[str]] = [
         "allowedAddresses",
         "description",
@@ -110,9 +109,9 @@ class UpdateNicPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in allowed_addresses (list)
         _items = []
         if self.allowed_addresses:
-            for _item in self.allowed_addresses:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_allowed_addresses in self.allowed_addresses:
+                if _item_allowed_addresses:
+                    _items.append(_item_allowed_addresses.to_dict())
             _dict["allowedAddresses"] = _items
         return _dict
 

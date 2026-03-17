@@ -12,6 +12,7 @@
 """  # noqa: E501
 
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import (
     Field,
@@ -64,9 +65,9 @@ class DefaultApi:
     @validate_call
     def create_key(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         create_key_payload: CreateKeyPayload,
         _request_timeout: Union[
             None,
@@ -83,11 +84,11 @@ class DefaultApi:
         Creates a new key for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param create_key_payload: (required)
         :type create_key_payload: CreateKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -140,9 +141,9 @@ class DefaultApi:
     @validate_call
     def create_key_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         create_key_payload: CreateKeyPayload,
         _request_timeout: Union[
             None,
@@ -159,11 +160,11 @@ class DefaultApi:
         Creates a new key for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param create_key_payload: (required)
         :type create_key_payload: CreateKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -216,9 +217,9 @@ class DefaultApi:
     @validate_call
     def create_key_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         create_key_payload: CreateKeyPayload,
         _request_timeout: Union[
             None,
@@ -235,11 +236,11 @@ class DefaultApi:
         Creates a new key for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param create_key_payload: (required)
         :type create_key_payload: CreateKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -355,7 +356,7 @@ class DefaultApi:
     @validate_call
     def create_key_ring(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
         create_key_ring_payload: CreateKeyRingPayload,
         _request_timeout: Union[
@@ -373,7 +374,7 @@ class DefaultApi:
         Creates a new key ring within the project.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param create_key_ring_payload: (required)
@@ -426,7 +427,7 @@ class DefaultApi:
     @validate_call
     def create_key_ring_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
         create_key_ring_payload: CreateKeyRingPayload,
         _request_timeout: Union[
@@ -444,7 +445,7 @@ class DefaultApi:
         Creates a new key ring within the project.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param create_key_ring_payload: (required)
@@ -497,7 +498,7 @@ class DefaultApi:
     @validate_call
     def create_key_ring_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
         create_key_ring_payload: CreateKeyRingPayload,
         _request_timeout: Union[
@@ -515,7 +516,7 @@ class DefaultApi:
         Creates a new key ring within the project.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param create_key_ring_payload: (required)
@@ -628,9 +629,9 @@ class DefaultApi:
     @validate_call
     def create_wrapping_key(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         create_wrapping_key_payload: CreateWrappingKeyPayload,
         _request_timeout: Union[
             None,
@@ -647,11 +648,11 @@ class DefaultApi:
         Creates a new wrapping key for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param create_wrapping_key_payload: (required)
         :type create_wrapping_key_payload: CreateWrappingKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -704,9 +705,9 @@ class DefaultApi:
     @validate_call
     def create_wrapping_key_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         create_wrapping_key_payload: CreateWrappingKeyPayload,
         _request_timeout: Union[
             None,
@@ -723,11 +724,11 @@ class DefaultApi:
         Creates a new wrapping key for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param create_wrapping_key_payload: (required)
         :type create_wrapping_key_payload: CreateWrappingKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -780,9 +781,9 @@ class DefaultApi:
     @validate_call
     def create_wrapping_key_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         create_wrapping_key_payload: CreateWrappingKeyPayload,
         _request_timeout: Union[
             None,
@@ -799,11 +800,11 @@ class DefaultApi:
         Creates a new wrapping key for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param create_wrapping_key_payload: (required)
         :type create_wrapping_key_payload: CreateWrappingKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -919,10 +920,10 @@ class DefaultApi:
     @validate_call
     def decrypt(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         decrypt_payload: DecryptPayload,
         _request_timeout: Union[
@@ -940,13 +941,13 @@ class DefaultApi:
         Decrypts data using the given key version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param decrypt_payload: (required)
@@ -1005,10 +1006,10 @@ class DefaultApi:
     @validate_call
     def decrypt_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         decrypt_payload: DecryptPayload,
         _request_timeout: Union[
@@ -1026,13 +1027,13 @@ class DefaultApi:
         Decrypts data using the given key version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param decrypt_payload: (required)
@@ -1091,10 +1092,10 @@ class DefaultApi:
     @validate_call
     def decrypt_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         decrypt_payload: DecryptPayload,
         _request_timeout: Union[
@@ -1112,13 +1113,13 @@ class DefaultApi:
         Decrypts data using the given key version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param decrypt_payload: (required)
@@ -1246,10 +1247,10 @@ class DefaultApi:
     @validate_call
     def delete_key(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1265,13 +1266,13 @@ class DefaultApi:
         Schedules the deletion of the given key
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1323,10 +1324,10 @@ class DefaultApi:
     @validate_call
     def delete_key_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1342,13 +1343,13 @@ class DefaultApi:
         Schedules the deletion of the given key
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1400,10 +1401,10 @@ class DefaultApi:
     @validate_call
     def delete_key_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1419,13 +1420,13 @@ class DefaultApi:
         Schedules the deletion of the given key
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1532,9 +1533,9 @@ class DefaultApi:
     @validate_call
     def delete_key_ring(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1550,11 +1551,11 @@ class DefaultApi:
         Deletes the given key ring if it is empty
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1605,9 +1606,9 @@ class DefaultApi:
     @validate_call
     def delete_key_ring_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1623,11 +1624,11 @@ class DefaultApi:
         Deletes the given key ring if it is empty
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1678,9 +1679,9 @@ class DefaultApi:
     @validate_call
     def delete_key_ring_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1696,11 +1697,11 @@ class DefaultApi:
         Deletes the given key ring if it is empty
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1803,10 +1804,10 @@ class DefaultApi:
     @validate_call
     def delete_wrapping_key(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        wrapping_key_id: Annotated[StrictStr, Field(description="The wrapping key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        wrapping_key_id: Annotated[UUID, Field(description="The wrapping key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1822,13 +1823,13 @@ class DefaultApi:
         Deletes the given wrapping key
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param wrapping_key_id: The wrapping key UUID. (required)
-        :type wrapping_key_id: str
+        :type wrapping_key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1880,10 +1881,10 @@ class DefaultApi:
     @validate_call
     def delete_wrapping_key_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        wrapping_key_id: Annotated[StrictStr, Field(description="The wrapping key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        wrapping_key_id: Annotated[UUID, Field(description="The wrapping key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1899,13 +1900,13 @@ class DefaultApi:
         Deletes the given wrapping key
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param wrapping_key_id: The wrapping key UUID. (required)
-        :type wrapping_key_id: str
+        :type wrapping_key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1957,10 +1958,10 @@ class DefaultApi:
     @validate_call
     def delete_wrapping_key_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        wrapping_key_id: Annotated[StrictStr, Field(description="The wrapping key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        wrapping_key_id: Annotated[UUID, Field(description="The wrapping key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1976,13 +1977,13 @@ class DefaultApi:
         Deletes the given wrapping key
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param wrapping_key_id: The wrapping key UUID. (required)
-        :type wrapping_key_id: str
+        :type wrapping_key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2089,10 +2090,10 @@ class DefaultApi:
     @validate_call
     def destroy_version(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -2109,13 +2110,13 @@ class DefaultApi:
         Removes the key material of a version permanently.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2170,10 +2171,10 @@ class DefaultApi:
     @validate_call
     def destroy_version_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -2190,13 +2191,13 @@ class DefaultApi:
         Removes the key material of a version permanently.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2251,10 +2252,10 @@ class DefaultApi:
     @validate_call
     def destroy_version_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -2271,13 +2272,13 @@ class DefaultApi:
         Removes the key material of a version permanently.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2390,10 +2391,10 @@ class DefaultApi:
     @validate_call
     def disable_version(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -2410,13 +2411,13 @@ class DefaultApi:
         Disables the given version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2471,10 +2472,10 @@ class DefaultApi:
     @validate_call
     def disable_version_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -2491,13 +2492,13 @@ class DefaultApi:
         Disables the given version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2552,10 +2553,10 @@ class DefaultApi:
     @validate_call
     def disable_version_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -2572,13 +2573,13 @@ class DefaultApi:
         Disables the given version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2691,10 +2692,10 @@ class DefaultApi:
     @validate_call
     def enable_version(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -2711,13 +2712,13 @@ class DefaultApi:
         Enables the given version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2772,10 +2773,10 @@ class DefaultApi:
     @validate_call
     def enable_version_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -2792,13 +2793,13 @@ class DefaultApi:
         Enables the given version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2853,10 +2854,10 @@ class DefaultApi:
     @validate_call
     def enable_version_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -2873,13 +2874,13 @@ class DefaultApi:
         Enables the given version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2992,10 +2993,10 @@ class DefaultApi:
     @validate_call
     def encrypt(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         encrypt_payload: EncryptPayload,
         _request_timeout: Union[
@@ -3013,13 +3014,13 @@ class DefaultApi:
         Encrypts data using the given key version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param encrypt_payload: (required)
@@ -3078,10 +3079,10 @@ class DefaultApi:
     @validate_call
     def encrypt_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         encrypt_payload: EncryptPayload,
         _request_timeout: Union[
@@ -3099,13 +3100,13 @@ class DefaultApi:
         Encrypts data using the given key version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param encrypt_payload: (required)
@@ -3164,10 +3165,10 @@ class DefaultApi:
     @validate_call
     def encrypt_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         encrypt_payload: EncryptPayload,
         _request_timeout: Union[
@@ -3185,13 +3186,13 @@ class DefaultApi:
         Encrypts data using the given key version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param encrypt_payload: (required)
@@ -3319,10 +3320,10 @@ class DefaultApi:
     @validate_call
     def get_key(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3338,13 +3339,13 @@ class DefaultApi:
         Returns the details for the given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3395,10 +3396,10 @@ class DefaultApi:
     @validate_call
     def get_key_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3414,13 +3415,13 @@ class DefaultApi:
         Returns the details for the given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3471,10 +3472,10 @@ class DefaultApi:
     @validate_call
     def get_key_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3490,13 +3491,13 @@ class DefaultApi:
         Returns the details for the given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3602,9 +3603,9 @@ class DefaultApi:
     @validate_call
     def get_key_ring(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3620,11 +3621,11 @@ class DefaultApi:
         Returns the details for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3674,9 +3675,9 @@ class DefaultApi:
     @validate_call
     def get_key_ring_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3692,11 +3693,11 @@ class DefaultApi:
         Returns the details for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3746,9 +3747,9 @@ class DefaultApi:
     @validate_call
     def get_key_ring_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3764,11 +3765,11 @@ class DefaultApi:
         Returns the details for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3870,10 +3871,10 @@ class DefaultApi:
     @validate_call
     def get_version(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -3890,13 +3891,13 @@ class DefaultApi:
         Returns the details for the given version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -3950,10 +3951,10 @@ class DefaultApi:
     @validate_call
     def get_version_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -3970,13 +3971,13 @@ class DefaultApi:
         Returns the details for the given version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -4030,10 +4031,10 @@ class DefaultApi:
     @validate_call
     def get_version_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -4050,13 +4051,13 @@ class DefaultApi:
         Returns the details for the given version.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -4168,10 +4169,10 @@ class DefaultApi:
     @validate_call
     def get_wrapping_key(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        wrapping_key_id: Annotated[StrictStr, Field(description="The wrapping key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        wrapping_key_id: Annotated[UUID, Field(description="The wrapping key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4187,13 +4188,13 @@ class DefaultApi:
         Returns the details for the given wrapping key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param wrapping_key_id: The wrapping key UUID. (required)
-        :type wrapping_key_id: str
+        :type wrapping_key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4244,10 +4245,10 @@ class DefaultApi:
     @validate_call
     def get_wrapping_key_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        wrapping_key_id: Annotated[StrictStr, Field(description="The wrapping key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        wrapping_key_id: Annotated[UUID, Field(description="The wrapping key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4263,13 +4264,13 @@ class DefaultApi:
         Returns the details for the given wrapping key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param wrapping_key_id: The wrapping key UUID. (required)
-        :type wrapping_key_id: str
+        :type wrapping_key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4320,10 +4321,10 @@ class DefaultApi:
     @validate_call
     def get_wrapping_key_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        wrapping_key_id: Annotated[StrictStr, Field(description="The wrapping key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        wrapping_key_id: Annotated[UUID, Field(description="The wrapping key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4339,13 +4340,13 @@ class DefaultApi:
         Returns the details for the given wrapping key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param wrapping_key_id: The wrapping key UUID. (required)
-        :type wrapping_key_id: str
+        :type wrapping_key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4451,10 +4452,10 @@ class DefaultApi:
     @validate_call
     def import_key(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         import_key_payload: ImportKeyPayload,
         _request_timeout: Union[
             None,
@@ -4471,13 +4472,13 @@ class DefaultApi:
         Imports a new version to the given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param import_key_payload: (required)
         :type import_key_payload: ImportKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4532,10 +4533,10 @@ class DefaultApi:
     @validate_call
     def import_key_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         import_key_payload: ImportKeyPayload,
         _request_timeout: Union[
             None,
@@ -4552,13 +4553,13 @@ class DefaultApi:
         Imports a new version to the given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param import_key_payload: (required)
         :type import_key_payload: ImportKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4613,10 +4614,10 @@ class DefaultApi:
     @validate_call
     def import_key_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         import_key_payload: ImportKeyPayload,
         _request_timeout: Union[
             None,
@@ -4633,13 +4634,13 @@ class DefaultApi:
         Imports a new version to the given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param import_key_payload: (required)
         :type import_key_payload: ImportKeyPayload
         :param _request_timeout: timeout setting for this request. If one
@@ -4760,7 +4761,7 @@ class DefaultApi:
     @validate_call
     def list_key_rings(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
         _request_timeout: Union[
             None,
@@ -4777,7 +4778,7 @@ class DefaultApi:
         Returns a list of all key rings within the project.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4827,7 +4828,7 @@ class DefaultApi:
     @validate_call
     def list_key_rings_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
         _request_timeout: Union[
             None,
@@ -4844,7 +4845,7 @@ class DefaultApi:
         Returns a list of all key rings within the project.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4894,7 +4895,7 @@ class DefaultApi:
     @validate_call
     def list_key_rings_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
         _request_timeout: Union[
             None,
@@ -4911,7 +4912,7 @@ class DefaultApi:
         Returns a list of all key rings within the project.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -5010,9 +5011,9 @@ class DefaultApi:
     @validate_call
     def list_keys(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5028,11 +5029,11 @@ class DefaultApi:
         Returns the keys for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5082,9 +5083,9 @@ class DefaultApi:
     @validate_call
     def list_keys_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5100,11 +5101,11 @@ class DefaultApi:
         Returns the keys for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5154,9 +5155,9 @@ class DefaultApi:
     @validate_call
     def list_keys_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5172,11 +5173,11 @@ class DefaultApi:
         Returns the keys for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5278,10 +5279,10 @@ class DefaultApi:
     @validate_call
     def list_versions(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5297,13 +5298,13 @@ class DefaultApi:
         Returns a list of all versions of a given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5354,10 +5355,10 @@ class DefaultApi:
     @validate_call
     def list_versions_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5373,13 +5374,13 @@ class DefaultApi:
         Returns a list of all versions of a given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5430,10 +5431,10 @@ class DefaultApi:
     @validate_call
     def list_versions_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5449,13 +5450,13 @@ class DefaultApi:
         Returns a list of all versions of a given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5561,9 +5562,9 @@ class DefaultApi:
     @validate_call
     def list_wrapping_keys(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5579,11 +5580,11 @@ class DefaultApi:
         Returns the wrapping keys for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5633,9 +5634,9 @@ class DefaultApi:
     @validate_call
     def list_wrapping_keys_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5651,11 +5652,11 @@ class DefaultApi:
         Returns the wrapping keys for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5705,9 +5706,9 @@ class DefaultApi:
     @validate_call
     def list_wrapping_keys_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5723,11 +5724,11 @@ class DefaultApi:
         Returns the wrapping keys for the given key ring.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5829,10 +5830,10 @@ class DefaultApi:
     @validate_call
     def restore_key(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5848,13 +5849,13 @@ class DefaultApi:
         Restores the given key from being deleted.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5906,10 +5907,10 @@ class DefaultApi:
     @validate_call
     def restore_key_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5925,13 +5926,13 @@ class DefaultApi:
         Restores the given key from being deleted.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5983,10 +5984,10 @@ class DefaultApi:
     @validate_call
     def restore_key_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6002,13 +6003,13 @@ class DefaultApi:
         Restores the given key from being deleted.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6115,10 +6116,10 @@ class DefaultApi:
     @validate_call
     def restore_version(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -6135,13 +6136,13 @@ class DefaultApi:
         Restores the given version from being destroyed
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -6196,10 +6197,10 @@ class DefaultApi:
     @validate_call
     def restore_version_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -6216,13 +6217,13 @@ class DefaultApi:
         Restores the given version from being destroyed
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -6277,10 +6278,10 @@ class DefaultApi:
     @validate_call
     def restore_version_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         _request_timeout: Union[
             None,
@@ -6297,13 +6298,13 @@ class DefaultApi:
         Restores the given version from being destroyed
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param _request_timeout: timeout setting for this request. If one
@@ -6416,10 +6417,10 @@ class DefaultApi:
     @validate_call
     def rotate_key(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6435,13 +6436,13 @@ class DefaultApi:
         Rotates the given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6494,10 +6495,10 @@ class DefaultApi:
     @validate_call
     def rotate_key_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6513,13 +6514,13 @@ class DefaultApi:
         Rotates the given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6572,10 +6573,10 @@ class DefaultApi:
     @validate_call
     def rotate_key_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6591,13 +6592,13 @@ class DefaultApi:
         Rotates the given key.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6705,10 +6706,10 @@ class DefaultApi:
     @validate_call
     def sign(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         sign_payload: SignPayload,
         _request_timeout: Union[
@@ -6726,13 +6727,13 @@ class DefaultApi:
         Sign data using the given key version as secret.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param sign_payload: (required)
@@ -6791,10 +6792,10 @@ class DefaultApi:
     @validate_call
     def sign_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         sign_payload: SignPayload,
         _request_timeout: Union[
@@ -6812,13 +6813,13 @@ class DefaultApi:
         Sign data using the given key version as secret.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param sign_payload: (required)
@@ -6877,10 +6878,10 @@ class DefaultApi:
     @validate_call
     def sign_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         sign_payload: SignPayload,
         _request_timeout: Union[
@@ -6898,13 +6899,13 @@ class DefaultApi:
         Sign data using the given key version as secret.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param sign_payload: (required)
@@ -7032,10 +7033,10 @@ class DefaultApi:
     @validate_call
     def verify(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         verify_payload: VerifyPayload,
         _request_timeout: Union[
@@ -7053,13 +7054,13 @@ class DefaultApi:
         Verify data using the given key version as secret.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param verify_payload: (required)
@@ -7118,10 +7119,10 @@ class DefaultApi:
     @validate_call
     def verify_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         verify_payload: VerifyPayload,
         _request_timeout: Union[
@@ -7139,13 +7140,13 @@ class DefaultApi:
         Verify data using the given key version as secret.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param verify_payload: (required)
@@ -7204,10 +7205,10 @@ class DefaultApi:
     @validate_call
     def verify_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the key ring is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the key ring is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the key ring is located in.")],
-        key_ring_id: Annotated[StrictStr, Field(description="The key ring UUID.")],
-        key_id: Annotated[StrictStr, Field(description="The key UUID.")],
+        key_ring_id: Annotated[UUID, Field(description="The key ring UUID.")],
+        key_id: Annotated[UUID, Field(description="The key UUID.")],
         version_number: Annotated[StrictInt, Field(description="The version number.")],
         verify_payload: VerifyPayload,
         _request_timeout: Union[
@@ -7225,13 +7226,13 @@ class DefaultApi:
         Verify data using the given key version as secret.
 
         :param project_id: The STACKIT portal project UUID the key ring is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region name the key ring is located in. (required)
         :type region_id: str
         :param key_ring_id: The key ring UUID. (required)
-        :type key_ring_id: str
+        :type key_ring_id: UUID
         :param key_id: The key UUID. (required)
-        :type key_id: str
+        :type key_id: UUID
         :param version_number: The version number. (required)
         :type version_number: int
         :param verify_payload: (required)
