@@ -1,3 +1,9 @@
+## v2.4.0
+- **Feature:** client now supports UUID and decimal types
+- **Bugfix:** timeouts now passed to requests library
+- **Feature:** add field `certificateType` to `Domain` model
+- **Feature:** add field `skipDnsCheck` to `GetCustomDomainCustomCertificate`, `PutCustomDomainCustomCertificate` models
+
 ## v2.3.0
 - **Feature:** Add support for `redirects` in `config`, `config_patch` and `create_distribution_payload` models
   - new related models `redirect_config`,` redirect_rule`, `matcher` and `match_condition`

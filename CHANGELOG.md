@@ -6,6 +6,11 @@
 - `authorization`: [v0.7.1](services/authorization/CHANGELOG.md#v071)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
+- `cdn`: [v2.4.0](services/cdn/CHANGELOG.md#v240)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+  - **Feature:** add field `certificateType` to `Domain` model
+  - **Feature:** add field `skipDnsCheck` to `GetCustomDomainCustomCertificate`, `PutCustomDomainCustomCertificate` models
 - `certificates`: [v1.2.1](services/certificates/CHANGELOG.md#v121)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
