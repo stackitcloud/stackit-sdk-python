@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -73,23 +73,23 @@ class DistributionWaf(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in disabled_rules (list)
         _items = []
         if self.disabled_rules:
-            for _item in self.disabled_rules:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_disabled_rules in self.disabled_rules:
+                if _item_disabled_rules:
+                    _items.append(_item_disabled_rules.to_dict())
             _dict["disabledRules"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in enabled_rules (list)
         _items = []
         if self.enabled_rules:
-            for _item in self.enabled_rules:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_enabled_rules in self.enabled_rules:
+                if _item_enabled_rules:
+                    _items.append(_item_enabled_rules.to_dict())
             _dict["enabledRules"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in log_only_rules (list)
         _items = []
         if self.log_only_rules:
-            for _item in self.log_only_rules:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_log_only_rules in self.log_only_rules:
+                if _item_log_only_rules:
+                    _items.append(_item_log_only_rules.to_dict())
             _dict["logOnlyRules"] = _items
         return _dict
 

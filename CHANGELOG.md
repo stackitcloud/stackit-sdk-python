@@ -6,6 +6,11 @@
 - `authorization`: [v0.7.1](services/authorization/CHANGELOG.md#v071)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
+- `cdn`: [v2.4.0](services/cdn/CHANGELOG.md#v240)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+  - **Feature:** add field `certificateType` to `Domain` model
+  - **Feature:** add field `skipDnsCheck` to `GetCustomDomainCustomCertificate`, `PutCustomDomainCustomCertificate` models
 - `certificates`: [v1.2.1](services/certificates/CHANGELOG.md#v121)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
@@ -23,11 +28,15 @@
     - **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` and update file path accordingly
     - **Breaking Change:** rename `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner` and update file path accordingly
     - **Feature:** add `id` for `FederatedIdentityProvider`
-- `ske`: [v1.7.0](services/ske/CHANGELOG.md#v170)
-  - **Feature:** New model `Access`
-  - **Feature:** New model `IDPKubeconfig`
-  - **Feature:** Add attribute `access` of type `Access` to model `Cluster`
-  - **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
+- `ske`:
+  - [v1.7.1](services/ske/CHANGELOG.md#v171)
+      - **Feature:** client now supports UUID and decimal types
+      - **Bugfix:** timeouts now passed to requests library
+  - [v1.7.0](services/ske/CHANGELOG.md#v170)
+    - **Feature:** New model `Access`
+    - **Feature:** New model `IDPKubeconfig`
+    - **Feature:** Add attribute `access` of type `Access` to model `Cluster`
+    - **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
 - `kms`:
   - [v0.8.1](services/kms/CHANGELOG.md#v081)
     - **Feature:** client now supports UUID and decimal types
@@ -40,12 +49,16 @@
     - **Bugfix:** timeouts now passed to requests library
   - [v0.5.0](services/intake/CHANGELOG.md#v050)
     - **Breaking Change**: Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
-- `iaas`: [v1.2.0](services/iaas/CHANGELOG.md#v120)
-  - **Feature:** Add `description` attribute to ModelClasses:
-  - `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`
-  - `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload`
-  - **Bugfix:** Flagged `disk_format` as necessary for `ImageFromVolumePayload`
-  - **Improvement:** Updated description for labels
+- `iaas`:
+  - [v1.2.1](services/iaas/CHANGELOG.md#v121)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
+  - [v1.2.0](services/iaas/CHANGELOG.md#v120)
+    - **Feature:** Add `description` attribute to ModelClasses:
+    - `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`
+    - `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload`
+    - **Bugfix:** Flagged `disk_format` as necessary for `ImageFromVolumePayload`
+    - **Improvement:** Updated description for labels
 - `alb`:
   - [v0.9.1](services/alb/CHANGELOG.md#v091)
     - **Feature:** client now supports UUID and decimal types
@@ -87,8 +100,12 @@
 - `scf`: [v0.4.1](services/scf/CHANGELOG.md#v041)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
-- `sfs`: [v0.3.0](services/sfs/CHANGELOG.md#v030)
-  - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
+- `sfs`:
+  - [v0.3.1](services/sfs/CHANGELOG.md#v031)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
+  - [v0.3.0](services/sfs/CHANGELOG.md#v030)
+    - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
 - `secretsmanager`: [v0.4.1](services/secretsmanager/CHANGELOG.md#v041)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library

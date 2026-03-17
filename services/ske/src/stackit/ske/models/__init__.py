@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from stackit.ske.models.access import Access
 from stackit.ske.models.access_scope import AccessScope
 

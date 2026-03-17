@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -73,9 +73,9 @@ class FindCachePathsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in response (list)
         _items = []
         if self.response:
-            for _item in self.response:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_response in self.response:
+                if _item_response:
+                    _items.append(_item_response.to_dict())
             _dict["response"] = _items
         return _dict
 

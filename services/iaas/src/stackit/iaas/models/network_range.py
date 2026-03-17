@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
@@ -32,9 +33,7 @@ class NetworkRange(BaseModel):
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     prefix: Annotated[str, Field(strict=True)] = Field(description="Classless Inter-Domain Routing (CIDR).")
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"

@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -38,12 +38,17 @@ class RESTResponse(io.IOBase):
             self.data = self.response.content
         return self.data
 
+    @property
+    def headers(self):
+        """Returns a dictionary of response headers."""
+        return self.response.headers
+
     def getheaders(self):
-        """Returns a dictionary of the response headers."""
+        """Returns a dictionary of the response headers; use ``headers`` instead."""
         return self.response.headers
 
     def getheader(self, name, default=None):
-        """Returns a given response header."""
+        """Returns a given response header; use ``headers.get()`` instead."""
         return self.response.headers.get(name, default)
 
 
@@ -93,6 +98,7 @@ class RESTClientObject:
                         url,
                         data=request_body,
                         headers=headers,
+                        timeout=_request_timeout,
                     )
                 elif content_type == "application/x-www-form-urlencoded":
                     r = self.session.request(
@@ -100,6 +106,7 @@ class RESTClientObject:
                         url,
                         params=post_params,
                         headers=headers,
+                        timeout=_request_timeout,
                     )
                 elif content_type == "multipart/form-data":
                     # must del headers['Content-Type'], or the correct
@@ -113,6 +120,7 @@ class RESTClientObject:
                         url,
                         files=post_params,
                         headers=headers,
+                        timeout=_request_timeout,
                     )
                 # Pass a `string` parameter directly in the body to support
                 # other content types than JSON when `body` argument is
@@ -123,10 +131,17 @@ class RESTClientObject:
                         url,
                         data=body,
                         headers=headers,
+                        timeout=_request_timeout,
                     )
                 elif headers["Content-Type"].startswith("text/") and isinstance(body, bool):
                     request_body = "true" if body else "false"
-                    r = self.session.request(method, url, data=request_body, headers=headers)
+                    r = self.session.request(
+                        method,
+                        url,
+                        data=request_body,
+                        headers=headers,
+                        timeout=_request_timeout,
+                    )
                 else:
                     # Cannot generate the request from given parameters
                     msg = """Cannot prepare a request message for provided
@@ -140,6 +155,7 @@ class RESTClientObject:
                     url,
                     params={},
                     headers=headers,
+                    timeout=_request_timeout,
                 )
         except requests.exceptions.SSLError as e:
             msg = "\n".join([type(e).__name__, str(e)])
