@@ -18,19 +18,21 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
-
-from stackit.git.models.instance import Instance
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing_extensions import Self
 
 
-class ListInstances(BaseModel):
+class RunnerRuntime(BaseModel):
     """
-    A list of STACKIT Git instances.
+    Describes a STACKIT Git Runner runtime.
     """  # noqa: E501
 
-    instances: Annotated[List[Instance], Field(max_length=50)]
-    __properties: ClassVar[List[str]] = ["instances"]
+    availability: StrictStr = Field(description="Indicates the availability of the runner label")
+    description: StrictStr = Field(description="Human-friendly description of the runtime and it's capabilities.")
+    display_name: StrictStr = Field(description="Human-friendly name of the runtime.")
+    id: StrictStr = Field(description="Runtime identifier.")
+    label: StrictStr = Field(description="Runtime label.")
+    __properties: ClassVar[List[str]] = ["availability", "description", "display_name", "id", "label"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +51,7 @@ class ListInstances(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ListInstances from a JSON string"""
+        """Create an instance of RunnerRuntime from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +71,11 @@ class ListInstances(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in instances (list)
-        _items = []
-        if self.instances:
-            for _item_instances in self.instances:
-                if _item_instances:
-                    _items.append(_item_instances.to_dict())
-            _dict["instances"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ListInstances from a dict"""
+        """Create an instance of RunnerRuntime from a dict"""
         if obj is None:
             return None
 
@@ -89,11 +84,11 @@ class ListInstances(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "instances": (
-                    [Instance.from_dict(_item) for _item in obj["instances"]]
-                    if obj.get("instances") is not None
-                    else None
-                )
+                "availability": obj.get("availability"),
+                "description": obj.get("description"),
+                "display_name": obj.get("display_name"),
+                "id": obj.get("id"),
+                "label": obj.get("label"),
             }
         )
         return _obj
