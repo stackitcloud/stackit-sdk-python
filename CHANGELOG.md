@@ -12,6 +12,9 @@
 - `dns`: [v0.5.1](services/dns/CHANGELOG.md#v051)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
+- `edge`: [v0.1.1](services/edge/CHANGELOG.md#v011)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
 - `serviceaccount`:
   - [v0.6.1](services/serviceaccount/CHANGELOG.md#v061)
     - **Feature:** client now supports UUID and decimal types
