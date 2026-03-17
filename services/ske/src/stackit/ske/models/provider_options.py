@@ -85,37 +85,37 @@ class ProviderOptions(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in availability_zones (list)
         _items = []
         if self.availability_zones:
-            for _item in self.availability_zones:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_availability_zones in self.availability_zones:
+                if _item_availability_zones:
+                    _items.append(_item_availability_zones.to_dict())
             _dict["availabilityZones"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in kubernetes_versions (list)
         _items = []
         if self.kubernetes_versions:
-            for _item in self.kubernetes_versions:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_kubernetes_versions in self.kubernetes_versions:
+                if _item_kubernetes_versions:
+                    _items.append(_item_kubernetes_versions.to_dict())
             _dict["kubernetesVersions"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in machine_images (list)
         _items = []
         if self.machine_images:
-            for _item in self.machine_images:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_machine_images in self.machine_images:
+                if _item_machine_images:
+                    _items.append(_item_machine_images.to_dict())
             _dict["machineImages"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in machine_types (list)
         _items = []
         if self.machine_types:
-            for _item in self.machine_types:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_machine_types in self.machine_types:
+                if _item_machine_types:
+                    _items.append(_item_machine_types.to_dict())
             _dict["machineTypes"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in volume_types (list)
         _items = []
         if self.volume_types:
-            for _item in self.volume_types:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_volume_types in self.volume_types:
+                if _item_volume_types:
+                    _items.append(_item_volume_types.to_dict())
             _dict["volumeTypes"] = _items
         return _dict
 

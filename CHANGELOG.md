@@ -23,11 +23,15 @@
     - **Breaking Change:** rename `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider` and update file path accordingly
     - **Breaking Change:** rename `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner` and update file path accordingly
     - **Feature:** add `id` for `FederatedIdentityProvider`
-- `ske`: [v1.7.0](services/ske/CHANGELOG.md#v170)
-  - **Feature:** New model `Access`
-  - **Feature:** New model `IDPKubeconfig`
-  - **Feature:** Add attribute `access` of type `Access` to model `Cluster`
-  - **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
+- `ske`:
+  - [v1.7.1](services/ske/CHANGELOG.md#v171)
+      - **Feature:** client now supports UUID and decimal types
+      - **Bugfix:** timeouts now passed to requests library
+  - [v1.7.0](services/ske/CHANGELOG.md#v170)
+    - **Feature:** New model `Access`
+    - **Feature:** New model `IDPKubeconfig`
+    - **Feature:** Add attribute `access` of type `Access` to model `Cluster`
+    - **Feature:** New API client methods: `get_idp_kubeconfig`, `get_idp_kubeconfig_with_http_info`, `get_idp_kubeconfig_without_preload_content`, `_get_idp_kubeconfig_serialize`
 - `kms`:
   - [v0.8.1](services/kms/CHANGELOG.md#v081)
     - **Feature:** client now supports UUID and decimal types

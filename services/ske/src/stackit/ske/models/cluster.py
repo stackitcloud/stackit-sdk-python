@@ -119,9 +119,9 @@ class Cluster(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in nodepools (list)
         _items = []
         if self.nodepools:
-            for _item in self.nodepools:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_nodepools in self.nodepools:
+                if _item_nodepools:
+                    _items.append(_item_nodepools.to_dict())
             _dict["nodepools"] = _items
         # override the default output from pydantic by calling `to_dict()` of status
         if self.status:

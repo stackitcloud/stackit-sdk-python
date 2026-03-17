@@ -123,9 +123,9 @@ class Nodepool(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in taints (list)
         _items = []
         if self.taints:
-            for _item in self.taints:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_taints in self.taints:
+                if _item_taints:
+                    _items.append(_item_taints.to_dict())
             _dict["taints"] = _items
         # override the default output from pydantic by calling `to_dict()` of volume
         if self.volume:
