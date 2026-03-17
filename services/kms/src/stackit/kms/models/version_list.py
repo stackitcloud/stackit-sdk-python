@@ -71,9 +71,9 @@ class VersionList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in versions (list)
         _items = []
         if self.versions:
-            for _item in self.versions:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_versions in self.versions:
+                if _item_versions:
+                    _items.append(_item_versions.to_dict())
             _dict["versions"] = _items
         return _dict
 

@@ -88,30 +88,30 @@ class BackupScheduleResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in alert_config_backup_schedules (list)
         _items = []
         if self.alert_config_backup_schedules:
-            for _item in self.alert_config_backup_schedules:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_alert_config_backup_schedules in self.alert_config_backup_schedules:
+                if _item_alert_config_backup_schedules:
+                    _items.append(_item_alert_config_backup_schedules.to_dict())
             _dict["alertConfigBackupSchedules"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in alert_rules_backup_schedules (list)
         _items = []
         if self.alert_rules_backup_schedules:
-            for _item in self.alert_rules_backup_schedules:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_alert_rules_backup_schedules in self.alert_rules_backup_schedules:
+                if _item_alert_rules_backup_schedules:
+                    _items.append(_item_alert_rules_backup_schedules.to_dict())
             _dict["alertRulesBackupSchedules"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in grafana_backup_schedules (list)
         _items = []
         if self.grafana_backup_schedules:
-            for _item in self.grafana_backup_schedules:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_grafana_backup_schedules in self.grafana_backup_schedules:
+                if _item_grafana_backup_schedules:
+                    _items.append(_item_grafana_backup_schedules.to_dict())
             _dict["grafanaBackupSchedules"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in scrape_config_backup_schedules (list)
         _items = []
         if self.scrape_config_backup_schedules:
-            for _item in self.scrape_config_backup_schedules:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_scrape_config_backup_schedules in self.scrape_config_backup_schedules:
+                if _item_scrape_config_backup_schedules:
+                    _items.append(_item_scrape_config_backup_schedules.to_dict())
             _dict["scrapeConfigBackupSchedules"] = _items
         return _dict
 

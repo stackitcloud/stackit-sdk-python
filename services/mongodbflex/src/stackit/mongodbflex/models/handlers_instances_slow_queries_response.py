@@ -76,9 +76,9 @@ class HandlersInstancesSlowQueriesResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in slow_queries (list)
         _items = []
         if self.slow_queries:
-            for _item in self.slow_queries:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_slow_queries in self.slow_queries:
+                if _item_slow_queries:
+                    _items.append(_item_slow_queries.to_dict())
             _dict["slowQueries"] = _items
         return _dict
 

@@ -1,3 +1,7 @@
+## v0.4.1
+- **Feature:** client now supports UUID and decimal types
+- **Bugfix:** timeouts now passed to requests library
+
 ## v0.4.0
 - **Breaking Change:** `tls_protocols` on `instance_parameters` is now a list of strings instead of a single string
 

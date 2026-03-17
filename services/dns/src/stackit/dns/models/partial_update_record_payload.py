@@ -80,9 +80,9 @@ class PartialUpdateRecordPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in records (list)
         _items = []
         if self.records:
-            for _item in self.records:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_records in self.records:
+                if _item_records:
+                    _items.append(_item_records.to_dict())
             _dict["records"] = _items
         return _dict
 

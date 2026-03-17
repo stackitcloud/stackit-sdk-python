@@ -87,9 +87,9 @@ class ListLoadBalancersResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in load_balancers (list)
         _items = []
         if self.load_balancers:
-            for _item in self.load_balancers:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_load_balancers in self.load_balancers:
+                if _item_load_balancers:
+                    _items.append(_item_load_balancers.to_dict())
             _dict["loadBalancers"] = _items
         return _dict
 
