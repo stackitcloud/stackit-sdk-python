@@ -1,8 +1,5 @@
 ## Release (2026-xx-xx)
 
-- `alb`: [v0.9.1](services/alb/CHANGELOG.md#v091)
-  - **Feature:** client now supports UUID and decimal types
-  - **Bugfix:** timeouts now passed to requests library
 - `auditlog`: [v0.1.2](services/auditlog/CHANGELOG.md#v012)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
@@ -10,6 +7,9 @@
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
 - `certificates`: [v1.2.1](services/certificates/CHANGELOG.md#v121)
+  - **Feature:** client now supports UUID and decimal types
+  - **Bugfix:** timeouts now passed to requests library
+- `dns`: [v0.5.1](services/dns/CHANGELOG.md#v051)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
 - `serviceaccount`:
@@ -43,10 +43,14 @@
   - `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload`
   - **Bugfix:** Flagged `disk_format` as necessary for `ImageFromVolumePayload`
   - **Improvement:** Updated description for labels
-- `alb`: [v0.9.0](services/alb/CHANGELOG.md#v090)
-  - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
-  - **Feature:** Add new field `Tls` to `HttpHealthCheck`
-  - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
+- `alb`:
+  - [v0.9.1](services/alb/CHANGELOG.md#v091)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
+  - [v0.9.0](services/alb/CHANGELOG.md#v090)
+    - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
+    - **Feature:** Add new field `Tls` to `HttpHealthCheck`
+    - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
 - `loadbalancer`:
   - [v0.9.1](services/loadbalancer/CHANGELOG.md#v091)
     - **Feature:** client now supports UUID and decimal types
