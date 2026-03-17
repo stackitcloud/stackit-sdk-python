@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -129,7 +129,7 @@ class ApiException(OpenApiException):
                     self.body = http_resp.data.decode("utf-8")
                 except Exception:  # noqa: S110
                     pass
-            self.headers = http_resp.getheaders()
+            self.headers = http_resp.headers
 
     @classmethod
     def from_response(

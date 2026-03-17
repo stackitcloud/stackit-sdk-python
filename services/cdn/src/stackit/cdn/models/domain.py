@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -29,6 +29,7 @@ class Domain(BaseModel):
     Definition of a custom or managed domain without any certificates or keys
     """  # noqa: E501
 
+    certificate_type: StrictStr = Field(alias="certificateType")
     errors: Optional[Annotated[List[StatusError], Field(min_length=1)]] = Field(
         default=None, description="This object is present if the custom domain has errors."
     )
@@ -39,7 +40,14 @@ class Domain(BaseModel):
     type: StrictStr = Field(
         description="Specifies the type of this Domain. Custom Domain can be further queries using the GetCustomDomain Endpoint"
     )
-    __properties: ClassVar[List[str]] = ["errors", "name", "status", "type"]
+    __properties: ClassVar[List[str]] = ["certificateType", "errors", "name", "status", "type"]
+
+    @field_validator("certificate_type")
+    def certificate_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["managed", "custom"]):
+            raise ValueError("must be one of enum values ('managed', 'custom')")
+        return value
 
     @field_validator("type")
     def type_validate_enum(cls, value):
@@ -88,9 +96,9 @@ class Domain(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
         _items = []
         if self.errors:
-            for _item in self.errors:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_errors in self.errors:
+                if _item_errors:
+                    _items.append(_item_errors.to_dict())
             _dict["errors"] = _items
         return _dict
 
@@ -105,6 +113,7 @@ class Domain(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "certificateType": obj.get("certificateType"),
                 "errors": (
                     [StatusError.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None
                 ),

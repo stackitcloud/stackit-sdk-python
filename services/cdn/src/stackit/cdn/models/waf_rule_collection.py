@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -73,9 +73,9 @@ class WafRuleCollection(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in groups (list)
         _items = []
         if self.groups:
-            for _item in self.groups:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_groups in self.groups:
+                if _item_groups:
+                    _items.append(_item_groups.to_dict())
             _dict["groups"] = _items
         return _dict
 

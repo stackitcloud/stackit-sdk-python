@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -92,9 +92,9 @@ class GetCacheInfoResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in history (list)
         _items = []
         if self.history:
-            for _item in self.history:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_history in self.history:
+                if _item_history:
+                    _items.append(_item_history.to_dict())
             _dict["history"] = _items
         # set to None if last_purge_time (nullable) is None
         # and model_fields_set contains the field

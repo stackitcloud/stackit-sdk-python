@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CDN API
+    STACKIT CDN API
 
     API used to create and manage your CDN distributions.
 
@@ -77,37 +77,37 @@ class GetLogsSearchFiltersResponseDatacenterBlock(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in af (list)
         _items = []
         if self.af:
-            for _item in self.af:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_af in self.af:
+                if _item_af:
+                    _items.append(_item_af.to_dict())
             _dict["AF"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in asia (list)
         _items = []
         if self.asia:
-            for _item in self.asia:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_asia in self.asia:
+                if _item_asia:
+                    _items.append(_item_asia.to_dict())
             _dict["ASIA"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in eu (list)
         _items = []
         if self.eu:
-            for _item in self.eu:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_eu in self.eu:
+                if _item_eu:
+                    _items.append(_item_eu.to_dict())
             _dict["EU"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in na (list)
         _items = []
         if self.na:
-            for _item in self.na:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_na in self.na:
+                if _item_na:
+                    _items.append(_item_na.to_dict())
             _dict["NA"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in sa (list)
         _items = []
         if self.sa:
-            for _item in self.sa:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_sa in self.sa:
+                if _item_sa:
+                    _items.append(_item_sa.to_dict())
             _dict["SA"] = _items
         return _dict
 
