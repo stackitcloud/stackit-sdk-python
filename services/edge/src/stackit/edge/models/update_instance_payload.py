@@ -16,8 +16,9 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated, Self
 
 
@@ -29,7 +30,7 @@ class UpdateInstancePayload(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(
         default=None, description="A user chosen description to distinguish multiple instances."
     )
-    plan_id: Optional[StrictStr] = Field(
+    plan_id: Optional[UUID] = Field(
         default=None, description="Service Plan configures the size of the Instance.", alias="planId"
     )
     __properties: ClassVar[List[str]] = ["description", "planId"]

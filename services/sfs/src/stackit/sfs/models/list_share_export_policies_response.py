@@ -73,9 +73,9 @@ class ListShareExportPoliciesResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in share_export_policies (list)
         _items = []
         if self.share_export_policies:
-            for _item in self.share_export_policies:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_share_export_policies in self.share_export_policies:
+                if _item_share_export_policies:
+                    _items.append(_item_share_export_policies.to_dict())
             _dict["shareExportPolicies"] = _items
         return _dict
 

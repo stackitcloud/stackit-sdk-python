@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.edge.models.bad_request import BadRequest
 from stackit.edge.models.create_instance_payload import CreateInstancePayload

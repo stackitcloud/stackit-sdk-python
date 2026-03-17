@@ -17,9 +17,10 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
 class ProjectListResponse(BaseModel):
@@ -27,9 +28,7 @@ class ProjectListResponse(BaseModel):
     Project list response.
     """  # noqa: E501
 
-    items: List[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        description="A list of STACKIT projects."
-    )
+    items: List[UUID] = Field(description="A list of STACKIT projects.")
     __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(

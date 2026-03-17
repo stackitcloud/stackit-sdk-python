@@ -1,6 +1,6 @@
 [project]
 name = "stackit-dns"
-version = "v0.5.0"
+version = "v0.5.1"
 description = "STACKIT DNS API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4.0"
