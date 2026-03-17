@@ -1,3 +1,13 @@
+## v0.8.0
+- **Feature:** client now supports UUID and decimal types
+- **Bugfix:** timeouts now passed to requests library
+- **Feature:** add new methods to manage STACKIT git authentication: `list_authentication`, `create_authentication`, `delete_authentication`, `get_authentication`, `patch_authentication`
+- **Feature:** add new methods to manage STACKIT git runners: `delete_runner`, `get_runner`, `create_runner`
+- **Feature:** add new methods to manage STACKIT git runner runtimes: `list_runner_runtimes`
+- **Feature:** add support for `FeatureToggle`s to `PatchInstancePayload` and `Instance` models
+- **Breaking Change:** added field `featureToggle` to model `Instance`
+- **Breaking Change:** `list_runner_labels` was removed
+
 ## v0.7.0
 - **Breaking Change:** Replace `patch_operation` by `patch_instance_payload` in `patch_instance` request
 - **Feature:** Add enums `InstanceFlavor`
