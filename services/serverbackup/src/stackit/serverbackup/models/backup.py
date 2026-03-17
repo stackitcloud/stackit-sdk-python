@@ -110,9 +110,9 @@ class Backup(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in volume_backups (list)
         _items = []
         if self.volume_backups:
-            for _item in self.volume_backups:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_volume_backups in self.volume_backups:
+                if _item_volume_backups:
+                    _items.append(_item_volume_backups.to_dict())
             _dict["volumeBackups"] = _items
         return _dict
 

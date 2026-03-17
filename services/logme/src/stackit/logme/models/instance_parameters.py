@@ -161,9 +161,9 @@ class InstanceParameters(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in groks (list)
         _items = []
         if self.groks:
-            for _item in self.groks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_groks in self.groks:
+                if _item_groks:
+                    _items.append(_item_groks.to_dict())
             _dict["groks"] = _items
         return _dict
 

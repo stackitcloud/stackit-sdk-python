@@ -12,11 +12,13 @@
 """  # noqa: E501
 
 import datetime
+import decimal
 import json
 import mimetypes
 import os
 import re
 import tempfile
+import uuid
 from enum import Enum
 from typing import Dict, List, Optional, Tuple, Union
 from urllib.parse import quote
@@ -63,8 +65,10 @@ class ApiClient:
         "bool": bool,
         "date": datetime.date,
         "datetime": datetime.datetime,
+        "decimal": decimal.Decimal,
         "object": object,
     }
+    _pool = None
 
     def __init__(self, configuration, header_name=None, header_value=None, cookie=None) -> None:
         self.config: Configuration = configuration
@@ -267,7 +271,7 @@ class ApiClient:
                 return_data = self.__deserialize_file(response_data)
             elif response_type is not None:
                 match = None
-                content_type = response_data.getheader("content-type")
+                content_type = response_data.headers.get("content-type")
                 if content_type is not None:
                     match = re.search(r"charset=([a-zA-Z\-\d]+)[\s;]?", content_type)
                 encoding = match.group(1) if match else "utf-8"
@@ -284,7 +288,7 @@ class ApiClient:
         return ApiResponse(
             status_code=response_data.status,
             data=return_data,
-            headers=response_data.getheaders(),
+            headers=response_data.headers,
             raw_data=response_data.data,
         )
 
@@ -296,6 +300,7 @@ class ApiClient:
         If obj is str, int, long, float, bool, return directly.
         If obj is datetime.datetime, datetime.date
             convert to string in iso8601 format.
+        If obj is decimal.Decimal return string representation.
         If obj is list, sanitize each element in the list.
         If obj is dict, return the dict.
         If obj is OpenAPI model, return the properties dict.
@@ -311,12 +316,16 @@ class ApiClient:
             return obj.get_secret_value()
         elif isinstance(obj, self.PRIMITIVE_TYPES):
             return obj
+        elif isinstance(obj, uuid.UUID):
+            return str(obj)
         elif isinstance(obj, list):
             return [self.sanitize_for_serialization(sub_obj) for sub_obj in obj]
         elif isinstance(obj, tuple):
             return tuple(self.sanitize_for_serialization(sub_obj) for sub_obj in obj)
         elif isinstance(obj, (datetime.datetime, datetime.date)):
             return obj.isoformat()
+        elif isinstance(obj, decimal.Decimal):
+            return str(obj)
 
         elif isinstance(obj, dict):
             obj_dict = obj
@@ -326,7 +335,7 @@ class ApiClient:
             # and attributes which value is not None.
             # Convert attribute name to json key in
             # model definition for request.
-            if hasattr(obj, "to_dict") and callable(obj.to_dict):
+            if hasattr(obj, "to_dict") and callable(getattr(obj, "to_dict")):  # noqa: B009
                 obj_dict = obj.to_dict()
             else:
                 obj_dict = obj.__dict__
@@ -354,7 +363,7 @@ class ApiClient:
                 data = json.loads(response_text)
             except ValueError:
                 data = response_text
-        elif re.match(r"^application/(json|[\w!#$&.+-^_]+\+json)\s*(;|$)", content_type, re.IGNORECASE):
+        elif re.match(r"^application/(json|[\w!#$&.+\-^_]+\+json)\s*(;|$)", content_type, re.IGNORECASE):
             if response_text == "":
                 data = ""
             else:
@@ -400,12 +409,14 @@ class ApiClient:
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)
-        elif klass == object:
+        elif klass is object:
             return self.__deserialize_object(data)
-        elif klass == datetime.date:
+        elif klass is datetime.date:
             return self.__deserialize_date(data)
-        elif klass == datetime.datetime:
+        elif klass is datetime.datetime:
             return self.__deserialize_datetime(data)
+        elif klass is decimal.Decimal:
+            return decimal.Decimal(data)
         elif issubclass(klass, Enum):
             return self.__deserialize_enum(data, klass)
         else:
@@ -553,12 +564,14 @@ class ApiClient:
         os.close(fd)
         os.remove(path)
 
-        content_disposition = response.getheader("Content-Disposition")
+        content_disposition = response.headers.get("Content-Disposition")
         if content_disposition:
             m = re.search(r'filename=[\'"]?([^\'"\s]+)[\'"]?', content_disposition)
             if m is None:
                 raise ValueError("Unexpected 'content-disposition' header value")
-            filename = m.group(1)
+            filename = os.path.basename(m.group(1))  # Strip any directory traversal
+            if filename in ("", ".", ".."):  # fall back to tmp filename
+                filename = os.path.basename(path)
             path = os.path.join(os.path.dirname(path), filename)
 
         with open(path, "wb") as f:

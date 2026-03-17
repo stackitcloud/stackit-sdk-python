@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
@@ -29,7 +30,7 @@ class GetServiceAccountKeyResponseCredentials(BaseModel):
     aud: StrictStr = Field(description="Audience - service account API URL")
     iss: StrictStr = Field(description="Service account email")
     kid: StrictStr = Field(description="Key id to use")
-    sub: StrictStr = Field(description="Service account id")
+    sub: UUID = Field(description="Service account id")
     __properties: ClassVar[List[str]] = ["aud", "iss", "kid", "sub"]
 
     model_config = ConfigDict(

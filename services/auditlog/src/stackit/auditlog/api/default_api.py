@@ -13,6 +13,7 @@
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from stackit.core.configuration import Configuration
@@ -42,7 +43,7 @@ class DefaultApi:
     @validate_call
     def list_folder_audit_log_entries(
         self,
-        folder_id: Annotated[StrictStr, Field(description="ID of the folder for which entries should be returned.")],
+        folder_id: Annotated[UUID, Field(description="ID of the folder for which entries should be returned.")],
         start_time_range: Annotated[
             datetime,
             Field(
@@ -86,7 +87,7 @@ class DefaultApi:
         Returns all audit log entries of the folder for the specified period. \\ Period must not be longer than 24 hours within the last 90 days.
 
         :param folder_id: ID of the folder for which entries should be returned. (required)
-        :type folder_id: str
+        :type folder_id: UUID
         :param start_time_range: An ISO timestamp to specify the beginning of the time range from which entries should be returned, based on the eventTimeStamp. If not given, defaults to the beginning of time. (required)
         :type start_time_range: datetime
         :param end_time_range: An ISO timestamp to specify the end of the time range up until which entries should be returned, based on the eventTimeStamp. If not given, defaults to the time this request was received. (required)
@@ -146,7 +147,7 @@ class DefaultApi:
     @validate_call
     def list_folder_audit_log_entries_with_http_info(
         self,
-        folder_id: Annotated[StrictStr, Field(description="ID of the folder for which entries should be returned.")],
+        folder_id: Annotated[UUID, Field(description="ID of the folder for which entries should be returned.")],
         start_time_range: Annotated[
             datetime,
             Field(
@@ -190,7 +191,7 @@ class DefaultApi:
         Returns all audit log entries of the folder for the specified period. \\ Period must not be longer than 24 hours within the last 90 days.
 
         :param folder_id: ID of the folder for which entries should be returned. (required)
-        :type folder_id: str
+        :type folder_id: UUID
         :param start_time_range: An ISO timestamp to specify the beginning of the time range from which entries should be returned, based on the eventTimeStamp. If not given, defaults to the beginning of time. (required)
         :type start_time_range: datetime
         :param end_time_range: An ISO timestamp to specify the end of the time range up until which entries should be returned, based on the eventTimeStamp. If not given, defaults to the time this request was received. (required)
@@ -250,7 +251,7 @@ class DefaultApi:
     @validate_call
     def list_folder_audit_log_entries_without_preload_content(
         self,
-        folder_id: Annotated[StrictStr, Field(description="ID of the folder for which entries should be returned.")],
+        folder_id: Annotated[UUID, Field(description="ID of the folder for which entries should be returned.")],
         start_time_range: Annotated[
             datetime,
             Field(
@@ -294,7 +295,7 @@ class DefaultApi:
         Returns all audit log entries of the folder for the specified period. \\ Period must not be longer than 24 hours within the last 90 days.
 
         :param folder_id: ID of the folder for which entries should be returned. (required)
-        :type folder_id: str
+        :type folder_id: UUID
         :param start_time_range: An ISO timestamp to specify the beginning of the time range from which entries should be returned, based on the eventTimeStamp. If not given, defaults to the beginning of time. (required)
         :type start_time_range: datetime
         :param end_time_range: An ISO timestamp to specify the end of the time range up until which entries should be returned, based on the eventTimeStamp. If not given, defaults to the time this request was received. (required)
@@ -429,7 +430,7 @@ class DefaultApi:
     def list_organization_audit_log_entries(
         self,
         organization_id: Annotated[
-            StrictStr, Field(description="ID of the organization for which entries should be returned.")
+            UUID, Field(description="ID of the organization for which entries should be returned.")
         ],
         start_time_range: Annotated[
             datetime,
@@ -474,7 +475,7 @@ class DefaultApi:
         Returns all audit log entries of the organization for the specified period. \\ Period must not be longer than 24 hours within the last 90 days.
 
         :param organization_id: ID of the organization for which entries should be returned. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param start_time_range: An ISO timestamp to specify the beginning of the time range from which entries should be returned, based on the eventTimeStamp. If not given, defaults to the beginning of time. (required)
         :type start_time_range: datetime
         :param end_time_range: An ISO timestamp to specify the end of the time range up until which entries should be returned, based on the eventTimeStamp. If not given, defaults to the time this request was received. (required)
@@ -535,7 +536,7 @@ class DefaultApi:
     def list_organization_audit_log_entries_with_http_info(
         self,
         organization_id: Annotated[
-            StrictStr, Field(description="ID of the organization for which entries should be returned.")
+            UUID, Field(description="ID of the organization for which entries should be returned.")
         ],
         start_time_range: Annotated[
             datetime,
@@ -580,7 +581,7 @@ class DefaultApi:
         Returns all audit log entries of the organization for the specified period. \\ Period must not be longer than 24 hours within the last 90 days.
 
         :param organization_id: ID of the organization for which entries should be returned. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param start_time_range: An ISO timestamp to specify the beginning of the time range from which entries should be returned, based on the eventTimeStamp. If not given, defaults to the beginning of time. (required)
         :type start_time_range: datetime
         :param end_time_range: An ISO timestamp to specify the end of the time range up until which entries should be returned, based on the eventTimeStamp. If not given, defaults to the time this request was received. (required)
@@ -641,7 +642,7 @@ class DefaultApi:
     def list_organization_audit_log_entries_without_preload_content(
         self,
         organization_id: Annotated[
-            StrictStr, Field(description="ID of the organization for which entries should be returned.")
+            UUID, Field(description="ID of the organization for which entries should be returned.")
         ],
         start_time_range: Annotated[
             datetime,
@@ -686,7 +687,7 @@ class DefaultApi:
         Returns all audit log entries of the organization for the specified period. \\ Period must not be longer than 24 hours within the last 90 days.
 
         :param organization_id: ID of the organization for which entries should be returned. (required)
-        :type organization_id: str
+        :type organization_id: UUID
         :param start_time_range: An ISO timestamp to specify the beginning of the time range from which entries should be returned, based on the eventTimeStamp. If not given, defaults to the beginning of time. (required)
         :type start_time_range: datetime
         :param end_time_range: An ISO timestamp to specify the end of the time range up until which entries should be returned, based on the eventTimeStamp. If not given, defaults to the time this request was received. (required)
@@ -820,7 +821,7 @@ class DefaultApi:
     @validate_call
     def list_project_audit_log_entries(
         self,
-        project_id: Annotated[StrictStr, Field(description="ID of the project for which entries should be returned.")],
+        project_id: Annotated[UUID, Field(description="ID of the project for which entries should be returned.")],
         start_time_range: Annotated[
             datetime,
             Field(
@@ -864,7 +865,7 @@ class DefaultApi:
         Returns all audit log entries of the project for the specified period. \\ Period must not be longer than 24 hours within the last 90 days.
 
         :param project_id: ID of the project for which entries should be returned. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param start_time_range: An ISO timestamp to specify the beginning of the time range from which entries should be returned, based on the eventTimeStamp. If not given, defaults to the beginning of time. (required)
         :type start_time_range: datetime
         :param end_time_range: An ISO timestamp to specify the end of the time range up until which entries should be returned, based on the eventTimeStamp. If not given, defaults to the time this request was received. (required)
@@ -924,7 +925,7 @@ class DefaultApi:
     @validate_call
     def list_project_audit_log_entries_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="ID of the project for which entries should be returned.")],
+        project_id: Annotated[UUID, Field(description="ID of the project for which entries should be returned.")],
         start_time_range: Annotated[
             datetime,
             Field(
@@ -968,7 +969,7 @@ class DefaultApi:
         Returns all audit log entries of the project for the specified period. \\ Period must not be longer than 24 hours within the last 90 days.
 
         :param project_id: ID of the project for which entries should be returned. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param start_time_range: An ISO timestamp to specify the beginning of the time range from which entries should be returned, based on the eventTimeStamp. If not given, defaults to the beginning of time. (required)
         :type start_time_range: datetime
         :param end_time_range: An ISO timestamp to specify the end of the time range up until which entries should be returned, based on the eventTimeStamp. If not given, defaults to the time this request was received. (required)
@@ -1028,7 +1029,7 @@ class DefaultApi:
     @validate_call
     def list_project_audit_log_entries_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="ID of the project for which entries should be returned.")],
+        project_id: Annotated[UUID, Field(description="ID of the project for which entries should be returned.")],
         start_time_range: Annotated[
             datetime,
             Field(
@@ -1072,7 +1073,7 @@ class DefaultApi:
         Returns all audit log entries of the project for the specified period. \\ Period must not be longer than 24 hours within the last 90 days.
 
         :param project_id: ID of the project for which entries should be returned. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param start_time_range: An ISO timestamp to specify the beginning of the time range from which entries should be returned, based on the eventTimeStamp. If not given, defaults to the beginning of time. (required)
         :type start_time_range: datetime
         :param end_time_range: An ISO timestamp to specify the end of the time range up until which entries should be returned, based on the eventTimeStamp. If not given, defaults to the time this request was received. (required)

@@ -79,9 +79,9 @@ class PingCheckResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in ping_checks (list)
         _items = []
         if self.ping_checks:
-            for _item in self.ping_checks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_ping_checks in self.ping_checks:
+                if _item_ping_checks:
+                    _items.append(_item_ping_checks.to_dict())
             _dict["pingChecks"] = _items
         return _dict
 

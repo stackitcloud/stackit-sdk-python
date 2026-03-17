@@ -76,9 +76,9 @@ class ListZonesResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in zones (list)
         _items = []
         if self.zones:
-            for _item in self.zones:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_zones in self.zones:
+                if _item_zones:
+                    _items.append(_item_zones.to_dict())
             _dict["zones"] = _items
         return _dict
 

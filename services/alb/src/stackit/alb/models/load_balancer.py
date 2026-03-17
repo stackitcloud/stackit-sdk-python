@@ -198,16 +198,16 @@ class LoadBalancer(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
         _items = []
         if self.errors:
-            for _item in self.errors:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_errors in self.errors:
+                if _item_errors:
+                    _items.append(_item_errors.to_dict())
             _dict["errors"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in listeners (list)
         _items = []
         if self.listeners:
-            for _item in self.listeners:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_listeners in self.listeners:
+                if _item_listeners:
+                    _items.append(_item_listeners.to_dict())
             _dict["listeners"] = _items
         # override the default output from pydantic by calling `to_dict()` of load_balancer_security_group
         if self.load_balancer_security_group:
@@ -215,9 +215,9 @@ class LoadBalancer(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in networks (list)
         _items = []
         if self.networks:
-            for _item in self.networks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_networks in self.networks:
+                if _item_networks:
+                    _items.append(_item_networks.to_dict())
             _dict["networks"] = _items
         # override the default output from pydantic by calling `to_dict()` of options
         if self.options:
@@ -225,9 +225,9 @@ class LoadBalancer(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in target_pools (list)
         _items = []
         if self.target_pools:
-            for _item in self.target_pools:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_target_pools in self.target_pools:
+                if _item_target_pools:
+                    _items.append(_item_target_pools.to_dict())
             _dict["targetPools"] = _items
         # override the default output from pydantic by calling `to_dict()` of target_security_group
         if self.target_security_group:

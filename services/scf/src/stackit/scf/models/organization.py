@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import (
     BaseModel,
@@ -37,11 +38,11 @@ class Organization(BaseModel):
     """  # noqa: E501
 
     created_at: datetime = Field(alias="createdAt")
-    guid: StrictStr
+    guid: UUID
     name: StrictStr
-    platform_id: StrictStr = Field(alias="platformId")
-    project_id: StrictStr = Field(alias="projectId")
-    quota_id: StrictStr = Field(alias="quotaId")
+    platform_id: UUID = Field(alias="platformId")
+    project_id: UUID = Field(alias="projectId")
+    quota_id: UUID = Field(alias="quotaId")
     region: StrictStr
     status: StrictStr = Field(
         description="The organization's status. The status value starts with `deleting` when a deleting request is in progress. The status value starts with `delete_failed` when the deletion failed. The status value can be different from `deleting` and `delete_failed`. Additional details can be provided in the future. "
