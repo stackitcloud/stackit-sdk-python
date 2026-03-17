@@ -74,9 +74,9 @@ class CreateNetworkAreaRangePayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in ipv4 (list)
         _items = []
         if self.ipv4:
-            for _item in self.ipv4:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_ipv4 in self.ipv4:
+                if _item_ipv4:
+                    _items.append(_item_ipv4.to_dict())
             _dict["ipv4"] = _items
         return _dict
 

@@ -19,6 +19,7 @@ import pprint
 import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
@@ -46,19 +47,17 @@ class SecurityGroupRule(BaseModel):
         default="IPv4", description="The ethertype which the rule should match. Possible values: `IPv4`, `IPv6`."
     )
     icmp_parameters: Optional[ICMPParameters] = Field(default=None, alias="icmpParameters")
-    id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
-        default=None, description="Universally Unique Identifier (UUID)."
-    )
+    id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     ip_range: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="The remote IP range which the rule should match.", alias="ipRange"
     )
     port_range: Optional[PortRange] = Field(default=None, alias="portRange")
-    remote_security_group_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    remote_security_group_id: Optional[UUID] = Field(
         default=None,
         description="The remote security group which the rule should match.",
         alias="remoteSecurityGroupId",
     )
-    security_group_id: Optional[Annotated[str, Field(min_length=36, strict=True, max_length=36)]] = Field(
+    security_group_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="securityGroupId"
     )
     updated_at: Optional[datetime] = Field(

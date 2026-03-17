@@ -40,12 +40,16 @@
     - **Bugfix:** timeouts now passed to requests library
   - [v0.5.0](services/intake/CHANGELOG.md#v050)
     - **Breaking Change**: Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
-- `iaas`: [v1.2.0](services/iaas/CHANGELOG.md#v120)
-  - **Feature:** Add `description` attribute to ModelClasses:
-  - `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`
-  - `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload`
-  - **Bugfix:** Flagged `disk_format` as necessary for `ImageFromVolumePayload`
-  - **Improvement:** Updated description for labels
+- `iaas`:
+  - [v1.2.1](services/iaas/CHANGELOG.md#v121)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
+  - [v1.2.0](services/iaas/CHANGELOG.md#v120)
+    - **Feature:** Add `description` attribute to ModelClasses:
+    - `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`
+    - `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload`
+    - **Bugfix:** Flagged `disk_format` as necessary for `ImageFromVolumePayload`
+    - **Improvement:** Updated description for labels
 - `alb`:
   - [v0.9.1](services/alb/CHANGELOG.md#v091)
     - **Feature:** client now supports UUID and decimal types

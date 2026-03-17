@@ -72,9 +72,9 @@ class RegionalAreaListResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each value in regions (dict)
         _field_dict = {}
         if self.regions:
-            for _key in self.regions:
-                if self.regions[_key]:
-                    _field_dict[_key] = self.regions[_key].to_dict()
+            for _key_regions in self.regions:
+                if self.regions[_key_regions]:
+                    _field_dict[_key_regions] = self.regions[_key_regions].to_dict()
             _dict["regions"] = _field_dict
         return _dict
 
