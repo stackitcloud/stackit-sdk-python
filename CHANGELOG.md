@@ -91,8 +91,12 @@
 - `scf`: [v0.4.1](services/scf/CHANGELOG.md#v041)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
-- `sfs`: [v0.3.0](services/sfs/CHANGELOG.md#v030)
-  - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
+- `sfs`:
+  - [v0.3.1](services/sfs/CHANGELOG.md#v031)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
+  - [v0.3.0](services/sfs/CHANGELOG.md#v030)
+    - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
 - `secretsmanager`: [v0.4.1](services/secretsmanager/CHANGELOG.md#v041)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
