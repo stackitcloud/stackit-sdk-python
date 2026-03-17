@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
@@ -38,7 +39,7 @@ class Instance(BaseModel):
         description="The date and time the creation of the Secrets Manager instance was triggered.",
         alias="creationStartDate",
     )
-    id: StrictStr = Field(description="A auto generated unique id which identifies the secrets manager instances.")
+    id: UUID = Field(description="A auto generated unique id which identifies the secrets manager instances.")
     kms_key: Optional[KmsKeyPayload] = Field(default=None, alias="kmsKey")
     name: StrictStr = Field(description="A user chosen name to distinguish multiple secrets manager instances.")
     secret_count: StrictInt = Field(

@@ -76,9 +76,9 @@ class ListRecordSetsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in rr_sets (list)
         _items = []
         if self.rr_sets:
-            for _item in self.rr_sets:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_rr_sets in self.rr_sets:
+                if _item_rr_sets:
+                    _items.append(_item_rr_sets.to_dict())
             _dict["rrSets"] = _items
         return _dict
 

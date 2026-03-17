@@ -122,9 +122,9 @@ class Listener(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in server_name_indicators (list)
         _items = []
         if self.server_name_indicators:
-            for _item in self.server_name_indicators:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_server_name_indicators in self.server_name_indicators:
+                if _item_server_name_indicators:
+                    _items.append(_item_server_name_indicators.to_dict())
             _dict["serverNameIndicators"] = _items
         # override the default output from pydantic by calling `to_dict()` of tcp
         if self.tcp:

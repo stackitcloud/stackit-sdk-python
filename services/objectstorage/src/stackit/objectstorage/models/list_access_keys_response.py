@@ -72,9 +72,9 @@ class ListAccessKeysResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in access_keys (list)
         _items = []
         if self.access_keys:
-            for _item in self.access_keys:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_access_keys in self.access_keys:
+                if _item_access_keys:
+                    _items.append(_item_access_keys.to_dict())
             _dict["accessKeys"] = _items
         return _dict
 

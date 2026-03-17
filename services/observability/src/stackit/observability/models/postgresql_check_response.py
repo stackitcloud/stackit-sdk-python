@@ -81,9 +81,9 @@ class PostgresqlCheckResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in postgresql_checks (list)
         _items = []
         if self.postgresql_checks:
-            for _item in self.postgresql_checks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_postgresql_checks in self.postgresql_checks:
+                if _item_postgresql_checks:
+                    _items.append(_item_postgresql_checks.to_dict())
             _dict["postgresqlChecks"] = _items
         return _dict
 

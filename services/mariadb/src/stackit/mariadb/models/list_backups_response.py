@@ -71,9 +71,9 @@ class ListBackupsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in instance_backups (list)
         _items = []
         if self.instance_backups:
-            for _item in self.instance_backups:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_instance_backups in self.instance_backups:
+                if _item_instance_backups:
+                    _items.append(_item_instance_backups.to_dict())
             _dict["instanceBackups"] = _items
         return _dict
 
