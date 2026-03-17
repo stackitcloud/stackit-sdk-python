@@ -13,6 +13,7 @@
 
 import warnings
 from typing import Any, Dict, List, Optional, Tuple, Union
+from uuid import UUID
 
 from pydantic import (
     Field,
@@ -55,7 +56,7 @@ class DefaultApi:
     @validate_call
     def create_instance(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         create_instance_payload: CreateInstancePayload,
         _request_timeout: Union[
@@ -73,7 +74,7 @@ class DefaultApi:
         Creates a new instance within the project.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param create_instance_payload: (required)
@@ -127,7 +128,7 @@ class DefaultApi:
     @validate_call
     def create_instance_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         create_instance_payload: CreateInstancePayload,
         _request_timeout: Union[
@@ -145,7 +146,7 @@ class DefaultApi:
         Creates a new instance within the project.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param create_instance_payload: (required)
@@ -199,7 +200,7 @@ class DefaultApi:
     @validate_call
     def create_instance_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         create_instance_payload: CreateInstancePayload,
         _request_timeout: Union[
@@ -217,7 +218,7 @@ class DefaultApi:
         Creates a new instance within the project.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param create_instance_payload: (required)
@@ -331,7 +332,7 @@ class DefaultApi:
     @validate_call
     def delete_instance(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -354,7 +355,7 @@ class DefaultApi:
         Deletes the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -409,7 +410,7 @@ class DefaultApi:
     @validate_call
     def delete_instance_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -432,7 +433,7 @@ class DefaultApi:
         Deletes the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -487,7 +488,7 @@ class DefaultApi:
     @validate_call
     def delete_instance_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -510,7 +511,7 @@ class DefaultApi:
         Deletes the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -617,7 +618,7 @@ class DefaultApi:
     @validate_call
     def delete_instance_by_name(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         _request_timeout: Union[
@@ -635,7 +636,7 @@ class DefaultApi:
         Deletes the given instance by name.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -690,7 +691,7 @@ class DefaultApi:
     @validate_call
     def delete_instance_by_name_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         _request_timeout: Union[
@@ -708,7 +709,7 @@ class DefaultApi:
         Deletes the given instance by name.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -763,7 +764,7 @@ class DefaultApi:
     @validate_call
     def delete_instance_by_name_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         _request_timeout: Union[
@@ -781,7 +782,7 @@ class DefaultApi:
         Deletes the given instance by name.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -888,7 +889,7 @@ class DefaultApi:
     @validate_call
     def get_instance(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -911,7 +912,7 @@ class DefaultApi:
         Returns the details for the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -965,7 +966,7 @@ class DefaultApi:
     @validate_call
     def get_instance_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -988,7 +989,7 @@ class DefaultApi:
         Returns the details for the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -1042,7 +1043,7 @@ class DefaultApi:
     @validate_call
     def get_instance_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -1065,7 +1066,7 @@ class DefaultApi:
         Returns the details for the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -1171,7 +1172,7 @@ class DefaultApi:
     @validate_call
     def get_instance_by_name(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         _request_timeout: Union[
@@ -1189,7 +1190,7 @@ class DefaultApi:
         Returns the details for the given instance by name.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -1243,7 +1244,7 @@ class DefaultApi:
     @validate_call
     def get_instance_by_name_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         _request_timeout: Union[
@@ -1261,7 +1262,7 @@ class DefaultApi:
         Returns the details for the given instance by name.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -1315,7 +1316,7 @@ class DefaultApi:
     @validate_call
     def get_instance_by_name_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         _request_timeout: Union[
@@ -1333,7 +1334,7 @@ class DefaultApi:
         Returns the details for the given instance by name.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -1439,7 +1440,7 @@ class DefaultApi:
     @validate_call
     def get_kubeconfig_by_instance_id(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -1466,7 +1467,7 @@ class DefaultApi:
         Returns the kubeconfig for the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -1523,7 +1524,7 @@ class DefaultApi:
     @validate_call
     def get_kubeconfig_by_instance_id_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -1550,7 +1551,7 @@ class DefaultApi:
         Returns the kubeconfig for the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -1607,7 +1608,7 @@ class DefaultApi:
     @validate_call
     def get_kubeconfig_by_instance_id_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -1634,7 +1635,7 @@ class DefaultApi:
         Returns the kubeconfig for the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -1748,7 +1749,7 @@ class DefaultApi:
     @validate_call
     def get_kubeconfig_by_instance_name(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         expiration_seconds: Annotated[
@@ -1770,7 +1771,7 @@ class DefaultApi:
         Returns the kubeconfig for the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -1827,7 +1828,7 @@ class DefaultApi:
     @validate_call
     def get_kubeconfig_by_instance_name_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         expiration_seconds: Annotated[
@@ -1849,7 +1850,7 @@ class DefaultApi:
         Returns the kubeconfig for the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -1906,7 +1907,7 @@ class DefaultApi:
     @validate_call
     def get_kubeconfig_by_instance_name_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         expiration_seconds: Annotated[
@@ -1928,7 +1929,7 @@ class DefaultApi:
         Returns the kubeconfig for the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -2042,7 +2043,7 @@ class DefaultApi:
     @validate_call
     def get_token_by_instance_id(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[str, Field(strict=True, max_length=16, description="The instance UUID.")],
         expiration_seconds: Annotated[
@@ -2064,7 +2065,7 @@ class DefaultApi:
         Returns an ServiceAccount token.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The instance UUID. (required)
@@ -2121,7 +2122,7 @@ class DefaultApi:
     @validate_call
     def get_token_by_instance_id_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[str, Field(strict=True, max_length=16, description="The instance UUID.")],
         expiration_seconds: Annotated[
@@ -2143,7 +2144,7 @@ class DefaultApi:
         Returns an ServiceAccount token.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The instance UUID. (required)
@@ -2200,7 +2201,7 @@ class DefaultApi:
     @validate_call
     def get_token_by_instance_id_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[str, Field(strict=True, max_length=16, description="The instance UUID.")],
         expiration_seconds: Annotated[
@@ -2222,7 +2223,7 @@ class DefaultApi:
         Returns an ServiceAccount token.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The instance UUID. (required)
@@ -2336,7 +2337,7 @@ class DefaultApi:
     @validate_call
     def get_token_by_instance_name(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         expiration_seconds: Annotated[
@@ -2358,7 +2359,7 @@ class DefaultApi:
         Returns an ServiceAccount token.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -2415,7 +2416,7 @@ class DefaultApi:
     @validate_call
     def get_token_by_instance_name_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         expiration_seconds: Annotated[
@@ -2437,7 +2438,7 @@ class DefaultApi:
         Returns an ServiceAccount token.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -2494,7 +2495,7 @@ class DefaultApi:
     @validate_call
     def get_token_by_instance_name_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         expiration_seconds: Annotated[
@@ -2516,7 +2517,7 @@ class DefaultApi:
         Returns an ServiceAccount token.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -2630,7 +2631,7 @@ class DefaultApi:
     @validate_call
     def list_instances(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         _request_timeout: Union[
             None,
@@ -2647,7 +2648,7 @@ class DefaultApi:
         Returns a list of all instances within the project.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2697,7 +2698,7 @@ class DefaultApi:
     @validate_call
     def list_instances_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         _request_timeout: Union[
             None,
@@ -2714,7 +2715,7 @@ class DefaultApi:
         Returns a list of all instances within the project.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2764,7 +2765,7 @@ class DefaultApi:
     @validate_call
     def list_instances_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         _request_timeout: Union[
             None,
@@ -2781,7 +2782,7 @@ class DefaultApi:
         Returns a list of all instances within the project.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3094,7 +3095,7 @@ class DefaultApi:
     @validate_call
     def list_plans_project(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the plan is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the plan is part of.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3110,7 +3111,7 @@ class DefaultApi:
         List all possible plans for the project.
 
         :param project_id: The STACKIT portal project UUID the plan is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3157,7 +3158,7 @@ class DefaultApi:
     @validate_call
     def list_plans_project_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the plan is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the plan is part of.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3173,7 +3174,7 @@ class DefaultApi:
         List all possible plans for the project.
 
         :param project_id: The STACKIT portal project UUID the plan is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3220,7 +3221,7 @@ class DefaultApi:
     @validate_call
     def list_plans_project_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the plan is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the plan is part of.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3236,7 +3237,7 @@ class DefaultApi:
         List all possible plans for the project.
 
         :param project_id: The STACKIT portal project UUID the plan is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3329,7 +3330,7 @@ class DefaultApi:
     @validate_call
     def update_instance(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -3353,7 +3354,7 @@ class DefaultApi:
         Updates the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -3411,7 +3412,7 @@ class DefaultApi:
     @validate_call
     def update_instance_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -3435,7 +3436,7 @@ class DefaultApi:
         Updates the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -3493,7 +3494,7 @@ class DefaultApi:
     @validate_call
     def update_instance_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         instance_id: Annotated[
             str,
@@ -3517,7 +3518,7 @@ class DefaultApi:
         Updates the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param instance_id: The full ID of the instance, <display_name>-<project_hash>. (required)
@@ -3638,7 +3639,7 @@ class DefaultApi:
     @validate_call
     def update_instance_by_name(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         update_instance_by_name_payload: UpdateInstanceByNamePayload,
@@ -3657,7 +3658,7 @@ class DefaultApi:
         Updates the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -3715,7 +3716,7 @@ class DefaultApi:
     @validate_call
     def update_instance_by_name_with_http_info(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         update_instance_by_name_payload: UpdateInstanceByNamePayload,
@@ -3734,7 +3735,7 @@ class DefaultApi:
         Updates the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)
@@ -3792,7 +3793,7 @@ class DefaultApi:
     @validate_call
     def update_instance_by_name_without_preload_content(
         self,
-        project_id: Annotated[StrictStr, Field(description="The STACKIT portal project UUID the instance is part of.")],
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the instance is part of.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region the instance is part of.")],
         display_name: Annotated[str, Field(strict=True, max_length=8, description="The instance display name.")],
         update_instance_by_name_payload: UpdateInstanceByNamePayload,
@@ -3811,7 +3812,7 @@ class DefaultApi:
         Updates the given instance.
 
         :param project_id: The STACKIT portal project UUID the instance is part of. (required)
-        :type project_id: str
+        :type project_id: UUID
         :param region_id: The STACKIT region the instance is part of. (required)
         :type region_id: str
         :param display_name: The instance display name. (required)

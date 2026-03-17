@@ -71,9 +71,9 @@ class ListRestoresResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in instance_restores (list)
         _items = []
         if self.instance_restores:
-            for _item in self.instance_restores:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_instance_restores in self.instance_restores:
+                if _item_instance_restores:
+                    _items.append(_item_instance_restores.to_dict())
             _dict["instanceRestores"] = _items
         return _dict
 
