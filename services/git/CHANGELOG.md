@@ -7,6 +7,9 @@
 - **Feature:** add support for `FeatureToggle`s to `PatchInstancePayload` and `Instance` models
 - **Breaking Change:** added field `featureToggle` to model `Instance`
 - **Breaking Change:** `list_runner_labels` was removed
+- **Breaking Change:** model `UnauthorizedResponse` renamed to `UnauthorizedErrorResponse`
+- **Feature:** add new model `AlreadyExistsError`
+- **Breaking Change:** model `InstanceFlavor` was removed
 
 ## v0.7.0
 - **Breaking Change:** Replace `patch_operation` by `patch_instance_payload` in `patch_instance` request

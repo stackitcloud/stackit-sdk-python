@@ -29,6 +29,9 @@
   - **Feature:** add support for `FeatureToggle`s to `PatchInstancePayload` and `Instance` models
   - **Breaking Change:** added field `featureToggle` to model `Instance`
   - **Breaking Change:** `list_runner_labels` was removed
+  - **Breaking Change:** model `UnauthorizedResponse` renamed to `UnauthorizedErrorResponse`
+  - **Feature:** add new model `AlreadyExistsError`
+  - **Breaking Change:** model `InstanceFlavor` was removed
 - `serviceaccount`:
   - [v0.6.1](services/serviceaccount/CHANGELOG.md#v061)
     - **Feature:** client now supports UUID and decimal types
