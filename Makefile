@@ -8,9 +8,9 @@ install:
 
 install-dev:	
 	# install services
-	@for f in $(shell ls ${SERVICES_DIR}); do set -e;uv sync --directory ${SERVICES_DIR}/$${f}; done
+	@for f in $(shell ls ${SERVICES_DIR}); do set -e;uv sync --frozen --directory ${SERVICES_DIR}/$${f}; done
 	# install core. This needs to be done last or it will get overriden by the dependency installation of the services
-	uv sync --directory core
+	uv sync --frozen --directory core
 
 test-services:
 	# test core
