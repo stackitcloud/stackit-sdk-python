@@ -17,9 +17,12 @@
 - `dns`: [v0.5.1](services/dns/CHANGELOG.md#v051)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
-- `edge`: [v0.1.1](services/edge/CHANGELOG.md#v011)
-  - **Feature:** client now supports UUID and decimal types
-  - **Bugfix:** timeouts now passed to requests library
+- `edge`:
+  - [v0.2.0](services/edge/CHANGELOG.md#v020)
+    - **Feature:** Add new attribute `min_edge_hosts` to model class `Plan`
+  - [v0.1.1](services/edge/CHANGELOG.md#v011)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
 - `git`: [v0.8.0](services/git/CHANGELOG.md#v080)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
