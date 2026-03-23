@@ -32,8 +32,11 @@ class Plan(BaseModel):
     max_edge_hosts: Optional[StrictInt] = Field(
         default=None, description="Maximum number of EdgeHosts", alias="maxEdgeHosts"
     )
+    min_edge_hosts: Optional[StrictInt] = Field(
+        default=None, description="Minimum number of EdgeHosts charged", alias="minEdgeHosts"
+    )
     name: Optional[StrictStr] = Field(default=None, description="Service Plan Name")
-    __properties: ClassVar[List[str]] = ["description", "id", "maxEdgeHosts", "name"]
+    __properties: ClassVar[List[str]] = ["description", "id", "maxEdgeHosts", "minEdgeHosts", "name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,6 +91,7 @@ class Plan(BaseModel):
                 "description": obj.get("description"),
                 "id": obj.get("id"),
                 "maxEdgeHosts": obj.get("maxEdgeHosts"),
+                "minEdgeHosts": obj.get("minEdgeHosts"),
                 "name": obj.get("name"),
             }
         )
