@@ -30,18 +30,23 @@ __all__ = [
     "ApiException",
     "AccessKey",
     "Bucket",
+    "ComplianceLockResponse",
     "CreateAccessKeyPayload",
     "CreateAccessKeyResponse",
     "CreateBucketResponse",
     "CreateCredentialsGroupPayload",
     "CreateCredentialsGroupResponse",
     "CredentialsGroup",
+    "CredentialsGroupExtended",
+    "DefaultRetentionResponse",
     "DeleteAccessKeyResponse",
     "DeleteBucketResponse",
     "DeleteCredentialsGroupResponse",
+    "DeleteDefaultRetentionResponse",
     "DetailedError",
     "ErrorMessage",
     "GetBucketResponse",
+    "GetCredentialsGroupResponse",
     "HTTPValidationError",
     "ListAccessKeysResponse",
     "ListBucketsResponse",
@@ -49,6 +54,8 @@ __all__ = [
     "LocationInner",
     "ProjectScope",
     "ProjectStatus",
+    "RetentionMode",
+    "SetDefaultRetentionPayload",
     "ValidationError",
 ]
 
@@ -69,6 +76,9 @@ from stackit.objectstorage.exceptions import OpenApiException as OpenApiExceptio
 # import models into sdk package
 from stackit.objectstorage.models.access_key import AccessKey as AccessKey
 from stackit.objectstorage.models.bucket import Bucket as Bucket
+from stackit.objectstorage.models.compliance_lock_response import (
+    ComplianceLockResponse as ComplianceLockResponse,
+)
 from stackit.objectstorage.models.create_access_key_payload import (
     CreateAccessKeyPayload as CreateAccessKeyPayload,
 )
@@ -87,6 +97,12 @@ from stackit.objectstorage.models.create_credentials_group_response import (
 from stackit.objectstorage.models.credentials_group import (
     CredentialsGroup as CredentialsGroup,
 )
+from stackit.objectstorage.models.credentials_group_extended import (
+    CredentialsGroupExtended as CredentialsGroupExtended,
+)
+from stackit.objectstorage.models.default_retention_response import (
+    DefaultRetentionResponse as DefaultRetentionResponse,
+)
 from stackit.objectstorage.models.delete_access_key_response import (
     DeleteAccessKeyResponse as DeleteAccessKeyResponse,
 )
@@ -96,10 +112,16 @@ from stackit.objectstorage.models.delete_bucket_response import (
 from stackit.objectstorage.models.delete_credentials_group_response import (
     DeleteCredentialsGroupResponse as DeleteCredentialsGroupResponse,
 )
+from stackit.objectstorage.models.delete_default_retention_response import (
+    DeleteDefaultRetentionResponse as DeleteDefaultRetentionResponse,
+)
 from stackit.objectstorage.models.detailed_error import DetailedError as DetailedError
 from stackit.objectstorage.models.error_message import ErrorMessage as ErrorMessage
 from stackit.objectstorage.models.get_bucket_response import (
     GetBucketResponse as GetBucketResponse,
+)
+from stackit.objectstorage.models.get_credentials_group_response import (
+    GetCredentialsGroupResponse as GetCredentialsGroupResponse,
 )
 from stackit.objectstorage.models.http_validation_error import (
     HTTPValidationError as HTTPValidationError,
@@ -116,6 +138,10 @@ from stackit.objectstorage.models.list_credentials_groups_response import (
 from stackit.objectstorage.models.location_inner import LocationInner as LocationInner
 from stackit.objectstorage.models.project_scope import ProjectScope as ProjectScope
 from stackit.objectstorage.models.project_status import ProjectStatus as ProjectStatus
+from stackit.objectstorage.models.retention_mode import RetentionMode as RetentionMode
+from stackit.objectstorage.models.set_default_retention_payload import (
+    SetDefaultRetentionPayload as SetDefaultRetentionPayload,
+)
 from stackit.objectstorage.models.validation_error import (
     ValidationError as ValidationError,
 )
