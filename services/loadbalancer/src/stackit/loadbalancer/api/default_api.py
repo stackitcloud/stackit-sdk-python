@@ -1746,9 +1746,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> GetQuotaResponse:
-        """Get the quota of Load Balancers in a project.
+        """Get the quota of Network Load Balancers in a project.
 
-        Retrieves the configured Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many observability credentials as Load Balancers.
+        Retrieves the configured Network Load Balancer quota for the project. Limit can be changed via service request.
 
         :param project_id: (required)
         :type project_id: str
@@ -1814,9 +1814,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[GetQuotaResponse]:
-        """Get the quota of Load Balancers in a project.
+        """Get the quota of Network Load Balancers in a project.
 
-        Retrieves the configured Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many observability credentials as Load Balancers.
+        Retrieves the configured Network Load Balancer quota for the project. Limit can be changed via service request.
 
         :param project_id: (required)
         :type project_id: str
@@ -1882,9 +1882,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get the quota of Load Balancers in a project.
+        """Get the quota of Network Load Balancers in a project.
 
-        Retrieves the configured Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many observability credentials as Load Balancers.
+        Retrieves the configured Network Load Balancer quota for the project. Limit can be changed via service request.
 
         :param project_id: (required)
         :type project_id: str

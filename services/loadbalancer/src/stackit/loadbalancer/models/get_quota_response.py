@@ -28,14 +28,14 @@ class GetQuotaResponse(BaseModel):
     GetQuotaResponse
     """  # noqa: E501
 
-    max_credentials: Optional[Annotated[int, Field(le=999, strict=True, ge=-1)]] = Field(
+    max_credentials: Optional[Annotated[int, Field(le=1000000, strict=True, ge=-1)]] = Field(
         default=None,
         description="The maximum number of observability credentials that can be stored in this project.",
         alias="maxCredentials",
     )
     max_load_balancers: Optional[Annotated[int, Field(le=1000000, strict=True, ge=-1)]] = Field(
         default=None,
-        description="The maximum number of load balancing servers in this project. Unlimited if set to -1.",
+        description="The maximum number of load balancing servers in this project.",
         alias="maxLoadBalancers",
     )
     project_id: Optional[UUID] = Field(default=None, description="Project identifier", alias="projectId")
