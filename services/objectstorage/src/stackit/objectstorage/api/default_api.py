@@ -13,12 +13,13 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
 from stackit.core.configuration import Configuration
 from typing_extensions import Annotated
 
 from stackit.objectstorage.api_client import ApiClient, RequestSerialized
 from stackit.objectstorage.api_response import ApiResponse
+from stackit.objectstorage.models.compliance_lock_response import ComplianceLockResponse
 from stackit.objectstorage.models.create_access_key_payload import (
     CreateAccessKeyPayload,
 )
@@ -32,6 +33,9 @@ from stackit.objectstorage.models.create_credentials_group_payload import (
 from stackit.objectstorage.models.create_credentials_group_response import (
     CreateCredentialsGroupResponse,
 )
+from stackit.objectstorage.models.default_retention_response import (
+    DefaultRetentionResponse,
+)
 from stackit.objectstorage.models.delete_access_key_response import (
     DeleteAccessKeyResponse,
 )
@@ -39,7 +43,13 @@ from stackit.objectstorage.models.delete_bucket_response import DeleteBucketResp
 from stackit.objectstorage.models.delete_credentials_group_response import (
     DeleteCredentialsGroupResponse,
 )
+from stackit.objectstorage.models.delete_default_retention_response import (
+    DeleteDefaultRetentionResponse,
+)
 from stackit.objectstorage.models.get_bucket_response import GetBucketResponse
+from stackit.objectstorage.models.get_credentials_group_response import (
+    GetCredentialsGroupResponse,
+)
 from stackit.objectstorage.models.list_access_keys_response import (
     ListAccessKeysResponse,
 )
@@ -48,6 +58,9 @@ from stackit.objectstorage.models.list_credentials_groups_response import (
     ListCredentialsGroupsResponse,
 )
 from stackit.objectstorage.models.project_status import ProjectStatus
+from stackit.objectstorage.models.set_default_retention_payload import (
+    SetDefaultRetentionPayload,
+)
 from stackit.objectstorage.rest import RESTResponseType
 
 
@@ -368,6 +381,12 @@ class DefaultApi:
         bucket_name: Annotated[
             str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
         ],
+        object_lock_enabled: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Enable S3 Object Lock on this bucket. Can only be set at creation time. Requires an active project-level compliance lock."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -388,6 +407,8 @@ class DefaultApi:
         :type region: str
         :param bucket_name: The name has to be dns-conform. (required)
         :type bucket_name: str
+        :param object_lock_enabled: Enable S3 Object Lock on this bucket. Can only be set at creation time. Requires an active project-level compliance lock.
+        :type object_lock_enabled: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -414,6 +435,7 @@ class DefaultApi:
             project_id=project_id,
             region=region,
             bucket_name=bucket_name,
+            object_lock_enabled=object_lock_enabled,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -443,6 +465,12 @@ class DefaultApi:
         bucket_name: Annotated[
             str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
         ],
+        object_lock_enabled: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Enable S3 Object Lock on this bucket. Can only be set at creation time. Requires an active project-level compliance lock."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -463,6 +491,8 @@ class DefaultApi:
         :type region: str
         :param bucket_name: The name has to be dns-conform. (required)
         :type bucket_name: str
+        :param object_lock_enabled: Enable S3 Object Lock on this bucket. Can only be set at creation time. Requires an active project-level compliance lock.
+        :type object_lock_enabled: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -489,6 +519,7 @@ class DefaultApi:
             project_id=project_id,
             region=region,
             bucket_name=bucket_name,
+            object_lock_enabled=object_lock_enabled,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -518,6 +549,12 @@ class DefaultApi:
         bucket_name: Annotated[
             str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
         ],
+        object_lock_enabled: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Enable S3 Object Lock on this bucket. Can only be set at creation time. Requires an active project-level compliance lock."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -538,6 +575,8 @@ class DefaultApi:
         :type region: str
         :param bucket_name: The name has to be dns-conform. (required)
         :type bucket_name: str
+        :param object_lock_enabled: Enable S3 Object Lock on this bucket. Can only be set at creation time. Requires an active project-level compliance lock.
+        :type object_lock_enabled: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -564,6 +603,7 @@ class DefaultApi:
             project_id=project_id,
             region=region,
             bucket_name=bucket_name,
+            object_lock_enabled=object_lock_enabled,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -586,6 +626,7 @@ class DefaultApi:
         project_id,
         region,
         bucket_name,
+        object_lock_enabled,
         _request_auth,
         _content_type,
         _headers,
@@ -611,6 +652,10 @@ class DefaultApi:
         if bucket_name is not None:
             _path_params["bucketName"] = bucket_name
         # process the query parameters
+        if object_lock_enabled is not None:
+
+            _query_params.append(("objectLockEnabled", object_lock_enabled))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -625,6 +670,256 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="POST",
             resource_path="/v2/project/{projectId}/regions/{region}/bucket/{bucketName}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def create_compliance_lock(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ComplianceLockResponse:
+        """Create Compliance Lock
+
+        Enable compliance lock for a project.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_compliance_lock_serialize(
+            project_id=project_id,
+            region=region,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "ComplianceLockResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_compliance_lock_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ComplianceLockResponse]:
+        """Create Compliance Lock
+
+        Enable compliance lock for a project.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_compliance_lock_serialize(
+            project_id=project_id,
+            region=region,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "ComplianceLockResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_compliance_lock_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create Compliance Lock
+
+        Enable compliance lock for a project.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_compliance_lock_serialize(
+            project_id=project_id,
+            region=region,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "ComplianceLockResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_compliance_lock_serialize(
+        self,
+        project_id,
+        region,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if region is not None:
+            _path_params["region"] = region
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v2/project/{projectId}/regions/{region}/compliance-lock",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1482,6 +1777,256 @@ class DefaultApi:
         )
 
     @validate_call
+    def delete_compliance_lock(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ComplianceLockResponse:
+        """Delete Compliance Lock
+
+        Remove compliance lock from a project.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_compliance_lock_serialize(
+            project_id=project_id,
+            region=region,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ComplianceLockResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_compliance_lock_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ComplianceLockResponse]:
+        """Delete Compliance Lock
+
+        Remove compliance lock from a project.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_compliance_lock_serialize(
+            project_id=project_id,
+            region=region,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ComplianceLockResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_compliance_lock_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Compliance Lock
+
+        Remove compliance lock from a project.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_compliance_lock_serialize(
+            project_id=project_id,
+            region=region,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ComplianceLockResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_compliance_lock_serialize(
+        self,
+        project_id,
+        region,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if region is not None:
+            _path_params["region"] = region
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v2/project/{projectId}/regions/{region}/compliance-lock",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def delete_credentials_group(
         self,
         project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
@@ -1750,6 +2295,277 @@ class DefaultApi:
         )
 
     @validate_call
+    def delete_default_retention(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        bucket_name: Annotated[
+            str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> DeleteDefaultRetentionResponse:
+        """Delete Default Retention
+
+        Remove the default retention from a bucket. Object Lock itself remains enabled.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param bucket_name: The name has to be dns-conform. (required)
+        :type bucket_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_default_retention_serialize(
+            project_id=project_id,
+            region=region,
+            bucket_name=bucket_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "DeleteDefaultRetentionResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_default_retention_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        bucket_name: Annotated[
+            str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[DeleteDefaultRetentionResponse]:
+        """Delete Default Retention
+
+        Remove the default retention from a bucket. Object Lock itself remains enabled.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param bucket_name: The name has to be dns-conform. (required)
+        :type bucket_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_default_retention_serialize(
+            project_id=project_id,
+            region=region,
+            bucket_name=bucket_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "DeleteDefaultRetentionResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_default_retention_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        bucket_name: Annotated[
+            str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Default Retention
+
+        Remove the default retention from a bucket. Object Lock itself remains enabled.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param bucket_name: The name has to be dns-conform. (required)
+        :type bucket_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_default_retention_serialize(
+            project_id=project_id,
+            region=region,
+            bucket_name=bucket_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "DeleteDefaultRetentionResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _delete_default_retention_serialize(
+        self,
+        project_id,
+        region,
+        bucket_name,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if region is not None:
+            _path_params["region"] = region
+        if bucket_name is not None:
+            _path_params["bucketName"] = bucket_name
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/v2/project/{projectId}/regions/{region}/bucket/{bucketName}/default-retention",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def disable_service(
         self,
         project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
@@ -1809,6 +2625,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "403": "ErrorMessage",
             "404": "ErrorMessage",
+            "409": "ErrorMessage",
             "422": "ErrorMessage",
             "500": "ErrorMessage",
         }
@@ -1879,6 +2696,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "403": "ErrorMessage",
             "404": "ErrorMessage",
+            "409": "ErrorMessage",
             "422": "ErrorMessage",
             "500": "ErrorMessage",
         }
@@ -1949,6 +2767,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "403": "ErrorMessage",
             "404": "ErrorMessage",
+            "409": "ErrorMessage",
             "422": "ErrorMessage",
             "500": "ErrorMessage",
         }
@@ -2532,6 +3351,789 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v2/project/{projectId}/regions/{region}/bucket/{bucketName}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_compliance_lock(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ComplianceLockResponse:
+        """Get Compliance Lock
+
+        Get the project-level compliance lock.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_compliance_lock_serialize(
+            project_id=project_id,
+            region=region,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ComplianceLockResponse",
+            "404": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_compliance_lock_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ComplianceLockResponse]:
+        """Get Compliance Lock
+
+        Get the project-level compliance lock.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_compliance_lock_serialize(
+            project_id=project_id,
+            region=region,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ComplianceLockResponse",
+            "404": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_compliance_lock_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Compliance Lock
+
+        Get the project-level compliance lock.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_compliance_lock_serialize(
+            project_id=project_id,
+            region=region,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ComplianceLockResponse",
+            "404": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_compliance_lock_serialize(
+        self,
+        project_id,
+        region,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if region is not None:
+            _path_params["region"] = region
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v2/project/{projectId}/regions/{region}/compliance-lock",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_credentials_group(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        group_id: Annotated[StrictStr, Field(description="Id of the credentials group")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetCredentialsGroupResponse:
+        """Get Credentials Group
+
+        Get the details of a single credentials group
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param group_id: Id of the credentials group (required)
+        :type group_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_credentials_group_serialize(
+            project_id=project_id,
+            region=region,
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetCredentialsGroupResponse",
+            "404": "ErrorMessage",
+            "422": "HTTPValidationError",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_credentials_group_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        group_id: Annotated[StrictStr, Field(description="Id of the credentials group")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetCredentialsGroupResponse]:
+        """Get Credentials Group
+
+        Get the details of a single credentials group
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param group_id: Id of the credentials group (required)
+        :type group_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_credentials_group_serialize(
+            project_id=project_id,
+            region=region,
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetCredentialsGroupResponse",
+            "404": "ErrorMessage",
+            "422": "HTTPValidationError",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_credentials_group_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        group_id: Annotated[StrictStr, Field(description="Id of the credentials group")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Credentials Group
+
+        Get the details of a single credentials group
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param group_id: Id of the credentials group (required)
+        :type group_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_credentials_group_serialize(
+            project_id=project_id,
+            region=region,
+            group_id=group_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetCredentialsGroupResponse",
+            "404": "ErrorMessage",
+            "422": "HTTPValidationError",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_credentials_group_serialize(
+        self,
+        project_id,
+        region,
+        group_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if region is not None:
+            _path_params["region"] = region
+        if group_id is not None:
+            _path_params["groupId"] = group_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v2/project/{projectId}/regions/{region}/credentials-group/{groupId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_default_retention(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        bucket_name: Annotated[
+            str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> DefaultRetentionResponse:
+        """Get Default Retention
+
+        Get the default retention configuration for a bucket.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param bucket_name: The name has to be dns-conform. (required)
+        :type bucket_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_default_retention_serialize(
+            project_id=project_id,
+            region=region,
+            bucket_name=bucket_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "DefaultRetentionResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_default_retention_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        bucket_name: Annotated[
+            str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[DefaultRetentionResponse]:
+        """Get Default Retention
+
+        Get the default retention configuration for a bucket.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param bucket_name: The name has to be dns-conform. (required)
+        :type bucket_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_default_retention_serialize(
+            project_id=project_id,
+            region=region,
+            bucket_name=bucket_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "DefaultRetentionResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_default_retention_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        bucket_name: Annotated[
+            str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Default Retention
+
+        Get the default retention configuration for a bucket.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param bucket_name: The name has to be dns-conform. (required)
+        :type bucket_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_default_retention_serialize(
+            project_id=project_id,
+            region=region,
+            bucket_name=bucket_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "DefaultRetentionResponse",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_default_retention_serialize(
+        self,
+        project_id,
+        region,
+        bucket_name,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if region is not None:
+            _path_params["region"] = region
+        if bucket_name is not None:
+            _path_params["bucketName"] = bucket_name
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v2/project/{projectId}/regions/{region}/bucket/{bucketName}/default-retention",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3570,6 +5172,303 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v2/project/{projectId}/regions/{region}/credentials-groups",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def set_default_retention(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        bucket_name: Annotated[
+            str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
+        ],
+        set_default_retention_payload: SetDefaultRetentionPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> DefaultRetentionResponse:
+        """Update Default Retention
+
+        Set or update the default retention for a bucket.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param bucket_name: The name has to be dns-conform. (required)
+        :type bucket_name: str
+        :param set_default_retention_payload: (required)
+        :type set_default_retention_payload: SetDefaultRetentionPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._set_default_retention_serialize(
+            project_id=project_id,
+            region=region,
+            bucket_name=bucket_name,
+            set_default_retention_payload=set_default_retention_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "DefaultRetentionResponse",
+            "400": "ErrorMessage",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def set_default_retention_with_http_info(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        bucket_name: Annotated[
+            str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
+        ],
+        set_default_retention_payload: SetDefaultRetentionPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[DefaultRetentionResponse]:
+        """Update Default Retention
+
+        Set or update the default retention for a bucket.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param bucket_name: The name has to be dns-conform. (required)
+        :type bucket_name: str
+        :param set_default_retention_payload: (required)
+        :type set_default_retention_payload: SetDefaultRetentionPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._set_default_retention_serialize(
+            project_id=project_id,
+            region=region,
+            bucket_name=bucket_name,
+            set_default_retention_payload=set_default_retention_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "DefaultRetentionResponse",
+            "400": "ErrorMessage",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def set_default_retention_without_preload_content(
+        self,
+        project_id: Annotated[StrictStr, Field(description="STACKIT project ID")],
+        region: Annotated[StrictStr, Field(description="STACKIT Region")],
+        bucket_name: Annotated[
+            str, Field(min_length=3, strict=True, max_length=63, description="The name has to be dns-conform.")
+        ],
+        set_default_retention_payload: SetDefaultRetentionPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update Default Retention
+
+        Set or update the default retention for a bucket.
+
+        :param project_id: STACKIT project ID (required)
+        :type project_id: str
+        :param region: STACKIT Region (required)
+        :type region: str
+        :param bucket_name: The name has to be dns-conform. (required)
+        :type bucket_name: str
+        :param set_default_retention_payload: (required)
+        :type set_default_retention_payload: SetDefaultRetentionPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._set_default_retention_serialize(
+            project_id=project_id,
+            region=region,
+            bucket_name=bucket_name,
+            set_default_retention_payload=set_default_retention_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "DefaultRetentionResponse",
+            "400": "ErrorMessage",
+            "404": "ErrorMessage",
+            "409": "ErrorMessage",
+            "500": "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _set_default_retention_serialize(
+        self,
+        project_id,
+        region,
+        bucket_name,
+        set_default_retention_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if region is not None:
+            _path_params["region"] = region
+        if bucket_name is not None:
+            _path_params["bucketName"] = bucket_name
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if set_default_retention_payload is not None:
+            _body_params = set_default_retention_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/v2/project/{projectId}/regions/{region}/bucket/{bucketName}/default-retention",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

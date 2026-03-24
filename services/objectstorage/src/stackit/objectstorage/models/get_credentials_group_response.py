@@ -17,31 +17,22 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    StrictBool,
-    StrictStr,
-)
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
+from stackit.objectstorage.models.credentials_group_extended import (
+    CredentialsGroupExtended,
+)
 
-class Bucket(BaseModel):
+
+class GetCredentialsGroupResponse(BaseModel):
     """
-    Bucket
+    GetCredentialsGroupResponse
     """  # noqa: E501
 
-    name: StrictStr
-    object_lock_enabled: StrictBool = Field(
-        description="Whether S3 Object Lock is enabled for this bucket", alias="objectLockEnabled"
-    )
-    region: StrictStr
-    url_path_style: StrictStr = Field(description="URL in path style", alias="urlPathStyle")
-    url_virtual_hosted_style: StrictStr = Field(
-        description="URL in virtual hosted style", alias="urlVirtualHostedStyle"
-    )
-    __properties: ClassVar[List[str]] = ["name", "objectLockEnabled", "region", "urlPathStyle", "urlVirtualHostedStyle"]
+    credentials_group: CredentialsGroupExtended = Field(alias="credentialsGroup")
+    project: StrictStr = Field(description="Project ID")
+    __properties: ClassVar[List[str]] = ["credentialsGroup", "project"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -60,7 +51,7 @@ class Bucket(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Bucket from a JSON string"""
+        """Create an instance of GetCredentialsGroupResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,11 +71,14 @@ class Bucket(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of credentials_group
+        if self.credentials_group:
+            _dict["credentialsGroup"] = self.credentials_group.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Bucket from a dict"""
+        """Create an instance of GetCredentialsGroupResponse from a dict"""
         if obj is None:
             return None
 
@@ -93,11 +87,12 @@ class Bucket(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "name": obj.get("name"),
-                "objectLockEnabled": obj.get("objectLockEnabled"),
-                "region": obj.get("region"),
-                "urlPathStyle": obj.get("urlPathStyle"),
-                "urlVirtualHostedStyle": obj.get("urlVirtualHostedStyle"),
+                "credentialsGroup": (
+                    CredentialsGroupExtended.from_dict(obj["credentialsGroup"])
+                    if obj.get("credentialsGroup") is not None
+                    else None
+                ),
+                "project": obj.get("project"),
             }
         )
         return _obj
