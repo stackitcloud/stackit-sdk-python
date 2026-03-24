@@ -1730,7 +1730,7 @@ class DefaultApi:
     ) -> GetQuotaResponse:
         """Get the quota of Application Load Balancers in a project.
 
-        Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
+        Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.
 
         :param project_id: (required)
         :type project_id: str
@@ -1798,7 +1798,7 @@ class DefaultApi:
     ) -> ApiResponse[GetQuotaResponse]:
         """Get the quota of Application Load Balancers in a project.
 
-        Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
+        Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.
 
         :param project_id: (required)
         :type project_id: str
@@ -1866,7 +1866,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get the quota of Application Load Balancers in a project.
 
-        Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.  There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
+        Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.
 
         :param project_id: (required)
         :type project_id: str
