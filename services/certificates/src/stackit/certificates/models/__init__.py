@@ -13,12 +13,15 @@
 """  # noqa: E501
 
 # import models into model package
+from stackit.certificates.models.certificates_quota import CertificatesQuota
 from stackit.certificates.models.create_certificate_payload import (
     CreateCertificatePayload,
 )
 from stackit.certificates.models.get_certificate_response import GetCertificateResponse
+from stackit.certificates.models.get_quota_response import GetQuotaResponse
 from stackit.certificates.models.google_protobuf_any import GoogleProtobufAny
 from stackit.certificates.models.list_certificates_response import (
     ListCertificatesResponse,
 )
+from stackit.certificates.models.quotas import Quotas
 from stackit.certificates.models.status import Status
