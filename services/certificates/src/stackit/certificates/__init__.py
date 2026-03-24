@@ -28,10 +28,13 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "CertificatesQuota",
     "CreateCertificatePayload",
     "GetCertificateResponse",
+    "GetQuotaResponse",
     "GoogleProtobufAny",
     "ListCertificatesResponse",
+    "Quotas",
     "Status",
 ]
 
@@ -50,11 +53,17 @@ from stackit.certificates.exceptions import ApiValueError as ApiValueError
 from stackit.certificates.exceptions import OpenApiException as OpenApiException
 
 # import models into sdk package
+from stackit.certificates.models.certificates_quota import (
+    CertificatesQuota as CertificatesQuota,
+)
 from stackit.certificates.models.create_certificate_payload import (
     CreateCertificatePayload as CreateCertificatePayload,
 )
 from stackit.certificates.models.get_certificate_response import (
     GetCertificateResponse as GetCertificateResponse,
+)
+from stackit.certificates.models.get_quota_response import (
+    GetQuotaResponse as GetQuotaResponse,
 )
 from stackit.certificates.models.google_protobuf_any import (
     GoogleProtobufAny as GoogleProtobufAny,
@@ -62,4 +71,5 @@ from stackit.certificates.models.google_protobuf_any import (
 from stackit.certificates.models.list_certificates_response import (
     ListCertificatesResponse as ListCertificatesResponse,
 )
+from stackit.certificates.models.quotas import Quotas as Quotas
 from stackit.certificates.models.status import Status as Status
