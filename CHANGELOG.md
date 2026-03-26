@@ -11,9 +11,12 @@
   - **Bugfix:** timeouts now passed to requests library
   - **Feature:** add field `certificateType` to `Domain` model
   - **Feature:** add field `skipDnsCheck` to `GetCustomDomainCustomCertificate`, `PutCustomDomainCustomCertificate` models
-- `certificates`: [v1.2.1](services/certificates/CHANGELOG.md#v121)
-  - **Feature:** client now supports UUID and decimal types
-  - **Bugfix:** timeouts now passed to requests library
+- `certificates`:
+  - [v1.3.0](services/certificates/CHANGELOG.md#v130)
+    - **Feature:** Add new method `GetQuota` to get the quota for TLS certificates in a project
+  - [v1.2.1](services/certificates/CHANGELOG.md#v121)
+    - **Feature:** client now supports UUID and decimal types
+    - **Bugfix:** timeouts now passed to requests library
 - `dns`: [v0.5.1](services/dns/CHANGELOG.md#v051)
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
