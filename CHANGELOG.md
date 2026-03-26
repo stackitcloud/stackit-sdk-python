@@ -21,6 +21,8 @@
   - **Feature:** client now supports UUID and decimal types
   - **Bugfix:** timeouts now passed to requests library
 - `edge`:
+  - [v0.3.0](services/edge/CHANGELOG.md#v030)
+    - Removal of deprecated API client method `list_plans_global` 
   - [v0.2.0](services/edge/CHANGELOG.md#v020)
     - **Feature:** Add new attribute `min_edge_hosts` to model class `Plan`
   - [v0.1.1](services/edge/CHANGELOG.md#v011)

@@ -1,3 +1,6 @@
+## v0.3.0
+- Removal of deprecated API client method `list_plans_global`
+
 ## v0.2.0
 - **Feature:** Add new attribute `min_edge_hosts` to model class `Plan`
 
