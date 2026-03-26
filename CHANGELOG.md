@@ -91,6 +91,9 @@
     - **Feature:** Add new field `Tls` to `HttpHealthCheck`
     - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
 - `loadbalancer`:
+  - [v0.9.2](services/loadbalancer/CHANGELOG.md#v092)
+    - **Improvement:** Increase limit for `max_credentials` in `GetQuotaResponse` model to 1000000
+    - **Improvement:** Update docs of `get_quota` method
   - [v0.9.1](services/loadbalancer/CHANGELOG.md#v091)
     - **Feature:** client now supports UUID and decimal types
     - **Bugfix:** timeouts now passed to requests library
