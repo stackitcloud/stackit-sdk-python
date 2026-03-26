@@ -1,6 +1,6 @@
 [project]
 name = "stackit-alb"
-version = "v0.9.1"
+version = "v0.9.2"
 description = "Application Load Balancer API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4.0"

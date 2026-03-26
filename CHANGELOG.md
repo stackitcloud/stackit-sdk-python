@@ -75,6 +75,9 @@
     - **Bugfix:** Flagged `disk_format` as necessary for `ImageFromVolumePayload`
     - **Improvement:** Updated description for labels
 - `alb`:
+  - [v0.9.2](services/alb/CHANGELOG.md#v092)
+    - **Improvement:** Increase limit for `max_credentials` and `max_load_balancers` in `GetQuotaResponse` model to 1000000
+    - **Improvement:** Update docs of `get_quota` method
   - [v0.9.1](services/alb/CHANGELOG.md#v091)
     - **Feature:** client now supports UUID and decimal types
     - **Bugfix:** timeouts now passed to requests library
