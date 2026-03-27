@@ -1,4 +1,4 @@
-## Release (2026-xx-xx)
+## Release (2026-03-27)
 
 - `auditlog`: [v0.1.2](services/auditlog/CHANGELOG.md#v012)
   - **Feature:** client now supports UUID and decimal types
