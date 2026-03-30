@@ -17,31 +17,18 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    StrictBool,
-    StrictStr,
-)
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 
-class Bucket(BaseModel):
+class DeleteDefaultRetentionResponse(BaseModel):
     """
-    Bucket
+    DeleteDefaultRetentionResponse
     """  # noqa: E501
 
-    name: StrictStr
-    object_lock_enabled: StrictBool = Field(
-        description="Whether S3 Object Lock is enabled for this bucket", alias="objectLockEnabled"
-    )
-    region: StrictStr
-    url_path_style: StrictStr = Field(description="URL in path style", alias="urlPathStyle")
-    url_virtual_hosted_style: StrictStr = Field(
-        description="URL in virtual hosted style", alias="urlVirtualHostedStyle"
-    )
-    __properties: ClassVar[List[str]] = ["name", "objectLockEnabled", "region", "urlPathStyle", "urlVirtualHostedStyle"]
+    bucket: StrictStr = Field(description="Name of the bucket")
+    project: StrictStr = Field(description="Project ID")
+    __properties: ClassVar[List[str]] = ["bucket", "project"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -60,7 +47,7 @@ class Bucket(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Bucket from a JSON string"""
+        """Create an instance of DeleteDefaultRetentionResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,20 +71,12 @@ class Bucket(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Bucket from a dict"""
+        """Create an instance of DeleteDefaultRetentionResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "name": obj.get("name"),
-                "objectLockEnabled": obj.get("objectLockEnabled"),
-                "region": obj.get("region"),
-                "urlPathStyle": obj.get("urlPathStyle"),
-                "urlVirtualHostedStyle": obj.get("urlVirtualHostedStyle"),
-            }
-        )
+        _obj = cls.model_validate({"bucket": obj.get("bucket"), "project": obj.get("project")})
         return _obj
