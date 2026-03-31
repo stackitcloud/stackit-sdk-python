@@ -28,6 +28,7 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "CreateLockResponse",
     "CreateResourcePoolPayload",
     "CreateResourcePoolResponse",
     "CreateResourcePoolSnapshotPayload",
@@ -40,22 +41,30 @@ __all__ = [
     "Error",
     "GetResourcePoolResponse",
     "GetResourcePoolSnapshotResponse",
+    "GetScheduleResponse",
     "GetShareExportPolicyResponse",
     "GetShareResponse",
+    "GetSnapshotPolicyResponse",
     "GoogleProtobufAny",
     "ListPerformanceClassesResponse",
     "ListResourcePoolSnapshotsResponse",
     "ListResourcePoolsResponse",
+    "ListSchedulesResponse",
     "ListShareExportPoliciesResponse",
     "ListSharesResponse",
+    "ListSnapshotPoliciesResponse",
     "PerformanceClass",
     "ResourcePool",
     "ResourcePoolPerformanceClass",
     "ResourcePoolSnapshot",
+    "ResourcePoolSnapshotPolicy",
     "ResourcePoolSpace",
+    "Schedule",
     "Share",
     "ShareExportPolicy",
     "ShareExportPolicyRule",
+    "SnapshotPolicy",
+    "SnapshotPolicySchedule",
     "Status",
     "UpdateResourcePoolPayload",
     "UpdateResourcePoolResponse",
@@ -83,6 +92,9 @@ from stackit.sfs.exceptions import ApiValueError as ApiValueError
 from stackit.sfs.exceptions import OpenApiException as OpenApiException
 
 # import models into sdk package
+from stackit.sfs.models.create_lock_response import (
+    CreateLockResponse as CreateLockResponse,
+)
 from stackit.sfs.models.create_resource_pool_payload import (
     CreateResourcePoolPayload as CreateResourcePoolPayload,
 )
@@ -117,10 +129,16 @@ from stackit.sfs.models.get_resource_pool_response import (
 from stackit.sfs.models.get_resource_pool_snapshot_response import (
     GetResourcePoolSnapshotResponse as GetResourcePoolSnapshotResponse,
 )
+from stackit.sfs.models.get_schedule_response import (
+    GetScheduleResponse as GetScheduleResponse,
+)
 from stackit.sfs.models.get_share_export_policy_response import (
     GetShareExportPolicyResponse as GetShareExportPolicyResponse,
 )
 from stackit.sfs.models.get_share_response import GetShareResponse as GetShareResponse
+from stackit.sfs.models.get_snapshot_policy_response import (
+    GetSnapshotPolicyResponse as GetSnapshotPolicyResponse,
+)
 from stackit.sfs.models.google_protobuf_any import (
     GoogleProtobufAny as GoogleProtobufAny,
 )
@@ -133,11 +151,17 @@ from stackit.sfs.models.list_resource_pool_snapshots_response import (
 from stackit.sfs.models.list_resource_pools_response import (
     ListResourcePoolsResponse as ListResourcePoolsResponse,
 )
+from stackit.sfs.models.list_schedules_response import (
+    ListSchedulesResponse as ListSchedulesResponse,
+)
 from stackit.sfs.models.list_share_export_policies_response import (
     ListShareExportPoliciesResponse as ListShareExportPoliciesResponse,
 )
 from stackit.sfs.models.list_shares_response import (
     ListSharesResponse as ListSharesResponse,
+)
+from stackit.sfs.models.list_snapshot_policies_response import (
+    ListSnapshotPoliciesResponse as ListSnapshotPoliciesResponse,
 )
 from stackit.sfs.models.performance_class import PerformanceClass as PerformanceClass
 from stackit.sfs.models.resource_pool import ResourcePool as ResourcePool
@@ -147,15 +171,23 @@ from stackit.sfs.models.resource_pool_performance_class import (
 from stackit.sfs.models.resource_pool_snapshot import (
     ResourcePoolSnapshot as ResourcePoolSnapshot,
 )
+from stackit.sfs.models.resource_pool_snapshot_policy import (
+    ResourcePoolSnapshotPolicy as ResourcePoolSnapshotPolicy,
+)
 from stackit.sfs.models.resource_pool_space import (
     ResourcePoolSpace as ResourcePoolSpace,
 )
+from stackit.sfs.models.schedule import Schedule as Schedule
 from stackit.sfs.models.share import Share as Share
 from stackit.sfs.models.share_export_policy import (
     ShareExportPolicy as ShareExportPolicy,
 )
 from stackit.sfs.models.share_export_policy_rule import (
     ShareExportPolicyRule as ShareExportPolicyRule,
+)
+from stackit.sfs.models.snapshot_policy import SnapshotPolicy as SnapshotPolicy
+from stackit.sfs.models.snapshot_policy_schedule import (
+    SnapshotPolicySchedule as SnapshotPolicySchedule,
 )
 from stackit.sfs.models.status import Status as Status
 from stackit.sfs.models.update_resource_pool_payload import (
