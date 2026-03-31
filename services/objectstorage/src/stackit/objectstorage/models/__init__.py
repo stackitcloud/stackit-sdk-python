@@ -15,6 +15,7 @@
 # import models into model package
 from stackit.objectstorage.models.access_key import AccessKey
 from stackit.objectstorage.models.bucket import Bucket
+from stackit.objectstorage.models.compliance_lock_response import ComplianceLockResponse
 from stackit.objectstorage.models.create_access_key_payload import (
     CreateAccessKeyPayload,
 )
@@ -29,6 +30,12 @@ from stackit.objectstorage.models.create_credentials_group_response import (
     CreateCredentialsGroupResponse,
 )
 from stackit.objectstorage.models.credentials_group import CredentialsGroup
+from stackit.objectstorage.models.credentials_group_extended import (
+    CredentialsGroupExtended,
+)
+from stackit.objectstorage.models.default_retention_response import (
+    DefaultRetentionResponse,
+)
 from stackit.objectstorage.models.delete_access_key_response import (
     DeleteAccessKeyResponse,
 )
@@ -36,9 +43,15 @@ from stackit.objectstorage.models.delete_bucket_response import DeleteBucketResp
 from stackit.objectstorage.models.delete_credentials_group_response import (
     DeleteCredentialsGroupResponse,
 )
+from stackit.objectstorage.models.delete_default_retention_response import (
+    DeleteDefaultRetentionResponse,
+)
 from stackit.objectstorage.models.detailed_error import DetailedError
 from stackit.objectstorage.models.error_message import ErrorMessage
 from stackit.objectstorage.models.get_bucket_response import GetBucketResponse
+from stackit.objectstorage.models.get_credentials_group_response import (
+    GetCredentialsGroupResponse,
+)
 from stackit.objectstorage.models.http_validation_error import HTTPValidationError
 from stackit.objectstorage.models.list_access_keys_response import (
     ListAccessKeysResponse,
@@ -50,4 +63,8 @@ from stackit.objectstorage.models.list_credentials_groups_response import (
 from stackit.objectstorage.models.location_inner import LocationInner
 from stackit.objectstorage.models.project_scope import ProjectScope
 from stackit.objectstorage.models.project_status import ProjectStatus
+from stackit.objectstorage.models.retention_mode import RetentionMode
+from stackit.objectstorage.models.set_default_retention_payload import (
+    SetDefaultRetentionPayload,
+)
 from stackit.objectstorage.models.validation_error import ValidationError
