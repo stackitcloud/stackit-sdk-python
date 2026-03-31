@@ -24,7 +24,7 @@ from typing_extensions import Annotated, Self
 
 class PortRange(BaseModel):
     """
-    Object that represents a range of ports.
+    Object that represents a range of ports (this will be omitted if it covers the full default range 0/1-65535).
     """  # noqa: E501
 
     max: Annotated[int, Field(le=65535, strict=True, ge=0)] = Field(
