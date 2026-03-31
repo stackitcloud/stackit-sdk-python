@@ -1,6 +1,6 @@
 [project]
 name = "stackit-iaas"
-version = "v1.2.1"
+version = "v1.2.2"
 description = "IaaS-API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4.0"

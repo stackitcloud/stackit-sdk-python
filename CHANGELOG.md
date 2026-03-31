@@ -1,3 +1,7 @@
+## Release (2026-MM-DD)
+- `iaas`: [v1.2.2](services/iaas/CHANGELOG.md#v122)
+  - **Docs:** Extend description of `PortRange` class
+
 ## Release (2026-03-27)
 
 - `auditlog`: [v0.1.2](services/auditlog/CHANGELOG.md#v012)
