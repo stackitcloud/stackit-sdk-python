@@ -3,6 +3,12 @@
   - **Docs:** Extend description of `PortRange` class
 - `kms`: [v0.9.0](services/kms/CHANGELOG.md#v090)
   - Set field `public_key` optional in `WrappingKey` model
+- `objectstorage`: [v1.3.0](services/objectstorage/CHANGELOG.md#v130)
+  - **Feature:** New models: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+  - **Feature:** New enum type `RetentionMode`
+  - **Feature:** New field `object_lock_enabled` in `Bucket` model struct
+  - **Feature:** New API client methods: `create_compliance_lock`, `delete_compliance_lock`, `delete_default_retention`, `get_compliance_lock`, `get_credentials_group`, `get_default_retention`, `set_default_retention`
+
 
 ## Release (2026-03-27)
 
