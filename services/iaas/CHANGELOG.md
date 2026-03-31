@@ -1,3 +1,6 @@
+## v1.2.2
+- **Docs:** Extend description of `PortRange` class
+
 ## v1.2.1
 - **Feature:** client now supports UUID and decimal types
 - **Bugfix:** timeouts now passed to requests library
