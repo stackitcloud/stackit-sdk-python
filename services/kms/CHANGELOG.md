@@ -1,3 +1,6 @@
+## v0.9.0
+- Set field `public_key` optional in `WrappingKey` model
+
 ## v0.8.1
 - **Feature:** client now supports UUID and decimal types
 - **Bugfix:** timeouts now passed to requests library

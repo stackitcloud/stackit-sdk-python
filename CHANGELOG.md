@@ -1,6 +1,8 @@
 ## Release (2026-MM-DD)
 - `iaas`: [v1.2.2](services/iaas/CHANGELOG.md#v122)
   - **Docs:** Extend description of `PortRange` class
+- `kms`: [v0.9.0](services/kms/CHANGELOG.md#v090)
+  - Set field `public_key` optional in `WrappingKey` model
 
 ## Release (2026-03-27)
 
