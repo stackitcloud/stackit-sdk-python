@@ -51,7 +51,9 @@ class WrappingKey(BaseModel):
         description="The unique id of the key ring this wrapping key is assigned to.", alias="keyRingId"
     )
     protection: Protection
-    public_key: StrictStr = Field(description="The public key of the wrapping key.", alias="publicKey")
+    public_key: Optional[StrictStr] = Field(
+        default=None, description="The public key of the wrapping key.", alias="publicKey"
+    )
     purpose: WrappingPurpose
     state: StrictStr = Field(description="The current state of the wrapping key.")
     __properties: ClassVar[List[str]] = [
