@@ -35,8 +35,8 @@ class CRI(BaseModel):
         if value is None:
             return value
 
-        if value not in set(["docker", "containerd"]):
-            raise ValueError("must be one of enum values ('docker', 'containerd')")
+        if value not in set(["containerd"]):
+            raise ValueError("must be one of enum values ('containerd')")
         return value
 
     model_config = ConfigDict(
