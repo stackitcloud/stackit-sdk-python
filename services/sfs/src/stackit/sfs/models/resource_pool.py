@@ -33,6 +33,7 @@ from typing_extensions import Self
 from stackit.sfs.models.resource_pool_performance_class import (
     ResourcePoolPerformanceClass,
 )
+from stackit.sfs.models.resource_pool_snapshot_policy import ResourcePoolSnapshotPolicy
 from stackit.sfs.models.resource_pool_space import ResourcePoolSpace
 
 
@@ -72,6 +73,9 @@ class ResourcePool(BaseModel):
     size_reducible_at: Optional[datetime] = Field(
         default=None, description="Time when the size can be reduced again.", alias="sizeReducibleAt"
     )
+    snapshot_policy: Optional[ResourcePoolSnapshotPolicy] = Field(
+        default=None, description="(optional) Snapshot Policy", alias="snapshotPolicy"
+    )
     snapshots_are_visible: Optional[StrictBool] = Field(
         default=False,
         description="Whether the .snapshot directory is visible when mounting the resource pool.  Setting this value to false might prevent you from accessing the snapshots (e.g.  for security reasons). Additionally, the access to the snapshots is always controlled  by the export policy of the resource pool. That means, if snapshots are visible and  the export policy allows for reading the resource pool, then it also allows reading  the snapshot of all shares.",
@@ -94,6 +98,7 @@ class ResourcePool(BaseModel):
         "performanceClass",
         "performanceClassDowngradableAt",
         "sizeReducibleAt",
+        "snapshotPolicy",
         "snapshotsAreVisible",
         "space",
         "state",
@@ -178,9 +183,17 @@ class ResourcePool(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of performance_class
         if self.performance_class:
             _dict["performanceClass"] = self.performance_class.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of snapshot_policy
+        if self.snapshot_policy:
+            _dict["snapshotPolicy"] = self.snapshot_policy.to_dict()
         # override the default output from pydantic by calling `to_dict()` of space
         if self.space:
             _dict["space"] = self.space.to_dict()
+        # set to None if snapshot_policy (nullable) is None
+        # and model_fields_set contains the field
+        if self.snapshot_policy is None and "snapshot_policy" in self.model_fields_set:
+            _dict["snapshotPolicy"] = None
+
         return _dict
 
     @classmethod
@@ -209,6 +222,11 @@ class ResourcePool(BaseModel):
                 ),
                 "performanceClassDowngradableAt": obj.get("performanceClassDowngradableAt"),
                 "sizeReducibleAt": obj.get("sizeReducibleAt"),
+                "snapshotPolicy": (
+                    ResourcePoolSnapshotPolicy.from_dict(obj["snapshotPolicy"])
+                    if obj.get("snapshotPolicy") is not None
+                    else None
+                ),
                 "snapshotsAreVisible": (
                     obj.get("snapshotsAreVisible") if obj.get("snapshotsAreVisible") is not None else False
                 ),
