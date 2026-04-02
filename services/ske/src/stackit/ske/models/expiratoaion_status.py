@@ -17,27 +17,21 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict
 from typing_extensions import Self
 
+from stackit.ske.models.expiration_status_kubernetes import ExpirationStatusKubernetes
+from stackit.ske.models.expiration_status_nodepool import ExpirationStatusNodepool
 
-class CRI(BaseModel):
+
+class ExpiratoaionStatus(BaseModel):
     """
-    CRI
+    ExpiratoaionStatus
     """  # noqa: E501
 
-    name: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["name"]
-
-    @field_validator("name")
-    def name_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(["containerd"]):
-            raise ValueError("must be one of enum values ('containerd')")
-        return value
+    kubernetes: Optional[ExpirationStatusKubernetes] = None
+    nodepools: Optional[List[ExpirationStatusNodepool]] = None
+    __properties: ClassVar[List[str]] = ["kubernetes", "nodepools"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -56,7 +50,7 @@ class CRI(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CRI from a JSON string"""
+        """Create an instance of ExpiratoaionStatus from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,16 +70,39 @@ class CRI(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of kubernetes
+        if self.kubernetes:
+            _dict["kubernetes"] = self.kubernetes.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in nodepools (list)
+        _items = []
+        if self.nodepools:
+            for _item_nodepools in self.nodepools:
+                if _item_nodepools:
+                    _items.append(_item_nodepools.to_dict())
+            _dict["nodepools"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CRI from a dict"""
+        """Create an instance of ExpiratoaionStatus from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"name": obj.get("name")})
+        _obj = cls.model_validate(
+            {
+                "kubernetes": (
+                    ExpirationStatusKubernetes.from_dict(obj["kubernetes"])
+                    if obj.get("kubernetes") is not None
+                    else None
+                ),
+                "nodepools": (
+                    [ExpirationStatusNodepool.from_dict(_item) for _item in obj["nodepools"]]
+                    if obj.get("nodepools") is not None
+                    else None
+                ),
+            }
+        )
         return _obj
