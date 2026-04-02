@@ -54,6 +54,7 @@ class InstanceSensitiveData(BaseModel):
     metrics_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="metricsUrl")
     name: Optional[Annotated[str, Field(strict=True, max_length=300)]] = ""
     otlp_grpc_traces_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="otlpGrpcTracesUrl")
+    otlp_http_logs_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="otlpHttpLogsUrl")
     otlp_http_traces_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="otlpHttpTracesUrl")
     otlp_traces_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="otlpTracesUrl")
     plan: PlanModel
@@ -84,6 +85,7 @@ class InstanceSensitiveData(BaseModel):
         "metricsUrl",
         "name",
         "otlpGrpcTracesUrl",
+        "otlpHttpLogsUrl",
         "otlpHttpTracesUrl",
         "otlpTracesUrl",
         "plan",
@@ -170,6 +172,7 @@ class InstanceSensitiveData(BaseModel):
                 "metricsUrl": obj.get("metricsUrl"),
                 "name": obj.get("name") if obj.get("name") is not None else "",
                 "otlpGrpcTracesUrl": obj.get("otlpGrpcTracesUrl"),
+                "otlpHttpLogsUrl": obj.get("otlpHttpLogsUrl"),
                 "otlpHttpTracesUrl": obj.get("otlpHttpTracesUrl"),
                 "otlpTracesUrl": obj.get("otlpTracesUrl"),
                 "plan": PlanModel.from_dict(obj["plan"]) if obj.get("plan") is not None else None,
