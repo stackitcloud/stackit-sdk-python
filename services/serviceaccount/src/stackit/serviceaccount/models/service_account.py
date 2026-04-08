@@ -41,7 +41,10 @@ class ServiceAccount(BaseModel):
     )
     internal: StrictBool = Field(description="Flag indicating internal service accounts")
     project_id: StrictStr = Field(description="ID of the related project", alias="projectId")
-    __properties: ClassVar[List[str]] = ["email", "id", "internal", "projectId"]
+    token_endpoint: StrictStr = Field(
+        description="Endpoint used to obtain access tokens for the service account", alias="tokenEndpoint"
+    )
+    __properties: ClassVar[List[str]] = ["email", "id", "internal", "projectId", "tokenEndpoint"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,6 +100,7 @@ class ServiceAccount(BaseModel):
                 "id": obj.get("id"),
                 "internal": obj.get("internal"),
                 "projectId": obj.get("projectId"),
+                "tokenEndpoint": obj.get("tokenEndpoint"),
             }
         )
         return _obj
