@@ -29,6 +29,9 @@ from stackit.ske.models.create_or_update_cluster_payload import (
 from stackit.ske.models.credentials_rotation_state import CredentialsRotationState
 from stackit.ske.models.cri import CRI
 from stackit.ske.models.dns import DNS
+from stackit.ske.models.expiration_status_kubernetes import ExpirationStatusKubernetes
+from stackit.ske.models.expiration_status_nodepool import ExpirationStatusNodepool
+from stackit.ske.models.expiratoaion_status import ExpiratoaionStatus
 from stackit.ske.models.extension import Extension
 from stackit.ske.models.get_provider_options_request_version_state import (
     GetProviderOptionsRequestVersionState,
