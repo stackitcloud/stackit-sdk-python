@@ -16,7 +16,7 @@ jobs:
       # Re-uses the labeler config from the Go SDK, so we only need to maintain one single config file
       - name: Fetch labeler config from STACKIT Go SDK
         run: |
-          curl -sSL -o remote-labeler.yml https://raw.githubusercontent.com/stackitcloud/stackit-sdk-go/feat/labeler/.github/labeler.yml 
+          curl -sSL -o remote-labeler.yml https://raw.githubusercontent.com/stackitcloud/stackit-sdk-go/main/.github/labeler.yml 
       - name: Labeler action
         uses: actions/labeler@v6
         with:
