@@ -45,6 +45,11 @@ class ResourcePoolSnapshot(BaseModel):
         description="Reflects the actual storage footprint in the backend at snapshot time in Gibibytes (e.g. how much storage from the Resource Pool  does it use).",
         alias="sizeGigabytes",
     )
+    snaplock_expiry_time: Optional[datetime] = Field(
+        default=None,
+        description="Represents the snaplock expiry time if snaplock is enabled for the resource pool",
+        alias="snaplockExpiryTime",
+    )
     snapshot_name: Optional[StrictStr] = Field(
         default=None, description="Name of the Resource Pool Snapshot", alias="snapshotName"
     )
@@ -54,11 +59,25 @@ class ResourcePoolSnapshot(BaseModel):
         "logicalSizeGigabytes",
         "resourcePoolId",
         "sizeGigabytes",
+        "snaplockExpiryTime",
         "snapshotName",
     ]
 
     @field_validator("created_at", mode="before")
     def created_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
+
+    @field_validator("snaplock_expiry_time", mode="before")
+    def snaplock_expiry_time_change_year_zero_to_one(cls, value):
         """Workaround which prevents year 0 issue"""
         if isinstance(value, str):
             # Check for year "0000" at the beginning of the string
@@ -112,6 +131,11 @@ class ResourcePoolSnapshot(BaseModel):
         if self.comment is None and "comment" in self.model_fields_set:
             _dict["comment"] = None
 
+        # set to None if snaplock_expiry_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.snaplock_expiry_time is None and "snaplock_expiry_time" in self.model_fields_set:
+            _dict["snaplockExpiryTime"] = None
+
         return _dict
 
     @classmethod
@@ -130,6 +154,7 @@ class ResourcePoolSnapshot(BaseModel):
                 "logicalSizeGigabytes": obj.get("logicalSizeGigabytes"),
                 "resourcePoolId": obj.get("resourcePoolId"),
                 "sizeGigabytes": obj.get("sizeGigabytes"),
+                "snaplockExpiryTime": obj.get("snaplockExpiryTime"),
                 "snapshotName": obj.get("snapshotName"),
             }
         )
