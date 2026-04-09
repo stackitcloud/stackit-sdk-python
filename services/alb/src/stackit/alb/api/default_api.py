@@ -117,6 +117,7 @@ class DefaultApi:
             "400": None,
             "401": "Status",
             "403": None,
+            "429": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -193,6 +194,7 @@ class DefaultApi:
             "400": None,
             "401": "Status",
             "403": None,
+            "429": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -269,6 +271,7 @@ class DefaultApi:
             "400": None,
             "401": "Status",
             "403": None,
+            "429": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -409,6 +412,7 @@ class DefaultApi:
             "401": "Status",
             "403": None,
             "409": None,
+            "429": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -486,6 +490,7 @@ class DefaultApi:
             "401": "Status",
             "403": None,
             "409": None,
+            "429": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -563,6 +568,7 @@ class DefaultApi:
             "401": "Status",
             "403": None,
             "409": None,
+            "429": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
