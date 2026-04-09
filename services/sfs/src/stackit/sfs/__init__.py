@@ -37,28 +37,37 @@ __all__ = [
     "CreateShareExportPolicyResponse",
     "CreateSharePayload",
     "CreateShareResponse",
+    "EnableLockResponse",
     "Error",
+    "GetLockResponse",
     "GetResourcePoolResponse",
     "GetResourcePoolSnapshotResponse",
     "GetShareExportPolicyResponse",
     "GetShareResponse",
+    "GetSnapshotPolicyResponse",
     "GoogleProtobufAny",
     "ListPerformanceClassesResponse",
     "ListResourcePoolSnapshotsResponse",
     "ListResourcePoolsResponse",
     "ListShareExportPoliciesResponse",
     "ListSharesResponse",
+    "ListSnapshotPoliciesResponse",
     "PerformanceClass",
     "ResourcePool",
     "ResourcePoolPerformanceClass",
     "ResourcePoolSnapshot",
+    "ResourcePoolSnapshotPolicy",
     "ResourcePoolSpace",
     "Share",
     "ShareExportPolicy",
     "ShareExportPolicyRule",
+    "SnapshotPolicy",
+    "SnapshotPolicySchedule",
     "Status",
     "UpdateResourcePoolPayload",
     "UpdateResourcePoolResponse",
+    "UpdateResourcePoolSnapshotPayload",
+    "UpdateResourcePoolSnapshotResponse",
     "UpdateShareExportPolicyBodyRule",
     "UpdateShareExportPolicyPayload",
     "UpdateShareExportPolicyResponse",
@@ -110,7 +119,11 @@ from stackit.sfs.models.create_share_payload import (
 from stackit.sfs.models.create_share_response import (
     CreateShareResponse as CreateShareResponse,
 )
+from stackit.sfs.models.enable_lock_response import (
+    EnableLockResponse as EnableLockResponse,
+)
 from stackit.sfs.models.error import Error as Error
+from stackit.sfs.models.get_lock_response import GetLockResponse as GetLockResponse
 from stackit.sfs.models.get_resource_pool_response import (
     GetResourcePoolResponse as GetResourcePoolResponse,
 )
@@ -121,6 +134,9 @@ from stackit.sfs.models.get_share_export_policy_response import (
     GetShareExportPolicyResponse as GetShareExportPolicyResponse,
 )
 from stackit.sfs.models.get_share_response import GetShareResponse as GetShareResponse
+from stackit.sfs.models.get_snapshot_policy_response import (
+    GetSnapshotPolicyResponse as GetSnapshotPolicyResponse,
+)
 from stackit.sfs.models.google_protobuf_any import (
     GoogleProtobufAny as GoogleProtobufAny,
 )
@@ -139,6 +155,9 @@ from stackit.sfs.models.list_share_export_policies_response import (
 from stackit.sfs.models.list_shares_response import (
     ListSharesResponse as ListSharesResponse,
 )
+from stackit.sfs.models.list_snapshot_policies_response import (
+    ListSnapshotPoliciesResponse as ListSnapshotPoliciesResponse,
+)
 from stackit.sfs.models.performance_class import PerformanceClass as PerformanceClass
 from stackit.sfs.models.resource_pool import ResourcePool as ResourcePool
 from stackit.sfs.models.resource_pool_performance_class import (
@@ -146,6 +165,9 @@ from stackit.sfs.models.resource_pool_performance_class import (
 )
 from stackit.sfs.models.resource_pool_snapshot import (
     ResourcePoolSnapshot as ResourcePoolSnapshot,
+)
+from stackit.sfs.models.resource_pool_snapshot_policy import (
+    ResourcePoolSnapshotPolicy as ResourcePoolSnapshotPolicy,
 )
 from stackit.sfs.models.resource_pool_space import (
     ResourcePoolSpace as ResourcePoolSpace,
@@ -157,12 +179,22 @@ from stackit.sfs.models.share_export_policy import (
 from stackit.sfs.models.share_export_policy_rule import (
     ShareExportPolicyRule as ShareExportPolicyRule,
 )
+from stackit.sfs.models.snapshot_policy import SnapshotPolicy as SnapshotPolicy
+from stackit.sfs.models.snapshot_policy_schedule import (
+    SnapshotPolicySchedule as SnapshotPolicySchedule,
+)
 from stackit.sfs.models.status import Status as Status
 from stackit.sfs.models.update_resource_pool_payload import (
     UpdateResourcePoolPayload as UpdateResourcePoolPayload,
 )
 from stackit.sfs.models.update_resource_pool_response import (
     UpdateResourcePoolResponse as UpdateResourcePoolResponse,
+)
+from stackit.sfs.models.update_resource_pool_snapshot_payload import (
+    UpdateResourcePoolSnapshotPayload as UpdateResourcePoolSnapshotPayload,
+)
+from stackit.sfs.models.update_resource_pool_snapshot_response import (
+    UpdateResourcePoolSnapshotResponse as UpdateResourcePoolSnapshotResponse,
 )
 from stackit.sfs.models.update_share_export_policy_body_rule import (
     UpdateShareExportPolicyBodyRule as UpdateShareExportPolicyBodyRule,
