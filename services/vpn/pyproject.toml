@@ -1,6 +1,6 @@
 [project]
 name = "stackit-vpn"
-version = "v0.0.1a"
+version = "v0.1.0"
 description = "STACKIT VPN API"
 authors = [{name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud"}]
 requires-python = ">=3.9,<4.0"

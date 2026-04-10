@@ -8,6 +8,8 @@
   - **Feature:** New enum type `RetentionMode`
   - **Feature:** New field `object_lock_enabled` in `Bucket` model struct
   - **Feature:** New API client methods: `create_compliance_lock`, `delete_compliance_lock`, `delete_default_retention`, `get_compliance_lock`, `get_credentials_group`, `get_default_retention`, `set_default_retention`
+- `vpn`: [v0.1.0](services/vpn/CHANGELOG.md#v010)
+  - Initial publication of STACKIT Python SDK module for STACKIT VPN service
 
 
 ## Release (2026-03-27)
