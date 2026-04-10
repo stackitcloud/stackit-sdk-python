@@ -1,3 +1,6 @@
+## v0.7.0
+- **Feature:** Add `token_endpoint` attribute to `CreateServiceAccountKeyResponseCredentials` model class
+
 ## v0.6.1
 - **Feature:** client now supports UUID and decimal types
 - **Bugfix:** timeouts now passed to requests library
