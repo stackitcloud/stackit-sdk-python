@@ -36,7 +36,12 @@ class CreateServiceAccountKeyResponseCredentials(BaseModel):
         alias="privateKey",
     )
     sub: UUID = Field(description="Service account id")
-    __properties: ClassVar[List[str]] = ["aud", "iss", "kid", "privateKey", "sub"]
+    token_endpoint: Optional[StrictStr] = Field(
+        default=None,
+        description="Endpoint used to obtain access tokens for the service account.",
+        alias="tokenEndpoint",
+    )
+    __properties: ClassVar[List[str]] = ["aud", "iss", "kid", "privateKey", "sub", "tokenEndpoint"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,6 +98,7 @@ class CreateServiceAccountKeyResponseCredentials(BaseModel):
                 "kid": obj.get("kid"),
                 "privateKey": obj.get("privateKey"),
                 "sub": obj.get("sub"),
+                "tokenEndpoint": obj.get("tokenEndpoint"),
             }
         )
         return _obj
