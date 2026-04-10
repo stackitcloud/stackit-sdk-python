@@ -1,6 +1,8 @@
 ## Release (2026-MM-DD)
 - `alb`: [v0.9.3](services/alb/CHANGELOG.md#v093)
   - Add HTTP 429 status code to some API client methods
+- `certificates`: [v1.3.1](services/certificates/CHANGELOG.md#v131)
+  - Add HTTP 429 status code to some API client methods
 - `iaas`: [v1.2.2](services/iaas/CHANGELOG.md#v122)
   - **Docs:** Extend description of `PortRange` class
 - `kms`: [v0.9.0](services/kms/CHANGELOG.md#v090)
