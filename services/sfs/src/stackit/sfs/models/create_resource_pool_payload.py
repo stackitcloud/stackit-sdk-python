@@ -47,6 +47,9 @@ class CreateResourcePoolPayload(BaseModel):
     size_gigabytes: StrictInt = Field(
         description="Size of the Resource Pool   (unit: gibibytes)", alias="sizeGigabytes"
     )
+    snapshot_policy_id: Optional[StrictStr] = Field(
+        default=None, description="(optional) Id of the Snapshot Policy to use", alias="snapshotPolicyId"
+    )
     snapshots_are_visible: Optional[StrictBool] = Field(
         default=None,
         description="Whether the .snapshot directory is visible when mounting the resource pool.  Setting this value to false might prevent you from accessing the snapshots (e.g.  for security reasons). Additionally, the access to the snapshots is always controlled  by the export policy of the resource pool. That means, if snapshots are visible and  the export policy allows for reading the resource pool, then it also allows reading  the snapshot of all shares.",
@@ -59,6 +62,7 @@ class CreateResourcePoolPayload(BaseModel):
         "name",
         "performanceClass",
         "sizeGigabytes",
+        "snapshotPolicyId",
         "snapshotsAreVisible",
     ]
 
@@ -118,6 +122,7 @@ class CreateResourcePoolPayload(BaseModel):
                 "name": obj.get("name"),
                 "performanceClass": obj.get("performanceClass"),
                 "sizeGigabytes": obj.get("sizeGigabytes"),
+                "snapshotPolicyId": obj.get("snapshotPolicyId"),
                 "snapshotsAreVisible": obj.get("snapshotsAreVisible"),
             }
         )
