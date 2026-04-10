@@ -1,3 +1,6 @@
+## v1.3.1
+- Add HTTP 429 status code to some API client methods
+
 ## v1.3.0
 - **Feature:** Add new method `GetQuota` to get the quota for TLS certificates in a project
 
