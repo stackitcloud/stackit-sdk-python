@@ -1,3 +1,6 @@
+## v0.14.0
+- **Feature:** Add attribute `otlp_http_logs_url` to `InstanceSensitiveData` model class
+
 ## v0.13.1
 - **Feature:** client now supports UUID and decimal types
 - **Bugfix:** timeouts now passed to requests library
