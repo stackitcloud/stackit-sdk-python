@@ -12965,6 +12965,7 @@ class DefaultApi:
         project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
+        cascade: Annotated[Optional[StrictBool], Field(description="Cascade action.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12985,6 +12986,8 @@ class DefaultApi:
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
         :type volume_id: UUID
+        :param cascade: Cascade action.
+        :type cascade: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13011,6 +13014,7 @@ class DefaultApi:
             project_id=project_id,
             region=region,
             volume_id=volume_id,
+            cascade=cascade,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13039,6 +13043,7 @@ class DefaultApi:
         project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
+        cascade: Annotated[Optional[StrictBool], Field(description="Cascade action.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13059,6 +13064,8 @@ class DefaultApi:
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
         :type volume_id: UUID
+        :param cascade: Cascade action.
+        :type cascade: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13085,6 +13092,7 @@ class DefaultApi:
             project_id=project_id,
             region=region,
             volume_id=volume_id,
+            cascade=cascade,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13113,6 +13121,7 @@ class DefaultApi:
         project_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Project.")],
         region: Annotated[StrictStr, Field(description="The STACKIT Region of the resources.")],
         volume_id: Annotated[UUID, Field(description="The identifier (ID) of a STACKIT Volume.")],
+        cascade: Annotated[Optional[StrictBool], Field(description="Cascade action.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13133,6 +13142,8 @@ class DefaultApi:
         :type region: str
         :param volume_id: The identifier (ID) of a STACKIT Volume. (required)
         :type volume_id: UUID
+        :param cascade: Cascade action.
+        :type cascade: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13159,6 +13170,7 @@ class DefaultApi:
             project_id=project_id,
             region=region,
             volume_id=volume_id,
+            cascade=cascade,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13182,6 +13194,7 @@ class DefaultApi:
         project_id,
         region,
         volume_id,
+        cascade,
         _request_auth,
         _content_type,
         _headers,
@@ -13207,6 +13220,10 @@ class DefaultApi:
         if volume_id is not None:
             _path_params["volumeId"] = volume_id
         # process the query parameters
+        if cascade is not None:
+
+            _query_params.append(("cascade", cascade))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
