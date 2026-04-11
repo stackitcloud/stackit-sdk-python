@@ -907,7 +907,7 @@ dev = [
 
 [[package]]
 name = "stackit-postgresflex"
-version = "1.2.0"
+version = "1.2.2"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
