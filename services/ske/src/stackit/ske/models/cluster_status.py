@@ -32,6 +32,7 @@ from typing_extensions import Self
 from stackit.ske.models.cluster_error import ClusterError
 from stackit.ske.models.cluster_status_state import ClusterStatusState
 from stackit.ske.models.credentials_rotation_state import CredentialsRotationState
+from stackit.ske.models.expiratoaion_status import ExpiratoaionStatus
 from stackit.ske.models.runtime_error import RuntimeError
 
 
@@ -52,6 +53,7 @@ class ClusterStatus(BaseModel):
     )
     error: Optional[RuntimeError] = None
     errors: Optional[List[ClusterError]] = None
+    expiration: Optional[ExpiratoaionStatus] = None
     hibernated: Optional[StrictBool] = None
     identity: Optional[StrictStr] = None
     pod_address_ranges: Optional[List[StrictStr]] = Field(
@@ -66,6 +68,7 @@ class ClusterStatus(BaseModel):
         "egressAddressRanges",
         "error",
         "errors",
+        "expiration",
         "hibernated",
         "identity",
         "podAddressRanges",
@@ -134,6 +137,9 @@ class ClusterStatus(BaseModel):
                 if _item_errors:
                     _items.append(_item_errors.to_dict())
             _dict["errors"] = _items
+        # override the default output from pydantic by calling `to_dict()` of expiration
+        if self.expiration:
+            _dict["expiration"] = self.expiration.to_dict()
         return _dict
 
     @classmethod
@@ -160,6 +166,9 @@ class ClusterStatus(BaseModel):
                     [ClusterError.from_dict(_item) for _item in obj["errors"]]
                     if obj.get("errors") is not None
                     else None
+                ),
+                "expiration": (
+                    ExpiratoaionStatus.from_dict(obj["expiration"]) if obj.get("expiration") is not None else None
                 ),
                 "hibernated": obj.get("hibernated"),
                 "identity": obj.get("identity"),
