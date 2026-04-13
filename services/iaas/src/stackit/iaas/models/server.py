@@ -25,6 +25,7 @@ from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
+    StrictBool,
     StrictBytes,
     StrictStr,
     field_validator,
@@ -53,6 +54,9 @@ class Server(BaseModel):
         alias="availabilityZone",
     )
     boot_volume: Optional[BootVolume] = Field(default=None, alias="bootVolume")
+    config_drive: Optional[StrictBool] = Field(
+        default=False, description="When true the server is created with a config drive.", alias="configDrive"
+    )
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
@@ -116,6 +120,7 @@ class Server(BaseModel):
         "agent",
         "availabilityZone",
         "bootVolume",
+        "configDrive",
         "createdAt",
         "errorMessage",
         "id",
@@ -336,6 +341,7 @@ class Server(BaseModel):
                 "agent": ServerAgent.from_dict(obj["agent"]) if obj.get("agent") is not None else None,
                 "availabilityZone": obj.get("availabilityZone"),
                 "bootVolume": BootVolume.from_dict(obj["bootVolume"]) if obj.get("bootVolume") is not None else None,
+                "configDrive": obj.get("configDrive") if obj.get("configDrive") is not None else False,
                 "createdAt": obj.get("createdAt"),
                 "errorMessage": obj.get("errorMessage"),
                 "id": obj.get("id"),
