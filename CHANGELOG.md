@@ -1,4 +1,6 @@
 ## Release (2026-MM-DD)
+- `loadbalancer`: [v0.9.3](services/loadbalancer/CHANGELOG.md#v093)
+  - Add HTTP 429 status code to some API client methods
 - `alb`: [v0.9.3](services/alb/CHANGELOG.md#v093)
   - Add HTTP 429 status code to some API client methods
 - `certificates`: [v1.3.1](services/certificates/CHANGELOG.md#v131)
