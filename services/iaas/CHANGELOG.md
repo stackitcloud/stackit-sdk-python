@@ -1,3 +1,7 @@
+## v1.3.0
+- **Feature:** Add `cascade` parameter to `delete_volume` API call
+- **Feature:** Add `config_drive` attribute to ModelClass `Server` and `CreateServerPayload`
+
 ## v1.2.2
 - **Docs:** Extend description of `PortRange` class
 
