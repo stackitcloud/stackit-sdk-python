@@ -110,7 +110,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -182,7 +181,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -254,7 +252,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -670,8 +667,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Cluster",
-            "202": "object",
+            "202": "Cluster",
             "400": "object",
             "401": "object",
             "404": "object",
@@ -746,8 +742,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Cluster",
-            "202": "object",
+            "202": "Cluster",
             "400": "object",
             "401": "object",
             "404": "object",
@@ -822,8 +817,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Cluster",
-            "202": "object",
+            "202": "Cluster",
             "400": "object",
             "401": "object",
             "404": "object",
@@ -957,7 +951,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -1029,7 +1022,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -1101,7 +1093,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -2267,6 +2258,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ProviderOptions",
+            "400": "object",
             "401": "object",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2332,6 +2324,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ProviderOptions",
+            "400": "object",
             "401": "object",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2397,6 +2390,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ProviderOptions",
+            "400": "object",
             "401": "object",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2516,7 +2510,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -2588,7 +2581,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -2660,7 +2652,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -2784,7 +2775,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -2856,7 +2846,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -2928,7 +2917,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -3052,7 +3040,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -3124,7 +3111,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -3196,7 +3182,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -3320,7 +3305,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -3392,7 +3376,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -3464,7 +3447,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -3588,7 +3570,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -3660,7 +3641,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",
@@ -3732,7 +3712,6 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "object",
             "202": "object",
             "400": "object",
             "401": "object",

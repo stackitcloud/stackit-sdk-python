@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class AccessScope(str, Enum):
     """
-    The access scope of the Control Plane. It defines if the Kubernetes control plane is public or only available inside a STACKIT Network Area. ⚠️ Note: This feature is in private preview. Supplying this object is only permitted for enabled accounts. If your account does not have access, the request will be rejected.
+    The access scope of the Control Plane. It defines if the Kubernetes control plane is public or only available inside a STACKIT Network Area. This field is immutable. ⚠️ Note: This feature is in private preview. Supplying this object is only permitted for enabled accounts. If your account does not have access, the request will be rejected.
     """
 
     """
