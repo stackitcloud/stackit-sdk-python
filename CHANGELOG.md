@@ -1,4 +1,10 @@
 ## Release (2026-MM-DD)
+- `ske`: [v1.8.0](services/ske/CHANGELOG.md#v180)
+  - **Breaking Change:** Change status codes: remove 200, change response type of 202 and add 400 in some API calls
+  - **Breaking Change:** Aligned CRI name validation with the API side validation (removed docker)
+  - **Feature:** New models `ExpirationStatus`, `ExpirationStatusKubernetes` and `ExpirationStatusNodepool`
+  - **Feature:** Add attribute `expiration` of type `ExpirationStatus` to model `ClusterStatus`
+  - **Improvement:** Update description of `AccessScope`
 - `alb`: [v0.9.3](services/alb/CHANGELOG.md#v093)
   - Add HTTP 429 status code to some API client methods
 - `certificates`: [v1.3.1](services/certificates/CHANGELOG.md#v131)
