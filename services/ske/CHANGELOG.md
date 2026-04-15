@@ -1,3 +1,10 @@
+## v1.8.0
+- **Breaking Change:** Change status codes: remove 200, change response type of 202 and add 400 in some API calls
+- **Breaking Change:** Aligned CRI name validation with the API side validation (removed docker)
+- **Feature:** New models `ExpirationStatus`, `ExpirationStatusKubernetes` and `ExpirationStatusNodepool`
+- **Feature:** Add attribute `expiration` of type `ExpirationStatus` to model `ClusterStatus`
+- **Improvement:** Update description of `AccessScope`
+
 ## v1.7.1
 - **Feature:** client now supports UUID and decimal types
 - **Bugfix:** timeouts now passed to requests library

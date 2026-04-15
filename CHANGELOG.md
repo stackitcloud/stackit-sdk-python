@@ -1,4 +1,10 @@
 ## Release (2026-MM-DD)
+- `ske`: [v1.8.0](services/ske/CHANGELOG.md#v180)
+  - **Breaking Change:** Change status codes: remove 200, change response type of 202 and add 400 in some API calls
+  - **Breaking Change:** Aligned CRI name validation with the API side validation (removed docker)
+  - **Feature:** New models `ExpirationStatus`, `ExpirationStatusKubernetes` and `ExpirationStatusNodepool`
+  - **Feature:** Add attribute `expiration` of type `ExpirationStatus` to model `ClusterStatus`
+  - **Improvement:** Update description of `AccessScope`
 - `iaas`: [v1.3.0](services/iaas/CHANGELOG.md#v130)
   - **Feature:** Add optional `cascade` parameter to `delete_volume` API call
   - **Feature:** Add `config_drive` attribute to ModelClass `Server` and `CreateServerPayload`
