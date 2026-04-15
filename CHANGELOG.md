@@ -5,6 +5,9 @@
   - **Feature:** New models `ExpirationStatus`, `ExpirationStatusKubernetes` and `ExpirationStatusNodepool`
   - **Feature:** Add attribute `expiration` of type `ExpirationStatus` to model `ClusterStatus`
   - **Improvement:** Update description of `AccessScope`
+- `iaas`: [v1.3.0](services/iaas/CHANGELOG.md#v130)
+  - **Feature:** Add optional `cascade` parameter to `delete_volume` API call
+  - **Feature:** Add `config_drive` attribute to ModelClass `Server` and `CreateServerPayload`
 - `alb`: [v0.9.3](services/alb/CHANGELOG.md#v093)
   - Add HTTP 429 status code to some API client methods
 - `certificates`: [v1.3.1](services/certificates/CHANGELOG.md#v131)
