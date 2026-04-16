@@ -17,25 +17,21 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Self
 
+from stackit.sfs.models.resource_pool_snapshot import ResourcePoolSnapshot
 
-class CreateResourcePoolSnapshotPayload(BaseModel):
+
+class UpdateResourcePoolSnapshotResponse(BaseModel):
     """
-    CreateResourcePoolSnapshotPayload
+    UpdateResourcePoolSnapshotResponse
     """  # noqa: E501
 
-    comment: Optional[StrictStr] = Field(
-        default=None, description="(optional) A comment to add more information about a snapshot"
+    resource_pool_snapshot: Optional[ResourcePoolSnapshot] = Field(
+        default=None, description="Updated Resource Pool Snapshot", alias="resourcePoolSnapshot"
     )
-    name: Optional[StrictStr] = Field(default=None, description="Name of the Resource Pool Snapshot")
-    snaplock_retention_hours: Optional[StrictInt] = Field(
-        default=None,
-        description="(optional) Time in hours after which snaplock on the snapshot expires",
-        alias="snaplockRetentionHours",
-    )
-    __properties: ClassVar[List[str]] = ["comment", "name", "snaplockRetentionHours"]
+    __properties: ClassVar[List[str]] = ["resourcePoolSnapshot"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +50,7 @@ class CreateResourcePoolSnapshotPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateResourcePoolSnapshotPayload from a JSON string"""
+        """Create an instance of UpdateResourcePoolSnapshotResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,21 +70,14 @@ class CreateResourcePoolSnapshotPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if comment (nullable) is None
-        # and model_fields_set contains the field
-        if self.comment is None and "comment" in self.model_fields_set:
-            _dict["comment"] = None
-
-        # set to None if snaplock_retention_hours (nullable) is None
-        # and model_fields_set contains the field
-        if self.snaplock_retention_hours is None and "snaplock_retention_hours" in self.model_fields_set:
-            _dict["snaplockRetentionHours"] = None
-
+        # override the default output from pydantic by calling `to_dict()` of resource_pool_snapshot
+        if self.resource_pool_snapshot:
+            _dict["resourcePoolSnapshot"] = self.resource_pool_snapshot.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateResourcePoolSnapshotPayload from a dict"""
+        """Create an instance of UpdateResourcePoolSnapshotResponse from a dict"""
         if obj is None:
             return None
 
@@ -97,9 +86,11 @@ class CreateResourcePoolSnapshotPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "comment": obj.get("comment"),
-                "name": obj.get("name"),
-                "snaplockRetentionHours": obj.get("snaplockRetentionHours"),
+                "resourcePoolSnapshot": (
+                    ResourcePoolSnapshot.from_dict(obj["resourcePoolSnapshot"])
+                    if obj.get("resourcePoolSnapshot") is not None
+                    else None
+                )
             }
         )
         return _obj
