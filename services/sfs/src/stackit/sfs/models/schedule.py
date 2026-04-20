@@ -15,27 +15,39 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
 
-class CreateResourcePoolSnapshotPayload(BaseModel):
+class Schedule(BaseModel):
     """
-    CreateResourcePoolSnapshotPayload
+    Schedule
     """  # noqa: E501
 
-    comment: Optional[StrictStr] = Field(
-        default=None, description="(optional) A comment to add more information about a snapshot"
+    created_at: Optional[datetime] = Field(default=None, description="created at timestamp", alias="createdAt")
+    id: Optional[StrictStr] = Field(default=None, description="ID of the Schedule")
+    interval: Optional[StrictStr] = Field(
+        default=None, description="Interval of the Schedule (follows the cron schedule expression in Unix-like systems)"
     )
-    name: Optional[StrictStr] = Field(default=None, description="Name of the Resource Pool Snapshot")
-    snaplock_retention_hours: Optional[StrictInt] = Field(
-        default=None,
-        description="(optional) Time in hours after which snaplock on the snapshot expires",
-        alias="snaplockRetentionHours",
-    )
-    __properties: ClassVar[List[str]] = ["comment", "name", "snaplockRetentionHours"]
+    name: Optional[StrictStr] = Field(default=None, description="Name of the Schedule")
+    __properties: ClassVar[List[str]] = ["createdAt", "id", "interval", "name"]
+
+    @field_validator("created_at", mode="before")
+    def created_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +66,7 @@ class CreateResourcePoolSnapshotPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateResourcePoolSnapshotPayload from a JSON string"""
+        """Create an instance of Schedule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,21 +86,11 @@ class CreateResourcePoolSnapshotPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if comment (nullable) is None
-        # and model_fields_set contains the field
-        if self.comment is None and "comment" in self.model_fields_set:
-            _dict["comment"] = None
-
-        # set to None if snaplock_retention_hours (nullable) is None
-        # and model_fields_set contains the field
-        if self.snaplock_retention_hours is None and "snaplock_retention_hours" in self.model_fields_set:
-            _dict["snaplockRetentionHours"] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateResourcePoolSnapshotPayload from a dict"""
+        """Create an instance of Schedule from a dict"""
         if obj is None:
             return None
 
@@ -97,9 +99,10 @@ class CreateResourcePoolSnapshotPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "comment": obj.get("comment"),
+                "createdAt": obj.get("createdAt"),
+                "id": obj.get("id"),
+                "interval": obj.get("interval"),
                 "name": obj.get("name"),
-                "snaplockRetentionHours": obj.get("snaplockRetentionHours"),
             }
         )
         return _obj
