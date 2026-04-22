@@ -109,6 +109,8 @@ from stackit.cdn.models.redirect_config import RedirectConfig
 from stackit.cdn.models.redirect_rule import RedirectRule
 from stackit.cdn.models.region import Region
 from stackit.cdn.models.status_error import StatusError
+from stackit.cdn.models.tls_config import TlsConfig
+from stackit.cdn.models.tls_config_patch import TlsConfigPatch
 from stackit.cdn.models.waf_config import WafConfig
 from stackit.cdn.models.waf_config_patch import WafConfigPatch
 from stackit.cdn.models.waf_mode import WafMode

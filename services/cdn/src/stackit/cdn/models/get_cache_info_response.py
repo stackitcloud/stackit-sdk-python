@@ -34,7 +34,7 @@ class GetCacheInfoResponse(BaseModel):
 
     history: List[GetCacheInfoResponseHistoryEntry]
     last_purge_time: Optional[datetime] = Field(
-        description="Returns the last time the cache was purged by calling the PurgeCache endpoint.  Time represented as RFC3339 compliant string. If the cache was never purged, this returns `null` ",
+        description="Returns the last time the cache was purged by calling the PurgeCache endpoint. Time represented as RFC3339 compliant string. If the cache was never purged, this returns `null` ",
         alias="lastPurgeTime",
     )
     __properties: ClassVar[List[str]] = ["history", "lastPurgeTime"]

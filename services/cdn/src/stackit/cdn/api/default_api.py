@@ -616,7 +616,7 @@ class DefaultApi:
         intent_id: Annotated[
             Optional[StrictStr],
             Field(
-                description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped. "
+                description="While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped. "
             ),
         ] = None,
         _request_timeout: Union[
@@ -637,7 +637,7 @@ class DefaultApi:
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: UUID
-        :param intent_id: While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped.
+        :param intent_id: While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped.
         :type intent_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -692,7 +692,7 @@ class DefaultApi:
         intent_id: Annotated[
             Optional[StrictStr],
             Field(
-                description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped. "
+                description="While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped. "
             ),
         ] = None,
         _request_timeout: Union[
@@ -713,7 +713,7 @@ class DefaultApi:
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: UUID
-        :param intent_id: While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped.
+        :param intent_id: While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped.
         :type intent_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -768,7 +768,7 @@ class DefaultApi:
         intent_id: Annotated[
             Optional[StrictStr],
             Field(
-                description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped. "
+                description="While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped. "
             ),
         ] = None,
         _request_timeout: Union[
@@ -789,7 +789,7 @@ class DefaultApi:
         :type project_id: str
         :param distribution_id: (required)
         :type distribution_id: UUID
-        :param intent_id: While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped.
+        :param intent_id: While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple DELETE-Requests with the same `intentId` are received, all but the first request are dropped.
         :type intent_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -908,7 +908,7 @@ class DefaultApi:
     ) -> FindCachePathsResponse:
         """Return Paths that were purged
 
-        This returns paths that are present in the cache purging history.  Only substrings of the provided input are returned.  The response is sorted in descending order by the most recent purge.  So, assuming you have have the following purged for a distribution - `/test/1` at `2025-01-01` - `/test/2` at `2025-01-02` - `/someOtherPath/1` at `2025-01-03` - `/test/1` at `2025-01-04` - `/test/3` at `2025-01-05`, this would return the following paths, in the following order, assuming `/te` was the search parameter: - `/test/3` - `/test/1` - `/test/2`
+        This returns paths that are present in the cache purging history. Only substrings of the provided input are returned. The response is sorted in descending order by the most recent purge.  So, assuming you have have the following purged for a distribution - `/test/1` at `2025-01-01` - `/test/2` at `2025-01-02` - `/someOtherPath/1` at `2025-01-03` - `/test/1` at `2025-01-04` - `/test/3` at `2025-01-05`, this would return the following paths, in the following order, assuming `/te` was the search parameter: - `/test/3` - `/test/1` - `/test/2`
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -979,7 +979,7 @@ class DefaultApi:
     ) -> ApiResponse[FindCachePathsResponse]:
         """Return Paths that were purged
 
-        This returns paths that are present in the cache purging history.  Only substrings of the provided input are returned.  The response is sorted in descending order by the most recent purge.  So, assuming you have have the following purged for a distribution - `/test/1` at `2025-01-01` - `/test/2` at `2025-01-02` - `/someOtherPath/1` at `2025-01-03` - `/test/1` at `2025-01-04` - `/test/3` at `2025-01-05`, this would return the following paths, in the following order, assuming `/te` was the search parameter: - `/test/3` - `/test/1` - `/test/2`
+        This returns paths that are present in the cache purging history. Only substrings of the provided input are returned. The response is sorted in descending order by the most recent purge.  So, assuming you have have the following purged for a distribution - `/test/1` at `2025-01-01` - `/test/2` at `2025-01-02` - `/someOtherPath/1` at `2025-01-03` - `/test/1` at `2025-01-04` - `/test/3` at `2025-01-05`, this would return the following paths, in the following order, assuming `/te` was the search parameter: - `/test/3` - `/test/1` - `/test/2`
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -1050,7 +1050,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Return Paths that were purged
 
-        This returns paths that are present in the cache purging history.  Only substrings of the provided input are returned.  The response is sorted in descending order by the most recent purge.  So, assuming you have have the following purged for a distribution - `/test/1` at `2025-01-01` - `/test/2` at `2025-01-02` - `/someOtherPath/1` at `2025-01-03` - `/test/1` at `2025-01-04` - `/test/3` at `2025-01-05`, this would return the following paths, in the following order, assuming `/te` was the search parameter: - `/test/3` - `/test/1` - `/test/2`
+        This returns paths that are present in the cache purging history. Only substrings of the provided input are returned. The response is sorted in descending order by the most recent purge.  So, assuming you have have the following purged for a distribution - `/test/1` at `2025-01-01` - `/test/2` at `2025-01-02` - `/someOtherPath/1` at `2025-01-03` - `/test/1` at `2025-01-04` - `/test/3` at `2025-01-05`, this would return the following paths, in the following order, assuming `/te` was the search parameter: - `/test/3` - `/test/1` - `/test/2`
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -1175,7 +1175,7 @@ class DefaultApi:
     ) -> GetCacheInfoResponse:
         """Get Infos about the Caching State
 
-        Return caching info metadata, which contains the last cache purging time and a history of the most recent *full* purges.  If (and only if) you provide the path query parameter, the history will also contain granular cache purges.  The request will not fail if no data about a path is found.
+        Return caching info metadata, which contains the last cache purging time and a history of the most recent *full* purges.  If (and only if) you provide the path query parameter, the history will also contain granular cache purges. The request will not fail if no data about a path is found.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -1246,7 +1246,7 @@ class DefaultApi:
     ) -> ApiResponse[GetCacheInfoResponse]:
         """Get Infos about the Caching State
 
-        Return caching info metadata, which contains the last cache purging time and a history of the most recent *full* purges.  If (and only if) you provide the path query parameter, the history will also contain granular cache purges.  The request will not fail if no data about a path is found.
+        Return caching info metadata, which contains the last cache purging time and a history of the most recent *full* purges.  If (and only if) you provide the path query parameter, the history will also contain granular cache purges. The request will not fail if no data about a path is found.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -1317,7 +1317,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get Infos about the Caching State
 
-        Return caching info metadata, which contains the last cache purging time and a history of the most recent *full* purges.  If (and only if) you provide the path query parameter, the history will also contain granular cache purges.  The request will not fail if no data about a path is found.
+        Return caching info metadata, which contains the last cache purging time and a history of the most recent *full* purges.  If (and only if) you provide the path query parameter, the history will also contain granular cache purges. The request will not fail if no data about a path is found.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -1988,19 +1988,19 @@ class DefaultApi:
         to: Annotated[
             Optional[datetime],
             Field(
-                description='the end of the time range for which logs should be returned. If not specified,  "now" is used. '
+                description='the end of the time range for which logs should be returned. If not specified, "now" is used. '
             ),
         ] = None,
         page_size: Annotated[
             Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]],
             Field(
-                description="Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive) "
+                description="Quantifies how many log entries should be returned on this page. Must be a natural number between 1 and 1000 (inclusive) "
             ),
         ] = None,
         page_identifier: Annotated[
             Optional[StrictStr],
             Field(
-                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
+                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
             ),
         ] = None,
         sort_by: Annotated[
@@ -2013,7 +2013,7 @@ class DefaultApi:
         waf_action: Annotated[
             Optional[WAFRuleAction],
             Field(
-                description="If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged  but the request not blocked "
+                description="If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged but the request not blocked "
             ),
         ] = None,
         data_center_region: Annotated[
@@ -2059,17 +2059,17 @@ class DefaultApi:
         :type distribution_id: UUID
         :param var_from: the start of the time range for which logs should be returned
         :type var_from: datetime
-        :param to: the end of the time range for which logs should be returned. If not specified,  \"now\" is used.
+        :param to: the end of the time range for which logs should be returned. If not specified, \"now\" is used.
         :type to: datetime
-        :param page_size: Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+        :param page_size: Quantifies how many log entries should be returned on this page. Must be a natural number between 1 and 1000 (inclusive)
         :type page_size: int
-        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
         :param sort_by: Sorts the log messages by a specific field. Defaults to `timestamp`.  Supported sort options: - `timestamp` - `dataCenterRegion` - `requestCountryCode` - `statusCode` - `cacheHit` - `size` - `path` - `host`
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
-        :param waf_action: If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged  but the request not blocked
+        :param waf_action: If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged but the request not blocked
         :type waf_action: WAFRuleAction
         :param data_center_region: Filters by the CDN data center region that served the request. Can be combined with other filters
         :type data_center_region: str
@@ -2145,19 +2145,19 @@ class DefaultApi:
         to: Annotated[
             Optional[datetime],
             Field(
-                description='the end of the time range for which logs should be returned. If not specified,  "now" is used. '
+                description='the end of the time range for which logs should be returned. If not specified, "now" is used. '
             ),
         ] = None,
         page_size: Annotated[
             Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]],
             Field(
-                description="Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive) "
+                description="Quantifies how many log entries should be returned on this page. Must be a natural number between 1 and 1000 (inclusive) "
             ),
         ] = None,
         page_identifier: Annotated[
             Optional[StrictStr],
             Field(
-                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
+                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
             ),
         ] = None,
         sort_by: Annotated[
@@ -2170,7 +2170,7 @@ class DefaultApi:
         waf_action: Annotated[
             Optional[WAFRuleAction],
             Field(
-                description="If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged  but the request not blocked "
+                description="If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged but the request not blocked "
             ),
         ] = None,
         data_center_region: Annotated[
@@ -2216,17 +2216,17 @@ class DefaultApi:
         :type distribution_id: UUID
         :param var_from: the start of the time range for which logs should be returned
         :type var_from: datetime
-        :param to: the end of the time range for which logs should be returned. If not specified,  \"now\" is used.
+        :param to: the end of the time range for which logs should be returned. If not specified, \"now\" is used.
         :type to: datetime
-        :param page_size: Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+        :param page_size: Quantifies how many log entries should be returned on this page. Must be a natural number between 1 and 1000 (inclusive)
         :type page_size: int
-        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
         :param sort_by: Sorts the log messages by a specific field. Defaults to `timestamp`.  Supported sort options: - `timestamp` - `dataCenterRegion` - `requestCountryCode` - `statusCode` - `cacheHit` - `size` - `path` - `host`
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
-        :param waf_action: If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged  but the request not blocked
+        :param waf_action: If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged but the request not blocked
         :type waf_action: WAFRuleAction
         :param data_center_region: Filters by the CDN data center region that served the request. Can be combined with other filters
         :type data_center_region: str
@@ -2302,19 +2302,19 @@ class DefaultApi:
         to: Annotated[
             Optional[datetime],
             Field(
-                description='the end of the time range for which logs should be returned. If not specified,  "now" is used. '
+                description='the end of the time range for which logs should be returned. If not specified, "now" is used. '
             ),
         ] = None,
         page_size: Annotated[
             Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]],
             Field(
-                description="Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive) "
+                description="Quantifies how many log entries should be returned on this page. Must be a natural number between 1 and 1000 (inclusive) "
             ),
         ] = None,
         page_identifier: Annotated[
             Optional[StrictStr],
             Field(
-                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
+                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
             ),
         ] = None,
         sort_by: Annotated[
@@ -2327,7 +2327,7 @@ class DefaultApi:
         waf_action: Annotated[
             Optional[WAFRuleAction],
             Field(
-                description="If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged  but the request not blocked "
+                description="If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged but the request not blocked "
             ),
         ] = None,
         data_center_region: Annotated[
@@ -2373,17 +2373,17 @@ class DefaultApi:
         :type distribution_id: UUID
         :param var_from: the start of the time range for which logs should be returned
         :type var_from: datetime
-        :param to: the end of the time range for which logs should be returned. If not specified,  \"now\" is used.
+        :param to: the end of the time range for which logs should be returned. If not specified, \"now\" is used.
         :type to: datetime
-        :param page_size: Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+        :param page_size: Quantifies how many log entries should be returned on this page. Must be a natural number between 1 and 1000 (inclusive)
         :type page_size: int
-        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
         :param sort_by: Sorts the log messages by a specific field. Defaults to `timestamp`.  Supported sort options: - `timestamp` - `dataCenterRegion` - `requestCountryCode` - `statusCode` - `cacheHit` - `size` - `path` - `host`
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
-        :param waf_action: If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged  but the request not blocked
+        :param waf_action: If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if `ALLOWED` then all requests with no violation are returned. If `BLOCKED` then those where a WAF rule blocked a request and if `LOGGED` then only those requests where the WAF violation was only logged but the request not blocked
         :type waf_action: WAFRuleAction
         :param data_center_region: Filters by the CDN data center region that served the request. Can be combined with other filters
         :type data_center_region: str
@@ -2843,13 +2843,13 @@ class DefaultApi:
         to: Annotated[
             Optional[datetime],
             Field(
-                description="the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on. "
+                description="the end of the time range for which statistics should be returned. If not specified, the end of the current time interval is used, e.g. next day for daily, next month for monthly, and so on. "
             ),
         ] = None,
         interval: Annotated[
             Optional[StrictStr],
             Field(
-                description="Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z` "
+                description="Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z` "
             ),
         ] = None,
         _request_timeout: Union[
@@ -2864,7 +2864,7 @@ class DefaultApi:
     ) -> GetStatisticsResponse:
         """Retrieve the statistics of a distribution
 
-        Returns the statistics of the distribution in the given time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval. In case no statistics for a time interval exist, no record is returned. The time range for which statistics should be returned can be configured using query parameters.  Timestamps are assumed to be UTC. This is especially important for the \"buckets\" when you, for example, return daily information. A day always starts and ends at 00:00Z.  **Important Note:** Lower bounds are inclusive, upper bounds are exclusive. If you, for example, want a daily grouped which starts on the 1st Jan and also contains the full 10th Jan day, you would define `2025-01-01T00:00:00Z` as the lower and `2025-01-11T00:00:00Z` as the upper bound.  The upper bound is optional. If you omit it, the API will use the start of the next interval as the upper bound.   Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
+        Returns the statistics of the distribution in the given time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval. In case no statistics for a time interval exist, no record is returned. The time range for which statistics should be returned can be configured using query parameters.  Timestamps are assumed to be UTC. This is especially important for the \"buckets\" when you, for example, return daily information. A day always starts and ends at 00:00Z.  **Important Note:** Lower bounds are inclusive, upper bounds are exclusive. If you, for example, want a daily grouped which starts on the 1st Jan and also contains the full 10th Jan day, you would define `2025-01-01T00:00:00Z` as the lower and `2025-01-11T00:00:00Z` as the upper bound.  The upper bound is optional. If you omit it, the API will use the start of the next interval as the upper bound. Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -2872,9 +2872,9 @@ class DefaultApi:
         :type distribution_id: UUID
         :param var_from: the start of the time range for which statistics should be returned (required)
         :type var_from: datetime
-        :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
+        :param to: the end of the time range for which statistics should be returned. If not specified, the end of the current time interval is used, e.g. next day for daily, next month for monthly, and so on.
         :type to: datetime
-        :param interval: Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z`
+        :param interval: Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z`
         :type interval: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2934,13 +2934,13 @@ class DefaultApi:
         to: Annotated[
             Optional[datetime],
             Field(
-                description="the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on. "
+                description="the end of the time range for which statistics should be returned. If not specified, the end of the current time interval is used, e.g. next day for daily, next month for monthly, and so on. "
             ),
         ] = None,
         interval: Annotated[
             Optional[StrictStr],
             Field(
-                description="Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z` "
+                description="Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z` "
             ),
         ] = None,
         _request_timeout: Union[
@@ -2955,7 +2955,7 @@ class DefaultApi:
     ) -> ApiResponse[GetStatisticsResponse]:
         """Retrieve the statistics of a distribution
 
-        Returns the statistics of the distribution in the given time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval. In case no statistics for a time interval exist, no record is returned. The time range for which statistics should be returned can be configured using query parameters.  Timestamps are assumed to be UTC. This is especially important for the \"buckets\" when you, for example, return daily information. A day always starts and ends at 00:00Z.  **Important Note:** Lower bounds are inclusive, upper bounds are exclusive. If you, for example, want a daily grouped which starts on the 1st Jan and also contains the full 10th Jan day, you would define `2025-01-01T00:00:00Z` as the lower and `2025-01-11T00:00:00Z` as the upper bound.  The upper bound is optional. If you omit it, the API will use the start of the next interval as the upper bound.   Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
+        Returns the statistics of the distribution in the given time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval. In case no statistics for a time interval exist, no record is returned. The time range for which statistics should be returned can be configured using query parameters.  Timestamps are assumed to be UTC. This is especially important for the \"buckets\" when you, for example, return daily information. A day always starts and ends at 00:00Z.  **Important Note:** Lower bounds are inclusive, upper bounds are exclusive. If you, for example, want a daily grouped which starts on the 1st Jan and also contains the full 10th Jan day, you would define `2025-01-01T00:00:00Z` as the lower and `2025-01-11T00:00:00Z` as the upper bound.  The upper bound is optional. If you omit it, the API will use the start of the next interval as the upper bound. Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -2963,9 +2963,9 @@ class DefaultApi:
         :type distribution_id: UUID
         :param var_from: the start of the time range for which statistics should be returned (required)
         :type var_from: datetime
-        :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
+        :param to: the end of the time range for which statistics should be returned. If not specified, the end of the current time interval is used, e.g. next day for daily, next month for monthly, and so on.
         :type to: datetime
-        :param interval: Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z`
+        :param interval: Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z`
         :type interval: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3025,13 +3025,13 @@ class DefaultApi:
         to: Annotated[
             Optional[datetime],
             Field(
-                description="the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on. "
+                description="the end of the time range for which statistics should be returned. If not specified, the end of the current time interval is used, e.g. next day for daily, next month for monthly, and so on. "
             ),
         ] = None,
         interval: Annotated[
             Optional[StrictStr],
             Field(
-                description="Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z` "
+                description="Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z` "
             ),
         ] = None,
         _request_timeout: Union[
@@ -3046,7 +3046,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve the statistics of a distribution
 
-        Returns the statistics of the distribution in the given time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval. In case no statistics for a time interval exist, no record is returned. The time range for which statistics should be returned can be configured using query parameters.  Timestamps are assumed to be UTC. This is especially important for the \"buckets\" when you, for example, return daily information. A day always starts and ends at 00:00Z.  **Important Note:** Lower bounds are inclusive, upper bounds are exclusive. If you, for example, want a daily grouped which starts on the 1st Jan and also contains the full 10th Jan day, you would define `2025-01-01T00:00:00Z` as the lower and `2025-01-11T00:00:00Z` as the upper bound.  The upper bound is optional. If you omit it, the API will use the start of the next interval as the upper bound.   Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
+        Returns the statistics of the distribution in the given time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval. In case no statistics for a time interval exist, no record is returned. The time range for which statistics should be returned can be configured using query parameters.  Timestamps are assumed to be UTC. This is especially important for the \"buckets\" when you, for example, return daily information. A day always starts and ends at 00:00Z.  **Important Note:** Lower bounds are inclusive, upper bounds are exclusive. If you, for example, want a daily grouped which starts on the 1st Jan and also contains the full 10th Jan day, you would define `2025-01-01T00:00:00Z` as the lower and `2025-01-11T00:00:00Z` as the upper bound.  The upper bound is optional. If you omit it, the API will use the start of the next interval as the upper bound. Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -3054,9 +3054,9 @@ class DefaultApi:
         :type distribution_id: UUID
         :param var_from: the start of the time range for which statistics should be returned (required)
         :type var_from: datetime
-        :param to: the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
+        :param to: the end of the time range for which statistics should be returned. If not specified, the end of the current time interval is used, e.g. next day for daily, next month for monthly, and so on.
         :type to: datetime
-        :param interval: Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z`
+        :param interval: Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the `daily` interval, the group starts (inclusive) and ends (exclusive) at `00:00Z`
         :type interval: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3180,7 +3180,7 @@ class DefaultApi:
         page_size: Annotated[
             Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(
-                description="Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive) "
+                description="Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive) "
             ),
         ] = None,
         with_waf_status: Annotated[
@@ -3192,13 +3192,13 @@ class DefaultApi:
         page_identifier: Annotated[
             Optional[StrictStr],
             Field(
-                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
+                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
             ),
         ] = None,
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other. "
+                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other. "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -3214,17 +3214,17 @@ class DefaultApi:
     ) -> ListDistributionsResponse:
         """List all distributions belonging to a specific project
 
-        ListDistributions returns a list of all CDN distributions associated with  a given project, ordered by their distribution Id.
+        ListDistributions returns a list of all CDN distributions associated with a given project, ordered by their distribution Id.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
-        :param page_size: Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
+        :param page_size: Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive)
         :type page_size: int
         :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
         :type with_waf_status: bool
-        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
+        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -3283,7 +3283,7 @@ class DefaultApi:
         page_size: Annotated[
             Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(
-                description="Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive) "
+                description="Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive) "
             ),
         ] = None,
         with_waf_status: Annotated[
@@ -3295,13 +3295,13 @@ class DefaultApi:
         page_identifier: Annotated[
             Optional[StrictStr],
             Field(
-                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
+                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
             ),
         ] = None,
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other. "
+                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other. "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -3317,17 +3317,17 @@ class DefaultApi:
     ) -> ApiResponse[ListDistributionsResponse]:
         """List all distributions belonging to a specific project
 
-        ListDistributions returns a list of all CDN distributions associated with  a given project, ordered by their distribution Id.
+        ListDistributions returns a list of all CDN distributions associated with a given project, ordered by their distribution Id.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
-        :param page_size: Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
+        :param page_size: Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive)
         :type page_size: int
         :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
         :type with_waf_status: bool
-        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
+        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -3386,7 +3386,7 @@ class DefaultApi:
         page_size: Annotated[
             Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(
-                description="Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive) "
+                description="Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive) "
             ),
         ] = None,
         with_waf_status: Annotated[
@@ -3398,13 +3398,13 @@ class DefaultApi:
         page_identifier: Annotated[
             Optional[StrictStr],
             Field(
-                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
+                description='Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get "pushed" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API. '
             ),
         ] = None,
         sort_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other. "
+                description="The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other. "
             ),
         ] = None,
         sort_order: Optional[StrictStr] = None,
@@ -3420,17 +3420,17 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List all distributions belonging to a specific project
 
-        ListDistributions returns a list of all CDN distributions associated with  a given project, ordered by their distribution Id.
+        ListDistributions returns a list of all CDN distributions associated with a given project, ordered by their distribution Id.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
-        :param page_size: Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
+        :param page_size: Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive)
         :type page_size: int
         :param with_waf_status: If set, the top level of a distribution contains a `waf` property, which defines the status of the waf. This includes a list of all resolved rules.
         :type with_waf_status: bool
-        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+        :param page_identifier: Identifier is returned by the previous response and is used to request the next page.  As the `pageIdentifier` encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \"pushed\" to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
         :type page_identifier: str
-        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
+        :param sort_by: The following sort options exist. We default to `createdAt` - `id` - Sort by distribution Id using String comparison - `updatedAt` - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - `createdAt` - Sort by when the distribution was initially created. - `originUrl` - Sort by originUrl using String comparison - `status` - Sort by distribution status, using String comparison - `originUrlRelated` - The originUrl is segmented and reversed before sorting. E.g. `www.example.com` is converted to `com.example.www` for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
         :type sort_by: str
         :param sort_order:
         :type sort_order: str
@@ -4079,7 +4079,7 @@ class DefaultApi:
     ) -> object:
         """Clear distribution cache
 
-        Clear the cache for this distribution.  All content, regardless of its staleness, will get refetched from the host.
+        Clear the cache for this distribution. All content, regardless of its staleness, will get refetched from the host.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -4150,7 +4150,7 @@ class DefaultApi:
     ) -> ApiResponse[object]:
         """Clear distribution cache
 
-        Clear the cache for this distribution.  All content, regardless of its staleness, will get refetched from the host.
+        Clear the cache for this distribution. All content, regardless of its staleness, will get refetched from the host.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str
@@ -4221,7 +4221,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Clear distribution cache
 
-        Clear the cache for this distribution.  All content, regardless of its staleness, will get refetched from the host.
+        Clear the cache for this distribution. All content, regardless of its staleness, will get refetched from the host.
 
         :param project_id: Your STACKIT Project Id (required)
         :type project_id: str

@@ -33,7 +33,7 @@ class PutCustomDomainPayload(BaseModel):
     certificate: Optional[PutCustomDomainPayloadCertificate] = None
     intent_id: Optional[StrictStr] = Field(
         default=None,
-        description="While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple modifying Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped. ",
+        description="While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple modifying Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped. ",
         alias="intentId",
     )
     __properties: ClassVar[List[str]] = ["certificate", "intentId"]

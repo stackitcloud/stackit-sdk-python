@@ -25,7 +25,7 @@ from stackit.cdn.models.waf_status_rule_block import WafStatusRuleBlock
 
 class DistributionWaf(BaseModel):
     """
-    For this property to be present two pre-conditions must be met:   - the WAF was enabled at least once - the query parameter ?withWafStatus is truthy  This property contains the waf Status. At this point in time, this contains all resolved rules. Rules are split into 3 groups:  - enabledRules - logOnlyRules  - disabledRules  **Do note that the global waf mode (Disabled, LogOnly, Enabled) is *NOT* reflected in this list!**
+    For this property to be present two pre-conditions must be met: - the WAF was enabled at least once - the query parameter ?withWafStatus is truthy  This property contains the waf Status. At this point in time, this contains all resolved rules. Rules are split into 3 groups: - enabledRules - logOnlyRules - disabledRules  **Do note that the global waf mode (Disabled, LogOnly, Enabled) is *NOT* reflected in this list!**
     """  # noqa: E501
 
     disabled_rules: List[WafStatusRuleBlock] = Field(alias="disabledRules")
