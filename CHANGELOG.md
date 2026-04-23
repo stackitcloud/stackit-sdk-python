@@ -1,4 +1,13 @@
 ## Release (2026-MM-DD)
+- `sfs`: [v0.4.0](services/sfs/CHANGELOG.md#v040)
+  - **Feature:** model `CreateResourcePoolPayload` now has an additional field `snapshotPolicyId`
+  - **Feature:** model `CreateResourcePoolSnapshotPayload` now has an additional field `snaplockRetentionHours`
+  - **Feature:** model `ResourcePool` now has an additional field `snapshotPolicy`
+  - **Feature:** model `ResourcePoolSnapshot` now has an additional field `snaplockExpiryTime`
+  - **Feature:** model `ResourcePoolSpace` now has an additional field `usedBySnapshotsGigabytes`
+  - **Feature:** model `UpdateResourcePoolPayload` now has an additional field `snapshotPolicyId`
+  - **Feature:** new models: `DisableLockResponse`, `EnableLockResponse`, `GetLockResponse`, `GetScheduleResponse`, `GetSnapshotPolicyResponse`, `ListSchedulesResponse`, `ListSnapshotPoliciesResponse`, `ResourcePoolSnapshotPolicy`, `Schedule`, `SnapshotPolicy`, `SnapshotPolicySchedule`, `UpdateResourcePoolSnapshotPayload`, `UpdateResourcePoolSnapshotResponse`
+  - **Feature:** new operations: `UpdateResourcePoolSnapshot`, `ListSchedules`, `GetSchedule`, `ListSnapshotPolicies`, `GetSnapshotPolicy`, `DisableLock`, `GetLock`, `EnableLock`,
 - `ske`: [v1.8.0](services/ske/CHANGELOG.md#v180)
   - **Breaking Change:** Change status codes: remove 200, change response type of 202 and add 400 in some API calls
   - **Breaking Change:** Aligned CRI name validation with the API side validation (removed docker)
