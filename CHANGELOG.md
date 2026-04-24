@@ -10,6 +10,12 @@
   - **Feature:** Add `config_drive` attribute to ModelClass `Server` and `CreateServerPayload`
 - `alb`: [v0.9.3](services/alb/CHANGELOG.md#v093)
   - Add HTTP 429 status code to some API client methods
+- `cdn`: [v2.5.0](services/cdn/CHANGELOG.md#v250)
+  - **Feature:** New model classes `TlsConfigPatch` and `TlsConfig`
+  - **Feature:** add attributes `forwardHostHeader`, `stripResponseCookies` and `tls` to the model classes:
+    - `Config`
+    - `ConfigPatch`
+    - `CreateDistributionPayload`
 - `certificates`: [v1.3.1](services/certificates/CHANGELOG.md#v131)
   - Add HTTP 429 status code to some API client methods
 - `loadbalancer`: [v0.9.3](services/loadbalancer/CHANGELOG.md#v093)
