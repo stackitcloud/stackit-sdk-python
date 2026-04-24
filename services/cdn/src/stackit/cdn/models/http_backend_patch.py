@@ -32,7 +32,7 @@ class HttpBackendPatch(BaseModel):
     )
     origin_request_headers: Optional[Dict[str, StrictStr]] = Field(
         default=None,
-        description="Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text. ",
+        description="Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers. The configuration is stored as plain text. ",
         alias="originRequestHeaders",
     )
     origin_url: Optional[StrictStr] = Field(default=None, alias="originUrl")

@@ -23,7 +23,7 @@ from typing_extensions import Self
 
 class WafStatusRuleBlockReasonNeverDefined(BaseModel):
     """
-    This object only ever shows up in the disabled rules section.  If rules are never defined (e.g. no collection, rule group, or the rule itself is ever mentioned), they are implicitly disabled
+    This object only ever shows up in the disabled rules section. If rules are never defined (e.g. no collection, rule group, or the rule itself is ever mentioned), they are implicitly disabled
     """  # noqa: E501
 
     type: StrictStr = Field(description="This is always `neverDefined`")

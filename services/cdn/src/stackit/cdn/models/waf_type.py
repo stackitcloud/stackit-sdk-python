@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class WafType(str, Enum):
     """
-    Enable or disable the Premium WAF. Do note that enabling the Premium WAF will cause additional fees.   Some features are gated behind the Premium WAF, like additional, **premium-only rules** and the ability to create **custom rules** (not yet implemented)
+    Enable or disable the Premium WAF. Do note that enabling the Premium WAF will cause additional fees.  Some features are gated behind the Premium WAF, like additional, **premium-only rules** and the ability to create **custom rules** (not yet implemented)
     """
 
     """

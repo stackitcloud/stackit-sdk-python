@@ -17,20 +17,22 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing_extensions import Self
 
 
-class PurgeCachePayload(BaseModel):
+class TlsConfig(BaseModel):
     """
-    PurgeCachePayload
+    Configuration for TLS protocol versions. Note: Enabling older TLS versions (1.0, 1.1) is generally discouraged for security reasons.
     """  # noqa: E501
 
-    path: Optional[StrictStr] = Field(
-        default=None,
-        description="Defines an optional path. If this is set, a granular purge is done. If missing, the entire cache is invalidated. During a granular cache purge, only the provided path is purged.  Please do not that for example `/some/path` and `/some/path.txt` are considered different paths. ",
+    enable_tls10: StrictBool = Field(
+        description="If set to true, the distribution will accept connections using TLS 1.0.", alias="enableTls10"
     )
-    __properties: ClassVar[List[str]] = ["path"]
+    enable_tls11: StrictBool = Field(
+        description="If set to true, the distribution will accept connections using TLS 1.1.", alias="enableTls11"
+    )
+    __properties: ClassVar[List[str]] = ["enableTls10", "enableTls11"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +51,7 @@ class PurgeCachePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PurgeCachePayload from a JSON string"""
+        """Create an instance of TlsConfig from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,12 +75,12 @@ class PurgeCachePayload(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PurgeCachePayload from a dict"""
+        """Create an instance of TlsConfig from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"path": obj.get("path")})
+        _obj = cls.model_validate({"enableTls10": obj.get("enableTls10"), "enableTls11": obj.get("enableTls11")})
         return _obj

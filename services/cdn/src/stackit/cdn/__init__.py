@@ -92,6 +92,8 @@ __all__ = [
     "RedirectRule",
     "Region",
     "StatusError",
+    "TlsConfig",
+    "TlsConfigPatch",
     "WAFRuleAction",
     "WAFViolation",
     "WafConfig",
@@ -270,6 +272,8 @@ from stackit.cdn.models.redirect_config import RedirectConfig as RedirectConfig
 from stackit.cdn.models.redirect_rule import RedirectRule as RedirectRule
 from stackit.cdn.models.region import Region as Region
 from stackit.cdn.models.status_error import StatusError as StatusError
+from stackit.cdn.models.tls_config import TlsConfig as TlsConfig
+from stackit.cdn.models.tls_config_patch import TlsConfigPatch as TlsConfigPatch
 from stackit.cdn.models.waf_config import WafConfig as WafConfig
 from stackit.cdn.models.waf_config_patch import WafConfigPatch as WafConfigPatch
 from stackit.cdn.models.waf_mode import WafMode as WafMode
