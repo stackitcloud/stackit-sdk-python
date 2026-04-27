@@ -33,6 +33,7 @@ __all__ = [
     "Instance",
     "InstanceList",
     "Kubeconfig",
+    "KubernetesReleaseList",
     "Plan",
     "PlanList",
     "Token",
@@ -64,6 +65,9 @@ from stackit.edge.models.create_instance_payload import (
 from stackit.edge.models.instance import Instance as Instance
 from stackit.edge.models.instance_list import InstanceList as InstanceList
 from stackit.edge.models.kubeconfig import Kubeconfig as Kubeconfig
+from stackit.edge.models.kubernetes_release_list import (
+    KubernetesReleaseList as KubernetesReleaseList,
+)
 from stackit.edge.models.plan import Plan as Plan
 from stackit.edge.models.plan_list import PlanList as PlanList
 from stackit.edge.models.token import Token as Token
