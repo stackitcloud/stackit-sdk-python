@@ -30,6 +30,9 @@ from pydantic import (
 from typing_extensions import Self
 
 from stackit.sfs.models.snapshot_policy_schedule import SnapshotPolicySchedule
+from stackit.sfs.models.snapshot_policy_snapshot_policy_schedule import (
+    SnapshotPolicySnapshotPolicySchedule,
+)
 
 
 class SnapshotPolicy(BaseModel):
@@ -42,8 +45,21 @@ class SnapshotPolicy(BaseModel):
     enabled: Optional[StrictBool] = Field(default=None, description="Wether the Snapshot Policy is enabled")
     id: Optional[StrictStr] = Field(default=None, description="ID of the Snapshot Policy")
     name: Optional[StrictStr] = Field(default=None, description="Name of the Snapshot Policy")
-    schedules: Optional[List[SnapshotPolicySchedule]] = Field(default=None, description="associated schedules")
-    __properties: ClassVar[List[str]] = ["comment", "createdAt", "enabled", "id", "name", "schedules"]
+    schedules: Optional[List[SnapshotPolicySchedule]] = Field(
+        default=None, description="(deprecated) associated schedules"
+    )
+    snapshot_schedules: Optional[List[SnapshotPolicySnapshotPolicySchedule]] = Field(
+        default=None, description="associated schedules", alias="snapshotSchedules"
+    )
+    __properties: ClassVar[List[str]] = [
+        "comment",
+        "createdAt",
+        "enabled",
+        "id",
+        "name",
+        "schedules",
+        "snapshotSchedules",
+    ]
 
     @field_validator("created_at", mode="before")
     def created_at_change_year_zero_to_one(cls, value):
@@ -102,6 +118,13 @@ class SnapshotPolicy(BaseModel):
                 if _item_schedules:
                     _items.append(_item_schedules.to_dict())
             _dict["schedules"] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in snapshot_schedules (list)
+        _items = []
+        if self.snapshot_schedules:
+            for _item_snapshot_schedules in self.snapshot_schedules:
+                if _item_snapshot_schedules:
+                    _items.append(_item_snapshot_schedules.to_dict())
+            _dict["snapshotSchedules"] = _items
         return _dict
 
     @classmethod
@@ -123,6 +146,11 @@ class SnapshotPolicy(BaseModel):
                 "schedules": (
                     [SnapshotPolicySchedule.from_dict(_item) for _item in obj["schedules"]]
                     if obj.get("schedules") is not None
+                    else None
+                ),
+                "snapshotSchedules": (
+                    [SnapshotPolicySnapshotPolicySchedule.from_dict(_item) for _item in obj["snapshotSchedules"]]
+                    if obj.get("snapshotSchedules") is not None
                     else None
                 ),
             }
