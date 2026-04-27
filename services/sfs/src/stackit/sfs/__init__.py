@@ -66,6 +66,7 @@ __all__ = [
     "ShareExportPolicyRule",
     "SnapshotPolicy",
     "SnapshotPolicySchedule",
+    "SnapshotPolicySnapshotPolicySchedule",
     "Status",
     "UpdateResourcePoolPayload",
     "UpdateResourcePoolResponse",
@@ -192,6 +193,9 @@ from stackit.sfs.models.share_export_policy_rule import (
 from stackit.sfs.models.snapshot_policy import SnapshotPolicy as SnapshotPolicy
 from stackit.sfs.models.snapshot_policy_schedule import (
     SnapshotPolicySchedule as SnapshotPolicySchedule,
+)
+from stackit.sfs.models.snapshot_policy_snapshot_policy_schedule import (
+    SnapshotPolicySnapshotPolicySchedule as SnapshotPolicySnapshotPolicySchedule,
 )
 from stackit.sfs.models.status import Status as Status
 from stackit.sfs.models.update_resource_pool_payload import (
