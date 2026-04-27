@@ -75,6 +75,9 @@ from stackit.sfs.models.share_export_policy import ShareExportPolicy
 from stackit.sfs.models.share_export_policy_rule import ShareExportPolicyRule
 from stackit.sfs.models.snapshot_policy import SnapshotPolicy
 from stackit.sfs.models.snapshot_policy_schedule import SnapshotPolicySchedule
+from stackit.sfs.models.snapshot_policy_snapshot_policy_schedule import (
+    SnapshotPolicySnapshotPolicySchedule,
+)
 from stackit.sfs.models.status import Status
 from stackit.sfs.models.update_resource_pool_payload import UpdateResourcePoolPayload
 from stackit.sfs.models.update_resource_pool_response import UpdateResourcePoolResponse

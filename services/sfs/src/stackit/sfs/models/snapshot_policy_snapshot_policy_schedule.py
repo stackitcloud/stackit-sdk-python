@@ -15,29 +15,54 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Self
 
 
-class SnapshotPolicySchedule(BaseModel):
+class SnapshotPolicySnapshotPolicySchedule(BaseModel):
     """
-    SnapshotPolicySchedule
+    SnapshotPolicySnapshotPolicySchedule
     """  # noqa: E501
 
-    count: Optional[StrictInt] = Field(default=None, description="Retention Count")
+    created_at: Optional[datetime] = Field(default=None, alias="createdAt")
+    id: Optional[StrictStr] = Field(default=None, description="ID of the Schedule")
     interval: Optional[StrictStr] = Field(
         default=None, description="Interval of the Schedule (follows the cron schedule expression in Unix-like systems)"
     )
+    name: Optional[StrictStr] = Field(default=None, description="Name of the Schedule")
     prefix: Optional[StrictStr] = Field(
         default=None, description="Prefix used for the snapshots created by this policy"
     )
+    retention_count: Optional[StrictInt] = Field(default=None, description="Retention Count", alias="retentionCount")
     retention_period: Optional[StrictStr] = Field(
         default=None, description='Retention Period (ISO 8601 format or "infinite")', alias="retentionPeriod"
     )
-    schedule_id: Optional[StrictStr] = Field(default=None, description="ID of the Schedule", alias="scheduleId")
-    __properties: ClassVar[List[str]] = ["count", "interval", "prefix", "retentionPeriod", "scheduleId"]
+    __properties: ClassVar[List[str]] = [
+        "createdAt",
+        "id",
+        "interval",
+        "name",
+        "prefix",
+        "retentionCount",
+        "retentionPeriod",
+    ]
+
+    @field_validator("created_at", mode="before")
+    def created_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -56,7 +81,7 @@ class SnapshotPolicySchedule(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SnapshotPolicySchedule from a JSON string"""
+        """Create an instance of SnapshotPolicySnapshotPolicySchedule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +105,7 @@ class SnapshotPolicySchedule(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SnapshotPolicySchedule from a dict"""
+        """Create an instance of SnapshotPolicySnapshotPolicySchedule from a dict"""
         if obj is None:
             return None
 
@@ -89,11 +114,13 @@ class SnapshotPolicySchedule(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "count": obj.get("count"),
+                "createdAt": obj.get("createdAt"),
+                "id": obj.get("id"),
                 "interval": obj.get("interval"),
+                "name": obj.get("name"),
                 "prefix": obj.get("prefix"),
+                "retentionCount": obj.get("retentionCount"),
                 "retentionPeriod": obj.get("retentionPeriod"),
-                "scheduleId": obj.get("scheduleId"),
             }
         )
         return _obj
