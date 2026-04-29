@@ -1,6 +1,6 @@
 [project]
 name = "stackit-telemetryrouter"
-version = "v0.0.1a"
+version = "v0.1.0"
 description = "STACKIT Telemetry Router API"
 authors = [{name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud"}]
 requires-python = ">=3.9,<4.0"
