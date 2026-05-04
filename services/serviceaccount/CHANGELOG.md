@@ -1,3 +1,6 @@
+## v0.8.0
+- **Feature:** New API client method `get_federated_identity_provider`
+
 ## v0.7.0
 - **Feature:** Add `token_endpoint` attribute to `CreateServiceAccountKeyResponseCredentials` model class
 

@@ -44,8 +44,11 @@
   - **Feature:** New enum type `RetentionMode`
   - **Feature:** New field `object_lock_enabled` in `Bucket` model struct
   - **Feature:** New API client methods: `create_compliance_lock`, `delete_compliance_lock`, `delete_default_retention`, `get_compliance_lock`, `get_credentials_group`, `get_default_retention`, `set_default_retention`
-- `serviceaccount`: [v0.7.0](services/serviceaccount/CHANGELOG.md#v070)
+- `serviceaccount`:
+  - [v0.7.0](services/serviceaccount/CHANGELOG.md#v070)
   - **Feature:** Add `token_endpoint` attribute to `CreateServiceAccountKeyResponseCredentials` model class
+  - [v0.8.0](services/serviceaccount/CHANGELOG.md#v080)
+    - **Feature:** New API client method `get_federated_identity_provider`
 - `observability`: [v0.14.0](services/observability/CHANGELOG.md#v0140)
   - **Feature:** Add attribute `otlp_http_logs_url` to `InstanceSensitiveData` model class
 - `vpn`: [v0.1.0](services/vpn/CHANGELOG.md#v010)
