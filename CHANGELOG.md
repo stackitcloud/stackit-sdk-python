@@ -1,4 +1,6 @@
 ## Release (2026-MM-DD)
+- `cost`: [v0.1.0](services/cost/CHANGELOG.md#v010)
+  - **New**: STACKIT cost service
 - `sfs`:
   - [v0.5.0](services/sfs/CHANGELOG.md#v050)
     - **Deprecation:** deprecated field `schedules` in model `SnapshotPolicy`
