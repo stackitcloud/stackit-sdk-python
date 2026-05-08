@@ -37,6 +37,7 @@ __all__ = [
     "CreateAuthenticationPayload",
     "CreateInstancePayload",
     "CreateRunnerPayload",
+    "CreateUserPayload",
     "FeatureToggle",
     "Flavor",
     "GenericErrorResponse",
@@ -44,14 +45,18 @@ __all__ = [
     "InternalServerErrorResponse",
     "ListFlavors",
     "ListInstances",
+    "ListUsers",
     "NotFoundErrorResponse",
     "PatchAuthenticationPayload",
     "PatchInstancePayload",
     "PatchOperation",
+    "PatchUserPayload",
+    "Pipelines",
     "Runner",
     "RunnerRuntime",
     "RunnerRuntimeList",
     "UnauthorizedErrorResponse",
+    "User",
 ]
 
 # import apis into sdk package
@@ -89,6 +94,9 @@ from stackit.git.models.create_instance_payload import (
 from stackit.git.models.create_runner_payload import (
     CreateRunnerPayload as CreateRunnerPayload,
 )
+from stackit.git.models.create_user_payload import (
+    CreateUserPayload as CreateUserPayload,
+)
 from stackit.git.models.feature_toggle import FeatureToggle as FeatureToggle
 from stackit.git.models.flavor import Flavor as Flavor
 from stackit.git.models.generic_error_response import (
@@ -100,6 +108,7 @@ from stackit.git.models.internal_server_error_response import (
 )
 from stackit.git.models.list_flavors import ListFlavors as ListFlavors
 from stackit.git.models.list_instances import ListInstances as ListInstances
+from stackit.git.models.list_users import ListUsers as ListUsers
 from stackit.git.models.not_found_error_response import (
     NotFoundErrorResponse as NotFoundErrorResponse,
 )
@@ -110,6 +119,8 @@ from stackit.git.models.patch_instance_payload import (
     PatchInstancePayload as PatchInstancePayload,
 )
 from stackit.git.models.patch_operation import PatchOperation as PatchOperation
+from stackit.git.models.patch_user_payload import PatchUserPayload as PatchUserPayload
+from stackit.git.models.pipelines import Pipelines as Pipelines
 from stackit.git.models.runner import Runner as Runner
 from stackit.git.models.runner_runtime import RunnerRuntime as RunnerRuntime
 from stackit.git.models.runner_runtime_list import (
@@ -118,3 +129,4 @@ from stackit.git.models.runner_runtime_list import (
 from stackit.git.models.unauthorized_error_response import (
     UnauthorizedErrorResponse as UnauthorizedErrorResponse,
 )
+from stackit.git.models.user import User as User
