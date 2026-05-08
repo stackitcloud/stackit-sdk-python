@@ -1389,7 +1389,7 @@ dev = [
 
 [[package]]
 name = "stackit-telemetryrouter"
-version = "0.0.1a0"
+version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
