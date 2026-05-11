@@ -18,19 +18,25 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+)
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
 
-class ConflictErrorResponse(BaseModel):
+class Pipelines(BaseModel):
     """
-    409 Error Response.
+    Feature toggles for instance pipelines
     """  # noqa: E501
 
-    details: Optional[StrictStr] = None
-    error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["details", "error"]
+    action_url: Optional[StrictStr] = Field(default=None, description="The action URL for the pipelines")
+    enabled: Optional[StrictBool] = Field(default=None, description="Enable pipelines for this instance")
+    __properties: ClassVar[List[str]] = ["action_url", "enabled"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +55,7 @@ class ConflictErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ConflictErrorResponse from a JSON string"""
+        """Create an instance of Pipelines from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,16 +75,26 @@ class ConflictErrorResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if action_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.action_url is None and "action_url" in self.model_fields_set:
+            _dict["action_url"] = None
+
+        # set to None if enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.enabled is None and "enabled" in self.model_fields_set:
+            _dict["enabled"] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ConflictErrorResponse from a dict"""
+        """Create an instance of Pipelines from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"details": obj.get("details"), "error": obj.get("error")})
+        _obj = cls.model_validate({"action_url": obj.get("action_url"), "enabled": obj.get("enabled")})
         return _obj

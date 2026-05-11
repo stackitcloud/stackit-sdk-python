@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 
@@ -49,6 +50,9 @@ class Authentication(BaseModel):
     provider: StrictStr = Field(description="The Oauth2 provider to use.")
     scopes: StrictStr = Field(description="Scopes defines the OIDC scopes to request.")
     status: StrictStr = Field(description="The current status of the authentication definition.")
+    status_message: Optional[StrictStr] = Field(
+        default=None, description="Provides additional information or error details when the status is 'Error'."
+    )
     __properties: ClassVar[List[str]] = [
         "auto_discover_url",
         "client_id",
@@ -59,11 +63,15 @@ class Authentication(BaseModel):
         "provider",
         "scopes",
         "status",
+        "status_message",
     ]
 
     @field_validator("auto_discover_url")
     def auto_discover_url_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
         if not re.match(r"^https:\/\/[a-zA-Z0-9\-\.]+(\.[a-zA-Z]{2,})+(\/.*)?$", value):
             raise ValueError(
                 r"must validate the regular expression /^https:\/\/[a-zA-Z0-9\-\.]+(\.[a-zA-Z]{2,})+(\/.*)?$/"
@@ -86,14 +94,25 @@ class Authentication(BaseModel):
     @field_validator("icon_url")
     def icon_url_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
         if not re.match(r"^https:\/\/[a-zA-Z0-9\-\.]+(\.[a-zA-Z]{2,})+(\/.*)?$", value):
             raise ValueError(
                 r"must validate the regular expression /^https:\/\/[a-zA-Z0-9\-\.]+(\.[a-zA-Z]{2,})+(\/.*)?$/"
             )
         return value
 
+    @field_validator("status")
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["Creating", "Updating", "Deleting", "Ready", "Error"]):
+            raise ValueError("must be one of enum values ('Creating', 'Updating', 'Deleting', 'Ready', 'Error')")
+        return value
+
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -104,8 +123,7 @@ class Authentication(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -151,6 +169,7 @@ class Authentication(BaseModel):
                 "provider": obj.get("provider"),
                 "scopes": obj.get("scopes"),
                 "status": obj.get("status"),
+                "status_message": obj.get("status_message"),
             }
         )
         return _obj
