@@ -18,19 +18,30 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 
-class ConflictErrorResponse(BaseModel):
+class CreateUserPayload(BaseModel):
     """
-    409 Error Response.
+    Request a STACKIT Git instance User to be created with these properties.
     """  # noqa: E501
 
-    details: Optional[StrictStr] = None
-    error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["details", "error"]
+    email: Annotated[str, Field(strict=True, max_length=254)] = Field(
+        description="A user chosen email to distinguish multiple STACKIT Git instance Users."
+    )
+    force_send_reset_password: Optional[StrictBool] = Field(
+        default=False, description="Whether to force sending a reset password email."
+    )
+    name: Annotated[str, Field(strict=True, max_length=32)] = Field(description="Name of the user.")
+    password: Annotated[str, Field(strict=True, max_length=64)] = Field(
+        description="A user password to allow user/pass instance login."
+    )
+    username: Annotated[str, Field(strict=True, max_length=32)] = Field(
+        description="A user chosen username to distinguish multiple STACKIT Git instance Users."
+    )
+    __properties: ClassVar[List[str]] = ["email", "force_send_reset_password", "name", "password", "username"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +60,7 @@ class ConflictErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ConflictErrorResponse from a JSON string"""
+        """Create an instance of CreateUserPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,12 +84,22 @@ class ConflictErrorResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ConflictErrorResponse from a dict"""
+        """Create an instance of CreateUserPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"details": obj.get("details"), "error": obj.get("error")})
+        _obj = cls.model_validate(
+            {
+                "email": obj.get("email"),
+                "force_send_reset_password": (
+                    obj.get("force_send_reset_password") if obj.get("force_send_reset_password") is not None else False
+                ),
+                "name": obj.get("name"),
+                "password": obj.get("password"),
+                "username": obj.get("username"),
+            }
+        )
         return _obj
