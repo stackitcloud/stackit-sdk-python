@@ -1,3 +1,6 @@
+## v0.10.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v0.9.3
 - Add HTTP 429 status code to some API client methods
 
