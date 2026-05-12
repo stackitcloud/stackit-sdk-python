@@ -18,19 +18,26 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 
-class ConflictErrorResponse(BaseModel):
+class PatchUserPayload(BaseModel):
     """
-    409 Error Response.
+    Properties to patch a Instance User. All fields are optional.
     """  # noqa: E501
 
-    details: Optional[StrictStr] = None
-    error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["details", "error"]
+    email: Optional[Annotated[str, Field(strict=True, max_length=254)]] = Field(
+        default=None, description="A user chosen email to distinguish multiple STACKIT Git instance Users."
+    )
+    name: Optional[Annotated[str, Field(strict=True, max_length=32)]] = Field(
+        default=None, description="Name of the user."
+    )
+    password: Optional[Annotated[str, Field(strict=True, max_length=64)]] = Field(
+        default=None, description="A user password to allow user/pass instance login."
+    )
+    __properties: ClassVar[List[str]] = ["email", "name", "password"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +56,7 @@ class ConflictErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ConflictErrorResponse from a JSON string"""
+        """Create an instance of PatchUserPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,12 +80,12 @@ class ConflictErrorResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ConflictErrorResponse from a dict"""
+        """Create an instance of PatchUserPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"details": obj.get("details"), "error": obj.get("error")})
+        _obj = cls.model_validate({"email": obj.get("email"), "name": obj.get("name"), "password": obj.get("password")})
         return _obj

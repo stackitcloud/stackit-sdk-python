@@ -26,7 +26,10 @@ from pydantic import (
     StrictStr,
     field_validator,
 )
+from pydantic_core import to_jsonable_python
 from typing_extensions import Self
+
+from stackit.git.models.pipelines import Pipelines
 
 
 class FeatureToggle(BaseModel):
@@ -35,13 +38,9 @@ class FeatureToggle(BaseModel):
     """  # noqa: E501
 
     default_email_notifications: Optional[StrictStr] = Field(default=None, description="Default email notifications.")
-    enable_commit_signatures: Optional[StrictBool] = Field(default=None, description="Enable commit signatures.")
     enable_local_login: Optional[StrictBool] = Field(default=None, description="Enable local login.")
-    __properties: ClassVar[List[str]] = [
-        "default_email_notifications",
-        "enable_commit_signatures",
-        "enable_local_login",
-    ]
+    pipelines: Optional[Pipelines] = None
+    __properties: ClassVar[List[str]] = ["default_email_notifications", "enable_local_login", "pipelines"]
 
     @field_validator("default_email_notifications")
     def default_email_notifications_validate_enum(cls, value):
@@ -54,7 +53,8 @@ class FeatureToggle(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -65,8 +65,7 @@ class FeatureToggle(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -90,15 +89,13 @@ class FeatureToggle(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of pipelines
+        if self.pipelines:
+            _dict["pipelines"] = self.pipelines.to_dict()
         # set to None if default_email_notifications (nullable) is None
         # and model_fields_set contains the field
         if self.default_email_notifications is None and "default_email_notifications" in self.model_fields_set:
             _dict["default_email_notifications"] = None
-
-        # set to None if enable_commit_signatures (nullable) is None
-        # and model_fields_set contains the field
-        if self.enable_commit_signatures is None and "enable_commit_signatures" in self.model_fields_set:
-            _dict["enable_commit_signatures"] = None
 
         # set to None if enable_local_login (nullable) is None
         # and model_fields_set contains the field
@@ -119,8 +116,8 @@ class FeatureToggle(BaseModel):
         _obj = cls.model_validate(
             {
                 "default_email_notifications": obj.get("default_email_notifications"),
-                "enable_commit_signatures": obj.get("enable_commit_signatures"),
                 "enable_local_login": obj.get("enable_local_login"),
+                "pipelines": Pipelines.from_dict(obj["pipelines"]) if obj.get("pipelines") is not None else None,
             }
         )
         return _obj
