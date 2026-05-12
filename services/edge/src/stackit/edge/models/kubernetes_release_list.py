@@ -16,28 +16,19 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
-from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
 
-class Plan(BaseModel):
+class KubernetesReleaseList(BaseModel):
     """
-    Plan
+    A list of compatible Kubernetes releases.
     """  # noqa: E501
 
-    description: Optional[StrictStr] = Field(default=None, description="Description")
-    id: Optional[UUID] = Field(default=None, description="Service Plan Identifier")
-    max_edge_hosts: Optional[StrictInt] = Field(
-        default=None, description="Maximum number of EdgeHosts", alias="maxEdgeHosts"
-    )
-    min_edge_hosts: Optional[StrictInt] = Field(
-        default=None, description="Minimum number of EdgeHosts charged", alias="minEdgeHosts"
-    )
-    name: Optional[StrictStr] = Field(default=None, description="Service Plan Name")
-    __properties: ClassVar[List[str]] = ["description", "id", "maxEdgeHosts", "minEdgeHosts", "name"]
+    k8s_releases: List[StrictStr] = Field(description="Array of Kubernetes version strings.")
+    __properties: ClassVar[List[str]] = ["k8s_releases"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -56,7 +47,7 @@ class Plan(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Plan from a JSON string"""
+        """Create an instance of KubernetesReleaseList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,20 +71,12 @@ class Plan(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Plan from a dict"""
+        """Create an instance of KubernetesReleaseList from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "description": obj.get("description"),
-                "id": obj.get("id"),
-                "maxEdgeHosts": obj.get("maxEdgeHosts"),
-                "minEdgeHosts": obj.get("minEdgeHosts"),
-                "name": obj.get("name"),
-            }
-        )
+        _obj = cls.model_validate({"k8s_releases": obj.get("k8s_releases")})
         return _obj
