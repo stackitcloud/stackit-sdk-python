@@ -1,3 +1,6 @@
+## v1.2.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v1.1.2
 - **Feature:** client now supports UUID and decimal types
 - **Bugfix:** timeouts now passed to requests library
