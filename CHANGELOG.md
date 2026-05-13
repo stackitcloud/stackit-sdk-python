@@ -14,6 +14,8 @@
   - [v0.6.0](services/dns/CHANGELOG.md#v060)
     - **Feature:** regenerate with openapi-generator v7.22.0
 - `edge`:
+  - [v0.5.0](services/edge/CHANGELOG.md#v050)
+    - **Feature:** Add new operation `list_compatible_kubernetes_releases` and related model `KubernetesReleaseList`
   - [v0.4.0](services/edge/CHANGELOG.md#v040)
     - **Feature:** regenerate with openapi-generator v7.22.0
 - `git`:

@@ -1,3 +1,6 @@
+## v0.5.0
+- **Feature:** Add new operation `list_compatible_kubernetes_releases` and related model `KubernetesReleaseList`
+
 ## v0.4.0
 - **Feature:** regenerate with openapi-generator v7.22.0
 
