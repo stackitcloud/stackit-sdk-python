@@ -123,6 +123,8 @@
       - `ConfigPatch`
       - `CreateDistributionPayload`
 - `certificates`:
+  - [v1.5.0](services/certificates/CHANGELOG.md#v150)
+    - **Feature:** Add new optional attribute `labels` to `CreateCertificatePayload` and `GetCertificateResponse
   - [v1.4.0](services/certificates/CHANGELOG.md#v140)
     - **Feature:** regenerate with openapi-generator v7.22.0
   - [v1.3.1](services/certificates/CHANGELOG.md#v131)

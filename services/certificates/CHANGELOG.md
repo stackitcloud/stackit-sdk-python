@@ -1,3 +1,6 @@
+## v1.5.0
+- **Feature:** Add new optional attribute `labels` to `CreateCertificatePayload` and `GetCertificateResponse
+
 ## v1.4.0
 - **Feature:** regenerate with openapi-generator v7.22.0
 
