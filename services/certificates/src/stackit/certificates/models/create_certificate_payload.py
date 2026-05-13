@@ -20,6 +20,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 
@@ -28,6 +29,10 @@ class CreateCertificatePayload(BaseModel):
     Uploads a PEM encoded X509 public/private key pair
     """  # noqa: E501
 
+    labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. ",
+    )
     name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="TLS certificate name")
     private_key: Optional[StrictStr] = Field(
         default=None, description="The PEM encoded private key part", alias="privateKey"
@@ -37,13 +42,16 @@ class CreateCertificatePayload(BaseModel):
         default=None, description="The PEM encoded public key part", alias="publicKey"
     )
     region: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Region")
-    __properties: ClassVar[List[str]] = ["name", "privateKey", "projectId", "publicKey", "region"]
+    __properties: ClassVar[List[str]] = ["labels", "name", "privateKey", "projectId", "publicKey", "region"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
+
+        if not isinstance(value, str):
+            value = str(value)
 
         if not re.match(r"^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$", value):
             raise ValueError(r"must validate the regular expression /^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$/")
@@ -54,6 +62,9 @@ class CreateCertificatePayload(BaseModel):
         """Validates the regular expression"""
         if value is None:
             return value
+
+        if not isinstance(value, str):
+            value = str(value)
 
         if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", value):
             raise ValueError(
@@ -67,12 +78,16 @@ class CreateCertificatePayload(BaseModel):
         if value is None:
             return value
 
+        if not isinstance(value, str):
+            value = str(value)
+
         if not re.match(r"^[a-z]{2,4}[0-9]{2}$", value):
             raise ValueError(r"must validate the regular expression /^[a-z]{2,4}[0-9]{2}$/")
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -83,8 +98,7 @@ class CreateCertificatePayload(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -128,6 +142,7 @@ class CreateCertificatePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "labels": obj.get("labels"),
                 "name": obj.get("name"),
                 "privateKey": obj.get("privateKey"),
                 "projectId": obj.get("projectId"),
