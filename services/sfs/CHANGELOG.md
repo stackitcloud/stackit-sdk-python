@@ -1,3 +1,6 @@
+## v0.7.0
+- **Feature:** attribute `snapshotPolicyId` in model `ResourcePoolPayload` is now optional
+
 ## v0.6.0
 - **Feature:** regenerate with openapi-generator v7.22.0
 

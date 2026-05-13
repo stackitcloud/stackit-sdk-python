@@ -29,12 +29,16 @@ class GetCertificateResponse(BaseModel):
     """  # noqa: E501
 
     id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The certificates resource id")
+    labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. ",
+    )
     name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="TLS certificate name")
     public_key: Optional[StrictStr] = Field(
         default=None, description="The PEM encoded public key part", alias="publicKey"
     )
     region: Optional[StrictStr] = Field(default=None, description="Region of the LoadBalancer")
-    __properties: ClassVar[List[str]] = ["id", "name", "publicKey", "region"]
+    __properties: ClassVar[List[str]] = ["id", "labels", "name", "publicKey", "region"]
 
     @field_validator("id")
     def id_validate_regular_expression(cls, value):
@@ -113,6 +117,7 @@ class GetCertificateResponse(BaseModel):
         _obj = cls.model_validate(
             {
                 "id": obj.get("id"),
+                "labels": obj.get("labels"),
                 "name": obj.get("name"),
                 "publicKey": obj.get("publicKey"),
                 "region": obj.get("region"),

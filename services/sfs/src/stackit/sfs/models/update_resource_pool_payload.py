@@ -110,6 +110,11 @@ class UpdateResourcePoolPayload(BaseModel):
         if self.size_gigabytes is None and "size_gigabytes" in self.model_fields_set:
             _dict["sizeGigabytes"] = None
 
+        # set to None if snapshot_policy_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.snapshot_policy_id is None and "snapshot_policy_id" in self.model_fields_set:
+            _dict["snapshotPolicyId"] = None
+
         return _dict
 
     @classmethod

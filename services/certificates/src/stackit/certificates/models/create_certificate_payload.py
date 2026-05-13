@@ -29,6 +29,10 @@ class CreateCertificatePayload(BaseModel):
     Uploads a PEM encoded X509 public/private key pair
     """  # noqa: E501
 
+    labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. ",
+    )
     name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="TLS certificate name")
     private_key: Optional[StrictStr] = Field(
         default=None, description="The PEM encoded private key part", alias="privateKey"
@@ -38,7 +42,7 @@ class CreateCertificatePayload(BaseModel):
         default=None, description="The PEM encoded public key part", alias="publicKey"
     )
     region: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Region")
-    __properties: ClassVar[List[str]] = ["name", "privateKey", "projectId", "publicKey", "region"]
+    __properties: ClassVar[List[str]] = ["labels", "name", "privateKey", "projectId", "publicKey", "region"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -138,6 +142,7 @@ class CreateCertificatePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "labels": obj.get("labels"),
                 "name": obj.get("name"),
                 "privateKey": obj.get("privateKey"),
                 "projectId": obj.get("projectId"),
