@@ -1,3 +1,6 @@
+## v2.6.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v2.5.0
 - **Feature:** New model classes `TlsConfigPatch` and `TlsConfig`
 - **Feature:** add attributes `forwardHostHeader`, `stripResponseCookies` and `tls` to the model classes:
