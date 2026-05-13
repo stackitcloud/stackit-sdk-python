@@ -71,6 +71,8 @@
   - [v1.2.0](services/serviceenablement/CHANGELOG.md#v120)
     - **Feature:** regenerate with openapi-generator v7.22.0
 - `sfs`:
+  - [v0.7.0](services/sfs/CHANGELOG.md#v070)
+    - **Feature:** attribute `snapshotPolicyId` in model `ResourcePoolPayload` is now optional
   - [v0.6.0](services/sfs/CHANGELOG.md#v060)
     - **Feature:** regenerate with openapi-generator v7.22.0
   - [v0.5.0](services/sfs/CHANGELOG.md#v050)

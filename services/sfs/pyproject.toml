@@ -1,6 +1,6 @@
 [project]
 name = "stackit-sfs"
-version = "v0.6.0"
+version = "v0.7.0"
 description = "STACKIT File Storage (SFS)"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4"
