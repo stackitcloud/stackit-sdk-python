@@ -1,3 +1,6 @@
+## v1.4.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v1.3.0
 - **Feature:** New models: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
 - **Feature:** New enum type `RetentionMode`
