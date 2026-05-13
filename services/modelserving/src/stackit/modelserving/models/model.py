@@ -21,6 +21,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 from stackit.modelserving.models.sku import SKU
@@ -64,6 +65,9 @@ class Model(BaseModel):
     @field_validator("description")
     def description_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
         if not re.match(r"^[0-9a-zA-Z\s.:\/\-]+$", value):
             raise ValueError(r"must validate the regular expression /^[0-9a-zA-Z\s.:\/\-]+$/")
         return value
@@ -71,6 +75,9 @@ class Model(BaseModel):
     @field_validator("displayed_name")
     def displayed_name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
         if not re.match(r"^[0-9a-zA-Z\s_-]+$", value):
             raise ValueError(r"must validate the regular expression /^[0-9a-zA-Z\s_-]+$/")
         return value
@@ -83,7 +90,8 @@ class Model(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -94,8 +102,7 @@ class Model(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
