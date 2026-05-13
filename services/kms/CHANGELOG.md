@@ -1,3 +1,6 @@
+## v0.10.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v0.9.0
 - Set field `public_key` optional in `WrappingKey` model
 
