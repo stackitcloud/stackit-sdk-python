@@ -1,3 +1,6 @@
+## v0.5.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v0.4.0
 - **Version**: Minimal version is now python 3.9
 
