@@ -1,3 +1,6 @@
+## v1.4.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v1.3.0
 - **Feature:** Add `cascade` parameter to `delete_volume` API call
 - **Feature:** Add `config_drive` attribute to ModelClass `Server` and `CreateServerPayload`

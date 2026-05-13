@@ -15,7 +15,13 @@
 from typing import Any, Dict, List, Optional, Tuple, Union
 from uuid import UUID
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import (
+    Field,
+    StrictFloat,
+    StrictInt,
+    StrictStr,
+    validate_call,
+)
 from stackit.core.configuration import Configuration
 from typing_extensions import Annotated
 
