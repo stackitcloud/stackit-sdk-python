@@ -1,7 +1,78 @@
 ## Release (2026-MM-DD)
-- `cost`: [v0.1.0](services/cost/CHANGELOG.md#v010)
-  - **New**: STACKIT cost service
+- `auditlog`:
+  - [v0.2.0](services/auditlog/CHANGELOG.md#v020)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `authorization`:
+  - [v0.8.0](services/authorization/CHANGELOG.md#080)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `cost`:
+  - [v0.2.0](services/cost/CHANGELOG.md#v020)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v0.1.0](services/cost/CHANGELOG.md#v010)
+    - **New**: STACKIT cost service
+- `dns`:
+  - [v0.6.0](services/dns/CHANGELOG.md#v060)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `edge`:
+  - [v0.4.0](services/edge/CHANGELOG.md#v040)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `git`:
+  - [v0.9.0](services/git/CHANGELOG.md#v090)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `intake`:
+  - [v0.6.0](services/intake/CHANGELOG.md#v060)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `logme`:
+  - [v0.5.0](services/logme/CHANGELOG.md#v050)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `logs`:
+  - [v0.3.0](services/logs/CHANGELOG.md#v030)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `mariadb`:
+  - [v0.4.0](services/mariadb/CHANGELOG.md#v040)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `modelserving`:
+  - [v0.3.0](services/modelserving/CHANGELOG.md#v030)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `mongodbflex`:
+  - [v1.3.0](services/mongodbflex/CHANGELOG.md#v130)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `opensearch`:
+  - [v0.5.0](services/opensearch/CHANGELOG.md#v050)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `postgresflex`:
+  - [v1.3.0](services/postgresflex/CHANGELOG.md#v130)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `rabbitmq`:
+  - [v0.5.0](services/rabbitmq/CHANGELOG.md#v050)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `redis`:
+  - [v0.4.0](services/redis/CHANGELOG.md#v040)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `resourcemanager`:
+  - [v0.8.0](services/resourcemanager/CHANGELOG.md#v080)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `runcommand`:
+  - [v1.2.0](services/runcommand/CHANGELOG.md#v120)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `scf`:
+  - [v0.5.0](services/scf/CHANGELOG.md#v050)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `secretsmanager`:
+  - [v0.5.0](services/secretsmanager/CHANGELOG.md#v050)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `serverbackup`:
+  - [v1.2.0](services/serverbackup/CHANGELOG.md#v120)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `serverupdate`:
+  - [v1.2.0](services/serverupdate/CHANGELOG.md#v120)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `serviceenablement`:
+  - [v1.2.0](services/serviceenablement/CHANGELOG.md#v120)
+    - **Feature:** regenerate with openapi-generator v7.22.0
 - `sfs`:
+  - [v0.6.0](services/sfs/CHANGELOG.md#v060)
+    - **Feature:** regenerate with openapi-generator v7.22.0
   - [v0.5.0](services/sfs/CHANGELOG.md#v050)
     - **Deprecation:** deprecated field `schedules` in model `SnapshotPolicy`
     - **Feature:** new field `snapshotSchedules` in model `SnapshotPolicy`
@@ -16,45 +87,84 @@
     - **Feature:** model `UpdateResourcePoolPayload` now has an additional field `snapshotPolicyId`
     - **Feature:** new models: `DisableLockResponse`, `EnableLockResponse`, `GetLockResponse`, `GetScheduleResponse`, `GetSnapshotPolicyResponse`, `ListSchedulesResponse`, `ListSnapshotPoliciesResponse`, `ResourcePoolSnapshotPolicy`, `Schedule`, `SnapshotPolicy`, `SnapshotPolicySchedule`, `UpdateResourcePoolSnapshotPayload`, `UpdateResourcePoolSnapshotResponse`
     - **Feature:** new operations: `UpdateResourcePoolSnapshot`, `ListSchedules`, `GetSchedule`, `ListSnapshotPolicies`, `GetSnapshotPolicy`, `DisableLock`, `GetLock`, `EnableLock`,
-- `ske`: [v1.8.0](services/ske/CHANGELOG.md#v180)
-  - **Breaking Change:** Change status codes: remove 200, change response type of 202 and add 400 in some API calls
-  - **Breaking Change:** Aligned CRI name validation with the API side validation (removed docker)
-  - **Feature:** New models `ExpirationStatus`, `ExpirationStatusKubernetes` and `ExpirationStatusNodepool`
-  - **Feature:** Add attribute `expiration` of type `ExpirationStatus` to model `ClusterStatus`
-  - **Improvement:** Update description of `AccessScope`
-- `iaas`: [v1.3.0](services/iaas/CHANGELOG.md#v130)
-  - **Feature:** Add optional `cascade` parameter to `delete_volume` API call
-  - **Feature:** Add `config_drive` attribute to ModelClass `Server` and `CreateServerPayload`
-- `alb`: [v0.9.3](services/alb/CHANGELOG.md#v093)
-  - Add HTTP 429 status code to some API client methods
-- `cdn`: [v2.5.0](services/cdn/CHANGELOG.md#v250)
-  - **Feature:** New model classes `TlsConfigPatch` and `TlsConfig`
-  - **Feature:** add attributes `forwardHostHeader`, `stripResponseCookies` and `tls` to the model classes:
-    - `Config`
-    - `ConfigPatch`
-    - `CreateDistributionPayload`
-- `certificates`: [v1.3.1](services/certificates/CHANGELOG.md#v131)
-  - Add HTTP 429 status code to some API client methods
-- `loadbalancer`: [v0.9.3](services/loadbalancer/CHANGELOG.md#v093)
-  - Add HTTP 429 status code to some API client methods
-- `iaas`: [v1.2.2](services/iaas/CHANGELOG.md#v122)
-  - **Docs:** Extend description of `PortRange` class
-- `kms`: [v0.9.0](services/kms/CHANGELOG.md#v090)
-  - Set field `public_key` optional in `WrappingKey` model
-- `objectstorage`: [v1.3.0](services/objectstorage/CHANGELOG.md#v130)
-  - **Feature:** New models: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
-  - **Feature:** New enum type `RetentionMode`
-  - **Feature:** New field `object_lock_enabled` in `Bucket` model struct
-  - **Feature:** New API client methods: `create_compliance_lock`, `delete_compliance_lock`, `delete_default_retention`, `get_compliance_lock`, `get_credentials_group`, `get_default_retention`, `set_default_retention`
+- `ske`:
+  - [v1.9.0](services/ske/CHANGELOG.md#v190)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v1.8.0](services/ske/CHANGELOG.md#v180)
+    - **Breaking Change:** Change status codes: remove 200, change response type of 202 and add 400 in some API calls
+    - **Breaking Change:** Aligned CRI name validation with the API side validation (removed docker)
+    - **Feature:** New models `ExpirationStatus`, `ExpirationStatusKubernetes` and `ExpirationStatusNodepool`
+    - **Feature:** Add attribute `expiration` of type `ExpirationStatus` to model `ClusterStatus`
+    - **Improvement:** Update description of `AccessScope`
+- `sqlserverflex`:
+  - [v1.2.0](services/sqlserverflex/CHANGELOG.md#v120)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `telemetryrouter`:
+  - [v0.2.0](services/telemetryrouter/CHANGELOG.md#v020)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+- `iaas`:
+  - [v1.4.0](services/iaas/CHANGELOG.md#v140)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v1.3.0](services/iaas/CHANGELOG.md#v130)
+    - **Feature:** Add optional `cascade` parameter to `delete_volume` API call
+    - **Feature:** Add `config_drive` attribute to ModelClass `Server` and `CreateServerPayload`
+- `alb`:
+  - [v0.10.0](services/alb/CHANGELOG.md#v0100)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v0.9.3](services/alb/CHANGELOG.md#v093)
+    - Add HTTP 429 status code to some API client methods
+- `cdn`:
+  - [v2.6.0](services/cdn/CHANGELOG.md#v260)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v2.5.0](services/cdn/CHANGELOG.md#v250)
+    - **Feature:** New model classes `TlsConfigPatch` and `TlsConfig`
+    - **Feature:** add attributes `forwardHostHeader`, `stripResponseCookies` and `tls` to the model classes:
+      - `Config`
+      - `ConfigPatch`
+      - `CreateDistributionPayload`
+- `certificates`:
+  - [v1.4.0](services/certificates/CHANGELOG.md#v140)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v1.3.1](services/certificates/CHANGELOG.md#v131)
+    - Add HTTP 429 status code to some API client methods
+- `loadbalancer`:
+  - [v0.10.0](services/loadbalancer/CHANGELOG.md#v0100)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v0.9.3](services/loadbalancer/CHANGELOG.md#v093)
+    - Add HTTP 429 status code to some API client methods
+- `iaas`:
+  - [v1.2.2](services/iaas/CHANGELOG.md#v122)
+    - **Docs:** Extend description of `PortRange` class
+- `kms`:
+  - [v0.10.0](services/kms/CHANGELOG.md#v0100)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v0.9.0](services/kms/CHANGELOG.md#v090)
+    - Set field `public_key` optional in `WrappingKey` model
+- `objectstorage`:
+  - [v1.4.0](services/objectstorage/CHANGELOG.md#v140)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v1.3.0](services/objectstorage/CHANGELOG.md#v130)
+    - **Feature:** New models: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+    - **Feature:** New enum type `RetentionMode`
+    - **Feature:** New field `object_lock_enabled` in `Bucket` model struct
+    - **Feature:** New API client methods: `create_compliance_lock`, `delete_compliance_lock`, `delete_default_retention`, `get_compliance_lock`, `get_credentials_group`, `get_default_retention`, `set_default_retention`
 - `serviceaccount`:
+  - [v0.8.0](services/serviceaccount/CHANGELOG.md#v080)
+    - **Feature:** regenerate with openapi-generator v7.22.0
   - [v0.7.0](services/serviceaccount/CHANGELOG.md#v070)
   - **Feature:** Add `token_endpoint` attribute to `CreateServiceAccountKeyResponseCredentials` model class
   - [v0.8.0](services/serviceaccount/CHANGELOG.md#v080)
     - **Feature:** New API client method `get_federated_identity_provider`
-- `observability`: [v0.14.0](services/observability/CHANGELOG.md#v0140)
-  - **Feature:** Add attribute `otlp_http_logs_url` to `InstanceSensitiveData` model class
-- `vpn`: [v0.1.0](services/vpn/CHANGELOG.md#v010)
-  - Initial publication of STACKIT Python SDK module for STACKIT VPN service
+- `observability`:
+  - [v0.15.0](services/observability/CHANGELOG.md#v0150)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v0.14.0](services/observability/CHANGELOG.md#v0140)
+    - **Feature:** Add attribute `otlp_http_logs_url` to `InstanceSensitiveData` model class
+- `vpn`:
+  - [v0.2.0](services/vpn/CHANGELOG.md#v020)
+    - **Feature:** regenerate with openapi-generator v7.22.0
+  - [v0.1.0](services/vpn/CHANGELOG.md#v010)
+    - Initial publication of STACKIT Python SDK module for STACKIT VPN service
 
 
 ## Release (2026-03-27)
