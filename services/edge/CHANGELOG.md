@@ -1,3 +1,6 @@
+## v0.4.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v0.3.0
 - Removal of deprecated API client method `list_plans_global`
 
