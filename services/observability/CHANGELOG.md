@@ -1,3 +1,6 @@
+## v0.15.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v0.14.0
 - **Feature:** Add attribute `otlp_http_logs_url` to `InstanceSensitiveData` model class
 
