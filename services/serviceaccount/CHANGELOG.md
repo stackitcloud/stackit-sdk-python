@@ -1,3 +1,6 @@
+## v0.9.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v0.8.0
 - **Feature:** New API client method `get_federated_identity_provider`
 
