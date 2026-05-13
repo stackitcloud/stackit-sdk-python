@@ -1,3 +1,6 @@
+## v0.6.0
+- **Feature:** regenerate with openapi-generator v7.22.0
+
 ## v0.5.0
 - **Deprecation:** deprecated field `schedules` in model `SnapshotPolicy`
 - **Feature:** new field `snapshotSchedules` in model `SnapshotPolicy`
