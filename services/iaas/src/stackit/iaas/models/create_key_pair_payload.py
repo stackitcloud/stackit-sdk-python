@@ -21,6 +21,7 @@ from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 
@@ -70,6 +71,9 @@ class CreateKeyPairPayload(BaseModel):
         if value is None:
             return value
 
+        if not isinstance(value, str):
+            value = str(value)
+
         if not re.match(r"^([0-9A-Fa-f]{2}[:-]){15}([0-9A-Fa-f]{2})$", value):
             raise ValueError(r"must validate the regular expression /^([0-9A-Fa-f]{2}[:-]){15}([0-9A-Fa-f]{2})$/")
         return value
@@ -80,6 +84,9 @@ class CreateKeyPairPayload(BaseModel):
         if value is None:
             return value
 
+        if not isinstance(value, str):
+            value = str(value)
+
         if not re.match(r"^[A-Za-z0-9@._-]*$", value):
             raise ValueError(r"must validate the regular expression /^[A-Za-z0-9@._-]*$/")
         return value
@@ -87,6 +94,9 @@ class CreateKeyPairPayload(BaseModel):
     @field_validator("public_key")
     def public_key_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
         if not re.match(
             r"^(ssh-rsa|ssh-ed25519|ecdsa-sha2-nistp(256|384|521))\s+[A-Za-z0-9+\/]+[=]{0,3}(\s+.+)?\s*$", value
         ):
@@ -109,7 +119,8 @@ class CreateKeyPairPayload(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -120,8 +131,7 @@ class CreateKeyPairPayload(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
