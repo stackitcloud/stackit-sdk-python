@@ -103,6 +103,9 @@
 - `sqlserverflex`:
   - [v1.2.0](services/sqlserverflex/CHANGELOG.md#v120)
     - **Feature:** regenerate with openapi-generator v7.22.0
+- `telemetrylink`:
+  - [v0.1.0](services/telemetrylink/CHANGELOG.md#v010)
+    - **New**: API for STACKIT Telemetry Link
 - `telemetryrouter`:
   - [v0.2.0](services/telemetryrouter/CHANGELOG.md#v020)
     - **Feature:** regenerate with openapi-generator v7.22.0
