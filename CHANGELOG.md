@@ -1,4 +1,6 @@
 ## Release (2026-MM-DD)
+
+## Release (2026-13-05)
 - `auditlog`:
   - [v0.2.0](services/auditlog/CHANGELOG.md#v020)
     - **Feature:** regenerate with openapi-generator v7.22.0
