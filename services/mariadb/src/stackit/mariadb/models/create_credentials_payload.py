@@ -17,18 +17,18 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
 
-class CreateInstanceResponse(BaseModel):
+class CreateCredentialsPayload(BaseModel):
     """
-    CreateInstanceResponse
+    CreateCredentialsPayload
     """  # noqa: E501
 
-    instance_id: StrictStr = Field(alias="instanceId")
-    __properties: ClassVar[List[str]] = ["instanceId"]
+    parameters: Optional[Dict[str, Any]] = None
+    __properties: ClassVar[List[str]] = ["parameters"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -47,7 +47,7 @@ class CreateInstanceResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateInstanceResponse from a JSON string"""
+        """Create an instance of CreateCredentialsPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,12 +71,12 @@ class CreateInstanceResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateInstanceResponse from a dict"""
+        """Create an instance of CreateCredentialsPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"instanceId": obj.get("instanceId")})
+        _obj = cls.model_validate({"parameters": obj.get("parameters")})
         return _obj
