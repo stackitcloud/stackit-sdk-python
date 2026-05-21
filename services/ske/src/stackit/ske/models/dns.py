@@ -28,10 +28,15 @@ class DNS(BaseModel):
     """  # noqa: E501
 
     enabled: StrictBool = Field(description="Enables the dns extension.")
-    zones: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=20)]] = Field(
-        default=None, description="Array of domain filters for externalDNS, e.g., *.runs.onstackit.cloud."
+    gateway_api: Optional[StrictBool] = Field(
+        default=None,
+        description="Enables Gateway API support for ExternalDNS. The CRDs must be installed by the user. Once installed, ExternalDNS will be configured at the next cluster reconcile.",
+        alias="gatewayApi",
     )
-    __properties: ClassVar[List[str]] = ["enabled", "zones"]
+    zones: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=20)]] = Field(
+        default=None, description="Array of domain filters for ExternalDNS, e.g., *.runs.onstackit.cloud."
+    )
+    __properties: ClassVar[List[str]] = ["enabled", "gatewayApi", "zones"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -81,5 +86,7 @@ class DNS(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"enabled": obj.get("enabled"), "zones": obj.get("zones")})
+        _obj = cls.model_validate(
+            {"enabled": obj.get("enabled"), "gatewayApi": obj.get("gatewayApi"), "zones": obj.get("zones")}
+        )
         return _obj
