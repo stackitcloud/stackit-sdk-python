@@ -1,3 +1,6 @@
+## v0.3.0
+- **Breaking Change:** switch from `v1beta` version to `v1` version of the API
+
 ## v0.2.0
 - **Feature:** regenerate with openapi-generator v7.22.0
 

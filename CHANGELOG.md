@@ -175,6 +175,8 @@
   - [v0.14.0](services/observability/CHANGELOG.md#v0140)
     - **Feature:** Add attribute `otlp_http_logs_url` to `InstanceSensitiveData` model class
 - `vpn`:
+  - [v0.3.0](services/vpn/CHANGELOG.md#v030)
+    - **Breaking Change:** switch from `v1beta` version to `v1` version of the API
   - [v0.2.0](services/vpn/CHANGELOG.md#v020)
     - **Feature:** regenerate with openapi-generator v7.22.0
   - [v0.1.0](services/vpn/CHANGELOG.md#v010)
