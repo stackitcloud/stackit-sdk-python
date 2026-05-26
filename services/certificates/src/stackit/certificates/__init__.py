@@ -28,14 +28,17 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "CertificateUsageItem",
     "CertificatesQuota",
     "CreateCertificatePayload",
+    "Data",
     "GetCertificateResponse",
     "GetQuotaResponse",
     "GoogleProtobufAny",
     "ListCertificatesResponse",
     "Quotas",
     "Status",
+    "Usage",
 ]
 
 # import apis into sdk package
@@ -53,12 +56,16 @@ from stackit.certificates.exceptions import ApiValueError as ApiValueError
 from stackit.certificates.exceptions import OpenApiException as OpenApiException
 
 # import models into sdk package
+from stackit.certificates.models.certificate_usage_item import (
+    CertificateUsageItem as CertificateUsageItem,
+)
 from stackit.certificates.models.certificates_quota import (
     CertificatesQuota as CertificatesQuota,
 )
 from stackit.certificates.models.create_certificate_payload import (
     CreateCertificatePayload as CreateCertificatePayload,
 )
+from stackit.certificates.models.data import Data as Data
 from stackit.certificates.models.get_certificate_response import (
     GetCertificateResponse as GetCertificateResponse,
 )
@@ -73,3 +80,4 @@ from stackit.certificates.models.list_certificates_response import (
 )
 from stackit.certificates.models.quotas import Quotas as Quotas
 from stackit.certificates.models.status import Status as Status
+from stackit.certificates.models.usage import Usage as Usage
