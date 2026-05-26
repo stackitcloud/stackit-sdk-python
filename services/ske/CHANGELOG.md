@@ -1,3 +1,7 @@
+## v1.10.0
+- **Improvement:** Update description of `code` attribute in `ClusterError` 
+- **Feature:** Add attribute `GatewayApi` to model `DNS`
+
 ## v1.9.0
 - **Feature:** regenerate with openapi-generator v7.22.0
 

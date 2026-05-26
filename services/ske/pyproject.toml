@@ -1,6 +1,6 @@
 [project]
 name = "stackit-ske"
-version = "v1.9.0"
+version = "v1.10.0"
 description = "SKE-API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.9,<4.0"
