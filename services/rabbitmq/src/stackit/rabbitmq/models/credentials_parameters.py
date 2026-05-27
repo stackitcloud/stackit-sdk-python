@@ -17,18 +17,34 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
 
-class CredentialsListItem(BaseModel):
+class CredentialsParameters(BaseModel):
     """
-    CredentialsListItem
+    CredentialsParameters
     """  # noqa: E501
 
-    id: StrictStr
-    __properties: ClassVar[List[str]] = ["id"]
+    roles: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="A list of roles to assign to the generated credentials. If not provided, standard default role 'policymaker' will be assigned.",
+    )
+    __properties: ClassVar[List[str]] = ["roles"]
+
+    @field_validator("roles")
+    def roles_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        for i in value:
+            if i not in set(["management", "policymaker", "monitoring", "administrator"]):
+                raise ValueError(
+                    "each list item must be one of ('management', 'policymaker', 'monitoring', 'administrator')"
+                )
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -47,7 +63,7 @@ class CredentialsListItem(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CredentialsListItem from a JSON string"""
+        """Create an instance of CredentialsParameters from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,12 +87,12 @@ class CredentialsListItem(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CredentialsListItem from a dict"""
+        """Create an instance of CredentialsParameters from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"id": obj.get("id")})
+        _obj = cls.model_validate({"roles": obj.get("roles")})
         return _obj
