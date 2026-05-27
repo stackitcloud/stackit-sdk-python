@@ -36,6 +36,10 @@ class CreateGatewayConnectionPayload(BaseModel):
     enabled: Optional[StrictBool] = Field(
         default=None, description="This flag decides whether this connection should be enabled or disabled"
     )
+    labels: Optional[Dict[str, Annotated[str, Field(strict=True, max_length=63)]]] = Field(
+        default=None,
+        description="Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the `LabelValue` except that it cannot be empty. ",
+    )
     local_subnets: Optional[
         Annotated[List[Annotated[str, Field(strict=True)]], Field(min_length=1, max_length=100)]
     ] = Field(
@@ -58,6 +62,7 @@ class CreateGatewayConnectionPayload(BaseModel):
     __properties: ClassVar[List[str]] = [
         "displayName",
         "enabled",
+        "labels",
         "localSubnets",
         "remoteSubnets",
         "staticRoutes",
@@ -133,6 +138,7 @@ class CreateGatewayConnectionPayload(BaseModel):
             {
                 "displayName": obj.get("displayName"),
                 "enabled": obj.get("enabled"),
+                "labels": obj.get("labels"),
                 "localSubnets": obj.get("localSubnets"),
                 "remoteSubnets": obj.get("remoteSubnets"),
                 "staticRoutes": obj.get("staticRoutes"),
