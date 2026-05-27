@@ -1,3 +1,6 @@
+## v0.4.0
+- **Feature:** Add new optional attribute `labels` to `CreateGatewayConnectionPayload` and `UpdateGatewayConnectionPayload`
+
 ## v0.3.0
 - **Breaking Change:** switch from `v1beta` version to `v1` version of the API
 
