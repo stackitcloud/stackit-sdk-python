@@ -21,17 +21,14 @@ from pydantic import BaseModel, ConfigDict
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
-from stackit.opensearch.models.model_schema import ModelSchema
 
-
-class InstanceSchema(BaseModel):
+class CreateCredentialsPayload(BaseModel):
     """
-    InstanceSchema
+    CreateCredentialsPayload
     """  # noqa: E501
 
-    create: ModelSchema
-    update: ModelSchema
-    __properties: ClassVar[List[str]] = ["create", "update"]
+    parameters: Optional[Dict[str, Any]] = None
+    __properties: ClassVar[List[str]] = ["parameters"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -50,7 +47,7 @@ class InstanceSchema(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InstanceSchema from a JSON string"""
+        """Create an instance of CreateCredentialsPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,27 +67,16 @@ class InstanceSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of create
-        if self.create:
-            _dict["create"] = self.create.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of update
-        if self.update:
-            _dict["update"] = self.update.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InstanceSchema from a dict"""
+        """Create an instance of CreateCredentialsPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "create": ModelSchema.from_dict(obj["create"]) if obj.get("create") is not None else None,
-                "update": ModelSchema.from_dict(obj["update"]) if obj.get("update") is not None else None,
-            }
-        )
+        _obj = cls.model_validate({"parameters": obj.get("parameters")})
         return _obj
