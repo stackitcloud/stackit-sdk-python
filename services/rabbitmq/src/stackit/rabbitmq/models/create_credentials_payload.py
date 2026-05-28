@@ -17,18 +17,20 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
+from stackit.rabbitmq.models.credentials_parameters import CredentialsParameters
 
-class CredentialsListItem(BaseModel):
+
+class CreateCredentialsPayload(BaseModel):
     """
-    CredentialsListItem
+    CreateCredentialsPayload
     """  # noqa: E501
 
-    id: StrictStr
-    __properties: ClassVar[List[str]] = ["id"]
+    parameters: Optional[CredentialsParameters] = None
+    __properties: ClassVar[List[str]] = ["parameters"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -47,7 +49,7 @@ class CredentialsListItem(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CredentialsListItem from a JSON string"""
+        """Create an instance of CreateCredentialsPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -67,16 +69,25 @@ class CredentialsListItem(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of parameters
+        if self.parameters:
+            _dict["parameters"] = self.parameters.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CredentialsListItem from a dict"""
+        """Create an instance of CreateCredentialsPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"id": obj.get("id")})
+        _obj = cls.model_validate(
+            {
+                "parameters": (
+                    CredentialsParameters.from_dict(obj["parameters"]) if obj.get("parameters") is not None else None
+                )
+            }
+        )
         return _obj
