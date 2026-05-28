@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class RoutingType(str, Enum):
     """
-    RoutingType
+    Once the gateway is created, it is not possible to change this attribute.
     """
 
     """
