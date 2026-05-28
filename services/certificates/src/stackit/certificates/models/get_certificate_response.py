@@ -22,23 +22,28 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
+from stackit.certificates.models.data import Data
+from stackit.certificates.models.usage import Usage
+
 
 class GetCertificateResponse(BaseModel):
     """
     GetCertificateResponse returns name, id and public key
     """  # noqa: E501
 
+    data: Optional[Data] = None
     id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The certificates resource id")
     labels: Optional[Dict[str, StrictStr]] = Field(
         default=None,
         description="Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. ",
     )
-    name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="TLS certificate name")
+    name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Certificate display name")
     public_key: Optional[StrictStr] = Field(
         default=None, description="The PEM encoded public key part", alias="publicKey"
     )
     region: Optional[StrictStr] = Field(default=None, description="Region of the LoadBalancer")
-    __properties: ClassVar[List[str]] = ["id", "labels", "name", "publicKey", "region"]
+    usage: Optional[Usage] = None
+    __properties: ClassVar[List[str]] = ["data", "id", "labels", "name", "publicKey", "region", "usage"]
 
     @field_validator("id")
     def id_validate_regular_expression(cls, value):
@@ -103,6 +108,12 @@ class GetCertificateResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of data
+        if self.data:
+            _dict["data"] = self.data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of usage
+        if self.usage:
+            _dict["usage"] = self.usage.to_dict()
         return _dict
 
     @classmethod
@@ -116,11 +127,13 @@ class GetCertificateResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "data": Data.from_dict(obj["data"]) if obj.get("data") is not None else None,
                 "id": obj.get("id"),
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
                 "publicKey": obj.get("publicKey"),
                 "region": obj.get("region"),
+                "usage": Usage.from_dict(obj["usage"]) if obj.get("usage") is not None else None,
             }
         )
         return _obj
