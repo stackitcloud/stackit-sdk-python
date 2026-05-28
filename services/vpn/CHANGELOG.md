@@ -1,3 +1,6 @@
+## v0.5.0
+- **Fix:** `local_asn` is no longer optional (aligned with api)
+
 ## v0.4.0
 - **Feature:** Add new optional attribute `labels` to `CreateGatewayConnectionPayload` and `UpdateGatewayConnectionPayload`
 
