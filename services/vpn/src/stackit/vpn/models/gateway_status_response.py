@@ -36,10 +36,15 @@ class GatewayStatusResponse(BaseModel):
     display_name: Optional[StrictStr] = Field(
         default=None, description="Name of the Gateway instance.", alias="displayName"
     )
+    error_message: Optional[StrictStr] = Field(
+        default=None,
+        description="A descriptive message provided when the gateway is in an error state.",
+        alias="errorMessage",
+    )
     gateway_status: Optional[GatewayStatus] = Field(default=None, alias="gatewayStatus")
     id: Optional[UUID] = Field(default=None, description="UUID of the Gateway instance.")
     tunnels: Optional[List[VPNTunnels]] = None
-    __properties: ClassVar[List[str]] = ["connections", "displayName", "gatewayStatus", "id", "tunnels"]
+    __properties: ClassVar[List[str]] = ["connections", "displayName", "errorMessage", "gatewayStatus", "id", "tunnels"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -111,6 +116,7 @@ class GatewayStatusResponse(BaseModel):
                     else None
                 ),
                 "displayName": obj.get("displayName"),
+                "errorMessage": obj.get("errorMessage"),
                 "gatewayStatus": obj.get("gatewayStatus"),
                 "id": obj.get("id"),
                 "tunnels": (
