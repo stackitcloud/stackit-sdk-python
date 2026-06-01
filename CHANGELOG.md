@@ -135,6 +135,9 @@
       - `ConfigPatch`
       - `CreateDistributionPayload`
 - `certificates`:
+  - [v1.6.0](services/certificates/CHANGELOG.md#v160)
+    - **Feature:** Add new model classes `Data`, `Usage` and `CertificateUsageItem`
+    - **Feature:** Add new optional attributes `Data` (type `Data`) and `Usage` (type `Usage`) to `GetCertificateResponse` model class
   - [v1.5.0](services/certificates/CHANGELOG.md#v150)
     - **Feature:** Add new optional attribute `labels` to `CreateCertificatePayload` and `GetCertificateResponse`
   - [v1.4.0](services/certificates/CHANGELOG.md#v140)

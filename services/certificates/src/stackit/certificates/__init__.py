@@ -30,12 +30,15 @@ __all__ = [
     "ApiException",
     "CertificatesQuota",
     "CreateCertificatePayload",
+    "Data",
     "GetCertificateResponse",
     "GetQuotaResponse",
     "GoogleProtobufAny",
     "ListCertificatesResponse",
     "Quotas",
     "Status",
+    "Usage",
+    "UsageItem",
 ]
 
 # import apis into sdk package
@@ -59,6 +62,7 @@ from stackit.certificates.models.certificates_quota import (
 from stackit.certificates.models.create_certificate_payload import (
     CreateCertificatePayload as CreateCertificatePayload,
 )
+from stackit.certificates.models.data import Data as Data
 from stackit.certificates.models.get_certificate_response import (
     GetCertificateResponse as GetCertificateResponse,
 )
@@ -73,3 +77,5 @@ from stackit.certificates.models.list_certificates_response import (
 )
 from stackit.certificates.models.quotas import Quotas as Quotas
 from stackit.certificates.models.status import Status as Status
+from stackit.certificates.models.usage import Usage as Usage
+from stackit.certificates.models.usage_item import UsageItem as UsageItem
