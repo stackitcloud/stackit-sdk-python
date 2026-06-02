@@ -27,8 +27,7 @@ class BGPGatewayConfig(BaseModel):
     BGP configuration effects all connections. (only for routingMode=BGP_ROUTE_BASED)
     """  # noqa: E501
 
-    local_asn: Optional[Annotated[int, Field(le=4294967294, strict=True, ge=64512)]] = Field(
-        default=None,
+    local_asn: Annotated[int, Field(le=4294967294, strict=True, ge=64512)] = Field(
         description="ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996). ",
         alias="localAsn",
     )

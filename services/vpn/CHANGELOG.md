@@ -1,3 +1,8 @@
+## v0.5.0
+- **Fix:** Flag `local_asn` field as required for `BGPGatewayConfig`
+- **Feature:** Add `error_message` field to `GatewayStatusResponse`
+- **Improvement:** Add description that `RoutingType` can only be set at the creation
+
 ## v0.4.0
 - **Feature:** Add new optional attribute `labels` to `CreateGatewayConnectionPayload` and `UpdateGatewayConnectionPayload`
 
