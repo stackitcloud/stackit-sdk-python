@@ -178,6 +178,10 @@
   - [v0.14.0](services/observability/CHANGELOG.md#v0140)
     - **Feature:** Add attribute `otlp_http_logs_url` to `InstanceSensitiveData` model class
 - `vpn`:
+  - [v0.5.0](services/vpn/CHANGELOG.md#v050)
+    - **Fix:** Flag `local_asn` field as required for `BGPGatewayConfig`
+    - **Feature:** Add `error_message` field to `GatewayStatusResponse`
+    - **Improvement:** Add description that `RoutingType` can only be set at the creation
   - [v0.4.0](services/vpn/CHANGELOG.md#v040)
     - **Feature:** Add new optional attribute `labels` to `CreateGatewayConnectionPayload` and `UpdateGatewayConnectionPayload`
   - [v0.3.0](services/vpn/CHANGELOG.md#v030)
