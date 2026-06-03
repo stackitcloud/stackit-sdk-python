@@ -94,6 +94,8 @@
     - **Feature:** new models: `DisableLockResponse`, `EnableLockResponse`, `GetLockResponse`, `GetScheduleResponse`, `GetSnapshotPolicyResponse`, `ListSchedulesResponse`, `ListSnapshotPoliciesResponse`, `ResourcePoolSnapshotPolicy`, `Schedule`, `SnapshotPolicy`, `SnapshotPolicySchedule`, `UpdateResourcePoolSnapshotPayload`, `UpdateResourcePoolSnapshotResponse`
     - **Feature:** new operations: `UpdateResourcePoolSnapshot`, `ListSchedules`, `GetSchedule`, `ListSnapshotPolicies`, `GetSnapshotPolicy`, `DisableLock`, `GetLock`, `EnableLock`,
 - `ske`:
+  - [v1.11.0](services/ske/CHANGELOG.md#v1110)
+    - **Feature:** Add attribute `service_account_issuer` to model `ClusterStatus`
   - [v1.10.0](services/ske/CHANGELOG.md#v1100)
     - **Improvement:** Update description of `code` attribute in `ClusterError` 
     - **Feature:** Add attribute `GatewayApi` to model `DNS`
