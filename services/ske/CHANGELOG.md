@@ -1,3 +1,6 @@
+## v1.11.0
+- **Feature:** Add attribute `service_account_issuer` to model `ClusterStatus`
+
 ## v1.10.0
 - **Improvement:** Update description of `code` attribute in `ClusterError` 
 - **Feature:** Add attribute `GatewayApi` to model `DNS`

@@ -62,6 +62,7 @@ class ClusterStatus(BaseModel):
         description="The network ranges (in CIDR notation) used by pods of the cluster.",
         alias="podAddressRanges",
     )
+    service_account_issuer: Optional[StrictStr] = Field(default=None, alias="serviceAccountIssuer")
     __properties: ClassVar[List[str]] = [
         "aggregated",
         "creationTime",
@@ -73,6 +74,7 @@ class ClusterStatus(BaseModel):
         "hibernated",
         "identity",
         "podAddressRanges",
+        "serviceAccountIssuer",
     ]
 
     @field_validator("creation_time", mode="before")
@@ -174,6 +176,7 @@ class ClusterStatus(BaseModel):
                 "hibernated": obj.get("hibernated"),
                 "identity": obj.get("identity"),
                 "podAddressRanges": obj.get("podAddressRanges"),
+                "serviceAccountIssuer": obj.get("serviceAccountIssuer"),
             }
         )
         return _obj
