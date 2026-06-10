@@ -1,5 +1,9 @@
 ## Release (2026-MM-DD)
 
+- `modelexperiements`
+  - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
+    - **New**: API for STACKIT modelexperiments
+
 ## Release (2026-13-05)
 - `auditlog`:
   - [v0.2.0](services/auditlog/CHANGELOG.md#v020)
