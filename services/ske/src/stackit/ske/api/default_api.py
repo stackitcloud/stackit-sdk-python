@@ -335,7 +335,7 @@ class DefaultApi:
     ) -> Kubeconfig:
         """Create an admin kubeconfig
 
-        Create a new admin kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). Defaults to 3600.
+        Create a new admin kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). Defaults to 3600. This endpoint is rate limited to 1 request per second.
 
         :param project_id: (required)
         :type project_id: str
@@ -410,7 +410,7 @@ class DefaultApi:
     ) -> ApiResponse[Kubeconfig]:
         """Create an admin kubeconfig
 
-        Create a new admin kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). Defaults to 3600.
+        Create a new admin kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). Defaults to 3600. This endpoint is rate limited to 1 request per second.
 
         :param project_id: (required)
         :type project_id: str
@@ -485,7 +485,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create an admin kubeconfig
 
-        Create a new admin kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). Defaults to 3600.
+        Create a new admin kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). Defaults to 3600. This endpoint is rate limited to 1 request per second.
 
         :param project_id: (required)
         :type project_id: str
