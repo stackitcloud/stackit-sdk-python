@@ -1,5 +1,9 @@
 ## Release (2026-MM-DD)
 
+- `mariadb`:
+  - [v1.0.0](services/mariadb/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - **Feature:** Added optional `CreateCredentialsPayload`.
 - `modelexperiements`
   - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
     - **New**: API for STACKIT modelexperiments
