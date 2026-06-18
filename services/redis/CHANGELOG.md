@@ -1,3 +1,8 @@
+## v1.0.0
+- **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- **Deprecation:** `tls_ciphers`, `tls_ciphersuites`, `tls_protocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-10.
+- **Feature:** Added optional `CreateCredentialsPayload`.
+
 ## v0.4.0
 - **Feature:** regenerate with openapi-generator v7.22.0
 
