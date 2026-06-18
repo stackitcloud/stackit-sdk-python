@@ -12,6 +12,11 @@
 - `modelexperiements`
   - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
     - **New**: API for STACKIT modelexperiments
+- `opensearch`:
+  - [v1.0.0](services/opensearch/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - **Deprecation:** `tls_ciphers`, `tls_protocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
+    - **Feature:** Added optional `CreateCredentialsPayload`.
 
 ## Release (2026-13-05)
 - `auditlog`:
