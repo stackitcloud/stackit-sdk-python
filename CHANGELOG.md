@@ -1,5 +1,10 @@
 ## Release (2026-MM-DD)
 
+- `logme`:
+  - [v1.0.0](services/logme/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - **Deprecation:** `fluentd_tls`, `fluentd_tls_ciphers`, `fluentd_tls_max_version`, `fluentd_tls_min_version`, `fluentd_tls_version`, `opensearch_tls_ciphers`, `opensearch_tls_protocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
+    - **Feature:** Added optional `CreateCredentialsPayload`.
 - `mariadb`:
   - [v1.0.0](services/mariadb/CHANGELOG.md#v100)
     - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
