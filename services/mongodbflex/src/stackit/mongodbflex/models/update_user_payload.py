@@ -16,11 +16,12 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 
 class UpdateUserPayload(BaseModel):
@@ -28,11 +29,21 @@ class UpdateUserPayload(BaseModel):
     UpdateUserPayload
     """  # noqa: E501
 
-    database: StrictStr
+    database: Annotated[str, Field(min_length=3, strict=True, max_length=63)]
     roles: List[StrictStr] = Field(
         description="The roles defined for a user. Currently only one role in the list is supported, therefore only the first role from this list is used. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**"
     )
     __properties: ClassVar[List[str]] = ["database", "roles"]
+
+    @field_validator("database")
+    def database_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[A-Za-z_][A-Za-z0-9-_]{1,61}[A-Za-z0-9_]$", value):
+            raise ValueError(r"must validate the regular expression /^[A-Za-z_][A-Za-z0-9-_]{1,61}[A-Za-z0-9_]$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
