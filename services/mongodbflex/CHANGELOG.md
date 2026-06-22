@@ -1,3 +1,6 @@
+## v1.4.0
+- **Breaking change:** Introduce validators for `name`, `database` and `username`
+
 ## v1.3.0
 - **Feature:** regenerate with openapi-generator v7.22.0
 

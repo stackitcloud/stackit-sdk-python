@@ -12,6 +12,9 @@
 - `modelexperiements`
   - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
     - **New**: API for STACKIT modelexperiments
+- `mongodbflex`:
+  - [v1.4.0](services/mongodbflex/CHANGELOG.md#v140)
+    - **Breaking change:** Introduce validators for `name`, `database` and `username`
 - `opensearch`:
   - [v1.0.0](services/opensearch/CHANGELOG.md#v100)
     - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
