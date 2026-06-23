@@ -1,4 +1,4 @@
-## Release (2026-MM-DD)
+## Release (2026-06-23)
 
 - `logme`:
   - [v1.0.0](services/logme/CHANGELOG.md#v100)
