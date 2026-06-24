@@ -27,11 +27,11 @@ from stackit.iaas.models.network_range import NetworkRange
 
 class NetworkRangeListResponse(BaseModel):
     """
-    Network Range list response.
+    Network Range list response of a network area.
     """  # noqa: E501
 
     items: Annotated[List[NetworkRange], Field(min_length=1, max_length=64)] = Field(
-        description="A list of network ranges."
+        description="A list of network area network ranges."
     )
     __properties: ClassVar[List[str]] = ["items"]
 

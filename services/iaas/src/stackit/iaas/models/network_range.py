@@ -28,7 +28,7 @@ from typing_extensions import Annotated, Self
 
 class NetworkRange(BaseModel):
     """
-    Object that represents a network range.
+    Object that represents a network range of a network area.
     """  # noqa: E501
 
     created_at: Optional[datetime] = Field(
