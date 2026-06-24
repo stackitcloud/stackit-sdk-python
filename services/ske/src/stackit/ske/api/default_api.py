@@ -609,7 +609,12 @@ class DefaultApi:
         self,
         project_id: StrictStr,
         region: StrictStr,
-        cluster_name: StrictStr,
+        cluster_name: Annotated[
+            StrictStr,
+            Field(
+                description="Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long."
+            ),
+        ],
         create_or_update_cluster_payload: CreateOrUpdateClusterPayload,
         _request_timeout: Union[
             None,
@@ -629,7 +634,7 @@ class DefaultApi:
         :type project_id: str
         :param region: (required)
         :type region: str
-        :param cluster_name: (required)
+        :param cluster_name: Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long. (required)
         :type cluster_name: str
         :param create_or_update_cluster_payload: (required)
         :type create_or_update_cluster_payload: CreateOrUpdateClusterPayload
@@ -684,7 +689,12 @@ class DefaultApi:
         self,
         project_id: StrictStr,
         region: StrictStr,
-        cluster_name: StrictStr,
+        cluster_name: Annotated[
+            StrictStr,
+            Field(
+                description="Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long."
+            ),
+        ],
         create_or_update_cluster_payload: CreateOrUpdateClusterPayload,
         _request_timeout: Union[
             None,
@@ -704,7 +714,7 @@ class DefaultApi:
         :type project_id: str
         :param region: (required)
         :type region: str
-        :param cluster_name: (required)
+        :param cluster_name: Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long. (required)
         :type cluster_name: str
         :param create_or_update_cluster_payload: (required)
         :type create_or_update_cluster_payload: CreateOrUpdateClusterPayload
@@ -759,7 +769,12 @@ class DefaultApi:
         self,
         project_id: StrictStr,
         region: StrictStr,
-        cluster_name: StrictStr,
+        cluster_name: Annotated[
+            StrictStr,
+            Field(
+                description="Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long."
+            ),
+        ],
         create_or_update_cluster_payload: CreateOrUpdateClusterPayload,
         _request_timeout: Union[
             None,
@@ -779,7 +794,7 @@ class DefaultApi:
         :type project_id: str
         :param region: (required)
         :type region: str
-        :param cluster_name: (required)
+        :param cluster_name: Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long. (required)
         :type cluster_name: str
         :param create_or_update_cluster_payload: (required)
         :type create_or_update_cluster_payload: CreateOrUpdateClusterPayload
