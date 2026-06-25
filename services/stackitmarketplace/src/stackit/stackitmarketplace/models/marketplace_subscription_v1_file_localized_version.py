@@ -18,33 +18,23 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
 
-class NoticePeriod(BaseModel):
+class MarketplaceSubscriptionV1FileLocalizedVersion(BaseModel):
     """
-    The notice period for a product and plan.
+    MarketplaceSubscriptionV1FileLocalizedVersion
     """  # noqa: E501
 
-    type: Optional[StrictStr] = Field(default=None, description="The notice period type.")
-    value: Optional[StrictInt] = Field(
-        default=None, description="The value of the corresponding type. Omitted for _SAME_DAY_."
-    )
-    __properties: ClassVar[List[str]] = ["type", "value"]
-
-    @field_validator("type")
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(["SAME_DAY", "DAYS", "MONTHS"]):
-            raise ValueError("must be one of enum values ('SAME_DAY', 'DAYS', 'MONTHS')")
-        return value
+    de: Optional[StrictStr] = Field(default=None, description="The file version matching the file name (localized).")
+    en: Optional[StrictStr] = Field(default=None, description="The file version matching the file name (localized).")
+    __properties: ClassVar[List[str]] = ["de", "en"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -55,12 +45,11 @@ class NoticePeriod(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of NoticePeriod from a JSON string"""
+        """Create an instance of MarketplaceSubscriptionV1FileLocalizedVersion from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,12 +73,12 @@ class NoticePeriod(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of NoticePeriod from a dict"""
+        """Create an instance of MarketplaceSubscriptionV1FileLocalizedVersion from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"type": obj.get("type"), "value": obj.get("value")})
+        _obj = cls.model_validate({"de": obj.get("de"), "en": obj.get("en")})
         return _obj
