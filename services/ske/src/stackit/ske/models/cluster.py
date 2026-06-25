@@ -15,9 +15,10 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -41,7 +42,10 @@ class Cluster(BaseModel):
     hibernation: Optional[Hibernation] = None
     kubernetes: Kubernetes
     maintenance: Optional[Maintenance] = None
-    name: Optional[StrictStr] = None
+    name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=11)]] = Field(
+        default=None,
+        description="Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.",
+    )
     network: Optional[Network] = None
     nodepools: Annotated[List[Nodepool], Field(min_length=1, max_length=50)]
     status: Optional[ClusterStatus] = None
@@ -56,6 +60,19 @@ class Cluster(BaseModel):
         "nodepools",
         "status",
     ]
+
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[a-z0-9]([a-z0-9-]{0,9}[a-z0-9])?$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z0-9]([a-z0-9-]{0,9}[a-z0-9])?$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
