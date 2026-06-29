@@ -16,11 +16,11 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic_core import to_jsonable_python
+from typing_extensions import Self
 
 
 class ApproveSubscriptionPayload(BaseModel):
@@ -28,27 +28,16 @@ class ApproveSubscriptionPayload(BaseModel):
     ApproveSubscriptionPayload
     """  # noqa: E501
 
-    instance_target: Optional[Annotated[str, Field(strict=True, max_length=512)]] = Field(
+    instance_target: Optional[StrictStr] = Field(
         default=None,
         description="The target URL of the user instance, used to redirect the user to the instance after the subscription is active.",
         alias="instanceTarget",
     )
     __properties: ClassVar[List[str]] = ["instanceTarget"]
 
-    @field_validator("instance_target")
-    def instance_target_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
-            raise ValueError(
-                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
-            )
-        return value
-
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -59,8 +48,7 @@ class ApproveSubscriptionPayload(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
