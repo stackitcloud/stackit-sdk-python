@@ -22,6 +22,7 @@ from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 from stackit.ske.models.access import Access
+from stackit.ske.models.audit import Audit
 from stackit.ske.models.cluster_status import ClusterStatus
 from stackit.ske.models.extension import Extension
 from stackit.ske.models.hibernation import Hibernation
@@ -37,6 +38,7 @@ class CreateOrUpdateClusterPayload(BaseModel):
     """  # noqa: E501
 
     access: Optional[Access] = None
+    audit: Optional[Audit] = None
     extensions: Optional[Extension] = None
     hibernation: Optional[Hibernation] = None
     kubernetes: Kubernetes
@@ -46,6 +48,7 @@ class CreateOrUpdateClusterPayload(BaseModel):
     status: Optional[ClusterStatus] = None
     __properties: ClassVar[List[str]] = [
         "access",
+        "audit",
         "extensions",
         "hibernation",
         "kubernetes",
@@ -95,6 +98,9 @@ class CreateOrUpdateClusterPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of access
         if self.access:
             _dict["access"] = self.access.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of audit
+        if self.audit:
+            _dict["audit"] = self.audit.to_dict()
         # override the default output from pydantic by calling `to_dict()` of extensions
         if self.extensions:
             _dict["extensions"] = self.extensions.to_dict()
@@ -134,6 +140,7 @@ class CreateOrUpdateClusterPayload(BaseModel):
         _obj = cls.model_validate(
             {
                 "access": Access.from_dict(obj["access"]) if obj.get("access") is not None else None,
+                "audit": Audit.from_dict(obj["audit"]) if obj.get("audit") is not None else None,
                 "extensions": Extension.from_dict(obj["extensions"]) if obj.get("extensions") is not None else None,
                 "hibernation": (
                     Hibernation.from_dict(obj["hibernation"]) if obj.get("hibernation") is not None else None

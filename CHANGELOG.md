@@ -1,4 +1,4 @@
-## Release (2026-06-23)
+## Release (2026-MM-DD)
 
 - `logme`:
   - [v1.0.0](services/logme/CHANGELOG.md#v100)
@@ -30,7 +30,11 @@
     - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
     - **Deprecation:** `tls_ciphers`, `tls_ciphersuites`, `tls_protocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-10.
     - **Feature:** Added optional `CreateCredentialsPayload`.
-
+- `ske`:
+  - [v1.12.0](services/ske/CHANGELOG.md#v1120)
+    - **Improvement:** Add regex validation of `name` attribute in model class `Cluster`
+    - **Feature:** New model class `Audit`
+    - **Feature:** Add optional attribute `audit` (type `Audit`) to model class `Cluster`
 
 ## Release (2026-13-05)
 - `auditlog`:

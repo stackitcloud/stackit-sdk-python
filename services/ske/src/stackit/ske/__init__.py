@@ -31,6 +31,7 @@ __all__ = [
     "ACL",
     "Access",
     "AccessScope",
+    "Audit",
     "AvailabilityZone",
     "CRI",
     "Cluster",
@@ -93,6 +94,7 @@ from stackit.ske.models.access_scope import AccessScope as AccessScope
 
 # import models into sdk package
 from stackit.ske.models.acl import ACL as ACL
+from stackit.ske.models.audit import Audit as Audit
 from stackit.ske.models.availability_zone import AvailabilityZone as AvailabilityZone
 from stackit.ske.models.cluster import Cluster as Cluster
 from stackit.ske.models.cluster_error import ClusterError as ClusterError

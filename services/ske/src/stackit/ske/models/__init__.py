@@ -17,6 +17,7 @@ from stackit.ske.models.access_scope import AccessScope
 
 # import models into model package
 from stackit.ske.models.acl import ACL
+from stackit.ske.models.audit import Audit
 from stackit.ske.models.availability_zone import AvailabilityZone
 from stackit.ske.models.cluster import Cluster
 from stackit.ske.models.cluster_error import ClusterError

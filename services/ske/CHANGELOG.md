@@ -1,3 +1,8 @@
+## v1.12.0
+- **Improvement:** Add regex validation of `name` attribute in model class `Cluster`
+- **Feature:** New model class `Audit`
+- **Feature:** Add optional attribute `audit` (type `Audit`) to model class `Cluster`
+
 ## v1.11.0
 - **Feature:** Add attribute `service_account_issuer` to model `ClusterStatus`
 
