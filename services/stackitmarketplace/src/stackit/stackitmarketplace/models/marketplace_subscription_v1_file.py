@@ -18,26 +18,26 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
+from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
-from stackit.stackitmarketplace.models.inquiry_form_type import InquiryFormType
-from stackit.stackitmarketplace.models.inquiry_register_testing import (
-    InquiryRegisterTesting,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_file_localized_version import (
+    MarketplaceSubscriptionV1FileLocalizedVersion,
 )
 
 
-class RegisterTesting(BaseModel):
+class MarketplaceSubscriptionV1File(BaseModel):
     """
-    Register for testing.
+    MarketplaceSubscriptionV1File
     """  # noqa: E501
 
-    register_testing: InquiryRegisterTesting = Field(alias="registerTesting")
-    type: InquiryFormType
-    __properties: ClassVar[List[str]] = ["registerTesting", "type"]
+    version: Optional[MarketplaceSubscriptionV1FileLocalizedVersion] = None
+    __properties: ClassVar[List[str]] = ["version"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -48,12 +48,11 @@ class RegisterTesting(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RegisterTesting from a JSON string"""
+        """Create an instance of MarketplaceSubscriptionV1File from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +72,14 @@ class RegisterTesting(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of register_testing
-        if self.register_testing:
-            _dict["registerTesting"] = self.register_testing.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of version
+        if self.version:
+            _dict["version"] = self.version.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RegisterTesting from a dict"""
+        """Create an instance of MarketplaceSubscriptionV1File from a dict"""
         if obj is None:
             return None
 
@@ -89,12 +88,11 @@ class RegisterTesting(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "registerTesting": (
-                    InquiryRegisterTesting.from_dict(obj["registerTesting"])
-                    if obj.get("registerTesting") is not None
+                "version": (
+                    MarketplaceSubscriptionV1FileLocalizedVersion.from_dict(obj["version"])
+                    if obj.get("version") is not None
                     else None
-                ),
-                "type": obj.get("type"),
+                )
             }
         )
         return _obj
