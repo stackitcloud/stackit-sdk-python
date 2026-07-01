@@ -18,24 +18,23 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
-from stackit.stackitmarketplace.models.inquiry_contact_sales import InquiryContactSales
-from stackit.stackitmarketplace.models.inquiry_form_type import InquiryFormType
 
-
-class ContactSales(BaseModel):
+class MarketplaceSubscriptionV1SubscriptionRedirect(BaseModel):
     """
-    Contact sales.
+    MarketplaceSubscriptionV1SubscriptionRedirect
     """  # noqa: E501
 
-    contact_sales: InquiryContactSales = Field(alias="contactSales")
-    type: InquiryFormType
-    __properties: ClassVar[List[str]] = ["contactSales", "type"]
+    redirect_target: StrictStr = Field(alias="redirectTarget")
+    redirect_url: StrictStr = Field(alias="redirectUrl")
+    __properties: ClassVar[List[str]] = ["redirectTarget", "redirectUrl"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -46,12 +45,11 @@ class ContactSales(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ContactSales from a JSON string"""
+        """Create an instance of MarketplaceSubscriptionV1SubscriptionRedirect from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,26 +69,16 @@ class ContactSales(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of contact_sales
-        if self.contact_sales:
-            _dict["contactSales"] = self.contact_sales.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ContactSales from a dict"""
+        """Create an instance of MarketplaceSubscriptionV1SubscriptionRedirect from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "contactSales": (
-                    InquiryContactSales.from_dict(obj["contactSales"]) if obj.get("contactSales") is not None else None
-                ),
-                "type": obj.get("type"),
-            }
-        )
+        _obj = cls.model_validate({"redirectTarget": obj.get("redirectTarget"), "redirectUrl": obj.get("redirectUrl")})
         return _obj
