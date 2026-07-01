@@ -13,95 +13,35 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from stackit.stackitmarketplace.models.approve_subscription_payload import (
     ApproveSubscriptionPayload,
 )
-from stackit.stackitmarketplace.models.assets import Assets
-from stackit.stackitmarketplace.models.assets_end_user_license_agreement import (
-    AssetsEndUserLicenseAgreement,
+from stackit.stackitmarketplace.models.consumers_subscriptions_create_payload import (
+    ConsumersSubscriptionsCreatePayload,
 )
-from stackit.stackitmarketplace.models.assets_product_description import (
-    AssetsProductDescription,
-)
-from stackit.stackitmarketplace.models.assets_service_level_agreement import (
-    AssetsServiceLevelAgreement,
-)
-from stackit.stackitmarketplace.models.become_vendor import BecomeVendor
-from stackit.stackitmarketplace.models.catalog_pricing_option_highlight import (
-    CatalogPricingOptionHighlight,
-)
-from stackit.stackitmarketplace.models.catalog_product_detail import (
-    CatalogProductDetail,
-)
-from stackit.stackitmarketplace.models.catalog_product_details_vendor import (
-    CatalogProductDetailsVendor,
-)
-from stackit.stackitmarketplace.models.catalog_product_facets_value_inner import (
-    CatalogProductFacetsValueInner,
-)
-from stackit.stackitmarketplace.models.catalog_product_highlight import (
-    CatalogProductHighlight,
-)
-from stackit.stackitmarketplace.models.catalog_product_overview import (
-    CatalogProductOverview,
-)
-from stackit.stackitmarketplace.models.catalog_product_overview_vendor import (
-    CatalogProductOverviewVendor,
-)
-from stackit.stackitmarketplace.models.catalog_product_pricing_option import (
-    CatalogProductPricingOption,
-)
-from stackit.stackitmarketplace.models.catalog_product_support_resource import (
-    CatalogProductSupportResource,
-)
-from stackit.stackitmarketplace.models.catalog_product_vendor_terms import (
-    CatalogProductVendorTerms,
-)
-from stackit.stackitmarketplace.models.contact_sales import ContactSales
-from stackit.stackitmarketplace.models.delivery_method import DeliveryMethod
 from stackit.stackitmarketplace.models.error_response import ErrorResponse
-from stackit.stackitmarketplace.models.free_trial import FreeTrial
-from stackit.stackitmarketplace.models.inquiries_create_inquiry_payload import (
-    InquiriesCreateInquiryPayload,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_assets import (
+    MarketplaceSubscriptionV1Assets,
 )
-from stackit.stackitmarketplace.models.inquiry_become_vendor import InquiryBecomeVendor
-from stackit.stackitmarketplace.models.inquiry_contact_sales import InquiryContactSales
-from stackit.stackitmarketplace.models.inquiry_form_type import InquiryFormType
-from stackit.stackitmarketplace.models.inquiry_register_testing import (
-    InquiryRegisterTesting,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_file import (
+    MarketplaceSubscriptionV1File,
 )
-from stackit.stackitmarketplace.models.inquiry_request_private_plan import (
-    InquiryRequestPrivatePlan,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_file_localized_version import (
+    MarketplaceSubscriptionV1FileLocalizedVersion,
 )
-from stackit.stackitmarketplace.models.inquiry_suggest_product import (
-    InquirySuggestProduct,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_list_subscriptions_response import (
+    MarketplaceSubscriptionV1ListSubscriptionsResponse,
 )
-from stackit.stackitmarketplace.models.list_catalog_products_response import (
-    ListCatalogProductsResponse,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_subscription import (
+    MarketplaceSubscriptionV1Subscription,
 )
-from stackit.stackitmarketplace.models.list_vendor_subscriptions_response import (
-    ListVendorSubscriptionsResponse,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_subscription_product import (
+    MarketplaceSubscriptionV1SubscriptionProduct,
 )
-from stackit.stackitmarketplace.models.localized_version import LocalizedVersion
-from stackit.stackitmarketplace.models.notice_period import NoticePeriod
-from stackit.stackitmarketplace.models.offer_type import OfferType
-from stackit.stackitmarketplace.models.price_type import PriceType
-from stackit.stackitmarketplace.models.pricing_option_unit import PricingOptionUnit
-from stackit.stackitmarketplace.models.product_lifecycle_state import (
-    ProductLifecycleState,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_subscription_redirect import (
+    MarketplaceSubscriptionV1SubscriptionRedirect,
 )
-from stackit.stackitmarketplace.models.register_testing import RegisterTesting
-from stackit.stackitmarketplace.models.request_private_plan import RequestPrivatePlan
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload,
 )
-from stackit.stackitmarketplace.models.scope import Scope
-from stackit.stackitmarketplace.models.service_certificate import ServiceCertificate
-from stackit.stackitmarketplace.models.subscription_lifecycle_state import (
-    SubscriptionLifecycleState,
-)
-from stackit.stackitmarketplace.models.subscription_product import SubscriptionProduct
-from stackit.stackitmarketplace.models.suggest_product import SuggestProduct
-from stackit.stackitmarketplace.models.vendor_subscription import VendorSubscription
