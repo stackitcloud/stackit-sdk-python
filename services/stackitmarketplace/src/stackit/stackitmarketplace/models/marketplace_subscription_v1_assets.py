@@ -19,31 +19,27 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field
+from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
-from stackit.stackitmarketplace.models.assets_end_user_license_agreement import (
-    AssetsEndUserLicenseAgreement,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_file import (
+    MarketplaceSubscriptionV1File,
 )
-from stackit.stackitmarketplace.models.assets_product_description import (
-    AssetsProductDescription,
-)
-from stackit.stackitmarketplace.models.assets_service_level_agreement import (
-    AssetsServiceLevelAgreement,
-)
-from stackit.stackitmarketplace.models.service_certificate import ServiceCertificate
 
 
-class Assets(BaseModel):
+class MarketplaceSubscriptionV1Assets(BaseModel):
     """
-    The assets associated with the product.
+    MarketplaceSubscriptionV1Assets
     """  # noqa: E501
 
-    end_user_license_agreement: Optional[AssetsEndUserLicenseAgreement] = Field(
+    end_user_license_agreement: Optional[MarketplaceSubscriptionV1File] = Field(
         default=None, alias="endUserLicenseAgreement"
     )
-    product_description: Optional[AssetsProductDescription] = Field(default=None, alias="productDescription")
-    service_certificate: Optional[ServiceCertificate] = Field(default=None, alias="serviceCertificate")
-    service_level_agreement: Optional[AssetsServiceLevelAgreement] = Field(default=None, alias="serviceLevelAgreement")
+    product_description: Optional[MarketplaceSubscriptionV1File] = Field(default=None, alias="productDescription")
+    service_certificate: Optional[MarketplaceSubscriptionV1File] = Field(default=None, alias="serviceCertificate")
+    service_level_agreement: Optional[MarketplaceSubscriptionV1File] = Field(
+        default=None, alias="serviceLevelAgreement"
+    )
     __properties: ClassVar[List[str]] = [
         "endUserLicenseAgreement",
         "productDescription",
@@ -52,7 +48,8 @@ class Assets(BaseModel):
     ]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -63,12 +60,11 @@ class Assets(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Assets from a JSON string"""
+        """Create an instance of MarketplaceSubscriptionV1Assets from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -104,7 +100,7 @@ class Assets(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Assets from a dict"""
+        """Create an instance of MarketplaceSubscriptionV1Assets from a dict"""
         if obj is None:
             return None
 
@@ -114,22 +110,22 @@ class Assets(BaseModel):
         _obj = cls.model_validate(
             {
                 "endUserLicenseAgreement": (
-                    AssetsEndUserLicenseAgreement.from_dict(obj["endUserLicenseAgreement"])
+                    MarketplaceSubscriptionV1File.from_dict(obj["endUserLicenseAgreement"])
                     if obj.get("endUserLicenseAgreement") is not None
                     else None
                 ),
                 "productDescription": (
-                    AssetsProductDescription.from_dict(obj["productDescription"])
+                    MarketplaceSubscriptionV1File.from_dict(obj["productDescription"])
                     if obj.get("productDescription") is not None
                     else None
                 ),
                 "serviceCertificate": (
-                    ServiceCertificate.from_dict(obj["serviceCertificate"])
+                    MarketplaceSubscriptionV1File.from_dict(obj["serviceCertificate"])
                     if obj.get("serviceCertificate") is not None
                     else None
                 ),
                 "serviceLevelAgreement": (
-                    AssetsServiceLevelAgreement.from_dict(obj["serviceLevelAgreement"])
+                    MarketplaceSubscriptionV1File.from_dict(obj["serviceLevelAgreement"])
                     if obj.get("serviceLevelAgreement") is not None
                     else None
                 ),

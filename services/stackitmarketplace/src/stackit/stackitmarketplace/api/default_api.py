@@ -12,16 +12,9 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import warnings
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import (
-    Field,
-    StrictFloat,
-    StrictInt,
-    StrictStr,
-    validate_call,
-)
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
 from stackit.core.configuration import Configuration
 from typing_extensions import Annotated
 
@@ -30,22 +23,21 @@ from stackit.stackitmarketplace.api_response import ApiResponse
 from stackit.stackitmarketplace.models.approve_subscription_payload import (
     ApproveSubscriptionPayload,
 )
-from stackit.stackitmarketplace.models.catalog_product_detail import (
-    CatalogProductDetail,
+from stackit.stackitmarketplace.models.consumers_subscriptions_create_payload import (
+    ConsumersSubscriptionsCreatePayload,
 )
-from stackit.stackitmarketplace.models.inquiries_create_inquiry_payload import (
-    InquiriesCreateInquiryPayload,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_list_subscriptions_response import (
+    MarketplaceSubscriptionV1ListSubscriptionsResponse,
 )
-from stackit.stackitmarketplace.models.list_catalog_products_response import (
-    ListCatalogProductsResponse,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_subscription import (
+    MarketplaceSubscriptionV1Subscription,
 )
-from stackit.stackitmarketplace.models.list_vendor_subscriptions_response import (
-    ListVendorSubscriptionsResponse,
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_subscription_redirect import (
+    MarketplaceSubscriptionV1SubscriptionRedirect,
 )
 from stackit.stackitmarketplace.models.resolve_customer_payload import (
     ResolveCustomerPayload,
 )
-from stackit.stackitmarketplace.models.vendor_subscription import VendorSubscription
 from stackit.stackitmarketplace.rest import RESTResponseType
 
 
@@ -65,11 +57,9 @@ class DefaultApi:
     @validate_call
     def approve_subscription(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        subscription_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
-        ],
-        approve_subscription_payload: Optional[ApproveSubscriptionPayload] = None,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        approve_subscription_payload: ApproveSubscriptionPayload,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -80,15 +70,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """Approve a subscription
+        """Approve a pending subscription.
 
         Approve a pending subscription.
 
-        :param project_id: The project ID. (required)
+        :param project_id: (required)
         :type project_id: str
-        :param subscription_id: The subscription ID. (required)
+        :param subscription_id: (required)
         :type subscription_id: str
-        :param approve_subscription_payload:
+        :param approve_subscription_payload: (required)
         :type approve_subscription_payload: ApproveSubscriptionPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -139,11 +129,9 @@ class DefaultApi:
     @validate_call
     def approve_subscription_with_http_info(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        subscription_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
-        ],
-        approve_subscription_payload: Optional[ApproveSubscriptionPayload] = None,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        approve_subscription_payload: ApproveSubscriptionPayload,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -154,15 +142,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """Approve a subscription
+        """Approve a pending subscription.
 
         Approve a pending subscription.
 
-        :param project_id: The project ID. (required)
+        :param project_id: (required)
         :type project_id: str
-        :param subscription_id: The subscription ID. (required)
+        :param subscription_id: (required)
         :type subscription_id: str
-        :param approve_subscription_payload:
+        :param approve_subscription_payload: (required)
         :type approve_subscription_payload: ApproveSubscriptionPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -213,11 +201,9 @@ class DefaultApi:
     @validate_call
     def approve_subscription_without_preload_content(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        subscription_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
-        ],
-        approve_subscription_payload: Optional[ApproveSubscriptionPayload] = None,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        approve_subscription_payload: ApproveSubscriptionPayload,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -228,15 +214,15 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Approve a subscription
+        """Approve a pending subscription.
 
         Approve a pending subscription.
 
-        :param project_id: The project ID. (required)
+        :param project_id: (required)
         :type project_id: str
-        :param subscription_id: The subscription ID. (required)
+        :param subscription_id: (required)
         :type subscription_id: str
-        :param approve_subscription_payload:
+        :param approve_subscription_payload: (required)
         :type approve_subscription_payload: ApproveSubscriptionPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -345,10 +331,10 @@ class DefaultApi:
         )
 
     @validate_call
-    def get_catalog_product(
+    def consumers_subscriptions_cancel(
         self,
-        product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29, description="The product ID.")],
-        locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -358,15 +344,15 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CatalogProductDetail:
-        """(Deprecated) Get a product
+    ) -> None:
+        """Cancel a subscription.
 
-        Get a product.
+        Cancel a subscription.
 
-        :param product_id: The product ID. (required)
-        :type product_id: str
-        :param locale: The language of the response.
-        :type locale: str
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -388,11 +374,10 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
-        warnings.warn("GET /v1/catalog/products/{productId} is deprecated.", DeprecationWarning)
 
-        _param = self._get_catalog_product_serialize(
-            product_id=product_id,
-            locale=locale,
+        _param = self._consumers_subscriptions_cancel_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -400,11 +385,12 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CatalogProductDetail",
+            "202": None,
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
             "404": "ErrorResponse",
+            "409": "ErrorResponse",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -414,10 +400,10 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def get_catalog_product_with_http_info(
+    def consumers_subscriptions_cancel_with_http_info(
         self,
-        product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29, description="The product ID.")],
-        locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -427,15 +413,15 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CatalogProductDetail]:
-        """(Deprecated) Get a product
+    ) -> ApiResponse[None]:
+        """Cancel a subscription.
 
-        Get a product.
+        Cancel a subscription.
 
-        :param product_id: The product ID. (required)
-        :type product_id: str
-        :param locale: The language of the response.
-        :type locale: str
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -457,11 +443,10 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
-        warnings.warn("GET /v1/catalog/products/{productId} is deprecated.", DeprecationWarning)
 
-        _param = self._get_catalog_product_serialize(
-            product_id=product_id,
-            locale=locale,
+        _param = self._consumers_subscriptions_cancel_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -469,11 +454,12 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CatalogProductDetail",
+            "202": None,
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
             "404": "ErrorResponse",
+            "409": "ErrorResponse",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -483,10 +469,10 @@ class DefaultApi:
         )
 
     @validate_call
-    def get_catalog_product_without_preload_content(
+    def consumers_subscriptions_cancel_without_preload_content(
         self,
-        product_id: Annotated[str, Field(min_length=10, strict=True, max_length=29, description="The product ID.")],
-        locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -497,14 +483,14 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """(Deprecated) Get a product
+        """Cancel a subscription.
 
-        Get a product.
+        Cancel a subscription.
 
-        :param product_id: The product ID. (required)
-        :type product_id: str
-        :param locale: The language of the response.
-        :type locale: str
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -526,11 +512,10 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
-        warnings.warn("GET /v1/catalog/products/{productId} is deprecated.", DeprecationWarning)
 
-        _param = self._get_catalog_product_serialize(
-            product_id=product_id,
-            locale=locale,
+        _param = self._consumers_subscriptions_cancel_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -538,277 +523,17 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "CatalogProductDetail",
+            "202": None,
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
             "404": "ErrorResponse",
+            "409": "ErrorResponse",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _get_catalog_product_serialize(
-        self,
-        product_id,
-        locale,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {}
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if product_id is not None:
-            _path_params["productId"] = product_id
-        # process the query parameters
-        if locale is not None:
-
-            _query_params.append(("locale", locale))
-
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-        # set the HTTP header `Accept`
-        if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
-
-        # authentication setting
-        _auth_settings: List[str] = []
-
-        return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/v1/catalog/products/{productId}",
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth,
-        )
-
-    @validate_call
-    def get_vendor_subscription(
-        self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        subscription_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> VendorSubscription:
-        """Get a subscription
-
-        Get a subscription.
-
-        :param project_id: The project ID. (required)
-        :type project_id: str
-        :param subscription_id: The subscription ID. (required)
-        :type subscription_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._get_vendor_subscription_serialize(
-            project_id=project_id,
-            subscription_id=subscription_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VendorSubscription",
-            "400": "ErrorResponse",
-            "401": "ErrorResponse",
-            "403": "ErrorResponse",
-            "404": "ErrorResponse",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-    @validate_call
-    def get_vendor_subscription_with_http_info(
-        self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        subscription_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[VendorSubscription]:
-        """Get a subscription
-
-        Get a subscription.
-
-        :param project_id: The project ID. (required)
-        :type project_id: str
-        :param subscription_id: The subscription ID. (required)
-        :type subscription_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._get_vendor_subscription_serialize(
-            project_id=project_id,
-            subscription_id=subscription_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VendorSubscription",
-            "400": "ErrorResponse",
-            "401": "ErrorResponse",
-            "403": "ErrorResponse",
-            "404": "ErrorResponse",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-    @validate_call
-    def get_vendor_subscription_without_preload_content(
-        self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        subscription_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
-        ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Get a subscription
-
-        Get a subscription.
-
-        :param project_id: The project ID. (required)
-        :type project_id: str
-        :param subscription_id: The subscription ID. (required)
-        :type subscription_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """  # noqa: E501
-
-        _param = self._get_vendor_subscription_serialize(
-            project_id=project_id,
-            subscription_id=subscription_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index,
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VendorSubscription",
-            "400": "ErrorResponse",
-            "401": "ErrorResponse",
-            "403": "ErrorResponse",
-            "404": "ErrorResponse",
-        }
-        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
-        return response_data.response
-
-    def _get_vendor_subscription_serialize(
+    def _consumers_subscriptions_cancel_serialize(
         self,
         project_id,
         subscription_id,
@@ -847,8 +572,8 @@ class DefaultApi:
         _auth_settings: List[str] = []
 
         return self.api_client.param_serialize(
-            method="GET",
-            resource_path="/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}",
+            method="DELETE",
+            resource_path="/v1/consumers/projects/{projectId}/subscriptions/{subscriptionId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -862,9 +587,10 @@ class DefaultApi:
         )
 
     @validate_call
-    def inquiries_create_inquiry(
+    def consumers_subscriptions_create(
         self,
-        inquiries_create_inquiry_payload: InquiriesCreateInquiryPayload,
+        project_id: StrictStr,
+        consumers_subscriptions_create_payload: ConsumersSubscriptionsCreatePayload,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -874,13 +600,15 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """(Deprecated) Create inquiry
+    ) -> MarketplaceSubscriptionV1Subscription:
+        """Create a new subscription.
 
-        Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
+        Create a new subscription.
 
-        :param inquiries_create_inquiry_payload: (required)
-        :type inquiries_create_inquiry_payload: InquiriesCreateInquiryPayload
+        :param project_id: (required)
+        :type project_id: str
+        :param consumers_subscriptions_create_payload: (required)
+        :type consumers_subscriptions_create_payload: ConsumersSubscriptionsCreatePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -902,10 +630,10 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
-        warnings.warn("POST /v1/inquiries is deprecated.", DeprecationWarning)
 
-        _param = self._inquiries_create_inquiry_serialize(
-            inquiries_create_inquiry_payload=inquiries_create_inquiry_payload,
+        _param = self._consumers_subscriptions_create_serialize(
+            project_id=project_id,
+            consumers_subscriptions_create_payload=consumers_subscriptions_create_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -913,11 +641,11 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "201": "MarketplaceSubscriptionV1Subscription",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
-            "404": "ErrorResponse",
+            "409": "ErrorResponse",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -927,9 +655,10 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def inquiries_create_inquiry_with_http_info(
+    def consumers_subscriptions_create_with_http_info(
         self,
-        inquiries_create_inquiry_payload: InquiriesCreateInquiryPayload,
+        project_id: StrictStr,
+        consumers_subscriptions_create_payload: ConsumersSubscriptionsCreatePayload,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -939,13 +668,15 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """(Deprecated) Create inquiry
+    ) -> ApiResponse[MarketplaceSubscriptionV1Subscription]:
+        """Create a new subscription.
 
-        Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
+        Create a new subscription.
 
-        :param inquiries_create_inquiry_payload: (required)
-        :type inquiries_create_inquiry_payload: InquiriesCreateInquiryPayload
+        :param project_id: (required)
+        :type project_id: str
+        :param consumers_subscriptions_create_payload: (required)
+        :type consumers_subscriptions_create_payload: ConsumersSubscriptionsCreatePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -967,10 +698,10 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
-        warnings.warn("POST /v1/inquiries is deprecated.", DeprecationWarning)
 
-        _param = self._inquiries_create_inquiry_serialize(
-            inquiries_create_inquiry_payload=inquiries_create_inquiry_payload,
+        _param = self._consumers_subscriptions_create_serialize(
+            project_id=project_id,
+            consumers_subscriptions_create_payload=consumers_subscriptions_create_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -978,11 +709,11 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "201": "MarketplaceSubscriptionV1Subscription",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
-            "404": "ErrorResponse",
+            "409": "ErrorResponse",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -992,9 +723,10 @@ class DefaultApi:
         )
 
     @validate_call
-    def inquiries_create_inquiry_without_preload_content(
+    def consumers_subscriptions_create_without_preload_content(
         self,
-        inquiries_create_inquiry_payload: InquiriesCreateInquiryPayload,
+        project_id: StrictStr,
+        consumers_subscriptions_create_payload: ConsumersSubscriptionsCreatePayload,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1005,12 +737,14 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """(Deprecated) Create inquiry
+        """Create a new subscription.
 
-        Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
+        Create a new subscription.
 
-        :param inquiries_create_inquiry_payload: (required)
-        :type inquiries_create_inquiry_payload: InquiriesCreateInquiryPayload
+        :param project_id: (required)
+        :type project_id: str
+        :param consumers_subscriptions_create_payload: (required)
+        :type consumers_subscriptions_create_payload: ConsumersSubscriptionsCreatePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1032,10 +766,10 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
-        warnings.warn("POST /v1/inquiries is deprecated.", DeprecationWarning)
 
-        _param = self._inquiries_create_inquiry_serialize(
-            inquiries_create_inquiry_payload=inquiries_create_inquiry_payload,
+        _param = self._consumers_subscriptions_create_serialize(
+            project_id=project_id,
+            consumers_subscriptions_create_payload=consumers_subscriptions_create_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1043,18 +777,19 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": None,
+            "201": "MarketplaceSubscriptionV1Subscription",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
-            "404": "ErrorResponse",
+            "409": "ErrorResponse",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _inquiries_create_inquiry_serialize(
+    def _consumers_subscriptions_create_serialize(
         self,
-        inquiries_create_inquiry_payload,
+        project_id,
+        consumers_subscriptions_create_payload,
         _request_auth,
         _content_type,
         _headers,
@@ -1073,12 +808,14 @@ class DefaultApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if inquiries_create_inquiry_payload is not None:
-            _body_params = inquiries_create_inquiry_payload
+        if consumers_subscriptions_create_payload is not None:
+            _body_params = consumers_subscriptions_create_payload
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
@@ -1097,7 +834,7 @@ class DefaultApi:
 
         return self.api_client.param_serialize(
             method="POST",
-            resource_path="/v1/inquiries",
+            resource_path="/v1/consumers/projects/{projectId}/subscriptions",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1111,36 +848,13 @@ class DefaultApi:
         )
 
     @validate_call
-    def list_catalog_products(
+    def consumers_subscriptions_get(
         self,
-        cursor: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning."
-            ),
-        ] = None,
-        limit: Annotated[
-            Optional[
-                Union[
-                    Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
-                ]
-            ],
-            Field(
-                description="The maximum number of items to return in the response. If maximum is exceeded, maximum is used."
-            ),
-        ] = None,
-        locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
-        filter: Annotated[
-            Optional[StrictStr],
-            Field(
-                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
-            ),
-        ] = None,
-        sort: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`."
-            ),
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
         ] = None,
         _request_timeout: Union[
             None,
@@ -1151,21 +865,17 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListCatalogProductsResponse:
-        """(Deprecated) List all products
+    ) -> MarketplaceSubscriptionV1Subscription:
+        """Get a subscription.
 
-        List all products.
+        Get a subscription.
 
-        :param cursor: A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
-        :type cursor: str
-        :param limit: The maximum number of items to return in the response. If maximum is exceeded, maximum is used.
-        :type limit: float
-        :param locale: The language of the response.
-        :type locale: str
-        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
-        :type filter: str
-        :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
-        :type sort: str
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1187,14 +897,11 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
-        warnings.warn("GET /v1/catalog/products is deprecated.", DeprecationWarning)
 
-        _param = self._list_catalog_products_serialize(
-            cursor=cursor,
-            limit=limit,
-            locale=locale,
-            filter=filter,
-            sort=sort,
+        _param = self._consumers_subscriptions_get_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            include_expired=include_expired,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1202,10 +909,11 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ListCatalogProductsResponse",
+            "200": "MarketplaceSubscriptionV1Subscription",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
+            "404": "ErrorResponse",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -1215,36 +923,13 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def list_catalog_products_with_http_info(
+    def consumers_subscriptions_get_with_http_info(
         self,
-        cursor: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning."
-            ),
-        ] = None,
-        limit: Annotated[
-            Optional[
-                Union[
-                    Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
-                ]
-            ],
-            Field(
-                description="The maximum number of items to return in the response. If maximum is exceeded, maximum is used."
-            ),
-        ] = None,
-        locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
-        filter: Annotated[
-            Optional[StrictStr],
-            Field(
-                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
-            ),
-        ] = None,
-        sort: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`."
-            ),
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
         ] = None,
         _request_timeout: Union[
             None,
@@ -1255,21 +940,17 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListCatalogProductsResponse]:
-        """(Deprecated) List all products
+    ) -> ApiResponse[MarketplaceSubscriptionV1Subscription]:
+        """Get a subscription.
 
-        List all products.
+        Get a subscription.
 
-        :param cursor: A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
-        :type cursor: str
-        :param limit: The maximum number of items to return in the response. If maximum is exceeded, maximum is used.
-        :type limit: float
-        :param locale: The language of the response.
-        :type locale: str
-        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
-        :type filter: str
-        :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
-        :type sort: str
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1291,14 +972,11 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
-        warnings.warn("GET /v1/catalog/products is deprecated.", DeprecationWarning)
 
-        _param = self._list_catalog_products_serialize(
-            cursor=cursor,
-            limit=limit,
-            locale=locale,
-            filter=filter,
-            sort=sort,
+        _param = self._consumers_subscriptions_get_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            include_expired=include_expired,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1306,10 +984,11 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ListCatalogProductsResponse",
+            "200": "MarketplaceSubscriptionV1Subscription",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
+            "404": "ErrorResponse",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -1319,36 +998,13 @@ class DefaultApi:
         )
 
     @validate_call
-    def list_catalog_products_without_preload_content(
+    def consumers_subscriptions_get_without_preload_content(
         self,
-        cursor: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning."
-            ),
-        ] = None,
-        limit: Annotated[
-            Optional[
-                Union[
-                    Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
-                ]
-            ],
-            Field(
-                description="The maximum number of items to return in the response. If maximum is exceeded, maximum is used."
-            ),
-        ] = None,
-        locale: Annotated[Optional[StrictStr], Field(description="The language of the response.")] = None,
-        filter: Annotated[
-            Optional[StrictStr],
-            Field(
-                description='Filter the products based on attributes, e.g., `deliveryMethod eq "SAAS"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co "searching"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator. '
-            ),
-        ] = None,
-        sort: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`."
-            ),
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
         ] = None,
         _request_timeout: Union[
             None,
@@ -1360,20 +1016,16 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """(Deprecated) List all products
+        """Get a subscription.
 
-        List all products.
+        Get a subscription.
 
-        :param cursor: A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
-        :type cursor: str
-        :param limit: The maximum number of items to return in the response. If maximum is exceeded, maximum is used.
-        :type limit: float
-        :param locale: The language of the response.
-        :type locale: str
-        :param filter: Filter the products based on attributes, e.g., `deliveryMethod eq \"SAAS\"`. The supported operators are: - `PR` (present; `name pr`) - `EQ` (equal) - `NE` (not equal) - `CO` (contains; `text co \"searching\"`) - `SW` (starts with) - `EW` (ends with) - `GT` (greater than) - `LT` (less than) - `GE` (greater than or equal) - `LE` (less than or equal).  These expressions can be logically linked with `AND` and `OR`. All attributes (and the special `text` attribute) can be used as filters, if the attribute type allows the operator.
-        :type filter: str
-        :param sort: Sort the products based on attributes and order e.g. `name:asc`. Attributes with scalar types (`createdAt`, `isProductListing`) or keywords (`name`, `deliveryMethod`, `lifecycleState`, `vendor.name`) can be used as sort criteria. To set the sort order, append `asc` (ascending) or `desc` (descending) to the attribute, e.g. `name:asc`. To sort by multiple attributes, separate them with a comma. E.g `name:asc,price:desc`.
-        :type sort: str
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1395,14 +1047,11 @@ class DefaultApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """  # noqa: E501
-        warnings.warn("GET /v1/catalog/products is deprecated.", DeprecationWarning)
 
-        _param = self._list_catalog_products_serialize(
-            cursor=cursor,
-            limit=limit,
-            locale=locale,
-            filter=filter,
-            sort=sort,
+        _param = self._consumers_subscriptions_get_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            include_expired=include_expired,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1410,21 +1059,20 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ListCatalogProductsResponse",
+            "200": "MarketplaceSubscriptionV1Subscription",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
+            "404": "ErrorResponse",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _list_catalog_products_serialize(
+    def _consumers_subscriptions_get_serialize(
         self,
-        cursor,
-        limit,
-        locale,
-        filter,
-        sort,
+        project_id,
+        subscription_id,
+        include_expired,
         _request_auth,
         _content_type,
         _headers,
@@ -1443,26 +1091,14 @@ class DefaultApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if subscription_id is not None:
+            _path_params["subscriptionId"] = subscription_id
         # process the query parameters
-        if cursor is not None:
+        if include_expired is not None:
 
-            _query_params.append(("cursor", cursor))
-
-        if limit is not None:
-
-            _query_params.append(("limit", limit))
-
-        if locale is not None:
-
-            _query_params.append(("locale", locale))
-
-        if filter is not None:
-
-            _query_params.append(("filter", filter))
-
-        if sort is not None:
-
-            _query_params.append(("sort", sort))
+            _query_params.append(("includeExpired", include_expired))
 
         # process the header parameters
         # process the form parameters
@@ -1477,7 +1113,7 @@ class DefaultApi:
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/v1/catalog/products",
+            resource_path="/v1/consumers/projects/{projectId}/subscriptions/{subscriptionId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1491,28 +1127,15 @@ class DefaultApi:
         )
 
     @validate_call
-    def list_vendor_subscriptions(
+    def consumers_subscriptions_list_by_organization(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        cursor: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning."
-            ),
-        ] = None,
-        limit: Annotated[
-            Optional[
-                Union[
-                    Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
-                ]
-            ],
-            Field(
-                description="The maximum number of items to return in the response. If maximum is exceeded, maximum is used."
-            ),
-        ] = None,
-        product_id: Annotated[
-            Optional[Annotated[str, Field(min_length=10, strict=True, max_length=29)]],
-            Field(description="The product ID."),
+        organization_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
         ] = None,
         _request_timeout: Union[
             None,
@@ -1523,19 +1146,21 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListVendorSubscriptionsResponse:
-        """List all subscriptions of a project.
+    ) -> MarketplaceSubscriptionV1ListSubscriptionsResponse:
+        """List all subscriptions of an organization.
 
-        List all subscriptions of a project.
+        List all subscriptions of an organization.
 
-        :param project_id: The project ID. (required)
-        :type project_id: str
-        :param cursor: A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
+        :param organization_id: (required)
+        :type organization_id: str
+        :param cursor:
         :type cursor: str
-        :param limit: The maximum number of items to return in the response. If maximum is exceeded, maximum is used.
-        :type limit: float
-        :param product_id: The product ID.
+        :param limit:
+        :type limit: int
+        :param product_id:
         :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1558,11 +1183,12 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._list_vendor_subscriptions_serialize(
-            project_id=project_id,
+        _param = self._consumers_subscriptions_list_by_organization_serialize(
+            organization_id=organization_id,
             cursor=cursor,
             limit=limit,
             product_id=product_id,
+            include_expired=include_expired,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1570,7 +1196,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ListVendorSubscriptionsResponse",
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
@@ -1583,28 +1209,15 @@ class DefaultApi:
         ).data
 
     @validate_call
-    def list_vendor_subscriptions_with_http_info(
+    def consumers_subscriptions_list_by_organization_with_http_info(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        cursor: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning."
-            ),
-        ] = None,
-        limit: Annotated[
-            Optional[
-                Union[
-                    Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
-                ]
-            ],
-            Field(
-                description="The maximum number of items to return in the response. If maximum is exceeded, maximum is used."
-            ),
-        ] = None,
-        product_id: Annotated[
-            Optional[Annotated[str, Field(min_length=10, strict=True, max_length=29)]],
-            Field(description="The product ID."),
+        organization_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
         ] = None,
         _request_timeout: Union[
             None,
@@ -1615,19 +1228,21 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListVendorSubscriptionsResponse]:
-        """List all subscriptions of a project.
+    ) -> ApiResponse[MarketplaceSubscriptionV1ListSubscriptionsResponse]:
+        """List all subscriptions of an organization.
 
-        List all subscriptions of a project.
+        List all subscriptions of an organization.
 
-        :param project_id: The project ID. (required)
-        :type project_id: str
-        :param cursor: A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
+        :param organization_id: (required)
+        :type organization_id: str
+        :param cursor:
         :type cursor: str
-        :param limit: The maximum number of items to return in the response. If maximum is exceeded, maximum is used.
-        :type limit: float
-        :param product_id: The product ID.
+        :param limit:
+        :type limit: int
+        :param product_id:
         :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1650,11 +1265,12 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._list_vendor_subscriptions_serialize(
-            project_id=project_id,
+        _param = self._consumers_subscriptions_list_by_organization_serialize(
+            organization_id=organization_id,
             cursor=cursor,
             limit=limit,
             product_id=product_id,
+            include_expired=include_expired,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1662,7 +1278,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ListVendorSubscriptionsResponse",
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
@@ -1675,28 +1291,15 @@ class DefaultApi:
         )
 
     @validate_call
-    def list_vendor_subscriptions_without_preload_content(
+    def consumers_subscriptions_list_by_organization_without_preload_content(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        cursor: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning."
-            ),
-        ] = None,
-        limit: Annotated[
-            Optional[
-                Union[
-                    Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]
-                ]
-            ],
-            Field(
-                description="The maximum number of items to return in the response. If maximum is exceeded, maximum is used."
-            ),
-        ] = None,
-        product_id: Annotated[
-            Optional[Annotated[str, Field(min_length=10, strict=True, max_length=29)]],
-            Field(description="The product ID."),
+        organization_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
         ] = None,
         _request_timeout: Union[
             None,
@@ -1708,18 +1311,20 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """List all subscriptions of a project.
+        """List all subscriptions of an organization.
 
-        List all subscriptions of a project.
+        List all subscriptions of an organization.
 
-        :param project_id: The project ID. (required)
-        :type project_id: str
-        :param cursor: A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
+        :param organization_id: (required)
+        :type organization_id: str
+        :param cursor:
         :type cursor: str
-        :param limit: The maximum number of items to return in the response. If maximum is exceeded, maximum is used.
-        :type limit: float
-        :param product_id: The product ID.
+        :param limit:
+        :type limit: int
+        :param product_id:
         :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1742,11 +1347,12 @@ class DefaultApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._list_vendor_subscriptions_serialize(
-            project_id=project_id,
+        _param = self._consumers_subscriptions_list_by_organization_serialize(
+            organization_id=organization_id,
             cursor=cursor,
             limit=limit,
             product_id=product_id,
+            include_expired=include_expired,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1754,7 +1360,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ListVendorSubscriptionsResponse",
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
@@ -1762,12 +1368,325 @@ class DefaultApi:
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
 
-    def _list_vendor_subscriptions_serialize(
+    def _consumers_subscriptions_list_by_organization_serialize(
+        self,
+        organization_id,
+        cursor,
+        limit,
+        product_id,
+        include_expired,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        # process the query parameters
+        if cursor is not None:
+
+            _query_params.append(("cursor", cursor))
+
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if product_id is not None:
+
+            _query_params.append(("productId", product_id))
+
+        if include_expired is not None:
+
+            _query_params.append(("includeExpired", include_expired))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/consumers/organizations/{organizationId}/subscriptions",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def consumers_subscriptions_list_by_project(
+        self,
+        project_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> MarketplaceSubscriptionV1ListSubscriptionsResponse:
+        """List all subscriptions of an project.
+
+        List all subscriptions of an project.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param cursor:
+        :type cursor: str
+        :param limit:
+        :type limit: int
+        :param product_id:
+        :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._consumers_subscriptions_list_by_project_serialize(
+            project_id=project_id,
+            cursor=cursor,
+            limit=limit,
+            product_id=product_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def consumers_subscriptions_list_by_project_with_http_info(
+        self,
+        project_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[MarketplaceSubscriptionV1ListSubscriptionsResponse]:
+        """List all subscriptions of an project.
+
+        List all subscriptions of an project.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param cursor:
+        :type cursor: str
+        :param limit:
+        :type limit: int
+        :param product_id:
+        :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._consumers_subscriptions_list_by_project_serialize(
+            project_id=project_id,
+            cursor=cursor,
+            limit=limit,
+            product_id=product_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def consumers_subscriptions_list_by_project_without_preload_content(
+        self,
+        project_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all subscriptions of an project.
+
+        List all subscriptions of an project.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param cursor:
+        :type cursor: str
+        :param limit:
+        :type limit: int
+        :param product_id:
+        :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._consumers_subscriptions_list_by_project_serialize(
+            project_id=project_id,
+            cursor=cursor,
+            limit=limit,
+            product_id=product_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _consumers_subscriptions_list_by_project_serialize(
         self,
         project_id,
         cursor,
         limit,
         product_id,
+        include_expired,
         _request_auth,
         _content_type,
         _headers,
@@ -1801,6 +1720,10 @@ class DefaultApi:
 
             _query_params.append(("productId", product_id))
 
+        if include_expired is not None:
+
+            _query_params.append(("includeExpired", include_expired))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -1814,7 +1737,527 @@ class DefaultApi:
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/v1/vendors/projects/{projectId}/subscriptions",
+            resource_path="/v1/consumers/projects/{projectId}/subscriptions",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def consumers_subscriptions_redirects_get(
+        self,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        redirect_target: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> MarketplaceSubscriptionV1SubscriptionRedirect:
+        """Get a subscription redirect.
+
+        Get a subscription redirect.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param redirect_target:
+        :type redirect_target: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._consumers_subscriptions_redirects_get_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            redirect_target=redirect_target,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1SubscriptionRedirect",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def consumers_subscriptions_redirects_get_with_http_info(
+        self,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        redirect_target: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[MarketplaceSubscriptionV1SubscriptionRedirect]:
+        """Get a subscription redirect.
+
+        Get a subscription redirect.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param redirect_target:
+        :type redirect_target: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._consumers_subscriptions_redirects_get_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            redirect_target=redirect_target,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1SubscriptionRedirect",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def consumers_subscriptions_redirects_get_without_preload_content(
+        self,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        redirect_target: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get a subscription redirect.
+
+        Get a subscription redirect.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param redirect_target:
+        :type redirect_target: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._consumers_subscriptions_redirects_get_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            redirect_target=redirect_target,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1SubscriptionRedirect",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _consumers_subscriptions_redirects_get_serialize(
+        self,
+        project_id,
+        subscription_id,
+        redirect_target,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if subscription_id is not None:
+            _path_params["subscriptionId"] = subscription_id
+        # process the query parameters
+        if redirect_target is not None:
+
+            _query_params.append(("redirectTarget", redirect_target))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/consumers/projects/{projectId}/subscriptions/{subscriptionId}/redirects",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def consumers_subscriptions_terminate(
+        self,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Terminates a consumer subscription early.
+
+        Terminates a consumer subscription early.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._consumers_subscriptions_terminate_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+            "404": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def consumers_subscriptions_terminate_with_http_info(
+        self,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Terminates a consumer subscription early.
+
+        Terminates a consumer subscription early.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._consumers_subscriptions_terminate_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+            "404": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def consumers_subscriptions_terminate_without_preload_content(
+        self,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Terminates a consumer subscription early.
+
+        Terminates a consumer subscription early.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._consumers_subscriptions_terminate_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "204": None,
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+            "404": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _consumers_subscriptions_terminate_serialize(
+        self,
+        project_id,
+        subscription_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if subscription_id is not None:
+            _path_params["subscriptionId"] = subscription_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1/consumers/projects/{projectId}/subscriptions/{subscriptionId}/terminate",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1830,7 +2273,7 @@ class DefaultApi:
     @validate_call
     def resolve_customer(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
+        project_id: StrictStr,
         resolve_customer_payload: ResolveCustomerPayload,
         _request_timeout: Union[
             None,
@@ -1841,12 +2284,12 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> VendorSubscription:
-        """Resolve customer
+    ) -> MarketplaceSubscriptionV1Subscription:
+        """Resolve customer.
 
-        Get details about the requested subscription.
+        Resolve customer.
 
-        :param project_id: The project ID. (required)
+        :param project_id: (required)
         :type project_id: str
         :param resolve_customer_payload: (required)
         :type resolve_customer_payload: ResolveCustomerPayload
@@ -1882,7 +2325,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VendorSubscription",
+            "200": "MarketplaceSubscriptionV1Subscription",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
@@ -1898,7 +2341,7 @@ class DefaultApi:
     @validate_call
     def resolve_customer_with_http_info(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
+        project_id: StrictStr,
         resolve_customer_payload: ResolveCustomerPayload,
         _request_timeout: Union[
             None,
@@ -1909,12 +2352,12 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[VendorSubscription]:
-        """Resolve customer
+    ) -> ApiResponse[MarketplaceSubscriptionV1Subscription]:
+        """Resolve customer.
 
-        Get details about the requested subscription.
+        Resolve customer.
 
-        :param project_id: The project ID. (required)
+        :param project_id: (required)
         :type project_id: str
         :param resolve_customer_payload: (required)
         :type resolve_customer_payload: ResolveCustomerPayload
@@ -1950,7 +2393,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VendorSubscription",
+            "200": "MarketplaceSubscriptionV1Subscription",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
@@ -1966,7 +2409,7 @@ class DefaultApi:
     @validate_call
     def resolve_customer_without_preload_content(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
+        project_id: StrictStr,
         resolve_customer_payload: ResolveCustomerPayload,
         _request_timeout: Union[
             None,
@@ -1978,11 +2421,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Resolve customer
+        """Resolve customer.
 
-        Get details about the requested subscription.
+        Resolve customer.
 
-        :param project_id: The project ID. (required)
+        :param project_id: (required)
         :type project_id: str
         :param resolve_customer_payload: (required)
         :type resolve_customer_payload: ResolveCustomerPayload
@@ -2018,7 +2461,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "VendorSubscription",
+            "200": "MarketplaceSubscriptionV1Subscription",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "403": "ErrorResponse",
@@ -2089,12 +2532,910 @@ class DefaultApi:
         )
 
     @validate_call
+    def vendors_subscriptions_get(
+        self,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> MarketplaceSubscriptionV1Subscription:
+        """Get a subscription.
+
+        Get a subscription.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._vendors_subscriptions_get_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1Subscription",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def vendors_subscriptions_get_with_http_info(
+        self,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[MarketplaceSubscriptionV1Subscription]:
+        """Get a subscription.
+
+        Get a subscription.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._vendors_subscriptions_get_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1Subscription",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def vendors_subscriptions_get_without_preload_content(
+        self,
+        project_id: StrictStr,
+        subscription_id: StrictStr,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get a subscription.
+
+        Get a subscription.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param subscription_id: (required)
+        :type subscription_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._vendors_subscriptions_get_serialize(
+            project_id=project_id,
+            subscription_id=subscription_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1Subscription",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _vendors_subscriptions_get_serialize(
+        self,
+        project_id,
+        subscription_id,
+        include_expired,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if subscription_id is not None:
+            _path_params["subscriptionId"] = subscription_id
+        # process the query parameters
+        if include_expired is not None:
+
+            _query_params.append(("includeExpired", include_expired))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def vendors_subscriptions_list_by_organization(
+        self,
+        organization_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> MarketplaceSubscriptionV1ListSubscriptionsResponse:
+        """List all subscriptions of an organization.
+
+        List all subscriptions of an organization.
+
+        :param organization_id: (required)
+        :type organization_id: str
+        :param cursor:
+        :type cursor: str
+        :param limit:
+        :type limit: int
+        :param product_id:
+        :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._vendors_subscriptions_list_by_organization_serialize(
+            organization_id=organization_id,
+            cursor=cursor,
+            limit=limit,
+            product_id=product_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def vendors_subscriptions_list_by_organization_with_http_info(
+        self,
+        organization_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[MarketplaceSubscriptionV1ListSubscriptionsResponse]:
+        """List all subscriptions of an organization.
+
+        List all subscriptions of an organization.
+
+        :param organization_id: (required)
+        :type organization_id: str
+        :param cursor:
+        :type cursor: str
+        :param limit:
+        :type limit: int
+        :param product_id:
+        :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._vendors_subscriptions_list_by_organization_serialize(
+            organization_id=organization_id,
+            cursor=cursor,
+            limit=limit,
+            product_id=product_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def vendors_subscriptions_list_by_organization_without_preload_content(
+        self,
+        organization_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all subscriptions of an organization.
+
+        List all subscriptions of an organization.
+
+        :param organization_id: (required)
+        :type organization_id: str
+        :param cursor:
+        :type cursor: str
+        :param limit:
+        :type limit: int
+        :param product_id:
+        :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._vendors_subscriptions_list_by_organization_serialize(
+            organization_id=organization_id,
+            cursor=cursor,
+            limit=limit,
+            product_id=product_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _vendors_subscriptions_list_by_organization_serialize(
+        self,
+        organization_id,
+        cursor,
+        limit,
+        product_id,
+        include_expired,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        # process the query parameters
+        if cursor is not None:
+
+            _query_params.append(("cursor", cursor))
+
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if product_id is not None:
+
+            _query_params.append(("productId", product_id))
+
+        if include_expired is not None:
+
+            _query_params.append(("includeExpired", include_expired))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/vendors/organizations/{organizationId}/subscriptions",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def vendors_subscriptions_list_by_project(
+        self,
+        project_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> MarketplaceSubscriptionV1ListSubscriptionsResponse:
+        """List all subscriptions of an project.
+
+        List all subscriptions of an project.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param cursor:
+        :type cursor: str
+        :param limit:
+        :type limit: int
+        :param product_id:
+        :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._vendors_subscriptions_list_by_project_serialize(
+            project_id=project_id,
+            cursor=cursor,
+            limit=limit,
+            product_id=product_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def vendors_subscriptions_list_by_project_with_http_info(
+        self,
+        project_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[MarketplaceSubscriptionV1ListSubscriptionsResponse]:
+        """List all subscriptions of an project.
+
+        List all subscriptions of an project.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param cursor:
+        :type cursor: str
+        :param limit:
+        :type limit: int
+        :param product_id:
+        :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._vendors_subscriptions_list_by_project_serialize(
+            project_id=project_id,
+            cursor=cursor,
+            limit=limit,
+            product_id=product_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def vendors_subscriptions_list_by_project_without_preload_content(
+        self,
+        project_id: StrictStr,
+        cursor: Optional[StrictStr] = None,
+        limit: Optional[StrictInt] = None,
+        product_id: Optional[StrictStr] = None,
+        include_expired: Annotated[
+            Optional[StrictBool],
+            Field(description="Flag to control if cancelled or rejected subscriptions should be returned."),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all subscriptions of an project.
+
+        List all subscriptions of an project.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param cursor:
+        :type cursor: str
+        :param limit:
+        :type limit: int
+        :param product_id:
+        :type product_id: str
+        :param include_expired: Flag to control if cancelled or rejected subscriptions should be returned.
+        :type include_expired: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._vendors_subscriptions_list_by_project_serialize(
+            project_id=project_id,
+            cursor=cursor,
+            limit=limit,
+            product_id=product_id,
+            include_expired=include_expired,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "MarketplaceSubscriptionV1ListSubscriptionsResponse",
+            "400": "ErrorResponse",
+            "401": "ErrorResponse",
+            "403": "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _vendors_subscriptions_list_by_project_serialize(
+        self,
+        project_id,
+        cursor,
+        limit,
+        product_id,
+        include_expired,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        # process the query parameters
+        if cursor is not None:
+
+            _query_params.append(("cursor", cursor))
+
+        if limit is not None:
+
+            _query_params.append(("limit", limit))
+
+        if product_id is not None:
+
+            _query_params.append(("productId", product_id))
+
+        if include_expired is not None:
+
+            _query_params.append(("includeExpired", include_expired))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/vendors/projects/{projectId}/subscriptions",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def vendors_subscriptions_reject(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        subscription_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
-        ],
+        project_id: StrictStr,
+        subscription_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2105,13 +3446,13 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """Reject a subscription
+        """Reject a subscription.
 
         Reject a subscription (in any lifecycle state). Only available for subscriptions to products with lifecycle state `PRODUCT_PREVIEW`.
 
-        :param project_id: The project ID. (required)
+        :param project_id: (required)
         :type project_id: str
-        :param subscription_id: The subscription ID. (required)
+        :param subscription_id: (required)
         :type subscription_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2161,10 +3502,8 @@ class DefaultApi:
     @validate_call
     def vendors_subscriptions_reject_with_http_info(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        subscription_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
-        ],
+        project_id: StrictStr,
+        subscription_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2175,13 +3514,13 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """Reject a subscription
+        """Reject a subscription.
 
         Reject a subscription (in any lifecycle state). Only available for subscriptions to products with lifecycle state `PRODUCT_PREVIEW`.
 
-        :param project_id: The project ID. (required)
+        :param project_id: (required)
         :type project_id: str
-        :param subscription_id: The subscription ID. (required)
+        :param subscription_id: (required)
         :type subscription_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2231,10 +3570,8 @@ class DefaultApi:
     @validate_call
     def vendors_subscriptions_reject_without_preload_content(
         self,
-        project_id: Annotated[str, Field(min_length=36, strict=True, max_length=36, description="The project ID.")],
-        subscription_id: Annotated[
-            str, Field(min_length=36, strict=True, max_length=36, description="The subscription ID.")
-        ],
+        project_id: StrictStr,
+        subscription_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2245,13 +3582,13 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Reject a subscription
+        """Reject a subscription.
 
         Reject a subscription (in any lifecycle state). Only available for subscriptions to products with lifecycle state `PRODUCT_PREVIEW`.
 
-        :param project_id: The project ID. (required)
+        :param project_id: (required)
         :type project_id: str
-        :param subscription_id: The subscription ID. (required)
+        :param subscription_id: (required)
         :type subscription_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
