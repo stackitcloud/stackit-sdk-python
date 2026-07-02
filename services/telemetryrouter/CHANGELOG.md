@@ -1,3 +1,6 @@
+## v0.3.0
+- **New:** v1 API version for STACKIT Telemetry Router
+
 ## v0.2.0
 - **Feature:** regenerate with openapi-generator v7.22.0
 
