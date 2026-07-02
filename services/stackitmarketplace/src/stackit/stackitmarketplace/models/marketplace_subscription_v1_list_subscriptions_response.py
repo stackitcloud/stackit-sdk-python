@@ -18,22 +18,28 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
-from stackit.stackitmarketplace.models.localized_version import LocalizedVersion
+from stackit.stackitmarketplace.models.marketplace_subscription_v1_subscription import (
+    MarketplaceSubscriptionV1Subscription,
+)
 
 
-class AssetsProductDescription(BaseModel):
+class MarketplaceSubscriptionV1ListSubscriptionsResponse(BaseModel):
     """
-    The related product description of the (subscription) product.
+    MarketplaceSubscriptionV1ListSubscriptionsResponse
     """  # noqa: E501
 
-    version: Optional[LocalizedVersion] = None
-    __properties: ClassVar[List[str]] = ["version"]
+    cursor: Optional[StrictStr] = None
+    items: Optional[List[MarketplaceSubscriptionV1Subscription]] = None
+    limit: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["cursor", "items", "limit"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -44,12 +50,11 @@ class AssetsProductDescription(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AssetsProductDescription from a JSON string"""
+        """Create an instance of MarketplaceSubscriptionV1ListSubscriptionsResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,14 +74,18 @@ class AssetsProductDescription(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of version
-        if self.version:
-            _dict["version"] = self.version.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item_items in self.items:
+                if _item_items:
+                    _items.append(_item_items.to_dict())
+            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AssetsProductDescription from a dict"""
+        """Create an instance of MarketplaceSubscriptionV1ListSubscriptionsResponse from a dict"""
         if obj is None:
             return None
 
@@ -84,6 +93,14 @@ class AssetsProductDescription(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"version": LocalizedVersion.from_dict(obj["version"]) if obj.get("version") is not None else None}
+            {
+                "cursor": obj.get("cursor"),
+                "items": (
+                    [MarketplaceSubscriptionV1Subscription.from_dict(_item) for _item in obj["items"]]
+                    if obj.get("items") is not None
+                    else None
+                ),
+                "limit": obj.get("limit"),
+            }
         )
         return _obj
