@@ -35,6 +35,12 @@
     - **Improvement:** Add regex validation of `name` attribute in model class `Cluster`
     - **Feature:** New model class `Audit`
     - **Feature:** Add optional attribute `audit` (type `Audit`) to model class `Cluster`
+- `telemetrylink`:
+  - [v0.2.0](services/telemetrylink/CHANGELOG.md#v020)
+    - **New:** v1 API version for STACKIT Telemetry Link
+- `telemetryrouter`:
+  - [v0.3.0](services/telemetryrouter/CHANGELOG.md#v030)
+    - **New:** v1 API version for STACKIT Telemetry Router
 
 ## Release (2026-13-05)
 - `auditlog`:
