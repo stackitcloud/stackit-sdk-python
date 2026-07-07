@@ -44,7 +44,7 @@ class RegionalAreaIPv4(BaseModel):
         description="The minimal prefix length for networks in the network area.", alias="minPrefixLen"
     )
     network_ranges: Annotated[List[NetworkRange], Field(min_length=1, max_length=64)] = Field(
-        description="A list of network ranges.", alias="networkRanges"
+        description="A list of network area network ranges.", alias="networkRanges"
     )
     transfer_network: Annotated[str, Field(strict=True)] = Field(
         description="IPv4 Classless Inter-Domain Routing (CIDR).", alias="transferNetwork"
