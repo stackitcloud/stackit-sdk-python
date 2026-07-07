@@ -1024,7 +1024,7 @@ dependencies = [
 requires-dist = [
     { name = "cryptography", specifier = ">=43.0.1" },
     { name = "pydantic", specifier = ">=2.9.2" },
-    { name = "pyjwt", specifier = ">=2.9.0" },
+    { name = "pyjwt", specifier = ">=2.13.0" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "urllib3", specifier = ">=2.7.0" },
 ]

@@ -16,7 +16,7 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-    "pyjwt>=2.9.0",
+    "pyjwt>=2.13.0",
     "pydantic>=2.9.2",
     "urllib3>=2.7.0",
     "cryptography>=43.0.1",
