@@ -17,7 +17,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
@@ -27,10 +27,24 @@ class BucketBackend(BaseModel):
     BucketBackend
     """  # noqa: E501
 
-    bucket_url: StrictStr = Field(alias="bucketUrl")
-    region: StrictStr
-    type: StrictStr
+    bucket_url: StrictStr = Field(
+        description="The fully qualified URL of your cloud storage bucket (for example, `https://s3.eu-central-1.amazonaws.com/my-bucket`).",
+        alias="bucketUrl",
+    )
+    region: StrictStr = Field(
+        description="The cloud provider region where your storage bucket is located (for example, `us-west-1` for AWS or `eu01` for STACKIT)."
+    )
+    type: StrictStr = Field(
+        description="Defines the type of content origin. For this schema, it must be set to `bucket`."
+    )
     __properties: ClassVar[List[str]] = ["bucketUrl", "region", "type"]
+
+    @field_validator("type")
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["bucket"]):
+            raise ValueError("must be one of enum values ('bucket')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,

@@ -17,7 +17,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
@@ -36,9 +36,22 @@ class HttpBackendPatch(BaseModel):
         description="Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers. The configuration is stored as plain text. ",
         alias="originRequestHeaders",
     )
-    origin_url: Optional[StrictStr] = Field(default=None, alias="originUrl")
-    type: StrictStr = Field(description="This property is required to determine the used backend type.")
+    origin_url: Optional[StrictStr] = Field(
+        default=None,
+        description="The origin of the content that should be made available through the CDN. Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed. So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234` ",
+        alias="originUrl",
+    )
+    type: StrictStr = Field(
+        description="Defines the type of content origin. For this schema, it must be set to `http`."
+    )
     __properties: ClassVar[List[str]] = ["geofencing", "originRequestHeaders", "originUrl", "type"]
+
+    @field_validator("type")
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["http"]):
+            raise ValueError("must be one of enum values ('http')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,

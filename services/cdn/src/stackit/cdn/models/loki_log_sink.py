@@ -17,7 +17,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
@@ -27,9 +27,19 @@ class LokiLogSink(BaseModel):
     LokiLogSink
     """  # noqa: E501
 
-    push_url: StrictStr = Field(alias="pushUrl")
-    type: StrictStr
+    push_url: StrictStr = Field(
+        description="The fully qualified URL where the CDN should push logs to your Loki instance (for example, `https://loki.example.com/loki/api/v1/push`).",
+        alias="pushUrl",
+    )
+    type: StrictStr = Field(description="Defines the type of the log sink.")
     __properties: ClassVar[List[str]] = ["pushUrl", "type"]
+
+    @field_validator("type")
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["loki"]):
+            raise ValueError("must be one of enum values ('loki')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
