@@ -1,3 +1,7 @@
+## v0.6.0
+- **Chore:** Bump minimum Python version to 3.10
+- **Chore:** Update dependencies
+
 ## v0.5.0
 - **Feature:** Add new operation `list_compatible_kubernetes_releases` and related model `KubernetesReleaseList`
 

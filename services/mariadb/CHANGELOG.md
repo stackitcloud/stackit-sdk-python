@@ -1,3 +1,7 @@
+## v1.1.0
+- **Chore:** Bump minimum Python version to 3.10
+- **Chore:** Update dependencies
+
 ## v1.0.0
 - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - **Feature:** Added optional `CreateCredentialsPayload`.

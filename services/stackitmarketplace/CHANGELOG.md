@@ -1,3 +1,7 @@
+## v1.17.0
+- **Chore:** Bump minimum Python version to 3.10
+- **Chore:** Update dependencies
+
 ## v1.16.0
 - **Feature:** Add new field `Scope` in `CatalogProductPricingOption` model
 - **Deprecation:** Deprecated API methods `GetCatalogProduct`, `ListCatalogProducts` and `InquiriesCreateInquiry`

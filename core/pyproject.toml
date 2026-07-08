@@ -1,6 +1,6 @@
 [project]
 name = "stackit-core"
-version = "v0.2.0"
+version = "v0.3.0"
 description = "Core functionality for the STACKIT SDK for Python"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
 requires-python = ">=3.10,<4.0"

@@ -1,3 +1,7 @@
+## v1.13.0
+- **Chore:** Bump minimum Python version to 3.10
+- **Chore:** Update dependencies
+
 ## v1.12.0
 - **Improvement:** Add regex validation of `name` attribute in model class `Cluster`
 - **Feature:** New model class `Audit`

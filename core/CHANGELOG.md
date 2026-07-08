@@ -1,3 +1,7 @@
+## v0.3.0
+- **Chore:** Bump minimum Python version to 3.10
+- **Chore:** Update dependencies
+
 ## v0.2.0 (2025-06-12)
 - **Feature:** Allow setting custom token endpoint url in configuration
 

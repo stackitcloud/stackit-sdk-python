@@ -1,3 +1,7 @@
+## v1.7.0
+- **Chore:** Bump minimum Python version to 3.10
+- **Chore:** Update dependencies
+
 ## v1.6.0
 - **Feature:** Add new model classes `Data`, `Usage` and `CertificateUsageItem`
 - **Feature:** Add new optional attributes `Data` (type `Data`) and `Usage` (type `Usage`) to `GetCertificateResponse` model class

@@ -1,46 +1,204 @@
 ## Release (2026-MM-DD)
 
+- `core`:
+  - [v0.3.0](core/CHANGELOG.md#v030)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `alb`
+  - [v0.11.0](services/alb/CHANGELOG.md#v0110)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `auditlog`
+  - [v0.3.0](services/auditlog/CHANGELOG.md#v030)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `authorization`
+  - [v0.9.0](services/authorization/CHANGELOG.md#v090)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `cdn`
+  - [v2.7.0](services/cdn/CHANGELOG.md#v270)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `certificates`
+  - [v1.7.0](services/certificates/CHANGELOG.md#v170)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `cost`
+  - [v0.3.0](services/cost/CHANGELOG.md#v030)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `dns`
+  - [v0.7.0](services/dns/CHANGELOG.md#v070)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `edge`
+  - [v0.6.0](services/edge/CHANGELOG.md#v060)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `git`
+  - [v0.10.0](services/git/CHANGELOG.md#v0100)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `iaas`
+  - [v1.5.0](services/iaas/CHANGELOG.md#v150)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `intake`
+  - [v0.7.0](services/intake/CHANGELOG.md#v070)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `kms`
+  - [v0.11.0](services/kms/CHANGELOG.md#0110)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `lbapplication`
+  - [v0.5.0](services/lbapplication/CHANGELOG.md#v050)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `loadbalancer`
+  - [v0.11.0](services/loadbalancer/CHANGELOG.md#v0110)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
 - `logme`:
+  - [v1.1.0](services/logme/CHANGELOG.md#v110)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
   - [v1.0.0](services/logme/CHANGELOG.md#v100)
     - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
     - **Deprecation:** `fluentd_tls`, `fluentd_tls_ciphers`, `fluentd_tls_max_version`, `fluentd_tls_min_version`, `fluentd_tls_version`, `opensearch_tls_ciphers`, `opensearch_tls_protocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
     - **Feature:** Added optional `CreateCredentialsPayload`.
+- `logs`
+  - [v0.4.0](services/logs/CHANGELOG.md#v040)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
 - `mariadb`:
+  - [v1.1.0](services/mariadb/CHANGELOG.md#v110)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
   - [v1.0.0](services/mariadb/CHANGELOG.md#v100)
     - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
     - **Feature:** Added optional `CreateCredentialsPayload`.
 - `modelexperiements`
+  - [v0.2.0](services/modelexperiments/CHANGELOG.md#v020)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
   - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
     - **New**: API for STACKIT modelexperiments
+- `modelserving`
+  - [v0.4.0](services/modelserving/CHANGELOG.md#040)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
 - `mongodbflex`:
+  - [v1.5.0](services/mongodbflex/CHANGELOG.md#v1.5.0)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
   - [v1.4.0](services/mongodbflex/CHANGELOG.md#v140)
     - **Breaking change:** Introduce validators for `name`, `database` and `username`
+- `objectstorage`
+  - [v1.5.0](services/objectstorage/CHANGELOG.md#mdv150)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `observability`
+  - [v0.16.0](services/observability/CHANGELOG.md#v0160)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
 - `opensearch`:
+  - [v1.1.0](services/opensearch/CHANGELOG.md#v110)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
   - [v1.0.0](services/opensearch/CHANGELOG.md#v100)
     - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
     - **Deprecation:** `tls_ciphers`, `tls_protocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
     - **Feature:** Added optional `CreateCredentialsPayload`.
+- `postgresflex`
+  - [v1.4.0](services/postgresflex/CHANGELOG.md#v140)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
 - `rabbitmq`:
+  - [v1.1.0](services/rabbitmq/CHANGELOG.md#v110)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
   - [v1.0.0](services/rabbitmq/CHANGELOG.md#v100)
     - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
     - **Deprecation:** `roles`, `tls_ciphers`, `tls_protocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-11.
     - **Feature:** Added optional `CreateCredentialsPayload`.
 - `redis`:
+  - [v1.1.0](services/rabbitmq/CHANGELOG.md#v110)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
   - [v1.0.0](services/redis/CHANGELOG.md#v100)
     - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
     - **Deprecation:** `tls_ciphers`, `tls_ciphersuites`, `tls_protocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-10.
     - **Feature:** Added optional `CreateCredentialsPayload`.
+- `resourcemanager`
+  - [v0.9.0](services/resourcemanager/CHANGELOG.md#090)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `runcommand`
+  - [v1.3.0](services/runcommand/CHANGELOG.md#v130)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `scf`
+  - [v0.6.0](services/scf/CHANGELOG.md#v060)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `secretsmanager`
+  - [v0.6.0](services/secretsmanager/CHANGELOG.md060)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `serverbackup`
+  - [v1.3.0](services/serverbackup/CHANGELOG.md#v130)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `serverupdate`
+  - [v1.3.0](services/serverupdate/CHANGELOG.md#v130)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `serviceaccount`
+  - [v0.10.0](services/serviceaccount/CHANGELOG.md#v0100)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `serviceenablement`
+  - [v1.3.0](services/serviceenablement/CHANGELOG.md#v130)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `sfs`
+  - [v0.8.0](services/sfs/CHANGELOG.md#v080)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
 - `ske`:
+  - [v1.13.0](services/ske/CHANGELOG.md#v1130)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
   - [v1.12.0](services/ske/CHANGELOG.md#v1120)
     - **Improvement:** Add regex validation of `name` attribute in model class `Cluster`
     - **Feature:** New model class `Audit`
     - **Feature:** Add optional attribute `audit` (type `Audit`) to model class `Cluster`
+- `sqlserverflex`
+  - [v1.3.0](services/sqlserverflex/CHANGELOG.md#v130)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
+- `stackitmarketplace`
+  - [v1.17.0](services/stackitmarketplace/CHANGELOG.md#v1170)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
 - `telemetrylink`:
+  - [v0.3.0](services/telemetrylink/CHANGELOG.md#v030)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
   - [v0.2.0](services/telemetrylink/CHANGELOG.md#v020)
     - **New:** v1 API version for STACKIT Telemetry Link
 - `telemetryrouter`:
+  - [v0.4.0](services/telemetryrouter/CHANGELOG.md#v040)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
   - [v0.3.0](services/telemetryrouter/CHANGELOG.md#v030)
     - **New:** v1 API version for STACKIT Telemetry Router
+- `vpn`
+  - [v0.6.0](services/vpn/CHANGELOG.md#v060)
+    - **Chore:** Bump minimum Python version to 3.10
+    - **Chore:** Update dependencies
 
 ## Release (2026-13-05)
 - `auditlog`:
