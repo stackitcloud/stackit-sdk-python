@@ -29,7 +29,7 @@ jobs:
         
             pr_name=$(echo "Dependency Updates")
 
-            make update-dependencies          
+            make update-dependencies -j
             branch_name="dependency-updater-${{ github.run_id }}"
             git checkout -b "$branch_name"
 

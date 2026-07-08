@@ -1,43 +1,72 @@
 SERVICES_DIR := services
+SERVICES := $(shell ls $(SERVICES_DIR))
 
-install:
-	# install core
+INSTALL_TARGETS := $(addprefix install-,$(SERVICES))
+INSTALL_DEV_TARGETS := $(addprefix install-dev-,$(SERVICES))
+TEST_TARGETS := $(addprefix test-,$(SERVICES))
+LINT_TARGETS := $(addprefix lint-,$(SERVICES))
+UPDATE_TARGETS := $(addprefix update-dependencies-,$(SERVICES))
+
+.PHONY: install install-core $(INSTALL_TARGETS)
+install: install-core $(INSTALL_TARGETS)
+
+install-core:
 	uv sync --no-dev --directory core/
-	# install services
-	@for f in $(shell ls ${SERVICES_DIR}); do uv sync --no-dev --directory ${SERVICES_DIR}/$${f}; done
 
-install-dev:	
-	# install services
-	@for f in $(shell ls ${SERVICES_DIR}); do set -e;uv sync --frozen --directory ${SERVICES_DIR}/$${f}; done
+$(INSTALL_TARGETS): install-%:
+	# install service $*
+	uv sync --no-dev --directory $(SERVICES_DIR)/$*
+
+.PHONY: install-dev $(INSTALL_DEV_TARGETS)
+install-dev: $(INSTALL_DEV_TARGETS)
 	# install core. This needs to be done last or it will get overriden by the dependency installation of the services
 	uv sync --frozen --directory core
 
-test-services:
-	# test core
+$(INSTALL_DEV_TARGETS): install-dev-%:
+	# install service $*
+	uv sync --frozen --directory $(SERVICES_DIR)/$*
+
+.PHONY: test-services test-core $(TEST_TARGETS)
+test-services: test-core $(TEST_TARGETS)
+
+test-core:
 	cd core && uv run pytest
-	# test services
-	@for f in $(shell ls ${SERVICES_DIR}); do  set -e; cd ${SERVICES_DIR}/$${f}; sh -c ' uv run pytest || ([ $$? = 5 ] && exit 0 || exit $$?)'; cd ../..; done
 
-lint-services:
-	# lint core
+$(TEST_TARGETS): test-%:
+	# test service $*
+	cd $(SERVICES_DIR)/$* && sh -c 'uv run pytest || ([ $$? = 5 ] && exit 0 || exit $$?)'
+
+.PHONY: lint-services lint-core lint-examples lint-versions $(LINT_TARGETS)
+lint-services: lint-core lint-examples $(LINT_TARGETS) lint-versions
+
+lint-core:
 	cd core && uv run flake8 .
-	# lint examples. Use configuration from core
-	cd core && uv run flake8 --toml-config pyproject.toml --black-config pyproject.toml ../examples;
-	# lint services
-	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};uv run flake8 .; cd ../..; done
-	# lint versions
-	@./scripts/lint-versions.sh
 
+lint-examples:
+	# lint examples. Use configuration from core
+	cd core && uv run flake8 --toml-config pyproject.toml --black-config pyproject.toml ../examples
+
+$(LINT_TARGETS): lint-%:
+	# lint service $*
+	cd $(SERVICES_DIR)/$* && uv run flake8 .
+
+lint-versions:
+	# lint versions
+	./scripts/lint-versions.sh
+
+# Old parameterized targets for single service, aliased to pattern rules
 test:
-	echo "Testing service ${service}"
-	cd ${SERVICES_DIR}/${service}; sh -c ' uv run pytest || ([ $$? = 5 ] && exit 0 || exit $$?)'; cd ../..;
+	$(MAKE) test-$(service)
 
 lint:
-	echo "Linting service ${service}"
-	cd ${SERVICES_DIR}/${service};uv run flake8 .; cd ../..;
+	$(MAKE) lint-$(service)
 
-update-dependencies:
-	# lock core
+.PHONY: update-dependencies update-dependencies-core $(UPDATE_TARGETS)
+update-dependencies: update-dependencies-core $(UPDATE_TARGETS)
+
+update-dependencies-core:
 	cd core && uv lock
-	# lock services
-	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};uv lock; cd ../..; done
+
+$(UPDATE_TARGETS): update-dependencies-%:
+	# lock service $*
+	cd $(SERVICES_DIR)/$* && uv lock
