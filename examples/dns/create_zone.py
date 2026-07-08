@@ -12,6 +12,8 @@ client = DefaultApi(config)
 
 # Create a new DNS zone
 create_zone_payload = CreateZonePayload(name="myZone", dnsName="testZone.com")
-create_zone_response = client.create_zone(create_zone_payload=create_zone_payload, project_id=project_id)
+create_zone_response = client.create_zone(
+    create_zone_payload=create_zone_payload, project_id=project_id
+)
 
 print(create_zone_payload)

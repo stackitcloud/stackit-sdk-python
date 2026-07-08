@@ -50,4 +50,6 @@ create_load_balancer_payload = CreateLoadBalancerPayload(
         )
     ],
 )
-response = client.create_load_balancer(project_id, X_REQUEST_ID, create_load_balancer_payload)
+response = client.create_load_balancer(
+    project_id, X_REQUEST_ID, create_load_balancer_payload
+)

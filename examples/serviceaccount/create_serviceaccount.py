@@ -7,7 +7,6 @@ from stackit.serviceaccount.models.create_service_account_payload import (
 
 from stackit.core.configuration import Configuration
 
-
 project_id = os.getenv("PROJECT_ID")
 
 # Create a new API client, that uses default authentication and configuration

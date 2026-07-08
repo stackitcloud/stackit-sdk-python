@@ -24,7 +24,9 @@ create_recordset_payload = CreateRecordSetPayload(
     ],
     type="A",
 )
-create_record_response = client.create_record_set(project_id, zone_id, create_recordset_payload)
+create_record_response = client.create_record_set(
+    project_id, zone_id, create_recordset_payload
+)
 
 # Get the DNS record for the newly create DNS zone
 print(

@@ -41,5 +41,7 @@ create_cluster_payload = CreateOrUpdateClusterPayload(
         )
     ],
 )
-cluster = client.create_or_update_cluster(project_id, cluster_name, create_cluster_payload)
+cluster = client.create_or_update_cluster(
+    project_id, cluster_name, create_cluster_payload
+)
 print("Created cluster with name: " + cluster.name)

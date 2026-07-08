@@ -4,7 +4,6 @@ from stackit.mongodbflex.api.default_api import DefaultApi
 from stackit.mongodbflex.models.create_user_payload import CreateUserPayload
 from stackit.core.configuration import Configuration
 
-
 tag = "tag"
 storage_class = "premium-perf2-mongodb"
 project_id = os.getenv("PROJECT_ID")
