@@ -107,7 +107,7 @@ statistics = true
 show-source = false
 max-line-length = 120
 # E203,W503 and E704 are incompatible with the formatter black
-ignore = ["E203", "W503", "E704"]
+ignore = ["E203", "W503", "E704", "B042"]
 inline-quotes = '"'
 docstring-quotes = '"""'
 multiline-quotes = '"""'

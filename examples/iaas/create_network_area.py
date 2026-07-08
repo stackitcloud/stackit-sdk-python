@@ -32,6 +32,4 @@ payload = CreateNetworkAreaRegionPayload(
         transferNetwork="192.160.0.0/24",
     )
 )
-print(
-    client.create_network_area_region(organization_id, network_area.id, "eu01", payload)
-)
+print(client.create_network_area_region(organization_id, network_area.id, "eu01", payload))

@@ -101,7 +101,7 @@ show-source = false
 max-line-length = 120
 # E203,W503 and E704 are incompatible with the formatter black
 # W291 needs to be disabled because some doc-strings get generated with trailing whitespace but black won't re-format comments
-ignore = ["E203", "W503", "E704", "W291"]
+ignore = ["E203", "W503", "E704", "W291", "B042"]
 inline-quotes = '"'
 docstring-quotes = '"""'
 multiline-quotes = '"""'

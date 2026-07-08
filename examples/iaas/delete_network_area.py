@@ -18,9 +18,7 @@ for region_id in list_regions_resp.regions:
 
 # wait for all network area regions to be deleted
 while True:
-    list_regions_resp = client.list_network_area_regions(
-        organization_id, network_area_id
-    )
+    list_regions_resp = client.list_network_area_regions(organization_id, network_area_id)
     if len(list_regions_resp.regions) < 1:
         break
     time.sleep(3)
