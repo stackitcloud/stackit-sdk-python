@@ -17,18 +17,18 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
 
 class LokiLogSinkCredentials(BaseModel):
     """
-    LokiLogSinkCredentials
+    The authentication credentials required for the CDN to push logs to your Loki instance.
     """  # noqa: E501
 
-    password: StrictStr
-    username: StrictStr
+    password: StrictStr = Field(description="The password corresponding to your username.")
+    username: StrictStr = Field(description="The username used to authenticate against your Loki instance.")
     __properties: ClassVar[List[str]] = ["password", "username"]
 
     model_config = ConfigDict(
