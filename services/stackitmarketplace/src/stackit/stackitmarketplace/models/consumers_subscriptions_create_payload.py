@@ -16,34 +16,30 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic_core import to_jsonable_python
+from typing_extensions import Self
 
 
-class CatalogProductVendorTerms(BaseModel):
+class ConsumersSubscriptionsCreatePayload(BaseModel):
     """
-    CatalogProductVendorTerms
+    ConsumersSubscriptionsCreatePayload
     """  # noqa: E501
 
-    description: StrictStr = Field(description="The terms of service description.")
-    title: StrictStr = Field(description="The terms of service title.")
-    url: Annotated[str, Field(strict=True, max_length=512)] = Field(description="The terms of use url.")
-    __properties: ClassVar[List[str]] = ["description", "title", "url"]
-
-    @field_validator("url")
-    def url_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$", value):
-            raise ValueError(
-                r"must validate the regular expression /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
-            )
-        return value
+    consumer_notification_email: Optional[StrictStr] = Field(
+        default=None,
+        description="An E-Mail address the vendor can reach the consuer about subscription updates.",
+        alias="consumerNotificationEmail",
+    )
+    product_id: StrictStr = Field(description="The user-readable ID of the product.", alias="productId")
+    sku: StrictStr = Field(description="The concrete variant of the product.")
+    __properties: ClassVar[List[str]] = ["consumerNotificationEmail", "productId", "sku"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -54,12 +50,11 @@ class CatalogProductVendorTerms(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CatalogProductVendorTerms from a JSON string"""
+        """Create an instance of ConsumersSubscriptionsCreatePayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,7 +78,7 @@ class CatalogProductVendorTerms(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CatalogProductVendorTerms from a dict"""
+        """Create an instance of ConsumersSubscriptionsCreatePayload from a dict"""
         if obj is None:
             return None
 
@@ -91,6 +86,10 @@ class CatalogProductVendorTerms(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"description": obj.get("description"), "title": obj.get("title"), "url": obj.get("url")}
+            {
+                "consumerNotificationEmail": obj.get("consumerNotificationEmail"),
+                "productId": obj.get("productId"),
+                "sku": obj.get("sku"),
+            }
         )
         return _obj
