@@ -31,6 +31,9 @@ class Snapshot(BaseModel):
     Object that represents a snapshot.
     """  # noqa: E501
 
+    availability_zone: Optional[StrictStr] = Field(
+        default=None, description="Object that represents an availability zone.", alias="availabilityZone"
+    )
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
@@ -55,6 +58,7 @@ class Snapshot(BaseModel):
     )
     volume_id: UUID = Field(description="Universally Unique Identifier (UUID).", alias="volumeId")
     __properties: ClassVar[List[str]] = [
+        "availabilityZone",
         "createdAt",
         "description",
         "id",
@@ -166,9 +170,11 @@ class Snapshot(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
+                "availability_zone",
                 "created_at",
                 "id",
                 "size",
@@ -195,6 +201,7 @@ class Snapshot(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "availabilityZone": obj.get("availabilityZone"),
                 "createdAt": obj.get("createdAt"),
                 "description": obj.get("description"),
                 "id": obj.get("id"),
