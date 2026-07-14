@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic_core import to_jsonable_python
@@ -37,7 +38,10 @@ class NetworkIPv6(BaseModel):
         default=None, description="A list containing DNS Servers/Nameservers for IPv6."
     )
     prefixes: List[Annotated[str, Field(strict=True)]]
-    __properties: ClassVar[List[str]] = ["gateway", "nameservers", "prefixes"]
+    vpc_network_range_id: Optional[UUID] = Field(
+        default=None, description="Universally Unique Identifier (UUID).", alias="vpcNetworkRangeId"
+    )
+    __properties: ClassVar[List[str]] = ["gateway", "nameservers", "prefixes", "vpcNetworkRangeId"]
 
     @field_validator("gateway")
     def gateway_validate_regular_expression(cls, value):
@@ -54,6 +58,21 @@ class NetworkIPv6(BaseModel):
         ):
             raise ValueError(
                 r"must validate the regular expression /^\s*((([0-9a-f]{1,4}:){7}([0-9a-f]{1,4}|:))|(([0-9a-f]{1,4}:){6}(:[0-9a-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9a-f]{1,4}:){5}(((:[0-9a-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9a-f]{1,4}:){4}(((:[0-9a-f]{1,4}){1,3})|((:[0-9a-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9a-f]{1,4}:){3}(((:[0-9a-f]{1,4}){1,4})|((:[0-9a-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9a-f]{1,4}:){2}(((:[0-9a-f]{1,4}){1,5})|((:[0-9a-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9a-f]{1,4}:){1}(((:[0-9a-f]{1,4}){1,6})|((:[0-9a-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9a-f]{1,4}){1,7})|((:[0-9a-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/"
+            )
+        return value
+
+    @field_validator("vpc_network_range_id")
+    def vpc_network_range_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
             )
         return value
 
@@ -111,6 +130,11 @@ class NetworkIPv6(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"gateway": obj.get("gateway"), "nameservers": obj.get("nameservers"), "prefixes": obj.get("prefixes")}
+            {
+                "gateway": obj.get("gateway"),
+                "nameservers": obj.get("nameservers"),
+                "prefixes": obj.get("prefixes"),
+                "vpcNetworkRangeId": obj.get("vpcNetworkRangeId"),
+            }
         )
         return _obj

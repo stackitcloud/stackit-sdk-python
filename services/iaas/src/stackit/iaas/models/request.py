@@ -40,7 +40,7 @@ class Request(BaseModel):
         description="Identifier (ID) representing a single API request.", alias="requestId"
     )
     request_type: StrictStr = Field(
-        description="Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`.",
+        description="Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`, `VPC`, `VPCNETWORKRANGE`.",
         alias="requestType",
     )
     resources: List[RequestResource]
