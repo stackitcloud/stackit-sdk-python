@@ -31,7 +31,7 @@ class CreateNetworkAreaRangePayload(BaseModel):
     """  # noqa: E501
 
     ipv4: Optional[Annotated[List[NetworkRange], Field(min_length=1, max_length=64)]] = Field(
-        default=None, description="A list of network ranges."
+        default=None, description="A list of network area network ranges."
     )
     __properties: ClassVar[List[str]] = ["ipv4"]
 
