@@ -42,7 +42,6 @@ __all__ = [
     "InstanceLastOperation",
     "InstanceParameters",
     "InstanceSchema",
-    "ListBackupsResponse",
     "ListCredentialsResponse",
     "ListInstancesResponse",
     "ListOfferingsResponse",
@@ -105,9 +104,6 @@ from stackit.redis.models.instance_parameters import (
     InstanceParameters as InstanceParameters,
 )
 from stackit.redis.models.instance_schema import InstanceSchema as InstanceSchema
-from stackit.redis.models.list_backups_response import (
-    ListBackupsResponse as ListBackupsResponse,
-)
 from stackit.redis.models.list_credentials_response import (
     ListCredentialsResponse as ListCredentialsResponse,
 )

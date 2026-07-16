@@ -25,6 +25,7 @@ from typing_extensions import Annotated
 
 from stackit.redis.api_client import ApiClient, RequestSerialized
 from stackit.redis.api_response import ApiResponse
+from stackit.redis.models.backup import Backup
 from stackit.redis.models.create_backup_response_item import CreateBackupResponseItem
 from stackit.redis.models.create_credentials_payload import CreateCredentialsPayload
 from stackit.redis.models.create_instance_payload import CreateInstancePayload
@@ -32,7 +33,6 @@ from stackit.redis.models.create_instance_response import CreateInstanceResponse
 from stackit.redis.models.credentials_response import CredentialsResponse
 from stackit.redis.models.get_metrics_response import GetMetricsResponse
 from stackit.redis.models.instance import Instance
-from stackit.redis.models.list_backups_response import ListBackupsResponse
 from stackit.redis.models.list_credentials_response import ListCredentialsResponse
 from stackit.redis.models.list_instances_response import ListInstancesResponse
 from stackit.redis.models.list_offerings_response import ListOfferingsResponse
@@ -2550,7 +2550,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ListBackupsResponse:
+    ) -> List[Backup]:
         """get latest backup information for provided instanceId
 
 
@@ -2593,7 +2593,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ListBackupsResponse",
+            "200": "List[Backup]",
             "400": "Error",
             "401": "Error",
             "404": "Error",
@@ -2620,7 +2620,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ListBackupsResponse]:
+    ) -> ApiResponse[List[Backup]]:
         """get latest backup information for provided instanceId
 
 
@@ -2663,7 +2663,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ListBackupsResponse",
+            "200": "List[Backup]",
             "400": "Error",
             "401": "Error",
             "404": "Error",
@@ -2733,7 +2733,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ListBackupsResponse",
+            "200": "List[Backup]",
             "400": "Error",
             "401": "Error",
             "404": "Error",
