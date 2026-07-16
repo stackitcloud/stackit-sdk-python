@@ -31,6 +31,12 @@ __all__ = [
     "APIError",
     "APIErrorDetail",
     "APIErrorResponse",
+    "BGPFilter",
+    "BGPFilterList",
+    "BGPFilterRule",
+    "BGPFilterRuleList",
+    "BGPFilterRuleMatch",
+    "BGPFilterRuleSet",
     "BGPGatewayConfig",
     "BGPStatus",
     "BGPStatusPeers",
@@ -39,6 +45,8 @@ __all__ = [
     "ConnectionList",
     "ConnectionResponse",
     "ConnectionStatusResponse",
+    "CreateGatewayBGPFilterPayload",
+    "CreateGatewayBGPFilterRulePayload",
     "CreateGatewayConnectionPayload",
     "CreateGatewayPayload",
     "CreateGatewayPayloadAvailabilityZones",
@@ -47,6 +55,7 @@ __all__ = [
     "GatewayResponse",
     "GatewayStatus",
     "GatewayStatusResponse",
+    "NetworkConfig",
     "PeeringConfig",
     "Phase",
     "Phase1Status",
@@ -62,6 +71,8 @@ __all__ = [
     "TunnelConfigurationPhase1",
     "TunnelConfigurationPhase2",
     "TunnelStatus",
+    "UpdateGatewayBGPFilterPayload",
+    "UpdateGatewayBGPFilterRulePayload",
     "UpdateGatewayConnectionPayload",
     "UpdateGatewayPayload",
     "VPNTunnels",
@@ -85,6 +96,16 @@ from stackit.vpn.exceptions import OpenApiException as OpenApiException
 from stackit.vpn.models.api_error import APIError as APIError
 from stackit.vpn.models.api_error_detail import APIErrorDetail as APIErrorDetail
 from stackit.vpn.models.api_error_response import APIErrorResponse as APIErrorResponse
+from stackit.vpn.models.bgp_filter import BGPFilter as BGPFilter
+from stackit.vpn.models.bgp_filter_list import BGPFilterList as BGPFilterList
+from stackit.vpn.models.bgp_filter_rule import BGPFilterRule as BGPFilterRule
+from stackit.vpn.models.bgp_filter_rule_list import (
+    BGPFilterRuleList as BGPFilterRuleList,
+)
+from stackit.vpn.models.bgp_filter_rule_match import (
+    BGPFilterRuleMatch as BGPFilterRuleMatch,
+)
+from stackit.vpn.models.bgp_filter_rule_set import BGPFilterRuleSet as BGPFilterRuleSet
 from stackit.vpn.models.bgp_gateway_config import BGPGatewayConfig as BGPGatewayConfig
 from stackit.vpn.models.bgp_status import BGPStatus as BGPStatus
 from stackit.vpn.models.bgp_status_peers import BGPStatusPeers as BGPStatusPeers
@@ -96,6 +117,12 @@ from stackit.vpn.models.connection_response import (
 )
 from stackit.vpn.models.connection_status_response import (
     ConnectionStatusResponse as ConnectionStatusResponse,
+)
+from stackit.vpn.models.create_gateway_bgp_filter_payload import (
+    CreateGatewayBGPFilterPayload as CreateGatewayBGPFilterPayload,
+)
+from stackit.vpn.models.create_gateway_bgp_filter_rule_payload import (
+    CreateGatewayBGPFilterRulePayload as CreateGatewayBGPFilterRulePayload,
 )
 from stackit.vpn.models.create_gateway_connection_payload import (
     CreateGatewayConnectionPayload as CreateGatewayConnectionPayload,
@@ -113,6 +140,7 @@ from stackit.vpn.models.gateway_status import GatewayStatus as GatewayStatus
 from stackit.vpn.models.gateway_status_response import (
     GatewayStatusResponse as GatewayStatusResponse,
 )
+from stackit.vpn.models.network_config import NetworkConfig as NetworkConfig
 from stackit.vpn.models.peering_config import PeeringConfig as PeeringConfig
 from stackit.vpn.models.phase import Phase as Phase
 from stackit.vpn.models.phase1_status import Phase1Status as Phase1Status
@@ -136,6 +164,12 @@ from stackit.vpn.models.tunnel_configuration_phase2 import (
     TunnelConfigurationPhase2 as TunnelConfigurationPhase2,
 )
 from stackit.vpn.models.tunnel_status import TunnelStatus as TunnelStatus
+from stackit.vpn.models.update_gateway_bgp_filter_payload import (
+    UpdateGatewayBGPFilterPayload as UpdateGatewayBGPFilterPayload,
+)
+from stackit.vpn.models.update_gateway_bgp_filter_rule_payload import (
+    UpdateGatewayBGPFilterRulePayload as UpdateGatewayBGPFilterRulePayload,
+)
 from stackit.vpn.models.update_gateway_connection_payload import (
     UpdateGatewayConnectionPayload as UpdateGatewayConnectionPayload,
 )
