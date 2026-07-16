@@ -21,13 +21,14 @@ from typing_extensions import Self
 
 class Protection(str, Enum):
     """
-    The underlying system that is responsible for protecting the key material.
+    The underlying system that is responsible for protecting the key material. (\"hsm\" is a private preview feature).
     """
 
     """
     allowed enum values
     """
     SOFTWARE = "software"
+    HSM = "hsm"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
