@@ -18,6 +18,7 @@ import json
 import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic_core import to_jsonable_python
@@ -40,7 +41,10 @@ class NetworkIPv4(BaseModel):
     public_ip: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="String that represents an IPv4 address.", alias="publicIp"
     )
-    __properties: ClassVar[List[str]] = ["gateway", "nameservers", "prefixes", "publicIp"]
+    vpc_network_range_id: Optional[UUID] = Field(
+        default=None, description="Universally Unique Identifier (UUID).", alias="vpcNetworkRangeId"
+    )
+    __properties: ClassVar[List[str]] = ["gateway", "nameservers", "prefixes", "publicIp", "vpcNetworkRangeId"]
 
     @field_validator("gateway")
     def gateway_validate_regular_expression(cls, value):
@@ -75,6 +79,21 @@ class NetworkIPv4(BaseModel):
         ):
             raise ValueError(
                 r"must validate the regular expression /^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$/"
+            )
+        return value
+
+    @field_validator("vpc_network_range_id")
+    def vpc_network_range_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
             )
         return value
 
@@ -142,6 +161,7 @@ class NetworkIPv4(BaseModel):
                 "nameservers": obj.get("nameservers"),
                 "prefixes": obj.get("prefixes"),
                 "publicIp": obj.get("publicIp"),
+                "vpcNetworkRangeId": obj.get("vpcNetworkRangeId"),
             }
         )
         return _obj
