@@ -15,29 +15,36 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 
-class BGPTunnelConfig(BaseModel):
+class UpdateGatewayBGPFilterPayload(BaseModel):
     """
-    BGPTunnelConfig
+    A named BGP route filter. Internally a BGPFilter holds an ordered set of rules (managed via the nested /rules sub-resource); a route is evaluated against each rule in 'sequence' order and the first match decides the outcome. An implicit DENY is applied after the last rule, so a route that matches no PERMIT rule is dropped. Attaching an empty filter to a tunnel therefore denies every route. Resource limits: the maximum number of filters per gateway equals the gateway plan's maxConnections value; the maximum number of rules per filter is 10.
     """  # noqa: E501
 
-    inbound_filter_id: Optional[UUID] = Field(
-        default=None,
-        description="UUID of the BGPFilter to apply to incoming routes from this tunnel's BGP neighbor. The filter must exist in the same gateway. Multiple tunnels may reference the same BGPFilter; in that case the rules' 'match.peer' field can be used to scope behavior per neighbor. Outbound filtering is not yet supported; use gateway.bgp.overrideAdvertisedRoutes to control what is advertised. ",
-        alias="inboundFilterId",
+    display_name: Annotated[str, Field(strict=True)] = Field(
+        description="A user-friendly name for the filter. Display only — not enforced unique across a gateway.",
+        alias="displayName",
     )
-    remote_asn: Annotated[int, Field(le=4294967294, strict=True, ge=64512)] = Field(
-        description="ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996). ",
-        alias="remoteAsn",
-    )
-    __properties: ClassVar[List[str]] = ["inboundFilterId", "remoteAsn"]
+    id: Optional[UUID] = Field(default=None, description="The server-generated UUID of the filter.")
+    __properties: ClassVar[List[str]] = ["displayName", "id"]
+
+    @field_validator("display_name")
+    def display_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -56,7 +63,7 @@ class BGPTunnelConfig(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BGPTunnelConfig from a JSON string"""
+        """Create an instance of UpdateGatewayBGPFilterPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -68,29 +75,29 @@ class BGPTunnelConfig(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "id",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if inbound_filter_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.inbound_filter_id is None and "inbound_filter_id" in self.model_fields_set:
-            _dict["inboundFilterId"] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BGPTunnelConfig from a dict"""
+        """Create an instance of UpdateGatewayBGPFilterPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"inboundFilterId": obj.get("inboundFilterId"), "remoteAsn": obj.get("remoteAsn")})
+        _obj = cls.model_validate({"displayName": obj.get("displayName"), "id": obj.get("id")})
         return _obj
