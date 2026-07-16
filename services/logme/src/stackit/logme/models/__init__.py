@@ -30,7 +30,6 @@ from stackit.logme.models.instance_parameters_groks_inner import (
     InstanceParametersGroksInner,
 )
 from stackit.logme.models.instance_schema import InstanceSchema
-from stackit.logme.models.list_backups_response import ListBackupsResponse
 from stackit.logme.models.list_credentials_response import ListCredentialsResponse
 from stackit.logme.models.list_instances_response import ListInstancesResponse
 from stackit.logme.models.list_offerings_response import ListOfferingsResponse
