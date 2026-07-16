@@ -27,7 +27,6 @@ from stackit.mariadb.models.instance import Instance
 from stackit.mariadb.models.instance_last_operation import InstanceLastOperation
 from stackit.mariadb.models.instance_parameters import InstanceParameters
 from stackit.mariadb.models.instance_schema import InstanceSchema
-from stackit.mariadb.models.list_backups_response import ListBackupsResponse
 from stackit.mariadb.models.list_credentials_response import ListCredentialsResponse
 from stackit.mariadb.models.list_instances_response import ListInstancesResponse
 from stackit.mariadb.models.list_offerings_response import ListOfferingsResponse
