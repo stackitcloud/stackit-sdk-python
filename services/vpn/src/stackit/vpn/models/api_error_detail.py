@@ -32,14 +32,18 @@ class APIErrorDetail(BaseModel):
         default=None,
         description="Metadata contains more information. For bad requests this would be field information.",
     )
-    reason: StrictStr = Field(description="The reason why the error occurs.")
+    reason: StrictStr = Field(
+        description="The reason why the error occurs. RESOURCE_IN_USE is returned when a referenced resource cannot be deleted; the 'metadata.references' field then lists the referencing resources (e.g. connection IDs and displayNames pointing at a BGPFilter on DELETE). "
+    )
     __properties: ClassVar[List[str]] = ["domain", "metadata", "reason"]
 
     @field_validator("reason")
     def reason_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["INVALID_FIELD", "INVALID_PATH_PARAMETER"]):
-            raise ValueError("must be one of enum values ('INVALID_FIELD', 'INVALID_PATH_PARAMETER')")
+        if value not in set(["INVALID_FIELD", "INVALID_PATH_PARAMETER", "RESOURCE_IN_USE"]):
+            raise ValueError(
+                "must be one of enum values ('INVALID_FIELD', 'INVALID_PATH_PARAMETER', 'RESOURCE_IN_USE')"
+            )
         return value
 
     model_config = ConfigDict(
