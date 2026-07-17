@@ -142,6 +142,7 @@ __all__ = [
     "ServerMaintenance",
     "ServerNetwork",
     "ServerNetworking",
+    "ServerVTPM",
     "ServiceAccountMailListResponse",
     "SetImageSharePayload",
     "Snapshot",
@@ -431,6 +432,7 @@ from stackit.iaas.models.server_maintenance import (
 )
 from stackit.iaas.models.server_network import ServerNetwork as ServerNetwork
 from stackit.iaas.models.server_networking import ServerNetworking as ServerNetworking
+from stackit.iaas.models.server_vtpm import ServerVTPM as ServerVTPM
 from stackit.iaas.models.service_account_mail_list_response import (
     ServiceAccountMailListResponse as ServiceAccountMailListResponse,
 )
