@@ -28,10 +28,12 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "Acl",
     "BadRequest",
     "CreateInstancePayload",
     "Instance",
     "InstanceList",
+    "IpAllowListEntry",
     "Kubeconfig",
     "KubernetesReleaseList",
     "Plan",
@@ -58,12 +60,14 @@ from stackit.edge.exceptions import ApiValueError as ApiValueError
 from stackit.edge.exceptions import OpenApiException as OpenApiException
 
 # import models into sdk package
+from stackit.edge.models.acl import Acl as Acl
 from stackit.edge.models.bad_request import BadRequest as BadRequest
 from stackit.edge.models.create_instance_payload import (
     CreateInstancePayload as CreateInstancePayload,
 )
 from stackit.edge.models.instance import Instance as Instance
 from stackit.edge.models.instance_list import InstanceList as InstanceList
+from stackit.edge.models.ip_allow_list_entry import IpAllowListEntry as IpAllowListEntry
 from stackit.edge.models.kubeconfig import Kubeconfig as Kubeconfig
 from stackit.edge.models.kubernetes_release_list import (
     KubernetesReleaseList as KubernetesReleaseList,
