@@ -28,7 +28,6 @@ from stackit.rabbitmq.models.instance import Instance
 from stackit.rabbitmq.models.instance_last_operation import InstanceLastOperation
 from stackit.rabbitmq.models.instance_parameters import InstanceParameters
 from stackit.rabbitmq.models.instance_schema import InstanceSchema
-from stackit.rabbitmq.models.list_backups_response import ListBackupsResponse
 from stackit.rabbitmq.models.list_credentials_response import ListCredentialsResponse
 from stackit.rabbitmq.models.list_instances_response import ListInstancesResponse
 from stackit.rabbitmq.models.list_offerings_response import ListOfferingsResponse
