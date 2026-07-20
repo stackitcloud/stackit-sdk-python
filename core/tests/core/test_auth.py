@@ -13,7 +13,6 @@ from stackit.core.auth_methods.token_auth import TokenAuth
 from stackit.core.authorization import Authorization
 from stackit.core.configuration import Configuration
 
-
 DEFAULT_EMAIL = "email"
 DEFAULT_PRIVATE_KEY_PATH = "/path/to/private.key"
 DEFAULT_SERVICE_ACCOUNT_TOKEN = "token"
@@ -272,9 +271,11 @@ class TestAuth:
         def set_initial_token(auth):
             auth.initial_token = "test-initial-token"
 
-        with patch.object(KeyAuth, "_KeyAuth__create_initial_token", new=set_initial_token), patch.object(
-            KeyAuth, "_KeyAuth__start_token_refresh_task", return_value=None
-        ), patch("requests.post") as mock_post:
+        with (
+            patch.object(KeyAuth, "_KeyAuth__create_initial_token", new=set_initial_token),
+            patch.object(KeyAuth, "_KeyAuth__start_token_refresh_task", return_value=None),
+            patch("requests.post") as mock_post,
+        ):
             init_response = Mock()
             init_response.raise_for_status.return_value = None
             init_response.json.return_value = {

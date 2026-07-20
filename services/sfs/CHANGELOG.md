@@ -1,3 +1,7 @@
+## v0.8.0
+- **Chore:** Bump minimum Python version to 3.10
+- **Chore:** Update dependencies
+
 ## v0.7.0
 - **Feature:** attribute `snapshotPolicyId` in model `ResourcePoolPayload` is now optional
 

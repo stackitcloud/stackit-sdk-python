@@ -2,7 +2,6 @@ import pytest
 
 from stackit.core.configuration import Configuration
 
-
 SERVICE_ACCOUNT_EMAIL = "test@example.org"
 SERVICE_ACCOUNT_TOKEN = "token"
 SERVICE_ACCOUNT_KEY_PATH = "/path/to/account/key"

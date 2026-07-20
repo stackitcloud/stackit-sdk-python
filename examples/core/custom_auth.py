@@ -3,7 +3,6 @@ from requests import Request
 from requests.auth import AuthBase
 from stackit.core.configuration import Configuration
 
-
 """
 You can create your own authorization class to implement your own authorization logic.
 You need to derive from the class 'AuthBase' to implement your own class.

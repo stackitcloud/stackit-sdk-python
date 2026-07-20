@@ -1,3 +1,7 @@
+## v0.6.0
+- **Chore:** Bump minimum Python version to 3.10
+- **Chore:** Update dependencies
+
 ## v0.5.0
 - **Fix:** Flag `local_asn` field as required for `BGPGatewayConfig`
 - **Feature:** Add `error_message` field to `GatewayStatusResponse`

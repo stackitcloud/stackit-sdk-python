@@ -1,3 +1,7 @@
+## v1.5.0
+- **Chore:** Bump minimum Python version to 3.10
+- **Chore:** Update dependencies
+
 ## v1.4.0
 - **Breaking change:** Introduce validators for `name`, `database` and `username`
 

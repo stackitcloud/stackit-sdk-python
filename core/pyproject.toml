@@ -1,15 +1,14 @@
 [project]
 name = "stackit-core"
-version = "v0.2.0"
+version = "v0.3.0"
 description = "Core functionality for the STACKIT SDK for Python"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10,<4.0"
 readme = "README.md"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -17,11 +16,11 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-    "pyjwt>=2.9.0",
+    "pyjwt>=2.13.0",
     "pydantic>=2.9.2",
-    "urllib3>=2.2.3",
-    "cryptography>=43.0.1",
-    "requests>=2.32.3",
+    "urllib3>=2.7.0",
+    "cryptography>=46.0.5",
+    "requests>=2.33.0",
 ]
 
 [project.urls]
@@ -30,8 +29,8 @@ Issues = "https://github.com/stackitcloud/stackit-sdk-python/issues"
 
 [dependency-groups]
 dev = [
-    "black>=24.8.0",
-    "pytest>=8.3.3",
+    "black>=26.3.1",
+    "pytest>=9.1.1",
     "flake8>=5.0.3 ; python_full_version < '3.12'",
     "flake8>=6.0.1 ; python_full_version >= '3.12'",
     "flake8-black>=0.3.6",
@@ -108,7 +107,8 @@ statistics = true
 show-source = false
 max-line-length = 120
 # E203,W503 and E704 are incompatible with the formatter black
-ignore = ["E203", "W503", "E704"]
+# fixing B042 in upstream exceptions.mustache would be a breaking change
+ignore = ["E203", "W503", "E704", "B042"]
 inline-quotes = '"'
 docstring-quotes = '"""'
 multiline-quotes = '"""'

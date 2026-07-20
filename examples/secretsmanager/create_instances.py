@@ -5,7 +5,6 @@ from stackit.secretsmanager.models.create_instance_payload import CreateInstance
 
 from stackit.core.configuration import Configuration
 
-
 project_id = os.getenv("PROJECT_ID")
 
 # Create a new API client, that uses default authentication and configuration

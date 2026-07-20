@@ -6,7 +6,6 @@ from stackit.mongodbflex.models.acl import ACL
 from stackit.mongodbflex.models.storage import Storage
 from stackit.core.configuration import Configuration
 
-
 tag = "tag"
 storage_class = "premium-perf2-mongodb"
 project_id = os.getenv("PROJECT_ID")

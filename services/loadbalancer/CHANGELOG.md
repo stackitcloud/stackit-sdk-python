@@ -1,3 +1,7 @@
+## v0.11.0
+- **Chore:** Bump minimum Python version to 3.10
+- **Chore:** Update dependencies
+
 ## v0.10.0
 - **Feature:** regenerate with openapi-generator v7.22.0
 
