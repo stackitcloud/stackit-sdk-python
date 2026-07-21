@@ -18,19 +18,20 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
 
-class Quota(BaseModel):
+class ServerVTPM(BaseModel):
     """
-    Object that represents a single resource quota.
+    Configuration for the Virtual Trusted Platform Module (vTPM).
     """  # noqa: E501
 
-    limit: StrictInt
-    usage: StrictInt
-    __properties: ClassVar[List[str]] = ["limit", "usage"]
+    enabled: StrictBool = Field(
+        description="Defines whether the server instance has the Virtual Trusted Platform Module (vTPM) enabled."
+    )
+    __properties: ClassVar[List[str]] = ["enabled"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +50,7 @@ class Quota(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Quota from a JSON string"""
+        """Create an instance of ServerVTPM from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,12 +74,12 @@ class Quota(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Quota from a dict"""
+        """Create an instance of ServerVTPM from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"limit": obj.get("limit"), "usage": obj.get("usage")})
+        _obj = cls.model_validate({"enabled": obj.get("enabled") if obj.get("enabled") is not None else False})
         return _obj
