@@ -16,28 +16,21 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
-from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
+from stackit.edge.models.ip_allow_list_entry import IpAllowListEntry
 
-class Plan(BaseModel):
+
+class Acl(BaseModel):
     """
-    Plan
+    The ACL config for the instances API.
     """  # noqa: E501
 
-    description: Optional[StrictStr] = Field(default=None, description="Description")
-    id: Optional[UUID] = Field(default=None, description="Service Plan Identifier")
-    max_edge_hosts: Optional[StrictInt] = Field(
-        default=None, description="Maximum number of EdgeHosts", alias="maxEdgeHosts"
-    )
-    min_edge_hosts: Optional[StrictInt] = Field(
-        default=None, description="Minimum number of EdgeHosts charged", alias="minEdgeHosts"
-    )
-    name: Optional[StrictStr] = Field(default=None, description="Service Plan Name")
-    __properties: ClassVar[List[str]] = ["description", "id", "maxEdgeHosts", "minEdgeHosts", "name"]
+    ip_allow_list: Optional[List[IpAllowListEntry]] = Field(default=None, alias="ipAllowList")
+    __properties: ClassVar[List[str]] = ["ipAllowList"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -56,7 +49,7 @@ class Plan(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Plan from a JSON string"""
+        """Create an instance of Acl from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,11 +69,18 @@ class Plan(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in ip_allow_list (list)
+        _items = []
+        if self.ip_allow_list:
+            for _item_ip_allow_list in self.ip_allow_list:
+                if _item_ip_allow_list:
+                    _items.append(_item_ip_allow_list.to_dict())
+            _dict["ipAllowList"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Plan from a dict"""
+        """Create an instance of Acl from a dict"""
         if obj is None:
             return None
 
@@ -89,11 +89,11 @@ class Plan(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "description": obj.get("description"),
-                "id": obj.get("id"),
-                "maxEdgeHosts": obj.get("maxEdgeHosts"),
-                "minEdgeHosts": obj.get("minEdgeHosts"),
-                "name": obj.get("name"),
+                "ipAllowList": (
+                    [IpAllowListEntry.from_dict(_item) for _item in obj["ipAllowList"]]
+                    if obj.get("ipAllowList") is not None
+                    else None
+                )
             }
         )
         return _obj
