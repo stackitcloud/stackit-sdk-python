@@ -16,9 +16,11 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -32,7 +34,25 @@ class CreateNetworkIPv4WithPrefixLength(BaseModel):
         default=None, description="A list containing DNS Servers/Nameservers for IPv4."
     )
     prefix_length: Annotated[int, Field(le=29, strict=True, ge=8)] = Field(alias="prefixLength")
-    __properties: ClassVar[List[str]] = ["nameservers", "prefixLength"]
+    vpc_network_range_id: Optional[UUID] = Field(
+        default=None, description="Universally Unique Identifier (UUID).", alias="vpcNetworkRangeId"
+    )
+    __properties: ClassVar[List[str]] = ["nameservers", "prefixLength", "vpcNetworkRangeId"]
+
+    @field_validator("vpc_network_range_id")
+    def vpc_network_range_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,5 +102,11 @@ class CreateNetworkIPv4WithPrefixLength(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"nameservers": obj.get("nameservers"), "prefixLength": obj.get("prefixLength")})
+        _obj = cls.model_validate(
+            {
+                "nameservers": obj.get("nameservers"),
+                "prefixLength": obj.get("prefixLength"),
+                "vpcNetworkRangeId": obj.get("vpcNetworkRangeId"),
+            }
+        )
         return _obj
