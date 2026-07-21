@@ -32,10 +32,13 @@ class InstanceSensitiveData(BaseModel):
 
     alerting_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="alertingUrl")
     cluster: Annotated[str, Field(min_length=1, strict=True, max_length=63)]
-    dashboard_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="dashboardUrl")
     grafana_admin_enabled: StrictBool = Field(alias="grafanaAdminEnabled")
-    grafana_admin_password: Annotated[str, Field(min_length=32, strict=True)] = Field(alias="grafanaAdminPassword")
-    grafana_admin_user: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="grafanaAdminUser")
+    grafana_admin_password: Optional[Annotated[str, Field(min_length=32, strict=True)]] = Field(
+        default=None, alias="grafanaAdminPassword"
+    )
+    grafana_admin_user: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
+        default=None, alias="grafanaAdminUser"
+    )
     grafana_public_read_access: StrictBool = Field(alias="grafanaPublicReadAccess")
     grafana_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="grafanaUrl")
     grafana_use_stackit_sso: StrictBool = Field(alias="grafanaUseStackitSso")
@@ -65,7 +68,6 @@ class InstanceSensitiveData(BaseModel):
     __properties: ClassVar[List[str]] = [
         "alertingUrl",
         "cluster",
-        "dashboardUrl",
         "grafanaAdminEnabled",
         "grafanaAdminPassword",
         "grafanaAdminUser",
@@ -150,7 +152,6 @@ class InstanceSensitiveData(BaseModel):
             {
                 "alertingUrl": obj.get("alertingUrl"),
                 "cluster": obj.get("cluster"),
-                "dashboardUrl": obj.get("dashboardUrl"),
                 "grafanaAdminEnabled": (
                     obj.get("grafanaAdminEnabled") if obj.get("grafanaAdminEnabled") is not None else True
                 ),
