@@ -16,21 +16,27 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
-
-from stackit.vpn.models.connection_response import ConnectionResponse
+from typing_extensions import Annotated, Self
 
 
-class ConnectionList(BaseModel):
+class NetworkConfig(BaseModel):
     """
-    ConnectionList
+    NetworkConfig
     """  # noqa: E501
 
-    connections: List[ConnectionResponse]
-    __properties: ClassVar[List[str]] = ["connections"]
+    predefined_network_prefix: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+        default=None,
+        description="The IPv4 network prefix (CIDR notation) allocated for the VPN gateway. Must have a prefix length of /28 or larger. Once the gateway is created, is not possible to change this attribute. ",
+        alias="predefinedNetworkPrefix",
+    )
+    routing_table_id: Optional[UUID] = Field(
+        default=None, description="Custom routing table ID for the VPN gateway", alias="routingTableId"
+    )
+    __properties: ClassVar[List[str]] = ["predefinedNetworkPrefix", "routingTableId"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +55,7 @@ class ConnectionList(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ConnectionList from a JSON string"""
+        """Create an instance of NetworkConfig from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +75,11 @@ class ConnectionList(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in connections (list)
-        _items = []
-        if self.connections:
-            for _item_connections in self.connections:
-                if _item_connections:
-                    _items.append(_item_connections.to_dict())
-            _dict["connections"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ConnectionList from a dict"""
+        """Create an instance of NetworkConfig from a dict"""
         if obj is None:
             return None
 
@@ -88,12 +87,6 @@ class ConnectionList(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "connections": (
-                    [ConnectionResponse.from_dict(_item) for _item in obj["connections"]]
-                    if obj.get("connections") is not None
-                    else None
-                )
-            }
+            {"predefinedNetworkPrefix": obj.get("predefinedNetworkPrefix"), "routingTableId": obj.get("routingTableId")}
         )
         return _obj

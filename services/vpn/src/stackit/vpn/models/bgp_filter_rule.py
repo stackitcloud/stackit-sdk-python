@@ -16,56 +16,36 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
+from stackit.vpn.models.bgp_filter_rule_match import BGPFilterRuleMatch
+from stackit.vpn.models.bgp_filter_rule_set import BGPFilterRuleSet
 
-class TunnelConfigurationPhase1(BaseModel):
+
+class BGPFilterRule(BaseModel):
     """
-    TunnelConfigurationPhase1
+    A single rule within a BGPFilter. All non-empty fields within the 'match' block are AND-combined. Rules within a filter are evaluated in 'sequence' order; the first matching rule decides the outcome (logical OR across rules). An implicit DENY follows the last rule.
     """  # noqa: E501
 
-    dh_groups: Optional[List[StrictStr]] = Field(
+    action: StrictStr = Field(description="The action to take if the route matches all criteria. Case-sensitive.")
+    id: Optional[UUID] = Field(default=None, description="The server-generated UUID of the specific rule.")
+    match: Optional[BGPFilterRuleMatch] = None
+    sequence: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(
         default=None,
-        description="The Diffie-Hellman Group. Required, except if AEAD algorithms are selected.",
-        alias="dhGroups",
+        description="The evaluation order of the rule. Lower numbers are evaluated first. Must be unique within a filter. On POST, this field is optional: when omitted the server auto-assigns max(existing)+10 (the first rule starts at 10). On PUT this field is required — sending a partial update without 'sequence' returns 400. ",
     )
-    encryption_algorithms: List[StrictStr] = Field(alias="encryptionAlgorithms")
-    integrity_algorithms: List[StrictStr] = Field(alias="integrityAlgorithms")
-    rekey_time: Optional[Annotated[int, Field(le=28800, strict=True, ge=900)]] = Field(
-        default=14400, description="Time to schedule a IKE re-keying (in seconds).", alias="rekeyTime"
-    )
-    __properties: ClassVar[List[str]] = ["dhGroups", "encryptionAlgorithms", "integrityAlgorithms", "rekeyTime"]
+    set: Optional[BGPFilterRuleSet] = None
+    __properties: ClassVar[List[str]] = ["action", "id", "match", "sequence", "set"]
 
-    @field_validator("dh_groups")
-    def dh_groups_validate_enum(cls, value):
+    @field_validator("action")
+    def action_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
-        for i in value:
-            if i not in set(["modp1024", "modp2048", "ecp256", "ecp384", "modp2048s256"]):
-                raise ValueError(
-                    "each list item must be one of ('modp1024', 'modp2048', 'ecp256', 'ecp384', 'modp2048s256')"
-                )
-        return value
-
-    @field_validator("encryption_algorithms")
-    def encryption_algorithms_validate_enum(cls, value):
-        """Validates the enum"""
-        for i in value:
-            if i not in set(["aes256", "aes128gcm16", "aes256gcm16"]):
-                raise ValueError("each list item must be one of ('aes256', 'aes128gcm16', 'aes256gcm16')")
-        return value
-
-    @field_validator("integrity_algorithms")
-    def integrity_algorithms_validate_enum(cls, value):
-        """Validates the enum"""
-        for i in value:
-            if i not in set(["sha1", "sha2_256", "sha2_384"]):
-                raise ValueError("each list item must be one of ('sha1', 'sha2_256', 'sha2_384')")
+        if value not in set(["PERMIT", "DENY"]):
+            raise ValueError("must be one of enum values ('PERMIT', 'DENY')")
         return value
 
     model_config = ConfigDict(
@@ -85,7 +65,7 @@ class TunnelConfigurationPhase1(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TunnelConfigurationPhase1 from a JSON string"""
+        """Create an instance of BGPFilterRule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -97,19 +77,30 @@ class TunnelConfigurationPhase1(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "id",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of match
+        if self.match:
+            _dict["match"] = self.match.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of set
+        if self.set:
+            _dict["set"] = self.set.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TunnelConfigurationPhase1 from a dict"""
+        """Create an instance of BGPFilterRule from a dict"""
         if obj is None:
             return None
 
@@ -118,10 +109,11 @@ class TunnelConfigurationPhase1(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "dhGroups": obj.get("dhGroups"),
-                "encryptionAlgorithms": obj.get("encryptionAlgorithms"),
-                "integrityAlgorithms": obj.get("integrityAlgorithms"),
-                "rekeyTime": obj.get("rekeyTime") if obj.get("rekeyTime") is not None else 14400,
+                "action": obj.get("action"),
+                "id": obj.get("id"),
+                "match": BGPFilterRuleMatch.from_dict(obj["match"]) if obj.get("match") is not None else None,
+                "sequence": obj.get("sequence"),
+                "set": BGPFilterRuleSet.from_dict(obj["set"]) if obj.get("set") is not None else None,
             }
         )
         return _obj

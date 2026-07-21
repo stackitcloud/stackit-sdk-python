@@ -15,22 +15,36 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
-
-from stackit.vpn.models.connection_response import ConnectionResponse
+from typing_extensions import Annotated, Self
 
 
-class ConnectionList(BaseModel):
+class BGPFilter(BaseModel):
     """
-    ConnectionList
+    A named BGP route filter. Internally a BGPFilter holds an ordered set of rules (managed via the nested /rules sub-resource); a route is evaluated against each rule in 'sequence' order and the first match decides the outcome. An implicit DENY is applied after the last rule, so a route that matches no PERMIT rule is dropped. Attaching an empty filter to a tunnel therefore denies every route. Resource limits: the maximum number of filters per gateway equals the gateway plan's maxConnections value; the maximum number of rules per filter is 10.
     """  # noqa: E501
 
-    connections: List[ConnectionResponse]
-    __properties: ClassVar[List[str]] = ["connections"]
+    display_name: Annotated[str, Field(strict=True)] = Field(
+        description="A user-friendly name for the filter. Display only — not enforced unique across a gateway.",
+        alias="displayName",
+    )
+    id: Optional[UUID] = Field(default=None, description="The server-generated UUID of the filter.")
+    __properties: ClassVar[List[str]] = ["displayName", "id"]
+
+    @field_validator("display_name")
+    def display_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +63,7 @@ class ConnectionList(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ConnectionList from a JSON string"""
+        """Create an instance of BGPFilter from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -61,39 +75,29 @@ class ConnectionList(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "id",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in connections (list)
-        _items = []
-        if self.connections:
-            for _item_connections in self.connections:
-                if _item_connections:
-                    _items.append(_item_connections.to_dict())
-            _dict["connections"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ConnectionList from a dict"""
+        """Create an instance of BGPFilter from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "connections": (
-                    [ConnectionResponse.from_dict(_item) for _item in obj["connections"]]
-                    if obj.get("connections") is not None
-                    else None
-                )
-            }
-        )
+        _obj = cls.model_validate({"displayName": obj.get("displayName"), "id": obj.get("id")})
         return _obj
