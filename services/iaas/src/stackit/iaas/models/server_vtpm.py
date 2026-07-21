@@ -18,22 +18,20 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from pydantic_core import to_jsonable_python
-from typing_extensions import Annotated, Self
-
-from stackit.iaas.models.network_range import NetworkRange
+from typing_extensions import Self
 
 
-class NetworkRangeListResponse(BaseModel):
+class ServerVTPM(BaseModel):
     """
-    Network Range list response of a network area.
+    Configuration for the Virtual Trusted Platform Module (vTPM).
     """  # noqa: E501
 
-    items: Annotated[List[NetworkRange], Field(min_length=1, max_length=64)] = Field(
-        description="A list of network area network ranges."
+    enabled: StrictBool = Field(
+        description="Defines whether the server instance has the Virtual Trusted Platform Module (vTPM) enabled."
     )
-    __properties: ClassVar[List[str]] = ["items"]
+    __properties: ClassVar[List[str]] = ["enabled"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -52,7 +50,7 @@ class NetworkRangeListResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of NetworkRangeListResponse from a JSON string"""
+        """Create an instance of ServerVTPM from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,29 +70,16 @@ class NetworkRangeListResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
-        _items = []
-        if self.items:
-            for _item_items in self.items:
-                if _item_items:
-                    _items.append(_item_items.to_dict())
-            _dict["items"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of NetworkRangeListResponse from a dict"""
+        """Create an instance of ServerVTPM from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "items": (
-                    [NetworkRange.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None
-                )
-            }
-        )
+        _obj = cls.model_validate({"enabled": obj.get("enabled") if obj.get("enabled") is not None else False})
         return _obj
