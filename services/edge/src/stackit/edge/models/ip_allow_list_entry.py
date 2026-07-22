@@ -24,41 +24,29 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
-from stackit.edge.models.acl import Acl
 
-
-class Instance(BaseModel):
+class IpAllowListEntry(BaseModel):
     """
-    Instance
+    IpAllowListEntry
     """  # noqa: E501
 
-    acl: Optional[Acl] = None
-    created: datetime = Field(description="The date and time the creation of the instance was triggered.")
+    created_at: Optional[datetime] = Field(
+        default=None, description="ISO-8601 timestamp of when the entry was created.", alias="createdAt"
+    )
     description: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(
-        default=None, description="A user chosen description to distinguish multiple instances."
+        default=None, description="Some description of the entry."
     )
-    display_name: Annotated[str, Field(strict=True, max_length=8)] = Field(
-        description="The displayed name of the instance.", alias="displayName"
+    ip_range: StrictStr = Field(description="The IP CIDR range for the ACL entry.", alias="ipRange")
+    updated_at: Optional[datetime] = Field(
+        default=None, description="ISO-8601 timestamp of when the entry was last updated.", alias="updatedAt"
     )
-    frontend_url: StrictStr = Field(description="URL to the Management UI of the Instance.", alias="frontendUrl")
-    id: Annotated[str, Field(strict=True, max_length=16)] = Field(
-        description="A auto generated unique id which identifies the instance."
+    uuid: UUID = Field(
+        description="The unique identifier for the ipAllowListEntry entry. This value is immutable, used to identify entries for updates, and cannot be changed after creation."
     )
-    plan_id: UUID = Field(description="Service Plan configures the size of the Instance.", alias="planId")
-    status: StrictStr = Field(description="The current status of the instance.")
-    __properties: ClassVar[List[str]] = [
-        "acl",
-        "created",
-        "description",
-        "displayName",
-        "frontendUrl",
-        "id",
-        "planId",
-        "status",
-    ]
+    __properties: ClassVar[List[str]] = ["createdAt", "description", "ipRange", "updatedAt", "uuid"]
 
-    @field_validator("created", mode="before")
-    def created_change_year_zero_to_one(cls, value):
+    @field_validator("created_at", mode="before")
+    def created_at_change_year_zero_to_one(cls, value):
         """Workaround which prevents year 0 issue"""
         if isinstance(value, str):
             # Check for year "0000" at the beginning of the string
@@ -70,11 +58,17 @@ class Instance(BaseModel):
                 return "0001" + value[4:]  # Take "0001" and append the rest of the string
         return value
 
-    @field_validator("status")
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["error", "reconciling", "active", "deleting"]):
-            raise ValueError("must be one of enum values ('error', 'reconciling', 'active', 'deleting')")
+    @field_validator("updated_at", mode="before")
+    def updated_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
         return value
 
     model_config = ConfigDict(
@@ -94,7 +88,7 @@ class Instance(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Instance from a JSON string"""
+        """Create an instance of IpAllowListEntry from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -106,22 +100,26 @@ class Instance(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "created_at",
+                "updated_at",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of acl
-        if self.acl:
-            _dict["acl"] = self.acl.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Instance from a dict"""
+        """Create an instance of IpAllowListEntry from a dict"""
         if obj is None:
             return None
 
@@ -130,14 +128,11 @@ class Instance(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "acl": Acl.from_dict(obj["acl"]) if obj.get("acl") is not None else None,
-                "created": obj.get("created"),
+                "createdAt": obj.get("createdAt"),
                 "description": obj.get("description"),
-                "displayName": obj.get("displayName"),
-                "frontendUrl": obj.get("frontendUrl"),
-                "id": obj.get("id"),
-                "planId": obj.get("planId"),
-                "status": obj.get("status"),
+                "ipRange": obj.get("ipRange"),
+                "updatedAt": obj.get("updatedAt"),
+                "uuid": obj.get("uuid"),
             }
         )
         return _obj
