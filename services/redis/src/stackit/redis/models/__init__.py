@@ -27,7 +27,6 @@ from stackit.redis.models.instance import Instance
 from stackit.redis.models.instance_last_operation import InstanceLastOperation
 from stackit.redis.models.instance_parameters import InstanceParameters
 from stackit.redis.models.instance_schema import InstanceSchema
-from stackit.redis.models.list_backups_response import ListBackupsResponse
 from stackit.redis.models.list_credentials_response import ListCredentialsResponse
 from stackit.redis.models.list_instances_response import ListInstancesResponse
 from stackit.redis.models.list_offerings_response import ListOfferingsResponse
