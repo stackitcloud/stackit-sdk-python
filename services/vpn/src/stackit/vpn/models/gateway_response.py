@@ -28,6 +28,7 @@ from stackit.vpn.models.create_gateway_payload_availability_zones import (
     CreateGatewayPayloadAvailabilityZones,
 )
 from stackit.vpn.models.gateway_status import GatewayStatus
+from stackit.vpn.models.network_config import NetworkConfig
 from stackit.vpn.models.routing_type import RoutingType
 
 
@@ -45,6 +46,7 @@ class GatewayResponse(BaseModel):
         default=None,
         description="Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the `LabelValue` except that it cannot be empty. ",
     )
+    network_config: Optional[NetworkConfig] = Field(default=None, alias="networkConfig")
     plan_id: StrictStr = Field(description="The service plan identifier.", alias="planId")
     routing_type: RoutingType = Field(alias="routingType")
     id: Optional[UUID] = Field(default=None, description="The server-generated UUID of the VPN gateway.")
@@ -54,6 +56,7 @@ class GatewayResponse(BaseModel):
         "bgp",
         "displayName",
         "labels",
+        "networkConfig",
         "planId",
         "routingType",
         "id",
@@ -118,6 +121,9 @@ class GatewayResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of bgp
         if self.bgp:
             _dict["bgp"] = self.bgp.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of network_config
+        if self.network_config:
+            _dict["networkConfig"] = self.network_config.to_dict()
         return _dict
 
     @classmethod
@@ -139,6 +145,9 @@ class GatewayResponse(BaseModel):
                 "bgp": BGPGatewayConfig.from_dict(obj["bgp"]) if obj.get("bgp") is not None else None,
                 "displayName": obj.get("displayName"),
                 "labels": obj.get("labels"),
+                "networkConfig": (
+                    NetworkConfig.from_dict(obj["networkConfig"]) if obj.get("networkConfig") is not None else None
+                ),
                 "planId": obj.get("planId"),
                 "routingType": obj.get("routingType"),
                 "id": obj.get("id"),
