@@ -163,6 +163,7 @@ from stackit.iaas.models.server_list_response import ServerListResponse
 from stackit.iaas.models.server_maintenance import ServerMaintenance
 from stackit.iaas.models.server_network import ServerNetwork
 from stackit.iaas.models.server_networking import ServerNetworking
+from stackit.iaas.models.server_vtpm import ServerVTPM
 from stackit.iaas.models.service_account_mail_list_response import (
     ServiceAccountMailListResponse,
 )
