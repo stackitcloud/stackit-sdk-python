@@ -30,13 +30,17 @@ class CreateTokenPayload(BaseModel):
     """  # noqa: E501
 
     description: Optional[Annotated[str, Field(strict=True, max_length=2000)]] = None
+    labels: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = Field(
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. Send empty object {} to remove all labels. The `stackit` prefix is reserved and cannot be used for Keys.",
+    )
     name: Annotated[str, Field(min_length=1, strict=True, max_length=200)]
     ttl_duration: Optional[StrictStr] = Field(
         default=None,
         description="time to live duration. Must be valid duration string. If not set the token will never expire.",
         alias="ttlDuration",
     )
-    __properties: ClassVar[List[str]] = ["description", "name", "ttlDuration"]
+    __properties: ClassVar[List[str]] = ["description", "labels", "name", "ttlDuration"]
 
     @field_validator("description")
     def description_validate_regular_expression(cls, value):
@@ -110,6 +114,11 @@ class CreateTokenPayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"description": obj.get("description"), "name": obj.get("name"), "ttlDuration": obj.get("ttlDuration")}
+            {
+                "description": obj.get("description"),
+                "labels": obj.get("labels"),
+                "name": obj.get("name"),
+                "ttlDuration": obj.get("ttlDuration"),
+            }
         )
         return _obj
