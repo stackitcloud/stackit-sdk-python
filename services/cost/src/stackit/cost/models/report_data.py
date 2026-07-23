@@ -23,6 +23,7 @@ from pydantic import (
     Field,
     StrictFloat,
     StrictInt,
+    StrictStr,
 )
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
@@ -38,8 +39,12 @@ class ReportData(BaseModel):
     charge: Union[StrictFloat, StrictInt] = Field(description="Charge, value in cents")
     discount: Union[StrictFloat, StrictInt] = Field(description="Discount, value in cents")
     quantity: StrictInt = Field(description="Quantity")
+    quantity_decimal: StrictStr = Field(
+        description="Quantity in decimal format, returned as string to preserve precision. NOTE: This field will be removed in future versions and `totalQuantity` will become a decimal. ",
+        alias="quantityDecimal",
+    )
     time_period: ReportDataTimePeriod = Field(alias="timePeriod")
-    __properties: ClassVar[List[str]] = ["charge", "discount", "quantity", "timePeriod"]
+    __properties: ClassVar[List[str]] = ["charge", "discount", "quantity", "quantityDecimal", "timePeriod"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -97,6 +102,7 @@ class ReportData(BaseModel):
                 "charge": obj.get("charge"),
                 "discount": obj.get("discount"),
                 "quantity": obj.get("quantity"),
+                "quantityDecimal": obj.get("quantityDecimal"),
                 "timePeriod": (
                     ReportDataTimePeriod.from_dict(obj["timePeriod"]) if obj.get("timePeriod") is not None else None
                 ),
