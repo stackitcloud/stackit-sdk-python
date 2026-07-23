@@ -1601,6 +1601,7 @@ class DefaultApi:
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
         project_id: Annotated[UUID, Field(description="portal project id")],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter token resource by labels")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1619,6 +1620,8 @@ class DefaultApi:
         :type region_id: str
         :param project_id: portal project id (required)
         :type project_id: UUID
+        :param label_selector: Filter token resource by labels
+        :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1644,6 +1647,7 @@ class DefaultApi:
         _param = self._list_tokens_serialize(
             region_id=region_id,
             project_id=project_id,
+            label_selector=label_selector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1668,6 +1672,7 @@ class DefaultApi:
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
         project_id: Annotated[UUID, Field(description="portal project id")],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter token resource by labels")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1686,6 +1691,8 @@ class DefaultApi:
         :type region_id: str
         :param project_id: portal project id (required)
         :type project_id: UUID
+        :param label_selector: Filter token resource by labels
+        :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1711,6 +1718,7 @@ class DefaultApi:
         _param = self._list_tokens_serialize(
             region_id=region_id,
             project_id=project_id,
+            label_selector=label_selector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1735,6 +1743,7 @@ class DefaultApi:
         self,
         region_id: Annotated[StrictStr, Field(description="region name")],
         project_id: Annotated[UUID, Field(description="portal project id")],
+        label_selector: Annotated[Optional[StrictStr], Field(description="Filter token resource by labels")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1753,6 +1762,8 @@ class DefaultApi:
         :type region_id: str
         :param project_id: portal project id (required)
         :type project_id: UUID
+        :param label_selector: Filter token resource by labels
+        :type label_selector: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1778,6 +1789,7 @@ class DefaultApi:
         _param = self._list_tokens_serialize(
             region_id=region_id,
             project_id=project_id,
+            label_selector=label_selector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1797,6 +1809,7 @@ class DefaultApi:
         self,
         region_id,
         project_id,
+        label_selector,
         _request_auth,
         _content_type,
         _headers,
@@ -1820,6 +1833,10 @@ class DefaultApi:
         if project_id is not None:
             _path_params["projectId"] = project_id
         # process the query parameters
+        if label_selector is not None:
+
+            _query_params.append(("label_selector", label_selector))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
