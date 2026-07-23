@@ -81,8 +81,8 @@ class TunnelConfigurationPhase2(BaseModel):
     def integrity_algorithms_validate_enum(cls, value):
         """Validates the enum"""
         for i in value:
-            if i not in set(["sha1", "sha2_256", "sha2_384"]):
-                raise ValueError("each list item must be one of ('sha1', 'sha2_256', 'sha2_384')")
+            if i not in set(["sha2_256", "sha2_384", "sha2_512"]):
+                raise ValueError("each list item must be one of ('sha2_256', 'sha2_384', 'sha2_512')")
         return value
 
     @field_validator("dpd_action")
