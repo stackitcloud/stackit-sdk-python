@@ -13,10 +13,12 @@ Do not edit the class manually.
 """  # noqa: E501
 
 # import models into model package
+from stackit.edge.models.acl import Acl
 from stackit.edge.models.bad_request import BadRequest
 from stackit.edge.models.create_instance_payload import CreateInstancePayload
 from stackit.edge.models.instance import Instance
 from stackit.edge.models.instance_list import InstanceList
+from stackit.edge.models.ip_allow_list_entry import IpAllowListEntry
 from stackit.edge.models.kubeconfig import Kubeconfig
 from stackit.edge.models.kubernetes_release_list import KubernetesReleaseList
 from stackit.edge.models.plan import Plan
