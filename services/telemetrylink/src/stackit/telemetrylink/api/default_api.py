@@ -67,6 +67,12 @@ class DefaultApi:
         folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_or_update_folder_telemetry_link_payload: CreateOrUpdateFolderTelemetryLinkPayload,
+        if_none_match: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='ETag of the resource. If specified, the resource is only created if it does not exist. Specify "*" to avoid creating a resource.'
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -87,6 +93,8 @@ class DefaultApi:
         :type region_id: str
         :param create_or_update_folder_telemetry_link_payload: (required)
         :type create_or_update_folder_telemetry_link_payload: CreateOrUpdateFolderTelemetryLinkPayload
+        :param if_none_match: ETag of the resource. If specified, the resource is only created if it does not exist. Specify \"*\" to avoid creating a resource.
+        :type if_none_match: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -113,6 +121,7 @@ class DefaultApi:
             folder_id=folder_id,
             region_id=region_id,
             create_or_update_folder_telemetry_link_payload=create_or_update_folder_telemetry_link_payload,
+            if_none_match=if_none_match,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -126,6 +135,7 @@ class DefaultApi:
             "401": "Response4xx",
             "404": None,
             "409": "Response4xx",
+            "412": "Response4xx",
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -141,6 +151,12 @@ class DefaultApi:
         folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_or_update_folder_telemetry_link_payload: CreateOrUpdateFolderTelemetryLinkPayload,
+        if_none_match: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='ETag of the resource. If specified, the resource is only created if it does not exist. Specify "*" to avoid creating a resource.'
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -161,6 +177,8 @@ class DefaultApi:
         :type region_id: str
         :param create_or_update_folder_telemetry_link_payload: (required)
         :type create_or_update_folder_telemetry_link_payload: CreateOrUpdateFolderTelemetryLinkPayload
+        :param if_none_match: ETag of the resource. If specified, the resource is only created if it does not exist. Specify \"*\" to avoid creating a resource.
+        :type if_none_match: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -187,6 +205,7 @@ class DefaultApi:
             folder_id=folder_id,
             region_id=region_id,
             create_or_update_folder_telemetry_link_payload=create_or_update_folder_telemetry_link_payload,
+            if_none_match=if_none_match,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -200,6 +219,7 @@ class DefaultApi:
             "401": "Response4xx",
             "404": None,
             "409": "Response4xx",
+            "412": "Response4xx",
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -215,6 +235,12 @@ class DefaultApi:
         folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_or_update_folder_telemetry_link_payload: CreateOrUpdateFolderTelemetryLinkPayload,
+        if_none_match: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='ETag of the resource. If specified, the resource is only created if it does not exist. Specify "*" to avoid creating a resource.'
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -235,6 +261,8 @@ class DefaultApi:
         :type region_id: str
         :param create_or_update_folder_telemetry_link_payload: (required)
         :type create_or_update_folder_telemetry_link_payload: CreateOrUpdateFolderTelemetryLinkPayload
+        :param if_none_match: ETag of the resource. If specified, the resource is only created if it does not exist. Specify \"*\" to avoid creating a resource.
+        :type if_none_match: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -261,6 +289,7 @@ class DefaultApi:
             folder_id=folder_id,
             region_id=region_id,
             create_or_update_folder_telemetry_link_payload=create_or_update_folder_telemetry_link_payload,
+            if_none_match=if_none_match,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -274,6 +303,7 @@ class DefaultApi:
             "401": "Response4xx",
             "404": None,
             "409": "Response4xx",
+            "412": "Response4xx",
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -284,6 +314,7 @@ class DefaultApi:
         folder_id,
         region_id,
         create_or_update_folder_telemetry_link_payload,
+        if_none_match,
         _request_auth,
         _content_type,
         _headers,
@@ -308,6 +339,8 @@ class DefaultApi:
             _path_params["regionId"] = region_id
         # process the query parameters
         # process the header parameters
+        if if_none_match is not None:
+            _header_params["If-None-Match"] = if_none_match
         # process the form parameters
         # process the body parameter
         if create_or_update_folder_telemetry_link_payload is not None:
@@ -351,6 +384,12 @@ class DefaultApi:
         ],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_or_update_organization_telemetry_link_payload: CreateOrUpdateOrganizationTelemetryLinkPayload,
+        if_none_match: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='ETag of the resource. If specified, the resource is only created if it does not exist. Specify "*" to avoid creating a resource.'
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -371,6 +410,8 @@ class DefaultApi:
         :type region_id: str
         :param create_or_update_organization_telemetry_link_payload: (required)
         :type create_or_update_organization_telemetry_link_payload: CreateOrUpdateOrganizationTelemetryLinkPayload
+        :param if_none_match: ETag of the resource. If specified, the resource is only created if it does not exist. Specify \"*\" to avoid creating a resource.
+        :type if_none_match: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -397,6 +438,7 @@ class DefaultApi:
             organization_id=organization_id,
             region_id=region_id,
             create_or_update_organization_telemetry_link_payload=create_or_update_organization_telemetry_link_payload,
+            if_none_match=if_none_match,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -410,6 +452,7 @@ class DefaultApi:
             "401": "Response4xx",
             "404": None,
             "409": "Response4xx",
+            "412": "Response4xx",
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -427,6 +470,12 @@ class DefaultApi:
         ],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_or_update_organization_telemetry_link_payload: CreateOrUpdateOrganizationTelemetryLinkPayload,
+        if_none_match: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='ETag of the resource. If specified, the resource is only created if it does not exist. Specify "*" to avoid creating a resource.'
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -447,6 +496,8 @@ class DefaultApi:
         :type region_id: str
         :param create_or_update_organization_telemetry_link_payload: (required)
         :type create_or_update_organization_telemetry_link_payload: CreateOrUpdateOrganizationTelemetryLinkPayload
+        :param if_none_match: ETag of the resource. If specified, the resource is only created if it does not exist. Specify \"*\" to avoid creating a resource.
+        :type if_none_match: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -473,6 +524,7 @@ class DefaultApi:
             organization_id=organization_id,
             region_id=region_id,
             create_or_update_organization_telemetry_link_payload=create_or_update_organization_telemetry_link_payload,
+            if_none_match=if_none_match,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -486,6 +538,7 @@ class DefaultApi:
             "401": "Response4xx",
             "404": None,
             "409": "Response4xx",
+            "412": "Response4xx",
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -503,6 +556,12 @@ class DefaultApi:
         ],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_or_update_organization_telemetry_link_payload: CreateOrUpdateOrganizationTelemetryLinkPayload,
+        if_none_match: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='ETag of the resource. If specified, the resource is only created if it does not exist. Specify "*" to avoid creating a resource.'
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -523,6 +582,8 @@ class DefaultApi:
         :type region_id: str
         :param create_or_update_organization_telemetry_link_payload: (required)
         :type create_or_update_organization_telemetry_link_payload: CreateOrUpdateOrganizationTelemetryLinkPayload
+        :param if_none_match: ETag of the resource. If specified, the resource is only created if it does not exist. Specify \"*\" to avoid creating a resource.
+        :type if_none_match: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -549,6 +610,7 @@ class DefaultApi:
             organization_id=organization_id,
             region_id=region_id,
             create_or_update_organization_telemetry_link_payload=create_or_update_organization_telemetry_link_payload,
+            if_none_match=if_none_match,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -562,6 +624,7 @@ class DefaultApi:
             "401": "Response4xx",
             "404": None,
             "409": "Response4xx",
+            "412": "Response4xx",
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -572,6 +635,7 @@ class DefaultApi:
         organization_id,
         region_id,
         create_or_update_organization_telemetry_link_payload,
+        if_none_match,
         _request_auth,
         _content_type,
         _headers,
@@ -596,6 +660,8 @@ class DefaultApi:
             _path_params["regionId"] = region_id
         # process the query parameters
         # process the header parameters
+        if if_none_match is not None:
+            _header_params["If-None-Match"] = if_none_match
         # process the form parameters
         # process the body parameter
         if create_or_update_organization_telemetry_link_payload is not None:
@@ -637,6 +703,12 @@ class DefaultApi:
         project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_or_update_project_telemetry_link_payload: CreateOrUpdateProjectTelemetryLinkPayload,
+        if_none_match: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='ETag of the resource. If specified, the resource is only created if it does not exist. Specify "*" to avoid creating a resource.'
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -657,6 +729,8 @@ class DefaultApi:
         :type region_id: str
         :param create_or_update_project_telemetry_link_payload: (required)
         :type create_or_update_project_telemetry_link_payload: CreateOrUpdateProjectTelemetryLinkPayload
+        :param if_none_match: ETag of the resource. If specified, the resource is only created if it does not exist. Specify \"*\" to avoid creating a resource.
+        :type if_none_match: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -683,6 +757,7 @@ class DefaultApi:
             project_id=project_id,
             region_id=region_id,
             create_or_update_project_telemetry_link_payload=create_or_update_project_telemetry_link_payload,
+            if_none_match=if_none_match,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -696,6 +771,7 @@ class DefaultApi:
             "401": "Response4xx",
             "404": None,
             "409": "Response4xx",
+            "412": "Response4xx",
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -711,6 +787,12 @@ class DefaultApi:
         project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_or_update_project_telemetry_link_payload: CreateOrUpdateProjectTelemetryLinkPayload,
+        if_none_match: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='ETag of the resource. If specified, the resource is only created if it does not exist. Specify "*" to avoid creating a resource.'
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -731,6 +813,8 @@ class DefaultApi:
         :type region_id: str
         :param create_or_update_project_telemetry_link_payload: (required)
         :type create_or_update_project_telemetry_link_payload: CreateOrUpdateProjectTelemetryLinkPayload
+        :param if_none_match: ETag of the resource. If specified, the resource is only created if it does not exist. Specify \"*\" to avoid creating a resource.
+        :type if_none_match: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -757,6 +841,7 @@ class DefaultApi:
             project_id=project_id,
             region_id=region_id,
             create_or_update_project_telemetry_link_payload=create_or_update_project_telemetry_link_payload,
+            if_none_match=if_none_match,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -770,6 +855,7 @@ class DefaultApi:
             "401": "Response4xx",
             "404": None,
             "409": "Response4xx",
+            "412": "Response4xx",
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -785,6 +871,12 @@ class DefaultApi:
         project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
         region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
         create_or_update_project_telemetry_link_payload: CreateOrUpdateProjectTelemetryLinkPayload,
+        if_none_match: Annotated[
+            Optional[StrictStr],
+            Field(
+                description='ETag of the resource. If specified, the resource is only created if it does not exist. Specify "*" to avoid creating a resource.'
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -805,6 +897,8 @@ class DefaultApi:
         :type region_id: str
         :param create_or_update_project_telemetry_link_payload: (required)
         :type create_or_update_project_telemetry_link_payload: CreateOrUpdateProjectTelemetryLinkPayload
+        :param if_none_match: ETag of the resource. If specified, the resource is only created if it does not exist. Specify \"*\" to avoid creating a resource.
+        :type if_none_match: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -831,6 +925,7 @@ class DefaultApi:
             project_id=project_id,
             region_id=region_id,
             create_or_update_project_telemetry_link_payload=create_or_update_project_telemetry_link_payload,
+            if_none_match=if_none_match,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -844,6 +939,7 @@ class DefaultApi:
             "401": "Response4xx",
             "404": None,
             "409": "Response4xx",
+            "412": "Response4xx",
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -854,6 +950,7 @@ class DefaultApi:
         project_id,
         region_id,
         create_or_update_project_telemetry_link_payload,
+        if_none_match,
         _request_auth,
         _content_type,
         _headers,
@@ -878,6 +975,8 @@ class DefaultApi:
             _path_params["regionId"] = region_id
         # process the query parameters
         # process the header parameters
+        if if_none_match is not None:
+            _header_params["If-None-Match"] = if_none_match
         # process the form parameters
         # process the body parameter
         if create_or_update_project_telemetry_link_payload is not None:
