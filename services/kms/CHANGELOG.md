@@ -1,3 +1,6 @@
+## v0.12.0
+- **Feature:** Add `HSM` as allowed value to `Protection` class.
+
 ## v0.11.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies
