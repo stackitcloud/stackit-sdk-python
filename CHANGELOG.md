@@ -184,12 +184,17 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `telemetrylink`:
+  - [v0.4.0](services/telemetrylink/CHANGELOG.md#v040)
+    - **Improvement:** Add validation for `Description` field
+    - **Feature:** Add support for `if_none_match` header in `create_or_update_folder_telemetry_link`, `create_or_update_organization_telemetry_link` and `create_or_update_project_telemetry_link`
   - [v0.3.0](services/telemetrylink/CHANGELOG.md#v030)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
   - [v0.2.0](services/telemetrylink/CHANGELOG.md#v020)
     - **New:** v1 API version for STACKIT Telemetry Link
 - `telemetryrouter`:
+  - [v0.5.0](services/telemetryrouter/CHANGELOG.md#v050)
+    - **Improvement:** Add validation for `Description` field
   - [v0.4.0](services/telemetryrouter/CHANGELOG.md#v040)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies

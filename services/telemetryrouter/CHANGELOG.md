@@ -1,3 +1,6 @@
+## v0.5.0
+- **Improvement:** Add validation for `Description` field
+
 ## v0.4.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies
