@@ -49,6 +49,8 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `kms`
+  - [v0.12.0](services/kms/CHANGELOG.md#0120)
+    - **Feature:** Add `HSM` as allowed value to `Protection` class.
   - [v0.11.0](services/kms/CHANGELOG.md#0110)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
