@@ -104,6 +104,8 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `observability`
+  - [v0.17.0](services/observability/CHANGELOG.md#v0170)
+    - **Breaking change:** Updated `InstanceSensitiveData` model because of misbehaving API
   - [v0.16.0](services/observability/CHANGELOG.md#v0160)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
