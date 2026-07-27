@@ -88,6 +88,8 @@
   - [v0.1.0](services/modelexperiments/CHANGELOG.md#v010)
     - **New**: API for STACKIT modelexperiments
 - `modelserving`
+  - [v0.5.0](services/modelserving/CHANGELOG.md#050)
+    - **Feature:** Add label support for tokens
   - [v0.4.0](services/modelserving/CHANGELOG.md#040)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
