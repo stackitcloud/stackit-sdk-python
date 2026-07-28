@@ -38,6 +38,7 @@ from stackit.iaas.models.server_agent import ServerAgent
 from stackit.iaas.models.server_maintenance import ServerMaintenance
 from stackit.iaas.models.server_network import ServerNetwork
 from stackit.iaas.models.server_networking import ServerNetworking
+from stackit.iaas.models.server_vtpm import ServerVTPM
 
 
 class Server(BaseModel):
@@ -116,6 +117,7 @@ class Server(BaseModel):
         alias="userData",
     )
     volumes: Optional[List[UUID]] = Field(default=None, description="The list of volumes attached to the server.")
+    vtpm: Optional[ServerVTPM] = None
     __properties: ClassVar[List[str]] = [
         "affinityGroup",
         "agent",
@@ -142,6 +144,7 @@ class Server(BaseModel):
         "updatedAt",
         "userData",
         "volumes",
+        "vtpm",
     ]
 
     @field_validator("affinity_group")
@@ -343,6 +346,9 @@ class Server(BaseModel):
                 if _item_nics:
                     _items.append(_item_nics.to_dict())
             _dict["nics"] = _items
+        # override the default output from pydantic by calling `to_dict()` of vtpm
+        if self.vtpm:
+            _dict["vtpm"] = self.vtpm.to_dict()
         return _dict
 
     @classmethod
@@ -389,6 +395,7 @@ class Server(BaseModel):
                 "updatedAt": obj.get("updatedAt"),
                 "userData": obj.get("userData"),
                 "volumes": obj.get("volumes"),
+                "vtpm": ServerVTPM.from_dict(obj["vtpm"]) if obj.get("vtpm") is not None else None,
             }
         )
         return _obj
