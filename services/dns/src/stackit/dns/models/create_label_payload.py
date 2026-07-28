@@ -29,7 +29,7 @@ class CreateLabelPayload(BaseModel):
     """  # noqa: E501
 
     key: Annotated[str, Field(min_length=1, strict=True, max_length=63)]
-    value: Annotated[str, Field(min_length=1, strict=True, max_length=63)]
+    value: Optional[Annotated[str, Field(strict=True, max_length=63)]] = None
     __properties: ClassVar[List[str]] = ["key", "value"]
 
     model_config = ConfigDict(
