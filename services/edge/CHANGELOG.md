@@ -1,3 +1,6 @@
+## v0.7.0
+- **Feature**: Add new attribute `acl` to model class `Instance`
+
 ## v0.6.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies

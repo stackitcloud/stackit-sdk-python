@@ -33,6 +33,8 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `edge`
+  - [v0.7.0](services/edge/CHANGELOG.md#v070)
+    - **Feature**: Add new attribute `acl` to model class `Instance`
   - [v0.6.0](services/edge/CHANGELOG.md#v060)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
