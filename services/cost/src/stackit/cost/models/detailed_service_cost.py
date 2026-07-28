@@ -23,6 +23,7 @@ from pydantic import (
     Field,
     StrictFloat,
     StrictInt,
+    StrictStr,
 )
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
@@ -56,6 +57,10 @@ class DetailedServiceCost(BaseModel):
         alias="totalDiscount",
     )
     total_quantity: StrictInt = Field(description="Total quantity", alias="totalQuantity")
+    total_quantity_decimal: StrictStr = Field(
+        description="Total quantity in decimal format, returned as string to preserve precision. NOTE: This field will be removed in future versions and `totalQuantity` will become a decimal. ",
+        alias="totalQuantityDecimal",
+    )
     unit_label: Annotated[str, Field(min_length=1, strict=True, max_length=64)] = Field(
         description="Label for unit", alias="unitLabel"
     )
@@ -67,6 +72,7 @@ class DetailedServiceCost(BaseModel):
         "totalCharge",
         "totalDiscount",
         "totalQuantity",
+        "totalQuantityDecimal",
         "unitLabel",
     ]
 
@@ -138,6 +144,7 @@ class DetailedServiceCost(BaseModel):
                 "totalCharge": obj.get("totalCharge"),
                 "totalDiscount": obj.get("totalDiscount"),
                 "totalQuantity": obj.get("totalQuantity"),
+                "totalQuantityDecimal": obj.get("totalQuantityDecimal"),
                 "unitLabel": obj.get("unitLabel"),
             }
         )
