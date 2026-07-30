@@ -42,7 +42,6 @@ __all__ = [
     "InstanceParameters",
     "InstanceParametersGroksInner",
     "InstanceSchema",
-    "ListBackupsResponse",
     "ListCredentialsResponse",
     "ListInstancesResponse",
     "ListOfferingsResponse",
@@ -108,9 +107,6 @@ from stackit.logme.models.instance_parameters_groks_inner import (
     InstanceParametersGroksInner as InstanceParametersGroksInner,
 )
 from stackit.logme.models.instance_schema import InstanceSchema as InstanceSchema
-from stackit.logme.models.list_backups_response import (
-    ListBackupsResponse as ListBackupsResponse,
-)
 from stackit.logme.models.list_credentials_response import (
     ListCredentialsResponse as ListCredentialsResponse,
 )
