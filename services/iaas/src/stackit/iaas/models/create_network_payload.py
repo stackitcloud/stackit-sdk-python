@@ -49,7 +49,8 @@ class CreateNetworkPayload(BaseModel):
     routing_table_id: Optional[UUID] = Field(
         default=None, description="Universally Unique Identifier (UUID).", alias="routingTableId"
     )
-    __properties: ClassVar[List[str]] = ["dhcp", "ipv4", "ipv6", "labels", "name", "routed", "routingTableId"]
+    vpc_id: Optional[UUID] = Field(default=None, description="The identifier (ID) of a STACKIT VPC.", alias="vpcId")
+    __properties: ClassVar[List[str]] = ["dhcp", "ipv4", "ipv6", "labels", "name", "routed", "routingTableId", "vpcId"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -63,6 +64,21 @@ class CreateNetworkPayload(BaseModel):
 
     @field_validator("routing_table_id")
     def routing_table_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
+        return value
+
+    @field_validator("vpc_id")
+    def vpc_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
@@ -139,6 +155,7 @@ class CreateNetworkPayload(BaseModel):
                 "name": obj.get("name"),
                 "routed": obj.get("routed"),
                 "routingTableId": obj.get("routingTableId"),
+                "vpcId": obj.get("vpcId"),
             }
         )
         return _obj
