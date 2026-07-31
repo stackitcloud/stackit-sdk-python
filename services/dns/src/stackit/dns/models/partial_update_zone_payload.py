@@ -31,7 +31,8 @@ class PartialUpdateZonePayload(BaseModel):
     """  # noqa: E501
 
     acl: Optional[Annotated[str, Field(strict=True, max_length=2000)]] = Field(
-        default="0.0.0.0/0,::/0", description="access control list"
+        default="0.0.0.0/0,::/0",
+        description="the access control list (note: this field currently has no effect and does not enforce any access restrictions on the DNS zone)",
     )
     contact_email: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
         default="hostmaster@stackit.cloud", description="contact e-mail for the zone", alias="contactEmail"
