@@ -42,7 +42,6 @@ __all__ = [
     "InstanceLastOperation",
     "InstanceParameters",
     "InstanceSchema",
-    "ListBackupsResponse",
     "ListCredentialsResponse",
     "ListInstancesResponse",
     "ListOfferingsResponse",
@@ -108,9 +107,6 @@ from stackit.rabbitmq.models.instance_parameters import (
     InstanceParameters as InstanceParameters,
 )
 from stackit.rabbitmq.models.instance_schema import InstanceSchema as InstanceSchema
-from stackit.rabbitmq.models.list_backups_response import (
-    ListBackupsResponse as ListBackupsResponse,
-)
 from stackit.rabbitmq.models.list_credentials_response import (
     ListCredentialsResponse as ListCredentialsResponse,
 )
