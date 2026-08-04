@@ -1,3 +1,6 @@
+## v0.9.1
+- Update description of the `labels` attribute in model classes
+
 ## v0.9.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies

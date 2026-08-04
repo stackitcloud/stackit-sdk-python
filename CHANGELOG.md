@@ -143,6 +143,8 @@
   - [v0.9.0](services/resourcemanager/CHANGELOG.md#090)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
+  - [v0.9.1](services/resourcemanager/CHANGELOG.md#091)
+    - Update description of the `labels` attribute in model classes
 - `runcommand`
   - [v1.3.0](services/runcommand/CHANGELOG.md#v130)
     - **Chore:** Bump minimum Python version to 3.10
