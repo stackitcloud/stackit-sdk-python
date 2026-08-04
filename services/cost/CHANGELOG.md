@@ -1,3 +1,7 @@
+## v0.4.0
+- **Feature:** Add attribute `total_quantity_decimal` to `DetailedServiceCost` model class
+- **Feature:** Add attribute `quantity_decimal` to `ReportData` model class
+
 ## v0.3.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies
