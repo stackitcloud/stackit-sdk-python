@@ -6,7 +6,6 @@ from typing import Generic, Mapping, Optional, TypeVar
 
 from pydantic import BaseModel, Field, StrictBytes, StrictInt
 
-
 T = TypeVar("T")
 
 
