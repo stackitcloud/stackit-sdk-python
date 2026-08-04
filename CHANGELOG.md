@@ -28,6 +28,9 @@
   - [v0.3.0](services/cost/CHANGELOG.md#v030)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
+  - [v0.4.0](services/cost/CHANGELOG.md#v040)
+    - **Feature:** Add attribute `total_quantity_decimal` to `DetailedServiceCost` model class
+    - **Feature:** Add attribute `quantity_decimal` to `ReportData` model class
 - `dns`
   - [v0.7.0](services/dns/CHANGELOG.md#v070)
     - **Chore:** Bump minimum Python version to 3.10
