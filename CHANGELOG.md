@@ -9,6 +9,8 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `auditlog`
+  - [v0.4.0](services/auditlog/CHANGELOG.md#v040)
+    - **Deprecation:** The `auditlog` SDK and the underlying API is deprecated and will be removed in the future. Use the `telemetryrouter` SDK and API instead.
   - [v0.3.0](services/auditlog/CHANGELOG.md#v030)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
