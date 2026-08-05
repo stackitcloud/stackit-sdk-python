@@ -1971,7 +1971,7 @@ class DefaultApi:
     ) -> ServiceAccountMailListResponse:
         """Attach service account to a server.
 
-        Attach an additional service account to the server.
+        Attach a service account to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -2051,7 +2051,7 @@ class DefaultApi:
     ) -> ApiResponse[ServiceAccountMailListResponse]:
         """Attach service account to a server.
 
-        Attach an additional service account to the server.
+        Attach a service account to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -2131,7 +2131,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Attach service account to a server.
 
-        Attach an additional service account to the server.
+        Attach a service account to the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -2912,6 +2912,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "413": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2985,6 +2986,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "413": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3058,6 +3060,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "413": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3145,7 +3148,7 @@ class DefaultApi:
     ) -> ImageCreateResponse:
         """Create new Image.
 
-        Create a new Image in a project. This call, if successful, returns a pre-signed URL for the customer to upload the image.
+        Create a new Image in a project in queued state. Image data must be imported separately. This call returns a pre-signed URL to upload small images.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -3191,6 +3194,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "413": "Error",
             "429": "Error",
             "500": "Error",
         }
@@ -3219,7 +3223,7 @@ class DefaultApi:
     ) -> ApiResponse[ImageCreateResponse]:
         """Create new Image.
 
-        Create a new Image in a project. This call, if successful, returns a pre-signed URL for the customer to upload the image.
+        Create a new Image in a project in queued state. Image data must be imported separately. This call returns a pre-signed URL to upload small images.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -3265,6 +3269,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "413": "Error",
             "429": "Error",
             "500": "Error",
         }
@@ -3293,7 +3298,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create new Image.
 
-        Create a new Image in a project. This call, if successful, returns a pre-signed URL for the customer to upload the image.
+        Create a new Image in a project in queued state. Image data must be imported separately. This call returns a pre-signed URL to upload small images.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -3339,6 +3344,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "413": "Error",
             "429": "Error",
             "500": "Error",
         }
@@ -6923,6 +6929,8 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "409": "Error",
+            "413": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -6996,6 +7004,8 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "409": "Error",
+            "413": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7069,6 +7079,8 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "409": "Error",
+            "413": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7202,6 +7214,8 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "409": "Error",
+            "413": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7275,6 +7289,8 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "409": "Error",
+            "413": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -7348,6 +7364,8 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "409": "Error",
+            "413": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -27738,9 +27756,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ServiceAccountMailListResponse:
-        """List all service accounts of the Server.
+        """List the service account of the Server.
 
-        Get the list of the service accounts of the server.
+        Get service account of the server in a list.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -27811,9 +27829,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ServiceAccountMailListResponse]:
-        """List all service accounts of the Server.
+        """List the service account of the Server.
 
-        Get the list of the service accounts of the server.
+        Get service account of the server in a list.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -27884,9 +27902,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """List all service accounts of the Server.
+        """List the service account of the Server.
 
-        Get the list of the service accounts of the server.
+        Get service account of the server in a list.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -31149,7 +31167,7 @@ class DefaultApi:
     ) -> ServiceAccountMailListResponse:
         """Detach a service account from a server.
 
-        Detach an additional service account from the server.
+        Detach a service account from the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -31229,7 +31247,7 @@ class DefaultApi:
     ) -> ApiResponse[ServiceAccountMailListResponse]:
         """Detach a service account from a server.
 
-        Detach an additional service account from the server.
+        Detach a service account from the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
@@ -31309,7 +31327,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Detach a service account from a server.
 
-        Detach an additional service account from the server.
+        Detach a service account from the server.
 
         :param project_id: The identifier (ID) of a STACKIT Project. (required)
         :type project_id: UUID
