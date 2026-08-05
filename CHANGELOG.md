@@ -70,6 +70,9 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `logme`:
+  - [v1.2.0](services/logme/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:** `list_backups` operation now returns `List[Backup]` instead of `ListBackupsResponse` (response type also removed)
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.1.0](services/logme/CHANGELOG.md#v110)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
@@ -82,6 +85,9 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `mariadb`:
+  - [v1.2.0](services/mariadb/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:** `list_backups` operation now returns `List[Backup]` instead of `ListBackupsResponse` (response type also removed)
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.1.0](services/mariadb/CHANGELOG.md#v110)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
@@ -117,6 +123,9 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `opensearch`:
+  - [v1.2.0](services/opensearch/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:** `list_backups` operation now returns `List[Backup]` instead of `ListBackupsResponse` (response type also removed)
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.1.0](services/opensearch/CHANGELOG.md#v110)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
@@ -129,6 +138,9 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `rabbitmq`:
+  - [v1.2.0](services/rabbitmq/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:** `list_backups` operation now returns `List[Backup]` instead of `ListBackupsResponse` (response type also removed)
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
   - [v1.1.0](services/rabbitmq/CHANGELOG.md#v110)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
@@ -137,7 +149,10 @@
     - **Deprecation:** `roles`, `tls_ciphers`, `tls_protocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-11.
     - **Feature:** Added optional `CreateCredentialsPayload`.
 - `redis`:
-  - [v1.1.0](services/rabbitmq/CHANGELOG.md#v110)
+  - [v1.2.0](services/rabbitmq/CHANGELOG.md#v120)
+    - **Breaking Change/Fix:** `list_backups` operation now returns `List[Backup]` instead of `ListBackupsResponse` (response type also removed)
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
+  - [v1.1.0](services/redis/CHANGELOG.md#v110)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
   - [v1.0.0](services/redis/CHANGELOG.md#v100)
