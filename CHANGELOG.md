@@ -8,6 +8,9 @@
   - [v0.11.0](services/alb/CHANGELOG.md#v0110)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
+- `albwaf`
+  - [v0.1.0](services/albwaf/CHANGELOG.md#v010)
+    - **New**: API for STACKIT albwaf
 - `auditlog`
   - [v0.4.0](services/auditlog/CHANGELOG.md#v040)
     - **Deprecation:** The `auditlog` SDK and the underlying API is deprecated and will be removed in the future. Use the `telemetryrouter` SDK and API instead.
