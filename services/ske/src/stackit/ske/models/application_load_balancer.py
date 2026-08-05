@@ -15,53 +15,22 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from pydantic_core import to_jsonable_python
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
-class HibernationSchedule(BaseModel):
+class ApplicationLoadBalancer(BaseModel):
     """
-    HibernationSchedule
+    ApplicationLoadBalancer
     """  # noqa: E501
 
-    end: Annotated[str, Field(strict=True)]
-    start: Annotated[str, Field(strict=True)]
-    timezone: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["end", "start", "timezone"]
-
-    @field_validator("end")
-    def end_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(
-            r"(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\d+(ns|us|µs|ms|s|m|h))+)|((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\d+(ns|us|µs|ms|s|m|h))+)|((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})/"
-            )
-        return value
-
-    @field_validator("start")
-    def start_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(
-            r"(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\d+(ns|us|µs|ms|s|m|h))+)|((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})",
-            value,
-        ):
-            raise ValueError(
-                r"must validate the regular expression /(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\d+(ns|us|µs|ms|s|m|h))+)|((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})/"
-            )
-        return value
+    enabled: StrictBool = Field(
+        description="Enables the application load balancer extension. ⚠️ Note: This feature is in private preview. Enabling application load balancer extension is only possible for enabled accounts. Otherwise the request will be rejected."
+    )
+    __properties: ClassVar[List[str]] = ["enabled"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -80,7 +49,7 @@ class HibernationSchedule(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of HibernationSchedule from a JSON string"""
+        """Create an instance of ApplicationLoadBalancer from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -104,12 +73,12 @@ class HibernationSchedule(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of HibernationSchedule from a dict"""
+        """Create an instance of ApplicationLoadBalancer from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"end": obj.get("end"), "start": obj.get("start"), "timezone": obj.get("timezone")})
+        _obj = cls.model_validate({"enabled": obj.get("enabled")})
         return _obj
