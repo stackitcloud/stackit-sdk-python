@@ -1,3 +1,6 @@
+## v0.8.0
+- **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` is no longer required.
+
 ## v0.7.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies
