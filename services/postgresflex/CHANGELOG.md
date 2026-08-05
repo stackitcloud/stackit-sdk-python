@@ -1,3 +1,6 @@
+## v1.5.0
+- **Breaking Change:** The v3 API replaces the v2 API.
+
 ## v1.4.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies
