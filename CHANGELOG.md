@@ -34,6 +34,8 @@
     - **Feature:** Add attribute `total_quantity_decimal` to `DetailedServiceCost` model class
     - **Feature:** Add attribute `quantity_decimal` to `ReportData` model class
 - `dns`
+  - [v0.8.0](services/dns/CHANGELOG.md#v080)
+    - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` is no longer required.
   - [v0.7.0](services/dns/CHANGELOG.md#v070)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
