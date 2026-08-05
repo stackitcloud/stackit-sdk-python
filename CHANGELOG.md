@@ -136,6 +136,8 @@
     - **Deprecation:** `tls_ciphers`, `tls_protocols` from `InstanceParameters` model are deprecated and will be removed 2026-12-12.
     - **Feature:** Added optional `CreateCredentialsPayload`.
 - `postgresflex`
+  - [v1.5.0](services/postgresflex/CHANGELOG.md#v150)
+    - **Breaking Change:** The v3 API replaces the v2 API.
   - [v1.4.0](services/postgresflex/CHANGELOG.md#v140)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
