@@ -210,6 +210,8 @@
     - **Feature:** New model class `Audit`
     - **Feature:** Add optional attribute `audit` (type `Audit`) to model class `Cluster`
 - `sqlserverflex`
+  - [v1.4.0](services/sqlserverflex/CHANGELOG.md#v140)
+    - **Breaking Change:** The v3 API replaces the v2 API.
   - [v1.3.0](services/sqlserverflex/CHANGELOG.md#v130)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
