@@ -16,6 +16,12 @@ Do not edit the class manually.
 from stackit.vpn.models.api_error import APIError
 from stackit.vpn.models.api_error_detail import APIErrorDetail
 from stackit.vpn.models.api_error_response import APIErrorResponse
+from stackit.vpn.models.bgp_filter import BGPFilter
+from stackit.vpn.models.bgp_filter_list import BGPFilterList
+from stackit.vpn.models.bgp_filter_rule import BGPFilterRule
+from stackit.vpn.models.bgp_filter_rule_list import BGPFilterRuleList
+from stackit.vpn.models.bgp_filter_rule_match import BGPFilterRuleMatch
+from stackit.vpn.models.bgp_filter_rule_set import BGPFilterRuleSet
 from stackit.vpn.models.bgp_gateway_config import BGPGatewayConfig
 from stackit.vpn.models.bgp_status import BGPStatus
 from stackit.vpn.models.bgp_status_peers import BGPStatusPeers
@@ -24,6 +30,12 @@ from stackit.vpn.models.bgp_tunnel_config import BGPTunnelConfig
 from stackit.vpn.models.connection_list import ConnectionList
 from stackit.vpn.models.connection_response import ConnectionResponse
 from stackit.vpn.models.connection_status_response import ConnectionStatusResponse
+from stackit.vpn.models.create_gateway_bgp_filter_payload import (
+    CreateGatewayBGPFilterPayload,
+)
+from stackit.vpn.models.create_gateway_bgp_filter_rule_payload import (
+    CreateGatewayBGPFilterRulePayload,
+)
 from stackit.vpn.models.create_gateway_connection_payload import (
     CreateGatewayConnectionPayload,
 )
@@ -36,6 +48,7 @@ from stackit.vpn.models.gateway_list import GatewayList
 from stackit.vpn.models.gateway_response import GatewayResponse
 from stackit.vpn.models.gateway_status import GatewayStatus
 from stackit.vpn.models.gateway_status_response import GatewayStatusResponse
+from stackit.vpn.models.network_config import NetworkConfig
 from stackit.vpn.models.peering_config import PeeringConfig
 from stackit.vpn.models.phase import Phase
 from stackit.vpn.models.phase1_status import Phase1Status
@@ -51,6 +64,12 @@ from stackit.vpn.models.tunnel_configuration import TunnelConfiguration
 from stackit.vpn.models.tunnel_configuration_phase1 import TunnelConfigurationPhase1
 from stackit.vpn.models.tunnel_configuration_phase2 import TunnelConfigurationPhase2
 from stackit.vpn.models.tunnel_status import TunnelStatus
+from stackit.vpn.models.update_gateway_bgp_filter_payload import (
+    UpdateGatewayBGPFilterPayload,
+)
+from stackit.vpn.models.update_gateway_bgp_filter_rule_payload import (
+    UpdateGatewayBGPFilterRulePayload,
+)
 from stackit.vpn.models.update_gateway_connection_payload import (
     UpdateGatewayConnectionPayload,
 )
