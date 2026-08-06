@@ -65,6 +65,7 @@ class Network(BaseModel):
     updated_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was last updated.", alias="updatedAt"
     )
+    vpc_id: Optional[UUID] = Field(default=None, description="The identifier (ID) of a STACKIT VPC.", alias="vpcId")
     __properties: ClassVar[List[str]] = [
         "createdAt",
         "dhcp",
@@ -77,6 +78,7 @@ class Network(BaseModel):
         "routingTableId",
         "status",
         "updatedAt",
+        "vpcId",
     ]
 
     @field_validator("created_at", mode="before")
@@ -130,6 +132,21 @@ class Network(BaseModel):
             ):
                 # Workaround: Replace "0000" with "0001"
                 return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
+
+    @field_validator("vpc_id")
+    def vpc_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", value):
+            raise ValueError(
+                r"must validate the regular expression /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/"
+            )
         return value
 
     model_config = ConfigDict(
@@ -206,6 +223,7 @@ class Network(BaseModel):
                 "routingTableId": obj.get("routingTableId"),
                 "status": obj.get("status"),
                 "updatedAt": obj.get("updatedAt"),
+                "vpcId": obj.get("vpcId"),
             }
         )
         return _obj
