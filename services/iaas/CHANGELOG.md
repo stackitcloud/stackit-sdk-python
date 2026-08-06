@@ -1,3 +1,9 @@
+## v1.6.0
+- **Docs:** Extend some descriptions
+- **Feature:** Add support for configuring a `vpc_network_range_id` in `CreateNetworkIPv4WithPrefix`, `CreateNetworkIPv4WithPrefixLength`, `CreateNetworkIPv6WithPrefix` and `CreateNetworkIPv6WithPrefixLength` model
+- **Feature:** Add support for configuring a `vpc_id` in `CreateNetworkPayload` model
+- **Feature:** Add support for configuring a `availability_zone` in `CreateSnapshotPayload` model
+
 ## v1.5.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies

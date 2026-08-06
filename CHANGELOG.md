@@ -53,6 +53,11 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `iaas`
+  - [v1.6.0](services/iaas/CHANGELOG.md#v160)
+    - **Docs:** Extend some descriptions
+    - **Feature:** Add support for configuring a `vpc_network_range_id` in `CreateNetworkIPv4WithPrefix`, `CreateNetworkIPv4WithPrefixLength`, `CreateNetworkIPv6WithPrefix` and `CreateNetworkIPv6WithPrefixLength` model
+    - **Feature:** Add support for configuring a `vpc_id` in `CreateNetworkPayload` model
+    - **Feature:** Add support for configuring a `availability_zone` in `CreateSnapshotPayload` model
   - [v1.5.0](services/iaas/CHANGELOG.md#v150)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
