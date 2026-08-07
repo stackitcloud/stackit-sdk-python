@@ -28,9 +28,7 @@ class CloneInstanceOverrides(BaseModel):
     CloneInstanceOverrides
     """  # noqa: E501
 
-    var_class: Optional[StrictStr] = Field(
-        default=None, description="The storage class for the storage.", alias="class"
-    )
+    var_class: StrictStr = Field(description="The storage class for the storage.", alias="class")
     name: Optional[Annotated[str, Field(min_length=3, strict=True, max_length=63)]] = Field(
         default=None,
         description="The name of the cloned instance. If not provided, the default naming behavior of appending '-clone' to the source instance name is used.",
