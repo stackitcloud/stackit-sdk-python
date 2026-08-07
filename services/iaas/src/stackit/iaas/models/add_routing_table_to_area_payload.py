@@ -28,7 +28,7 @@ from typing_extensions import Annotated, Self
 
 class AddRoutingTableToAreaPayload(BaseModel):
     """
-    An object representing a routing table.
+    An object representing a routing table. Filterable Fields: `dynamicRoutes`, `systemRoutes`.
     """  # noqa: E501
 
     created_at: Optional[datetime] = Field(
