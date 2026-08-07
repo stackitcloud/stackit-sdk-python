@@ -19,12 +19,12 @@ test-services:
 	@for f in $(shell ls ${SERVICES_DIR}); do  set -e; cd ${SERVICES_DIR}/$${f}; sh -c ' uv run pytest || ([ $$? = 5 ] && exit 0 || exit $$?)'; cd ../..; done
 
 lint-services:
-	# lint core
-	cd core && uv run flake8 .
+	# lint core and check its lock file
+	cd core && uv lock --check && uv run flake8 .
 	# lint examples. Use configuration from core
 	cd core && uv run flake8 --toml-config pyproject.toml --black-config pyproject.toml ../examples;
-	# lint services
-	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};uv run flake8 .; cd ../..; done
+	# lint services and check their lock files
+	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f}; if ! uv lock --check; then echo "Lock file for $${f} is out of date. Run 'make update-dependencies'."; exit 1; fi; uv run flake8 .; cd ../..; done
 	# lint versions
 	@./scripts/lint-versions.sh
 
