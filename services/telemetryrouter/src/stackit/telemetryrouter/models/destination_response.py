@@ -74,6 +74,19 @@ class DestinationResponse(BaseModel):
             raise ValueError("must be one of enum values ('bearerToken', 'basicAuth', 'accessKey')")
         return value
 
+    @field_validator("description")
+    def description_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^([a-zA-Z0-9][a-zA-Z0-9 \-]*)?$", value):
+            raise ValueError(r"must validate the regular expression /^([a-zA-Z0-9][a-zA-Z0-9 \-]*)?$/")
+        return value
+
     @field_validator("display_name")
     def display_name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
