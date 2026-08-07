@@ -41,3 +41,10 @@ update-dependencies:
 	cd core && uv lock
 	# lock services
 	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};uv lock; cd ../..; done
+
+check-lock:
+	# services
+	@for f in $(shell ls ${SERVICES_DIR}); do set -e;echo ">> Checking lockfile of $${f}" && uv lock --check --directory ${SERVICES_DIR}/$${f}; done
+	# core
+	echo ">> Checking lockfile of core"
+	uv lock --check --directory core
