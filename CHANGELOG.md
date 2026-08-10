@@ -244,6 +244,9 @@
     - **Chore:** Update dependencies
   - [v0.3.0](services/telemetryrouter/CHANGELOG.md#v030)
     - **New:** v1 API version for STACKIT Telemetry Router
+- `valkey`
+  - [v0.1.0](services/valkey/CHANGELOG.md#v010)
+    - **New**: API for STACKIT valkey
 - `vpn`
   - [v0.6.0](services/vpn/CHANGELOG.md#v060)
     - **Chore:** Bump minimum Python version to 3.10
