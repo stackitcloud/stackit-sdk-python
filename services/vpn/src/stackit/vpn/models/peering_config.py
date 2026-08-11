@@ -25,7 +25,7 @@ from typing_extensions import Annotated, Self
 
 class PeeringConfig(BaseModel):
     """
-    The peering object defines the point-to-point IP configuration for the Tunnel Interface.  These addresses serve as next-hop identifiers and are used for BGP peering sessions and can be used in Static Route-Based connectivity.
+    The peering object defines the point-to-point IP configuration for the Tunnel Interface. These addresses serve as next-hop identifiers and are used for BGP peering sessions and can be used in Static Route-Based connectivity.
     """  # noqa: E501
 
     local_address: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="localAddress")
