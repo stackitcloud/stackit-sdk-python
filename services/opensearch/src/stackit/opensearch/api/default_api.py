@@ -125,7 +125,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "List[CreateBackupResponseItem]",
+            "200": "List[CreateBackupResponseItem]",
             "400": "Error",
             "401": "Error",
             "404": "Error",
@@ -196,7 +196,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "List[CreateBackupResponseItem]",
+            "200": "List[CreateBackupResponseItem]",
             "400": "Error",
             "401": "Error",
             "404": "Error",
@@ -267,7 +267,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "List[CreateBackupResponseItem]",
+            "200": "List[CreateBackupResponseItem]",
             "400": "Error",
             "401": "Error",
             "404": "Error",
