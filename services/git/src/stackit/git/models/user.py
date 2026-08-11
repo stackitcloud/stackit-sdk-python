@@ -18,22 +18,27 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 
-class RunnerRuntime(BaseModel):
+class User(BaseModel):
     """
-    Describes a STACKIT Git Runner runtime.
+    Describes a STACKIT Git instance User.
     """  # noqa: E501
 
-    availability: StrictStr = Field(description="Indicates the availability of the runner label")
-    description: StrictStr = Field(description="Human-friendly description of the runtime and its capabilities.")
-    display_name: StrictStr = Field(description="Human-friendly name of the runtime.")
-    id: StrictStr = Field(description="Runtime identifier.")
-    label: StrictStr = Field(description="Runtime label.")
-    __properties: ClassVar[List[str]] = ["availability", "description", "display_name", "id", "label"]
+    email: Annotated[str, Field(strict=True, max_length=254)] = Field(
+        description="A user chosen email to distinguish multiple STACKIT Git instance Users."
+    )
+    id: Optional[StrictInt] = Field(
+        default=None, description="A auto generated unique id which identifies the STACKIT Git instances."
+    )
+    name: Annotated[str, Field(strict=True, max_length=32)] = Field(description="Name of the user.")
+    username: Annotated[str, Field(strict=True, max_length=32)] = Field(
+        description="A user chosen username to distinguish multiple STACKIT Git instance Users."
+    )
+    __properties: ClassVar[List[str]] = ["email", "id", "name", "username"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -52,7 +57,7 @@ class RunnerRuntime(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RunnerRuntime from a JSON string"""
+        """Create an instance of User from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -64,8 +69,13 @@ class RunnerRuntime(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "id",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
@@ -76,7 +86,7 @@ class RunnerRuntime(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RunnerRuntime from a dict"""
+        """Create an instance of User from a dict"""
         if obj is None:
             return None
 
@@ -84,12 +94,6 @@ class RunnerRuntime(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "availability": obj.get("availability"),
-                "description": obj.get("description"),
-                "display_name": obj.get("display_name"),
-                "id": obj.get("id"),
-                "label": obj.get("label"),
-            }
+            {"email": obj.get("email"), "id": obj.get("id"), "name": obj.get("name"), "username": obj.get("username")}
         )
         return _obj
