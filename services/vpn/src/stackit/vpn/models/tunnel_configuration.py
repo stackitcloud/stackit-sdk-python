@@ -39,7 +39,7 @@ class TunnelConfiguration(BaseModel):
     phase2: TunnelConfigurationPhase2
     pre_shared_key: Optional[Annotated[str, Field(min_length=20, strict=True)]] = Field(
         default=None,
-        description="A Pre-Shared Key for authentication.  Required in create-requests, optional in update-requests and omitted in every response.",
+        description="A Pre-Shared Key for authentication. Required in create-requests, optional in update-requests and omitted in every response.",
         alias="preSharedKey",
     )
     remote_address: Annotated[str, Field(strict=True)] = Field(alias="remoteAddress")
