@@ -17,7 +17,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
@@ -30,9 +30,22 @@ class LokiLogSinkPatch(BaseModel):
     """  # noqa: E501
 
     credentials: Optional[LokiLogSinkCredentials] = None
-    push_url: Optional[StrictStr] = Field(default=None, alias="pushUrl")
-    type: StrictStr
+    push_url: Optional[StrictStr] = Field(
+        default=None,
+        description="The fully qualified URL where the CDN should push logs to your Loki instance (for example, `https://loki.example.com/loki/api/v1/push`).",
+        alias="pushUrl",
+    )
+    type: StrictStr = Field(
+        description="Defines the type of the log sink. For Grafana Loki, this must be set to `loki`."
+    )
     __properties: ClassVar[List[str]] = ["credentials", "pushUrl", "type"]
+
+    @field_validator("type")
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["loki"]):
+            raise ValueError("must be one of enum values ('loki')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
