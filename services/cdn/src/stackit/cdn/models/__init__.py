@@ -19,11 +19,16 @@ from stackit.cdn.models.bucket_backend_patch import BucketBackendPatch
 from stackit.cdn.models.bucket_credentials import BucketCredentials
 from stackit.cdn.models.config import Config
 from stackit.cdn.models.config_backend import ConfigBackend
+from stackit.cdn.models.config_log_sink import ConfigLogSink
 from stackit.cdn.models.config_patch import ConfigPatch
 from stackit.cdn.models.config_patch_backend import ConfigPatchBackend
+from stackit.cdn.models.config_patch_log_sink import ConfigPatchLogSink
 from stackit.cdn.models.create_distribution_payload import CreateDistributionPayload
 from stackit.cdn.models.create_distribution_payload_backend import (
     CreateDistributionPayloadBackend,
+)
+from stackit.cdn.models.create_distribution_payload_log_sink import (
+    CreateDistributionPayloadLogSink,
 )
 from stackit.cdn.models.create_distribution_response import CreateDistributionResponse
 from stackit.cdn.models.custom_domain import CustomDomain
