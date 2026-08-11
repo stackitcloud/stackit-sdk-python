@@ -18,34 +18,30 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    StrictBool,
-    StrictStr,
-)
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
-from stackit.git.models.feature_toggle import FeatureToggle
 
-
-class PatchInstancePayload(BaseModel):
+class CreateUserPayload(BaseModel):
     """
-    Properties to patch on an instance. All fields are optional.
+    Request a STACKIT Git instance User to be created with these properties.
     """  # noqa: E501
 
-    acl: Optional[Annotated[List[StrictStr], Field(max_length=50)]] = Field(
-        default=None, description="A list of CIDR network addresses that are allowed to access the instance."
+    email: Annotated[str, Field(strict=True, max_length=254)] = Field(
+        description="A user chosen email to distinguish multiple STACKIT Git instance Users."
     )
-    admin_login: Optional[StrictBool] = Field(default=None, description="Enable Admin IdP")
-    feature_toggle: Optional[FeatureToggle] = None
-    labels: Optional[Dict[str, Annotated[str, Field(strict=True, max_length=63)]]] = Field(
-        default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. The `stackit-` prefix is reserved and cannot be used for Keys.",
+    force_send_reset_password: Optional[StrictBool] = Field(
+        default=False, description="Whether to force sending a reset password email."
     )
-    __properties: ClassVar[List[str]] = ["acl", "admin_login", "feature_toggle", "labels"]
+    name: Annotated[str, Field(strict=True, max_length=32)] = Field(description="Name of the user.")
+    password: Annotated[str, Field(strict=True, max_length=64)] = Field(
+        description="A user password to allow user/pass instance login."
+    )
+    username: Annotated[str, Field(strict=True, max_length=32)] = Field(
+        description="A user chosen username to distinguish multiple STACKIT Git instance Users."
+    )
+    __properties: ClassVar[List[str]] = ["email", "force_send_reset_password", "name", "password", "username"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -64,7 +60,7 @@ class PatchInstancePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PatchInstancePayload from a JSON string"""
+        """Create an instance of CreateUserPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,19 +80,11 @@ class PatchInstancePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of feature_toggle
-        if self.feature_toggle:
-            _dict["feature_toggle"] = self.feature_toggle.to_dict()
-        # set to None if acl (nullable) is None
-        # and model_fields_set contains the field
-        if self.acl is None and "acl" in self.model_fields_set:
-            _dict["acl"] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PatchInstancePayload from a dict"""
+        """Create an instance of CreateUserPayload from a dict"""
         if obj is None:
             return None
 
@@ -105,12 +93,13 @@ class PatchInstancePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "acl": obj.get("acl"),
-                "admin_login": obj.get("admin_login"),
-                "feature_toggle": (
-                    FeatureToggle.from_dict(obj["feature_toggle"]) if obj.get("feature_toggle") is not None else None
+                "email": obj.get("email"),
+                "force_send_reset_password": (
+                    obj.get("force_send_reset_password") if obj.get("force_send_reset_password") is not None else False
                 ),
-                "labels": obj.get("labels"),
+                "name": obj.get("name"),
+                "password": obj.get("password"),
+                "username": obj.get("username"),
             }
         )
         return _obj
