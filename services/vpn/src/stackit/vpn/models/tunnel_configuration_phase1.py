@@ -33,7 +33,10 @@ class TunnelConfigurationPhase1(BaseModel):
         alias="dhGroups",
     )
     encryption_algorithms: List[StrictStr] = Field(alias="encryptionAlgorithms")
-    integrity_algorithms: List[StrictStr] = Field(alias="integrityAlgorithms")
+    integrity_algorithms: List[StrictStr] = Field(
+        description="Supported integrity algorithms. SHA1 is deprecated and will be removed on 2026-12-31. ",
+        alias="integrityAlgorithms",
+    )
     rekey_time: Optional[Annotated[int, Field(le=28800, strict=True, ge=900)]] = Field(
         default=14400, description="Time to schedule a IKE re-keying (in seconds).", alias="rekeyTime"
     )
@@ -64,8 +67,8 @@ class TunnelConfigurationPhase1(BaseModel):
     def integrity_algorithms_validate_enum(cls, value):
         """Validates the enum"""
         for i in value:
-            if i not in set(["sha1", "sha2_256", "sha2_384"]):
-                raise ValueError("each list item must be one of ('sha1', 'sha2_256', 'sha2_384')")
+            if i not in set(["sha1", "sha2_256", "sha2_384", "sha2_512"]):
+                raise ValueError("each list item must be one of ('sha1', 'sha2_256', 'sha2_384', 'sha2_512')")
         return value
 
     model_config = ConfigDict(
