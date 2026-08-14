@@ -33,9 +33,9 @@ class PartialUpdateFolderPayload(BaseModel):
         description="New parent identifier for the resource container - containerId as well as UUID identifier is supported.",
         alias="containerParentId",
     )
-    labels: Optional[Dict[str, StrictStr]] = Field(
+    labels: Optional[Dict[str, Optional[StrictStr]]] = Field(
         default=None,
-        description="Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`  > Note: Additional naming restrictions may apply depending on your specific organization.*",
+        description="Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  Setting an individual label's value to `null` removes/deletes that label from the resource.  * **Key:** Must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}` * **Value:** Must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`, or be `null` to delete the label  > Note: Additional naming restrictions may apply depending on your specific organization.*",
     )
     name: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
