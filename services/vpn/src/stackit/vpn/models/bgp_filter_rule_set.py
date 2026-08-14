@@ -16,28 +16,23 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
-from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 
-class BGPTunnelConfig(BaseModel):
+class BGPFilterRuleSet(BaseModel):
     """
-    BGPTunnelConfig
+    Optional BGP attributes to apply when 'action' is PERMIT. Ignored for DENY rules.
     """  # noqa: E501
 
-    inbound_filter_id: Optional[UUID] = Field(
+    local_preference: Optional[Annotated[int, Field(le=65535, strict=True, ge=0)]] = Field(
         default=None,
-        description="UUID of the BGPFilter to apply to incoming routes from this tunnel's BGP neighbor. The filter must exist in the same gateway. Multiple tunnels may reference the same BGPFilter; in that case the rules' 'match.peer' field can be used to scope behavior per neighbor. Outbound filtering is not yet supported; use gateway.bgp.overrideAdvertisedRoutes to control what is advertised. ",
-        alias="inboundFilterId",
+        description="BGP LOCAL_PREF to set on the route. Higher values are preferred during best-path selection. Default BGP LOCAL_PREF is 100; any value here overrides. ",
+        alias="localPreference",
     )
-    remote_asn: Annotated[int, Field(le=4294967294, strict=True, ge=64512)] = Field(
-        description="ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996). ",
-        alias="remoteAsn",
-    )
-    __properties: ClassVar[List[str]] = ["inboundFilterId", "remoteAsn"]
+    __properties: ClassVar[List[str]] = ["localPreference"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -56,7 +51,7 @@ class BGPTunnelConfig(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BGPTunnelConfig from a JSON string"""
+        """Create an instance of BGPFilterRuleSet from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,21 +71,16 @@ class BGPTunnelConfig(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if inbound_filter_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.inbound_filter_id is None and "inbound_filter_id" in self.model_fields_set:
-            _dict["inboundFilterId"] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BGPTunnelConfig from a dict"""
+        """Create an instance of BGPFilterRuleSet from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"inboundFilterId": obj.get("inboundFilterId"), "remoteAsn": obj.get("remoteAsn")})
+        _obj = cls.model_validate({"localPreference": obj.get("localPreference")})
         return _obj
