@@ -82,7 +82,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[CreateBackupResponseItem]:
+    ) -> CreateBackupResponseItem:
         """create a backup
 
 
@@ -125,7 +125,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "List[CreateBackupResponseItem]",
+            "200": "CreateBackupResponseItem",
             "400": "Error",
             "401": "Error",
             "404": "Error",
@@ -153,7 +153,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[CreateBackupResponseItem]]:
+    ) -> ApiResponse[CreateBackupResponseItem]:
         """create a backup
 
 
@@ -196,7 +196,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "List[CreateBackupResponseItem]",
+            "200": "CreateBackupResponseItem",
             "400": "Error",
             "401": "Error",
             "404": "Error",
@@ -267,7 +267,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "List[CreateBackupResponseItem]",
+            "200": "CreateBackupResponseItem",
             "400": "Error",
             "401": "Error",
             "404": "Error",
