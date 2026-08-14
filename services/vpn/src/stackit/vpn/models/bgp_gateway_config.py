@@ -34,7 +34,7 @@ class BGPGatewayConfig(BaseModel):
     override_advertised_routes: Optional[Annotated[List[Annotated[str, Field(strict=True)]], Field(max_length=100)]] = (
         Field(
             default=None,
-            description="A list of IPv4 Prefixes to advertise via BGP.  If omitted, the SNA network ranges will be advertised. ",
+            description="A list of IPv4 Prefixes to advertise via BGP. If omitted, the SNA network ranges will be advertised. ",
             alias="overrideAdvertisedRoutes",
         )
     )
