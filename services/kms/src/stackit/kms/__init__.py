@@ -42,7 +42,6 @@ __all__ = [
     "KeyList",
     "KeyRing",
     "KeyRingList",
-    "Protection",
     "Purpose",
     "SignPayload",
     "SignedData",
@@ -90,7 +89,6 @@ from stackit.kms.models.key import Key as Key
 from stackit.kms.models.key_list import KeyList as KeyList
 from stackit.kms.models.key_ring import KeyRing as KeyRing
 from stackit.kms.models.key_ring_list import KeyRingList as KeyRingList
-from stackit.kms.models.protection import Protection as Protection
 from stackit.kms.models.purpose import Purpose as Purpose
 from stackit.kms.models.sign_payload import SignPayload as SignPayload
 from stackit.kms.models.signed_data import SignedData as SignedData
