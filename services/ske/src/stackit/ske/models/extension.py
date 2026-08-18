@@ -17,11 +17,12 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
 from stackit.ske.models.acl import ACL
+from stackit.ske.models.application_load_balancer import ApplicationLoadBalancer
 from stackit.ske.models.dns import DNS
 from stackit.ske.models.observability import Observability
 
@@ -32,9 +33,10 @@ class Extension(BaseModel):
     """  # noqa: E501
 
     acl: Optional[ACL] = None
+    application_load_balancer: Optional[ApplicationLoadBalancer] = Field(default=None, alias="applicationLoadBalancer")
     dns: Optional[DNS] = None
     observability: Optional[Observability] = None
-    __properties: ClassVar[List[str]] = ["acl", "dns", "observability"]
+    __properties: ClassVar[List[str]] = ["acl", "applicationLoadBalancer", "dns", "observability"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,6 +78,9 @@ class Extension(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of acl
         if self.acl:
             _dict["acl"] = self.acl.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of application_load_balancer
+        if self.application_load_balancer:
+            _dict["applicationLoadBalancer"] = self.application_load_balancer.to_dict()
         # override the default output from pydantic by calling `to_dict()` of dns
         if self.dns:
             _dict["dns"] = self.dns.to_dict()
@@ -96,6 +101,11 @@ class Extension(BaseModel):
         _obj = cls.model_validate(
             {
                 "acl": ACL.from_dict(obj["acl"]) if obj.get("acl") is not None else None,
+                "applicationLoadBalancer": (
+                    ApplicationLoadBalancer.from_dict(obj["applicationLoadBalancer"])
+                    if obj.get("applicationLoadBalancer") is not None
+                    else None
+                ),
                 "dns": DNS.from_dict(obj["dns"]) if obj.get("dns") is not None else None,
                 "observability": (
                     Observability.from_dict(obj["observability"]) if obj.get("observability") is not None else None
