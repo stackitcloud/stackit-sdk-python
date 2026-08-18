@@ -1,3 +1,6 @@
+## v0.12.0
+- **Feature:** Add new enum values `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` to `LoadBalancerError` model
+
 ## v0.11.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies
