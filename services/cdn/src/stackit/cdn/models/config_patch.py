@@ -28,7 +28,7 @@ from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 from stackit.cdn.models.config_patch_backend import ConfigPatchBackend
-from stackit.cdn.models.loki_log_sink_patch import LokiLogSinkPatch
+from stackit.cdn.models.config_patch_log_sink import ConfigPatchLogSink
 from stackit.cdn.models.optimizer_patch import OptimizerPatch
 from stackit.cdn.models.redirect_config import RedirectConfig
 from stackit.cdn.models.region import Region
@@ -62,7 +62,11 @@ class ConfigPatch(BaseModel):
         description="Enabling this allows the 'Host' header to be passed through to the origin. ",
         alias="forwardHostHeader",
     )
-    log_sink: Optional[LokiLogSinkPatch] = Field(default=None, alias="logSink")
+    labels: Optional[Dict[str, Optional[StrictStr]]] = Field(
+        default=None,
+        description="Labels are key-value string pairs that can be attached to a distribution. JSON Merge Patch is supported, meaning setting a key to null will remove it. ",
+    )
+    log_sink: Optional[ConfigPatchLogSink] = Field(default=None, alias="logSink")
     monthly_limit_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
         default=None,
         description="Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use. ",
@@ -84,6 +88,7 @@ class ConfigPatch(BaseModel):
         "blockedIps",
         "defaultCacheDuration",
         "forwardHostHeader",
+        "labels",
         "logSink",
         "monthlyLimitBytes",
         "optimizer",
@@ -182,7 +187,8 @@ class ConfigPatch(BaseModel):
                 "blockedIps": obj.get("blockedIps"),
                 "defaultCacheDuration": obj.get("defaultCacheDuration"),
                 "forwardHostHeader": obj.get("forwardHostHeader"),
-                "logSink": LokiLogSinkPatch.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
+                "labels": obj.get("labels"),
+                "logSink": ConfigPatchLogSink.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": OptimizerPatch.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
                 "redirects": RedirectConfig.from_dict(obj["redirects"]) if obj.get("redirects") is not None else None,
