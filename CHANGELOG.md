@@ -5,6 +5,8 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `alb`
+  - [v0.12.0](services/alb/CHANGELOG.md#v0120)
+    - **Feature:** Add new enum values `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` to `LoadBalancerError` model
   - [v0.11.0](services/alb/CHANGELOG.md#v0110)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
@@ -76,6 +78,8 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `loadbalancer`
+  - [v0.12.0](services/loadbalancer/CHANGELOG.md#v0120)
+    - **Feature:** Add new enum values `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` to `LoadBalancerError` model
   - [v0.11.0](services/loadbalancer/CHANGELOG.md#v0110)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
