@@ -28,9 +28,7 @@ class StorageCreate(BaseModel):
     The object containing information about the storage size and class.
     """  # noqa: E501
 
-    var_class: Optional[StrictStr] = Field(
-        default=None, description="The storage class for the storage.", alias="class"
-    )
+    var_class: StrictStr = Field(description="The storage class for the storage.", alias="class")
     size: StrictInt = Field(description="The storage size in Gigabytes.")
     __properties: ClassVar[List[str]] = ["class", "size"]
 
