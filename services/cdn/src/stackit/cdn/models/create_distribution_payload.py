@@ -30,7 +30,9 @@ from typing_extensions import Annotated, Self
 from stackit.cdn.models.create_distribution_payload_backend import (
     CreateDistributionPayloadBackend,
 )
-from stackit.cdn.models.loki_log_sink_create import LokiLogSinkCreate
+from stackit.cdn.models.create_distribution_payload_log_sink import (
+    CreateDistributionPayloadLogSink,
+)
 from stackit.cdn.models.optimizer import Optimizer
 from stackit.cdn.models.redirect_config import RedirectConfig
 from stackit.cdn.models.region import Region
@@ -69,7 +71,10 @@ class CreateDistributionPayload(BaseModel):
         description="While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped. ",
         alias="intentId",
     )
-    log_sink: Optional[LokiLogSinkCreate] = Field(default=None, alias="logSink")
+    labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None, description="Labels are key-value string pairs that can be attached to a distribution."
+    )
+    log_sink: Optional[CreateDistributionPayloadLogSink] = Field(default=None, alias="logSink")
     monthly_limit_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
         default=None,
         description="Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use. ",
@@ -94,6 +99,7 @@ class CreateDistributionPayload(BaseModel):
         "defaultCacheDuration",
         "forwardHostHeader",
         "intentId",
+        "labels",
         "logSink",
         "monthlyLimitBytes",
         "optimizer",
@@ -182,7 +188,12 @@ class CreateDistributionPayload(BaseModel):
                 "defaultCacheDuration": obj.get("defaultCacheDuration"),
                 "forwardHostHeader": obj.get("forwardHostHeader"),
                 "intentId": obj.get("intentId"),
-                "logSink": LokiLogSinkCreate.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
+                "labels": obj.get("labels"),
+                "logSink": (
+                    CreateDistributionPayloadLogSink.from_dict(obj["logSink"])
+                    if obj.get("logSink") is not None
+                    else None
+                ),
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": Optimizer.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
                 "redirects": RedirectConfig.from_dict(obj["redirects"]) if obj.get("redirects") is not None else None,
