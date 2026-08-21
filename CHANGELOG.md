@@ -24,6 +24,12 @@
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
 - `cdn`
+  - [v2.8.0](services/cdn/CHANGELOG.md#v280)
+    - **Breaking Change:** `log_sink` fields changed to new wrapper types: `ConfigLogSink`, `ConfigPatchLogSink`, `CreateDistributionPayloadLogSink`
+    - **Feature:** New model classes `ConfigLogSink`, `ConfigPatchLogSink` and `CreateDistributionPayloadLogSink`
+    - **Feature:** Add `labels` attribute to `Config`, `ConfigPatch` and `CreateDistributionPayload` model classes
+    - **Feature:** Add enum validation for `type` field in `BucketBackend`, `BucketBackendCreate`, `BucketBackendPatch`, `HttpBackend`, `HttpBackendCreate`, `HttpBackendPatch`, `LokiLogSink`, `LokiLogSinkCreate` and `LokiLogSinkPatch` model classes
+    - **Improvement:** Extend field descriptions in multiple model classes
   - [v2.7.0](services/cdn/CHANGELOG.md#v270)
     - **Chore:** Bump minimum Python version to 3.10
     - **Chore:** Update dependencies
