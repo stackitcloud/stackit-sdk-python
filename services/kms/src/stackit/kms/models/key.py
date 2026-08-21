@@ -33,7 +33,6 @@ from typing_extensions import Annotated, Self
 
 from stackit.kms.models.access_scope import AccessScope
 from stackit.kms.models.algorithm import Algorithm
-from stackit.kms.models.protection import Protection
 from stackit.kms.models.purpose import Purpose
 
 
@@ -63,7 +62,9 @@ class Key(BaseModel):
         description="States whether versions can be created or only imported.", alias="importOnly"
     )
     key_ring_id: UUID = Field(description="The unique id of the key ring this key is assigned to.", alias="keyRingId")
-    protection: Protection
+    protection: StrictStr = Field(
+        description='The underlying system that is responsible for protecting the key material. Possible values are "software" or "hsm"'
+    )
     purpose: Purpose
     state: StrictStr = Field(description="The current state of the key.")
     __properties: ClassVar[List[str]] = [
