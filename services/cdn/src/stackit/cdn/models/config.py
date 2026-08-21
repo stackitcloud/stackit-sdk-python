@@ -28,7 +28,7 @@ from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 from stackit.cdn.models.config_backend import ConfigBackend
-from stackit.cdn.models.loki_log_sink import LokiLogSink
+from stackit.cdn.models.config_log_sink import ConfigLogSink
 from stackit.cdn.models.optimizer import Optimizer
 from stackit.cdn.models.redirect_config import RedirectConfig
 from stackit.cdn.models.region import Region
@@ -59,7 +59,10 @@ class Config(BaseModel):
         description="Enabling this allows the 'Host' header to be passed through to the origin. ",
         alias="forwardHostHeader",
     )
-    log_sink: Optional[LokiLogSink] = Field(default=None, alias="logSink")
+    labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None, description="Labels are key-value string pairs that can be attached to a distribution."
+    )
+    log_sink: Optional[ConfigLogSink] = Field(default=None, alias="logSink")
     monthly_limit_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
         default=None,
         description="Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use. ",
@@ -80,6 +83,7 @@ class Config(BaseModel):
         "blockedIps",
         "defaultCacheDuration",
         "forwardHostHeader",
+        "labels",
         "logSink",
         "monthlyLimitBytes",
         "optimizer",
@@ -173,7 +177,8 @@ class Config(BaseModel):
                 "blockedIps": obj.get("blockedIps"),
                 "defaultCacheDuration": obj.get("defaultCacheDuration"),
                 "forwardHostHeader": obj.get("forwardHostHeader"),
-                "logSink": LokiLogSink.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
+                "labels": obj.get("labels"),
+                "logSink": ConfigLogSink.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
                 "monthlyLimitBytes": obj.get("monthlyLimitBytes"),
                 "optimizer": Optimizer.from_dict(obj["optimizer"]) if obj.get("optimizer") is not None else None,
                 "redirects": RedirectConfig.from_dict(obj["redirects"]) if obj.get("redirects") is not None else None,
