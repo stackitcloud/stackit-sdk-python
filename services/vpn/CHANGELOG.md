@@ -1,3 +1,10 @@
+## v0.7.0
+- **Feature:** Add support for managing BGP filters and BGP filter rules on gateways (new API methods and models)
+- **Feature:** Add new optional field `inbound_filter_id` to `BGPTunnelConfig`
+- **Feature:** Add new optional field `network_config` (`NetworkConfig`) to `Gateway`, `GatewayResponse`, `CreateGatewayPayload` and `UpdateGatewayPayload`
+- **Feature:** Add `sha2_512` as allowed value for `integrity_algorithms` in `Phase`
+- **Improvement:** Add `RESOURCE_IN_USE` as allowed value for `reason` in `ApiErrorDetail`
+
 ## v0.6.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies
