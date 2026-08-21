@@ -31,7 +31,6 @@ from typing_extensions import Annotated, Self
 
 from stackit.kms.models.access_scope import AccessScope
 from stackit.kms.models.algorithm import Algorithm
-from stackit.kms.models.protection import Protection
 from stackit.kms.models.purpose import Purpose
 
 
@@ -52,7 +51,9 @@ class CreateKeyPayload(BaseModel):
     import_only: Optional[StrictBool] = Field(
         default=False, description="States whether versions can be created or only imported.", alias="importOnly"
     )
-    protection: Protection
+    protection: StrictStr = Field(
+        description='The underlying system that is responsible for protecting the key material. Possible values are "software" or "hsm"'
+    )
     purpose: Purpose
     __properties: ClassVar[List[str]] = [
         "access_scope",
