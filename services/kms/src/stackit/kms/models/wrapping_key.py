@@ -25,7 +25,6 @@ from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 from stackit.kms.models.access_scope import AccessScope
-from stackit.kms.models.protection import Protection
 from stackit.kms.models.wrapping_algorithm import WrappingAlgorithm
 from stackit.kms.models.wrapping_purpose import WrappingPurpose
 
@@ -51,7 +50,9 @@ class WrappingKey(BaseModel):
     key_ring_id: UUID = Field(
         description="The unique id of the key ring this wrapping key is assigned to.", alias="keyRingId"
     )
-    protection: Protection
+    protection: StrictStr = Field(
+        description='The underlying system that is responsible for protecting the key material. Possible values are "software" or "hsm"'
+    )
     public_key: Optional[StrictStr] = Field(
         default=None, description="The public key of the wrapping key.", alias="publicKey"
     )
