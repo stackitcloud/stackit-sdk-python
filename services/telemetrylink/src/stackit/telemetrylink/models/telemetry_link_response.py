@@ -39,7 +39,7 @@ class TelemetryLinkResponse(BaseModel):
 
     access_token: Optional[StrictStr] = Field(default=None, description="The access token.", alias="accessToken")
     create_time: datetime = Field(description="The point in time the resource was created.", alias="createTime")
-    description: Optional[StrictStr] = Field(
+    description: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = Field(
         default=None,
         description="The description is a longer text chosen by the user to provide more context for the resource.",
     )
@@ -78,6 +78,19 @@ class TelemetryLinkResponse(BaseModel):
             ):
                 # Workaround: Replace "0000" with "0001"
                 return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
+
+    @field_validator("description")
+    def description_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^([a-zA-Z0-9][a-zA-Z0-9 \-]*)?$", value):
+            raise ValueError(r"must validate the regular expression /^([a-zA-Z0-9][a-zA-Z0-9 \-]*)?$/")
         return value
 
     @field_validator("region_id")
