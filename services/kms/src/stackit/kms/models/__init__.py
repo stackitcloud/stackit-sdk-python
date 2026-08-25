@@ -28,7 +28,6 @@ from stackit.kms.models.key import Key
 from stackit.kms.models.key_list import KeyList
 from stackit.kms.models.key_ring import KeyRing
 from stackit.kms.models.key_ring_list import KeyRingList
-from stackit.kms.models.protection import Protection
 from stackit.kms.models.purpose import Purpose
 from stackit.kms.models.sign_payload import SignPayload
 from stackit.kms.models.signed_data import SignedData
