@@ -4335,7 +4335,7 @@ class DefaultApi:
     ) -> GetWAFResponse:
         """Update a WAF configuration
 
-        The update endpoint will update a stored WAF configuration in project and not yet but later will also update the Load Balancers that reference it.
+        The update endpoint will update a stored WAF configuration in project and also for all the Load Balancers that have it referenced.
 
         :param project_id: (required)
         :type project_id: str
@@ -4412,7 +4412,7 @@ class DefaultApi:
     ) -> ApiResponse[GetWAFResponse]:
         """Update a WAF configuration
 
-        The update endpoint will update a stored WAF configuration in project and not yet but later will also update the Load Balancers that reference it.
+        The update endpoint will update a stored WAF configuration in project and also for all the Load Balancers that have it referenced.
 
         :param project_id: (required)
         :type project_id: str
@@ -4489,7 +4489,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Update a WAF configuration
 
-        The update endpoint will update a stored WAF configuration in project and not yet but later will also update the Load Balancers that reference it.
+        The update endpoint will update a stored WAF configuration in project and also for all the Load Balancers that have it referenced.
 
         :param project_id: (required)
         :type project_id: str
