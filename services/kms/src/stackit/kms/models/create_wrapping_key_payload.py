@@ -23,7 +23,6 @@ from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 from stackit.kms.models.access_scope import AccessScope
-from stackit.kms.models.protection import Protection
 from stackit.kms.models.wrapping_algorithm import WrappingAlgorithm
 from stackit.kms.models.wrapping_purpose import WrappingPurpose
 
@@ -42,7 +41,9 @@ class CreateWrappingKeyPayload(BaseModel):
         description="The display name to distinguish multiple wrapping keys. Valid characters: letters, digits, underscores and hyphens.",
         alias="displayName",
     )
-    protection: Protection
+    protection: StrictStr = Field(
+        description='The underlying system that is responsible for protecting the key material. Possible values are "software" or "hsm"'
+    )
     purpose: WrappingPurpose
     __properties: ClassVar[List[str]] = [
         "access_scope",
