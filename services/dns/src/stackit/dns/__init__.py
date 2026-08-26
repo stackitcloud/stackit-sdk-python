@@ -31,6 +31,7 @@ __all__ = [
     "CloneZonePayload",
     "CreateLabelPayload",
     "CreateLabelResponse",
+    "CreateMoveCodePayload",
     "CreateRecordSetPayload",
     "CreateZonePayload",
     "DeleteLabelResponse",
@@ -87,6 +88,9 @@ from stackit.dns.models.create_label_payload import (
 )
 from stackit.dns.models.create_label_response import (
     CreateLabelResponse as CreateLabelResponse,
+)
+from stackit.dns.models.create_move_code_payload import (
+    CreateMoveCodePayload as CreateMoveCodePayload,
 )
 from stackit.dns.models.create_record_set_payload import (
     CreateRecordSetPayload as CreateRecordSetPayload,
