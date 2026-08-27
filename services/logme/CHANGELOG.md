@@ -1,3 +1,7 @@
+## v1.3.0
+- **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
+    The return type now correctly models the actual JSON response, this operation was broken beforehand.
+
 ## v1.2.0
 - **Breaking Change/Fix:** `list_backups` operation now returns `List[Backup]` instead of `ListBackupsResponse` (response type also removed)
     The return type now correctly models the actual JSON response, this operation was broken beforehand.

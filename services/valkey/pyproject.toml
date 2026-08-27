@@ -1,6 +1,6 @@
 [project]
 name = "stackit-valkey"
-version = "v0.0.1"
+version = "v0.2.0"
 description = "STACKIT Key Value Store API"
 authors = [{name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud"}]
 requires-python = ">=3.10,<4.0"

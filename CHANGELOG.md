@@ -4,6 +4,26 @@
   - [v0.13.0](services/kms/CHANGELOG.md#v0130)
     - **Breaking Change:** Remove enum `Protection`
     - **Breaking Change:** Change type of `protection` attribute from `Protection` to `str` in `CreateKeyPayload`, `CreateWrappingKeyPayload`, `Key` and `WrappingKey` model
+- `logme`:
+  - [v1.3.0](services/logme/CHANGELOG.md#v130)
+    - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- `mariadb`:
+  - [v1.3.0](services/mariadb/CHANGELOG.md#v130)
+    - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- `opensearch`:
+  - [v1.3.0](services/opensearch/CHANGELOG.md#v130)
+    - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- `rabbitmq`:
+  - [v1.3.0](services/rabbitmq/CHANGELOG.md#v130)
+    - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- `valkey`:
+  - [v0.2.0](services/valkey/CHANGELOG.md#v020)
+    - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
 
 ## Release (2026-08-25)
 
