@@ -1,3 +1,10 @@
+## Release (2026-MM-DD)
+
+- `kms`:
+  - [v0.13.0](services/kms/CHANGELOG.md#v0130)
+    - **Breaking Change:** Remove enum `Protection`
+    - **Breaking Change:** Change type of `protection` attribute from `Protection` to `str` in `CreateKeyPayload`, `CreateWrappingKeyPayload`, `Key` and `WrappingKey` model
+
 ## Release (2026-08-25)
 
 - `core`:

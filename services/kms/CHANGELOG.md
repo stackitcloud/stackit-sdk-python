@@ -1,3 +1,7 @@
+## v0.13.0
+- **Breaking Change:** Remove enum `Protection`
+- **Breaking Change:** Change type of `protection` attribute from `Protection` to `str` in `CreateKeyPayload`, `CreateWrappingKeyPayload`, `Key` and `WrappingKey` model
+
 ## v0.12.0
 - **Feature:** Add `HSM` as allowed value to `Protection` class.
 
