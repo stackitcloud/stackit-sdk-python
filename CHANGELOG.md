@@ -23,6 +23,12 @@
   - [v1.3.0](services/rabbitmq/CHANGELOG.md#v130)
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- `telemetrylink`:
+  - [v0.4.1](services/telemetrylink/CHANGELOG.md#v041)
+    - **Improvement:** Add validation for `description` field in `TelemetryLinkResponse` model
+- `telemetryrouter`:
+  - [v0.5.1](services/telemetryrouter/CHANGELOG.md#v051)
+    - **Improvement:** Add validation for `description` field in `AccessTokenBaseRequest`, `AccessTokenBaseResponse`, `CreateAccessTokenPayload`, `CreateAccessTokenResponse`, `DestinationResponse`, `GetAccessTokenResponse`, `TelemetryRouterResponse`, `UpdateAccessTokenPayload` and `UpdateAccessTokenResponse` models
 - `valkey`:
   - [v0.2.0](services/valkey/CHANGELOG.md#v020)
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`

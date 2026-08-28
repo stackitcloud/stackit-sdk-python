@@ -1,3 +1,6 @@
+## v0.5.1
+- **Improvement:** Add validation for `description` field in `AccessTokenBaseRequest`, `AccessTokenBaseResponse`, `CreateAccessTokenPayload`, `CreateAccessTokenResponse`, `DestinationResponse`, `GetAccessTokenResponse`, `TelemetryRouterResponse`, `UpdateAccessTokenPayload` and `UpdateAccessTokenResponse` models
+
 ## v0.5.0
 - **Improvement:** Add validation for `Description` field
 
