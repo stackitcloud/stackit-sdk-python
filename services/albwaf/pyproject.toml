@@ -1,6 +1,6 @@
 [project]
 name = "stackit-albwaf"
-version = "v0.0.1"
+version = "v0.1.1"
 description = "STACKIT Application Load Balancer Web Application Firewall API"
 authors = [{name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud"}]
 requires-python = ">=3.10,<4.0"
@@ -56,7 +56,7 @@ include = ["src/stackit"]
 [tool.hatch.build.targets.wheel]
 include = ["src/stackit"]
 
-[tool.hatch.build.targets.wheel-sources]
+[tool.hatch.build.targets.wheel.sources]
 "src/stackit" = "stackit"
 
 [build-system]

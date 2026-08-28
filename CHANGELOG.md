@@ -1,5 +1,11 @@
 ## Release (2026-MM-DD)
 
+- `albwaf`:
+  - [v0.1.1](services/albwaf/CHANGELOG.md#v011)
+    - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.albwaf` to fail with `ModuleNotFoundError`
+- `cost`:
+  - [v0.4.1](services/cost/CHANGELOG.md#v041)
+    - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.cost` to fail with `ModuleNotFoundError`
 - `dremio`:
   - [v0.1.0](services/dremio/CHANGELOG.md#v010)
     - **New**: STACKIT Dremio module can be used to manage STACKIT Dremio instances and users.
@@ -15,6 +21,9 @@
   - [v1.3.0](services/mariadb/CHANGELOG.md#v130)
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- `modelexperiments`:
+  - [v0.2.1](services/modelexperiments/CHANGELOG.md#v021)
+    - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.modelexperiments` to fail with `ModuleNotFoundError`
 - `opensearch`:
   - [v1.3.0](services/opensearch/CHANGELOG.md#v130)
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
@@ -27,15 +36,24 @@
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
 - `telemetrylink`:
+  - [v0.4.2](services/telemetrylink/CHANGELOG.md#v042)
+    - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.telemetrylink` to fail with `ModuleNotFoundError`
   - [v0.4.1](services/telemetrylink/CHANGELOG.md#v041)
     - **Improvement:** Add validation for `description` field in `TelemetryLinkResponse` model
 - `telemetryrouter`:
+  - [v0.5.2](services/telemetryrouter/CHANGELOG.md#v052)
+    - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.telemetryrouter` to fail with `ModuleNotFoundError`
   - [v0.5.1](services/telemetryrouter/CHANGELOG.md#v051)
     - **Improvement:** Add validation for `description` field in `AccessTokenBaseRequest`, `AccessTokenBaseResponse`, `CreateAccessTokenPayload`, `CreateAccessTokenResponse`, `DestinationResponse`, `GetAccessTokenResponse`, `TelemetryRouterResponse`, `UpdateAccessTokenPayload` and `UpdateAccessTokenResponse` models
 - `valkey`:
+  - [v0.2.1](services/valkey/CHANGELOG.md#v021)
+    - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.valkey` to fail with `ModuleNotFoundError`
   - [v0.2.0](services/valkey/CHANGELOG.md#v020)
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- `vpn`:
+  - [v0.7.1](services/vpn/CHANGELOG.md#v071)
+    - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.vpn` to fail with `ModuleNotFoundError`
 
 ## Release (2026-08-25)
 

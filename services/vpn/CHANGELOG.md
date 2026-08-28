@@ -1,3 +1,6 @@
+## v0.7.1
+- **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.vpn` to fail with `ModuleNotFoundError`
+
 ## v0.7.0
 - **Feature:** Add support for managing BGP filters and BGP filter rules on gateways (new API methods and models)
 - **Feature:** Add new optional field `inbound_filter_id` to `BGPTunnelConfig`
