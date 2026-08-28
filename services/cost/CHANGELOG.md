@@ -1,3 +1,6 @@
+## v0.4.1
+- **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.cost` to fail with `ModuleNotFoundError`
+
 ## v0.4.0
 - **Feature:** Add attribute `total_quantity_decimal` to `DetailedServiceCost` model class
 - **Feature:** Add attribute `quantity_decimal` to `ReportData` model class

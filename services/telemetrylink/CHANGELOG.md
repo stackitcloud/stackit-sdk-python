@@ -1,3 +1,6 @@
+## v0.4.2
+- **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.telemetrylink` to fail with `ModuleNotFoundError`
+
 ## v0.4.1
 - **Improvement:** Add validation for `description` field in `TelemetryLinkResponse` model
 

@@ -1,3 +1,6 @@
+## v0.5.2
+- **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.telemetryrouter` to fail with `ModuleNotFoundError`
+
 ## v0.5.1
 - **Improvement:** Add validation for `description` field in `AccessTokenBaseRequest`, `AccessTokenBaseResponse`, `CreateAccessTokenPayload`, `CreateAccessTokenResponse`, `DestinationResponse`, `GetAccessTokenResponse`, `TelemetryRouterResponse`, `UpdateAccessTokenPayload` and `UpdateAccessTokenResponse` models
 
