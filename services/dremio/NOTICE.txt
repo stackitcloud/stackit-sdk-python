@@ -1,0 +1,2 @@
+STACKIT Dremio SDK for Python
+Copyright 2026 Schwarz IT KG

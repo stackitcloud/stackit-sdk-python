@@ -1,5 +1,8 @@
 ## Release (2026-MM-DD)
 
+- `dremio`:
+  - [v0.1.0](services/dremio/CHANGELOG.md#v010)
+    - **New**: STACKIT Dremio module can be used to manage STACKIT Dremio instances and users.
 - `kms`:
   - [v0.13.0](services/kms/CHANGELOG.md#v0130)
     - **Breaking Change:** Remove enum `Protection`
