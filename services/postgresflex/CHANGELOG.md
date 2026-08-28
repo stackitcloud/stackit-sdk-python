@@ -1,3 +1,6 @@
+## v1.6.0
+- **Breaking Change:** `class` attribute in `CloneInstanceOverrides` and `StorageCreate` model is now required (previously optional)
+
 ## v1.5.0
 - **Breaking Change:** The v3 API replaces the v2 API.
 

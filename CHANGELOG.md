@@ -19,6 +19,9 @@
   - [v1.3.0](services/opensearch/CHANGELOG.md#v130)
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- `postgresflex`:
+  - [v1.6.0](services/postgresflex/CHANGELOG.md#v160)
+    - **Breaking Change:** `class` attribute in `CloneInstanceOverrides` and `StorageCreate` model is now required (previously optional)
 - `rabbitmq`:
   - [v1.3.0](services/rabbitmq/CHANGELOG.md#v130)
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
