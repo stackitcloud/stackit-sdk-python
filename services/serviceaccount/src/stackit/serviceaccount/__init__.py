@@ -45,6 +45,8 @@ __all__ = [
     "FederatedListFederatedIdentityProvidersResponse",
     "GetServiceAccountKeyResponse",
     "GetServiceAccountKeyResponseCredentials",
+    "IntrospectJWTPayload",
+    "IntrospectJWTResponse",
     "JWK",
     "JWKS",
     "ListAccessTokensResponse",
@@ -119,6 +121,12 @@ from stackit.serviceaccount.models.get_service_account_key_response import (
 )
 from stackit.serviceaccount.models.get_service_account_key_response_credentials import (
     GetServiceAccountKeyResponseCredentials as GetServiceAccountKeyResponseCredentials,
+)
+from stackit.serviceaccount.models.introspect_jwt_payload import (
+    IntrospectJWTPayload as IntrospectJWTPayload,
+)
+from stackit.serviceaccount.models.introspect_jwt_response import (
+    IntrospectJWTResponse as IntrospectJWTResponse,
 )
 from stackit.serviceaccount.models.jwk import JWK as JWK
 from stackit.serviceaccount.models.jwks import JWKS as JWKS
