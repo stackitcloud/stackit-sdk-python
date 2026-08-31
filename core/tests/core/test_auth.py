@@ -1,4 +1,5 @@
 from pathlib import Path, PurePath
+from threading import Event, Lock, Thread
 
 import pytest
 import json
@@ -6,6 +7,7 @@ import jwt
 import requests
 from unittest.mock import patch, mock_open, Mock
 
+from requests import Request
 from requests.auth import HTTPBasicAuth
 
 from stackit.core.auth_methods.key_auth import KeyAuth, ServiceAccountKey
@@ -294,3 +296,52 @@ class TestAuth:
                 auth._KeyAuth__refresh_token()
 
             assert mock_post.call_count == KeyAuth.MAX_REFRESH_RETRIES
+
+
+class TestKeyAuth:
+    def test_token_is_expired_before_expiration_with_leeway(self):
+        auth = object.__new__(KeyAuth)
+        secret = "x" * 32
+
+        with patch("stackit.core.auth_methods.key_auth.time.time", return_value=1_000):
+            token_inside_leeway = jwt.encode({"exp": 1_240}, secret, algorithm="HS256")
+            token_outside_leeway = jwt.encode({"exp": 1_360}, secret, algorithm="HS256")
+            token_without_expiration = jwt.encode({}, secret, algorithm="HS256")
+            token_with_zero_expiration = jwt.encode({"exp": 0}, secret, algorithm="HS256")
+
+            assert auth._KeyAuth__is_token_expired(token_inside_leeway)
+            assert not auth._KeyAuth__is_token_expired(token_outside_leeway)
+            assert auth._KeyAuth__is_token_expired(token_without_expiration)
+            assert auth._KeyAuth__is_token_expired(token_with_zero_expiration)
+
+    def test_call_waits_for_an_in_progress_refresh_before_setting_header(self):
+        auth = object.__new__(KeyAuth)
+        auth.lock = Lock()
+        auth.access_token = jwt.encode({"exp": 0}, "x" * 32, algorithm="HS256")
+        fresh_token = jwt.encode({"exp": 4_000_000_000}, "x" * 32, algorithm="HS256")
+        refresh_started = Event()
+        release_refresh = Event()
+
+        class BlockingFuture:
+            def done(self):
+                return False
+
+            def result(self):
+                refresh_started.set()
+                release_refresh.wait(timeout=1)
+                with auth.lock:
+                    auth.access_token = fresh_token
+
+        auth.refresh_future = BlockingFuture()
+        request = Request("GET", "https://example.com")
+        call_thread = Thread(target=auth, args=(request,))
+        call_thread.start()
+
+        assert refresh_started.wait(timeout=1)
+        assert call_thread.is_alive()
+
+        release_refresh.set()
+        call_thread.join(timeout=1)
+
+        assert not call_thread.is_alive()
+        assert request.headers["Authorization"] == f"Bearer {fresh_token}"
