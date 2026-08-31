@@ -79,6 +79,16 @@ class KeyAuth(AuthBase):
             if self.__is_token_expired(self.access_token):
                 if self.refresh_future is None or self.refresh_future.done():
                     self.refresh_future = self.executor.submit(self.__refresh_token)
+                refresh_future = self.refresh_future
+            else:
+                refresh_future = None
+
+        # Do not hold the lock while waiting. The refresh worker acquires it when
+        # updating the access token.
+        if refresh_future is not None:
+            refresh_future.result()
+
+        with self.lock:
             r.headers["Authorization"] = f"Bearer {self.access_token}"
         return r
 
@@ -108,8 +118,9 @@ class KeyAuth(AuthBase):
             response = requests.post(self.token_endpoint, data=body, timeout=self.timeout)
             response.raise_for_status()
             response_json = response.json()
-            self.access_token = response_json["access_token"]
-            self.refresh_token = response_json["refresh_token"]
+            with self.lock:
+                self.access_token = response_json["access_token"]
+                self.refresh_token = response_json["refresh_token"]
         except requests.RequestException as e:
             raise requests.RequestException("Initial token fetch failed") from e
 
@@ -130,14 +141,17 @@ class KeyAuth(AuthBase):
         thread.start()
 
     def __refresh_token(self):
-        if self.__is_token_expired(self.refresh_token):
+        with self.lock:
+            refresh_token = self.refresh_token
+
+        if self.__is_token_expired(refresh_token):
             self.__create_initial_token()
             self.__fetch_token_from_endpoint()
             return
 
         body = {
             "grant_type": "refresh_token",
-            "refresh_token": self.refresh_token,
+            "refresh_token": refresh_token,
         }
 
         last_exception = None
@@ -147,24 +161,23 @@ class KeyAuth(AuthBase):
                 response.raise_for_status()
                 response_data = response.json()
                 new_token = response_data.get("access_token")
-                self.access_token = new_token
+                with self.lock:
+                    self.access_token = new_token
                 return
             except requests.RequestException as e:
                 last_exception = e
 
         raise requests.RequestException("Token refresh failed after retries") from last_exception
 
-    def __is_token_expired(self, token: str) -> bool:
+    def __is_token_expired(self, token: Optional[str]) -> bool:
         try:
             decoded_token = jwt.decode(token, options={"verify_signature": False})
             exp = decoded_token.get("exp")
-            if exp:
-                return time.time() > (exp + self.EXPIRATION_LEEWAY.total_seconds())
-        except jwt.ExpiredSignatureError:
+            if exp is None:
+                return True
+            return time.time() > (float(exp) - self.EXPIRATION_LEEWAY.total_seconds())
+        except (jwt.InvalidTokenError, TypeError, ValueError):
             return True
-        except jwt.DecodeError:
-            return True
-        return False
 
     def __shutdown(self):
         self.executor.shutdown(wait=False)
