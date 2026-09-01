@@ -1,6 +1,8 @@
 ## Release (2026-MM-DD)
 
 - `albwaf`:
+  - [v0.1.2](services/albwaf/CHANGELOG.md#v012)
+    - **Docs:** Update module description and description of `update_waf` operation
   - [v0.1.1](services/albwaf/CHANGELOG.md#v011)
     - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.albwaf` to fail with `ModuleNotFoundError`
 - `cost`:
