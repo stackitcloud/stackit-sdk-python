@@ -18,29 +18,21 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 
-class DomainObservabilityExtension(BaseModel):
+class CreateMoveCodePayload(BaseModel):
     """
-    DomainObservabilityExtension
+    options for generating a move code.
     """  # noqa: E501
 
-    observability_instance_id: StrictStr = Field(alias="observabilityInstanceId")
-    state: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["observabilityInstanceId", "state"]
-
-    @field_validator("state")
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(["CREATING", "CREATE_SUCCEEDED", "ERROR"]):
-            raise ValueError("must be one of enum values ('CREATING', 'CREATE_SUCCEEDED', 'ERROR')")
-        return value
+    ttl: Optional[Annotated[int, Field(le=2592000, strict=True, ge=1)]] = Field(
+        default=None,
+        description="TTL is the duration for which the move code is valid, represented as seconds. Min: 1, Max: 2592000 (30 days).",
+    )
+    __properties: ClassVar[List[str]] = ["ttl"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -59,7 +51,7 @@ class DomainObservabilityExtension(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DomainObservabilityExtension from a JSON string"""
+        """Create an instance of CreateMoveCodePayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,14 +75,12 @@ class DomainObservabilityExtension(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DomainObservabilityExtension from a dict"""
+        """Create an instance of CreateMoveCodePayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"observabilityInstanceId": obj.get("observabilityInstanceId"), "state": obj.get("state")}
-        )
+        _obj = cls.model_validate({"ttl": obj.get("ttl")})
         return _obj
