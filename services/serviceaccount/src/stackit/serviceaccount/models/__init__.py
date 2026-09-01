@@ -57,6 +57,8 @@ from stackit.serviceaccount.models.get_service_account_key_response import (
 from stackit.serviceaccount.models.get_service_account_key_response_credentials import (
     GetServiceAccountKeyResponseCredentials,
 )
+from stackit.serviceaccount.models.introspect_jwt_payload import IntrospectJWTPayload
+from stackit.serviceaccount.models.introspect_jwt_response import IntrospectJWTResponse
 from stackit.serviceaccount.models.jwk import JWK
 from stackit.serviceaccount.models.jwks import JWKS
 from stackit.serviceaccount.models.list_access_tokens_response import (
