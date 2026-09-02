@@ -30,8 +30,10 @@ __all__ = [
     "ACL",
     "Access",
     "AccessScope",
+    "ApplicationLoadBalancer",
     "Audit",
     "AvailabilityZone",
+    "CNI",
     "CRI",
     "Cluster",
     "ClusterError",
@@ -93,6 +95,9 @@ from stackit.ske.models.access_scope import AccessScope as AccessScope
 
 # import models into sdk package
 from stackit.ske.models.acl import ACL as ACL
+from stackit.ske.models.application_load_balancer import (
+    ApplicationLoadBalancer as ApplicationLoadBalancer,
+)
 from stackit.ske.models.audit import Audit as Audit
 from stackit.ske.models.availability_zone import AvailabilityZone as AvailabilityZone
 from stackit.ske.models.cluster import Cluster as Cluster
@@ -101,6 +106,7 @@ from stackit.ske.models.cluster_status import ClusterStatus as ClusterStatus
 from stackit.ske.models.cluster_status_state import (
     ClusterStatusState as ClusterStatusState,
 )
+from stackit.ske.models.cni import CNI as CNI
 from stackit.ske.models.create_kubeconfig_payload import (
     CreateKubeconfigPayload as CreateKubeconfigPayload,
 )
