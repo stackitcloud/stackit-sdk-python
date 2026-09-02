@@ -16,11 +16,12 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 
 class DatabaseRoles(BaseModel):
@@ -28,9 +29,21 @@ class DatabaseRoles(BaseModel):
     The name and the roles for a database for a user.
     """  # noqa: E501
 
-    name: StrictStr = Field(description="The name of the database.")
+    name: Annotated[str, Field(min_length=1, strict=True, max_length=63)] = Field(
+        description='"The name of the database." "Database name must be 1–63 characters long, start with a lowercase letter or underscore, and contain only lowercase letters, numbers, or underscores." '
+    )
     roles: List[StrictStr] = Field(description="The name and the roles for a database")
     __properties: ClassVar[List[str]] = ["name", "roles"]
+
+    @field_validator("name")
+    def name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[a-z_][a-z0-9_]*$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z_][a-z0-9_]*$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
