@@ -22,7 +22,7 @@ from typing_extensions import Self
 
 class InstanceNetworkAccessScope(str, Enum):
     """
-    The access scope of the instance. It defines if the instance is public or airgapped.
+    The access scope of the instance. It defines if the instance is public or airgapped.  ⚠️ **Note:** \"SNA\" value for the \"network.accessScope\" field is only permitted for enabled accounts. If your account does not have access, the request will be rejected.
     """
 
     """
