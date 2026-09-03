@@ -45,6 +45,9 @@
   - [v1.3.0](services/rabbitmq/CHANGELOG.md#v130)
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- `secretsmanager`:
+  - [v0.7.0](services/secretsmanager/CHANGELOG.md#v070)
+    - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `create_approle`, `get_approle`, `get_approles`, `update_approle`, `delete_approle`, `create_approle_secret_id`, `get_approle_secret_id`, `list_approle_secret_ids`, `update_approle_secret_id` and `delete_approle_secret_id` operations
 - `telemetrylink`:
   - [v0.4.2](services/telemetrylink/CHANGELOG.md#v042)
     - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.telemetrylink` to fail with `ModuleNotFoundError`
