@@ -29,8 +29,7 @@ class ZoneObservabilityExtension(BaseModel):
     """  # noqa: E501
 
     observability_instance_id: StrictStr = Field(alias="observabilityInstanceId")
-    state: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["observabilityInstanceId", "state"]
+    __properties: ClassVar[List[str]] = ["observabilityInstanceId"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -80,7 +79,5 @@ class ZoneObservabilityExtension(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"observabilityInstanceId": obj.get("observabilityInstanceId"), "state": obj.get("state")}
-        )
+        _obj = cls.model_validate({"observabilityInstanceId": obj.get("observabilityInstanceId")})
         return _obj
