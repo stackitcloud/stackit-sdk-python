@@ -28,9 +28,15 @@ __all__ = [
     "ApiAttributeError",
     "ApiException",
     "ACL",
+    "Approle",
+    "ApproleList",
+    "ApproleSecret",
+    "ApproleSecretList",
     "BadRequest",
     "Conflict",
     "CreateACLPayload",
+    "CreateApprolePayload",
+    "CreateApproleSecretIdPayload",
     "CreateInstancePayload",
     "CreateUserPayload",
     "Instance",
@@ -41,6 +47,8 @@ __all__ = [
     "NotFound",
     "UpdateACLPayload",
     "UpdateACLsPayload",
+    "UpdateApprolePayload",
+    "UpdateApproleSecretIdPayload",
     "UpdateInstancePayload",
     "UpdateUserPayload",
     "User",
@@ -62,10 +70,22 @@ from stackit.secretsmanager.exceptions import OpenApiException as OpenApiExcepti
 
 # import models into sdk package
 from stackit.secretsmanager.models.acl import ACL as ACL
+from stackit.secretsmanager.models.approle import Approle as Approle
+from stackit.secretsmanager.models.approle_list import ApproleList as ApproleList
+from stackit.secretsmanager.models.approle_secret import ApproleSecret as ApproleSecret
+from stackit.secretsmanager.models.approle_secret_list import (
+    ApproleSecretList as ApproleSecretList,
+)
 from stackit.secretsmanager.models.bad_request import BadRequest as BadRequest
 from stackit.secretsmanager.models.conflict import Conflict as Conflict
 from stackit.secretsmanager.models.create_acl_payload import (
     CreateACLPayload as CreateACLPayload,
+)
+from stackit.secretsmanager.models.create_approle_payload import (
+    CreateApprolePayload as CreateApprolePayload,
+)
+from stackit.secretsmanager.models.create_approle_secret_id_payload import (
+    CreateApproleSecretIdPayload as CreateApproleSecretIdPayload,
 )
 from stackit.secretsmanager.models.create_instance_payload import (
     CreateInstancePayload as CreateInstancePayload,
@@ -90,6 +110,12 @@ from stackit.secretsmanager.models.update_acl_payload import (
 )
 from stackit.secretsmanager.models.update_acls_payload import (
     UpdateACLsPayload as UpdateACLsPayload,
+)
+from stackit.secretsmanager.models.update_approle_payload import (
+    UpdateApprolePayload as UpdateApprolePayload,
+)
+from stackit.secretsmanager.models.update_approle_secret_id_payload import (
+    UpdateApproleSecretIdPayload as UpdateApproleSecretIdPayload,
 )
 from stackit.secretsmanager.models.update_instance_payload import (
     UpdateInstancePayload as UpdateInstancePayload,
