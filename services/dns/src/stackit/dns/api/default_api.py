@@ -30,6 +30,7 @@ from stackit.dns.api_response import ApiResponse
 from stackit.dns.models.clone_zone_payload import CloneZonePayload
 from stackit.dns.models.create_label_payload import CreateLabelPayload
 from stackit.dns.models.create_label_response import CreateLabelResponse
+from stackit.dns.models.create_move_code_payload import CreateMoveCodePayload
 from stackit.dns.models.create_record_set_payload import CreateRecordSetPayload
 from stackit.dns.models.create_zone_payload import CreateZonePayload
 from stackit.dns.models.delete_label_response import DeleteLabelResponse
@@ -627,6 +628,9 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         zone_id: Annotated[StrictStr, Field(description="zone id")],
+        create_move_code_payload: Annotated[
+            Optional[CreateMoveCodePayload], Field(description="information about the movecode")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -645,6 +649,8 @@ class DefaultApi:
         :type project_id: str
         :param zone_id: zone id (required)
         :type zone_id: str
+        :param create_move_code_payload: information about the movecode
+        :type create_move_code_payload: CreateMoveCodePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -670,6 +676,7 @@ class DefaultApi:
         _param = self._create_move_code_serialize(
             project_id=project_id,
             zone_id=zone_id,
+            create_move_code_payload=create_move_code_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -695,6 +702,9 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         zone_id: Annotated[StrictStr, Field(description="zone id")],
+        create_move_code_payload: Annotated[
+            Optional[CreateMoveCodePayload], Field(description="information about the movecode")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -713,6 +723,8 @@ class DefaultApi:
         :type project_id: str
         :param zone_id: zone id (required)
         :type zone_id: str
+        :param create_move_code_payload: information about the movecode
+        :type create_move_code_payload: CreateMoveCodePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -738,6 +750,7 @@ class DefaultApi:
         _param = self._create_move_code_serialize(
             project_id=project_id,
             zone_id=zone_id,
+            create_move_code_payload=create_move_code_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -763,6 +776,9 @@ class DefaultApi:
         self,
         project_id: Annotated[StrictStr, Field(description="project id")],
         zone_id: Annotated[StrictStr, Field(description="zone id")],
+        create_move_code_payload: Annotated[
+            Optional[CreateMoveCodePayload], Field(description="information about the movecode")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -781,6 +797,8 @@ class DefaultApi:
         :type project_id: str
         :param zone_id: zone id (required)
         :type zone_id: str
+        :param create_move_code_payload: information about the movecode
+        :type create_move_code_payload: CreateMoveCodePayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -806,6 +824,7 @@ class DefaultApi:
         _param = self._create_move_code_serialize(
             project_id=project_id,
             zone_id=zone_id,
+            create_move_code_payload=create_move_code_payload,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -826,6 +845,7 @@ class DefaultApi:
         self,
         project_id,
         zone_id,
+        create_move_code_payload,
         _request_auth,
         _content_type,
         _headers,
@@ -852,10 +872,20 @@ class DefaultApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if create_move_code_payload is not None:
+            _body_params = create_move_code_payload
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
             _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = []

@@ -8,6 +8,11 @@
 - `cost`:
   - [v0.4.1](services/cost/CHANGELOG.md#v041)
     - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.cost` to fail with `ModuleNotFoundError`
+- `dns`:
+  - [v0.9.0](services/dns/CHANGELOG.md#v090)
+    - **Feature:** `create_move_code` operation now accepts an optional `CreateMoveCodePayload` request body (field `ttl`) to configure the move code's validity duration
+    - **Breaking Change:** `DomainObservabilityExtension.state` now validates against a fixed set of values (`CREATING`, `CREATE_SUCCEEDED`, `ERROR`); previously any string was accepted
+    - **Breaking Change:** Removed `state` field from `ZoneObservabilityExtension`
 - `dremio`:
   - [v0.1.0](services/dremio/CHANGELOG.md#v010)
     - **New**: STACKIT Dremio module can be used to manage STACKIT Dremio instances and users.

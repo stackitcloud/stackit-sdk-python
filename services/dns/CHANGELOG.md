@@ -1,3 +1,8 @@
+## v0.9.0
+- **Feature:** `create_move_code` operation now accepts an optional `CreateMoveCodePayload` request body (field `ttl`) to configure the move code's validity duration
+- **Breaking Change:** `DomainObservabilityExtension.state` now validates against a fixed set of values (`CREATING`, `CREATE_SUCCEEDED`, `ERROR`); previously any string was accepted
+- **Breaking Change:** Removed `state` field from `ZoneObservabilityExtension`
+
 ## v0.8.0
 - **Breaking Change:** `Value` field of `Label`/`CreateLabelPayload` is no longer required.
 
