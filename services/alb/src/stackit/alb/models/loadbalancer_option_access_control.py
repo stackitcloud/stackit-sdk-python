@@ -15,24 +15,43 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 
 class LoadbalancerOptionAccessControl(BaseModel):
     """
-    Use this option to limit the IP ranges that can use the Application Load Balancer.
+    Use this option to limit the IP ranges that can use the Application Load Balancer.  Only one of `allowed_source_ranges` or `ip_block_list_name` may be set at the same time.
     """  # noqa: E501
 
     allowed_source_ranges: Optional[List[StrictStr]] = Field(
         default=None,
-        description="Application Load Balancer is accessible only from an IP address in this range",
+        description="Application Load Balancer is accessible only from an IP address in this range. Mutually exclusive with `ipBlockListName`.",
         alias="allowedSourceRanges",
     )
-    __properties: ClassVar[List[str]] = ["allowedSourceRanges"]
+    ip_block_list_name: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None,
+        description='Reference to an IP block list by name. Traffic originating from any IP in the referenced list is denied access to the Application Load Balancer. See "IP Lists API" for how to manage IP block lists. Mutually exclusive with `allowedSourceRanges`.',
+        alias="ipBlockListName",
+    )
+    __properties: ClassVar[List[str]] = ["allowedSourceRanges", "ipBlockListName"]
+
+    @field_validator("ip_block_list_name")
+    def ip_block_list_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[0-9a-z](?:(?:[0-9a-z]|-){0,49}[0-9a-z])?$", value):
+            raise ValueError(r"must validate the regular expression /^[0-9a-z](?:(?:[0-9a-z]|-){0,49}[0-9a-z])?$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,5 +101,7 @@ class LoadbalancerOptionAccessControl(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"allowedSourceRanges": obj.get("allowedSourceRanges")})
+        _obj = cls.model_validate(
+            {"allowedSourceRanges": obj.get("allowedSourceRanges"), "ipBlockListName": obj.get("ipBlockListName")}
+        )
         return _obj
