@@ -31,6 +31,9 @@
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
 - `postgresflex`:
+  - [v1.6.1](services/postgresflex/CHANGELOG.md#v161)
+    - **Improvement:** Add validation for `name` field in `CreateDatabasePayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `PartialUpdateDatabasePayload` and `UpdateDatabasePayload` models
+    - **Docs:** Extend description of `InstanceNetworkAccessScope` enum to note that the `SNA` value is only permitted for enabled accounts
   - [v1.6.0](services/postgresflex/CHANGELOG.md#v160)
     - **Breaking Change:** `class` attribute in `CloneInstanceOverrides` and `StorageCreate` model is now required (previously optional)
 - `rabbitmq`:
