@@ -1,3 +1,8 @@
+## v1.3.0
+- **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
+    The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- **Deprecation:** Redis service has been deprecated and will be removed after 2027-08-25. Please use the Key Value Store (valkey) service instead.
+
 ## v1.2.0
 - **Breaking Change/Fix:** `list_backups` operation now returns `List[Backup]` instead of `ListBackupsResponse` (response type also removed)
     The return type now correctly models the actual JSON response, this operation was broken beforehand.
