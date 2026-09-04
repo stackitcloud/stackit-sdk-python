@@ -13,13 +13,9 @@ Do not edit the class manually.
 """  # noqa: E501
 
 # import models into model package
-from stackit.serviceaccount.models.access_token import AccessToken
 from stackit.serviceaccount.models.access_token_metadata import AccessTokenMetadata
 from stackit.serviceaccount.models.auth_error import AuthError
 from stackit.serviceaccount.models.auth_error_error import AuthErrorError
-from stackit.serviceaccount.models.create_access_token_payload import (
-    CreateAccessTokenPayload,
-)
 from stackit.serviceaccount.models.create_federated_identity_provider_payload import (
     CreateFederatedIdentityProviderPayload,
 )
@@ -59,9 +55,6 @@ from stackit.serviceaccount.models.get_service_account_key_response_credentials 
 )
 from stackit.serviceaccount.models.jwk import JWK
 from stackit.serviceaccount.models.jwks import JWKS
-from stackit.serviceaccount.models.list_access_tokens_response import (
-    ListAccessTokensResponse,
-)
 from stackit.serviceaccount.models.list_service_account_keys_response import (
     ListServiceAccountKeysResponse,
 )
