@@ -50,6 +50,9 @@
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
     - **Deprecation:** Redis service has been deprecated and will be removed after 2027-08-25. Please use the Key Value Store (valkey) service instead.
+- `resourcemanager`
+  - [v0.10.0](services/resourcemanager/CHANGELOG.md#0100)
+    - **Breaking change:** Labels are nullable now, therefore the `labels` attribute in the `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload` and `PartialUpdateProjectPayload` model class changed from `Optional[Dict[str, StrictStr]]` to `Optional[Dict[str, Optional[StrictStr]]]`
 - `secretsmanager`:
   - [v0.7.0](services/secretsmanager/CHANGELOG.md#v070)
     - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `create_approle`, `get_approle`, `get_approles`, `update_approle`, `delete_approle`, `create_approle_secret_id`, `get_approle_secret_id`, `list_approle_secret_ids`, `update_approle_secret_id` and `delete_approle_secret_id` operations

@@ -1,3 +1,6 @@
+## v0.10.0
+- **Breaking change:** Labels are nullable now, therefore the `labels` attribute in the `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload` and `PartialUpdateProjectPayload` model class changed from `Optional[Dict[str, StrictStr]]` to `Optional[Dict[str, Optional[StrictStr]]]`
+
 ## v0.9.1
 - Update description of the `labels` attribute in model classes
 
