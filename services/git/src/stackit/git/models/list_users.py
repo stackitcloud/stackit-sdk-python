@@ -18,34 +18,25 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    StrictBool,
-    StrictStr,
-)
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from pydantic_core import to_jsonable_python
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
-from stackit.git.models.feature_toggle import FeatureToggle
+from stackit.git.models.user import User
 
 
-class PatchInstancePayload(BaseModel):
+class ListUsers(BaseModel):
     """
-    Properties to patch on an instance. All fields are optional.
+    A paginated list of STACKIT Git instance Users.
     """  # noqa: E501
 
-    acl: Optional[Annotated[List[StrictStr], Field(max_length=50)]] = Field(
-        default=None, description="A list of CIDR network addresses that are allowed to access the instance."
+    items_count: StrictInt = Field(description="Number of users returned in this page.", alias="itemsCount")
+    offset: StrictInt = Field(description="Zero-based index of the first item in this page.")
+    total_pages: StrictInt = Field(
+        description="Total number of pages available based on the fixed page size of 50.", alias="totalPages"
     )
-    admin_login: Optional[StrictBool] = Field(default=None, description="Enable Admin IdP")
-    feature_toggle: Optional[FeatureToggle] = None
-    labels: Optional[Dict[str, Annotated[str, Field(strict=True, max_length=63)]]] = Field(
-        default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. The `stackit-` prefix is reserved and cannot be used for Keys.",
-    )
-    __properties: ClassVar[List[str]] = ["acl", "admin_login", "feature_toggle", "labels"]
+    users: List[User]
+    __properties: ClassVar[List[str]] = ["itemsCount", "offset", "totalPages", "users"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -64,7 +55,7 @@ class PatchInstancePayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PatchInstancePayload from a JSON string"""
+        """Create an instance of ListUsers from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,19 +75,18 @@ class PatchInstancePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of feature_toggle
-        if self.feature_toggle:
-            _dict["feature_toggle"] = self.feature_toggle.to_dict()
-        # set to None if acl (nullable) is None
-        # and model_fields_set contains the field
-        if self.acl is None and "acl" in self.model_fields_set:
-            _dict["acl"] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in users (list)
+        _items = []
+        if self.users:
+            for _item_users in self.users:
+                if _item_users:
+                    _items.append(_item_users.to_dict())
+            _dict["users"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PatchInstancePayload from a dict"""
+        """Create an instance of ListUsers from a dict"""
         if obj is None:
             return None
 
@@ -105,12 +95,10 @@ class PatchInstancePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "acl": obj.get("acl"),
-                "admin_login": obj.get("admin_login"),
-                "feature_toggle": (
-                    FeatureToggle.from_dict(obj["feature_toggle"]) if obj.get("feature_toggle") is not None else None
-                ),
-                "labels": obj.get("labels"),
+                "itemsCount": obj.get("itemsCount"),
+                "offset": obj.get("offset"),
+                "totalPages": obj.get("totalPages"),
+                "users": [User.from_dict(_item) for _item in obj["users"]] if obj.get("users") is not None else None,
             }
         )
         return _obj
