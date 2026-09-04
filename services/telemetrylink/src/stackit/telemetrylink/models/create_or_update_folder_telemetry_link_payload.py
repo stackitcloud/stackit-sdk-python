@@ -36,8 +36,8 @@ class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
     display_name: Annotated[str, Field(min_length=1, strict=True, max_length=32)] = Field(
         description="The display name is a short name chosen by the user to identify the resource.", alias="displayName"
     )
-    enabled: StrictBool = Field(
-        description="Indicates whether routing through the link to a telemetry-router is active."
+    enabled: Optional[StrictBool] = Field(
+        default=True, description="Indicates whether routing through the link to a telemetry-router is active."
     )
     telemetry_router_id: Annotated[str, Field(strict=True, max_length=1024)] = Field(
         description="The ID of the telemetry-router to route the telemetry data.", alias="telemetryRouterId"
