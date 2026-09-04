@@ -63,6 +63,9 @@
     - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.telemetryrouter` to fail with `ModuleNotFoundError`
   - [v0.5.1](services/telemetryrouter/CHANGELOG.md#v051)
     - **Improvement:** Add validation for `description` field in `AccessTokenBaseRequest`, `AccessTokenBaseResponse`, `CreateAccessTokenPayload`, `CreateAccessTokenResponse`, `DestinationResponse`, `GetAccessTokenResponse`, `TelemetryRouterResponse`, `UpdateAccessTokenPayload` and `UpdateAccessTokenResponse` models
+- `ufw`:
+  - [v0.1.0](services/ufw/CHANGELOG.md#v010)
+    - **New**: STACKIT Unified Firewall (UFW) 
 - `valkey`:
   - [v0.2.1](services/valkey/CHANGELOG.md#v021)
     - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.valkey` to fail with `ModuleNotFoundError`
