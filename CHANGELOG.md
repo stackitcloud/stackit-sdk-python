@@ -51,6 +51,9 @@
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
     - **Deprecation:** Redis service has been deprecated and will be removed after 2027-08-25. Please use the Key Value Store (valkey) service instead.
 - `resourcemanager`
+  - [v0.11.0](services/resourcemanager/CHANGELOG.md#0110)
+    - Updated pydoc comments of the API client methods
+    - **Breaking change:** Removal of unused model class `ContainerSearchResult`
   - [v0.10.0](services/resourcemanager/CHANGELOG.md#0100)
     - **Breaking change:** Labels are nullable now, therefore the `labels` attribute in the `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload` and `PartialUpdateProjectPayload` model class changed from `Optional[Dict[str, StrictStr]]` to `Optional[Dict[str, Optional[StrictStr]]]`
 - `secretsmanager`:
