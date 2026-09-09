@@ -1,3 +1,7 @@
+## v0.11.0
+- Updated pydoc comments of the API client methods
+- **Breaking change:** Removal of unused model class `ContainerSearchResult`
+
 ## v0.10.0
 - **Breaking change:** Labels are nullable now, therefore the `labels` attribute in the `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload` and `PartialUpdateProjectPayload` model class changed from `Optional[Dict[str, StrictStr]]` to `Optional[Dict[str, Optional[StrictStr]]]`
 
