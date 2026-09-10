@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
+from stackit.ske.models.cni import CNI
 from stackit.ske.models.v2_control_plane_network import V2ControlPlaneNetwork
 
 
@@ -29,9 +30,10 @@ class Network(BaseModel):
     Network
     """  # noqa: E501
 
+    cni: Optional[CNI] = None
     control_plane: Optional[V2ControlPlaneNetwork] = Field(default=None, alias="controlPlane")
     id: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["controlPlane", "id"]
+    __properties: ClassVar[List[str]] = ["cni", "controlPlane", "id"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -70,6 +72,9 @@ class Network(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of cni
+        if self.cni:
+            _dict["cni"] = self.cni.to_dict()
         # override the default output from pydantic by calling `to_dict()` of control_plane
         if self.control_plane:
             _dict["controlPlane"] = self.control_plane.to_dict()
@@ -86,6 +91,7 @@ class Network(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "cni": CNI.from_dict(obj["cni"]) if obj.get("cni") is not None else None,
                 "controlPlane": (
                     V2ControlPlaneNetwork.from_dict(obj["controlPlane"])
                     if obj.get("controlPlane") is not None
