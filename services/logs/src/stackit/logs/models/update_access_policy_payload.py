@@ -15,38 +15,36 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 
-class UpdateAccessTokenPayload(BaseModel):
+class UpdateAccessPolicyPayload(BaseModel):
     """
-    UpdateAccessTokenPayload
+    UpdateAccessPolicyPayload
     """  # noqa: E501
 
     description: Optional[Annotated[str, Field(strict=True, max_length=100)]] = Field(
-        default=None, description="The description of the access token."
+        default=None,
+        description="The updated description of the access policy. If not present will be ignored in update.",
     )
-    display_name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=32)]] = Field(
-        default=None, description="The displayed name of the access token.", alias="displayName"
+    permissions: Optional[List[StrictStr]] = Field(
+        default=None, description="The access permissions granted to the access token or access policy."
     )
-    __properties: ClassVar[List[str]] = ["description", "displayName"]
+    __properties: ClassVar[List[str]] = ["description", "permissions"]
 
-    @field_validator("display_name")
-    def display_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
+    @field_validator("permissions")
+    def permissions_validate_enum(cls, value):
+        """Validates the enum"""
         if value is None:
             return value
 
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^[a-zA-Z][\w -]*$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z][\w -]*$/")
+        for i in value:
+            if i not in set(["read", "write"]):
+                raise ValueError("each list item must be one of ('read', 'write')")
         return value
 
     model_config = ConfigDict(
@@ -66,7 +64,7 @@ class UpdateAccessTokenPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateAccessTokenPayload from a JSON string"""
+        """Create an instance of UpdateAccessPolicyPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -86,16 +84,21 @@ class UpdateAccessTokenPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if description (nullable) is None
+        # and model_fields_set contains the field
+        if self.description is None and "description" in self.model_fields_set:
+            _dict["description"] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateAccessTokenPayload from a dict"""
+        """Create an instance of UpdateAccessPolicyPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"description": obj.get("description"), "displayName": obj.get("displayName")})
+        _obj = cls.model_validate({"description": obj.get("description"), "permissions": obj.get("permissions")})
         return _obj
