@@ -17,12 +17,14 @@ from stackit.ske.models.access_scope import AccessScope
 
 # import models into model package
 from stackit.ske.models.acl import ACL
+from stackit.ske.models.application_load_balancer import ApplicationLoadBalancer
 from stackit.ske.models.audit import Audit
 from stackit.ske.models.availability_zone import AvailabilityZone
 from stackit.ske.models.cluster import Cluster
 from stackit.ske.models.cluster_error import ClusterError
 from stackit.ske.models.cluster_status import ClusterStatus
 from stackit.ske.models.cluster_status_state import ClusterStatusState
+from stackit.ske.models.cni import CNI
 from stackit.ske.models.create_kubeconfig_payload import CreateKubeconfigPayload
 from stackit.ske.models.create_or_update_cluster_payload import (
     CreateOrUpdateClusterPayload,
