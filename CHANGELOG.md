@@ -1,4 +1,4 @@
-## Release (2026-MM-DD)
+## Release (2026-09-14)
 
 - `albwaf`:
   - [v0.1.2](services/albwaf/CHANGELOG.md#v012)
