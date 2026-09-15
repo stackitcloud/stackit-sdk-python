@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
@@ -39,13 +40,14 @@ class RuleResponse(BaseModel):
     port_range: Optional[StrictStr] = Field(default=None, alias="portRange")
     product: StrictStr
     protocol: Optional[StrictStr] = None
+    ref_id: Optional[UUID] = Field(default=None, alias="refId")
     region: Optional[StrictStr] = None
     remote_security_group_id: Optional[StrictStr] = Field(default=None, alias="remoteSecurityGroupId")
     security_group: Optional[StrictStr] = Field(default=None, alias="securityGroup")
     security_group_id: Optional[StrictStr] = Field(default=None, alias="securityGroupId")
     source_ip: StrictStr = Field(alias="sourceIP")
     status: StrictStr = Field(description="The current state of the resource.")
-    type: StrictStr
+    type: StrictStr = Field(description='The type of the rule (e.g., "ACL", "PublicIP", "SecurityRule").')
     __properties: ClassVar[List[str]] = [
         "description",
         "destination",
@@ -59,6 +61,7 @@ class RuleResponse(BaseModel):
         "portRange",
         "product",
         "protocol",
+        "refId",
         "region",
         "remoteSecurityGroupId",
         "securityGroup",
@@ -75,6 +78,13 @@ class RuleResponse(BaseModel):
             raise ValueError(
                 "must be one of enum values ('Active', 'Error', 'Pending', 'Updating', 'Deleting', 'Creating')"
             )
+        return value
+
+    @field_validator("type")
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["ACL", "PublicIP", "SecurityRule", "SecurityGroup"]):
+            raise ValueError("must be one of enum values ('ACL', 'PublicIP', 'SecurityRule', 'SecurityGroup')")
         return value
 
     model_config = ConfigDict(
@@ -139,6 +149,7 @@ class RuleResponse(BaseModel):
                 "portRange": obj.get("portRange"),
                 "product": obj.get("product"),
                 "protocol": obj.get("protocol"),
+                "refId": obj.get("refId"),
                 "region": obj.get("region"),
                 "remoteSecurityGroupId": obj.get("remoteSecurityGroupId"),
                 "securityGroup": obj.get("securityGroup"),
