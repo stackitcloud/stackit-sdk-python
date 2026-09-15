@@ -1,3 +1,9 @@
+## Release (2026-MM-DD)
+
+- `telemetryrouter`:
+  - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
+    - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+
 ## Release (2026-09-14)
 
 - `albwaf`:
