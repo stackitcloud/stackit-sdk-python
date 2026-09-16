@@ -29,7 +29,7 @@ class BGPFilterRuleMatch(BaseModel):
     """  # noqa: E501
 
     as_path_contains_any: Optional[
-        Annotated[List[Annotated[int, Field(le=4294967294, strict=True, ge=64512)]], Field(max_length=10)]
+        Annotated[List[Annotated[int, Field(le=4294967294, strict=True, ge=1)]], Field(max_length=10)]
     ] = Field(
         default=None,
         description="Matches if the AS-PATH contains any one of the listed ASNs (logical OR within the list). Treated as an unordered set; ordering is not preserved by the storage layer. When combined with firstASN, both conditions must hold (logical AND, consistent with the rest of the match block). If firstASN is also listed here, its presence as the first hop is sufficient to satisfy this list; no duplicate hop is required. ",
@@ -39,7 +39,7 @@ class BGPFilterRuleMatch(BaseModel):
         default=None,
         description="Matches if the route carries any one of these BGP standard communities (logical OR within the list). Format is 'asn:value' per RFC 1997 (both halves must fit in a uint32, i.e. 0..4294967295). Extended, large and well-known communities are not supported. ",
     )
-    first_asn: Optional[Annotated[int, Field(le=4294967294, strict=True, ge=64512)]] = Field(
+    first_asn: Optional[Annotated[int, Field(le=4294967294, strict=True, ge=1)]] = Field(
         default=None,
         description="Matches if the first ASN (immediate neighbor) in the AS-PATH equals this ASN. Combines with asPathContainsAny using logical AND: when both are set, the first ASN must equal firstASN AND the path must additionally contain at least one ASN from asPathContainsAny. ",
         alias="firstASN",
