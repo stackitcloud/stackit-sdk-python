@@ -1,3 +1,6 @@
+## v0.13.0
+- **Feature:** Add `ip_block_list_name` field to `LoadbalancerOptionAccessControl` model
+
 ## v0.12.0
 - **Feature:** Add new enum values `TYPE_FIP_NOT_FOUND`, `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` to `LoadBalancerError` model
 

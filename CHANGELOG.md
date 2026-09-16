@@ -1,5 +1,8 @@
 ## Release (2026-MM-DD)
 
+- `alb`:
+  - [v0.13.0](services/alb/CHANGELOG.md#v0130)
+    - **Feature:** Add `ip_block_list_name` field to `LoadbalancerOptionAccessControl` model
 - `telemetryrouter`:
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
