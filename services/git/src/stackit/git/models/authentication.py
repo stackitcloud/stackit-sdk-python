@@ -50,6 +50,9 @@ class Authentication(BaseModel):
     provider: StrictStr = Field(description="The Oauth2 provider to use.")
     scopes: StrictStr = Field(description="Scopes defines the OIDC scopes to request.")
     status: StrictStr = Field(description="The current status of the authentication definition.")
+    status_message: Optional[StrictStr] = Field(
+        default=None, description="Provides additional information or error details when the status is 'Error'."
+    )
     __properties: ClassVar[List[str]] = [
         "auto_discover_url",
         "client_id",
@@ -60,6 +63,7 @@ class Authentication(BaseModel):
         "provider",
         "scopes",
         "status",
+        "status_message",
     ]
 
     @field_validator("auto_discover_url")
@@ -97,6 +101,13 @@ class Authentication(BaseModel):
             raise ValueError(
                 r"must validate the regular expression /^https:\/\/[a-zA-Z0-9\-\.]+(\.[a-zA-Z]{2,})+(\/.*)?$/"
             )
+        return value
+
+    @field_validator("status")
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["Creating", "Updating", "Deleting", "Ready", "Error"]):
+            raise ValueError("must be one of enum values ('Creating', 'Updating', 'Deleting', 'Ready', 'Error')")
         return value
 
     model_config = ConfigDict(
@@ -158,6 +169,7 @@ class Authentication(BaseModel):
                 "provider": obj.get("provider"),
                 "scopes": obj.get("scopes"),
                 "status": obj.get("status"),
+                "status_message": obj.get("status_message"),
             }
         )
         return _obj
