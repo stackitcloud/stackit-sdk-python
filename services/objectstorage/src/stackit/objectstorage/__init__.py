@@ -53,6 +53,7 @@ __all__ = [
     "LocationInner",
     "ProjectScope",
     "ProjectStatus",
+    "RateLimitError",
     "RetentionMode",
     "SetDefaultRetentionPayload",
     "ValidationError",
@@ -137,6 +138,9 @@ from stackit.objectstorage.models.list_credentials_groups_response import (
 from stackit.objectstorage.models.location_inner import LocationInner as LocationInner
 from stackit.objectstorage.models.project_scope import ProjectScope as ProjectScope
 from stackit.objectstorage.models.project_status import ProjectStatus as ProjectStatus
+from stackit.objectstorage.models.rate_limit_error import (
+    RateLimitError as RateLimitError,
+)
 from stackit.objectstorage.models.retention_mode import RetentionMode as RetentionMode
 from stackit.objectstorage.models.set_default_retention_payload import (
     SetDefaultRetentionPayload as SetDefaultRetentionPayload,
