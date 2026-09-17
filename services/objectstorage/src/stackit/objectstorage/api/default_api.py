@@ -145,6 +145,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -222,6 +223,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -299,6 +301,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -448,6 +451,7 @@ class DefaultApi:
             "404": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -532,6 +536,7 @@ class DefaultApi:
             "404": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -616,6 +621,7 @@ class DefaultApi:
             "404": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -996,6 +1002,7 @@ class DefaultApi:
             "404": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1069,6 +1076,7 @@ class DefaultApi:
             "404": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1142,6 +1150,7 @@ class DefaultApi:
             "404": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1280,6 +1289,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1358,6 +1368,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1436,6 +1447,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1567,6 +1579,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1641,6 +1654,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1715,6 +1729,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2089,6 +2104,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2161,6 +2177,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2233,6 +2250,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2627,6 +2645,7 @@ class DefaultApi:
             "404": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2698,6 +2717,7 @@ class DefaultApi:
             "404": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2769,6 +2789,7 @@ class DefaultApi:
             "404": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2888,6 +2909,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2958,6 +2980,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3028,6 +3051,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "409": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3152,6 +3176,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3227,6 +3252,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3302,6 +3328,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4206,6 +4233,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4275,6 +4303,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4344,6 +4373,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4466,6 +4496,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4539,6 +4570,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4612,6 +4644,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4735,6 +4768,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4804,6 +4838,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4873,6 +4908,7 @@ class DefaultApi:
             "403": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4990,6 +5026,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -5058,6 +5095,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -5126,6 +5164,7 @@ class DefaultApi:
             "401": "ErrorMessage",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
