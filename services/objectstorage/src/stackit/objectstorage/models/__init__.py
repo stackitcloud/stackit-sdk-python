@@ -63,6 +63,7 @@ from stackit.objectstorage.models.list_credentials_groups_response import (
 from stackit.objectstorage.models.location_inner import LocationInner
 from stackit.objectstorage.models.project_scope import ProjectScope
 from stackit.objectstorage.models.project_status import ProjectStatus
+from stackit.objectstorage.models.rate_limit_error import RateLimitError
 from stackit.objectstorage.models.retention_mode import RetentionMode
 from stackit.objectstorage.models.set_default_retention_payload import (
     SetDefaultRetentionPayload,
