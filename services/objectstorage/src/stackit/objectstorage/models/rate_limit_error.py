@@ -19,21 +19,25 @@ import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
 
-class CreateAccessKeyPayload(BaseModel):
+class RateLimitError(BaseModel):
     """
-    CreateAccessKeyPayload
+    RateLimitError
     """  # noqa: E501
 
-    expires: Optional[datetime] = Field(default=None, description="Expiration date. Null means never expires.")
-    __properties: ClassVar[List[str]] = ["expires"]
+    error: Optional[StrictStr] = None
+    message: Optional[StrictStr] = None
+    path: Optional[StrictStr] = None
+    status: Optional[StrictInt] = None
+    timestamp: Optional[datetime] = None
+    __properties: ClassVar[List[str]] = ["error", "message", "path", "status", "timestamp"]
 
-    @field_validator("expires", mode="before")
-    def expires_change_year_zero_to_one(cls, value):
+    @field_validator("timestamp", mode="before")
+    def timestamp_change_year_zero_to_one(cls, value):
         """Workaround which prevents year 0 issue"""
         if isinstance(value, str):
             # Check for year "0000" at the beginning of the string
@@ -62,7 +66,7 @@ class CreateAccessKeyPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateAccessKeyPayload from a JSON string"""
+        """Create an instance of RateLimitError from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,21 +86,24 @@ class CreateAccessKeyPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if expires (nullable) is None
-        # and model_fields_set contains the field
-        if self.expires is None and "expires" in self.model_fields_set:
-            _dict["expires"] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateAccessKeyPayload from a dict"""
+        """Create an instance of RateLimitError from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"expires": obj.get("expires")})
+        _obj = cls.model_validate(
+            {
+                "error": obj.get("error"),
+                "message": obj.get("message"),
+                "path": obj.get("path"),
+                "status": obj.get("status"),
+                "timestamp": obj.get("timestamp"),
+            }
+        )
         return _obj
