@@ -3,6 +3,12 @@
 - `alb`:
   - [v0.13.0](services/alb/CHANGELOG.md#v0130)
     - **Feature:** Add `ip_block_list_name` field to `LoadbalancerOptionAccessControl` model
+- `objectstorage`:
+  - [v1.6.0](services/objectstorage/CHANGELOG.md#v160)
+    - **Feature:** New model class `RateLimitError`
+    - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+    - **Breaking Change:** Field `expires` in `AccessKey` model is now optional (`Optional[StrictStr]`)
+    - **Improvement:** Field `expires` in `CreateAccessKeyPayload` model now supports explicit `None` serialization
 - `telemetryrouter`:
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
