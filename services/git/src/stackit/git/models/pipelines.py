@@ -24,33 +24,19 @@ from pydantic import (
     Field,
     StrictBool,
     StrictStr,
-    field_validator,
 )
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
-from stackit.git.models.pipelines import Pipelines
 
-
-class FeatureToggle(BaseModel):
+class Pipelines(BaseModel):
     """
-    Feature toggles for the instance.
+    Feature toggles for instance pipelines
     """  # noqa: E501
 
-    default_email_notifications: Optional[StrictStr] = Field(default=None, description="Default email notifications.")
-    enable_local_login: Optional[StrictBool] = Field(default=None, description="Enable local login.")
-    pipelines: Optional[Pipelines] = None
-    __properties: ClassVar[List[str]] = ["default_email_notifications", "enable_local_login", "pipelines"]
-
-    @field_validator("default_email_notifications")
-    def default_email_notifications_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(["enabled", "disabled", "onmention", "andyourown"]):
-            raise ValueError("must be one of enum values ('enabled', 'disabled', 'onmention', 'andyourown')")
-        return value
+    action_url: Optional[StrictStr] = Field(default=None, description="The action URL for the pipelines")
+    enabled: Optional[StrictBool] = Field(default=None, description="Enable pipelines for this instance")
+    __properties: ClassVar[List[str]] = ["action_url", "enabled"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -69,7 +55,7 @@ class FeatureToggle(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of FeatureToggle from a JSON string"""
+        """Create an instance of Pipelines from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -89,35 +75,26 @@ class FeatureToggle(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of pipelines
-        if self.pipelines:
-            _dict["pipelines"] = self.pipelines.to_dict()
-        # set to None if default_email_notifications (nullable) is None
+        # set to None if action_url (nullable) is None
         # and model_fields_set contains the field
-        if self.default_email_notifications is None and "default_email_notifications" in self.model_fields_set:
-            _dict["default_email_notifications"] = None
+        if self.action_url is None and "action_url" in self.model_fields_set:
+            _dict["action_url"] = None
 
-        # set to None if enable_local_login (nullable) is None
+        # set to None if enabled (nullable) is None
         # and model_fields_set contains the field
-        if self.enable_local_login is None and "enable_local_login" in self.model_fields_set:
-            _dict["enable_local_login"] = None
+        if self.enabled is None and "enabled" in self.model_fields_set:
+            _dict["enabled"] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of FeatureToggle from a dict"""
+        """Create an instance of Pipelines from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "default_email_notifications": obj.get("default_email_notifications"),
-                "enable_local_login": obj.get("enable_local_login"),
-                "pipelines": Pipelines.from_dict(obj["pipelines"]) if obj.get("pipelines") is not None else None,
-            }
-        )
+        _obj = cls.model_validate({"action_url": obj.get("action_url"), "enabled": obj.get("enabled")})
         return _obj
