@@ -610,9 +610,10 @@ class DefaultApi:
         project_id: StrictStr,
         region: StrictStr,
         cluster_name: Annotated[
-            StrictStr,
+            str,
             Field(
-                description="Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long."
+                strict=True,
+                description="Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.",
             ),
         ],
         create_or_update_cluster_payload: CreateOrUpdateClusterPayload,
@@ -690,9 +691,10 @@ class DefaultApi:
         project_id: StrictStr,
         region: StrictStr,
         cluster_name: Annotated[
-            StrictStr,
+            str,
             Field(
-                description="Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long."
+                strict=True,
+                description="Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.",
             ),
         ],
         create_or_update_cluster_payload: CreateOrUpdateClusterPayload,
@@ -770,9 +772,10 @@ class DefaultApi:
         project_id: StrictStr,
         region: StrictStr,
         cluster_name: Annotated[
-            StrictStr,
+            str,
             Field(
-                description="Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long."
+                strict=True,
+                description="Use lowercase alphanumeric characters or -, must start and end with an alphanumeric character, and be between 1 and 11 characters long.",
             ),
         ],
         create_or_update_cluster_payload: CreateOrUpdateClusterPayload,
