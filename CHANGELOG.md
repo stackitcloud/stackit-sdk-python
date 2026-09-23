@@ -13,6 +13,9 @@
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
 - `vpn`:
+  - [v0.7.3](services/vpn/CHANGELOG.md#v073)
+    - **Improvement:** Relax maximum `rekey_time` validation to `86400` (previously `28800`) in `TunnelConfigurationPhase1`
+    - **Improvement:** Relax maximum `rekey_time` validation to `14400` (previously `3600`) in `TunnelConfigurationPhase2`
   - [v0.7.2](services/vpn/CHANGELOG.md#v072)
     - **Breaking Change:** `predefined_network_prefix` attribute in `NetworkConfig` model class changed type from `Optional[List[str]]` to `Optional[str]` to match actual API behavior
     - **Improvement:** Relax minimum ASN validation to `1` (previously `64512`) for `as_path_contains_any` and `first_asn` in `BGPFilterRuleMatch` and `remote_asn` in `BGPTunnelConfig`
