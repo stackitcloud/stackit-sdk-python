@@ -25,23 +25,27 @@ from pydantic import (
 )
 from typing_extensions import Self
 
-from stackit.cdn.models.loki_log_sink import LokiLogSink
-from stackit.cdn.models.otlp_log_sink import OtlpLogSink
+from stackit.cdn.models.otlp_log_sink_basic_credentials import (
+    OtlpLogSinkBasicCredentials,
+)
+from stackit.cdn.models.otlp_log_sink_bearer_credentials import (
+    OtlpLogSinkBearerCredentials,
+)
 
-CONFIGLOGSINK_ONE_OF_SCHEMAS = ["LokiLogSink", "OtlpLogSink"]
+OTLPLOGSINKPATCHCREDENTIALS_ONE_OF_SCHEMAS = ["OtlpLogSinkBasicCredentials", "OtlpLogSinkBearerCredentials"]
 
 
-class ConfigLogSink(BaseModel):
+class OtlpLogSinkPatchCredentials(BaseModel):
     """
-    ConfigLogSink
+    The authentication credentials required for the CDN to push logs to your OTLP endpoint.
     """
 
-    # data type: LokiLogSink
-    oneof_schema_1_validator: Optional[LokiLogSink] = None
-    # data type: OtlpLogSink
-    oneof_schema_2_validator: Optional[OtlpLogSink] = None
-    actual_instance: Optional[Union[LokiLogSink, OtlpLogSink]] = None
-    one_of_schemas: Set[str] = {"LokiLogSink", "OtlpLogSink"}
+    # data type: OtlpLogSinkBearerCredentials
+    oneof_schema_1_validator: Optional[OtlpLogSinkBearerCredentials] = None
+    # data type: OtlpLogSinkBasicCredentials
+    oneof_schema_2_validator: Optional[OtlpLogSinkBasicCredentials] = None
+    actual_instance: Optional[Union[OtlpLogSinkBasicCredentials, OtlpLogSinkBearerCredentials]] = None
+    one_of_schemas: Set[str] = {"OtlpLogSinkBasicCredentials", "OtlpLogSinkBearerCredentials"}
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -62,23 +66,23 @@ class ConfigLogSink(BaseModel):
 
     @field_validator("actual_instance")
     def actual_instance_must_validate_oneof(cls, v):
-        instance = ConfigLogSink.model_construct()
+        instance = OtlpLogSinkPatchCredentials.model_construct()
         error_messages = []
         match = 0
-        # validate data type: LokiLogSink
-        if not isinstance(v, LokiLogSink):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `LokiLogSink`")
+        # validate data type: OtlpLogSinkBearerCredentials
+        if not isinstance(v, OtlpLogSinkBearerCredentials):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OtlpLogSinkBearerCredentials`")
         else:
             match += 1
-        # validate data type: OtlpLogSink
-        if not isinstance(v, OtlpLogSink):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `OtlpLogSink`")
+        # validate data type: OtlpLogSinkBasicCredentials
+        if not isinstance(v, OtlpLogSinkBasicCredentials):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OtlpLogSinkBasicCredentials`")
         else:
             match += 1
         if match == 0:
             # no match
             raise ValueError(
-                "No match found when setting `actual_instance` in ConfigLogSink with oneOf schemas: LokiLogSink, OtlpLogSink. Details: "
+                "No match found when setting `actual_instance` in OtlpLogSinkPatchCredentials with oneOf schemas: OtlpLogSinkBasicCredentials, OtlpLogSinkBearerCredentials. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -95,15 +99,15 @@ class ConfigLogSink(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into LokiLogSink
+        # deserialize data into OtlpLogSinkBearerCredentials
         try:
-            instance.actual_instance = LokiLogSink.from_json(json_str)
+            instance.actual_instance = OtlpLogSinkBearerCredentials.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into OtlpLogSink
+        # deserialize data into OtlpLogSinkBasicCredentials
         try:
-            instance.actual_instance = OtlpLogSink.from_json(json_str)
+            instance.actual_instance = OtlpLogSinkBasicCredentials.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -111,13 +115,13 @@ class ConfigLogSink(BaseModel):
         if match > 1:
             # more than 1 match
             raise ValueError(
-                "Multiple matches found when deserializing the JSON string into ConfigLogSink with oneOf schemas: LokiLogSink, OtlpLogSink. Details: "
+                "Multiple matches found when deserializing the JSON string into OtlpLogSinkPatchCredentials with oneOf schemas: OtlpLogSinkBasicCredentials, OtlpLogSinkBearerCredentials. Details: "
                 + ", ".join(error_messages)
             )
         elif match == 0:
             # no match
             raise ValueError(
-                "No match found when deserializing the JSON string into ConfigLogSink with oneOf schemas: LokiLogSink, OtlpLogSink. Details: "
+                "No match found when deserializing the JSON string into OtlpLogSinkPatchCredentials with oneOf schemas: OtlpLogSinkBasicCredentials, OtlpLogSinkBearerCredentials. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -133,7 +137,7 @@ class ConfigLogSink(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], LokiLogSink, OtlpLogSink]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], OtlpLogSinkBasicCredentials, OtlpLogSinkBearerCredentials]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
