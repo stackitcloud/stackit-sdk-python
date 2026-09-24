@@ -29,7 +29,7 @@ class Usage(BaseModel):
     Usage
     """  # noqa: E501
 
-    count: Optional[StrictInt] = Field(default=None, description="Number of Load Balancers using this certificate.")
+    count: Optional[StrictInt] = Field(default=None, description="Number of listeners using this certificate.")
     items: Optional[List[UsageItem]] = Field(
         default=None, description="List of Load Balancers with their associated listeners that use this certificate."
     )
