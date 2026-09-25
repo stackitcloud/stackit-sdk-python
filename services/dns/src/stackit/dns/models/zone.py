@@ -67,6 +67,9 @@ class Zone(BaseModel):
         default=None, description="if the zone is a reverse zone or not", alias="isReverseZone"
     )
     labels: Optional[List[Label]] = None
+    labels_map: Optional[Dict[str, StrictStr]] = Field(
+        default=None, description="labels for the zone", alias="labelsMap"
+    )
     name: Annotated[str, Field(min_length=1, strict=True, max_length=63)] = Field(description="user given name")
     negative_cache: Annotated[int, Field(le=99999999, strict=True, ge=60)] = Field(
         description="negative caching", alias="negativeCache"
@@ -105,6 +108,7 @@ class Zone(BaseModel):
         "id",
         "isReverseZone",
         "labels",
+        "labelsMap",
         "name",
         "negativeCache",
         "primaries",
@@ -233,6 +237,7 @@ class Zone(BaseModel):
                 "labels": (
                     [Label.from_dict(_item) for _item in obj["labels"]] if obj.get("labels") is not None else None
                 ),
+                "labelsMap": obj.get("labelsMap"),
                 "name": obj.get("name"),
                 "negativeCache": obj.get("negativeCache"),
                 "primaries": obj.get("primaries"),
