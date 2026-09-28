@@ -17,31 +17,20 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
-from stackit.ske.models.kata import Kata
 
-
-class CRI(BaseModel):
+class ApplicationLoadBalancer(BaseModel):
     """
-    CRI
+    ApplicationLoadBalancer
     """  # noqa: E501
 
-    kata: Optional[Kata] = None
-    name: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["kata", "name"]
-
-    @field_validator("name")
-    def name_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(["containerd"]):
-            raise ValueError("must be one of enum values ('containerd')")
-        return value
+    enabled: StrictBool = Field(
+        description="Enables the application load balancer extension. ⚠️ Note: This feature is in private preview. Enabling application load balancer extension is only possible for enabled accounts. Otherwise the request will be rejected."
+    )
+    __properties: ClassVar[List[str]] = ["enabled"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -60,7 +49,7 @@ class CRI(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CRI from a JSON string"""
+        """Create an instance of ApplicationLoadBalancer from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,21 +69,16 @@ class CRI(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of kata
-        if self.kata:
-            _dict["kata"] = self.kata.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CRI from a dict"""
+        """Create an instance of ApplicationLoadBalancer from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {"kata": Kata.from_dict(obj["kata"]) if obj.get("kata") is not None else None, "name": obj.get("name")}
-        )
+        _obj = cls.model_validate({"enabled": obj.get("enabled")})
         return _obj
