@@ -1513,7 +1513,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[ProviderOptionsResponse]:
+    ) -> ProviderOptionsResponse:
         """Get Provider Options
 
         Returns a list of supported configuration options for this region.
@@ -1551,7 +1551,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "List[ProviderOptionsResponse]",
+            "200": "ProviderOptionsResponse",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "500": "ErrorResponse",
@@ -1576,7 +1576,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[ProviderOptionsResponse]]:
+    ) -> ApiResponse[ProviderOptionsResponse]:
         """Get Provider Options
 
         Returns a list of supported configuration options for this region.
@@ -1614,7 +1614,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "List[ProviderOptionsResponse]",
+            "200": "ProviderOptionsResponse",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "500": "ErrorResponse",
@@ -1677,7 +1677,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "List[ProviderOptionsResponse]",
+            "200": "ProviderOptionsResponse",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "500": "ErrorResponse",
