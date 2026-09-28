@@ -18,22 +18,26 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 
-class RunnerRuntime(BaseModel):
+class UpdateUserPayload(BaseModel):
     """
-    Describes a STACKIT Git Runner runtime.
+    Properties to update a Instance User. All fields are optional.
     """  # noqa: E501
 
-    availability: StrictStr = Field(description="Indicates the availability of the runner label")
-    description: StrictStr = Field(description="Human-friendly description of the runtime and its capabilities.")
-    display_name: StrictStr = Field(description="Human-friendly name of the runtime.")
-    id: StrictStr = Field(description="Runtime identifier.")
-    label: StrictStr = Field(description="Runtime label.")
-    __properties: ClassVar[List[str]] = ["availability", "description", "display_name", "id", "label"]
+    email: Optional[Annotated[str, Field(strict=True, max_length=254)]] = Field(
+        default=None, description="A user chosen email to distinguish multiple STACKIT Git instance Users."
+    )
+    name: Optional[Annotated[str, Field(strict=True, max_length=32)]] = Field(
+        default=None, description="Name of the user."
+    )
+    password: Optional[Annotated[str, Field(strict=True, max_length=64)]] = Field(
+        default=None, description="A user password to allow user/pass instance login."
+    )
+    __properties: ClassVar[List[str]] = ["email", "name", "password"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -52,7 +56,7 @@ class RunnerRuntime(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RunnerRuntime from a JSON string"""
+        """Create an instance of UpdateUserPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,20 +80,12 @@ class RunnerRuntime(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RunnerRuntime from a dict"""
+        """Create an instance of UpdateUserPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "availability": obj.get("availability"),
-                "description": obj.get("description"),
-                "display_name": obj.get("display_name"),
-                "id": obj.get("id"),
-                "label": obj.get("label"),
-            }
-        )
+        _obj = cls.model_validate({"email": obj.get("email"), "name": obj.get("name"), "password": obj.get("password")})
         return _obj
