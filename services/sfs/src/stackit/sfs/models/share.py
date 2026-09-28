@@ -39,8 +39,7 @@ class Share(BaseModel):
     )
     id: Optional[StrictStr] = Field(default=None, description="ID of the Share")
     labels: Optional[Dict[str, StrictStr]] = Field(
-        default=None,
-        description="An optional object that represents the labels associated with the share  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'",
+        default=None, description="An optional object that represents the labels associated with the share."
     )
     mount_path: Optional[StrictStr] = Field(
         default=None, description="Mount path of the Share, used to mount the Share", alias="mountPath"
