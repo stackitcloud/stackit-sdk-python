@@ -18,17 +18,16 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 
-class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
+class CreateOrganizationBackflushJobPayload(BaseModel):
     """
-    CreateOrUpdateFolderTelemetryLinkPayload
+    CreateOrganizationBackflushJobPayload
     """  # noqa: E501
 
-    access_token: Annotated[str, Field(strict=True)] = Field(description="The access token.", alias="accessToken")
     description: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = Field(
         default=None,
         description="The description is a longer text chosen by the user to provide more context for the resource.",
@@ -36,25 +35,7 @@ class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
     display_name: Annotated[str, Field(min_length=1, strict=True, max_length=32)] = Field(
         description="The display name is a short name chosen by the user to identify the resource.", alias="displayName"
     )
-    enabled: Optional[StrictBool] = Field(
-        default=True, description="Indicates whether routing through the link to a telemetry-router is active."
-    )
-    telemetry_router_id: Annotated[str, Field(strict=True, max_length=1024)] = Field(
-        description="The ID of the telemetry-router to route the telemetry data.", alias="telemetryRouterId"
-    )
-    __properties: ClassVar[List[str]] = ["accessToken", "description", "displayName", "enabled", "telemetryRouterId"]
-
-    @field_validator("access_token")
-    def access_token_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+\/=]*$", value):
-            raise ValueError(
-                r"must validate the regular expression /^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+\/=]*$/"
-            )
-        return value
+    __properties: ClassVar[List[str]] = ["description", "displayName"]
 
     @field_validator("description")
     def description_validate_regular_expression(cls, value):
@@ -96,7 +77,7 @@ class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateOrUpdateFolderTelemetryLinkPayload from a JSON string"""
+        """Create an instance of CreateOrganizationBackflushJobPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -120,20 +101,12 @@ class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateOrUpdateFolderTelemetryLinkPayload from a dict"""
+        """Create an instance of CreateOrganizationBackflushJobPayload from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "accessToken": obj.get("accessToken"),
-                "description": obj.get("description"),
-                "displayName": obj.get("displayName"),
-                "enabled": obj.get("enabled") if obj.get("enabled") is not None else True,
-                "telemetryRouterId": obj.get("telemetryRouterId"),
-            }
-        )
+        _obj = cls.model_validate({"description": obj.get("description"), "displayName": obj.get("displayName")})
         return _obj
