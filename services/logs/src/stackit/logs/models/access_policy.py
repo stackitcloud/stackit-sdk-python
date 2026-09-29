@@ -15,38 +15,37 @@ from __future__ import annotations
 
 import json
 import pprint
-import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 
-class UpdateAccessTokenPayload(BaseModel):
+class AccessPolicy(BaseModel):
     """
-    UpdateAccessTokenPayload
+    AccessPolicy
     """  # noqa: E501
 
     description: Optional[Annotated[str, Field(strict=True, max_length=100)]] = Field(
-        default=None, description="The description of the access token."
+        default=None, description="The description of the access policy."
     )
-    display_name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=32)]] = Field(
-        default=None, description="The displayed name of the access token.", alias="displayName"
+    email: Annotated[str, Field(min_length=3, strict=True, max_length=254)] = Field(
+        description="The email address of the STACKIT IAM subject (user, group, or service account)."
     )
-    __properties: ClassVar[List[str]] = ["description", "displayName"]
+    id: UUID = Field(description="An auto generated unique id which identifies the access policy.")
+    permissions: List[StrictStr] = Field(
+        description="The access permissions granted to the access token or access policy."
+    )
+    __properties: ClassVar[List[str]] = ["description", "email", "id", "permissions"]
 
-    @field_validator("display_name")
-    def display_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^[a-zA-Z][\w -]*$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z][\w -]*$/")
+    @field_validator("permissions")
+    def permissions_validate_enum(cls, value):
+        """Validates the enum"""
+        for i in value:
+            if i not in set(["read", "write"]):
+                raise ValueError("each list item must be one of ('read', 'write')")
         return value
 
     model_config = ConfigDict(
@@ -66,7 +65,7 @@ class UpdateAccessTokenPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateAccessTokenPayload from a JSON string"""
+        """Create an instance of AccessPolicy from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -90,12 +89,19 @@ class UpdateAccessTokenPayload(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateAccessTokenPayload from a dict"""
+        """Create an instance of AccessPolicy from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"description": obj.get("description"), "displayName": obj.get("displayName")})
+        _obj = cls.model_validate(
+            {
+                "description": obj.get("description"),
+                "email": obj.get("email"),
+                "id": obj.get("id"),
+                "permissions": obj.get("permissions"),
+            }
+        )
         return _obj
