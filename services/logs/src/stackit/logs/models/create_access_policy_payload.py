@@ -17,20 +17,34 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
-
-from stackit.logs.models.access_token import AccessToken
+from typing_extensions import Annotated, Self
 
 
-class AccessTokenList(BaseModel):
+class CreateAccessPolicyPayload(BaseModel):
     """
-    AccessTokenList
+    CreateAccessPolicyPayload
     """  # noqa: E501
 
-    tokens: List[AccessToken]
-    __properties: ClassVar[List[str]] = ["tokens"]
+    description: Optional[Annotated[str, Field(strict=True, max_length=100)]] = Field(
+        default=None, description="The description of the access policy."
+    )
+    email: Annotated[str, Field(min_length=3, strict=True, max_length=254)] = Field(
+        description="The email address of the STACKIT IAM subject (user, group, or service account)."
+    )
+    permissions: List[StrictStr] = Field(
+        description="The access permissions granted to the access token or access policy."
+    )
+    __properties: ClassVar[List[str]] = ["description", "email", "permissions"]
+
+    @field_validator("permissions")
+    def permissions_validate_enum(cls, value):
+        """Validates the enum"""
+        for i in value:
+            if i not in set(["read", "write"]):
+                raise ValueError("each list item must be one of ('read', 'write')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +63,7 @@ class AccessTokenList(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AccessTokenList from a JSON string"""
+        """Create an instance of CreateAccessPolicyPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +83,16 @@ class AccessTokenList(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in tokens (list)
-        _items = []
-        if self.tokens:
-            for _item_tokens in self.tokens:
-                if _item_tokens:
-                    _items.append(_item_tokens.to_dict())
-            _dict["tokens"] = _items
+        # set to None if description (nullable) is None
+        # and model_fields_set contains the field
+        if self.description is None and "description" in self.model_fields_set:
+            _dict["description"] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AccessTokenList from a dict"""
+        """Create an instance of CreateAccessPolicyPayload from a dict"""
         if obj is None:
             return None
 
@@ -88,10 +100,6 @@ class AccessTokenList(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "tokens": (
-                    [AccessToken.from_dict(_item) for _item in obj["tokens"]] if obj.get("tokens") is not None else None
-                )
-            }
+            {"description": obj.get("description"), "email": obj.get("email"), "permissions": obj.get("permissions")}
         )
         return _obj
