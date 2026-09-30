@@ -21,16 +21,16 @@ from pydantic import BaseModel, ConfigDict
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
-from stackit.logs.models.access_token import AccessToken
+from stackit.logs.models.access_policy import AccessPolicy
 
 
-class AccessTokenList(BaseModel):
+class AccessPolicyList(BaseModel):
     """
-    AccessTokenList
+    AccessPolicyList
     """  # noqa: E501
 
-    tokens: List[AccessToken]
-    __properties: ClassVar[List[str]] = ["tokens"]
+    policies: List[AccessPolicy]
+    __properties: ClassVar[List[str]] = ["policies"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +49,7 @@ class AccessTokenList(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AccessTokenList from a JSON string"""
+        """Create an instance of AccessPolicyList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +69,18 @@ class AccessTokenList(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in tokens (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in policies (list)
         _items = []
-        if self.tokens:
-            for _item_tokens in self.tokens:
-                if _item_tokens:
-                    _items.append(_item_tokens.to_dict())
-            _dict["tokens"] = _items
+        if self.policies:
+            for _item_policies in self.policies:
+                if _item_policies:
+                    _items.append(_item_policies.to_dict())
+            _dict["policies"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AccessTokenList from a dict"""
+        """Create an instance of AccessPolicyList from a dict"""
         if obj is None:
             return None
 
@@ -89,8 +89,10 @@ class AccessTokenList(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "tokens": (
-                    [AccessToken.from_dict(_item) for _item in obj["tokens"]] if obj.get("tokens") is not None else None
+                "policies": (
+                    [AccessPolicy.from_dict(_item) for _item in obj["policies"]]
+                    if obj.get("policies") is not None
+                    else None
                 )
             }
         )
