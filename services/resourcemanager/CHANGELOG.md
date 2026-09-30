@@ -1,3 +1,6 @@
+## v0.11.1
+- Update descriptions of `labels` attributes in model classes
+
 ## v0.11.0
 - Updated pydoc comments of the API client methods
 - **Breaking change:** Removal of unused model class `ContainerSearchResult`
