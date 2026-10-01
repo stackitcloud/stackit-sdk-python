@@ -60,6 +60,11 @@ class CreateZonePayload(BaseModel):
     is_reverse_zone: Optional[StrictBool] = Field(
         default=False, description="if the zone is a reverse zone or not", alias="isReverseZone"
     )
+    labels_map: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="labels for the zone - max 64 items. Keys: 1-314 chars (up to 250 prefix, 1 for slash, 1-63 the actual key). Values: 0-63 chars.",
+        alias="labelsMap",
+    )
     name: Annotated[str, Field(min_length=1, strict=True, max_length=63)] = Field(description="user given name")
     negative_cache: Optional[Annotated[int, Field(strict=True, ge=60)]] = Field(
         default=None, description="negative caching", alias="negativeCache"
@@ -81,6 +86,7 @@ class CreateZonePayload(BaseModel):
         "expireTime",
         "extensions",
         "isReverseZone",
+        "labelsMap",
         "name",
         "negativeCache",
         "primaries",
@@ -164,6 +170,7 @@ class CreateZonePayload(BaseModel):
                     ZoneExtensions.from_dict(obj["extensions"]) if obj.get("extensions") is not None else None
                 ),
                 "isReverseZone": obj.get("isReverseZone") if obj.get("isReverseZone") is not None else False,
+                "labelsMap": obj.get("labelsMap"),
                 "name": obj.get("name"),
                 "negativeCache": obj.get("negativeCache"),
                 "primaries": obj.get("primaries"),
