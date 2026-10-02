@@ -30,8 +30,10 @@ __all__ = [
     "ACL",
     "Access",
     "AccessScope",
+    "ApplicationLoadBalancer",
     "Audit",
     "AvailabilityZone",
+    "CNI",
     "CRI",
     "Cluster",
     "ClusterError",
@@ -51,6 +53,7 @@ __all__ = [
     "IDP",
     "IDPKubeconfig",
     "Image",
+    "Kata",
     "Kubeconfig",
     "Kubernetes",
     "KubernetesVersion",
@@ -93,6 +96,9 @@ from stackit.ske.models.access_scope import AccessScope as AccessScope
 
 # import models into sdk package
 from stackit.ske.models.acl import ACL as ACL
+from stackit.ske.models.application_load_balancer import (
+    ApplicationLoadBalancer as ApplicationLoadBalancer,
+)
 from stackit.ske.models.audit import Audit as Audit
 from stackit.ske.models.availability_zone import AvailabilityZone as AvailabilityZone
 from stackit.ske.models.cluster import Cluster as Cluster
@@ -101,6 +107,7 @@ from stackit.ske.models.cluster_status import ClusterStatus as ClusterStatus
 from stackit.ske.models.cluster_status_state import (
     ClusterStatusState as ClusterStatusState,
 )
+from stackit.ske.models.cni import CNI as CNI
 from stackit.ske.models.create_kubeconfig_payload import (
     CreateKubeconfigPayload as CreateKubeconfigPayload,
 )
@@ -130,6 +137,7 @@ from stackit.ske.models.hibernation_schedule import (
 from stackit.ske.models.idp import IDP as IDP
 from stackit.ske.models.idp_kubeconfig import IDPKubeconfig as IDPKubeconfig
 from stackit.ske.models.image import Image as Image
+from stackit.ske.models.kata import Kata as Kata
 from stackit.ske.models.kubeconfig import Kubeconfig as Kubeconfig
 from stackit.ske.models.kubernetes import Kubernetes as Kubernetes
 from stackit.ske.models.kubernetes_version import KubernetesVersion as KubernetesVersion
