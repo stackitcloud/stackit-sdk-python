@@ -16,19 +16,21 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 
-class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
+class BackflushJobResponse(BaseModel):
     """
-    CreateOrUpdateFolderTelemetryLinkPayload
+    BackflushJobResponse
     """  # noqa: E501
 
-    access_token: Annotated[str, Field(strict=True)] = Field(description="The access token.", alias="accessToken")
+    create_time: datetime = Field(description="The point in time the resource was created.", alias="createTime")
     description: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = Field(
         default=None,
         description="The description is a longer text chosen by the user to provide more context for the resource.",
@@ -36,24 +38,22 @@ class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
     display_name: Annotated[str, Field(min_length=1, strict=True, max_length=32)] = Field(
         description="The display name is a short name chosen by the user to identify the resource.", alias="displayName"
     )
-    enabled: Optional[StrictBool] = Field(
-        default=True, description="Indicates whether routing through the link to a telemetry-router is active."
-    )
-    telemetry_router_id: Annotated[str, Field(strict=True, max_length=1024)] = Field(
-        description="The ID of the telemetry-router to route the telemetry data.", alias="telemetryRouterId"
-    )
-    __properties: ClassVar[List[str]] = ["accessToken", "description", "displayName", "enabled", "telemetryRouterId"]
+    id: UUID = Field(description="A auto generated unique id which identifies the resource.")
+    region_id: StrictStr = Field(description="The STACKIT region name the resource is located in.", alias="regionId")
+    status: StrictStr = Field(description="The current state of the link.")
+    __properties: ClassVar[List[str]] = ["createTime", "description", "displayName", "id", "regionId", "status"]
 
-    @field_validator("access_token")
-    def access_token_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+\/=]*$", value):
-            raise ValueError(
-                r"must validate the regular expression /^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+\/=]*$/"
-            )
+    @field_validator("create_time", mode="before")
+    def create_time_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
         return value
 
     @field_validator("description")
@@ -69,14 +69,18 @@ class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
             raise ValueError(r"must validate the regular expression /^([a-zA-Z0-9][a-zA-Z0-9 \-]*)?$/")
         return value
 
-    @field_validator("display_name")
-    def display_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not isinstance(value, str):
-            value = str(value)
+    @field_validator("region_id")
+    def region_id_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["eu01", "eu02"]):
+            raise ValueError("must be one of enum values ('eu01', 'eu02')")
+        return value
 
-        if not re.match(r"^[a-zA-Z0-9][a-zA-Z0-9 \-]*$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9][a-zA-Z0-9 \-]*$/")
+    @field_validator("status")
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["active", "complete", "failed", "reconciling", "deleting"]):
+            raise ValueError("must be one of enum values ('active', 'complete', 'failed', 'reconciling', 'deleting')")
         return value
 
     model_config = ConfigDict(
@@ -96,7 +100,7 @@ class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateOrUpdateFolderTelemetryLinkPayload from a JSON string"""
+        """Create an instance of BackflushJobResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -120,7 +124,7 @@ class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateOrUpdateFolderTelemetryLinkPayload from a dict"""
+        """Create an instance of BackflushJobResponse from a dict"""
         if obj is None:
             return None
 
@@ -129,11 +133,12 @@ class CreateOrUpdateFolderTelemetryLinkPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "accessToken": obj.get("accessToken"),
+                "createTime": obj.get("createTime"),
                 "description": obj.get("description"),
                 "displayName": obj.get("displayName"),
-                "enabled": obj.get("enabled") if obj.get("enabled") is not None else True,
-                "telemetryRouterId": obj.get("telemetryRouterId"),
+                "id": obj.get("id"),
+                "regionId": obj.get("regionId"),
+                "status": obj.get("status"),
             }
         )
         return _obj
