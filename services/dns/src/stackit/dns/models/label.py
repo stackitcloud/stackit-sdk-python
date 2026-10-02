@@ -28,7 +28,7 @@ class Label(BaseModel):
     Label
     """  # noqa: E501
 
-    key: Annotated[str, Field(min_length=1, strict=True, max_length=63)]
+    key: Annotated[str, Field(min_length=1, strict=True, max_length=314)]
     value: Optional[Annotated[str, Field(strict=True, max_length=63)]] = None
     __properties: ClassVar[List[str]] = ["key", "value"]
 
