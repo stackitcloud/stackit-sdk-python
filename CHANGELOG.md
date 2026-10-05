@@ -1,11 +1,46 @@
 ## Release (2026-MM-DD)
 
+- `alb`:
+  - [v0.13.0](services/alb/CHANGELOG.md#v0130)
+    - **Feature:** Add `ip_block_list_name` field to `LoadbalancerOptionAccessControl` model
+- `automation`:
+  - [v0.1.0](services/automation/CHANGELOG.md#v010)
+    - Initial onboarding of STACKIT Python SDK for Automation service
+- `objectstorage`:
+  - [v1.6.0](services/objectstorage/CHANGELOG.md#v160)
+    - **Feature:** New model class `RateLimitError`
+    - **Improvement:** Add HTTP 429 rate limit error responses in API operations
+    - **Breaking Change:** Field `expires` in `AccessKey` model is now optional (`Optional[StrictStr]`)
+    - **Improvement:** Field `expires` in `CreateAccessKeyPayload` model now supports explicit `None` serialization
+- `resourcemanager`
+  - [v0.11.1](services/resourcemanager/CHANGELOG.md#0111)
+    - Update descriptions of `labels` attributes in model classes
+- `telemetryrouter`:
+  - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
+    - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+- `vpn`:
+  - [v0.7.3](services/vpn/CHANGELOG.md#v073)
+    - **Improvement:** Relax maximum `rekey_time` validation to `86400` (previously `28800`) in `TunnelConfigurationPhase1`
+    - **Improvement:** Relax maximum `rekey_time` validation to `14400` (previously `3600`) in `TunnelConfigurationPhase2`
+  - [v0.7.2](services/vpn/CHANGELOG.md#v072)
+    - **Breaking Change:** `predefined_network_prefix` attribute in `NetworkConfig` model class changed type from `Optional[List[str]]` to `Optional[str]` to match actual API behavior
+    - **Improvement:** Relax minimum ASN validation to `1` (previously `64512`) for `as_path_contains_any` and `first_asn` in `BGPFilterRuleMatch` and `remote_asn` in `BGPTunnelConfig`
+
+## Release (2026-09-14)
+
 - `albwaf`:
+  - [v0.1.2](services/albwaf/CHANGELOG.md#v012)
+    - **Docs:** Update module description and description of `update_waf` operation
   - [v0.1.1](services/albwaf/CHANGELOG.md#v011)
     - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.albwaf` to fail with `ModuleNotFoundError`
 - `cost`:
   - [v0.4.1](services/cost/CHANGELOG.md#v041)
     - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.cost` to fail with `ModuleNotFoundError`
+- `dns`:
+  - [v0.9.0](services/dns/CHANGELOG.md#v090)
+    - **Feature:** `create_move_code` operation now accepts an optional `CreateMoveCodePayload` request body (field `ttl`) to configure the move code's validity duration
+    - **Breaking Change:** `DomainObservabilityExtension.state` now validates against a fixed set of values (`CREATING`, `CREATE_SUCCEEDED`, `ERROR`); previously any string was accepted
+    - **Breaking Change:** Removed `state` field from `ZoneObservabilityExtension`
 - `dremio`:
   - [v0.1.0](services/dremio/CHANGELOG.md#v010)
     - **New**: STACKIT Dremio module can be used to manage STACKIT Dremio instances and users.
@@ -29,12 +64,33 @@
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
 - `postgresflex`:
+  - [v1.6.1](services/postgresflex/CHANGELOG.md#v161)
+    - **Improvement:** Add validation for `name` field in `CreateDatabasePayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `PartialUpdateDatabasePayload` and `UpdateDatabasePayload` models
+    - **Docs:** Extend description of `InstanceNetworkAccessScope` enum to note that the `SNA` value is only permitted for enabled accounts
   - [v1.6.0](services/postgresflex/CHANGELOG.md#v160)
     - **Breaking Change:** `class` attribute in `CloneInstanceOverrides` and `StorageCreate` model is now required (previously optional)
 - `rabbitmq`:
   - [v1.3.0](services/rabbitmq/CHANGELOG.md#v130)
     - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
       The return type now correctly models the actual JSON response, this operation was broken beforehand.
+- `redis`:
+  - [v1.3.0](services/redis/CHANGELOG.md#v130)
+    - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
+      The return type now correctly models the actual JSON response, this operation was broken beforehand.
+    - **Deprecation:** Redis service has been deprecated and will be removed after 2027-08-25. Please use the Key Value Store (valkey) service instead.
+- `resourcemanager`
+  - [v0.11.0](services/resourcemanager/CHANGELOG.md#0110)
+    - Updated pydoc comments of the API client methods
+    - **Breaking change:** Removal of unused model class `ContainerSearchResult`
+  - [v0.10.0](services/resourcemanager/CHANGELOG.md#0100)
+    - **Breaking change:** Labels are nullable now, therefore the `labels` attribute in the `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload` and `PartialUpdateProjectPayload` model class changed from `Optional[Dict[str, StrictStr]]` to `Optional[Dict[str, Optional[StrictStr]]]`
+- `secretsmanager`:
+  - [v0.7.0](services/secretsmanager/CHANGELOG.md#v070)
+    - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `create_approle`, `get_approle`, `get_approles`, `update_approle`, `delete_approle`, `create_approle_secret_id`, `get_approle_secret_id`, `list_approle_secret_ids`, `update_approle_secret_id` and `delete_approle_secret_id` operations
+- `serviceaccount`
+  - [v0.11.0](services/serviceaccount/CHANGELOG.md#v0110)
+    - **Breaking change:** Removal of API client methods: `create_access_token`, `delete_access_token`, `list_access_tokens`
+    - **Breaking change:** Removal of model classes: `AccessToken`, `CreateAccessTokenPayload`, `ListAccessTokensResponse`
 - `telemetrylink`:
   - [v0.4.2](services/telemetrylink/CHANGELOG.md#v042)
     - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.telemetrylink` to fail with `ModuleNotFoundError`
@@ -45,6 +101,9 @@
     - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.telemetryrouter` to fail with `ModuleNotFoundError`
   - [v0.5.1](services/telemetryrouter/CHANGELOG.md#v051)
     - **Improvement:** Add validation for `description` field in `AccessTokenBaseRequest`, `AccessTokenBaseResponse`, `CreateAccessTokenPayload`, `CreateAccessTokenResponse`, `DestinationResponse`, `GetAccessTokenResponse`, `TelemetryRouterResponse`, `UpdateAccessTokenPayload` and `UpdateAccessTokenResponse` models
+- `ufw`:
+  - [v0.1.0](services/ufw/CHANGELOG.md#v010)
+    - **New**: STACKIT Unified Firewall (UFW) 
 - `valkey`:
   - [v0.2.1](services/valkey/CHANGELOG.md#v021)
     - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.valkey` to fail with `ModuleNotFoundError`

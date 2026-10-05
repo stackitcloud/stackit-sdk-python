@@ -1,3 +1,11 @@
+## v0.7.3
+- **Improvement:** Relax maximum `rekey_time` validation to `86400` (previously `28800`) in `TunnelConfigurationPhase1`
+- **Improvement:** Relax maximum `rekey_time` validation to `14400` (previously `3600`) in `TunnelConfigurationPhase2`
+
+## v0.7.2
+- **Breaking Change:** `predefined_network_prefix` attribute in `NetworkConfig` model class changed type from `Optional[List[str]]` to `Optional[str]` to match actual API behavior
+- **Improvement:** Relax minimum ASN validation to `1` (previously `64512`) for `as_path_contains_any` and `first_asn` in `BGPFilterRuleMatch` and `remote_asn` in `BGPTunnelConfig`
+
 ## v0.7.1
 - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.vpn` to fail with `ModuleNotFoundError`
 

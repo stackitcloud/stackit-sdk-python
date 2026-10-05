@@ -33,8 +33,8 @@ class BGPTunnelConfig(BaseModel):
         description="UUID of the BGPFilter to apply to incoming routes from this tunnel's BGP neighbor. The filter must exist in the same gateway. Multiple tunnels may reference the same BGPFilter; in that case the rules' 'match.peer' field can be used to scope behavior per neighbor. Outbound filtering is not yet supported; use gateway.bgp.overrideAdvertisedRoutes to control what is advertised. ",
         alias="inboundFilterId",
     )
-    remote_asn: Annotated[int, Field(le=4294967294, strict=True, ge=64512)] = Field(
-        description="ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996). ",
+    remote_asn: Annotated[int, Field(le=4294967294, strict=True, ge=1)] = Field(
+        description='Number of an Autonomous System. Both 16Bit and 32Bit ranges are supported, excluding values reserved by:   * RFC 7607 (0)   * RFC 6793 (23456, AS_TRANS)   * RFC 7300 (65535 and 4294967295, the "Last ASNs") ',
         alias="remoteAsn",
     )
     __properties: ClassVar[List[str]] = ["inboundFilterId", "remoteAsn"]

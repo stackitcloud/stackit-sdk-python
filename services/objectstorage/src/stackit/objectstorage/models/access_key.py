@@ -28,7 +28,7 @@ class AccessKey(BaseModel):
     """  # noqa: E501
 
     display_name: StrictStr = Field(alias="displayName")
-    expires: StrictStr
+    expires: Optional[StrictStr]
     key_id: StrictStr = Field(
         description="Identifies the pair of access key and secret access key for deletion", alias="keyId"
     )
@@ -71,6 +71,11 @@ class AccessKey(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if expires (nullable) is None
+        # and model_fields_set contains the field
+        if self.expires is None and "expires" in self.model_fields_set:
+            _dict["expires"] = None
+
         return _dict
 
     @classmethod

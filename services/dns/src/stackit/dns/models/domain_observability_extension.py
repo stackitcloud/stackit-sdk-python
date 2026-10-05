@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
@@ -31,6 +31,16 @@ class DomainObservabilityExtension(BaseModel):
     observability_instance_id: StrictStr = Field(alias="observabilityInstanceId")
     state: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["observabilityInstanceId", "state"]
+
+    @field_validator("state")
+    def state_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["CREATING", "CREATE_SUCCEEDED", "ERROR"]):
+            raise ValueError("must be one of enum values ('CREATING', 'CREATE_SUCCEEDED', 'ERROR')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,

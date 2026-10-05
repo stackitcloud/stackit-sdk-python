@@ -1,0 +1,2 @@
+STACKIT Unified Firewall (UFW) SDK for Python
+Copyright 2026 Schwarz IT KG

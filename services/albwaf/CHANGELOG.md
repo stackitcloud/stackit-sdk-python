@@ -1,3 +1,6 @@
+## v0.1.2
+- **Docs:** Update module description and description of `update_waf` operation
+
 ## v0.1.1
 - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.albwaf` to fail with `ModuleNotFoundError`
 

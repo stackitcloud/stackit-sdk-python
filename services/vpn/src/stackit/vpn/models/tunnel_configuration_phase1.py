@@ -37,7 +37,7 @@ class TunnelConfigurationPhase1(BaseModel):
         description="Supported integrity algorithms. SHA1 is deprecated and will be removed on 2026-12-31. ",
         alias="integrityAlgorithms",
     )
-    rekey_time: Optional[Annotated[int, Field(le=28800, strict=True, ge=900)]] = Field(
+    rekey_time: Optional[Annotated[int, Field(le=86400, strict=True, ge=900)]] = Field(
         default=14400, description="Time to schedule a IKE re-keying (in seconds).", alias="rekeyTime"
     )
     __properties: ClassVar[List[str]] = ["dhGroups", "encryptionAlgorithms", "integrityAlgorithms", "rekeyTime"]

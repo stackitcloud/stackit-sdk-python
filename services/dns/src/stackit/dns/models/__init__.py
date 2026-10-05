@@ -17,6 +17,7 @@ Do not edit the class manually.
 from stackit.dns.models.clone_zone_payload import CloneZonePayload
 from stackit.dns.models.create_label_payload import CreateLabelPayload
 from stackit.dns.models.create_label_response import CreateLabelResponse
+from stackit.dns.models.create_move_code_payload import CreateMoveCodePayload
 from stackit.dns.models.create_record_set_payload import CreateRecordSetPayload
 from stackit.dns.models.create_zone_payload import CreateZonePayload
 from stackit.dns.models.delete_label_response import DeleteLabelResponse

@@ -13,7 +13,6 @@ Do not edit the class manually.
 """  # noqa: E501
 
 # import models into model package
-from stackit.resourcemanager.models.container_search_result import ContainerSearchResult
 from stackit.resourcemanager.models.create_folder_payload import CreateFolderPayload
 from stackit.resourcemanager.models.create_project_payload import CreateProjectPayload
 from stackit.resourcemanager.models.error_response import ErrorResponse

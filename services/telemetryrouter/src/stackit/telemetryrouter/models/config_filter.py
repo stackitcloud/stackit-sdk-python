@@ -17,7 +17,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -32,7 +32,8 @@ class ConfigFilter(BaseModel):
     """  # noqa: E501
 
     attributes: Annotated[List[ConfigFilterAttributes], Field(min_length=1, max_length=100)]
-    __properties: ClassVar[List[str]] = ["attributes"]
+    disabled: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["attributes", "disabled"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -95,7 +96,8 @@ class ConfigFilter(BaseModel):
                     [ConfigFilterAttributes.from_dict(_item) for _item in obj["attributes"]]
                     if obj.get("attributes") is not None
                     else None
-                )
+                ),
+                "disabled": obj.get("disabled"),
             }
         )
         return _obj

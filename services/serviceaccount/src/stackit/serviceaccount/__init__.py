@@ -27,11 +27,9 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
-    "AccessToken",
     "AccessTokenMetadata",
     "AuthError",
     "AuthErrorError",
-    "CreateAccessTokenPayload",
     "CreateFederatedIdentityProviderPayload",
     "CreateFederatedIdentityProviderPayloadAssertionsInner",
     "CreateServiceAccountKeyPayload",
@@ -47,7 +45,6 @@ __all__ = [
     "GetServiceAccountKeyResponseCredentials",
     "JWK",
     "JWKS",
-    "ListAccessTokensResponse",
     "ListServiceAccountKeysResponse",
     "ListServiceAccountsResponse",
     "PartialUpdateServiceAccountFederatedIdentityProviderPayload",
@@ -72,16 +69,12 @@ from stackit.serviceaccount.exceptions import ApiValueError as ApiValueError
 from stackit.serviceaccount.exceptions import OpenApiException as OpenApiException
 
 # import models into sdk package
-from stackit.serviceaccount.models.access_token import AccessToken as AccessToken
 from stackit.serviceaccount.models.access_token_metadata import (
     AccessTokenMetadata as AccessTokenMetadata,
 )
 from stackit.serviceaccount.models.auth_error import AuthError as AuthError
 from stackit.serviceaccount.models.auth_error_error import (
     AuthErrorError as AuthErrorError,
-)
-from stackit.serviceaccount.models.create_access_token_payload import (
-    CreateAccessTokenPayload as CreateAccessTokenPayload,
 )
 from stackit.serviceaccount.models.create_federated_identity_provider_payload import (
     CreateFederatedIdentityProviderPayload as CreateFederatedIdentityProviderPayload,
@@ -122,9 +115,6 @@ from stackit.serviceaccount.models.get_service_account_key_response_credentials 
 )
 from stackit.serviceaccount.models.jwk import JWK as JWK
 from stackit.serviceaccount.models.jwks import JWKS as JWKS
-from stackit.serviceaccount.models.list_access_tokens_response import (
-    ListAccessTokensResponse as ListAccessTokensResponse,
-)
 from stackit.serviceaccount.models.list_service_account_keys_response import (
     ListServiceAccountKeysResponse as ListServiceAccountKeysResponse,
 )

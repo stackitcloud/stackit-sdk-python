@@ -42,7 +42,7 @@ class TunnelConfigurationPhase2(BaseModel):
         description='Action to perform for this CHILD_SA on DPD timeout. "clear": Closes the CHILD_SA and does not take further action. "restart": immediately tries to re-negotiate the CILD_SA under a fresh IKE_SA. ',
         alias="dpdAction",
     )
-    rekey_time: Optional[Annotated[int, Field(le=3600, strict=True, ge=900)]] = Field(
+    rekey_time: Optional[Annotated[int, Field(le=14400, strict=True, ge=900)]] = Field(
         default=3600, description="Time to schedule a Child SA re-keying (in seconds).", alias="rekeyTime"
     )
     start_action: Optional[StrictStr] = Field(

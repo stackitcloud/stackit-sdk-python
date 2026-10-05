@@ -75,7 +75,7 @@ class DefaultApi:
     ) -> FolderResponse:
         """Create Folder
 
-        Create a new folder.
+        Creates a new folder within a parent organization or folder.  Authorization & Permissions: - Evaluated on Target Parent Container: resource-manager.folder.create (required permission on the target parent organization or folder to create a folder).
 
         :param create_folder_payload:
         :type create_folder_payload: CreateFolderPayload
@@ -138,7 +138,7 @@ class DefaultApi:
     ) -> ApiResponse[FolderResponse]:
         """Create Folder
 
-        Create a new folder.
+        Creates a new folder within a parent organization or folder.  Authorization & Permissions: - Evaluated on Target Parent Container: resource-manager.folder.create (required permission on the target parent organization or folder to create a folder).
 
         :param create_folder_payload:
         :type create_folder_payload: CreateFolderPayload
@@ -201,7 +201,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create Folder
 
-        Create a new folder.
+        Creates a new folder within a parent organization or folder.  Authorization & Permissions: - Evaluated on Target Parent Container: resource-manager.folder.create (required permission on the target parent organization or folder to create a folder).
 
         :param create_folder_payload:
         :type create_folder_payload: CreateFolderPayload
@@ -318,7 +318,7 @@ class DefaultApi:
     ) -> Project:
         """Create Project
 
-        Create a new project.  - The request is synchronous, but the workflow-based creation is asynchronous. - Lifecycle state remains in CREATING, until workflow completes
+        Creates a new project within a parent container. - Creation request returns synchronously, while underlying resource provisioning runs asynchronously. - Initial lifecycle state is CREATING until provisioning completes.  Authorization & Permissions: - Evaluated on Target Parent Container: resource-manager.project.create (required permission on the target parent organization or folder to create a project).
 
         :param create_project_payload:
         :type create_project_payload: CreateProjectPayload
@@ -381,7 +381,7 @@ class DefaultApi:
     ) -> ApiResponse[Project]:
         """Create Project
 
-        Create a new project.  - The request is synchronous, but the workflow-based creation is asynchronous. - Lifecycle state remains in CREATING, until workflow completes
+        Creates a new project within a parent container. - Creation request returns synchronously, while underlying resource provisioning runs asynchronously. - Initial lifecycle state is CREATING until provisioning completes.  Authorization & Permissions: - Evaluated on Target Parent Container: resource-manager.project.create (required permission on the target parent organization or folder to create a project).
 
         :param create_project_payload:
         :type create_project_payload: CreateProjectPayload
@@ -444,7 +444,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create Project
 
-        Create a new project.  - The request is synchronous, but the workflow-based creation is asynchronous. - Lifecycle state remains in CREATING, until workflow completes
+        Creates a new project within a parent container. - Creation request returns synchronously, while underlying resource provisioning runs asynchronously. - Initial lifecycle state is CREATING until provisioning completes.  Authorization & Permissions: - Evaluated on Target Parent Container: resource-manager.project.create (required permission on the target parent organization or folder to create a project).
 
         :param create_project_payload:
         :type create_project_payload: CreateProjectPayload
@@ -569,7 +569,7 @@ class DefaultApi:
     ) -> None:
         """Delete Folder
 
-        Delete a folder and its metadata. - Folder must not be parent of any other container - A force flag may be set, deleting all underlying folders recursively - if no project is attached!
+        Delete a folder and its metadata. - Folder must not contain active child containers unless force deletion is enabled without attached projects.  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.delete (required permission on the target folder to delete it).
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -642,7 +642,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete Folder
 
-        Delete a folder and its metadata. - Folder must not be parent of any other container - A force flag may be set, deleting all underlying folders recursively - if no project is attached!
+        Delete a folder and its metadata. - Folder must not contain active child containers unless force deletion is enabled without attached projects.  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.delete (required permission on the target folder to delete it).
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -715,7 +715,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete Folder
 
-        Delete a folder and its metadata. - Folder must not be parent of any other container - A force flag may be set, deleting all underlying folders recursively - if no project is attached!
+        Delete a folder and its metadata. - Folder must not contain active child containers unless force deletion is enabled without attached projects.  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.delete (required permission on the target folder to delete it).
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -834,7 +834,7 @@ class DefaultApi:
     ) -> None:
         """Delete Folder Labels
 
-        Deletes all folder labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+        Deletes folder labels by specified keys, or removes all labels if no key is provided.  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.edit (required permission on the target folder to delete its labels).
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -901,7 +901,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete Folder Labels
 
-        Deletes all folder labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+        Deletes folder labels by specified keys, or removes all labels if no key is provided.  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.edit (required permission on the target folder to delete its labels).
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -968,7 +968,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete Folder Labels
 
-        Deletes all folder labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+        Deletes folder labels by specified keys, or removes all labels if no key is provided.  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.edit (required permission on the target folder to delete its labels).
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -1089,7 +1089,7 @@ class DefaultApi:
     ) -> None:
         """Delete Organization Labels
 
-        Deletes all organization labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+        Deletes organization labels by specified keys, or removes all labels if no key is provided.  Authorization & Permissions: - Evaluated on Target Organization: resource-manager.organization.edit (required permission on the organization to delete labels).
 
         :param container_id: Organization identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -1157,7 +1157,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete Organization Labels
 
-        Deletes all organization labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+        Deletes organization labels by specified keys, or removes all labels if no key is provided.  Authorization & Permissions: - Evaluated on Target Organization: resource-manager.organization.edit (required permission on the organization to delete labels).
 
         :param container_id: Organization identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -1225,7 +1225,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete Organization Labels
 
-        Deletes all organization labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+        Deletes organization labels by specified keys, or removes all labels if no key is provided.  Authorization & Permissions: - Evaluated on Target Organization: resource-manager.organization.edit (required permission on the organization to delete labels).
 
         :param container_id: Organization identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -1344,7 +1344,7 @@ class DefaultApi:
     ) -> None:
         """Delete Project
 
-        Triggers the deletion of a project.  - The request is synchronous, but the workflow-based deletion is asynchronous - Lifecycle state remains in DELETING, until workflow completes
+        Triggers the deletion of a project. - Request returns synchronously, while deletion process runs asynchronously. - Initial lifecycle state is DELETING until workflow completes.  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.delete (required permission on the project to delete it).
 
         :param id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -1403,7 +1403,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete Project
 
-        Triggers the deletion of a project.  - The request is synchronous, but the workflow-based deletion is asynchronous - Lifecycle state remains in DELETING, until workflow completes
+        Triggers the deletion of a project. - Request returns synchronously, while deletion process runs asynchronously. - Initial lifecycle state is DELETING until workflow completes.  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.delete (required permission on the project to delete it).
 
         :param id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -1462,7 +1462,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete Project
 
-        Triggers the deletion of a project.  - The request is synchronous, but the workflow-based deletion is asynchronous - Lifecycle state remains in DELETING, until workflow completes
+        Triggers the deletion of a project. - Request returns synchronously, while deletion process runs asynchronously. - Initial lifecycle state is DELETING until workflow completes.  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.delete (required permission on the project to delete it).
 
         :param id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -1568,7 +1568,7 @@ class DefaultApi:
     ) -> None:
         """Delete Project Labels
 
-        Deletes all project labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+        Deletes project labels by specified keys, or removes all labels if no key is provided.  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.edit (required permission on the project to delete its labels).
 
         :param container_id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -1635,7 +1635,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete Project Labels
 
-        Deletes all project labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+        Deletes project labels by specified keys, or removes all labels if no key is provided.  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.edit (required permission on the project to delete its labels).
 
         :param container_id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -1702,7 +1702,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete Project Labels
 
-        Deletes all project labels by given keys. - Specific labels may be deleted by key(s) - If no key is specified, all labels will be deleted!
+        Deletes project labels by specified keys, or removes all labels if no key is provided.  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.edit (required permission on the project to delete its labels).
 
         :param container_id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -1822,7 +1822,7 @@ class DefaultApi:
     ) -> GetFolderDetailsResponse:
         """Get Folder Details
 
-        Returns all metadata for a specific folder.
+        Returns metadata for a specific folder.  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.get (required primary permission to retrieve folder details). - Evaluated on Parent Containers: resource-manager.organization.get and resource-manager.folder.get implicitly to resolve parent hierarchy details.
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -1890,7 +1890,7 @@ class DefaultApi:
     ) -> ApiResponse[GetFolderDetailsResponse]:
         """Get Folder Details
 
-        Returns all metadata for a specific folder.
+        Returns metadata for a specific folder.  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.get (required primary permission to retrieve folder details). - Evaluated on Parent Containers: resource-manager.organization.get and resource-manager.folder.get implicitly to resolve parent hierarchy details.
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -1958,7 +1958,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get Folder Details
 
-        Returns all metadata for a specific folder.
+        Returns metadata for a specific folder.  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.get (required primary permission to retrieve folder details). - Evaluated on Parent Containers: resource-manager.organization.get and resource-manager.folder.get implicitly to resolve parent hierarchy details.
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -2077,7 +2077,7 @@ class DefaultApi:
     ) -> OrganizationResponse:
         """Get Organization Details
 
-        Returns the organization and its metadata.
+        Returns metadata for a specific organization.  Authorization & Permissions: - Evaluated on Target Organization: resource-manager.organization.get (required permission on the organization to view its details).
 
         :param id: Organization identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -2137,7 +2137,7 @@ class DefaultApi:
     ) -> ApiResponse[OrganizationResponse]:
         """Get Organization Details
 
-        Returns the organization and its metadata.
+        Returns metadata for a specific organization.  Authorization & Permissions: - Evaluated on Target Organization: resource-manager.organization.get (required permission on the organization to view its details).
 
         :param id: Organization identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -2197,7 +2197,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get Organization Details
 
-        Returns the organization and its metadata.
+        Returns metadata for a specific organization.  Authorization & Permissions: - Evaluated on Target Organization: resource-manager.organization.get (required permission on the organization to view its details).
 
         :param id: Organization identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -2303,7 +2303,7 @@ class DefaultApi:
     ) -> GetProjectResponse:
         """Get Project Details
 
-        Returns the project and its metadata.
+        Returns the project and its metadata.  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.get (required primary permission to view project details). - Evaluated on Parent Containers: resource-manager.organization.get and resource-manager.folder.get on parent organizations/folders implicitly to resolve and include parent metadata in the response hierarchy.
 
         :param id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -2371,7 +2371,7 @@ class DefaultApi:
     ) -> ApiResponse[GetProjectResponse]:
         """Get Project Details
 
-        Returns the project and its metadata.
+        Returns the project and its metadata.  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.get (required primary permission to view project details). - Evaluated on Parent Containers: resource-manager.organization.get and resource-manager.folder.get on parent organizations/folders implicitly to resolve and include parent metadata in the response hierarchy.
 
         :param id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -2439,7 +2439,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get Project Details
 
-        Returns the project and its metadata.
+        Returns the project and its metadata.  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.get (required primary permission to view project details). - Evaluated on Parent Containers: resource-manager.organization.get and resource-manager.folder.get on parent organizations/folders implicitly to resolve and include parent metadata in the response hierarchy.
 
         :param id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -2590,7 +2590,7 @@ class DefaultApi:
     ) -> ListFoldersResponse:
         """Get All Folders
 
-        Returns all folders and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of <br />  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent
+        Returns all folders and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of <br />  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent  Authorization & Permissions: - When filtering by member: resource-manager.folder.direct.get is evaluated on target folders for the member; if caller differs from target member, system-level resource-manager.folder.get is required. - When filtering by containerParentId: resource-manager.folder.list is evaluated on the parent container. - When filtering by containerIds: resource-manager.folder.get is evaluated on the parent container of requested folders.
 
         :param container_parent_id: Identifier of the parent resource container - containerId as well as UUID identifier is supported.
         :type container_parent_id: str
@@ -2703,7 +2703,7 @@ class DefaultApi:
     ) -> ApiResponse[ListFoldersResponse]:
         """Get All Folders
 
-        Returns all folders and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of <br />  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent
+        Returns all folders and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of <br />  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent  Authorization & Permissions: - When filtering by member: resource-manager.folder.direct.get is evaluated on target folders for the member; if caller differs from target member, system-level resource-manager.folder.get is required. - When filtering by containerParentId: resource-manager.folder.list is evaluated on the parent container. - When filtering by containerIds: resource-manager.folder.get is evaluated on the parent container of requested folders.
 
         :param container_parent_id: Identifier of the parent resource container - containerId as well as UUID identifier is supported.
         :type container_parent_id: str
@@ -2816,7 +2816,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get All Folders
 
-        Returns all folders and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of <br />  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent
+        Returns all folders and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of <br />  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent  Authorization & Permissions: - When filtering by member: resource-manager.folder.direct.get is evaluated on target folders for the member; if caller differs from target member, system-level resource-manager.folder.get is required. - When filtering by containerParentId: resource-manager.folder.list is evaluated on the parent container. - When filtering by containerIds: resource-manager.folder.get is evaluated on the parent container of requested folders.
 
         :param container_parent_id: Identifier of the parent resource container - containerId as well as UUID identifier is supported.
         :type container_parent_id: str
@@ -3002,9 +3002,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ListOrganizationsResponse:
-        """Get All Organizations
+        """Get all organizations of member
 
-        Returns all organizations and their metadata. - If no containerIds are specified, all organizations are returned, if permitted - ContainerIds may be set to filter - Member may be set to filter - If member and containerIds are given, both are used for filtering
+        Returns all organizations and their metadata accessible to the caller. - Filterable by containerIds or member.  Authorization & Permissions: - Evaluated on Target Organizations: resource-manager.organization.list and/or (depending if containerIDs was used in the request) resource-manager.organization.get to filter and list accessible organizations.
 
         :param container_ids: Organization identifiers - containerId as well as UUID identifier is supported. A combination of both is not allowed.
         :type container_ids: List[str]
@@ -3107,9 +3107,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ListOrganizationsResponse]:
-        """Get All Organizations
+        """Get all organizations of member
 
-        Returns all organizations and their metadata. - If no containerIds are specified, all organizations are returned, if permitted - ContainerIds may be set to filter - Member may be set to filter - If member and containerIds are given, both are used for filtering
+        Returns all organizations and their metadata accessible to the caller. - Filterable by containerIds or member.  Authorization & Permissions: - Evaluated on Target Organizations: resource-manager.organization.list and/or (depending if containerIDs was used in the request) resource-manager.organization.get to filter and list accessible organizations.
 
         :param container_ids: Organization identifiers - containerId as well as UUID identifier is supported. A combination of both is not allowed.
         :type container_ids: List[str]
@@ -3212,9 +3212,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get All Organizations
+        """Get all organizations of member
 
-        Returns all organizations and their metadata. - If no containerIds are specified, all organizations are returned, if permitted - ContainerIds may be set to filter - Member may be set to filter - If member and containerIds are given, both are used for filtering
+        Returns all organizations and their metadata accessible to the caller. - Filterable by containerIds or member.  Authorization & Permissions: - Evaluated on Target Organizations: resource-manager.organization.list and/or (depending if containerIDs was used in the request) resource-manager.organization.get to filter and list accessible organizations.
 
         :param container_ids: Organization identifiers - containerId as well as UUID identifier is supported. A combination of both is not allowed.
         :type container_ids: List[str]
@@ -3395,9 +3395,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ListProjectsResponse:
-        """Get All Projects
+        """Get All Projects of a member.
 
-        Returns all projects and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent
+        Returns all projects and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent  Authorization & Permissions: - Evaluated on Target Projects: resource-manager.project.get, resource-manager.project.list, or resource-manager.project.direct.get to filter and return accessible projects.
 
         :param container_parent_id: Identifier of the parent resource container - containerId as well as UUID identifier is supported.
         :type container_parent_id: str
@@ -3507,9 +3507,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ListProjectsResponse]:
-        """Get All Projects
+        """Get All Projects of a member.
 
-        Returns all projects and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent
+        Returns all projects and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent  Authorization & Permissions: - Evaluated on Target Projects: resource-manager.project.get, resource-manager.project.list, or resource-manager.project.direct.get to filter and return accessible projects.
 
         :param container_parent_id: Identifier of the parent resource container - containerId as well as UUID identifier is supported.
         :type container_parent_id: str
@@ -3619,9 +3619,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get All Projects
+        """Get All Projects of a member.
 
-        Returns all projects and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent
+        Returns all projects and their metadata that:  - Are children of the specific containerParentId - Match the given containerIds - User is member of  Filter: - Either containerParentId OR containerIds OR member must be passed - If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent - If member and containerParentId are given, both are used for filtering - If member is given, containers must not point to the same container parent  Authorization & Permissions: - Evaluated on Target Projects: resource-manager.project.get, resource-manager.project.list, or resource-manager.project.direct.get to filter and return accessible projects.
 
         :param container_parent_id: Identifier of the parent resource container - containerId as well as UUID identifier is supported.
         :type container_parent_id: str
@@ -3780,7 +3780,7 @@ class DefaultApi:
     ) -> FolderResponse:
         """Update Folder
 
-        Update the folder and its metadata. - Update folder name - Update folder labels - Update folder parent (folder or organization)
+        Update the folder and its metadata (name, labels, parent container).  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.edit (required permission on the target folder to modify its details, labels, or parent).
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -3849,7 +3849,7 @@ class DefaultApi:
     ) -> ApiResponse[FolderResponse]:
         """Update Folder
 
-        Update the folder and its metadata. - Update folder name - Update folder labels - Update folder parent (folder or organization)
+        Update the folder and its metadata (name, labels, parent container).  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.edit (required permission on the target folder to modify its details, labels, or parent).
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -3918,7 +3918,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Update Folder
 
-        Update the folder and its metadata. - Update folder name - Update folder labels - Update folder parent (folder or organization)
+        Update the folder and its metadata (name, labels, parent container).  Authorization & Permissions: - Evaluated on Target Folder: resource-manager.folder.edit (required permission on the target folder to modify its details, labels, or parent).
 
         :param container_id: Folder identifier - containerId as well as UUID identifier is supported. (required)
         :type container_id: str
@@ -4045,7 +4045,7 @@ class DefaultApi:
     ) -> OrganizationResponse:
         """Update Organization
 
-        Update the organization and its metadata. - Update organization name - Update organization labels
+        Updates organization metadata (name, labels).  Authorization & Permissions: - Evaluated on Target Organization: resource-manager.organization.edit (required permission on the organization to update metadata and labels).
 
         :param id: Organization identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -4114,7 +4114,7 @@ class DefaultApi:
     ) -> ApiResponse[OrganizationResponse]:
         """Update Organization
 
-        Update the organization and its metadata. - Update organization name - Update organization labels
+        Updates organization metadata (name, labels).  Authorization & Permissions: - Evaluated on Target Organization: resource-manager.organization.edit (required permission on the organization to update metadata and labels).
 
         :param id: Organization identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -4183,7 +4183,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Update Organization
 
-        Update the organization and its metadata. - Update organization name - Update organization labels
+        Updates organization metadata (name, labels).  Authorization & Permissions: - Evaluated on Target Organization: resource-manager.organization.edit (required permission on the organization to update metadata and labels).
 
         :param id: Organization identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -4308,7 +4308,7 @@ class DefaultApi:
     ) -> Project:
         """Update Project
 
-        Update the project and its metadata. - Update project name  - Update project labels  - Update project parent (folder or organization)
+        Updates project metadata (name, labels, or parent hierarchy).  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.edit (required permission on the project to modify its details, labels, or parent).
 
         :param id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -4377,7 +4377,7 @@ class DefaultApi:
     ) -> ApiResponse[Project]:
         """Update Project
 
-        Update the project and its metadata. - Update project name  - Update project labels  - Update project parent (folder or organization)
+        Updates project metadata (name, labels, or parent hierarchy).  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.edit (required permission on the project to modify its details, labels, or parent).
 
         :param id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
@@ -4446,7 +4446,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Update Project
 
-        Update the project and its metadata. - Update project name  - Update project labels  - Update project parent (folder or organization)
+        Updates project metadata (name, labels, or parent hierarchy).  Authorization & Permissions: - Evaluated on Target Project: resource-manager.project.edit (required permission on the project to modify its details, labels, or parent).
 
         :param id: Project identifier - containerId as well as UUID identifier is supported. (required)
         :type id: str
