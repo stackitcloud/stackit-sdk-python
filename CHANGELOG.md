@@ -1,5 +1,8 @@
 ## Release (2026-MM-DD)
 
+- `core`:
+  - [v0.3.1](core/CHANGELOG.md#v031)
+    - **Fix:** Refresh access tokens five minutes before expiration instead of after, and wait for in-progress refreshes before authorizing requests
 - `alb`:
   - [v0.13.0](services/alb/CHANGELOG.md#v0130)
     - **Feature:** Add `ip_block_list_name` field to `LoadbalancerOptionAccessControl` model
