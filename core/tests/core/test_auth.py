@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path, PurePath
 from threading import Event, Lock, Thread
 
@@ -299,6 +300,42 @@ class TestAuth:
 
 
 class TestKeyAuth:
+    @pytest.mark.parametrize("refresh_already_failed", [False, True])
+    def test_call_propagates_token_refresh_failure(self, refresh_already_failed):
+        auth = object.__new__(KeyAuth)
+        auth.lock = Lock()
+        auth.access_token = jwt.encode({"exp": 0}, "x" * 32, algorithm="HS256")
+        auth.refresh_token = jwt.encode({"exp": 4_000_000_000}, "x" * 32, algorithm="HS256")
+        auth.token_endpoint = KeyAuth.DEFAULT_TOKEN_ENDPOINT
+        auth.refresh_future = None
+        original_token = auth.access_token
+        request = Request("GET", "https://example.com")
+        refresh_error = requests.RequestException("refresh failed")
+
+        with (
+            ThreadPoolExecutor(max_workers=1) as executor,
+            patch("stackit.core.auth_methods.key_auth.requests.post", side_effect=refresh_error) as mock_post,
+        ):
+            auth.executor = executor
+            if refresh_already_failed:
+                auth.refresh_future = executor.submit(auth._KeyAuth__refresh_token)
+                with pytest.raises(requests.RequestException, match="Token refresh failed after retries"):
+                    auth.refresh_future.result(timeout=1)
+
+            with pytest.raises(requests.RequestException, match="Token refresh failed after retries") as exc_info:
+                auth(request)
+
+            assert exc_info.value.__cause__ is refresh_error
+            assert auth.refresh_future.done()
+            assert mock_post.call_count == KeyAuth.MAX_REFRESH_RETRIES
+            mock_post.assert_called_with(
+                auth.token_endpoint,
+                data={"grant_type": "refresh_token", "refresh_token": auth.refresh_token},
+                timeout=auth.timeout,
+            )
+            assert auth.access_token == original_token
+            assert "Authorization" not in request.headers
+
     def test_token_is_expired_before_expiration_with_leeway(self):
         auth = object.__new__(KeyAuth)
         secret = "x" * 32
