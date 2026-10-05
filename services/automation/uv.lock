@@ -1182,7 +1182,7 @@ dev = [
 
 [[package]]
 name = "stackit-core"
-version = "0.3.0"
+version = "0.3.1"
 source = { directory = "../../core" }
 dependencies = [
     { name = "cryptography" },
