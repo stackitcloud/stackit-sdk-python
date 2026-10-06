@@ -30,7 +30,7 @@ from pydantic import (
     field_validator,
 )
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 from stackit.iaas.models.network_ipv4 import NetworkIPv4
 from stackit.iaas.models.network_ipv6 import NetworkIPv6
@@ -44,13 +44,16 @@ class Network(BaseModel):
     created_at: Optional[datetime] = Field(
         default=None, description="Date-time when resource was created.", alias="createdAt"
     )
+    description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
+        default=None, description="Description Object. Allows string up to 255 Characters."
+    )
     dhcp: Optional[StrictBool] = Field(default=None, description="Enable or disable DHCP for a network.")
     id: UUID = Field(description="Universally Unique Identifier (UUID).")
     ipv4: Optional[NetworkIPv4] = None
     ipv6: Optional[NetworkIPv6] = None
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.",
+        description="Object that represents the labels as key-value pairs of a resource. Key constraints: - May contain an optional domain prefix separated by a slash (`/`). - Domain prefix must be less than or equal to 250 characters. - Domain prefix must ba a valid DNS subdomain containing only lowercase alphanumerics (`[a-z0-9]`) and dashes (`-`), separated by dots (`.`). - Length (excluding the domain prefix) must be between 1 and 63 characters. - Must begin and end with an alphanumerical character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. - Keys starting with the prefix `stackit-` or having a domain prefix of `stackit.cloud` (including its subdomains, e.g., `*.stackit.cloud/`) are reserved for system use. Value constraints: - Must be less than or equal to 63 characters long (can be empty). - If not empty it must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. A resource can have a maximum of 64 labels. Reserved labels are excluded from this count. Providing a `null` value for a key will remove that key.",
     )
     name: StrictStr
     routed: Optional[StrictBool] = Field(
@@ -68,6 +71,7 @@ class Network(BaseModel):
     vpc_id: Optional[UUID] = Field(default=None, description="The identifier (ID) of a STACKIT VPC.", alias="vpcId")
     __properties: ClassVar[List[str]] = [
         "createdAt",
+        "description",
         "dhcp",
         "id",
         "ipv4",
@@ -213,6 +217,7 @@ class Network(BaseModel):
         _obj = cls.model_validate(
             {
                 "createdAt": obj.get("createdAt"),
+                "description": obj.get("description"),
                 "dhcp": obj.get("dhcp"),
                 "id": obj.get("id"),
                 "ipv4": NetworkIPv4.from_dict(obj["ipv4"]) if obj.get("ipv4") is not None else None,
