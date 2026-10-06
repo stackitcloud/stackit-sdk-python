@@ -33,6 +33,13 @@ class NexthopIPv4(BaseModel):
     value: Annotated[str, Field(strict=True)] = Field(description="An IPv4 address.")
     __properties: ClassVar[List[str]] = ["type", "value"]
 
+    @field_validator("type")
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["ipv4"]):
+            raise ValueError("must be one of enum values ('ipv4')")
+        return value
+
     @field_validator("value")
     def value_validate_regular_expression(cls, value):
         """Validates the regular expression"""
