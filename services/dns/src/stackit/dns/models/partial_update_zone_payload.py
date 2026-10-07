@@ -22,7 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
-from stackit.dns.models.zone_extensions import ZoneExtensions
+from stackit.dns.models.domain_extensions import DomainExtensions
 
 
 class PartialUpdateZonePayload(BaseModel):
@@ -46,7 +46,12 @@ class PartialUpdateZonePayload(BaseModel):
     expire_time: Optional[Annotated[int, Field(strict=True, ge=60)]] = Field(
         default=1209600, description="expire time", alias="expireTime"
     )
-    extensions: Optional[ZoneExtensions] = Field(default=None, description="optional extensions")
+    extensions: Optional[DomainExtensions] = Field(default=None, description="optional extensions")
+    labels_map: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="labels for the zone - max 64 items. Keys: 1-314 chars (up to 250 prefix, 1 for slash, 1-63 the actual key). Values: 0-63 chars.",
+        alias="labelsMap",
+    )
     name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=63)]] = Field(
         default=None, description="user given name"
     )
@@ -67,6 +72,7 @@ class PartialUpdateZonePayload(BaseModel):
         "description",
         "expireTime",
         "extensions",
+        "labelsMap",
         "name",
         "negativeCache",
         "primaries",
@@ -135,8 +141,9 @@ class PartialUpdateZonePayload(BaseModel):
                 "description": obj.get("description"),
                 "expireTime": obj.get("expireTime") if obj.get("expireTime") is not None else 1209600,
                 "extensions": (
-                    ZoneExtensions.from_dict(obj["extensions"]) if obj.get("extensions") is not None else None
+                    DomainExtensions.from_dict(obj["extensions"]) if obj.get("extensions") is not None else None
                 ),
+                "labelsMap": obj.get("labelsMap"),
                 "name": obj.get("name"),
                 "negativeCache": obj.get("negativeCache"),
                 "primaries": obj.get("primaries"),
