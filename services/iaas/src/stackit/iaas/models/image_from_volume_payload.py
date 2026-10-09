@@ -39,13 +39,16 @@ class ImageFromVolumePayload(BaseModel):
     disk_format: StrictStr = Field(
         description="Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.", alias="diskFormat"
     )
+    force: Optional[StrictBool] = Field(
+        default=False, description="When true the image is force created from a volume is currently being used."
+    )
     name: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
     )
     protected: Optional[StrictBool] = Field(
         default=False, description="When true the created image is prevented from being deleted."
     )
-    __properties: ClassVar[List[str]] = ["diskFormat", "name", "protected"]
+    __properties: ClassVar[List[str]] = ["diskFormat", "force", "name", "protected"]
 
     @field_validator("name")
     def name_validate_regular_expression(cls, value):
@@ -108,6 +111,7 @@ class ImageFromVolumePayload(BaseModel):
         _obj = cls.model_validate(
             {
                 "diskFormat": obj.get("diskFormat"),
+                "force": obj.get("force") if obj.get("force") is not None else False,
                 "name": obj.get("name"),
                 "protected": obj.get("protected") if obj.get("protected") is not None else False,
             }
