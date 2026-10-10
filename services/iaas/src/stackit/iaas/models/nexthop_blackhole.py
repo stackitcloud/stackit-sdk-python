@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
@@ -30,6 +30,13 @@ class NexthopBlackhole(BaseModel):
 
     type: StrictStr
     __properties: ClassVar[List[str]] = ["type"]
+
+    @field_validator("type")
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["blackhole"]):
+            raise ValueError("must be one of enum values ('blackhole')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
