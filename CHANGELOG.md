@@ -9,6 +9,13 @@
 - `automation`:
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - Initial onboarding of STACKIT Python SDK for Automation service
+- `dns`:
+  - [v0.10.0](services/dns/CHANGELOG.md#v0100)
+    - **Feature:** New `labels_map` field (`Dict[str, str]`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
+    - **Deprecation:** `create_label`, `delete_label`, `list_labels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labels_map` field on the `Zone` resource instead
+    - **Improvement:** `list_record_sets`/`list_zones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
+    - **Improvement:** `Label.key`/`CreateLabelPayload.key` now accepts up to 314 characters (previously 63), supporting prefixed label keys (e.g. `example.com/environment`)
+    - **Breaking Change:** `PartialUpdateZonePayload.extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observability_extension.state`
 - `objectstorage`:
   - [v1.6.0](services/objectstorage/CHANGELOG.md#v160)
     - **Feature:** New model class `RateLimitError`
