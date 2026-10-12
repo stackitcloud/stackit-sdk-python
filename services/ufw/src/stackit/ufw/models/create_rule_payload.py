@@ -17,7 +17,14 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictInt,
+    StrictStr,
+)
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
@@ -43,10 +50,17 @@ class CreateRulePayload(BaseModel):
     protocol: Optional[StrictStr] = Field(
         default=None, description='The network protocol (e.g., "TCP", "UDP", "ICMP").'
     )
+    remote_security_group_id: Optional[StrictStr] = Field(
+        default=None, description="The ID of the Group.", alias="remoteSecurityGroupId"
+    )
     security_group_id: Optional[StrictStr] = Field(
         default=None, description="The ID of the Group.", alias="securityGroupId"
     )
     source_ip: StrictStr = Field(description="The IP (CIDR) to which the rule applies.", alias="sourceIP")
+    stateful: Optional[StrictBool] = Field(
+        default=None,
+        description="Indicates whether the security group rule is stateful or stateless (used only for security groups, default value for them will be true).",
+    )
     type: StrictStr = Field(description='The type of the rule (e.g., "ACL", "PublicIP", "SecurityRule").')
     __properties: ClassVar[List[str]] = [
         "description",
@@ -57,8 +71,10 @@ class CreateRulePayload(BaseModel):
         "portRange",
         "product",
         "protocol",
+        "remoteSecurityGroupId",
         "securityGroupId",
         "sourceIP",
+        "stateful",
         "type",
     ]
 
@@ -120,8 +136,10 @@ class CreateRulePayload(BaseModel):
                 "portRange": obj.get("portRange"),
                 "product": obj.get("product"),
                 "protocol": obj.get("protocol"),
+                "remoteSecurityGroupId": obj.get("remoteSecurityGroupId"),
                 "securityGroupId": obj.get("securityGroupId"),
                 "sourceIP": obj.get("sourceIP"),
+                "stateful": obj.get("stateful"),
                 "type": obj.get("type"),
             }
         )
