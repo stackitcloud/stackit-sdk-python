@@ -29,7 +29,7 @@ class RunnerRuntime(BaseModel):
     """  # noqa: E501
 
     availability: StrictStr = Field(description="Indicates the availability of the runner label")
-    description: StrictStr = Field(description="Human-friendly description of the runtime and it's capabilities.")
+    description: StrictStr = Field(description="Human-friendly description of the runtime and its capabilities.")
     display_name: StrictStr = Field(description="Human-friendly name of the runtime.")
     id: StrictStr = Field(description="Runtime identifier.")
     label: StrictStr = Field(description="Runtime label.")
