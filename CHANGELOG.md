@@ -28,6 +28,9 @@
 - `telemetryrouter`:
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+- `valkey`:
+  - [v0.2.2](services/valkey/CHANGELOG.md#v022)
+    - **Docs:** `InstanceParameters.min_replicas_to_write` doc comment now notes it should not be greater than the number of nodes (e.g. 1 or 3)
 - `vpn`:
   - [v0.7.3](services/vpn/CHANGELOG.md#v073)
     - **Improvement:** Relax maximum `rekey_time` validation to `86400` (previously `28800`) in `TunnelConfigurationPhase1`
