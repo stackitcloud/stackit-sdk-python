@@ -22,6 +22,9 @@
     - **Improvement:** Add HTTP 429 rate limit error responses in API operations
     - **Breaking Change:** Field `expires` in `AccessKey` model is now optional (`Optional[StrictStr]`)
     - **Improvement:** Field `expires` in `CreateAccessKeyPayload` model now supports explicit `None` serialization
+- `rabbitmq`:
+  - [v1.4.0](services/rabbitmq/CHANGELOG.md#v140)
+    - **Breaking Change:** `rabbitmq_tracing` removed from the allowed values for `InstanceParameters.plugins`; passing it now raises a `ValueError`
 - `resourcemanager`
   - [v0.11.1](services/resourcemanager/CHANGELOG.md#0111)
     - Update descriptions of `labels` attributes in model classes
