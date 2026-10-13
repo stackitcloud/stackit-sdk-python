@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
@@ -30,18 +31,37 @@ class CreatePublicIPPayload(BaseModel):
     Object that represents a public IP.
     """  # noqa: E501
 
+    created_at: Optional[datetime] = Field(
+        default=None, description="Date-time when resource was created.", alias="createdAt"
+    )
     id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     ip: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="String that represents an IPv4 address."
     )
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.",
+        description="Object that represents the labels as key-value pairs of a resource. Key constraints: - May contain an optional domain prefix separated by a slash (`/`). - Domain prefix must be less than or equal to 250 characters. - Domain prefix must ba a valid DNS subdomain containing only lowercase alphanumerics (`[a-z0-9]`) and dashes (`-`), separated by dots (`.`). - Length (excluding the domain prefix) must be between 1 and 63 characters. - Must begin and end with an alphanumerical character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. - Keys starting with the prefix `stackit-` or having a domain prefix of `stackit.cloud` (including its subdomains, e.g., `*.stackit.cloud/`) are reserved for system use. Value constraints: - Must be less than or equal to 63 characters long (can be empty). - If not empty it must begin and end with an alphanumeric character (`[a-z0-9A-Z]`). - May contain dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics in between. A resource can have a maximum of 64 labels. Reserved labels are excluded from this count. Providing a `null` value for a key will remove that key.",
     )
     network_interface: Optional[UUID] = Field(
         default=None, description="Associate the public IP with a network interface (ID).", alias="networkInterface"
     )
-    __properties: ClassVar[List[str]] = ["id", "ip", "labels", "networkInterface"]
+    updated_at: Optional[datetime] = Field(
+        default=None, description="Date-time when resource was last updated.", alias="updatedAt"
+    )
+    __properties: ClassVar[List[str]] = ["createdAt", "id", "ip", "labels", "networkInterface", "updatedAt"]
+
+    @field_validator("created_at", mode="before")
+    def created_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
 
     @field_validator("id")
     def id_validate_regular_expression(cls, value):
@@ -91,6 +111,19 @@ class CreatePublicIPPayload(BaseModel):
             )
         return value
 
+    @field_validator("updated_at", mode="before")
+    def updated_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
+
     model_config = ConfigDict(
         validate_by_name=True,
         validate_by_alias=True,
@@ -122,11 +155,15 @@ class CreatePublicIPPayload(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
+                "created_at",
                 "id",
                 "ip",
+                "updated_at",
             ]
         )
 
@@ -153,10 +190,12 @@ class CreatePublicIPPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "createdAt": obj.get("createdAt"),
                 "id": obj.get("id"),
                 "ip": obj.get("ip"),
                 "labels": obj.get("labels"),
                 "networkInterface": obj.get("networkInterface"),
+                "updatedAt": obj.get("updatedAt"),
             }
         )
         return _obj
