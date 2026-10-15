@@ -1,3 +1,6 @@
+## v0.3.1
+- **Fix:** Refresh access tokens five minutes before expiration instead of after, and wait for in-progress refreshes before authorizing requests
+
 ## v0.3.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies

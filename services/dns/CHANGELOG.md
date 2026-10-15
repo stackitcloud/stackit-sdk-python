@@ -1,3 +1,10 @@
+## v0.10.0
+- **Feature:** New `labels_map` field (`Dict[str, str]`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
+- **Deprecation:** `create_label`, `delete_label`, `list_labels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labels_map` field on the `Zone` resource instead
+- **Improvement:** `list_record_sets`/`list_zones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
+- **Improvement:** `Label.key`/`CreateLabelPayload.key` now accepts up to 314 characters (previously 63), supporting prefixed label keys (e.g. `example.com/environment`)
+- **Breaking Change:** `PartialUpdateZonePayload.extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observability_extension.state`
+
 ## v0.9.0
 - **Feature:** `create_move_code` operation now accepts an optional `CreateMoveCodePayload` request body (field `ttl`) to configure the move code's validity duration
 - **Breaking Change:** `DomainObservabilityExtension.state` now validates against a fixed set of values (`CREATING`, `CREATE_SUCCEEDED`, `ERROR`); previously any string was accepted

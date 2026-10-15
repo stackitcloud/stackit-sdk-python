@@ -15,10 +15,11 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -28,7 +29,7 @@ class NetworkConfig(BaseModel):
     NetworkConfig
     """  # noqa: E501
 
-    predefined_network_prefix: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    predefined_network_prefix: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
         description="The IPv4 network prefix (CIDR notation) allocated for the VPN gateway. Must have a prefix length of /28 or larger. Once the gateway is created, is not possible to change this attribute. ",
         alias="predefinedNetworkPrefix",
@@ -37,6 +38,21 @@ class NetworkConfig(BaseModel):
         default=None, description="Custom routing table ID for the VPN gateway", alias="routingTableId"
     )
     __properties: ClassVar[List[str]] = ["predefinedNetworkPrefix", "routingTableId"]
+
+    @field_validator("predefined_network_prefix")
+    def predefined_network_prefix_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}(\/([0-9]|[1-2][0-9]|3[0-2]))?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}(\/([0-9]|[1-2][0-9]|3[0-2]))?$/"
+            )
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,

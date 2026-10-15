@@ -1,3 +1,6 @@
+## v0.6.0
+- **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+
 ## v0.5.2
 - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.telemetryrouter` to fail with `ModuleNotFoundError`
 
