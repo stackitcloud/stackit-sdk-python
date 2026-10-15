@@ -1,3 +1,6 @@
+## v0.2.2
+- **Docs:** `InstanceParameters.min_replicas_to_write` doc comment now notes it should not be greater than the number of nodes (e.g. 1 or 3)
+
 ## v0.2.1
 - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.valkey` to fail with `ModuleNotFoundError`
 

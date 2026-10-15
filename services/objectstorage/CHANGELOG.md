@@ -1,3 +1,9 @@
+## v1.6.0
+- **Feature:** New model class `RateLimitError`
+- **Improvement:** Add HTTP 429 rate limit error responses in API operations
+- **Breaking Change:** Field `expires` in `AccessKey` model is now optional (`Optional[StrictStr]`)
+- **Improvement:** Field `expires` in `CreateAccessKeyPayload` model now supports explicit `None` serialization
+
 ## v1.5.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies

@@ -82,6 +82,11 @@ class CreateAccessKeyPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if expires (nullable) is None
+        # and model_fields_set contains the field
+        if self.expires is None and "expires" in self.model_fields_set:
+            _dict["expires"] = None
+
         return _dict
 
     @classmethod
