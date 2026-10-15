@@ -1,3 +1,6 @@
+## v1.4.0
+- **Breaking Change:** `rabbitmq_tracing` removed from the allowed values for `InstanceParameters.plugins`; passing it now raises a `ValueError`
+
 ## v1.3.0
 - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
     The return type now correctly models the actual JSON response, this operation was broken beforehand.
