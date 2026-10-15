@@ -9,18 +9,31 @@
 - `automation`:
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - Initial onboarding of STACKIT Python SDK for Automation service
+- `dns`:
+  - [v0.10.0](services/dns/CHANGELOG.md#v0100)
+    - **Feature:** New `labels_map` field (`Dict[str, str]`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
+    - **Deprecation:** `create_label`, `delete_label`, `list_labels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labels_map` field on the `Zone` resource instead
+    - **Improvement:** `list_record_sets`/`list_zones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
+    - **Improvement:** `Label.key`/`CreateLabelPayload.key` now accepts up to 314 characters (previously 63), supporting prefixed label keys (e.g. `example.com/environment`)
+    - **Breaking Change:** `PartialUpdateZonePayload.extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observability_extension.state`
 - `objectstorage`:
   - [v1.6.0](services/objectstorage/CHANGELOG.md#v160)
     - **Feature:** New model class `RateLimitError`
     - **Improvement:** Add HTTP 429 rate limit error responses in API operations
     - **Breaking Change:** Field `expires` in `AccessKey` model is now optional (`Optional[StrictStr]`)
     - **Improvement:** Field `expires` in `CreateAccessKeyPayload` model now supports explicit `None` serialization
+- `rabbitmq`:
+  - [v1.4.0](services/rabbitmq/CHANGELOG.md#v140)
+    - **Breaking Change:** `rabbitmq_tracing` removed from the allowed values for `InstanceParameters.plugins`; passing it now raises a `ValueError`
 - `resourcemanager`
   - [v0.11.1](services/resourcemanager/CHANGELOG.md#0111)
     - Update descriptions of `labels` attributes in model classes
 - `telemetryrouter`:
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
+- `valkey`:
+  - [v0.2.2](services/valkey/CHANGELOG.md#v022)
+    - **Docs:** `InstanceParameters.min_replicas_to_write` doc comment now notes it should not be greater than the number of nodes (e.g. 1 or 3)
 - `vpn`:
   - [v0.7.3](services/vpn/CHANGELOG.md#v073)
     - **Improvement:** Relax maximum `rekey_time` validation to `86400` (previously `28800`) in `TunnelConfigurationPhase1`
