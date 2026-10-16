@@ -30,6 +30,13 @@
 - `resourcemanager`
   - [v0.11.1](services/resourcemanager/CHANGELOG.md#0111)
     - Update descriptions of `labels` attributes in model classes
+- `stackitmarketplace`
+  - [v1.18.0](services/stackitmarketplace/CHANGELOG.md#v1180)
+    - **Feature:** New model classes `ConsumersSubscriptionsCreatePayload`, `MarketplaceSubscriptionV1Assets`, `MarketplaceSubscriptionV1File`, `MarketplaceSubscriptionV1FileLocalizedVersion`, `MarketplaceSubscriptionV1ListSubscriptionsResponse`, `MarketplaceSubscriptionV1Subscription`, `MarketplaceSubscriptionV1SubscriptionProduct`, `MarketplaceSubscriptionV1SubscriptionRedirect`,
+    - **Feature:** New API client methods `consumers_subscriptions_cancel`, `consumers_subscriptions_create`, `consumers_subscriptions_get`, `consumers_subscriptions_list_by_organization`, `consumers_subscriptions_list_by_project`, `consumers_subscriptions_redirects_get`, `consumers_subscriptions_terminate`, `vendors_subscriptions_get`, `vendors_subscriptions_list_by_organization`, `vendors_subscriptions_list_by_project`
+    - **Breaking Change:** Removal of model classes `Assets`, `AssetsEndUserLicenseAgreement`, `AssetsProductDescription`, `AssetsServiceLevelAgreement`, `BecomeVendor`, `CatalogPricingOptionHighlight`, `CatalogProductDetail`, `CatalogProductDetailsVendor`, `CatalogProductFacetsValueInner`, `CatalogProductHighlight`, `CatalogProductOverview`, `CatalogProductOverviewVendor`, `CatalogProductPricingOption`, `CatalogProductSupportResource`, `CatalogProductVendorTerms`, `ContactSales`, `DeliveryMethod`, `FreeTrial`, `InquiriesCreateInquiryPayload`, `InquiryBecomeVendor`, `InquiryContactSales`, `InquiryFormType`, `InquiryRegisterTesting`, `InquiryRequestPrivatePlan`, `InquirySuggestProduct`, `ListCatalogProductsResponse`, `ListVendorSubscriptionsResponse`, `LocalizedVersion`, `NoticePeriod`, `OfferType`, `PriceType`, `PricingOptionUnit`, `ProductLifecycleState`, `RegisterTesting`, `RequestPrivatePlan`, `Scope`, `ServiceCertificate`, `SubscriptionLifecycleState`, `SubscriptionProduct`, `SuggestProduct`, `VendorSubscription`
+    - **Breaking Change:** `approve_subscription_payload` parameter is now required in `approve_subscription` API client method (previously optional)
+    - **Breaking Change:** Removal of API client methods `get_catalog_product`, `get_vendor_subscription`, `inquiries_create_inquiry`, `list_catalog_products`, `list_vendor_subscriptions`
 - `telemetryrouter`:
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
