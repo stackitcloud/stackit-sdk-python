@@ -27,6 +27,7 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "ConflictError",
     "CreateResourcePoolPayload",
     "CreateResourcePoolResponse",
     "CreateResourcePoolSnapshotPayload",
@@ -95,6 +96,7 @@ from stackit.sfs.exceptions import ApiValueError as ApiValueError
 from stackit.sfs.exceptions import OpenApiException as OpenApiException
 
 # import models into sdk package
+from stackit.sfs.models.conflict_error import ConflictError as ConflictError
 from stackit.sfs.models.create_resource_pool_payload import (
     CreateResourcePoolPayload as CreateResourcePoolPayload,
 )

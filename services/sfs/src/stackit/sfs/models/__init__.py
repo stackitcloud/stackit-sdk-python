@@ -13,6 +13,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 # import models into model package
+from stackit.sfs.models.conflict_error import ConflictError
 from stackit.sfs.models.create_resource_pool_payload import CreateResourcePoolPayload
 from stackit.sfs.models.create_resource_pool_response import CreateResourcePoolResponse
 from stackit.sfs.models.create_resource_pool_snapshot_payload import (
