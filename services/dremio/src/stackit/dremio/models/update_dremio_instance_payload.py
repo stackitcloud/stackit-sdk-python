@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -30,6 +30,10 @@ class UpdateDremioInstancePayload(BaseModel):
     UpdateDremioInstancePayload
     """  # noqa: E501
 
+    acl: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The Access Control List (ACL) defining the IPv4 or IPv6 CIDR ranges allowed to connect to the Dremio instance. An empty list allows access from any address. Omitting this field on creation allows access from any address. Omitting it on update preserves the current list. Updates replace the entire list and take effect asynchronously.",
+    )
     authentication: Optional[Authentication] = None
     description: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = Field(
         default=None,
@@ -40,7 +44,7 @@ class UpdateDremioInstancePayload(BaseModel):
         description="The display name is a short name chosen by the user to identify the resource.",
         alias="displayName",
     )
-    __properties: ClassVar[List[str]] = ["authentication", "description", "displayName"]
+    __properties: ClassVar[List[str]] = ["acl", "authentication", "description", "displayName"]
 
     @field_validator("display_name")
     def display_name_validate_regular_expression(cls, value):
@@ -108,6 +112,7 @@ class UpdateDremioInstancePayload(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "acl": obj.get("acl"),
                 "authentication": (
                     Authentication.from_dict(obj["authentication"]) if obj.get("authentication") is not None else None
                 ),
