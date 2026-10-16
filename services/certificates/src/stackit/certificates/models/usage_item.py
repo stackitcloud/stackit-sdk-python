@@ -29,7 +29,7 @@ class UsageItem(BaseModel):
 
     listener_names: Optional[List[StrictStr]] = Field(
         default=None,
-        description="A list of listener names on this Load Balancer that are using the certificate.",
+        description="The list of listener names in this Load Balancer, that are using the certificate.",
         alias="listenerNames",
     )
     load_balancer_name: Optional[StrictStr] = Field(
