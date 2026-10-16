@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
@@ -34,6 +35,9 @@ class ServerNetwork(BaseModel):
 
     allowed_addresses: Optional[List[AllowedAddressesInner]] = Field(
         default=None, description="A list of IPs or CIDR notations.", alias="allowedAddresses"
+    )
+    created_at: Optional[datetime] = Field(
+        default=None, description="Date-time when resource was created.", alias="createdAt"
     )
     ipv4: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="Object that represents an IP address."
@@ -55,8 +59,12 @@ class ServerNetwork(BaseModel):
         default=None, description="Object that represents an IP address.", alias="publicIp"
     )
     security_groups: Optional[List[UUID]] = Field(default=None, description="A list of UUIDs.", alias="securityGroups")
+    updated_at: Optional[datetime] = Field(
+        default=None, description="Date-time when resource was last updated.", alias="updatedAt"
+    )
     __properties: ClassVar[List[str]] = [
         "allowedAddresses",
+        "createdAt",
         "ipv4",
         "ipv6",
         "mac",
@@ -66,7 +74,21 @@ class ServerNetwork(BaseModel):
         "nicSecurity",
         "publicIp",
         "securityGroups",
+        "updatedAt",
     ]
+
+    @field_validator("created_at", mode="before")
+    def created_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
 
     @field_validator("ipv4")
     def ipv4_validate_regular_expression(cls, value):
@@ -166,6 +188,19 @@ class ServerNetwork(BaseModel):
             )
         return value
 
+    @field_validator("updated_at", mode="before")
+    def updated_at_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
+
     model_config = ConfigDict(
         validate_by_name=True,
         validate_by_alias=True,
@@ -195,8 +230,15 @@ class ServerNetwork(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "created_at",
+                "updated_at",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
@@ -228,6 +270,7 @@ class ServerNetwork(BaseModel):
                     if obj.get("allowedAddresses") is not None
                     else None
                 ),
+                "createdAt": obj.get("createdAt"),
                 "ipv4": obj.get("ipv4"),
                 "ipv6": obj.get("ipv6"),
                 "mac": obj.get("mac"),
@@ -237,6 +280,7 @@ class ServerNetwork(BaseModel):
                 "nicSecurity": obj.get("nicSecurity"),
                 "publicIp": obj.get("publicIp"),
                 "securityGroups": obj.get("securityGroups"),
+                "updatedAt": obj.get("updatedAt"),
             }
         )
         return _obj
