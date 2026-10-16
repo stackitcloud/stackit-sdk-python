@@ -35,7 +35,7 @@ class ShareExportPolicy(BaseModel):
     id: Optional[StrictStr] = Field(default=None, description="ID of the Share Export Policy")
     labels: Optional[Dict[str, StrictStr]] = Field(
         default=None,
-        description="An optional object that represents the labels associated with the share export policy  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'",
+        description="An optional object that represents the labels associated with the share export policy.",
     )
     name: Optional[StrictStr] = Field(default=None, description="Name of the Share Export Policy")
     rules: Optional[List[ShareExportPolicyRule]] = Field(
