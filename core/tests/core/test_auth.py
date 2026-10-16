@@ -2,6 +2,9 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path, PurePath
 from threading import Event, Lock, Thread
 
+import time
+from datetime import timedelta
+
 import pytest
 import json
 import jwt
@@ -382,3 +385,61 @@ class TestKeyAuth:
 
         assert not call_thread.is_alive()
         assert request.headers["Authorization"] == f"Bearer {fresh_token}"
+
+
+class TestKeyAuthClose:
+    """A discarded KeyAuth must be able to stop its background token refresh."""
+
+    @staticmethod
+    def _make_auth(service_account_key_file_json, mock_post, access_token):
+        service_account_key = ServiceAccountKey.model_validate_json(service_account_key_file_json)
+        service_account_key.credentials.private_key = "test-private-key"
+        response = Mock()
+        response.raise_for_status.return_value = None
+        response.json.return_value = {
+            "access_token": access_token,
+            "refresh_token": jwt.encode({"exp": 4102444800}, "secret", algorithm="HS256"),
+        }
+        mock_post.return_value = response
+        return KeyAuth(service_account_key)
+
+    def test_close_stops_the_refresh_thread_and_further_token_requests(self, service_account_key_file_json):
+        def set_initial_token(auth):
+            auth.initial_token = "test-initial-token"
+
+        expired = jwt.encode({"exp": 1}, "secret", algorithm="HS256")
+        with (
+            patch.object(KeyAuth, "_KeyAuth__create_initial_token", new=set_initial_token),
+            patch.object(KeyAuth, "TOKEN_EXPIRY_CHECK_INTERVAL", timedelta(milliseconds=10)),
+            patch("requests.post") as mock_post,
+        ):
+            # An access token that is always expired keeps the refresh loop busy.
+            auth = self._make_auth(service_account_key_file_json, mock_post, expired)
+            thread = auth._refresh_thread
+            assert thread is not None and thread.is_alive()
+
+            auth.close()
+
+            assert not thread.is_alive()
+            requests_after_close = mock_post.call_count
+            time.sleep(0.1)  # ten refresh intervals
+            assert mock_post.call_count == requests_after_close
+
+    def test_close_is_idempotent(self, service_account_key_file_json):
+        def set_initial_token(auth):
+            auth.initial_token = "test-initial-token"
+
+        valid = jwt.encode({"exp": 4102444800}, "secret", algorithm="HS256")
+        with (
+            patch.object(KeyAuth, "_KeyAuth__create_initial_token", new=set_initial_token),
+            patch("requests.post") as mock_post,
+            patch("stackit.core.auth_methods.key_auth.atexit") as mock_atexit,
+        ):
+            auth = self._make_auth(service_account_key_file_json, mock_post, valid)
+
+            auth.close()
+            auth.close()
+
+            assert not auth._refresh_thread.is_alive()
+            assert auth.executor._shutdown
+            mock_atexit.unregister.assert_called_with(auth._KeyAuth__shutdown)
