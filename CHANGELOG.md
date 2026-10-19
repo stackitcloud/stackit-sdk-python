@@ -17,6 +17,9 @@
     - **Improvement:** `Label.key`/`CreateLabelPayload.key` now accepts up to 314 characters (previously 63), supporting prefixed label keys (e.g. `example.com/environment`)
     - **Breaking Change:** `PartialUpdateZonePayload.extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observability_extension.state`
 - `objectstorage`:
+  - [v1.7.0](services/objectstorage/CHANGELOG.md#v170)
+    - **Feature:** New field `Labels` in `ProjectStatus` model struct
+    - **Feature:** New API client method `UpdateService`
   - [v1.6.0](services/objectstorage/CHANGELOG.md#v160)
     - **Feature:** New model class `RateLimitError`
     - **Improvement:** Add HTTP 429 rate limit error responses in API operations

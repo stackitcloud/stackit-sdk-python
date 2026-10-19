@@ -1,3 +1,7 @@
+## v1.7.0
+- **Feature:** New field `Labels` in `ProjectStatus` model struct
+- **Feature:** New API client method `UpdateService`
+
 ## v1.6.0
 - **Feature:** New model class `RateLimitError`
 - **Improvement:** Add HTTP 429 rate limit error responses in API operations
