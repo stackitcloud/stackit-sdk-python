@@ -1,3 +1,7 @@
+## v0.9.0
+- **Docs:** Update description of `Labels` fields
+- **Feature:** Add new `ConflictError` model for responses with 409 status code
+
 ## v0.8.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies
