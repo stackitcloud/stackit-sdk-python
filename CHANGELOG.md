@@ -31,6 +31,10 @@
 - `resourcemanager`
   - [v0.11.1](services/resourcemanager/CHANGELOG.md#0111)
     - Update descriptions of `labels` attributes in model classes
+- `sfs`:
+  - [v0.9.0](services/sfs/CHANGELOG.md#v090)
+    - **Docs:** Update description of `Labels` fields
+    - **Feature:** Add new `ConflictError` model for responses with 409 status code
 - `stackitmarketplace`
   - [v1.18.0](services/stackitmarketplace/CHANGELOG.md#v1180)
     - **Feature:** New model classes `ConsumersSubscriptionsCreatePayload`, `MarketplaceSubscriptionV1Assets`, `MarketplaceSubscriptionV1File`, `MarketplaceSubscriptionV1FileLocalizedVersion`, `MarketplaceSubscriptionV1ListSubscriptionsResponse`, `MarketplaceSubscriptionV1Subscription`, `MarketplaceSubscriptionV1SubscriptionProduct`, `MarketplaceSubscriptionV1SubscriptionRedirect`,
