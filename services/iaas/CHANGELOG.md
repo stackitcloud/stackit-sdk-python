@@ -1,3 +1,15 @@
+## v1.7.0
+- **Docs:** Update documentation for `labels` field constraints across models.
+- **Feature:** Add `Description` field in `Network` model
+- **Feature:** Add `CreatedAt` and `UpdatedAt` timestamps in `NIC`, `PublicIp` and `ServerNetwork` model
+- **Feature:** Add enum validation for `Type` field in `DestinationCIDRv4` model. Valid value is `cidrv4`.
+- **Feature:** Add enum validation for `Type` field in `DestinationCIDRv6` model. Valid value is `cidrv6`.
+- **Feature:** Add enum validation for `Type` field in `NexthopBlackhole` model. Valid value is `blackhole`.
+- **Feature:** Add enum validation for `Type` field in `NexthopInternet` model. Valid value is `internet`.
+- **Feature:** Add enum validation for `Type` field in `NexthopIPv4` model. Valid value is `ipv4`.
+- **Feature:** Add enum validation for `Type` field in `NexthopIPv6` model. Valid value is `ipv6`.
+- **Feature:** Add `ProjectType` and `VpcId` fields in `Project` model
+
 ## v1.6.0
 - **Docs:** Extend some descriptions
 - **Feature:** Add support for configuring a `vpc_network_range_id` in `CreateNetworkIPv4WithPrefix`, `CreateNetworkIPv4WithPrefixLength`, `CreateNetworkIPv6WithPrefix` and `CreateNetworkIPv6WithPrefixLength` model
