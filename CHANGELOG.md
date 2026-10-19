@@ -16,6 +16,18 @@
     - **Improvement:** `list_record_sets`/`list_zones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
     - **Improvement:** `Label.key`/`CreateLabelPayload.key` now accepts up to 314 characters (previously 63), supporting prefixed label keys (e.g. `example.com/environment`)
     - **Breaking Change:** `PartialUpdateZonePayload.extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observability_extension.state`
+- `iaas`:
+  - [v1.7.0](services/iaas/CHANGELOG.md#v170)
+    - **Docs:** Update documentation for `labels` field constraints across models.
+    - **Feature:** Add `Description` field in `Network` model
+    - **Feature:** Add `CreatedAt` and `UpdatedAt` timestamps in `NIC`, `PublicIp` and `ServerNetwork` model
+    - **Feature:** Add enum validation for `Type` field in `DestinationCIDRv4` model. Valid value is `cidrv4`.
+    - **Feature:** Add enum validation for `Type` field in `DestinationCIDRv6` model. Valid value is `cidrv6`.
+    - **Feature:** Add enum validation for `Type` field in `NexthopBlackhole` model. Valid value is `blackhole`.
+    - **Feature:** Add enum validation for `Type` field in `NexthopInternet` model. Valid value is `internet`.
+    - **Feature:** Add enum validation for `Type` field in `NexthopIPv4` model. Valid value is `ipv4`.
+    - **Feature:** Add enum validation for `Type` field in `NexthopIPv6` model. Valid value is `ipv6`.
+    - **Feature:** Add `ProjectType` and `VpcId` fields in `Project` model
 - `objectstorage`:
   - [v1.7.0](services/objectstorage/CHANGELOG.md#v170)
     - **Feature:** New field `Labels` in `ProjectStatus` model struct
