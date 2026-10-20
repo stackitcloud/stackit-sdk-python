@@ -311,6 +311,7 @@ class TestKeyAuth:
         auth.refresh_token = jwt.encode({"exp": 4_000_000_000}, "x" * 32, algorithm="HS256")
         auth.token_endpoint = KeyAuth.DEFAULT_TOKEN_ENDPOINT
         auth.refresh_future = None
+        auth._stop = Event()
         original_token = auth.access_token
         request = Request("GET", "https://example.com")
         refresh_error = requests.RequestException("refresh failed")
@@ -423,6 +424,35 @@ class TestKeyAuthClose:
             assert not thread.is_alive()
             requests_after_close = mock_post.call_count
             time.sleep(0.1)  # ten refresh intervals
+            assert mock_post.call_count == requests_after_close
+
+    def test_close_waits_for_a_refresh_in_progress(self, service_account_key_file_json):
+        def set_initial_token(auth):
+            auth.initial_token = "test-initial-token"
+
+        expired = jwt.encode({"exp": 1}, "secret", algorithm="HS256")
+        refresh_started = Event()
+        with (
+            patch.object(KeyAuth, "_KeyAuth__create_initial_token", new=set_initial_token),
+            patch.object(KeyAuth, "TOKEN_EXPIRY_CHECK_INTERVAL", timedelta(milliseconds=10)),
+            patch("requests.post") as mock_post,
+        ):
+            auth = self._make_auth(service_account_key_file_json, mock_post, expired)
+            initial_response = mock_post.return_value
+
+            def slow_refresh(*args, **kwargs):
+                refresh_started.set()
+                time.sleep(0.2)
+                return initial_response
+
+            mock_post.side_effect = slow_refresh
+            assert refresh_started.wait(timeout=5)
+
+            auth.close()
+
+            assert auth.refresh_future is not None and auth.refresh_future.done()
+            requests_after_close = mock_post.call_count
+            time.sleep(0.1)
             assert mock_post.call_count == requests_after_close
 
     def test_close_is_idempotent(self, service_account_key_file_json):

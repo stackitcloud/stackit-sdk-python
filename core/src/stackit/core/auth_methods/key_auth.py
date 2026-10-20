@@ -101,15 +101,18 @@ class KeyAuth(AuthBase):
 
         Call this when the instance is no longer needed, for example after
         replacing it during key rotation in a long-running process. Without it
-        the refresh thread keeps running and keeps requesting tokens. Safe to
-        call more than once.
+        the refresh thread keeps running and keeps requesting tokens. When it
+        returns, no refresh is running and none will start. Safe to call more
+        than once.
         """
-        self._stop.set()
-        self.executor.shutdown(wait=False, cancel_futures=True)
+        # Set under the lock so the refresh loop cannot submit after shutdown.
+        with self.lock:
+            self._stop.set()
         atexit.unregister(self.__shutdown)
         thread = self._refresh_thread
         if thread is not None and thread is not threading.current_thread():
             thread.join()
+        self.executor.shutdown(wait=True, cancel_futures=True)
 
     def __create_initial_token(self) -> None:
         payload = {
@@ -147,6 +150,8 @@ class KeyAuth(AuthBase):
         def token_refresh_task():
             while not self._stop.wait(self.TOKEN_EXPIRY_CHECK_INTERVAL.total_seconds()):
                 with self.lock:
+                    if self._stop.is_set():
+                        return
                     if self.refresh_future is not None and self.refresh_future.done():
                         self.refresh_future.result()
                     if self.__is_token_expired(self.access_token) and (
@@ -175,6 +180,8 @@ class KeyAuth(AuthBase):
 
         last_exception = None
         for _ in range(self.MAX_REFRESH_RETRIES):
+            if self._stop.is_set():
+                return
             try:
                 response = requests.post(self.token_endpoint, data=body, timeout=self.timeout)
                 response.raise_for_status()
