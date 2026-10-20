@@ -9,6 +9,9 @@
 - `automation`:
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - Initial onboarding of STACKIT Python SDK for Automation service
+- `certificates`:
+  - [v1.7.1](services/certificates/CHANGELOG.md#v171)
+    - **Improvement:** Update descriptions
 - `dns`:
   - [v0.10.0](services/dns/CHANGELOG.md#v0100)
     - **Feature:** New `labels_map` field (`Dict[str, str]`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
