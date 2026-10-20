@@ -1,3 +1,6 @@
+## v1.7.1
+- **Improvement:** Update descriptions
+
 ## v1.7.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies
