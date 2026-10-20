@@ -33,6 +33,9 @@ class DremioResponse(BaseModel):
     DremioResponse
     """  # noqa: E501
 
+    acl: List[StrictStr] = Field(
+        description="The Access Control List (ACL) defining the IPv4 or IPv6 CIDR ranges allowed to connect to the Dremio instance. An empty list allows access from any address. Omitting this field on creation allows access from any address. Omitting it on update preserves the current list. Updates replace the entire list and take effect asynchronously."
+    )
     authentication: Authentication
     create_time: datetime = Field(description="The point in time the resource was created.")
     description: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = Field(
@@ -51,6 +54,7 @@ class DremioResponse(BaseModel):
     id: UUID = Field(description="A auto generated unique id which identifies the resource.")
     state: StrictStr = Field(description="The current state of the resource.")
     __properties: ClassVar[List[str]] = [
+        "acl",
         "authentication",
         "create_time",
         "description",
@@ -152,6 +156,7 @@ class DremioResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "acl": obj.get("acl"),
                 "authentication": (
                     Authentication.from_dict(obj["authentication"]) if obj.get("authentication") is not None else None
                 ),
