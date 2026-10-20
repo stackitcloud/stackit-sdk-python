@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -43,6 +43,10 @@ class Cluster(BaseModel):
     extensions: Optional[Extension] = None
     hibernation: Optional[Hibernation] = None
     kubernetes: Kubernetes
+    labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="Labels are key-value pairs. Keys may contain domain prefix separated by a slash(/) and must begin with an alphanumerical character. Values may be empty and if not empty, they must begin and end with an alphanumerical character. Keys can be between 1-314 characters long, whereas values can be 0-63 characters long.",
+    )
     maintenance: Optional[Maintenance] = None
     name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=11)]] = Field(
         default=None,
@@ -57,6 +61,7 @@ class Cluster(BaseModel):
         "extensions",
         "hibernation",
         "kubernetes",
+        "labels",
         "maintenance",
         "name",
         "network",
@@ -170,6 +175,7 @@ class Cluster(BaseModel):
                     Hibernation.from_dict(obj["hibernation"]) if obj.get("hibernation") is not None else None
                 ),
                 "kubernetes": Kubernetes.from_dict(obj["kubernetes"]) if obj.get("kubernetes") is not None else None,
+                "labels": obj.get("labels"),
                 "maintenance": (
                     Maintenance.from_dict(obj["maintenance"]) if obj.get("maintenance") is not None else None
                 ),
