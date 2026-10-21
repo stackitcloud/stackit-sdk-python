@@ -11,6 +11,9 @@
 - `automation`:
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - Initial onboarding of STACKIT Python SDK for Automation service
+- `certificates`:
+  - [v1.7.1](services/certificates/CHANGELOG.md#v171)
+    - **Improvement:** Update descriptions
 - `dns`:
   - [v0.10.0](services/dns/CHANGELOG.md#v0100)
     - **Feature:** New `labels_map` field (`Dict[str, str]`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
@@ -18,7 +21,26 @@
     - **Improvement:** `list_record_sets`/`list_zones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
     - **Improvement:** `Label.key`/`CreateLabelPayload.key` now accepts up to 314 characters (previously 63), supporting prefixed label keys (e.g. `example.com/environment`)
     - **Breaking Change:** `PartialUpdateZonePayload.extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observability_extension.state`
+- `dremio`:
+  - [v0.2.0](services/dremio/CHANGELOG.md#v020)
+    - **Feature:** Add `acl` field to models `CreateDremioInstancePayload`, `DremioResponse`, and `UpdateDremioInstancePayload`
+    - **Breaking Change:** `DremioResponse` now requires an `acl` field; constructing an instance without it will raise a validation error
+- `iaas`:
+  - [v1.7.0](services/iaas/CHANGELOG.md#v170)
+    - **Docs:** Update documentation for `labels` field constraints across models.
+    - **Feature:** Add `Description` field in `Network` model
+    - **Feature:** Add `CreatedAt` and `UpdatedAt` timestamps in `NIC`, `PublicIp` and `ServerNetwork` model
+    - **Feature:** Add enum validation for `Type` field in `DestinationCIDRv4` model. Valid value is `cidrv4`.
+    - **Feature:** Add enum validation for `Type` field in `DestinationCIDRv6` model. Valid value is `cidrv6`.
+    - **Feature:** Add enum validation for `Type` field in `NexthopBlackhole` model. Valid value is `blackhole`.
+    - **Feature:** Add enum validation for `Type` field in `NexthopInternet` model. Valid value is `internet`.
+    - **Feature:** Add enum validation for `Type` field in `NexthopIPv4` model. Valid value is `ipv4`.
+    - **Feature:** Add enum validation for `Type` field in `NexthopIPv6` model. Valid value is `ipv6`.
+    - **Feature:** Add `ProjectType` and `VpcId` fields in `Project` model
 - `objectstorage`:
+  - [v1.7.0](services/objectstorage/CHANGELOG.md#v170)
+    - **Feature:** New field `Labels` in `ProjectStatus` model struct
+    - **Feature:** New API client method `UpdateService`
   - [v1.6.0](services/objectstorage/CHANGELOG.md#v160)
     - **Feature:** New model class `RateLimitError`
     - **Improvement:** Add HTTP 429 rate limit error responses in API operations
@@ -30,6 +52,10 @@
 - `resourcemanager`
   - [v0.11.1](services/resourcemanager/CHANGELOG.md#0111)
     - Update descriptions of `labels` attributes in model classes
+- `sfs`:
+  - [v0.9.0](services/sfs/CHANGELOG.md#v090)
+    - **Docs:** Update description of `Labels` fields
+    - **Feature:** Add new `ConflictError` model for responses with 409 status code
 - `stackitmarketplace`
   - [v1.18.0](services/stackitmarketplace/CHANGELOG.md#v1180)
     - **Feature:** New model classes `ConsumersSubscriptionsCreatePayload`, `MarketplaceSubscriptionV1Assets`, `MarketplaceSubscriptionV1File`, `MarketplaceSubscriptionV1FileLocalizedVersion`, `MarketplaceSubscriptionV1ListSubscriptionsResponse`, `MarketplaceSubscriptionV1Subscription`, `MarketplaceSubscriptionV1SubscriptionProduct`, `MarketplaceSubscriptionV1SubscriptionRedirect`,
