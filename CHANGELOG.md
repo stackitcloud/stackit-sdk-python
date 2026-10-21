@@ -19,6 +19,10 @@
     - **Improvement:** `list_record_sets`/`list_zones` docs clarify that records/zones in the `DELETE_SUCCEEDED` state are excluded by default; pass `state[eq]=DELETE_SUCCEEDED` to retrieve them
     - **Improvement:** `Label.key`/`CreateLabelPayload.key` now accepts up to 314 characters (previously 63), supporting prefixed label keys (e.g. `example.com/environment`)
     - **Breaking Change:** `PartialUpdateZonePayload.extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observability_extension.state`
+- `dremio`:
+  - [v0.2.0](services/dremio/CHANGELOG.md#v020)
+    - **Feature:** Add `acl` field to models `CreateDremioInstancePayload`, `DremioResponse`, and `UpdateDremioInstancePayload`
+    - **Breaking Change:** `DremioResponse` now requires an `acl` field; constructing an instance without it will raise a validation error
 - `iaas`:
   - [v1.7.0](services/iaas/CHANGELOG.md#v170)
     - **Docs:** Update documentation for `labels` field constraints across models.
