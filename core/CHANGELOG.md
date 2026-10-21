@@ -1,3 +1,6 @@
+## v0.4.0
+- **Feature:** Add `KeyAuth.close()` to stop the background token refresh thread and its worker, so a discarded instance (for example after key rotation) no longer keeps running and requesting tokens
+
 ## v0.3.1
 - **Fix:** Refresh access tokens five minutes before expiration instead of after, and wait for in-progress refreshes before authorizing requests
 
