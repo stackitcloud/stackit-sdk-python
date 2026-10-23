@@ -51,6 +51,9 @@ class Phase2Status(BaseModel):
         description="The negotiated integrity algorithm or pseudo-random-function.",
         alias="integrityAlgorithm",
     )
+    local_ts: Optional[List[StrictStr]] = Field(
+        default=None, description="List of negotiated local traffic selectors.", alias="localTS"
+    )
     packets_in: Optional[StrictStr] = Field(
         default=None,
         description="The total number of packets received through this IPsec Security Association.",
@@ -65,6 +68,9 @@ class Phase2Status(BaseModel):
         default=None,
         description="The security protocol used for the tunnel, typically `ESP` (Encapsulating Security Payload).",
     )
+    remote_ts: Optional[List[StrictStr]] = Field(
+        default=None, description="List of negotiated remote traffic selectors.", alias="remoteTS"
+    )
     state: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
         "bytesIn",
@@ -73,9 +79,11 @@ class Phase2Status(BaseModel):
         "encap",
         "encryptionAlgorithm",
         "integrityAlgorithm",
+        "localTS",
         "packetsIn",
         "packetsOut",
         "protocol",
+        "remoteTS",
         "state",
     ]
 
@@ -135,9 +143,11 @@ class Phase2Status(BaseModel):
                 "encap": obj.get("encap"),
                 "encryptionAlgorithm": obj.get("encryptionAlgorithm"),
                 "integrityAlgorithm": obj.get("integrityAlgorithm"),
+                "localTS": obj.get("localTS"),
                 "packetsIn": obj.get("packetsIn"),
                 "packetsOut": obj.get("packetsOut"),
                 "protocol": obj.get("protocol"),
+                "remoteTS": obj.get("remoteTS"),
                 "state": obj.get("state"),
             }
         )
