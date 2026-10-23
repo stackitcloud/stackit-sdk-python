@@ -28,12 +28,13 @@ class RunnerRuntime(BaseModel):
     Describes a STACKIT Git Runner runtime.
     """  # noqa: E501
 
+    arch: StrictStr = Field(description="Indicates the runner image architecture.")
     availability: StrictStr = Field(description="Indicates the availability of the runner label")
     description: StrictStr = Field(description="Human-friendly description of the runtime and it's capabilities.")
     display_name: StrictStr = Field(description="Human-friendly name of the runtime.")
     id: StrictStr = Field(description="Runtime identifier.")
     label: StrictStr = Field(description="Runtime label.")
-    __properties: ClassVar[List[str]] = ["availability", "description", "display_name", "id", "label"]
+    __properties: ClassVar[List[str]] = ["arch", "availability", "description", "display_name", "id", "label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -85,6 +86,7 @@ class RunnerRuntime(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "arch": obj.get("arch"),
                 "availability": obj.get("availability"),
                 "description": obj.get("description"),
                 "display_name": obj.get("display_name"),
