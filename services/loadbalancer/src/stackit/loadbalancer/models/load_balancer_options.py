@@ -35,6 +35,11 @@ class LoadBalancerOptions(BaseModel):
     """  # noqa: E501
 
     access_control: Optional[LoadbalancerOptionAccessControl] = Field(default=None, alias="accessControl")
+    access_logs: Optional[StrictBool] = Field(
+        default=None,
+        description="Enable per-request access logs on the Load Balancer. Defaults to false. Enable only when the Load Balancer's expected traffic volume can be sustained by the downstream logging pipeline, as access-log volume scales linearly with request rate. Requires STACKIT Telemetry Hub or STACKIT Observability to be set up for the logs to be viewable.",
+        alias="accessLogs",
+    )
     ephemeral_address: Optional[StrictBool] = Field(default=None, alias="ephemeralAddress")
     observability: Optional[LoadbalancerOptionObservability] = None
     private_network_only: Optional[StrictBool] = Field(
@@ -42,7 +47,13 @@ class LoadBalancerOptions(BaseModel):
         description="Load Balancer is accessible only via a private network ip address. Not changeable after creation.",
         alias="privateNetworkOnly",
     )
-    __properties: ClassVar[List[str]] = ["accessControl", "ephemeralAddress", "observability", "privateNetworkOnly"]
+    __properties: ClassVar[List[str]] = [
+        "accessControl",
+        "accessLogs",
+        "ephemeralAddress",
+        "observability",
+        "privateNetworkOnly",
+    ]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -105,6 +116,7 @@ class LoadBalancerOptions(BaseModel):
                     if obj.get("accessControl") is not None
                     else None
                 ),
+                "accessLogs": obj.get("accessLogs"),
                 "ephemeralAddress": obj.get("ephemeralAddress"),
                 "observability": (
                     LoadbalancerOptionObservability.from_dict(obj["observability"])
