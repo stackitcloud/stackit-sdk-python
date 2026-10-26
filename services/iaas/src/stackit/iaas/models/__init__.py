@@ -88,6 +88,7 @@ from stackit.iaas.models.create_snapshot_payload import CreateSnapshotPayload
 from stackit.iaas.models.create_volume_payload import CreateVolumePayload
 from stackit.iaas.models.destination_cidrv4 import DestinationCIDRv4
 from stackit.iaas.models.destination_cidrv6 import DestinationCIDRv6
+from stackit.iaas.models.destination_prefix_list import DestinationPrefixList
 from stackit.iaas.models.error import Error
 from stackit.iaas.models.get_server_log200_response import GetServerLog200Response
 from stackit.iaas.models.icmp_parameters import ICMPParameters
