@@ -36,15 +36,17 @@ class ListFlavors(BaseModel):
     description: StrictStr = Field(description="The flavor description.")
     id: StrictStr = Field(description="The id of the instance flavor.")
     max_gb: StrictInt = Field(
-        description="maximum storage which can be ordered for the flavor in Gigabyte.", alias="maxGB"
+        description="The maximum storage size in gigabytes that can be ordered for this flavor.", alias="maxGB"
     )
     memory: StrictInt = Field(description="The memory of the instance in Gibibyte.")
-    min_gb: StrictInt = Field(description="minimum storage which is required to order in Gigabyte.", alias="minGB")
+    min_gb: StrictInt = Field(
+        description="The minimum storage size in gigabytes required for this flavor.", alias="minGB"
+    )
     node_type: StrictStr = Field(
         description="defines the nodeType it can be either single or replica", alias="nodeType"
     )
     storage_classes: List[FlavorStorageClassesStorageClass] = Field(
-        description="maximum storage which can be ordered for the flavor in Gigabyte.", alias="storageClasses"
+        description="The storage classes available for the flavor.", alias="storageClasses"
     )
     __properties: ClassVar[List[str]] = [
         "cpu",
