@@ -30,11 +30,11 @@ class PartialUpdateOrganizationPayload(BaseModel):
 
     labels: Optional[Dict[str, Optional[StrictStr]]] = Field(
         default=None,
-        description='Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  Setting an individual label\'s value to `null` removes/deletes that label from the resource.  * **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters. * **Value:** Must be 63 characters or less. May be empty (""). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.).  > Note: Additional naming restrictions may apply depending on your specific organization.*',
+        description='Key-value string pairs attached to an existing resource container. Certain labels may be enforced via organizational policies.  Setting an individual label\'s value to `null` removes/deletes that label from the resource.  * **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters. * **Value:** Must be 63 characters or less. May be empty (""). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). Can be set to null to delete the label.  > Note: Additional naming restrictions may apply depending on your specific organization.*',
     )
     name: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
-        description="The new name of the organization matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.",
+        description="The new name of the organization matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$`.",
     )
     __properties: ClassVar[List[str]] = ["labels", "name"]
 
@@ -47,9 +47,9 @@ class PartialUpdateOrganizationPayload(BaseModel):
         if not isinstance(value, str):
             value = str(value)
 
-        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$", value):
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$", value):
             raise ValueError(
-                r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$/"
+                r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$/"
             )
         return value
 
