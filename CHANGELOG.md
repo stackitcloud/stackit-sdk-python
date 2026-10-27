@@ -50,6 +50,10 @@
   - [v1.4.0](services/rabbitmq/CHANGELOG.md#v140)
     - **Breaking Change:** `rabbitmq_tracing` removed from the allowed values for `InstanceParameters.plugins`; passing it now raises a `ValueError`
 - `resourcemanager`
+  - [v0.12.0](services/resourcemanager/CHANGELOG.md#0120)
+    - Update description of the `labels` attribute in model classes
+    - Update regex of the `name` attribute in `CreateFolderPayload`, `CreateProjectPayload`, `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload`, `PartialUpdateProjectPayload` model classes
+    - Make `members` attribute optional in `CreateProjectPayload` model class
   - [v0.11.1](services/resourcemanager/CHANGELOG.md#0111)
     - Update descriptions of `labels` attributes in model classes
 - `sfs`:
