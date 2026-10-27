@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class ClusterStatusState(str, Enum):
     """
-    ClusterStatusState
+    ClusterStatusState holds information about the current state of the Cluster
     """
 
     """
