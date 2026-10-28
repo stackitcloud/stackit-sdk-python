@@ -49,6 +49,9 @@
 - `rabbitmq`:
   - [v1.4.0](services/rabbitmq/CHANGELOG.md#v140)
     - **Breaking Change:** `rabbitmq_tracing` removed from the allowed values for `InstanceParameters.plugins`; passing it now raises a `ValueError`
+- `registry`:
+  - [v0.1.0](services/registry/CHANGELOG.md#v010)
+    - **New:** STACKIT Container Registry module
 - `resourcemanager`
   - [v0.12.0](services/resourcemanager/CHANGELOG.md#0120)
     - Update description of the `labels` attribute in model classes
