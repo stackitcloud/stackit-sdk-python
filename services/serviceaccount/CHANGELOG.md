@@ -1,3 +1,7 @@
+## v0.12.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v0.11.0
 - **Breaking change:** Removal of API client methods: `create_access_token`, `delete_access_token`, `list_access_tokens`
 - **Breaking change:** Removal of model classes: `AccessToken`, `CreateAccessTokenPayload`, `ListAccessTokensResponse`

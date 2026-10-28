@@ -1,3 +1,7 @@
+## v0.14.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v0.13.0
 - **Breaking Change:** Remove enum `Protection`
 - **Breaking Change:** Change type of `protection` attribute from `Protection` to `str` in `CreateKeyPayload`, `CreateWrappingKeyPayload`, `Key` and `WrappingKey` model

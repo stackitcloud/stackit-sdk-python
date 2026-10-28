@@ -1,3 +1,7 @@
+## v0.6.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v0.5.0
 - **Feature:** Add label support for tokens
 

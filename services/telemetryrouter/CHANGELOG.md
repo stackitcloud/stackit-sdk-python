@@ -1,3 +1,7 @@
+## v0.7.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v0.6.0
 - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
 

@@ -1,3 +1,7 @@
+## v0.5.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v0.4.0
 - **Chore:** Bump minimum Python version to 3.10
 - **Chore:** Update dependencies

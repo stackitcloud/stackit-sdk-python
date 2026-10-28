@@ -1,3 +1,7 @@
+## v1.4.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v1.3.0
 - **Breaking Change/Fix:** `create_backup` operation now returns `CreateBackupResponseItem` instead of `List[CreateBackupResponseItem]`
     The return type now correctly models the actual JSON response, this operation was broken beforehand.

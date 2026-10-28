@@ -1,3 +1,7 @@
+## v2.9.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v2.8.0
 - **Breaking Change:** `log_sink` fields changed to new wrapper types: `ConfigLogSink`, `ConfigPatchLogSink`, `CreateDistributionPayloadLogSink`
 - **Feature:** New model classes `ConfigLogSink`, `ConfigPatchLogSink` and `CreateDistributionPayloadLogSink`
