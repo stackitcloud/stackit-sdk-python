@@ -1,3 +1,7 @@
+## v0.11.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v0.10.0
 - **Feature:** New `labels_map` field (`Dict[str, str]`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
 - **Deprecation:** `create_label`, `delete_label`, `list_labels` operations are now deprecated and scheduled for sunset on 2027-10-01; use the `labels_map` field on the `Zone` resource instead

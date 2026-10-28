@@ -1,3 +1,7 @@
+## v0.8.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v0.7.0
 - **Feature:** Add support for managing AppRoles and their secret IDs: new `Approle`, `ApproleList`, `ApproleSecret`, `ApproleSecretList`, `CreateApprolePayload`, `CreateApproleSecretIdPayload`, `UpdateApprolePayload` and `UpdateApproleSecretIdPayload` models, plus new `create_approle`, `get_approle`, `get_approles`, `update_approle`, `delete_approle`, `create_approle_secret_id`, `get_approle_secret_id`, `list_approle_secret_ids`, `update_approle_secret_id` and `delete_approle_secret_id` operations
 

@@ -1,3 +1,7 @@
+## v1.8.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v1.7.0
 - **Feature:** New field `Labels` in `ProjectStatus` model struct
 - **Feature:** New API client method `UpdateService`

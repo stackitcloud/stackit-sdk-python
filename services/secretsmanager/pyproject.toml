@@ -1,19 +1,19 @@
 [project]
 name = "stackit-secretsmanager"
-version = "v0.7.0"
+version = "v0.8.0"
 description = "STACKIT Secrets Manager API"
 authors = [{ name = "STACKIT Developer Tools", email = "developer-tools@stackit.cloud" }]
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.11,<4.0"
 readme = "README.md"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
 ]
 dependencies = [
     "stackit-core>=0.0.1a",

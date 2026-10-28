@@ -1,3 +1,7 @@
+## v1.8.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v1.7.0
 - **Docs:** Update documentation for `labels` field constraints across models.
 - **Feature:** Add `Description` field in `Network` model

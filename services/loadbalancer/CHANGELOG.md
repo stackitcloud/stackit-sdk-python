@@ -1,3 +1,7 @@
+## v0.13.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v0.12.0
 - **Feature:** Add new enum values `TYPE_IP_EXHAUSTED`, `TYPE_DNS_NOT_CONFIGURED` and `TYPE_VM_PORT_NOT_CONFIGURED` to `LoadBalancerError` model
 

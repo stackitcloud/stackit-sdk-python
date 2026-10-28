@@ -1,3 +1,7 @@
+## v1.7.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v1.6.1
 - **Improvement:** Add validation for `name` field in `CreateDatabasePayload`, `DatabaseRoles`, `GetDatabaseResponse`, `ListDatabase`, `PartialUpdateDatabasePayload` and `UpdateDatabasePayload` models
 - **Docs:** Extend description of `InstanceNetworkAccessScope` enum to note that the `SNA` value is only permitted for enabled accounts

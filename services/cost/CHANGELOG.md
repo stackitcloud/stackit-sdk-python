@@ -1,3 +1,7 @@
+## v0.5.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v0.4.1
 - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.cost` to fail with `ModuleNotFoundError`
 

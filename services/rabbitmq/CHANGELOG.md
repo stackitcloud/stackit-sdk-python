@@ -1,3 +1,7 @@
+## v1.5.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v1.4.0
 - **Breaking Change:** `rabbitmq_tracing` removed from the allowed values for `InstanceParameters.plugins`; passing it now raises a `ValueError`
 

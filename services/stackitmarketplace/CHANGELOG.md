@@ -1,3 +1,7 @@
+## v1.19.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v1.18.0
 - **Feature:** New model classes `ConsumersSubscriptionsCreatePayload`, `MarketplaceSubscriptionV1Assets`, `MarketplaceSubscriptionV1File`, `MarketplaceSubscriptionV1FileLocalizedVersion`, `MarketplaceSubscriptionV1ListSubscriptionsResponse`, `MarketplaceSubscriptionV1Subscription`, `MarketplaceSubscriptionV1SubscriptionProduct`, `MarketplaceSubscriptionV1SubscriptionRedirect`,
 - **Feature:** New API client methods `consumers_subscriptions_cancel`, `consumers_subscriptions_create`, `consumers_subscriptions_get`, `consumers_subscriptions_list_by_organization`, `consumers_subscriptions_list_by_project`, `consumers_subscriptions_redirects_get`, `consumers_subscriptions_terminate`, `vendors_subscriptions_get`, `vendors_subscriptions_list_by_organization`, `vendors_subscriptions_list_by_project`

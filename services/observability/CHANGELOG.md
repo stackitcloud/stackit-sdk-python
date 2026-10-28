@@ -1,3 +1,7 @@
+## v0.18.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Update dependencies
+
 ## v0.17.0
 - **Breaking change:** Updated `InstanceSensitiveData` model because of misbehaving API
 
