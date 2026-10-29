@@ -21,7 +21,15 @@ from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictInt,
+    StrictStr,
+    field_validator,
+)
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -40,6 +48,7 @@ class Snapshot(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
         default=None, description="Description Object. Allows string up to 255 Characters."
     )
+    encrypted: Optional[StrictBool] = Field(default=None, description="Indicates if a volume is encrypted.")
     id: Optional[UUID] = Field(default=None, description="Universally Unique Identifier (UUID).")
     labels: Optional[Dict[str, Any]] = Field(
         default=None,
@@ -61,6 +70,7 @@ class Snapshot(BaseModel):
         "availabilityZone",
         "createdAt",
         "description",
+        "encrypted",
         "id",
         "labels",
         "name",
@@ -171,11 +181,13 @@ class Snapshot(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "availability_zone",
                 "created_at",
+                "encrypted",
                 "id",
                 "size",
                 "status",
@@ -204,6 +216,7 @@ class Snapshot(BaseModel):
                 "availabilityZone": obj.get("availabilityZone"),
                 "createdAt": obj.get("createdAt"),
                 "description": obj.get("description"),
+                "encrypted": obj.get("encrypted"),
                 "id": obj.get("id"),
                 "labels": obj.get("labels"),
                 "name": obj.get("name"),
