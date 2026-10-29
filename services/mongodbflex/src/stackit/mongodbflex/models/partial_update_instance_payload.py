@@ -24,7 +24,7 @@ from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 from stackit.mongodbflex.models.acl import ACL
-from stackit.mongodbflex.models.storage import Storage
+from stackit.mongodbflex.models.storage_update import StorageUpdate
 
 
 class PartialUpdateInstancePayload(BaseModel):
@@ -39,7 +39,7 @@ class PartialUpdateInstancePayload(BaseModel):
     name: Optional[Annotated[str, Field(min_length=3, strict=True, max_length=63)]] = None
     options: Optional[Dict[str, StrictStr]] = None
     replicas: Optional[StrictInt] = None
-    storage: Optional[Storage] = None
+    storage: Optional[StorageUpdate] = None
     version: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
         "acl",
@@ -129,7 +129,7 @@ class PartialUpdateInstancePayload(BaseModel):
                 "name": obj.get("name"),
                 "options": obj.get("options"),
                 "replicas": obj.get("replicas"),
-                "storage": Storage.from_dict(obj["storage"]) if obj.get("storage") is not None else None,
+                "storage": StorageUpdate.from_dict(obj["storage"]) if obj.get("storage") is not None else None,
                 "version": obj.get("version"),
             }
         )
