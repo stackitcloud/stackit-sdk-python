@@ -62,6 +62,9 @@ from stackit.telemetryrouter.models.list_destinations_response import (
 from stackit.telemetryrouter.models.list_telemetry_routers_response import (
     ListTelemetryRoutersResponse,
 )
+from stackit.telemetryrouter.models.partial_update_telemetry_router_payload import (
+    PartialUpdateTelemetryRouterPayload,
+)
 from stackit.telemetryrouter.models.response4xx import Response4xx
 from stackit.telemetryrouter.models.telemetry_router_response import (
     TelemetryRouterResponse,
