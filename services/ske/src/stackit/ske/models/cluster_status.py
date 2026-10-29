@@ -57,12 +57,22 @@ class ClusterStatus(BaseModel):
     expiration: Optional[ExpirationStatus] = None
     hibernated: Optional[StrictBool] = None
     identity: Optional[StrictStr] = None
+    node_address_ranges: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The network ranges (in CIDR notation) used by nodes of the cluster.",
+        alias="nodeAddressRanges",
+    )
     pod_address_ranges: Optional[List[StrictStr]] = Field(
         default=None,
         description="The network ranges (in CIDR notation) used by pods of the cluster.",
         alias="podAddressRanges",
     )
     service_account_issuer: Optional[StrictStr] = Field(default=None, alias="serviceAccountIssuer")
+    service_address_ranges: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The network ranges (in CIDR notation) used by services of the cluster.",
+        alias="serviceAddressRanges",
+    )
     __properties: ClassVar[List[str]] = [
         "aggregated",
         "creationTime",
@@ -73,8 +83,10 @@ class ClusterStatus(BaseModel):
         "expiration",
         "hibernated",
         "identity",
+        "nodeAddressRanges",
         "podAddressRanges",
         "serviceAccountIssuer",
+        "serviceAddressRanges",
     ]
 
     @field_validator("creation_time", mode="before")
@@ -175,8 +187,10 @@ class ClusterStatus(BaseModel):
                 ),
                 "hibernated": obj.get("hibernated"),
                 "identity": obj.get("identity"),
+                "nodeAddressRanges": obj.get("nodeAddressRanges"),
                 "podAddressRanges": obj.get("podAddressRanges"),
                 "serviceAccountIssuer": obj.get("serviceAccountIssuer"),
+                "serviceAddressRanges": obj.get("serviceAddressRanges"),
             }
         )
         return _obj
