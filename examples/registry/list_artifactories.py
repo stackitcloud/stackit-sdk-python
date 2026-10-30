@@ -9,5 +9,19 @@ region = "eu01"
 config = Configuration()
 client = DefaultApi(config)
 
-# Get all artifactories
-print(client.list_artifactories(project_id, region))
+# Get all artifactories, following pagination tokens.
+next_page_token = None
+
+while True:
+    response = client.list_artifactories(
+        project_id=project_id,
+        region_id=region,
+        next_page_token=next_page_token,
+    )
+
+    for artifactory in response.artifactories:
+        print(artifactory)
+
+    next_page_token = response.next_page_token
+    if not next_page_token:
+        break
