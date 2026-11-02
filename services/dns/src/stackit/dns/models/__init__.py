@@ -27,6 +27,8 @@ from stackit.dns.models.domain_observability_extension import (
 )
 from stackit.dns.models.error_message import ErrorMessage
 from stackit.dns.models.export_record_sets_payload import ExportRecordSetsPayload
+from stackit.dns.models.flush_domain_payload import FlushDomainPayload
+from stackit.dns.models.flush_domain_response import FlushDomainResponse
 from stackit.dns.models.import_record_sets_payload import ImportRecordSetsPayload
 from stackit.dns.models.import_record_sets_response import ImportRecordSetsResponse
 from stackit.dns.models.import_summary import ImportSummary
@@ -34,6 +36,10 @@ from stackit.dns.models.label import Label
 from stackit.dns.models.list_labels_response import ListLabelsResponse
 from stackit.dns.models.list_record_sets_response import ListRecordSetsResponse
 from stackit.dns.models.list_zones_response import ListZonesResponse
+from stackit.dns.models.lookup_domain_payload import LookupDomainPayload
+from stackit.dns.models.lookup_domain_response import LookupDomainResponse
+from stackit.dns.models.lookup_record import LookupRecord
+from stackit.dns.models.lookup_result import LookupResult
 from stackit.dns.models.message import Message
 from stackit.dns.models.move_code_response import MoveCodeResponse
 from stackit.dns.models.move_zone_payload import MoveZonePayload
