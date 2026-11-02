@@ -3,6 +3,7 @@
 - `core`:
   - [v0.5.0](core/CHANGELOG.md#v050)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v0.4.0](core/CHANGELOG.md#v040)
     - **Feature:** Add `KeyAuth.close()` to stop the background token refresh thread and its worker, so a discarded instance no longer keeps running and requesting tokens
@@ -11,40 +12,48 @@
 - `alb`:
   - [v0.14.0](services/alb/CHANGELOG.md#v0140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies  
   - [v0.13.0](services/alb/CHANGELOG.md#v0130)
     - **Feature:** Add `ip_block_list_name` field to `LoadbalancerOptionAccessControl` model
 - `albwaf`:
   - [v0.2.0](services/albwaf/CHANGELOG.md#v020)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `authorization`
   - [v0.10.0](services/authorization/CHANGELOG.md#v0100)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `automation`:
   - [v0.2.0](services/automation/CHANGELOG.md#v020)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies 
   - [v0.1.0](services/automation/CHANGELOG.md#v010)
     - Initial onboarding of STACKIT Python SDK for Automation service
 - `cdn`
   - [v2.9.0](services/cdn/CHANGELOG.md#v290)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `certificates`:
   - [v1.8.0](services/certificates/CHANGELOG.md#v180)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v1.7.1](services/certificates/CHANGELOG.md#v171)
     - **Improvement:** Update descriptions
 - `cost`
   - [v0.5.0](services/cost/CHANGELOG.md#v050)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `dns`:
   - [v0.11.0](services/dns/CHANGELOG.md#v0110)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v0.10.0](services/dns/CHANGELOG.md#v0100)
     - **Feature:** New `labels_map` field (`Dict[str, str]`) on `CreateZonePayload`, `PartialUpdateZonePayload`, and `Zone` to manage zone labels as a map (max 64 items)
@@ -55,6 +64,7 @@
 - `dremio`:
   - [v0.3.0](services/dremio/CHANGELOG.md#v030)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v0.2.0](services/dremio/CHANGELOG.md#v020)
     - **Feature:** Add `acl` field to models `CreateDremioInstancePayload`, `DremioResponse`, and `UpdateDremioInstancePayload`
@@ -62,14 +72,17 @@
 - `edge`
   - [v0.8.0](services/edge/CHANGELOG.md#v080)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `git`
   - [v0.11.0](services/git/CHANGELOG.md#v0110)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `iaas`:
   - [v1.8.0](services/iaas/CHANGELOG.md#v180)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v1.7.0](services/iaas/CHANGELOG.md#v170)
     - **Docs:** Update documentation for `labels` field constraints across models.
@@ -85,42 +98,52 @@
 - `intake`
   - [v0.8.0](services/intake/CHANGELOG.md#v080)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `kms`
   - [v0.14.0](services/kms/CHANGELOG.md#v0140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `loadbalancer`
   - [v0.13.0](services/loadbalancer/CHANGELOG.md#v0130)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `logme`:
   - [v1.4.0](services/logme/CHANGELOG.md#v140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `logs`
   - [v0.5.0](services/logs/CHANGELOG.md#v050)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `mariadb`
   - [v1.4.0](services/mariadb/CHANGELOG.md#v140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `modelexperiments`
   - [v0.3.0](services/modelexperiments/CHANGELOG.md#v030)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `modelserving`
   - [v0.6.0](services/modelserving/CHANGELOG.md#v060)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `mongodbflex`
   - [v1.6.0](services/mongodbflex/CHANGELOG.md#v160)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `objectstorage`:
   - [v1.8.0](services/objectstorage/CHANGELOG.md#v180)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v1.7.0](services/objectstorage/CHANGELOG.md#v170)
     - **Feature:** New field `Labels` in `ProjectStatus` model struct
@@ -133,34 +156,41 @@
 - `observability`
   - [v0.18.0](services/observability/CHANGELOG.md#v0180)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `opensearch`
   - [v1.4.0](services/opensearch/CHANGELOG.md#v140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `postgresflex`
   - [v1.7.0](services/postgresflex/CHANGELOG.md#v170)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `rabbitmq`:
   - [v1.5.0](services/rabbitmq/CHANGELOG.md#v150)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v1.4.0](services/rabbitmq/CHANGELOG.md#v140)
     - **Breaking Change:** `rabbitmq_tracing` removed from the allowed values for `InstanceParameters.plugins`; passing it now raises a `ValueError`
 - `redis`:
   - [v1.4.0](services/redis/CHANGELOG.md#v140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `registry`:
   - [v0.2.0](services/registry/CHANGELOG.md#v020)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v0.1.0](services/registry/CHANGELOG.md#v010)
     - **New:** STACKIT Container Registry module
 - `resourcemanager`
   - [v0.13.0](services/resourcemanager/CHANGELOG.md#v0130)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v0.12.0](services/resourcemanager/CHANGELOG.md#0120)
     - Update description of the `labels` attribute in model classes
@@ -171,34 +201,42 @@
 - `runcommand`
   - [v1.4.0](services/runcommand/CHANGELOG.md#v140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `scf`
   - [v0.7.0](services/scf/CHANGELOG.md#v070)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `secretsmanager`
   - [v0.8.0](services/secretsmanager/CHANGELOG.md#v080)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `serverbackup`
   - [v1.4.0](services/serverbackup/CHANGELOG.md#v140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `serverupdate`
   - [v1.4.0](services/serverupdate/CHANGELOG.md#v140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `serviceaccount`
   - [v0.12.0](services/serviceaccount/CHANGELOG.md#v0120)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `serviceenablement`
   - [v1.4.0](services/serviceenablement/CHANGELOG.md#v140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `sfs`:
   - [v0.10.0](services/sfs/CHANGELOG.md#v0100)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v0.9.0](services/sfs/CHANGELOG.md#v090)
     - **Docs:** Update description of `Labels` fields
@@ -206,14 +244,17 @@
 - `ske`:
   - [v1.14.0](services/ske/CHANGELOG.md#v1140)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `sqlserverflex`:
   - [v1.5.0](services/sqlserverflex/CHANGELOG.md#v150)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `stackitmarketplace`
   - [v1.19.0](services/stackitmarketplace/CHANGELOG.md#v1190)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v1.18.0](services/stackitmarketplace/CHANGELOG.md#v1180)
     - **Feature:** New model classes `ConsumersSubscriptionsCreatePayload`, `MarketplaceSubscriptionV1Assets`, `MarketplaceSubscriptionV1File`, `MarketplaceSubscriptionV1FileLocalizedVersion`, `MarketplaceSubscriptionV1ListSubscriptionsResponse`, `MarketplaceSubscriptionV1Subscription`, `MarketplaceSubscriptionV1SubscriptionProduct`, `MarketplaceSubscriptionV1SubscriptionRedirect`,
@@ -224,26 +265,31 @@
 - `telemetrylink`
   - [v0.5.0](services/telemetrylink/CHANGELOG.md#v050)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `telemetryrouter`:
   - [v0.7.0](services/telemetryrouter/CHANGELOG.md#v070)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
 - `ufw`:
   - [v0.2.0](services/ufw/CHANGELOG.md#v020)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `valkey`:
   - [v0.3.0](services/valkey/CHANGELOG.md#v030)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v0.2.2](services/valkey/CHANGELOG.md#v022)
     - **Docs:** `InstanceParameters.min_replicas_to_write` doc comment now notes it should not be greater than the number of nodes (e.g. 1 or 3)
 - `vpn`:
   - [v0.8.0](services/vpn/CHANGELOG.md#v080)
     - **Chore:** Bump minimum Python version to 3.11
+    - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
   - [v0.7.3](services/vpn/CHANGELOG.md#v073)
     - **Improvement:** Relax maximum `rekey_time` validation to `86400` (previously `28800`) in `TunnelConfigurationPhase1`

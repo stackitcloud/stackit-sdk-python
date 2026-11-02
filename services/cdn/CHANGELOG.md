@@ -1,5 +1,6 @@
 ## v2.9.0
 - **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Support Python version 3.15
 - **Chore:** Update dependencies
 
 ## v2.8.0
