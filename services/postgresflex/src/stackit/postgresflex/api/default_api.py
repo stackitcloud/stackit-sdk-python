@@ -1095,6 +1095,7 @@ class DefaultApi:
             "403": "Error",
             "404": "Error",
             "409": "Error",
+            "412": "Error",
             "422": "ValidationError",
             "423": "Error",
             "500": "Error",
@@ -1178,6 +1179,7 @@ class DefaultApi:
             "403": "Error",
             "404": "Error",
             "409": "Error",
+            "412": "Error",
             "422": "ValidationError",
             "423": "Error",
             "500": "Error",
@@ -1261,6 +1263,7 @@ class DefaultApi:
             "403": "Error",
             "404": "Error",
             "409": "Error",
+            "412": "Error",
             "422": "ValidationError",
             "423": "Error",
             "500": "Error",
@@ -1404,6 +1407,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "409": "Error",
             "423": "Error",
             "500": "Error",
             "503": "Error",
@@ -1483,6 +1487,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "409": "Error",
             "423": "Error",
             "500": "Error",
             "503": "Error",
@@ -1562,6 +1567,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "409": "Error",
             "423": "Error",
             "500": "Error",
             "503": "Error",
@@ -1924,7 +1930,7 @@ class DefaultApi:
     ) -> None:
         """Delete User
 
-        Delete an user from a specific instance.
+        Delete a user from a specific instance.
 
         :param project_id: The STACKIT project ID. (required)
         :type project_id: str
@@ -2004,7 +2010,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete User
 
-        Delete an user from a specific instance.
+        Delete a user from a specific instance.
 
         :param project_id: The STACKIT project ID. (required)
         :type project_id: str
@@ -2084,7 +2090,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete User
 
-        Delete an user from a specific instance.
+        Delete a user from a specific instance.
 
         :param project_id: The STACKIT project ID. (required)
         :type project_id: str
@@ -3367,7 +3373,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ListBackupsResponse:
-        """List backups
+        """List Backups
 
         List all backups which are available for a specific instance.
 
@@ -3458,7 +3464,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ListBackupsResponse]:
-        """List backups
+        """List Backups
 
         List all backups which are available for a specific instance.
 
@@ -3549,7 +3555,7 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """List backups
+        """List Backups
 
         List all backups which are available for a specific instance.
 
@@ -6482,7 +6488,7 @@ class DefaultApi:
     ) -> None:
         """Update User Partially
 
-        Update an user partially for an instance.
+        Update a user partially for an instance.
 
         :param project_id: The STACKIT project ID. (required)
         :type project_id: str
@@ -6534,6 +6540,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "412": "Error",
             "422": "ValidationError",
             "423": "Error",
             "500": "Error",
@@ -6571,7 +6578,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Update User Partially
 
-        Update an user partially for an instance.
+        Update a user partially for an instance.
 
         :param project_id: The STACKIT project ID. (required)
         :type project_id: str
@@ -6623,6 +6630,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "412": "Error",
             "422": "ValidationError",
             "423": "Error",
             "500": "Error",
@@ -6660,7 +6668,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Update User Partially
 
-        Update an user partially for an instance.
+        Update a user partially for an instance.
 
         :param project_id: The STACKIT project ID. (required)
         :type project_id: str
@@ -6712,6 +6720,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "412": "Error",
             "422": "ValidationError",
             "423": "Error",
             "500": "Error",
@@ -6809,7 +6818,7 @@ class DefaultApi:
     ) -> ResetUserPasswordResponse:
         """Reset User
 
-        Reset an user from an specific instance.
+        Reset a user from a specific instance.
 
         :param project_id: The STACKIT project ID. (required)
         :type project_id: str
@@ -6889,7 +6898,7 @@ class DefaultApi:
     ) -> ApiResponse[ResetUserPasswordResponse]:
         """Reset User
 
-        Reset an user from an specific instance.
+        Reset a user from a specific instance.
 
         :param project_id: The STACKIT project ID. (required)
         :type project_id: str
@@ -6969,7 +6978,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Reset User
 
-        Reset an user from an specific instance.
+        Reset a user from a specific instance.
 
         :param project_id: The STACKIT project ID. (required)
         :type project_id: str
@@ -7732,7 +7741,7 @@ class DefaultApi:
         instance_id: Annotated[StrictStr, Field(description="The ID of the instance.")],
         update_instance_protection_payload: Annotated[
             UpdateInstanceProtectionPayload,
-            Field(description="The request body with flag isDeletable. Parameter is required."),
+            Field(description="The request body containing the isDeletable flag. This parameter is required."),
         ],
         _request_timeout: Union[
             None,
@@ -7754,7 +7763,7 @@ class DefaultApi:
         :type region: str
         :param instance_id: The ID of the instance. (required)
         :type instance_id: str
-        :param update_instance_protection_payload: The request body with flag isDeletable. Parameter is required. (required)
+        :param update_instance_protection_payload: The request body containing the isDeletable flag. This parameter is required. (required)
         :type update_instance_protection_payload: UpdateInstanceProtectionPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7815,7 +7824,7 @@ class DefaultApi:
         instance_id: Annotated[StrictStr, Field(description="The ID of the instance.")],
         update_instance_protection_payload: Annotated[
             UpdateInstanceProtectionPayload,
-            Field(description="The request body with flag isDeletable. Parameter is required."),
+            Field(description="The request body containing the isDeletable flag. This parameter is required."),
         ],
         _request_timeout: Union[
             None,
@@ -7837,7 +7846,7 @@ class DefaultApi:
         :type region: str
         :param instance_id: The ID of the instance. (required)
         :type instance_id: str
-        :param update_instance_protection_payload: The request body with flag isDeletable. Parameter is required. (required)
+        :param update_instance_protection_payload: The request body containing the isDeletable flag. This parameter is required. (required)
         :type update_instance_protection_payload: UpdateInstanceProtectionPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -7898,7 +7907,7 @@ class DefaultApi:
         instance_id: Annotated[StrictStr, Field(description="The ID of the instance.")],
         update_instance_protection_payload: Annotated[
             UpdateInstanceProtectionPayload,
-            Field(description="The request body with flag isDeletable. Parameter is required."),
+            Field(description="The request body containing the isDeletable flag. This parameter is required."),
         ],
         _request_timeout: Union[
             None,
@@ -7920,7 +7929,7 @@ class DefaultApi:
         :type region: str
         :param instance_id: The ID of the instance. (required)
         :type instance_id: str
-        :param update_instance_protection_payload: The request body with flag isDeletable. Parameter is required. (required)
+        :param update_instance_protection_payload: The request body containing the isDeletable flag. This parameter is required. (required)
         :type update_instance_protection_payload: UpdateInstanceProtectionPayload
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -8110,6 +8119,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "412": "Error",
             "422": "ValidationError",
             "423": "Error",
             "500": "Error",
@@ -8196,6 +8206,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "412": "Error",
             "422": "ValidationError",
             "423": "Error",
             "500": "Error",
@@ -8282,6 +8293,7 @@ class DefaultApi:
             "401": "Error",
             "403": "Error",
             "404": "Error",
+            "412": "Error",
             "422": "ValidationError",
             "423": "Error",
             "500": "Error",
