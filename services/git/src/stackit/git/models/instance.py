@@ -21,7 +21,14 @@ from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+    field_validator,
+)
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -34,12 +41,17 @@ class Instance(BaseModel):
     """  # noqa: E501
 
     acl: List[StrictStr] = Field(description="Restricted ACL for instance access.")
+    admin_login: StrictBool = Field(description="Enable or disable Admin Idp")
     consumed_disk: StrictStr = Field(description="How many bytes of disk space is consumed. Read Only.")
     consumed_object_storage: StrictStr = Field(description="How many bytes of Object Storage is consumed. Read Only.")
     created: datetime = Field(description="The date and time the creation of the STACKIT Git instance was triggered.")
     feature_toggle: FeatureToggle
     flavor: StrictStr = Field(description="Instance flavor.")
     id: UUID = Field(description="A auto generated unique id which identifies the STACKIT Git instances.")
+    labels: Optional[Dict[str, Annotated[str, Field(strict=True, max_length=63)]]] = Field(
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. The `stackit-` prefix is reserved and cannot be used for Keys.",
+    )
     name: Annotated[str, Field(strict=True, max_length=32)] = Field(
         description="A user chosen name to distinguish multiple STACKIT Git instances."
     )
@@ -54,12 +66,14 @@ class Instance(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "acl",
+        "admin_login",
         "consumed_disk",
         "consumed_object_storage",
         "created",
         "feature_toggle",
         "flavor",
         "id",
+        "labels",
         "name",
         "state",
         "url",
@@ -142,6 +156,7 @@ class Instance(BaseModel):
         _obj = cls.model_validate(
             {
                 "acl": obj.get("acl"),
+                "admin_login": obj.get("admin_login") if obj.get("admin_login") is not None else False,
                 "consumed_disk": obj.get("consumed_disk"),
                 "consumed_object_storage": obj.get("consumed_object_storage"),
                 "created": obj.get("created"),
@@ -150,6 +165,7 @@ class Instance(BaseModel):
                 ),
                 "flavor": obj.get("flavor"),
                 "id": obj.get("id"),
+                "labels": obj.get("labels"),
                 "name": obj.get("name"),
                 "state": obj.get("state"),
                 "url": obj.get("url"),
