@@ -45,7 +45,7 @@ class PartialUpdateInstancePayload(BaseModel):
         default=None, description="The name of the instance."
     )
     network: Optional[InstanceNetworkOpt] = None
-    retention_days: Optional[Annotated[int, Field(le=365, strict=True, ge=32)]] = Field(
+    retention_days: Optional[Annotated[int, Field(le=90, strict=True, ge=32)]] = Field(
         default=None,
         description="How long backups are retained. The value can only be between 32 and 90 days.",
         alias="retentionDays",
