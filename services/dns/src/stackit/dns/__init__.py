@@ -35,10 +35,16 @@ __all__ = [
     "CreateRecordSetPayload",
     "CreateZonePayload",
     "DeleteLabelResponse",
+    "DnslookupLookupResponse",
+    "DnslookupModelsLookupRecord",
+    "DnslookupModelsLookupResult",
+    "DnslookupPayload",
     "DomainExtensions",
     "DomainObservabilityExtension",
     "ErrorMessage",
     "ExportRecordSetsPayload",
+    "FlushCreateFlushResponse",
+    "FlushPayload",
     "ImportRecordSetsPayload",
     "ImportRecordSetsResponse",
     "ImportSummary",
@@ -101,6 +107,16 @@ from stackit.dns.models.create_zone_payload import (
 from stackit.dns.models.delete_label_response import (
     DeleteLabelResponse as DeleteLabelResponse,
 )
+from stackit.dns.models.dnslookup_lookup_response import (
+    DnslookupLookupResponse as DnslookupLookupResponse,
+)
+from stackit.dns.models.dnslookup_models_lookup_record import (
+    DnslookupModelsLookupRecord as DnslookupModelsLookupRecord,
+)
+from stackit.dns.models.dnslookup_models_lookup_result import (
+    DnslookupModelsLookupResult as DnslookupModelsLookupResult,
+)
+from stackit.dns.models.dnslookup_payload import DnslookupPayload as DnslookupPayload
 from stackit.dns.models.domain_extensions import DomainExtensions as DomainExtensions
 from stackit.dns.models.domain_observability_extension import (
     DomainObservabilityExtension as DomainObservabilityExtension,
@@ -109,6 +125,10 @@ from stackit.dns.models.error_message import ErrorMessage as ErrorMessage
 from stackit.dns.models.export_record_sets_payload import (
     ExportRecordSetsPayload as ExportRecordSetsPayload,
 )
+from stackit.dns.models.flush_create_flush_response import (
+    FlushCreateFlushResponse as FlushCreateFlushResponse,
+)
+from stackit.dns.models.flush_payload import FlushPayload as FlushPayload
 from stackit.dns.models.import_record_sets_payload import (
     ImportRecordSetsPayload as ImportRecordSetsPayload,
 )
