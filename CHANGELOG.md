@@ -152,6 +152,9 @@
   - [v1.4.0](services/redis/CHANGELOG.md#v140)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Update dependencies
+- `registry`:
+  - [v0.1.0](services/registry/CHANGELOG.md#v010)
+    - **New:** STACKIT Container Registry module
 - `resourcemanager`
   - [v0.13.0](services/resourcemanager/CHANGELOG.md#v0130)
     - **Chore:** Bump minimum Python version to 3.11
