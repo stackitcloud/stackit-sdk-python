@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -38,7 +38,8 @@ class CreateTelemetryRouterPayload(BaseModel):
         description="The display name is a short name chosen by the user to identify the resource.", alias="displayName"
     )
     filter: Optional[ConfigFilter] = None
-    __properties: ClassVar[List[str]] = ["description", "displayName", "filter"]
+    resource_labels: Optional[Dict[str, StrictStr]] = Field(default=None, alias="resourceLabels")
+    __properties: ClassVar[List[str]] = ["description", "displayName", "filter", "resourceLabels"]
 
     @field_validator("description")
     def description_validate_regular_expression(cls, value):
@@ -119,6 +120,7 @@ class CreateTelemetryRouterPayload(BaseModel):
                 "description": obj.get("description"),
                 "displayName": obj.get("displayName"),
                 "filter": ConfigFilter.from_dict(obj["filter"]) if obj.get("filter") is not None else None,
+                "resourceLabels": obj.get("resourceLabels"),
             }
         )
         return _obj
