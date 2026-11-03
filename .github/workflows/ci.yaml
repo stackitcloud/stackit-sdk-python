@@ -16,7 +16,7 @@ jobs:
       - name: install uv and python
         uses: astral-sh/setup-uv@v7
         with:
-          version: "0.13.4"
+          version: "0.13.7"
           python-version: ${{ matrix.python-version }}
       - name: Install
         run: make install-dev
