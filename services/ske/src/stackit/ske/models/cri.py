@@ -21,14 +21,17 @@ from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
+from stackit.ske.models.kata import Kata
+
 
 class CRI(BaseModel):
     """
     CRI
     """  # noqa: E501
 
+    kata: Optional[Kata] = None
     name: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["name"]
+    __properties: ClassVar[List[str]] = ["kata", "name"]
 
     @field_validator("name")
     def name_validate_enum(cls, value):
@@ -77,6 +80,9 @@ class CRI(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of kata
+        if self.kata:
+            _dict["kata"] = self.kata.to_dict()
         return _dict
 
     @classmethod
@@ -88,5 +94,7 @@ class CRI(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"name": obj.get("name")})
+        _obj = cls.model_validate(
+            {"kata": Kata.from_dict(obj["kata"]) if obj.get("kata") is not None else None, "name": obj.get("name")}
+        )
         return _obj
