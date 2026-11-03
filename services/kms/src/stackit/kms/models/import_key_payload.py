@@ -18,9 +18,9 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 
 class ImportKeyPayload(BaseModel):
@@ -28,7 +28,7 @@ class ImportKeyPayload(BaseModel):
     ImportKeyPayload
     """  # noqa: E501
 
-    wrapped_key: StrictStr = Field(
+    wrapped_key: Annotated[str, Field(strict=True, max_length=85336)] = Field(
         description="The wrapped key material that has to be imported. Encoded in base64.", alias="wrappedKey"
     )
     wrapping_key_id: UUID = Field(
