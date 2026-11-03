@@ -39,6 +39,8 @@ __all__ = [
     "DomainObservabilityExtension",
     "ErrorMessage",
     "ExportRecordSetsPayload",
+    "FlushDomainPayload",
+    "FlushDomainResponse",
     "ImportRecordSetsPayload",
     "ImportRecordSetsResponse",
     "ImportSummary",
@@ -46,6 +48,10 @@ __all__ = [
     "ListLabelsResponse",
     "ListRecordSetsResponse",
     "ListZonesResponse",
+    "LookupDomainPayload",
+    "LookupDomainResponse",
+    "LookupRecord",
+    "LookupResult",
     "Message",
     "MoveCodeResponse",
     "MoveZonePayload",
@@ -109,6 +115,12 @@ from stackit.dns.models.error_message import ErrorMessage as ErrorMessage
 from stackit.dns.models.export_record_sets_payload import (
     ExportRecordSetsPayload as ExportRecordSetsPayload,
 )
+from stackit.dns.models.flush_domain_payload import (
+    FlushDomainPayload as FlushDomainPayload,
+)
+from stackit.dns.models.flush_domain_response import (
+    FlushDomainResponse as FlushDomainResponse,
+)
 from stackit.dns.models.import_record_sets_payload import (
     ImportRecordSetsPayload as ImportRecordSetsPayload,
 )
@@ -126,6 +138,14 @@ from stackit.dns.models.list_record_sets_response import (
 from stackit.dns.models.list_zones_response import (
     ListZonesResponse as ListZonesResponse,
 )
+from stackit.dns.models.lookup_domain_payload import (
+    LookupDomainPayload as LookupDomainPayload,
+)
+from stackit.dns.models.lookup_domain_response import (
+    LookupDomainResponse as LookupDomainResponse,
+)
+from stackit.dns.models.lookup_record import LookupRecord as LookupRecord
+from stackit.dns.models.lookup_result import LookupResult as LookupResult
 from stackit.dns.models.message import Message as Message
 from stackit.dns.models.move_code_response import MoveCodeResponse as MoveCodeResponse
 from stackit.dns.models.move_zone_payload import MoveZonePayload as MoveZonePayload
