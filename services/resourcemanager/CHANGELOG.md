@@ -1,3 +1,13 @@
+## v0.13.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Support Python version 3.15
+- **Chore:** Update dependencies
+
+## v0.12.0
+- Update description of the `labels` attribute in model classes
+- Update regex of the `name` attribute in `CreateFolderPayload`, `CreateProjectPayload`, `PartialUpdateFolderPayload`, `PartialUpdateOrganizationPayload`, `PartialUpdateProjectPayload` model classes
+- Make `members` attribute optional in `CreateProjectPayload` model class
+
 ## v0.11.1
 - Update descriptions of `labels` attributes in model classes
 

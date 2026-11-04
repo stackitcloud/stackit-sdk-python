@@ -1,3 +1,8 @@
+## v0.3.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Support Python version 3.15
+- **Chore:** Update dependencies
+
 ## v0.2.2
 - **Docs:** `InstanceParameters.min_replicas_to_write` doc comment now notes it should not be greater than the number of nodes (e.g. 1 or 3)
 

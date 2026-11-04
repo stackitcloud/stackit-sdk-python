@@ -38,11 +38,12 @@ class CreateProjectPayload(BaseModel):
         default=None,
         description='Key-value string pairs attached to a resource container during creation. Certain labels may be enforced via organizational policies.  * **Key:** Must be between 1 and 63 characters long (excluding an optional domain prefix). Must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). May include an optional domain prefix up to 250 characters (a lowercase DNS subdomain containing `[a-z0-9]`, `-`, and `.`) followed by a slash (/). Total maximum key length is 314 characters. * **Value:** Must be 63 characters or less. May be empty (""). If non-empty, must start and end with an alphanumeric character `[a-zA-Z0-9]` and can contain alphanumerics, dashes (-), underscores (_), and dots (.). * Either a `"scope": "PUBLIC"` label or a valid `networkArea` label must be provided for project creation. * To create a project within a STACKIT Network Area, you must set the label `"networkArea": "<networkAreaID>"`.   > **Important:** The `networkArea` label is immutable and **cannot be changed** after project creation.',
     )
-    members: Annotated[List[Member], Field(min_length=1)] = Field(
-        description="The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account."
+    members: Optional[List[Member]] = Field(
+        default=None,
+        description="The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.",
     )
     name: Annotated[str, Field(strict=True)] = Field(
-        description="Project name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`."
+        description="Project name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$`."
     )
     __properties: ClassVar[List[str]] = ["containerParentId", "labels", "members", "name"]
 
@@ -52,9 +53,9 @@ class CreateProjectPayload(BaseModel):
         if not isinstance(value, str):
             value = str(value)
 
-        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$", value):
+        if not re.match(r"^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$", value):
             raise ValueError(
-                r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$/"
+                r"must validate the regular expression /^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){1,40}$/"
             )
         return value
 
