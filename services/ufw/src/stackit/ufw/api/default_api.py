@@ -1513,7 +1513,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[ProviderOptionsResponse]:
+    ) -> ProviderOptionsResponse:
         """Get Provider Options
 
         Returns a list of supported configuration options for this region.
@@ -1551,7 +1551,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "List[ProviderOptionsResponse]",
+            "200": "ProviderOptionsResponse",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "500": "ErrorResponse",
@@ -1576,7 +1576,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[ProviderOptionsResponse]]:
+    ) -> ApiResponse[ProviderOptionsResponse]:
         """Get Provider Options
 
         Returns a list of supported configuration options for this region.
@@ -1614,7 +1614,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "List[ProviderOptionsResponse]",
+            "200": "ProviderOptionsResponse",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "500": "ErrorResponse",
@@ -1677,7 +1677,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "List[ProviderOptionsResponse]",
+            "200": "ProviderOptionsResponse",
             "400": "ErrorResponse",
             "401": "ErrorResponse",
             "500": "ErrorResponse",
@@ -1749,7 +1749,7 @@ class DefaultApi:
             Field(description="The ID of the source, similar to a project ID but for the product service instance."),
         ] = None,
         type: Annotated[
-            Optional[StrictStr], Field(description='The type of the rule (e.g., "ACL", "PublicIP", "SecurityRule").')
+            Optional[StrictStr], Field(description='The type of the rule (e.g., "ACL", "SecurityRule").')
         ] = None,
         source_ip: Annotated[Optional[StrictStr], Field(description="The IP for the rule.")] = None,
         port_range: Annotated[Optional[StrictStr], Field(description="The port range for the rule.")] = None,
@@ -1798,7 +1798,7 @@ class DefaultApi:
         :type product: str
         :param instance_id: The ID of the source, similar to a project ID but for the product service instance.
         :type instance_id: str
-        :param type: The type of the rule (e.g., \"ACL\", \"PublicIP\", \"SecurityRule\").
+        :param type: The type of the rule (e.g., \"ACL\", \"SecurityRule\").
         :type type: str
         :param source_ip: The IP for the rule.
         :type source_ip: str
@@ -1891,7 +1891,7 @@ class DefaultApi:
             Field(description="The ID of the source, similar to a project ID but for the product service instance."),
         ] = None,
         type: Annotated[
-            Optional[StrictStr], Field(description='The type of the rule (e.g., "ACL", "PublicIP", "SecurityRule").')
+            Optional[StrictStr], Field(description='The type of the rule (e.g., "ACL", "SecurityRule").')
         ] = None,
         source_ip: Annotated[Optional[StrictStr], Field(description="The IP for the rule.")] = None,
         port_range: Annotated[Optional[StrictStr], Field(description="The port range for the rule.")] = None,
@@ -1940,7 +1940,7 @@ class DefaultApi:
         :type product: str
         :param instance_id: The ID of the source, similar to a project ID but for the product service instance.
         :type instance_id: str
-        :param type: The type of the rule (e.g., \"ACL\", \"PublicIP\", \"SecurityRule\").
+        :param type: The type of the rule (e.g., \"ACL\", \"SecurityRule\").
         :type type: str
         :param source_ip: The IP for the rule.
         :type source_ip: str
@@ -2033,7 +2033,7 @@ class DefaultApi:
             Field(description="The ID of the source, similar to a project ID but for the product service instance."),
         ] = None,
         type: Annotated[
-            Optional[StrictStr], Field(description='The type of the rule (e.g., "ACL", "PublicIP", "SecurityRule").')
+            Optional[StrictStr], Field(description='The type of the rule (e.g., "ACL", "SecurityRule").')
         ] = None,
         source_ip: Annotated[Optional[StrictStr], Field(description="The IP for the rule.")] = None,
         port_range: Annotated[Optional[StrictStr], Field(description="The port range for the rule.")] = None,
@@ -2082,7 +2082,7 @@ class DefaultApi:
         :type product: str
         :param instance_id: The ID of the source, similar to a project ID but for the product service instance.
         :type instance_id: str
-        :param type: The type of the rule (e.g., \"ACL\", \"PublicIP\", \"SecurityRule\").
+        :param type: The type of the rule (e.g., \"ACL\", \"SecurityRule\").
         :type type: str
         :param source_ip: The IP for the rule.
         :type source_ip: str
