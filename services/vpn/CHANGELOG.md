@@ -1,3 +1,8 @@
+## v0.8.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Support Python version 3.15
+- **Chore:** Update dependencies
+- 
 ## v0.7.3
 - **Improvement:** Relax maximum `rekey_time` validation to `86400` (previously `28800`) in `TunnelConfigurationPhase1`
 - **Improvement:** Relax maximum `rekey_time` validation to `14400` (previously `3600`) in `TunnelConfigurationPhase2`

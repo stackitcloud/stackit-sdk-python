@@ -1,3 +1,8 @@
+## v0.14.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Support Python version 3.15
+- **Chore:** Update dependencies
+
 ## v0.13.0
 - **Feature:** Add `ip_block_list_name` field to `LoadbalancerOptionAccessControl` model
 
