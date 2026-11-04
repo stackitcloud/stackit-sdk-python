@@ -68,4 +68,5 @@ from stackit.objectstorage.models.retention_mode import RetentionMode
 from stackit.objectstorage.models.set_default_retention_payload import (
     SetDefaultRetentionPayload,
 )
+from stackit.objectstorage.models.update_service_payload import UpdateServicePayload
 from stackit.objectstorage.models.validation_error import ValidationError

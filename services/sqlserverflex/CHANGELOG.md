@@ -1,3 +1,8 @@
+## v1.5.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Support Python version 3.15
+- **Chore:** Update dependencies
+
 ## v1.4.0
 - **Breaking Change:** The v3 API replaces the v2 API.
 

@@ -1,3 +1,8 @@
+## v0.3.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Support Python version 3.15
+- **Chore:** Update dependencies
+
 ## v0.2.1
 - **Fix:** Corrected an invalid `pyproject.toml` build configuration (`wheel-sources` instead of `wheel.sources`) that caused `import stackit.modelexperiments` to fail with `ModuleNotFoundError`
 

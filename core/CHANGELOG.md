@@ -1,3 +1,11 @@
+## v0.5.0
+- **Chore:** Bump minimum Python version to 3.11
+- **Chore:** Support Python version 3.15
+- **Chore:** Update dependencies
+
+## v0.4.0
+- **Feature:** Add `KeyAuth.close()` to stop the background token refresh thread and its worker, so a discarded instance (for example after key rotation) no longer keeps running and requesting tokens
+
 ## v0.3.1
 - **Fix:** Refresh access tokens five minutes before expiration instead of after, and wait for in-progress refreshes before authorizing requests
 

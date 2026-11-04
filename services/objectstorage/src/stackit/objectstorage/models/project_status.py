@@ -29,9 +29,10 @@ class ProjectStatus(BaseModel):
     ProjectStatus
     """  # noqa: E501
 
+    labels: Optional[Dict[str, StrictStr]] = Field(default=None, description="Project labels")
     project: StrictStr = Field(description="Project ID")
     scope: ProjectScope = Field(description="Project Scope")
-    __properties: ClassVar[List[str]] = ["project", "scope"]
+    __properties: ClassVar[List[str]] = ["labels", "project", "scope"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -81,5 +82,7 @@ class ProjectStatus(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"project": obj.get("project"), "scope": obj.get("scope")})
+        _obj = cls.model_validate(
+            {"labels": obj.get("labels"), "project": obj.get("project"), "scope": obj.get("scope")}
+        )
         return _obj

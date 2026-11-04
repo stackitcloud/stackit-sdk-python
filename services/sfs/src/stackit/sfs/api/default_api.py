@@ -157,6 +157,7 @@ class DefaultApi:
             "200": "CreateResourcePoolResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -228,6 +229,7 @@ class DefaultApi:
             "200": "CreateResourcePoolResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -299,6 +301,7 @@ class DefaultApi:
             "200": "CreateResourcePoolResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -436,6 +439,7 @@ class DefaultApi:
             "200": "CreateResourcePoolSnapshotResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -511,6 +515,7 @@ class DefaultApi:
             "200": "CreateResourcePoolSnapshotResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -586,6 +591,7 @@ class DefaultApi:
             "200": "CreateResourcePoolSnapshotResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -726,6 +732,7 @@ class DefaultApi:
             "200": "CreateShareResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -801,6 +808,7 @@ class DefaultApi:
             "200": "CreateShareResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -876,6 +884,7 @@ class DefaultApi:
             "200": "CreateShareResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1012,6 +1021,7 @@ class DefaultApi:
             "200": "CreateShareExportPolicyResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1083,6 +1093,7 @@ class DefaultApi:
             "200": "CreateShareExportPolicyResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1154,6 +1165,7 @@ class DefaultApi:
             "200": "CreateShareExportPolicyResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1287,6 +1299,7 @@ class DefaultApi:
             "200": "object",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1358,6 +1371,7 @@ class DefaultApi:
             "200": "object",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1429,6 +1443,7 @@ class DefaultApi:
             "200": "object",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1558,6 +1573,7 @@ class DefaultApi:
             "200": "object",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1633,6 +1649,7 @@ class DefaultApi:
             "200": "object",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1708,6 +1725,7 @@ class DefaultApi:
             "200": "object",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2379,6 +2397,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "object",
+            "409": "ConflictError",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -2443,6 +2462,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "object",
+            "409": "ConflictError",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -2507,6 +2527,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "object",
+            "409": "ConflictError",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
@@ -2544,7 +2565,9 @@ class DefaultApi:
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+            _header_params["Accept"] = self.api_client.select_header_accept(
+                ["application/json", "application/problem+json"]
+            )
 
         # authentication setting
         _auth_settings: List[str] = []
@@ -2620,6 +2643,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "EnableLockResponse",
+            "409": "ConflictError",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -2684,6 +2708,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "EnableLockResponse",
+            "409": "ConflictError",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         response_data.read()
@@ -2748,6 +2773,7 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "EnableLockResponse",
+            "409": "ConflictError",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
         return response_data.response
@@ -2785,7 +2811,9 @@ class DefaultApi:
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
-            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+            _header_params["Accept"] = self.api_client.select_header_accept(
+                ["application/json", "application/problem+json"]
+            )
 
         # authentication setting
         _auth_settings: List[str] = []
@@ -6418,6 +6446,7 @@ class DefaultApi:
             "200": "UpdateResourcePoolResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -6493,6 +6522,7 @@ class DefaultApi:
             "200": "UpdateResourcePoolResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -6568,6 +6598,7 @@ class DefaultApi:
             "200": "UpdateResourcePoolResponse",
             "400": "ValidationError",
             "401": "str",
+            "409": "ConflictError",
             "500": "Error",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)

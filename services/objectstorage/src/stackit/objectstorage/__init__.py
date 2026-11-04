@@ -56,6 +56,7 @@ __all__ = [
     "RateLimitError",
     "RetentionMode",
     "SetDefaultRetentionPayload",
+    "UpdateServicePayload",
     "ValidationError",
 ]
 
@@ -144,6 +145,9 @@ from stackit.objectstorage.models.rate_limit_error import (
 from stackit.objectstorage.models.retention_mode import RetentionMode as RetentionMode
 from stackit.objectstorage.models.set_default_retention_payload import (
     SetDefaultRetentionPayload as SetDefaultRetentionPayload,
+)
+from stackit.objectstorage.models.update_service_payload import (
+    UpdateServicePayload as UpdateServicePayload,
 )
 from stackit.objectstorage.models.validation_error import (
     ValidationError as ValidationError,

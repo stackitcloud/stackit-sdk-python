@@ -54,6 +54,8 @@ class KeyAuth(AuthBase):
     executor: ThreadPoolExecutor
     refresh_future: Optional[futures.Future]
     service_account_key: ServiceAccountKey
+    _stop: threading.Event
+    _refresh_thread: Optional[threading.Thread]
 
     def __init__(
         self,
@@ -66,6 +68,8 @@ class KeyAuth(AuthBase):
         self.executor = ThreadPoolExecutor(max_workers=1)
         self.access_token = None
         self.refresh_future = None
+        self._stop = threading.Event()
+        self._refresh_thread = None
         self.__create_initial_token()
         self.__fetch_token_from_endpoint()
         self.__start_token_refresh_task()
@@ -91,6 +95,24 @@ class KeyAuth(AuthBase):
         with self.lock:
             r.headers["Authorization"] = f"Bearer {self.access_token}"
         return r
+
+    def close(self) -> None:
+        """Stop the background token refresh and release its worker.
+
+        Call this when the instance is no longer needed, for example after
+        replacing it during key rotation in a long-running process. Without it
+        the refresh thread keeps running and keeps requesting tokens. When it
+        returns, no refresh is running and none will start. Safe to call more
+        than once.
+        """
+        # Set under the lock so the refresh loop cannot submit after shutdown.
+        with self.lock:
+            self._stop.set()
+        atexit.unregister(self.__shutdown)
+        thread = self._refresh_thread
+        if thread is not None and thread is not threading.current_thread():
+            thread.join()
+        self.executor.shutdown(wait=True, cancel_futures=True)
 
     def __create_initial_token(self) -> None:
         payload = {
@@ -126,9 +148,10 @@ class KeyAuth(AuthBase):
 
     def __start_token_refresh_task(self):
         def token_refresh_task():
-            while True:
-                time.sleep(self.TOKEN_EXPIRY_CHECK_INTERVAL.total_seconds())
+            while not self._stop.wait(self.TOKEN_EXPIRY_CHECK_INTERVAL.total_seconds()):
                 with self.lock:
+                    if self._stop.is_set():
+                        return
                     if self.refresh_future is not None and self.refresh_future.done():
                         self.refresh_future.result()
                     if self.__is_token_expired(self.access_token) and (
@@ -139,6 +162,7 @@ class KeyAuth(AuthBase):
         thread = threading.Thread(target=token_refresh_task)
         thread.daemon = True
         thread.start()
+        self._refresh_thread = thread
 
     def __refresh_token(self):
         with self.lock:
@@ -156,6 +180,8 @@ class KeyAuth(AuthBase):
 
         last_exception = None
         for _ in range(self.MAX_REFRESH_RETRIES):
+            if self._stop.is_set():
+                return
             try:
                 response = requests.post(self.token_endpoint, data=body, timeout=self.timeout)
                 response.raise_for_status()
