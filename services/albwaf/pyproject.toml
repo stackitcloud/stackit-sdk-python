@@ -28,7 +28,7 @@ Issues = "https://github.com/stackitcloud/stackit-sdk-python/issues"
 
 [dependency-groups]
 dev = [
-    "black>=26.3.1",
+    "black>=26.10.1",
     "pytest>=9.1.1",
     "flake8>=5.0.3 ; python_full_version < '3.12'",
     "flake8>=6.0.1 ; python_full_version >= '3.12'",
