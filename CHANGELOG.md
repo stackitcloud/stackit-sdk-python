@@ -1,6 +1,11 @@
 ## Release (2026-MM-DD)
 
 - `core`:
+  - [v0.6.0](core/CHANGELOG.md#v060)
+    - **Chore:** Update dependencies
+      - Bump minimum PyJWT version from 2.13.0 to 2.15.0
+      - Bump minimum urllib3 version from 2.7.0 to 2.8.0
+      - Bump minimum cryptography version from 46.0.5 to 50.0.0
   - [v0.5.0](core/CHANGELOG.md#v050)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15
