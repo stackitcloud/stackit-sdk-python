@@ -19,7 +19,7 @@ for file in $(find . -print | sed 's|^./||' | grep -E "(^services/[^/]+/pyprojec
         git push origin tag $expected_tag
         cd $dirpath
         uv build
-        uv publish --username="__token__" --password="$PYPI_TOKEN"
+        uv publish --trusted-publishing always
         cd $GITHUB_WORKSPACE
     fi              
 done

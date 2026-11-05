@@ -8,9 +8,11 @@ on:
 jobs:
   check-version:
     runs-on: ubuntu-latest
-    permissions: 
+    environment: pypi
+    permissions:
       pull-requests: write
       contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,7 +26,6 @@ jobs:
       - name: Push tag for each updated package
         env:
           GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
-          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
           git config --global user.name "SDK Releaser Bot"
           git config --global user.email "noreply@stackit.de"
