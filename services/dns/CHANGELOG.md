@@ -1,3 +1,7 @@
+## v0.12.0
+- **Feature:** New `lookup_domain` operation to look up a domain on the STACKIT DNS resolvers, with new models `LookupDomainPayload`, `LookupDomainResponse`, `LookupResult` and `LookupRecord`
+- **Feature:** New `flush_domain` operation to flush the cache for a domain on the STACKIT DNS resolvers, with new models `FlushDomainPayload` and `FlushDomainResponse`
+
 ## v0.11.0
 - **Chore:** Bump minimum Python version to 3.11
 - **Chore:** Support Python version 3.15
