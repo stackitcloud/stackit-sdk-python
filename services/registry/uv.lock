@@ -1085,7 +1085,7 @@ wheels = [
 
 [[package]]
 name = "stackit-core"
-version = "0.5.0"
+version = "0.6.0"
 source = { directory = "../../core" }
 dependencies = [
     { name = "cryptography" },
@@ -1097,17 +1097,17 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "cryptography", specifier = ">=46.0.5" },
+    { name = "cryptography", specifier = ">=50.0.0" },
     { name = "pydantic", specifier = ">=2.9.2" },
-    { name = "pyjwt", specifier = ">=2.13.0" },
+    { name = "pyjwt", specifier = ">=2.15.0" },
     { name = "requests", specifier = ">=2.33.0" },
-    { name = "urllib3", specifier = ">=2.7.0" },
+    { name = "urllib3", specifier = ">=2.8.0" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "autoimport", specifier = ">=1.6.1" },
-    { name = "black", specifier = ">=26.3.1" },
+    { name = "black", specifier = ">=26.10.1" },
     { name = "flake8", marker = "python_full_version < '3.12'", specifier = ">=5.0.3" },
     { name = "flake8", marker = "python_full_version >= '3.12'", specifier = ">=6.0.1" },
     { name = "flake8-bandit", specifier = ">=4.1.1" },
@@ -1160,7 +1160,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "autoimport", specifier = ">=1.6.1" },
-    { name = "black", specifier = ">=26.3.1" },
+    { name = "black", specifier = ">=26.10.1" },
     { name = "flake8", marker = "python_full_version < '3.12'", specifier = ">=5.0.3" },
     { name = "flake8", marker = "python_full_version >= '3.12'", specifier = ">=6.0.1" },
     { name = "flake8-bandit", specifier = ">=4.1.1" },

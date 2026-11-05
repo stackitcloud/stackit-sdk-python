@@ -1,6 +1,11 @@
 ## Release (2026-MM-DD)
 
 - `core`:
+  - [v0.6.0](core/CHANGELOG.md#v060)
+    - **Chore:** Update dependencies
+      - Bump minimum PyJWT version from 2.13.0 to 2.15.0
+      - Bump minimum urllib3 version from 2.7.0 to 2.8.0
+      - Bump minimum cryptography version from 46.0.5 to 50.0.0
   - [v0.5.0](core/CHANGELOG.md#v050)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15
@@ -51,6 +56,9 @@
     - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `dns`:
+  - [v0.12.0](services/dns/CHANGELOG.md#v0120)
+    - **Feature:** New `lookup_domain` operation to look up a domain on the STACKIT DNS resolvers, with new models `LookupDomainPayload`, `LookupDomainResponse`, `LookupResult` and `LookupRecord`
+    - **Feature:** New `flush_domain` operation to flush the cache for a domain on the STACKIT DNS resolvers, with new models `FlushDomainPayload` and `FlushDomainResponse`
   - [v0.11.0](services/dns/CHANGELOG.md#v0110)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15
@@ -275,6 +283,12 @@
   - [v0.6.0](services/telemetryrouter/CHANGELOG.md#v060)
     - **Feature:** Add `disabled` field to `ConfigFilter` to allow disabling a filter without removing it
 - `ufw`:
+  - [v0.3.0](services/ufw/CHANGELOG.md#v030)
+    - **Breaking Change:** `list_provider_options` now returns a single `ProviderOptionsResponse` instead of `List[ProviderOptionsResponse]`, matching the endpoint's actual (non-array) response
+    - **Breaking Change:** Removal of `security_group` field from `RuleResponse` model
+    - **Breaking Change:** `type` field in `RuleResponse` model now validates against a fixed set of values (`ACL`, `PublicIP`, `SecurityRule`, `SecurityGroup`); previously any string was accepted
+    - **Feature:** Add `ref_id` and `stateful` fields to `RuleResponse` model
+    - **Feature:** Add `remote_security_group_id` and `stateful` fields to `CreateRulePayload` model
   - [v0.2.0](services/ufw/CHANGELOG.md#v020)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15
