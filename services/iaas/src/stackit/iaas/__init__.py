@@ -72,6 +72,7 @@ __all__ = [
     "CreateVolumePayload",
     "DestinationCIDRv4",
     "DestinationCIDRv6",
+    "DestinationPrefixList",
     "Error",
     "GetServerLog200Response",
     "ICMPParameters",
@@ -304,6 +305,9 @@ from stackit.iaas.models.destination_cidrv4 import (
 )
 from stackit.iaas.models.destination_cidrv6 import (
     DestinationCIDRv6 as DestinationCIDRv6,
+)
+from stackit.iaas.models.destination_prefix_list import (
+    DestinationPrefixList as DestinationPrefixList,
 )
 from stackit.iaas.models.error import Error as Error
 from stackit.iaas.models.get_server_log200_response import (

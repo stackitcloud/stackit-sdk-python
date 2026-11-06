@@ -40,7 +40,7 @@ class ImageFromVolumePayload(BaseModel):
         description="Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.", alias="diskFormat"
     )
     force: Optional[StrictBool] = Field(
-        default=False, description="When true the image is force created from a volume is currently being used."
+        default=False, description="When true the image is force created from a volume that is currently being used."
     )
     name: Annotated[str, Field(strict=True, max_length=127)] = Field(
         description="The name for a General Object. Matches Names and also UUIDs."
