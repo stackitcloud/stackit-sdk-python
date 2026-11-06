@@ -61,7 +61,7 @@ class CreateRulePayload(BaseModel):
         default=None,
         description="Indicates whether the security group rule is stateful or stateless (used only for security groups, default value for them will be true).",
     )
-    type: StrictStr = Field(description='The type of the rule (e.g., "ACL", "PublicIP", "SecurityRule").')
+    type: StrictStr = Field(description='The type of the rule (e.g., "ACL", "SecurityRule").')
     __properties: ClassVar[List[str]] = [
         "description",
         "direction",
