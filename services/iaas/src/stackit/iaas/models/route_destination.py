@@ -28,8 +28,9 @@ from typing_extensions import Self
 
 from stackit.iaas.models.destination_cidrv4 import DestinationCIDRv4
 from stackit.iaas.models.destination_cidrv6 import DestinationCIDRv6
+from stackit.iaas.models.destination_prefix_list import DestinationPrefixList
 
-ROUTEDESTINATION_ONE_OF_SCHEMAS = ["DestinationCIDRv4", "DestinationCIDRv6"]
+ROUTEDESTINATION_ONE_OF_SCHEMAS = ["DestinationCIDRv4", "DestinationCIDRv6", "DestinationPrefixList"]
 
 
 class RouteDestination(BaseModel):
@@ -41,8 +42,10 @@ class RouteDestination(BaseModel):
     oneof_schema_1_validator: Optional[DestinationCIDRv4] = None
     # data type: DestinationCIDRv6
     oneof_schema_2_validator: Optional[DestinationCIDRv6] = None
-    actual_instance: Optional[Union[DestinationCIDRv4, DestinationCIDRv6]] = None
-    one_of_schemas: Set[str] = {"DestinationCIDRv4", "DestinationCIDRv6"}
+    # data type: DestinationPrefixList
+    oneof_schema_3_validator: Optional[DestinationPrefixList] = None
+    actual_instance: Optional[Union[DestinationCIDRv4, DestinationCIDRv6, DestinationPrefixList]] = None
+    one_of_schemas: Set[str] = {"DestinationCIDRv4", "DestinationCIDRv6", "DestinationPrefixList"}
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -76,10 +79,15 @@ class RouteDestination(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `DestinationCIDRv6`")
         else:
             match += 1
+        # validate data type: DestinationPrefixList
+        if not isinstance(v, DestinationPrefixList):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `DestinationPrefixList`")
+        else:
+            match += 1
         if match == 0:
             # no match
             raise ValueError(
-                "No match found when setting `actual_instance` in RouteDestination with oneOf schemas: DestinationCIDRv4, DestinationCIDRv6. Details: "
+                "No match found when setting `actual_instance` in RouteDestination with oneOf schemas: DestinationCIDRv4, DestinationCIDRv6, DestinationPrefixList. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -108,17 +116,23 @@ class RouteDestination(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into DestinationPrefixList
+        try:
+            instance.actual_instance = DestinationPrefixList.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
             raise ValueError(
-                "Multiple matches found when deserializing the JSON string into RouteDestination with oneOf schemas: DestinationCIDRv4, DestinationCIDRv6. Details: "
+                "Multiple matches found when deserializing the JSON string into RouteDestination with oneOf schemas: DestinationCIDRv4, DestinationCIDRv6, DestinationPrefixList. Details: "
                 + ", ".join(error_messages)
             )
         elif match == 0:
             # no match
             raise ValueError(
-                "No match found when deserializing the JSON string into RouteDestination with oneOf schemas: DestinationCIDRv4, DestinationCIDRv6. Details: "
+                "No match found when deserializing the JSON string into RouteDestination with oneOf schemas: DestinationCIDRv4, DestinationCIDRv6, DestinationPrefixList. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -134,7 +148,7 @@ class RouteDestination(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], DestinationCIDRv4, DestinationCIDRv6]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], DestinationCIDRv4, DestinationCIDRv6, DestinationPrefixList]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
