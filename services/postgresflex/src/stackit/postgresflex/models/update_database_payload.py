@@ -30,7 +30,7 @@ class UpdateDatabasePayload(BaseModel):
     """  # noqa: E501
 
     name: Annotated[str, Field(min_length=1, strict=True, max_length=63)] = Field(
-        description='"The name of the database." "Database name must be 1–63 characters long, start with a lowercase letter or underscore, and contain only lowercase letters, numbers, or underscores." '
+        description='"The name of the database." "Database name must be 1–63 characters long, start with a lowercase letter or underscore, and contain only lowercase letters, numbers, underscores, or hyphens. It cannot end with a hyphen." '
     )
     owner: StrictStr = Field(description="The owner of the database.")
     __properties: ClassVar[List[str]] = ["name", "owner"]
@@ -41,8 +41,8 @@ class UpdateDatabasePayload(BaseModel):
         if not isinstance(value, str):
             value = str(value)
 
-        if not re.match(r"^[a-z_][a-z0-9_]*$", value):
-            raise ValueError(r"must validate the regular expression /^[a-z_][a-z0-9_]*$/")
+        if not re.match(r"^[a-z_]([a-z0-9_\-]{0,61}[a-z0-9_])?$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z_]([a-z0-9_\-]{0,61}[a-z0-9_])?$/")
         return value
 
     model_config = ConfigDict(
