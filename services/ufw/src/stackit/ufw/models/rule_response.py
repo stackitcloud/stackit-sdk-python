@@ -51,11 +51,12 @@ class RuleResponse(BaseModel):
     ref_id: Optional[UUID] = Field(default=None, alias="refId")
     region: Optional[StrictStr] = None
     remote_security_group_id: Optional[StrictStr] = Field(default=None, alias="remoteSecurityGroupId")
+    remote_security_group_name: Optional[StrictStr] = Field(default=None, alias="remoteSecurityGroupName")
     security_group_id: Optional[StrictStr] = Field(default=None, alias="securityGroupId")
     source_ip: StrictStr = Field(alias="sourceIP")
     stateful: Optional[StrictBool] = None
     status: StrictStr = Field(description="The current state of the resource.")
-    type: StrictStr = Field(description='The type of the rule (e.g., "ACL", "PublicIP", "SecurityRule").')
+    type: StrictStr = Field(description='The type of the rule (e.g., "ACL", "SecurityRule").')
     __properties: ClassVar[List[str]] = [
         "description",
         "destination",
@@ -72,6 +73,7 @@ class RuleResponse(BaseModel):
         "refId",
         "region",
         "remoteSecurityGroupId",
+        "remoteSecurityGroupName",
         "securityGroupId",
         "sourceIP",
         "stateful",
@@ -91,8 +93,8 @@ class RuleResponse(BaseModel):
     @field_validator("type")
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["ACL", "PublicIP", "SecurityRule", "SecurityGroup"]):
-            raise ValueError("must be one of enum values ('ACL', 'PublicIP', 'SecurityRule', 'SecurityGroup')")
+        if value not in set(["ACL", "SecurityRule", "SecurityGroup"]):
+            raise ValueError("must be one of enum values ('ACL', 'SecurityRule', 'SecurityGroup')")
         return value
 
     model_config = ConfigDict(
@@ -160,6 +162,7 @@ class RuleResponse(BaseModel):
                 "refId": obj.get("refId"),
                 "region": obj.get("region"),
                 "remoteSecurityGroupId": obj.get("remoteSecurityGroupId"),
+                "remoteSecurityGroupName": obj.get("remoteSecurityGroupName"),
                 "securityGroupId": obj.get("securityGroupId"),
                 "sourceIP": obj.get("sourceIP"),
                 "stateful": obj.get("stateful"),
