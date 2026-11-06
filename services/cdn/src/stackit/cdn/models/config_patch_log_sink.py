@@ -26,8 +26,9 @@ from pydantic import (
 from typing_extensions import Self
 
 from stackit.cdn.models.loki_log_sink_patch import LokiLogSinkPatch
+from stackit.cdn.models.otlp_log_sink_patch import OtlpLogSinkPatch
 
-CONFIGPATCHLOGSINK_ONE_OF_SCHEMAS = ["LokiLogSinkPatch"]
+CONFIGPATCHLOGSINK_ONE_OF_SCHEMAS = ["LokiLogSinkPatch", "OtlpLogSinkPatch"]
 
 
 class ConfigPatchLogSink(BaseModel):
@@ -37,8 +38,10 @@ class ConfigPatchLogSink(BaseModel):
 
     # data type: LokiLogSinkPatch
     oneof_schema_1_validator: Optional[LokiLogSinkPatch] = None
-    actual_instance: Optional[Union[LokiLogSinkPatch]] = None
-    one_of_schemas: Set[str] = {"LokiLogSinkPatch"}
+    # data type: OtlpLogSinkPatch
+    oneof_schema_2_validator: Optional[OtlpLogSinkPatch] = None
+    actual_instance: Optional[Union[LokiLogSinkPatch, OtlpLogSinkPatch]] = None
+    one_of_schemas: Set[str] = {"LokiLogSinkPatch", "OtlpLogSinkPatch"}
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -70,10 +73,15 @@ class ConfigPatchLogSink(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `LokiLogSinkPatch`")
         else:
             match += 1
+        # validate data type: OtlpLogSinkPatch
+        if not isinstance(v, OtlpLogSinkPatch):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OtlpLogSinkPatch`")
+        else:
+            match += 1
         if match == 0:
             # no match
             raise ValueError(
-                "No match found when setting `actual_instance` in ConfigPatchLogSink with oneOf schemas: LokiLogSinkPatch. Details: "
+                "No match found when setting `actual_instance` in ConfigPatchLogSink with oneOf schemas: LokiLogSinkPatch, OtlpLogSinkPatch. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -99,17 +107,23 @@ class ConfigPatchLogSink(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into OtlpLogSinkPatch
+        try:
+            instance.actual_instance = OtlpLogSinkPatch.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
             raise ValueError(
-                "Multiple matches found when deserializing the JSON string into ConfigPatchLogSink with oneOf schemas: LokiLogSinkPatch. Details: "
+                "Multiple matches found when deserializing the JSON string into ConfigPatchLogSink with oneOf schemas: LokiLogSinkPatch, OtlpLogSinkPatch. Details: "
                 + ", ".join(error_messages)
             )
         elif match == 0:
             # no match
             raise ValueError(
-                "No match found when deserializing the JSON string into ConfigPatchLogSink with oneOf schemas: LokiLogSinkPatch. Details: "
+                "No match found when deserializing the JSON string into ConfigPatchLogSink with oneOf schemas: LokiLogSinkPatch, OtlpLogSinkPatch. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -125,7 +139,7 @@ class ConfigPatchLogSink(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], LokiLogSinkPatch]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], LokiLogSinkPatch, OtlpLogSinkPatch]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
