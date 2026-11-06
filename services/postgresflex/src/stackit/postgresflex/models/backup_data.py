@@ -35,7 +35,7 @@ class BackupData(BaseModel):
     name: StrictStr = Field(description="The name of the backup.")
     retained_until: StrictStr = Field(description="The time until the backup will be retained.", alias="retainedUntil")
     size: StrictInt = Field(description="The size of the backup in bytes.")
-    type: StrictStr = Field(description="The type of the backup, which can be automated or manual triggered.")
+    type: StrictStr = Field(description="The type of the backup, which can be automated or manually triggered.")
     __properties: ClassVar[List[str]] = ["completionTime", "id", "name", "retainedUntil", "size", "type"]
 
     model_config = ConfigDict(
