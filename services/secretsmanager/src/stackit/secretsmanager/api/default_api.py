@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-STACKIT Secrets Manager API
+STACKIT Secrets Manager API V1
 
 This API provides endpoints for managing the Secrets-Manager.
 
@@ -6765,6 +6765,7 @@ class DefaultApi:
             "400": "BadRequest",
             "401": "str",
             "404": "NotFound",
+            "409": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -6839,6 +6840,7 @@ class DefaultApi:
             "400": "BadRequest",
             "401": "str",
             "404": "NotFound",
+            "409": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -6913,6 +6915,7 @@ class DefaultApi:
             "400": "BadRequest",
             "401": "str",
             "404": "NotFound",
+            "409": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
