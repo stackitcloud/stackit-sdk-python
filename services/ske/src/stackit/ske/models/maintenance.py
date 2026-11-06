@@ -30,8 +30,8 @@ class Maintenance(BaseModel):
     Maintenance
     """  # noqa: E501
 
-    auto_update: MaintenanceAutoUpdate = Field(alias="autoUpdate")
-    time_window: TimeWindow = Field(alias="timeWindow")
+    auto_update: Optional[MaintenanceAutoUpdate] = Field(default=None, alias="autoUpdate")
+    time_window: Optional[TimeWindow] = Field(default=None, alias="timeWindow")
     __properties: ClassVar[List[str]] = ["autoUpdate", "timeWindow"]
 
     model_config = ConfigDict(
