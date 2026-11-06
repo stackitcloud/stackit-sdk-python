@@ -18,7 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
@@ -28,8 +28,11 @@ class CreateRunnerPayload(BaseModel):
     Request a runner to be created supporting the requested list of runtime labels.
     """  # noqa: E501
 
+    family_name: Optional[StrictStr] = Field(
+        default=None, description="The runner's job family name.", alias="familyName"
+    )
     labels: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["labels"]
+    __properties: ClassVar[List[str]] = ["familyName", "labels"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,5 +82,5 @@ class CreateRunnerPayload(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"labels": obj.get("labels")})
+        _obj = cls.model_validate({"familyName": obj.get("familyName"), "labels": obj.get("labels")})
         return _obj
