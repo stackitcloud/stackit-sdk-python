@@ -35,7 +35,7 @@ class InstanceNetworkCreate(BaseModel):
     access_scope: Optional[InstanceNetworkAccessScope] = Field(
         default=InstanceNetworkAccessScope.PUBLIC, alias="accessScope"
     )
-    acl: List[StrictStr] = Field(description="List of IPV4 cidr.")
+    acl: List[StrictStr] = Field(description="List of IPv4 CIDR addresses.")
     __properties: ClassVar[List[str]] = ["accessScope", "acl"]
 
     model_config = ConfigDict(
