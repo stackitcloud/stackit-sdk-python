@@ -48,6 +48,9 @@ __all__ = [
     "ListAccessTokensResponse",
     "ListDestinationsResponse",
     "ListTelemetryRoutersResponse",
+    "PartialUpdateAccessTokenPayload",
+    "PartialUpdateDestinationPayload",
+    "PartialUpdateTelemetryRouterPayload",
     "Response4xx",
     "TelemetryRouterResponse",
     "UpdateAccessTokenPayload",
@@ -131,6 +134,15 @@ from stackit.telemetryrouter.models.list_destinations_response import (
 )
 from stackit.telemetryrouter.models.list_telemetry_routers_response import (
     ListTelemetryRoutersResponse as ListTelemetryRoutersResponse,
+)
+from stackit.telemetryrouter.models.partial_update_access_token_payload import (
+    PartialUpdateAccessTokenPayload as PartialUpdateAccessTokenPayload,
+)
+from stackit.telemetryrouter.models.partial_update_destination_payload import (
+    PartialUpdateDestinationPayload as PartialUpdateDestinationPayload,
+)
+from stackit.telemetryrouter.models.partial_update_telemetry_router_payload import (
+    PartialUpdateTelemetryRouterPayload as PartialUpdateTelemetryRouterPayload,
 )
 from stackit.telemetryrouter.models.response4xx import Response4xx as Response4xx
 from stackit.telemetryrouter.models.telemetry_router_response import (

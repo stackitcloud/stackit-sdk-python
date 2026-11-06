@@ -55,8 +55,8 @@ class UpdateAccessTokenResponse(BaseModel):
         if not isinstance(value, str):
             value = str(value)
 
-        if not re.match(r"^([a-zA-Z0-9][a-zA-Z0-9 \-]*)?$", value):
-            raise ValueError(r"must validate the regular expression /^([a-zA-Z0-9][a-zA-Z0-9 \-]*)?$/")
+        if not re.match(r"^([a-zA-Z0-9][a-zA-Z0-9 \-.]*)?$", value):
+            raise ValueError(r"must validate the regular expression /^([a-zA-Z0-9][a-zA-Z0-9 \-.]*)?$/")
         return value
 
     @field_validator("display_name")
