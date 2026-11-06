@@ -44,7 +44,7 @@ class UpdateInstancePayload(BaseModel):
         description="The name of the instance."
     )
     network: InstanceNetworkUpdate
-    retention_days: Optional[Annotated[int, Field(le=365, strict=True, ge=32)]] = Field(
+    retention_days: Optional[Annotated[int, Field(le=90, strict=True, ge=32)]] = Field(
         description="How long backups are retained. The value can only be between 32 and 90 days.",
         alias="retentionDays",
     )
