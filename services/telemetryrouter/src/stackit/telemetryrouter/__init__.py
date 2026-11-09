@@ -33,6 +33,7 @@ __all__ = [
     "ConfigFilterAttributes",
     "ConfigFilterLevel",
     "ConfigFilterMatcher",
+    "ConfigFilterPatch",
     "CreateAccessTokenPayload",
     "CreateAccessTokenResponse",
     "CreateDestinationPayload",
@@ -40,6 +41,11 @@ __all__ = [
     "DestinationConfig",
     "DestinationConfigOpenTelemetry",
     "DestinationConfigOpenTelemetryBasicAuth",
+    "DestinationConfigPatch",
+    "DestinationConfigPatchOpenTelemetry",
+    "DestinationConfigPatchOpenTelemetryBasicAuth",
+    "DestinationConfigPatchS3",
+    "DestinationConfigPatchS3AccessKey",
     "DestinationConfigS3",
     "DestinationConfigS3AccessKey",
     "DestinationConfigType",
@@ -48,6 +54,9 @@ __all__ = [
     "ListAccessTokensResponse",
     "ListDestinationsResponse",
     "ListTelemetryRoutersResponse",
+    "PartialUpdateAccessTokenPayload",
+    "PartialUpdateDestinationPayload",
+    "PartialUpdateTelemetryRouterPayload",
     "Response4xx",
     "TelemetryRouterResponse",
     "UpdateAccessTokenPayload",
@@ -87,6 +96,9 @@ from stackit.telemetryrouter.models.config_filter_level import (
 from stackit.telemetryrouter.models.config_filter_matcher import (
     ConfigFilterMatcher as ConfigFilterMatcher,
 )
+from stackit.telemetryrouter.models.config_filter_patch import (
+    ConfigFilterPatch as ConfigFilterPatch,
+)
 from stackit.telemetryrouter.models.create_access_token_payload import (
     CreateAccessTokenPayload as CreateAccessTokenPayload,
 )
@@ -107,6 +119,21 @@ from stackit.telemetryrouter.models.destination_config_open_telemetry import (
 )
 from stackit.telemetryrouter.models.destination_config_open_telemetry_basic_auth import (
     DestinationConfigOpenTelemetryBasicAuth as DestinationConfigOpenTelemetryBasicAuth,
+)
+from stackit.telemetryrouter.models.destination_config_patch import (
+    DestinationConfigPatch as DestinationConfigPatch,
+)
+from stackit.telemetryrouter.models.destination_config_patch_open_telemetry import (
+    DestinationConfigPatchOpenTelemetry as DestinationConfigPatchOpenTelemetry,
+)
+from stackit.telemetryrouter.models.destination_config_patch_open_telemetry_basic_auth import (
+    DestinationConfigPatchOpenTelemetryBasicAuth as DestinationConfigPatchOpenTelemetryBasicAuth,
+)
+from stackit.telemetryrouter.models.destination_config_patch_s3 import (
+    DestinationConfigPatchS3 as DestinationConfigPatchS3,
+)
+from stackit.telemetryrouter.models.destination_config_patch_s3_access_key import (
+    DestinationConfigPatchS3AccessKey as DestinationConfigPatchS3AccessKey,
 )
 from stackit.telemetryrouter.models.destination_config_s3 import (
     DestinationConfigS3 as DestinationConfigS3,
@@ -131,6 +158,15 @@ from stackit.telemetryrouter.models.list_destinations_response import (
 )
 from stackit.telemetryrouter.models.list_telemetry_routers_response import (
     ListTelemetryRoutersResponse as ListTelemetryRoutersResponse,
+)
+from stackit.telemetryrouter.models.partial_update_access_token_payload import (
+    PartialUpdateAccessTokenPayload as PartialUpdateAccessTokenPayload,
+)
+from stackit.telemetryrouter.models.partial_update_destination_payload import (
+    PartialUpdateDestinationPayload as PartialUpdateDestinationPayload,
+)
+from stackit.telemetryrouter.models.partial_update_telemetry_router_payload import (
+    PartialUpdateTelemetryRouterPayload as PartialUpdateTelemetryRouterPayload,
 )
 from stackit.telemetryrouter.models.response4xx import Response4xx as Response4xx
 from stackit.telemetryrouter.models.telemetry_router_response import (
