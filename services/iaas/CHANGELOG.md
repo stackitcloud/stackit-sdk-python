@@ -1,3 +1,9 @@
+## v1.9.0
+- **Feature:** Add new model `DestinationPrefixList`
+- **Feature:** Add `DestinationPrefixList` as a oneOf option in `RouteDestination`
+- **Feature:** Add new field `encrypted` in `CreateSnapshotPayload` and `Snapshot` model
+- **Feature:** Add new field `vm_monitoring` in `ServerAgent` model
+
 ## v1.8.0
 - **Chore:** Bump minimum Python version to 3.11
 - **Chore:** Support Python version 3.15

@@ -987,7 +987,7 @@ dev = [
 
 [[package]]
 name = "stackit-iaas"
-version = "1.8.0"
+version = "1.9.0"
 source = { editable = "." }
 default-groups = "all"
 dependencies = [
