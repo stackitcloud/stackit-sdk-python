@@ -88,6 +88,11 @@
     - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `iaas`:
+  - [v1.9.0](services/iaas/CHANGELOG.md#v190)
+    - **Feature:** Add new model `DestinationPrefixList`
+    - **Feature:** Add `DestinationPrefixList` as a oneOf option in `RouteDestination`
+    - **Feature:** Add new field `encrypted` in `CreateSnapshotPayload` and `Snapshot` model
+    - **Feature:** Add new field `vm_monitoring` in `ServerAgent` model
   - [v1.8.0](services/iaas/CHANGELOG.md#v180)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15
