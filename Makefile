@@ -38,6 +38,6 @@ lint:
 
 update-dependencies:
 	# lock core
-	cd core && uv lock
+	cd core && uv lock --upgrade
 	# lock services
-	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};uv lock; cd ../..; done
+	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};uv lock --upgrade; cd ../..; done
