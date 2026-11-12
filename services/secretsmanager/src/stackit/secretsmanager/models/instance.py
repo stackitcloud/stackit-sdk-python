@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-STACKIT Secrets Manager API
+STACKIT Secrets Manager API V1
 
 This API provides endpoints for managing the Secrets-Manager.
 
