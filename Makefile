@@ -24,7 +24,7 @@ lint-services:
 	# lint examples. Use configuration from core
 	cd core && uv run flake8 --toml-config pyproject.toml --black-config pyproject.toml ../examples;
 	# lint services and check their lock files
-	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f}; if ! uv lock --check; then echo "Lock file for $${f} is out of date. Run 'make update-dependencies'."; exit 1; fi; uv run flake8 .; cd ../..; done
+	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f}; if ! uv lock --check; then echo "Lock file for $${f} is out of date. Run 'make update-lockfile'."; exit 1; fi; uv run flake8 .; cd ../..; done
 	# lint versions
 	@./scripts/lint-versions.sh
 
@@ -41,3 +41,9 @@ update-dependencies:
 	cd core && uv lock --upgrade
 	# lock services
 	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};uv lock --upgrade; cd ../..; done
+
+update-lockfile:
+	# lock core
+	cd core && uv lock
+	# lock services
+	@for f in $(shell ls ${SERVICES_DIR}); do set -e; cd ${SERVICES_DIR}/$${f};uv lock; cd ../..; done

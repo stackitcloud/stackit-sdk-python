@@ -1,3 +1,6 @@
+## v1.9.1
+- **Rerelease:** The release pipeline failed when publishing [v1.9.0](#v190)
+
 ## v1.9.0
 - **Feature:** Add new model `DestinationPrefixList`
 - **Feature:** Add `DestinationPrefixList` as a oneOf option in `RouteDestination`

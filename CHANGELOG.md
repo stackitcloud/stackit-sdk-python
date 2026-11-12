@@ -88,6 +88,8 @@
     - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `iaas`:
+  - [v1.9.1](services/iaas/CHANGELOG.md#v191)
+    - **Rerelease:** The release pipeline failed when publishing [v1.9.0](services/iaas/CHANGELOG.md#v190)
   - [v1.9.0](services/iaas/CHANGELOG.md#v190)
     - **Feature:** Add new model `DestinationPrefixList`
     - **Feature:** Add `DestinationPrefixList` as a oneOf option in `RouteDestination`
@@ -114,6 +116,8 @@
     - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `kms`
+  - [v0.15.1](services/kms/CHANGELOG.md#v0151)
+    - **Rerelease:** The release pipeline failed when publishing [v0.15.0](services/kms/CHANGELOG.md#v0150)
   - [v0.15.0](services/kms/CHANGELOG.md#v0150)
     - **Improvement:** `wrapped_key` attribute in `ImportKeyPayload` model now validates a maximum length of `85336` characters
   - [v0.14.0](services/kms/CHANGELOG.md#v0140)
@@ -224,6 +228,8 @@
     - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `secretsmanager`
+  - [v0.8.1](services/secretsmanager/CHANGELOG.md#v081)## v0.8.2
+    - **Rerelease:** The release pipeline failed when publishing [v0.8.1](services/secretsmanager/CHANGELOG.md#v081)
   - [v0.8.1](services/secretsmanager/CHANGELOG.md#v081)
     - **Docs:** Document HTTP 409 (Conflict) response for `update_instance` operation
   - [v0.8.0](services/secretsmanager/CHANGELOG.md#v080)
