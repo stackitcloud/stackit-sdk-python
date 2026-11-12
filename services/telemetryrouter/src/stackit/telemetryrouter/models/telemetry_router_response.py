@@ -37,14 +37,30 @@ class TelemetryRouterResponse(BaseModel):
         default=None,
         description="The description is a longer text chosen by the user to provide more context for the resource.",
     )
+    destination_count: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
+        default=None,
+        description="The number of destinations configured for the telemetry router.",
+        alias="destinationCount",
+    )
     display_name: Annotated[str, Field(min_length=1, strict=True, max_length=32)] = Field(
         description="The display name is a short name chosen by the user to identify the resource.", alias="displayName"
     )
     filter: Optional[ConfigFilter] = None
     id: UUID = Field(description="A auto generated unique id which identifies the resource.")
+    resource_labels: Optional[Dict[str, StrictStr]] = Field(default=None, alias="resourceLabels")
     status: StrictStr = Field(description="The current status of the resource.")
     uri: Annotated[str, Field(strict=True, max_length=1024)] = Field(description="The URI for reaching the resource.")
-    __properties: ClassVar[List[str]] = ["creationTime", "description", "displayName", "filter", "id", "status", "uri"]
+    __properties: ClassVar[List[str]] = [
+        "creationTime",
+        "description",
+        "destinationCount",
+        "displayName",
+        "filter",
+        "id",
+        "resourceLabels",
+        "status",
+        "uri",
+    ]
 
     @field_validator("creation_time", mode="before")
     def creation_time_change_year_zero_to_one(cls, value):
@@ -144,9 +160,11 @@ class TelemetryRouterResponse(BaseModel):
             {
                 "creationTime": obj.get("creationTime"),
                 "description": obj.get("description"),
+                "destinationCount": obj.get("destinationCount"),
                 "displayName": obj.get("displayName"),
                 "filter": ConfigFilter.from_dict(obj["filter"]) if obj.get("filter") is not None else None,
                 "id": obj.get("id"),
+                "resourceLabels": obj.get("resourceLabels"),
                 "status": obj.get("status"),
                 "uri": obj.get("uri"),
             }
