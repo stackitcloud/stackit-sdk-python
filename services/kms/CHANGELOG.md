@@ -1,3 +1,6 @@
+## v0.15.0
+- **Improvement:** `wrapped_key` attribute in `ImportKeyPayload` model now validates a maximum length of `85336` characters
+
 ## v0.14.0
 - **Chore:** Bump minimum Python version to 3.11
 - **Chore:** Support Python version 3.15

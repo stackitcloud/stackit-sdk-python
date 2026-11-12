@@ -114,6 +114,8 @@
     - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `kms`
+  - [v0.15.0](services/kms/CHANGELOG.md#v0150)
+    - **Improvement:** `wrapped_key` attribute in `ImportKeyPayload` model now validates a maximum length of `85336` characters
   - [v0.14.0](services/kms/CHANGELOG.md#v0140)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15
