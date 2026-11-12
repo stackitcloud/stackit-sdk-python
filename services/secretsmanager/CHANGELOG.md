@@ -1,3 +1,6 @@
+## v0.8.2
+- **Rerelease:** The release pipeline failed when publishing [v0.8.1](#v081)
+
 ## v0.8.1
 - **Docs:** Document HTTP 409 (Conflict) response for `update_instance` operation
 

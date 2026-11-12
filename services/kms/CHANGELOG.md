@@ -1,3 +1,6 @@
+## v0.15.1
+- **Rerelease:** The release pipeline failed when publishing [v0.15.0](#v0150).
+
 ## v0.15.0
 - **Improvement:** `wrapped_key` attribute in `ImportKeyPayload` model now validates a maximum length of `85336` characters
 
