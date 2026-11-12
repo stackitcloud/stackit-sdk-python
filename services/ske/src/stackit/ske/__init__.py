@@ -30,9 +30,13 @@ __all__ = [
     "ACL",
     "Access",
     "AccessScope",
+    "ApplicationLoadBalancer",
     "Audit",
     "AvailabilityZone",
+    "CNI",
     "CRI",
+    "CiliumConfig",
+    "CiliumHubble",
     "Cluster",
     "ClusterError",
     "ClusterStatus",
@@ -51,6 +55,7 @@ __all__ = [
     "IDP",
     "IDPKubeconfig",
     "Image",
+    "Kata",
     "Kubeconfig",
     "Kubernetes",
     "KubernetesVersion",
@@ -59,6 +64,7 @@ __all__ = [
     "Machine",
     "MachineImage",
     "MachineImageVersion",
+    "MachineImageVersionCRI",
     "MachineType",
     "Maintenance",
     "MaintenanceAutoUpdate",
@@ -93,14 +99,20 @@ from stackit.ske.models.access_scope import AccessScope as AccessScope
 
 # import models into sdk package
 from stackit.ske.models.acl import ACL as ACL
+from stackit.ske.models.application_load_balancer import (
+    ApplicationLoadBalancer as ApplicationLoadBalancer,
+)
 from stackit.ske.models.audit import Audit as Audit
 from stackit.ske.models.availability_zone import AvailabilityZone as AvailabilityZone
+from stackit.ske.models.cilium_config import CiliumConfig as CiliumConfig
+from stackit.ske.models.cilium_hubble import CiliumHubble as CiliumHubble
 from stackit.ske.models.cluster import Cluster as Cluster
 from stackit.ske.models.cluster_error import ClusterError as ClusterError
 from stackit.ske.models.cluster_status import ClusterStatus as ClusterStatus
 from stackit.ske.models.cluster_status_state import (
     ClusterStatusState as ClusterStatusState,
 )
+from stackit.ske.models.cni import CNI as CNI
 from stackit.ske.models.create_kubeconfig_payload import (
     CreateKubeconfigPayload as CreateKubeconfigPayload,
 )
@@ -130,6 +142,7 @@ from stackit.ske.models.hibernation_schedule import (
 from stackit.ske.models.idp import IDP as IDP
 from stackit.ske.models.idp_kubeconfig import IDPKubeconfig as IDPKubeconfig
 from stackit.ske.models.image import Image as Image
+from stackit.ske.models.kata import Kata as Kata
 from stackit.ske.models.kubeconfig import Kubeconfig as Kubeconfig
 from stackit.ske.models.kubernetes import Kubernetes as Kubernetes
 from stackit.ske.models.kubernetes_version import KubernetesVersion as KubernetesVersion
@@ -141,6 +154,9 @@ from stackit.ske.models.machine import Machine as Machine
 from stackit.ske.models.machine_image import MachineImage as MachineImage
 from stackit.ske.models.machine_image_version import (
     MachineImageVersion as MachineImageVersion,
+)
+from stackit.ske.models.machine_image_version_cri import (
+    MachineImageVersionCRI as MachineImageVersionCRI,
 )
 from stackit.ske.models.machine_type import MachineType as MachineType
 from stackit.ske.models.maintenance import Maintenance as Maintenance
