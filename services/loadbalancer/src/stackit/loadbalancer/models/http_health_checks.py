@@ -15,11 +15,12 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 from stackit.loadbalancer.models.tls_config import TlsConfig
 
@@ -32,9 +33,24 @@ class HttpHealthChecks(BaseModel):
     ok_statuses: Optional[List[StrictStr]] = Field(
         default=None, description="List of HTTP status codes that indicate a healthy response", alias="okStatuses"
     )
-    path: Optional[StrictStr] = Field(default=None, description="Path to send the health check request to")
+    path: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=253)]] = Field(
+        default=None, description="Path to send the health check request to"
+    )
     tls: Optional[TlsConfig] = None
     __properties: ClassVar[List[str]] = ["okStatuses", "path", "tls"]
+
+    @field_validator("path")
+    def path_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^(?:\/[a-zA-Z0-9\-._]+)*\/?$", value):
+            raise ValueError(r"must validate the regular expression /^(?:\/[a-zA-Z0-9\-._]+)*\/?$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
