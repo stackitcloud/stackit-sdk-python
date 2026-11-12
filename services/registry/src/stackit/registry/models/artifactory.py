@@ -37,6 +37,9 @@ class Artifactory(BaseModel):
     create_time: datetime = Field(
         description="The date and time the creation of the STACKIT Artifactory was triggered."
     )
+    error_description: Optional[StrictStr] = Field(
+        default=None, description="Describes the reason for the error state."
+    )
     id: UUID = Field(description="A auto generated unique id which identifies the STACKIT Artifactory.")
     name: Annotated[str, Field(strict=True, max_length=255)] = Field(
         description="A user chosen name to distinguish multiple STACKIT Artifactories."
@@ -44,7 +47,16 @@ class Artifactory(BaseModel):
     proxy: Optional[Proxy] = None
     state: StrictStr = Field(description="The current state of the STACKIT Artifactory.")
     url: StrictStr = Field(description="The base URL of the STACKIT Artifactory.")
-    __properties: ClassVar[List[str]] = ["consumed_quota_bytes", "create_time", "id", "name", "proxy", "state", "url"]
+    __properties: ClassVar[List[str]] = [
+        "consumed_quota_bytes",
+        "create_time",
+        "error_description",
+        "id",
+        "name",
+        "proxy",
+        "state",
+        "url",
+    ]
 
     @field_validator("create_time", mode="before")
     def create_time_change_year_zero_to_one(cls, value):
@@ -121,6 +133,7 @@ class Artifactory(BaseModel):
             {
                 "consumed_quota_bytes": obj.get("consumed_quota_bytes"),
                 "create_time": obj.get("create_time"),
+                "error_description": obj.get("error_description"),
                 "id": obj.get("id"),
                 "name": obj.get("name"),
                 "proxy": Proxy.from_dict(obj["proxy"]) if obj.get("proxy") is not None else None,
