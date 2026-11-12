@@ -224,6 +224,8 @@
     - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `secretsmanager`
+  - [v0.8.1](services/secretsmanager/CHANGELOG.md#v081)
+    - **Docs:** Document HTTP 409 (Conflict) response for `update_instance` operation
   - [v0.8.0](services/secretsmanager/CHANGELOG.md#v080)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15
