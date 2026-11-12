@@ -51,6 +51,11 @@ class TelemetryLinkResponse(BaseModel):
     )
     id: UUID = Field(description="A auto generated unique id which identifies the resource.")
     region_id: StrictStr = Field(description="The STACKIT region name the resource is located in.", alias="regionId")
+    resource_labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)",
+        alias="resourceLabels",
+    )
     status: StrictStr = Field(description="The current state of the link.")
     telemetry_router_id: Annotated[str, Field(strict=True, max_length=1024)] = Field(
         description="The ID of the telemetry-router to route the telemetry data.", alias="telemetryRouterId"
@@ -63,6 +68,7 @@ class TelemetryLinkResponse(BaseModel):
         "enabled",
         "id",
         "regionId",
+        "resourceLabels",
         "status",
         "telemetryRouterId",
     ]
@@ -164,6 +170,7 @@ class TelemetryLinkResponse(BaseModel):
                 "enabled": obj.get("enabled"),
                 "id": obj.get("id"),
                 "regionId": obj.get("regionId"),
+                "resourceLabels": obj.get("resourceLabels"),
                 "status": obj.get("status"),
                 "telemetryRouterId": obj.get("telemetryRouterId"),
             }
