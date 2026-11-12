@@ -18,28 +18,45 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+    field_validator,
+)
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
 
-class LookupRecord(BaseModel):
+class DnslookupPayload(BaseModel):
     """
-    LookupRecord
+    DnslookupPayload
     """  # noqa: E501
 
-    data: Optional[StrictStr] = Field(
-        default=None, description="Data contains the record-specific data (e.g., IP address for A records)"
+    address: Optional[StrictStr] = Field(default=None, description="Address is the domain name to look up")
+    include_raw_response: Optional[StrictBool] = Field(
+        default=False,
+        description="IncludeRawResponse indicates whether to include the raw DNS response in the result",
+        alias="includeRawResponse",
     )
-    name: Optional[StrictStr] = Field(default=None, description="Name is the domain name to which this record applies")
-    ttl: Optional[StrictInt] = Field(
-        default=None, description="TTL (Time To Live) is the duration in seconds that the record may be cached"
+    record_type: Optional[StrictStr] = Field(
+        default="A",
+        description="RecordType specifies the DNS record type to query (A, AAAA, MX, etc.) If omitted, defaults to ANY records",
+        alias="recordType",
     )
-    type: Optional[StrictStr] = Field(default=None, description="Type is the DNS record type (A, AAAA, MX, etc.)")
-    __properties: ClassVar[List[str]] = ["data", "name", "ttl", "type"]
+    region: Optional[StrictStr] = Field(
+        default=None, description="Region optionally specifies a STACKIT region to scope the DNS lookup"
+    )
+    type: Optional[StrictStr] = Field(
+        default="one",
+        description='Type specifies whether to query all configured resolvers or just one "one" - query a single resolver chosen by round-robin (default) "all" - query all configured resolvers',
+    )
+    __properties: ClassVar[List[str]] = ["address", "includeRawResponse", "recordType", "region", "type"]
 
-    @field_validator("type")
-    def type_validate_enum(cls, value):
+    @field_validator("record_type")
+    def record_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
@@ -71,11 +88,22 @@ class LookupRecord(BaseModel):
                 "CSYNC",
                 "HINFO",
                 "HTTPS",
+                "ANY",
             ]
         ):
             raise ValueError(
-                "must be one of enum values ('A', 'AAAA', 'SOA', 'CNAME', 'NS', 'MX', 'TXT', 'SRV', 'PTR', 'ALIAS', 'DNAME', 'CAA', 'DNSKEY', 'DS', 'LOC', 'NAPTR', 'SSHFP', 'TLSA', 'URI', 'CERT', 'SVCB', 'TYPE', 'CSYNC', 'HINFO', 'HTTPS')"
+                "must be one of enum values ('A', 'AAAA', 'SOA', 'CNAME', 'NS', 'MX', 'TXT', 'SRV', 'PTR', 'ALIAS', 'DNAME', 'CAA', 'DNSKEY', 'DS', 'LOC', 'NAPTR', 'SSHFP', 'TLSA', 'URI', 'CERT', 'SVCB', 'TYPE', 'CSYNC', 'HINFO', 'HTTPS', 'ANY')"
             )
+        return value
+
+    @field_validator("type")
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["all", "one"]):
+            raise ValueError("must be one of enum values ('all', 'one')")
         return value
 
     model_config = ConfigDict(
@@ -95,7 +123,7 @@ class LookupRecord(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of LookupRecord from a JSON string"""
+        """Create an instance of DnslookupPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -119,7 +147,7 @@ class LookupRecord(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of LookupRecord from a dict"""
+        """Create an instance of DnslookupPayload from a dict"""
         if obj is None:
             return None
 
@@ -127,6 +155,14 @@ class LookupRecord(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"data": obj.get("data"), "name": obj.get("name"), "ttl": obj.get("ttl"), "type": obj.get("type")}
+            {
+                "address": obj.get("address"),
+                "includeRawResponse": (
+                    obj.get("includeRawResponse") if obj.get("includeRawResponse") is not None else False
+                ),
+                "recordType": obj.get("recordType") if obj.get("recordType") is not None else "A",
+                "region": obj.get("region"),
+                "type": obj.get("type") if obj.get("type") is not None else "one",
+            }
         )
         return _obj
