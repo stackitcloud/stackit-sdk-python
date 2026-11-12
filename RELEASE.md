@@ -4,20 +4,6 @@
 
 A release of the whole SDK should be created at least every 2 weeks. 
 
-## PyPI trusted publishing setup
-
-The [CD workflow](.github/workflows/cd.yaml) publishes the core package and service
-packages with `uv publish --trusted-publishing always`. GitHub Actions OIDC is
-required; no long-lived PyPI token is used. Keep the workflow filename `cd.yaml`
-and the job's environment `pypi` in sync with the PyPI publisher configuration.
-
-The job grants `id-token: write` so uv can obtain short-lived publishing
-credentials. 
-
-References: [PyPI trusted publishers](https://docs.pypi.org/trusted-publishers/adding-a-publisher/),
-[uv publishing from GitHub Actions](https://docs.astral.sh/uv/guides/integration/github/#publishing-to-pypi),
-[GitHub environment options](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments).
-
 ## Release creation
 
 ### Single service
@@ -52,3 +38,4 @@ The SDK is split into all the different STACKIT [services](https://github.com/st
 4. Copy the changelog entries for the new release from the `CHANGELOG.md` file in the root directory of the repository (see [here](https://github.com/stackitcloud/stackit-sdk-python/blob/608176ab8cdfa60a3cfb09da49de0b1aba5fea84/CHANGELOG.md)) to your clipboard.
 5. Go to the [releases page](https://github.com/stackitcloud/stackit-sdk-python/releases) on GitHub and create a new release. Select the git tag you just created.
 6. Before creating the GitHub release, add the *Highlights* heading at the top of the markdown description and paste the changelog entries from your clipboard (see [previous releases](https://github.com/stackitcloud/stackit-sdk-python/releases/tag/release-2025-03-27) to see what it should look like). Then create and publish the GitHub release.
+
