@@ -7,12 +7,13 @@ on:
     # run every full hour (to still label PRs from forks)
     - cron: '0 * * * *'
 
+permissions: {}
+
 jobs:
   labeler:
     permissions:
       contents: read
       pull-requests: write
-      issues: write
     # don't run on PRs from forks (token has no write permissions)
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     name: "Labeler"
@@ -23,7 +24,7 @@ jobs:
         run: |
           curl -sSL -o remote-labeler.yml https://raw.githubusercontent.com/stackitcloud/stackit-sdk-go/main/.github/labeler.yml 
       - name: Labeler action
-        uses: actions/labeler@v6
+        uses: actions/labeler@b8dd2d9be0f68b860e7dae5dae7d772984eacd6d # v6.2.0
         with:
           configuration-path: "remote-labeler.yml"
           sync-labels: false
