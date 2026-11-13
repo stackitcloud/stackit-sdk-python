@@ -28,7 +28,7 @@ class InstanceNetworkUpdate(BaseModel):
     The access configuration of the instance
     """  # noqa: E501
 
-    acl: List[StrictStr] = Field(description="List of IPV4 cidr.")
+    acl: List[StrictStr] = Field(description="List of IPv4 CIDR addresses.")
     __properties: ClassVar[List[str]] = ["acl"]
 
     model_config = ConfigDict(
