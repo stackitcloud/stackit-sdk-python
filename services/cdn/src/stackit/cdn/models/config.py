@@ -27,6 +27,7 @@ from pydantic import (
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
+from stackit.cdn.models.cache_config import CacheConfig
 from stackit.cdn.models.config_backend import ConfigBackend
 from stackit.cdn.models.config_log_sink import ConfigLogSink
 from stackit.cdn.models.optimizer import Optimizer
@@ -50,6 +51,7 @@ class Config(BaseModel):
         description="Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution. ",
         alias="blockedIps",
     )
+    cache_config: CacheConfig = Field(alias="cacheConfig")
     default_cache_duration: Optional[StrictStr] = Field(
         default=None,
         description="Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M) ",
@@ -81,6 +83,7 @@ class Config(BaseModel):
         "backend",
         "blockedCountries",
         "blockedIps",
+        "cacheConfig",
         "defaultCacheDuration",
         "forwardHostHeader",
         "labels",
@@ -134,6 +137,9 @@ class Config(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of backend
         if self.backend:
             _dict["backend"] = self.backend.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cache_config
+        if self.cache_config:
+            _dict["cacheConfig"] = self.cache_config.to_dict()
         # override the default output from pydantic by calling `to_dict()` of log_sink
         if self.log_sink:
             _dict["logSink"] = self.log_sink.to_dict()
@@ -175,6 +181,9 @@ class Config(BaseModel):
                 "backend": ConfigBackend.from_dict(obj["backend"]) if obj.get("backend") is not None else None,
                 "blockedCountries": obj.get("blockedCountries"),
                 "blockedIps": obj.get("blockedIps"),
+                "cacheConfig": (
+                    CacheConfig.from_dict(obj["cacheConfig"]) if obj.get("cacheConfig") is not None else None
+                ),
                 "defaultCacheDuration": obj.get("defaultCacheDuration"),
                 "forwardHostHeader": obj.get("forwardHostHeader"),
                 "labels": obj.get("labels"),

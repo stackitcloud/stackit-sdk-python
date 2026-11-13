@@ -26,8 +26,9 @@ from pydantic import (
 from typing_extensions import Self
 
 from stackit.cdn.models.loki_log_sink_create import LokiLogSinkCreate
+from stackit.cdn.models.otlp_log_sink_create import OtlpLogSinkCreate
 
-CREATEDISTRIBUTIONPAYLOADLOGSINK_ONE_OF_SCHEMAS = ["LokiLogSinkCreate"]
+CREATEDISTRIBUTIONPAYLOADLOGSINK_ONE_OF_SCHEMAS = ["LokiLogSinkCreate", "OtlpLogSinkCreate"]
 
 
 class CreateDistributionPayloadLogSink(BaseModel):
@@ -37,8 +38,10 @@ class CreateDistributionPayloadLogSink(BaseModel):
 
     # data type: LokiLogSinkCreate
     oneof_schema_1_validator: Optional[LokiLogSinkCreate] = None
-    actual_instance: Optional[Union[LokiLogSinkCreate]] = None
-    one_of_schemas: Set[str] = {"LokiLogSinkCreate"}
+    # data type: OtlpLogSinkCreate
+    oneof_schema_2_validator: Optional[OtlpLogSinkCreate] = None
+    actual_instance: Optional[Union[LokiLogSinkCreate, OtlpLogSinkCreate]] = None
+    one_of_schemas: Set[str] = {"LokiLogSinkCreate", "OtlpLogSinkCreate"}
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -67,10 +70,15 @@ class CreateDistributionPayloadLogSink(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `LokiLogSinkCreate`")
         else:
             match += 1
+        # validate data type: OtlpLogSinkCreate
+        if not isinstance(v, OtlpLogSinkCreate):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OtlpLogSinkCreate`")
+        else:
+            match += 1
         if match == 0:
             # no match
             raise ValueError(
-                "No match found when setting `actual_instance` in CreateDistributionPayloadLogSink with oneOf schemas: LokiLogSinkCreate. Details: "
+                "No match found when setting `actual_instance` in CreateDistributionPayloadLogSink with oneOf schemas: LokiLogSinkCreate, OtlpLogSinkCreate. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -93,17 +101,23 @@ class CreateDistributionPayloadLogSink(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into OtlpLogSinkCreate
+        try:
+            instance.actual_instance = OtlpLogSinkCreate.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
             raise ValueError(
-                "Multiple matches found when deserializing the JSON string into CreateDistributionPayloadLogSink with oneOf schemas: LokiLogSinkCreate. Details: "
+                "Multiple matches found when deserializing the JSON string into CreateDistributionPayloadLogSink with oneOf schemas: LokiLogSinkCreate, OtlpLogSinkCreate. Details: "
                 + ", ".join(error_messages)
             )
         elif match == 0:
             # no match
             raise ValueError(
-                "No match found when deserializing the JSON string into CreateDistributionPayloadLogSink with oneOf schemas: LokiLogSinkCreate. Details: "
+                "No match found when deserializing the JSON string into CreateDistributionPayloadLogSink with oneOf schemas: LokiLogSinkCreate, OtlpLogSinkCreate. Details: "
                 + ", ".join(error_messages)
             )
         else:
@@ -119,7 +133,7 @@ class CreateDistributionPayloadLogSink(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], LokiLogSinkCreate]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], LokiLogSinkCreate, OtlpLogSinkCreate]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
