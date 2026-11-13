@@ -18,7 +18,14 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+    field_validator,
+)
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -36,13 +43,25 @@ class CreateOrUpdateProjectTelemetryLinkPayload(BaseModel):
     display_name: Annotated[str, Field(min_length=1, strict=True, max_length=32)] = Field(
         description="The display name is a short name chosen by the user to identify the resource.", alias="displayName"
     )
-    enabled: StrictBool = Field(
-        description="Indicates whether routing through the link to a telemetry-router is active."
+    enabled: Optional[StrictBool] = Field(
+        default=True, description="Indicates whether routing through the link to a telemetry-router is active."
     )
     telemetry_router_id: Annotated[str, Field(strict=True, max_length=1024)] = Field(
         description="The ID of the telemetry-router to route the telemetry data.", alias="telemetryRouterId"
     )
-    __properties: ClassVar[List[str]] = ["accessToken", "description", "displayName", "enabled", "telemetryRouterId"]
+    resource_labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None,
+        description="Resource lables as described [in the documentation](https://docs.stackit.cloud/platform/cost-and-billing/labels/)",
+        alias="resourceLabels",
+    )
+    __properties: ClassVar[List[str]] = [
+        "accessToken",
+        "description",
+        "displayName",
+        "enabled",
+        "telemetryRouterId",
+        "resourceLabels",
+    ]
 
     @field_validator("access_token")
     def access_token_validate_regular_expression(cls, value):
@@ -134,6 +153,7 @@ class CreateOrUpdateProjectTelemetryLinkPayload(BaseModel):
                 "displayName": obj.get("displayName"),
                 "enabled": obj.get("enabled") if obj.get("enabled") is not None else True,
                 "telemetryRouterId": obj.get("telemetryRouterId"),
+                "resourceLabels": obj.get("resourceLabels"),
             }
         )
         return _obj
