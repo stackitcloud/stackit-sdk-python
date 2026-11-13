@@ -36,6 +36,7 @@ __all__ = [
     "CreateAuthenticationPayload",
     "CreateInstancePayload",
     "CreateRunnerPayload",
+    "CreateUserPayload",
     "FeatureToggle",
     "Flavor",
     "GenericErrorResponse",
@@ -43,14 +44,24 @@ __all__ = [
     "InternalServerErrorResponse",
     "ListFlavors",
     "ListInstances",
+    "ListOrganizationTeams",
+    "ListOrganizations",
+    "ListUsers",
     "NotFoundErrorResponse",
+    "Organization",
+    "OrganizationTeam",
     "PatchAuthenticationPayload",
     "PatchInstancePayload",
     "PatchOperation",
+    "Pipelines",
     "Runner",
+    "RunnerFamily",
+    "RunnerFamilyList",
     "RunnerRuntime",
     "RunnerRuntimeList",
     "UnauthorizedErrorResponse",
+    "UpdateUserPayload",
+    "User",
 ]
 
 # import apis into sdk package
@@ -88,6 +99,9 @@ from stackit.git.models.create_instance_payload import (
 from stackit.git.models.create_runner_payload import (
     CreateRunnerPayload as CreateRunnerPayload,
 )
+from stackit.git.models.create_user_payload import (
+    CreateUserPayload as CreateUserPayload,
+)
 from stackit.git.models.feature_toggle import FeatureToggle as FeatureToggle
 from stackit.git.models.flavor import Flavor as Flavor
 from stackit.git.models.generic_error_response import (
@@ -99,9 +113,16 @@ from stackit.git.models.internal_server_error_response import (
 )
 from stackit.git.models.list_flavors import ListFlavors as ListFlavors
 from stackit.git.models.list_instances import ListInstances as ListInstances
+from stackit.git.models.list_organization_teams import (
+    ListOrganizationTeams as ListOrganizationTeams,
+)
+from stackit.git.models.list_organizations import ListOrganizations as ListOrganizations
+from stackit.git.models.list_users import ListUsers as ListUsers
 from stackit.git.models.not_found_error_response import (
     NotFoundErrorResponse as NotFoundErrorResponse,
 )
+from stackit.git.models.organization import Organization as Organization
+from stackit.git.models.organization_team import OrganizationTeam as OrganizationTeam
 from stackit.git.models.patch_authentication_payload import (
     PatchAuthenticationPayload as PatchAuthenticationPayload,
 )
@@ -109,7 +130,10 @@ from stackit.git.models.patch_instance_payload import (
     PatchInstancePayload as PatchInstancePayload,
 )
 from stackit.git.models.patch_operation import PatchOperation as PatchOperation
+from stackit.git.models.pipelines import Pipelines as Pipelines
 from stackit.git.models.runner import Runner as Runner
+from stackit.git.models.runner_family import RunnerFamily as RunnerFamily
+from stackit.git.models.runner_family_list import RunnerFamilyList as RunnerFamilyList
 from stackit.git.models.runner_runtime import RunnerRuntime as RunnerRuntime
 from stackit.git.models.runner_runtime_list import (
     RunnerRuntimeList as RunnerRuntimeList,
@@ -117,3 +141,7 @@ from stackit.git.models.runner_runtime_list import (
 from stackit.git.models.unauthorized_error_response import (
     UnauthorizedErrorResponse as UnauthorizedErrorResponse,
 )
+from stackit.git.models.update_user_payload import (
+    UpdateUserPayload as UpdateUserPayload,
+)
+from stackit.git.models.user import User as User
