@@ -25,7 +25,7 @@ from pydantic import (
     StrictStr,
 )
 from pydantic_core import to_jsonable_python
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 
 
 class ACL(BaseModel):
@@ -33,7 +33,7 @@ class ACL(BaseModel):
     ACL
     """  # noqa: E501
 
-    allowed_cidrs: Annotated[List[StrictStr], Field(max_length=10)] = Field(
+    allowed_cidrs: List[StrictStr] = Field(
         description="Array of CIDRs to allow access to the kubernetes API.", alias="allowedCidrs"
     )
     enabled: StrictBool = Field(description="Enables the acl extension.")
