@@ -15,9 +15,10 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -37,6 +38,26 @@ class DestinationConfigS3(BaseModel):
         description="The URI for reaching the resource."
     )
     __properties: ClassVar[List[str]] = ["accessKey", "bucket", "endpoint"]
+
+    @field_validator("bucket")
+    def bucket_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[a-z0-9\-]+$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z0-9\-]+$/")
+        return value
+
+    @field_validator("endpoint")
+    def endpoint_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[^\0-\x1F\x7F-\x9F]+$", value):
+            raise ValueError(r"must validate the regular expression /^[^\0-\x1F\x7F-\x9F]+$/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
