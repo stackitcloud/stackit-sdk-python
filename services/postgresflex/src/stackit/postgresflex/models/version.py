@@ -35,12 +35,12 @@ class Version(BaseModel):
     """  # noqa: E501
 
     beta: StrictBool = Field(
-        description="Flag if the version is a beta version. If set the version may contain bugs and is not fully tested."
+        description="Flag indicating whether the version is a beta version. Beta versions may contain bugs and are not fully tested."
     )
     deprecated: StrictStr = Field(
-        description="Timestamp in RFC3339 format which says when the version will no longer be supported by STACKIT."
+        description="Timestamp in RFC3339 format indicating when the version will no longer be supported by STACKIT."
     )
-    recommend: StrictBool = Field(description="Flag if the version is recommend by the STACKIT Team.")
+    recommend: StrictBool = Field(description="Flag indicating whether the version is recommended by the STACKIT Team.")
     version: StrictStr = Field(description="The postgres version used for the instance.")
     __properties: ClassVar[List[str]] = ["beta", "deprecated", "recommend", "version"]
 
