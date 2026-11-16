@@ -18,7 +18,13 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+)
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
@@ -33,8 +39,13 @@ class PatchInstancePayload(BaseModel):
     acl: Optional[Annotated[List[StrictStr], Field(max_length=50)]] = Field(
         default=None, description="A list of CIDR network addresses that are allowed to access the instance."
     )
+    admin_login: Optional[StrictBool] = Field(default=None, description="Enable Admin IdP")
     feature_toggle: Optional[FeatureToggle] = None
-    __properties: ClassVar[List[str]] = ["acl", "feature_toggle"]
+    labels: Optional[Dict[str, Annotated[str, Field(strict=True, max_length=63)]]] = Field(
+        default=None,
+        description="Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. The `stackit-` prefix is reserved and cannot be used for Keys.",
+    )
+    __properties: ClassVar[List[str]] = ["acl", "admin_login", "feature_toggle", "labels"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -95,9 +106,11 @@ class PatchInstancePayload(BaseModel):
         _obj = cls.model_validate(
             {
                 "acl": obj.get("acl"),
+                "admin_login": obj.get("admin_login"),
                 "feature_toggle": (
                     FeatureToggle.from_dict(obj["feature_toggle"]) if obj.get("feature_toggle") is not None else None
                 ),
+                "labels": obj.get("labels"),
             }
         )
         return _obj
