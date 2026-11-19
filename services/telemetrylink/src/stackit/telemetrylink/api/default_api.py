@@ -26,6 +26,10 @@ from typing_extensions import Annotated
 
 from stackit.telemetrylink.api_client import ApiClient, RequestSerialized
 from stackit.telemetrylink.api_response import ApiResponse
+from stackit.telemetrylink.models.backflush_job_response import BackflushJobResponse
+from stackit.telemetrylink.models.create_folder_backflush_job_payload import (
+    CreateFolderBackflushJobPayload,
+)
 from stackit.telemetrylink.models.create_or_update_folder_telemetry_link_payload import (
     CreateOrUpdateFolderTelemetryLinkPayload,
 )
@@ -34,6 +38,15 @@ from stackit.telemetrylink.models.create_or_update_organization_telemetry_link_p
 )
 from stackit.telemetrylink.models.create_or_update_project_telemetry_link_payload import (
     CreateOrUpdateProjectTelemetryLinkPayload,
+)
+from stackit.telemetrylink.models.create_organization_backflush_job_payload import (
+    CreateOrganizationBackflushJobPayload,
+)
+from stackit.telemetrylink.models.create_project_backflush_job_payload import (
+    CreateProjectBackflushJobPayload,
+)
+from stackit.telemetrylink.models.list_backflush_jobs_response import (
+    ListBackflushJobsResponse,
 )
 from stackit.telemetrylink.models.partial_update_folder_telemetry_link_payload import (
     PartialUpdateFolderTelemetryLinkPayload,
@@ -60,6 +73,282 @@ class DefaultApi:
             configuration = Configuration()
         self.configuration = configuration
         self.api_client = ApiClient(self.configuration)
+
+    @validate_call
+    def create_folder_backflush_job(
+        self,
+        folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        create_folder_backflush_job_payload: CreateFolderBackflushJobPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> BackflushJobResponse:
+        """create_folder_backflush_job
+
+        Creates a new Backflush Job for the folder.
+
+        :param folder_id: The STACKIT portal folder UUID the resource is located in. (required)
+        :type folder_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param create_folder_backflush_job_payload: (required)
+        :type create_folder_backflush_job_payload: CreateFolderBackflushJobPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_folder_backflush_job_serialize(
+            folder_id=folder_id,
+            region_id=region_id,
+            create_folder_backflush_job_payload=create_folder_backflush_job_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "409": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_folder_backflush_job_with_http_info(
+        self,
+        folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        create_folder_backflush_job_payload: CreateFolderBackflushJobPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[BackflushJobResponse]:
+        """create_folder_backflush_job
+
+        Creates a new Backflush Job for the folder.
+
+        :param folder_id: The STACKIT portal folder UUID the resource is located in. (required)
+        :type folder_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param create_folder_backflush_job_payload: (required)
+        :type create_folder_backflush_job_payload: CreateFolderBackflushJobPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_folder_backflush_job_serialize(
+            folder_id=folder_id,
+            region_id=region_id,
+            create_folder_backflush_job_payload=create_folder_backflush_job_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "409": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_folder_backflush_job_without_preload_content(
+        self,
+        folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        create_folder_backflush_job_payload: CreateFolderBackflushJobPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """create_folder_backflush_job
+
+        Creates a new Backflush Job for the folder.
+
+        :param folder_id: The STACKIT portal folder UUID the resource is located in. (required)
+        :type folder_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param create_folder_backflush_job_payload: (required)
+        :type create_folder_backflush_job_payload: CreateFolderBackflushJobPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_folder_backflush_job_serialize(
+            folder_id=folder_id,
+            region_id=region_id,
+            create_folder_backflush_job_payload=create_folder_backflush_job_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "409": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_folder_backflush_job_serialize(
+        self,
+        folder_id,
+        region_id,
+        create_folder_backflush_job_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if folder_id is not None:
+            _path_params["folderId"] = folder_id
+        if region_id is not None:
+            _path_params["regionId"] = region_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_folder_backflush_job_payload is not None:
+            _body_params = create_folder_backflush_job_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1/folders/{folderId}/regions/{regionId}/telemetry-link/backflush-jobs",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
 
     @validate_call
     def create_or_update_folder_telemetry_link(
@@ -1013,6 +1302,564 @@ class DefaultApi:
         )
 
     @validate_call
+    def create_organization_backflush_job(
+        self,
+        organization_id: Annotated[
+            UUID, Field(description="The STACKIT portal organization UUID the resource is located in.")
+        ],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        create_organization_backflush_job_payload: CreateOrganizationBackflushJobPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> BackflushJobResponse:
+        """create_organization_backflush_job
+
+        Creates a new Backflush Job for the organization.
+
+        :param organization_id: The STACKIT portal organization UUID the resource is located in. (required)
+        :type organization_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param create_organization_backflush_job_payload: (required)
+        :type create_organization_backflush_job_payload: CreateOrganizationBackflushJobPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_organization_backflush_job_serialize(
+            organization_id=organization_id,
+            region_id=region_id,
+            create_organization_backflush_job_payload=create_organization_backflush_job_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "409": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_organization_backflush_job_with_http_info(
+        self,
+        organization_id: Annotated[
+            UUID, Field(description="The STACKIT portal organization UUID the resource is located in.")
+        ],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        create_organization_backflush_job_payload: CreateOrganizationBackflushJobPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[BackflushJobResponse]:
+        """create_organization_backflush_job
+
+        Creates a new Backflush Job for the organization.
+
+        :param organization_id: The STACKIT portal organization UUID the resource is located in. (required)
+        :type organization_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param create_organization_backflush_job_payload: (required)
+        :type create_organization_backflush_job_payload: CreateOrganizationBackflushJobPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_organization_backflush_job_serialize(
+            organization_id=organization_id,
+            region_id=region_id,
+            create_organization_backflush_job_payload=create_organization_backflush_job_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "409": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_organization_backflush_job_without_preload_content(
+        self,
+        organization_id: Annotated[
+            UUID, Field(description="The STACKIT portal organization UUID the resource is located in.")
+        ],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        create_organization_backflush_job_payload: CreateOrganizationBackflushJobPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """create_organization_backflush_job
+
+        Creates a new Backflush Job for the organization.
+
+        :param organization_id: The STACKIT portal organization UUID the resource is located in. (required)
+        :type organization_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param create_organization_backflush_job_payload: (required)
+        :type create_organization_backflush_job_payload: CreateOrganizationBackflushJobPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_organization_backflush_job_serialize(
+            organization_id=organization_id,
+            region_id=region_id,
+            create_organization_backflush_job_payload=create_organization_backflush_job_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "409": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_organization_backflush_job_serialize(
+        self,
+        organization_id,
+        region_id,
+        create_organization_backflush_job_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if region_id is not None:
+            _path_params["regionId"] = region_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_organization_backflush_job_payload is not None:
+            _body_params = create_organization_backflush_job_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1/organizations/{organizationId}/regions/{regionId}/telemetry-link/backflush-jobs",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def create_project_backflush_job(
+        self,
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        create_project_backflush_job_payload: CreateProjectBackflushJobPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> BackflushJobResponse:
+        """create_project_backflush_job
+
+        Creates a new Backflush Job for the project.
+
+        :param project_id: The STACKIT portal project UUID the resource is located in. (required)
+        :type project_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param create_project_backflush_job_payload: (required)
+        :type create_project_backflush_job_payload: CreateProjectBackflushJobPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_project_backflush_job_serialize(
+            project_id=project_id,
+            region_id=region_id,
+            create_project_backflush_job_payload=create_project_backflush_job_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "409": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def create_project_backflush_job_with_http_info(
+        self,
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        create_project_backflush_job_payload: CreateProjectBackflushJobPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[BackflushJobResponse]:
+        """create_project_backflush_job
+
+        Creates a new Backflush Job for the project.
+
+        :param project_id: The STACKIT portal project UUID the resource is located in. (required)
+        :type project_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param create_project_backflush_job_payload: (required)
+        :type create_project_backflush_job_payload: CreateProjectBackflushJobPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_project_backflush_job_serialize(
+            project_id=project_id,
+            region_id=region_id,
+            create_project_backflush_job_payload=create_project_backflush_job_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "409": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def create_project_backflush_job_without_preload_content(
+        self,
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        create_project_backflush_job_payload: CreateProjectBackflushJobPayload,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """create_project_backflush_job
+
+        Creates a new Backflush Job for the project.
+
+        :param project_id: The STACKIT portal project UUID the resource is located in. (required)
+        :type project_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param create_project_backflush_job_payload: (required)
+        :type create_project_backflush_job_payload: CreateProjectBackflushJobPayload
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_project_backflush_job_serialize(
+            project_id=project_id,
+            region_id=region_id,
+            create_project_backflush_job_payload=create_project_backflush_job_payload,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "409": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _create_project_backflush_job_serialize(
+        self,
+        project_id,
+        region_id,
+        create_project_backflush_job_payload,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if region_id is not None:
+            _path_params["regionId"] = region_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_project_backflush_job_payload is not None:
+            _body_params = create_project_backflush_job_payload
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(["application/json"])
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/v1/projects/{projectId}/regions/{regionId}/telemetry-link/backflush-jobs",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def delete_folder_telemetry_link(
         self,
         folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
@@ -1787,6 +2634,274 @@ class DefaultApi:
         )
 
     @validate_call
+    def get_folder_backflush_job(
+        self,
+        folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        backflush_job_id: Annotated[UUID, Field(description="The Backflush Job UUID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> BackflushJobResponse:
+        """get_folder_backflush_job
+
+        Returns the details for the given Backflush Job in a folder.
+
+        :param folder_id: The STACKIT portal folder UUID the resource is located in. (required)
+        :type folder_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param backflush_job_id: The Backflush Job UUID. (required)
+        :type backflush_job_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_folder_backflush_job_serialize(
+            folder_id=folder_id,
+            region_id=region_id,
+            backflush_job_id=backflush_job_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "404": None,
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_folder_backflush_job_with_http_info(
+        self,
+        folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        backflush_job_id: Annotated[UUID, Field(description="The Backflush Job UUID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[BackflushJobResponse]:
+        """get_folder_backflush_job
+
+        Returns the details for the given Backflush Job in a folder.
+
+        :param folder_id: The STACKIT portal folder UUID the resource is located in. (required)
+        :type folder_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param backflush_job_id: The Backflush Job UUID. (required)
+        :type backflush_job_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_folder_backflush_job_serialize(
+            folder_id=folder_id,
+            region_id=region_id,
+            backflush_job_id=backflush_job_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "404": None,
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_folder_backflush_job_without_preload_content(
+        self,
+        folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        backflush_job_id: Annotated[UUID, Field(description="The Backflush Job UUID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """get_folder_backflush_job
+
+        Returns the details for the given Backflush Job in a folder.
+
+        :param folder_id: The STACKIT portal folder UUID the resource is located in. (required)
+        :type folder_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param backflush_job_id: The Backflush Job UUID. (required)
+        :type backflush_job_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_folder_backflush_job_serialize(
+            folder_id=folder_id,
+            region_id=region_id,
+            backflush_job_id=backflush_job_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "404": None,
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_folder_backflush_job_serialize(
+        self,
+        folder_id,
+        region_id,
+        backflush_job_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if folder_id is not None:
+            _path_params["folderId"] = folder_id
+        if region_id is not None:
+            _path_params["regionId"] = region_id
+        if backflush_job_id is not None:
+            _path_params["backflushJobId"] = backflush_job_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/folders/{folderId}/regions/{regionId}/telemetry-link/backflush-jobs/{backflushJobId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def get_folder_telemetry_link(
         self,
         folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
@@ -2027,6 +3142,280 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1/folders/{folderId}/regions/{regionId}/telemetry-link",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_organization_backflush_job(
+        self,
+        organization_id: Annotated[
+            UUID, Field(description="The STACKIT portal organization UUID the resource is located in.")
+        ],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        backflush_job_id: Annotated[UUID, Field(description="The Backflush Job UUID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> BackflushJobResponse:
+        """get_organization_backflush_job
+
+        Returns the details for the given Backflush Job in a organization.
+
+        :param organization_id: The STACKIT portal organization UUID the resource is located in. (required)
+        :type organization_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param backflush_job_id: The Backflush Job UUID. (required)
+        :type backflush_job_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_organization_backflush_job_serialize(
+            organization_id=organization_id,
+            region_id=region_id,
+            backflush_job_id=backflush_job_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "404": None,
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_organization_backflush_job_with_http_info(
+        self,
+        organization_id: Annotated[
+            UUID, Field(description="The STACKIT portal organization UUID the resource is located in.")
+        ],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        backflush_job_id: Annotated[UUID, Field(description="The Backflush Job UUID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[BackflushJobResponse]:
+        """get_organization_backflush_job
+
+        Returns the details for the given Backflush Job in a organization.
+
+        :param organization_id: The STACKIT portal organization UUID the resource is located in. (required)
+        :type organization_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param backflush_job_id: The Backflush Job UUID. (required)
+        :type backflush_job_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_organization_backflush_job_serialize(
+            organization_id=organization_id,
+            region_id=region_id,
+            backflush_job_id=backflush_job_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "404": None,
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_organization_backflush_job_without_preload_content(
+        self,
+        organization_id: Annotated[
+            UUID, Field(description="The STACKIT portal organization UUID the resource is located in.")
+        ],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        backflush_job_id: Annotated[UUID, Field(description="The Backflush Job UUID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """get_organization_backflush_job
+
+        Returns the details for the given Backflush Job in a organization.
+
+        :param organization_id: The STACKIT portal organization UUID the resource is located in. (required)
+        :type organization_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param backflush_job_id: The Backflush Job UUID. (required)
+        :type backflush_job_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_organization_backflush_job_serialize(
+            organization_id=organization_id,
+            region_id=region_id,
+            backflush_job_id=backflush_job_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "404": None,
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_organization_backflush_job_serialize(
+        self,
+        organization_id,
+        region_id,
+        backflush_job_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if region_id is not None:
+            _path_params["regionId"] = region_id
+        if backflush_job_id is not None:
+            _path_params["backflushJobId"] = backflush_job_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/organizations/{organizationId}/regions/{regionId}/telemetry-link/backflush-jobs/{backflushJobId}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2299,6 +3688,274 @@ class DefaultApi:
         )
 
     @validate_call
+    def get_project_backflush_job(
+        self,
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        backflush_job_id: Annotated[UUID, Field(description="The Backflush Job UUID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> BackflushJobResponse:
+        """get_project_backflush_job
+
+        Returns the details for the given Backflush Job in a project.
+
+        :param project_id: The STACKIT portal project UUID the resource is located in. (required)
+        :type project_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param backflush_job_id: The Backflush Job UUID. (required)
+        :type backflush_job_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_project_backflush_job_serialize(
+            project_id=project_id,
+            region_id=region_id,
+            backflush_job_id=backflush_job_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "404": None,
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_project_backflush_job_with_http_info(
+        self,
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        backflush_job_id: Annotated[UUID, Field(description="The Backflush Job UUID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[BackflushJobResponse]:
+        """get_project_backflush_job
+
+        Returns the details for the given Backflush Job in a project.
+
+        :param project_id: The STACKIT portal project UUID the resource is located in. (required)
+        :type project_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param backflush_job_id: The Backflush Job UUID. (required)
+        :type backflush_job_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_project_backflush_job_serialize(
+            project_id=project_id,
+            region_id=region_id,
+            backflush_job_id=backflush_job_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "404": None,
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_project_backflush_job_without_preload_content(
+        self,
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        backflush_job_id: Annotated[UUID, Field(description="The Backflush Job UUID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """get_project_backflush_job
+
+        Returns the details for the given Backflush Job in a project.
+
+        :param project_id: The STACKIT portal project UUID the resource is located in. (required)
+        :type project_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param backflush_job_id: The Backflush Job UUID. (required)
+        :type backflush_job_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_project_backflush_job_serialize(
+            project_id=project_id,
+            region_id=region_id,
+            backflush_job_id=backflush_job_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "BackflushJobResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "404": None,
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _get_project_backflush_job_serialize(
+        self,
+        project_id,
+        region_id,
+        backflush_job_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if region_id is not None:
+            _path_params["regionId"] = region_id
+        if backflush_job_id is not None:
+            _path_params["backflushJobId"] = backflush_job_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/projects/{projectId}/regions/{regionId}/telemetry-link/backflush-jobs/{backflushJobId}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
     def get_project_telemetry_link(
         self,
         project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
@@ -2539,6 +4196,918 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/v1/projects/{projectId}/regions/{regionId}/telemetry-link",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_folder_backflush_jobs(
+        self,
+        folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        page_token: Annotated[
+            Optional[Annotated[str, Field(strict=True, max_length=1024)]],
+            Field(description="A token to retrieve the next page of results."),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="Maximum number of items to return"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListBackflushJobsResponse:
+        """list_folder_backflush_jobs
+
+        Returns a list of all Backflush Jobs for the folder.
+
+        :param folder_id: The STACKIT portal folder UUID the resource is located in. (required)
+        :type folder_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param page_token: A token to retrieve the next page of results.
+        :type page_token: str
+        :param page_size: Maximum number of items to return
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_folder_backflush_jobs_serialize(
+            folder_id=folder_id,
+            region_id=region_id,
+            page_token=page_token,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListBackflushJobsResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_folder_backflush_jobs_with_http_info(
+        self,
+        folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        page_token: Annotated[
+            Optional[Annotated[str, Field(strict=True, max_length=1024)]],
+            Field(description="A token to retrieve the next page of results."),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="Maximum number of items to return"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListBackflushJobsResponse]:
+        """list_folder_backflush_jobs
+
+        Returns a list of all Backflush Jobs for the folder.
+
+        :param folder_id: The STACKIT portal folder UUID the resource is located in. (required)
+        :type folder_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param page_token: A token to retrieve the next page of results.
+        :type page_token: str
+        :param page_size: Maximum number of items to return
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_folder_backflush_jobs_serialize(
+            folder_id=folder_id,
+            region_id=region_id,
+            page_token=page_token,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListBackflushJobsResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_folder_backflush_jobs_without_preload_content(
+        self,
+        folder_id: Annotated[UUID, Field(description="The STACKIT portal folder UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        page_token: Annotated[
+            Optional[Annotated[str, Field(strict=True, max_length=1024)]],
+            Field(description="A token to retrieve the next page of results."),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="Maximum number of items to return"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """list_folder_backflush_jobs
+
+        Returns a list of all Backflush Jobs for the folder.
+
+        :param folder_id: The STACKIT portal folder UUID the resource is located in. (required)
+        :type folder_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param page_token: A token to retrieve the next page of results.
+        :type page_token: str
+        :param page_size: Maximum number of items to return
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_folder_backflush_jobs_serialize(
+            folder_id=folder_id,
+            region_id=region_id,
+            page_token=page_token,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListBackflushJobsResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_folder_backflush_jobs_serialize(
+        self,
+        folder_id,
+        region_id,
+        page_token,
+        page_size,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if folder_id is not None:
+            _path_params["folderId"] = folder_id
+        if region_id is not None:
+            _path_params["regionId"] = region_id
+        # process the query parameters
+        if page_token is not None:
+
+            _query_params.append(("pageToken", page_token))
+
+        if page_size is not None:
+
+            _query_params.append(("pageSize", page_size))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/folders/{folderId}/regions/{regionId}/telemetry-link/backflush-jobs",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_organization_backflush_jobs(
+        self,
+        organization_id: Annotated[
+            UUID, Field(description="The STACKIT portal organization UUID the resource is located in.")
+        ],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        page_token: Annotated[
+            Optional[Annotated[str, Field(strict=True, max_length=1024)]],
+            Field(description="A token to retrieve the next page of results."),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="Maximum number of items to return"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListBackflushJobsResponse:
+        """list_organization_backflush_jobs
+
+        Returns a list of all Backflush Jobs for the organization.
+
+        :param organization_id: The STACKIT portal organization UUID the resource is located in. (required)
+        :type organization_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param page_token: A token to retrieve the next page of results.
+        :type page_token: str
+        :param page_size: Maximum number of items to return
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_organization_backflush_jobs_serialize(
+            organization_id=organization_id,
+            region_id=region_id,
+            page_token=page_token,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListBackflushJobsResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_organization_backflush_jobs_with_http_info(
+        self,
+        organization_id: Annotated[
+            UUID, Field(description="The STACKIT portal organization UUID the resource is located in.")
+        ],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        page_token: Annotated[
+            Optional[Annotated[str, Field(strict=True, max_length=1024)]],
+            Field(description="A token to retrieve the next page of results."),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="Maximum number of items to return"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListBackflushJobsResponse]:
+        """list_organization_backflush_jobs
+
+        Returns a list of all Backflush Jobs for the organization.
+
+        :param organization_id: The STACKIT portal organization UUID the resource is located in. (required)
+        :type organization_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param page_token: A token to retrieve the next page of results.
+        :type page_token: str
+        :param page_size: Maximum number of items to return
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_organization_backflush_jobs_serialize(
+            organization_id=organization_id,
+            region_id=region_id,
+            page_token=page_token,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListBackflushJobsResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_organization_backflush_jobs_without_preload_content(
+        self,
+        organization_id: Annotated[
+            UUID, Field(description="The STACKIT portal organization UUID the resource is located in.")
+        ],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        page_token: Annotated[
+            Optional[Annotated[str, Field(strict=True, max_length=1024)]],
+            Field(description="A token to retrieve the next page of results."),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="Maximum number of items to return"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """list_organization_backflush_jobs
+
+        Returns a list of all Backflush Jobs for the organization.
+
+        :param organization_id: The STACKIT portal organization UUID the resource is located in. (required)
+        :type organization_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param page_token: A token to retrieve the next page of results.
+        :type page_token: str
+        :param page_size: Maximum number of items to return
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_organization_backflush_jobs_serialize(
+            organization_id=organization_id,
+            region_id=region_id,
+            page_token=page_token,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListBackflushJobsResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_organization_backflush_jobs_serialize(
+        self,
+        organization_id,
+        region_id,
+        page_token,
+        page_size,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization_id is not None:
+            _path_params["organizationId"] = organization_id
+        if region_id is not None:
+            _path_params["regionId"] = region_id
+        # process the query parameters
+        if page_token is not None:
+
+            _query_params.append(("pageToken", page_token))
+
+        if page_size is not None:
+
+            _query_params.append(("pageSize", page_size))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/organizations/{organizationId}/regions/{regionId}/telemetry-link/backflush-jobs",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_project_backflush_jobs(
+        self,
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        page_token: Annotated[
+            Optional[Annotated[str, Field(strict=True, max_length=1024)]],
+            Field(description="A token to retrieve the next page of results."),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="Maximum number of items to return"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListBackflushJobsResponse:
+        """list_project_backflush_jobs
+
+        Returns a list of all Backflush Jobs for the project.
+
+        :param project_id: The STACKIT portal project UUID the resource is located in. (required)
+        :type project_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param page_token: A token to retrieve the next page of results.
+        :type page_token: str
+        :param page_size: Maximum number of items to return
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_project_backflush_jobs_serialize(
+            project_id=project_id,
+            region_id=region_id,
+            page_token=page_token,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListBackflushJobsResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_project_backflush_jobs_with_http_info(
+        self,
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        page_token: Annotated[
+            Optional[Annotated[str, Field(strict=True, max_length=1024)]],
+            Field(description="A token to retrieve the next page of results."),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="Maximum number of items to return"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListBackflushJobsResponse]:
+        """list_project_backflush_jobs
+
+        Returns a list of all Backflush Jobs for the project.
+
+        :param project_id: The STACKIT portal project UUID the resource is located in. (required)
+        :type project_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param page_token: A token to retrieve the next page of results.
+        :type page_token: str
+        :param page_size: Maximum number of items to return
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_project_backflush_jobs_serialize(
+            project_id=project_id,
+            region_id=region_id,
+            page_token=page_token,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListBackflushJobsResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_project_backflush_jobs_without_preload_content(
+        self,
+        project_id: Annotated[UUID, Field(description="The STACKIT portal project UUID the resource is located in.")],
+        region_id: Annotated[StrictStr, Field(description="The STACKIT region name the resource is located in.")],
+        page_token: Annotated[
+            Optional[Annotated[str, Field(strict=True, max_length=1024)]],
+            Field(description="A token to retrieve the next page of results."),
+        ] = None,
+        page_size: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="Maximum number of items to return"),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """list_project_backflush_jobs
+
+        Returns a list of all Backflush Jobs for the project.
+
+        :param project_id: The STACKIT portal project UUID the resource is located in. (required)
+        :type project_id: UUID
+        :param region_id: The STACKIT region name the resource is located in. (required)
+        :type region_id: str
+        :param page_token: A token to retrieve the next page of results.
+        :type page_token: str
+        :param page_size: Maximum number of items to return
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_project_backflush_jobs_serialize(
+            project_id=project_id,
+            region_id=region_id,
+            page_token=page_token,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListBackflushJobsResponse",
+            "400": "Response4xx",
+            "401": "Response4xx",
+            "500": None,
+        }
+        response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
+        return response_data.response
+
+    def _list_project_backflush_jobs_serialize(
+        self,
+        project_id,
+        region_id,
+        page_token,
+        page_size,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params["projectId"] = project_id
+        if region_id is not None:
+            _path_params["regionId"] = region_id
+        # process the query parameters
+        if page_token is not None:
+
+            _query_params.append(("pageToken", page_token))
+
+        if page_size is not None:
+
+            _query_params.append(("pageSize", page_size))
+
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(["application/json"])
+
+        # authentication setting
+        _auth_settings: List[str] = []
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/v1/projects/{projectId}/regions/{regionId}/telemetry-link/backflush-jobs",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
