@@ -59,8 +59,13 @@ class MachineImageVersion(BaseModel):
         if not isinstance(value, str):
             value = str(value)
 
-        if not re.match(r"^\d+\.\d+\.\d+$", value):
-            raise ValueError(r"must validate the regular expression /^\d+\.\d+\.\d+$/")
+        if not re.match(
+            r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/"
+            )
         return value
 
     model_config = ConfigDict(
