@@ -747,6 +747,7 @@ class DefaultApi:
             "201": "ComplianceLockResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -814,6 +815,7 @@ class DefaultApi:
             "201": "ComplianceLockResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -881,6 +883,7 @@ class DefaultApi:
             "201": "ComplianceLockResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1850,6 +1853,7 @@ class DefaultApi:
             "200": "ComplianceLockResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1917,6 +1921,7 @@ class DefaultApi:
             "200": "ComplianceLockResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1984,6 +1989,7 @@ class DefaultApi:
             "200": "ComplianceLockResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2377,6 +2383,7 @@ class DefaultApi:
             "200": "DeleteDefaultRetentionResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2450,6 +2457,7 @@ class DefaultApi:
             "200": "DeleteDefaultRetentionResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2523,6 +2531,7 @@ class DefaultApi:
             "200": "DeleteDefaultRetentionResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3448,6 +3457,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ComplianceLockResponse",
             "404": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3514,6 +3524,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ComplianceLockResponse",
             "404": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3580,6 +3591,7 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ComplianceLockResponse",
             "404": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3700,6 +3712,7 @@ class DefaultApi:
             "200": "GetCredentialsGroupResponse",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3771,6 +3784,7 @@ class DefaultApi:
             "200": "GetCredentialsGroupResponse",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3842,6 +3856,7 @@ class DefaultApi:
             "200": "GetCredentialsGroupResponse",
             "404": "ErrorMessage",
             "422": "HTTPValidationError",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -3967,6 +3982,7 @@ class DefaultApi:
             "200": "DefaultRetentionResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4040,6 +4056,7 @@ class DefaultApi:
             "200": "DefaultRetentionResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -4113,6 +4130,7 @@ class DefaultApi:
             "200": "DefaultRetentionResponse",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -5293,6 +5311,7 @@ class DefaultApi:
             "400": "ErrorMessage",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -5371,6 +5390,7 @@ class DefaultApi:
             "400": "ErrorMessage",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -5449,6 +5469,7 @@ class DefaultApi:
             "400": "ErrorMessage",
             "404": "ErrorMessage",
             "409": "ErrorMessage",
+            "429": "RateLimitError",
             "500": "ErrorMessage",
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
