@@ -18,57 +18,23 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictStr
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
+from stackit.dns.models.dnslookup_models_lookup_result import (
+    DnslookupModelsLookupResult,
+)
 
-class FlushDomainPayload(BaseModel):
+
+class DnslookupLookupResponse(BaseModel):
     """
-    FlushDomainPayload
+    DnslookupLookupResponse
     """  # noqa: E501
 
-    domain: StrictStr
-    type: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["domain", "type"]
-
-    @field_validator("type")
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(
-            [
-                "A",
-                "AAAA",
-                "SOA",
-                "CNAME",
-                "NS",
-                "MX",
-                "TXT",
-                "SRV",
-                "PTR",
-                "DNAME",
-                "CAA",
-                "DNSKEY",
-                "DS",
-                "LOC",
-                "NAPTR",
-                "SSHFP",
-                "TLSA",
-                "URI",
-                "CERT",
-                "SVCB",
-                "CSYNC",
-                "HINFO",
-                "HTTPS",
-            ]
-        ):
-            raise ValueError(
-                "must be one of enum values ('A', 'AAAA', 'SOA', 'CNAME', 'NS', 'MX', 'TXT', 'SRV', 'PTR', 'DNAME', 'CAA', 'DNSKEY', 'DS', 'LOC', 'NAPTR', 'SSHFP', 'TLSA', 'URI', 'CERT', 'SVCB', 'CSYNC', 'HINFO', 'HTTPS')"
-            )
-        return value
+    message: Optional[StrictStr] = None
+    state: Optional[List[DnslookupModelsLookupResult]] = None
+    __properties: ClassVar[List[str]] = ["message", "state"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -87,7 +53,7 @@ class FlushDomainPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of FlushDomainPayload from a JSON string"""
+        """Create an instance of DnslookupLookupResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -107,16 +73,32 @@ class FlushDomainPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in state (list)
+        _items = []
+        if self.state:
+            for _item_state in self.state:
+                if _item_state:
+                    _items.append(_item_state.to_dict())
+            _dict["state"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of FlushDomainPayload from a dict"""
+        """Create an instance of DnslookupLookupResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"domain": obj.get("domain"), "type": obj.get("type")})
+        _obj = cls.model_validate(
+            {
+                "message": obj.get("message"),
+                "state": (
+                    [DnslookupModelsLookupResult.from_dict(_item) for _item in obj["state"]]
+                    if obj.get("state") is not None
+                    else None
+                ),
+            }
+        )
         return _obj

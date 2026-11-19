@@ -21,14 +21,22 @@ from stackit.dns.models.create_move_code_payload import CreateMoveCodePayload
 from stackit.dns.models.create_record_set_payload import CreateRecordSetPayload
 from stackit.dns.models.create_zone_payload import CreateZonePayload
 from stackit.dns.models.delete_label_response import DeleteLabelResponse
+from stackit.dns.models.dnslookup_lookup_response import DnslookupLookupResponse
+from stackit.dns.models.dnslookup_models_lookup_record import (
+    DnslookupModelsLookupRecord,
+)
+from stackit.dns.models.dnslookup_models_lookup_result import (
+    DnslookupModelsLookupResult,
+)
+from stackit.dns.models.dnslookup_payload import DnslookupPayload
 from stackit.dns.models.domain_extensions import DomainExtensions
 from stackit.dns.models.domain_observability_extension import (
     DomainObservabilityExtension,
 )
 from stackit.dns.models.error_message import ErrorMessage
 from stackit.dns.models.export_record_sets_payload import ExportRecordSetsPayload
-from stackit.dns.models.flush_domain_payload import FlushDomainPayload
-from stackit.dns.models.flush_domain_response import FlushDomainResponse
+from stackit.dns.models.flush_create_flush_response import FlushCreateFlushResponse
+from stackit.dns.models.flush_payload import FlushPayload
 from stackit.dns.models.import_record_sets_payload import ImportRecordSetsPayload
 from stackit.dns.models.import_record_sets_response import ImportRecordSetsResponse
 from stackit.dns.models.import_summary import ImportSummary
@@ -36,10 +44,6 @@ from stackit.dns.models.label import Label
 from stackit.dns.models.list_labels_response import ListLabelsResponse
 from stackit.dns.models.list_record_sets_response import ListRecordSetsResponse
 from stackit.dns.models.list_zones_response import ListZonesResponse
-from stackit.dns.models.lookup_domain_payload import LookupDomainPayload
-from stackit.dns.models.lookup_domain_response import LookupDomainResponse
-from stackit.dns.models.lookup_record import LookupRecord
-from stackit.dns.models.lookup_result import LookupResult
 from stackit.dns.models.message import Message
 from stackit.dns.models.move_code_response import MoveCodeResponse
 from stackit.dns.models.move_zone_payload import MoveZonePayload

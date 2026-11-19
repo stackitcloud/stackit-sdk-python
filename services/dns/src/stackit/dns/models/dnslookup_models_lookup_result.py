@@ -22,12 +22,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from pydantic_core import to_jsonable_python
 from typing_extensions import Self
 
-from stackit.dns.models.lookup_record import LookupRecord
+from stackit.dns.models.dnslookup_models_lookup_record import (
+    DnslookupModelsLookupRecord,
+)
 
 
-class LookupResult(BaseModel):
+class DnslookupModelsLookupResult(BaseModel):
     """
-    LookupResult
+    DnslookupModelsLookupResult
     """  # noqa: E501
 
     raw_response: Optional[StrictStr] = Field(
@@ -35,7 +37,7 @@ class LookupResult(BaseModel):
         description="RawResponse contains the raw DNS response in a human-readable format (only included when requested)",
         alias="rawResponse",
     )
-    records: Optional[List[LookupRecord]] = Field(
+    records: Optional[List[DnslookupModelsLookupRecord]] = Field(
         default=None, description="Records contains the DNS records returned by the lookup"
     )
     resolver_ip: Optional[StrictStr] = Field(
@@ -62,7 +64,7 @@ class LookupResult(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of LookupResult from a JSON string"""
+        """Create an instance of DnslookupModelsLookupResult from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -93,7 +95,7 @@ class LookupResult(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of LookupResult from a dict"""
+        """Create an instance of DnslookupModelsLookupResult from a dict"""
         if obj is None:
             return None
 
@@ -104,7 +106,7 @@ class LookupResult(BaseModel):
             {
                 "rawResponse": obj.get("rawResponse"),
                 "records": (
-                    [LookupRecord.from_dict(_item) for _item in obj["records"]]
+                    [DnslookupModelsLookupRecord.from_dict(_item) for _item in obj["records"]]
                     if obj.get("records") is not None
                     else None
                 ),

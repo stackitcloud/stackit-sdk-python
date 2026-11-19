@@ -35,12 +35,16 @@ __all__ = [
     "CreateRecordSetPayload",
     "CreateZonePayload",
     "DeleteLabelResponse",
+    "DnslookupLookupResponse",
+    "DnslookupModelsLookupRecord",
+    "DnslookupModelsLookupResult",
+    "DnslookupPayload",
     "DomainExtensions",
     "DomainObservabilityExtension",
     "ErrorMessage",
     "ExportRecordSetsPayload",
-    "FlushDomainPayload",
-    "FlushDomainResponse",
+    "FlushCreateFlushResponse",
+    "FlushPayload",
     "ImportRecordSetsPayload",
     "ImportRecordSetsResponse",
     "ImportSummary",
@@ -48,10 +52,6 @@ __all__ = [
     "ListLabelsResponse",
     "ListRecordSetsResponse",
     "ListZonesResponse",
-    "LookupDomainPayload",
-    "LookupDomainResponse",
-    "LookupRecord",
-    "LookupResult",
     "Message",
     "MoveCodeResponse",
     "MoveZonePayload",
@@ -107,6 +107,16 @@ from stackit.dns.models.create_zone_payload import (
 from stackit.dns.models.delete_label_response import (
     DeleteLabelResponse as DeleteLabelResponse,
 )
+from stackit.dns.models.dnslookup_lookup_response import (
+    DnslookupLookupResponse as DnslookupLookupResponse,
+)
+from stackit.dns.models.dnslookup_models_lookup_record import (
+    DnslookupModelsLookupRecord as DnslookupModelsLookupRecord,
+)
+from stackit.dns.models.dnslookup_models_lookup_result import (
+    DnslookupModelsLookupResult as DnslookupModelsLookupResult,
+)
+from stackit.dns.models.dnslookup_payload import DnslookupPayload as DnslookupPayload
 from stackit.dns.models.domain_extensions import DomainExtensions as DomainExtensions
 from stackit.dns.models.domain_observability_extension import (
     DomainObservabilityExtension as DomainObservabilityExtension,
@@ -115,12 +125,10 @@ from stackit.dns.models.error_message import ErrorMessage as ErrorMessage
 from stackit.dns.models.export_record_sets_payload import (
     ExportRecordSetsPayload as ExportRecordSetsPayload,
 )
-from stackit.dns.models.flush_domain_payload import (
-    FlushDomainPayload as FlushDomainPayload,
+from stackit.dns.models.flush_create_flush_response import (
+    FlushCreateFlushResponse as FlushCreateFlushResponse,
 )
-from stackit.dns.models.flush_domain_response import (
-    FlushDomainResponse as FlushDomainResponse,
-)
+from stackit.dns.models.flush_payload import FlushPayload as FlushPayload
 from stackit.dns.models.import_record_sets_payload import (
     ImportRecordSetsPayload as ImportRecordSetsPayload,
 )
@@ -138,14 +146,6 @@ from stackit.dns.models.list_record_sets_response import (
 from stackit.dns.models.list_zones_response import (
     ListZonesResponse as ListZonesResponse,
 )
-from stackit.dns.models.lookup_domain_payload import (
-    LookupDomainPayload as LookupDomainPayload,
-)
-from stackit.dns.models.lookup_domain_response import (
-    LookupDomainResponse as LookupDomainResponse,
-)
-from stackit.dns.models.lookup_record import LookupRecord as LookupRecord
-from stackit.dns.models.lookup_result import LookupResult as LookupResult
 from stackit.dns.models.message import Message as Message
 from stackit.dns.models.move_code_response import MoveCodeResponse as MoveCodeResponse
 from stackit.dns.models.move_zone_payload import MoveZonePayload as MoveZonePayload
