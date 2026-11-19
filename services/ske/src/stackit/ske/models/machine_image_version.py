@@ -23,7 +23,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
-from stackit.ske.models.cri import CRI
+from stackit.ske.models.machine_image_version_cri import MachineImageVersionCRI
 
 
 class MachineImageVersion(BaseModel):
@@ -31,7 +31,7 @@ class MachineImageVersion(BaseModel):
     MachineImageVersion
     """  # noqa: E501
 
-    cri: Optional[List[CRI]] = None
+    cri: Optional[List[MachineImageVersionCRI]] = None
     expiration_date: Optional[datetime] = Field(default=None, alias="expirationDate")
     state: Optional[StrictStr] = None
     version: Optional[Annotated[str, Field(strict=True)]] = None
@@ -59,8 +59,13 @@ class MachineImageVersion(BaseModel):
         if not isinstance(value, str):
             value = str(value)
 
-        if not re.match(r"^\d+\.\d+\.\d+$", value):
-            raise ValueError(r"must validate the regular expression /^\d+\.\d+\.\d+$/")
+        if not re.match(
+            r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$",
+            value,
+        ):
+            raise ValueError(
+                r"must validate the regular expression /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/"
+            )
         return value
 
     model_config = ConfigDict(
@@ -120,7 +125,11 @@ class MachineImageVersion(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "cri": [CRI.from_dict(_item) for _item in obj["cri"]] if obj.get("cri") is not None else None,
+                "cri": (
+                    [MachineImageVersionCRI.from_dict(_item) for _item in obj["cri"]]
+                    if obj.get("cri") is not None
+                    else None
+                ),
                 "expirationDate": obj.get("expirationDate"),
                 "state": obj.get("state"),
                 "version": obj.get("version"),
