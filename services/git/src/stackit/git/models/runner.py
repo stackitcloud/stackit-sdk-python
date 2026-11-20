@@ -32,10 +32,13 @@ class Runner(BaseModel):
     """  # noqa: E501
 
     created_at: datetime
+    family_name: Optional[StrictStr] = Field(
+        default=None, description="The runner's job family name.", alias="familyName"
+    )
     id: UUID
     labels: List[StrictStr]
     status: StrictStr = Field(description="The current status of the runner.")
-    __properties: ClassVar[List[str]] = ["created_at", "id", "labels", "status"]
+    __properties: ClassVar[List[str]] = ["created_at", "familyName", "id", "labels", "status"]
 
     @field_validator("created_at", mode="before")
     def created_at_change_year_zero_to_one(cls, value):
@@ -101,6 +104,7 @@ class Runner(BaseModel):
         _obj = cls.model_validate(
             {
                 "created_at": obj.get("created_at"),
+                "familyName": obj.get("familyName"),
                 "id": obj.get("id"),
                 "labels": obj.get("labels"),
                 "status": obj.get("status"),
