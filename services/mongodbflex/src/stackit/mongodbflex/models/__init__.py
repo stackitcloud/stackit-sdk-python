@@ -67,6 +67,7 @@ from stackit.mongodbflex.models.shape import Shape
 from stackit.mongodbflex.models.slow_query import SlowQuery
 from stackit.mongodbflex.models.storage import Storage
 from stackit.mongodbflex.models.storage_range import StorageRange
+from stackit.mongodbflex.models.storage_update import StorageUpdate
 from stackit.mongodbflex.models.suggested_index import SuggestedIndex
 from stackit.mongodbflex.models.update_backup_schedule_payload import (
     UpdateBackupSchedulePayload,
