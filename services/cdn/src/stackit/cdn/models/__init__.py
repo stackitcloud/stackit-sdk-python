@@ -17,6 +17,9 @@ from stackit.cdn.models.bucket_backend import BucketBackend
 from stackit.cdn.models.bucket_backend_create import BucketBackendCreate
 from stackit.cdn.models.bucket_backend_patch import BucketBackendPatch
 from stackit.cdn.models.bucket_credentials import BucketCredentials
+from stackit.cdn.models.cache_config import CacheConfig
+from stackit.cdn.models.cache_config_create import CacheConfigCreate
+from stackit.cdn.models.cache_config_patch import CacheConfigPatch
 from stackit.cdn.models.config import Config
 from stackit.cdn.models.config_backend import ConfigBackend
 from stackit.cdn.models.config_log_sink import ConfigLogSink
@@ -93,6 +96,21 @@ from stackit.cdn.models.match_condition import MatchCondition
 from stackit.cdn.models.matcher import Matcher
 from stackit.cdn.models.optimizer import Optimizer
 from stackit.cdn.models.optimizer_patch import OptimizerPatch
+from stackit.cdn.models.otlp_log_sink import OtlpLogSink
+from stackit.cdn.models.otlp_log_sink_basic_credentials import (
+    OtlpLogSinkBasicCredentials,
+)
+from stackit.cdn.models.otlp_log_sink_bearer_credentials import (
+    OtlpLogSinkBearerCredentials,
+)
+from stackit.cdn.models.otlp_log_sink_create import OtlpLogSinkCreate
+from stackit.cdn.models.otlp_log_sink_create_credentials import (
+    OtlpLogSinkCreateCredentials,
+)
+from stackit.cdn.models.otlp_log_sink_patch import OtlpLogSinkPatch
+from stackit.cdn.models.otlp_log_sink_patch_credentials import (
+    OtlpLogSinkPatchCredentials,
+)
 from stackit.cdn.models.patch_distribution_payload import PatchDistributionPayload
 from stackit.cdn.models.patch_distribution_response import PatchDistributionResponse
 from stackit.cdn.models.purge_cache_payload import PurgeCachePayload
