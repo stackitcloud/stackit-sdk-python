@@ -25,6 +25,7 @@ from stackit.telemetryrouter.models.config_filter_attributes import (
 )
 from stackit.telemetryrouter.models.config_filter_level import ConfigFilterLevel
 from stackit.telemetryrouter.models.config_filter_matcher import ConfigFilterMatcher
+from stackit.telemetryrouter.models.config_filter_patch import ConfigFilterPatch
 from stackit.telemetryrouter.models.create_access_token_payload import (
     CreateAccessTokenPayload,
 )
@@ -44,6 +45,21 @@ from stackit.telemetryrouter.models.destination_config_open_telemetry import (
 from stackit.telemetryrouter.models.destination_config_open_telemetry_basic_auth import (
     DestinationConfigOpenTelemetryBasicAuth,
 )
+from stackit.telemetryrouter.models.destination_config_patch import (
+    DestinationConfigPatch,
+)
+from stackit.telemetryrouter.models.destination_config_patch_open_telemetry import (
+    DestinationConfigPatchOpenTelemetry,
+)
+from stackit.telemetryrouter.models.destination_config_patch_open_telemetry_basic_auth import (
+    DestinationConfigPatchOpenTelemetryBasicAuth,
+)
+from stackit.telemetryrouter.models.destination_config_patch_s3 import (
+    DestinationConfigPatchS3,
+)
+from stackit.telemetryrouter.models.destination_config_patch_s3_access_key import (
+    DestinationConfigPatchS3AccessKey,
+)
 from stackit.telemetryrouter.models.destination_config_s3 import DestinationConfigS3
 from stackit.telemetryrouter.models.destination_config_s3_access_key import (
     DestinationConfigS3AccessKey,
@@ -61,6 +77,15 @@ from stackit.telemetryrouter.models.list_destinations_response import (
 )
 from stackit.telemetryrouter.models.list_telemetry_routers_response import (
     ListTelemetryRoutersResponse,
+)
+from stackit.telemetryrouter.models.partial_update_access_token_payload import (
+    PartialUpdateAccessTokenPayload,
+)
+from stackit.telemetryrouter.models.partial_update_destination_payload import (
+    PartialUpdateDestinationPayload,
+)
+from stackit.telemetryrouter.models.partial_update_telemetry_router_payload import (
+    PartialUpdateTelemetryRouterPayload,
 )
 from stackit.telemetryrouter.models.response4xx import Response4xx
 from stackit.telemetryrouter.models.telemetry_router_response import (
