@@ -27,6 +27,7 @@ from pydantic import (
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
+from stackit.cdn.models.cache_config import CacheConfig
 from stackit.cdn.models.config_backend import ConfigBackend
 from stackit.cdn.models.config_log_sink import ConfigLogSink
 from stackit.cdn.models.optimizer import Optimizer
@@ -50,10 +51,21 @@ class Config(BaseModel):
         description="Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution. ",
         alias="blockedIps",
     )
+    cache_config: CacheConfig = Field(alias="cacheConfig")
+    custom404_error_response: Optional[StrictStr] = Field(
+        default=None,
+        description="Configures a custom origin path to serve when the origin returns a 404 Not Found status (e.g. index.html or /404.html). Must not contain a URL scheme. ",
+        alias="custom404ErrorResponse",
+    )
     default_cache_duration: Optional[StrictStr] = Field(
         default=None,
         description="Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M) ",
         alias="defaultCacheDuration",
+    )
+    default_root_object: Optional[StrictStr] = Field(
+        default=None,
+        description="Configures the default root object served when a request targets the root path '/' of the distribution (e.g. index.html or /index.html). Must not contain a URL scheme. ",
+        alias="defaultRootObject",
     )
     forward_host_header: StrictBool = Field(
         description="Enabling this allows the 'Host' header to be passed through to the origin. ",
@@ -81,7 +93,10 @@ class Config(BaseModel):
         "backend",
         "blockedCountries",
         "blockedIps",
+        "cacheConfig",
+        "custom404ErrorResponse",
         "defaultCacheDuration",
+        "defaultRootObject",
         "forwardHostHeader",
         "labels",
         "logSink",
@@ -134,6 +149,9 @@ class Config(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of backend
         if self.backend:
             _dict["backend"] = self.backend.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cache_config
+        if self.cache_config:
+            _dict["cacheConfig"] = self.cache_config.to_dict()
         # override the default output from pydantic by calling `to_dict()` of log_sink
         if self.log_sink:
             _dict["logSink"] = self.log_sink.to_dict()
@@ -149,10 +167,20 @@ class Config(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of waf
         if self.waf:
             _dict["waf"] = self.waf.to_dict()
+        # set to None if custom404_error_response (nullable) is None
+        # and model_fields_set contains the field
+        if self.custom404_error_response is None and "custom404_error_response" in self.model_fields_set:
+            _dict["custom404ErrorResponse"] = None
+
         # set to None if default_cache_duration (nullable) is None
         # and model_fields_set contains the field
         if self.default_cache_duration is None and "default_cache_duration" in self.model_fields_set:
             _dict["defaultCacheDuration"] = None
+
+        # set to None if default_root_object (nullable) is None
+        # and model_fields_set contains the field
+        if self.default_root_object is None and "default_root_object" in self.model_fields_set:
+            _dict["defaultRootObject"] = None
 
         # set to None if monthly_limit_bytes (nullable) is None
         # and model_fields_set contains the field
@@ -175,7 +203,12 @@ class Config(BaseModel):
                 "backend": ConfigBackend.from_dict(obj["backend"]) if obj.get("backend") is not None else None,
                 "blockedCountries": obj.get("blockedCountries"),
                 "blockedIps": obj.get("blockedIps"),
+                "cacheConfig": (
+                    CacheConfig.from_dict(obj["cacheConfig"]) if obj.get("cacheConfig") is not None else None
+                ),
+                "custom404ErrorResponse": obj.get("custom404ErrorResponse"),
                 "defaultCacheDuration": obj.get("defaultCacheDuration"),
+                "defaultRootObject": obj.get("defaultRootObject"),
                 "forwardHostHeader": obj.get("forwardHostHeader"),
                 "labels": obj.get("labels"),
                 "logSink": ConfigLogSink.from_dict(obj["logSink"]) if obj.get("logSink") is not None else None,
