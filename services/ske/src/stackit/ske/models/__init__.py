@@ -17,12 +17,16 @@ from stackit.ske.models.access_scope import AccessScope
 
 # import models into model package
 from stackit.ske.models.acl import ACL
+from stackit.ske.models.application_load_balancer import ApplicationLoadBalancer
 from stackit.ske.models.audit import Audit
 from stackit.ske.models.availability_zone import AvailabilityZone
+from stackit.ske.models.cilium_config import CiliumConfig
+from stackit.ske.models.cilium_hubble import CiliumHubble
 from stackit.ske.models.cluster import Cluster
 from stackit.ske.models.cluster_error import ClusterError
 from stackit.ske.models.cluster_status import ClusterStatus
 from stackit.ske.models.cluster_status_state import ClusterStatusState
+from stackit.ske.models.cni import CNI
 from stackit.ske.models.create_kubeconfig_payload import CreateKubeconfigPayload
 from stackit.ske.models.create_or_update_cluster_payload import (
     CreateOrUpdateClusterPayload,
@@ -42,6 +46,7 @@ from stackit.ske.models.hibernation_schedule import HibernationSchedule
 from stackit.ske.models.idp import IDP
 from stackit.ske.models.idp_kubeconfig import IDPKubeconfig
 from stackit.ske.models.image import Image
+from stackit.ske.models.kata import Kata
 from stackit.ske.models.kubeconfig import Kubeconfig
 from stackit.ske.models.kubernetes import Kubernetes
 from stackit.ske.models.kubernetes_version import KubernetesVersion
@@ -50,6 +55,7 @@ from stackit.ske.models.login_kubeconfig import LoginKubeconfig
 from stackit.ske.models.machine import Machine
 from stackit.ske.models.machine_image import MachineImage
 from stackit.ske.models.machine_image_version import MachineImageVersion
+from stackit.ske.models.machine_image_version_cri import MachineImageVersionCRI
 from stackit.ske.models.machine_type import MachineType
 from stackit.ske.models.maintenance import Maintenance
 from stackit.ske.models.maintenance_auto_update import MaintenanceAutoUpdate
