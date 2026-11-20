@@ -71,6 +71,7 @@ __all__ = [
     "SlowQuery",
     "Storage",
     "StorageRange",
+    "StorageUpdate",
     "SuggestedIndex",
     "UpdateBackupSchedulePayload",
     "UpdateInstancePayload",
@@ -193,6 +194,7 @@ from stackit.mongodbflex.models.shape import Shape as Shape
 from stackit.mongodbflex.models.slow_query import SlowQuery as SlowQuery
 from stackit.mongodbflex.models.storage import Storage as Storage
 from stackit.mongodbflex.models.storage_range import StorageRange as StorageRange
+from stackit.mongodbflex.models.storage_update import StorageUpdate as StorageUpdate
 from stackit.mongodbflex.models.suggested_index import SuggestedIndex as SuggestedIndex
 from stackit.mongodbflex.models.update_backup_schedule_payload import (
     UpdateBackupSchedulePayload as UpdateBackupSchedulePayload,
