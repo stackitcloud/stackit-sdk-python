@@ -16,14 +16,24 @@ from __future__ import annotations
 
 import json
 import pprint
+import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+    field_validator,
+)
 from pydantic_core import to_jsonable_python
 from typing_extensions import Annotated, Self
 
 from stackit.postgresflex.models.state import State
+from stackit.postgresflex.models.storage import Storage
 
 
 class ListInstance(BaseModel):
@@ -31,13 +41,42 @@ class ListInstance(BaseModel):
     ListInstance
     """  # noqa: E501
 
+    created: Optional[datetime] = Field(default=None, description="The timestamp at which this instance was created.")
+    flavor_id: Optional[StrictStr] = Field(default=None, description="The id of the instance flavor.", alias="flavorId")
     id: UUID = Field(description="The ID of the instance.")
     is_deletable: StrictBool = Field(description="Whether the instance can be deleted or not.", alias="isDeletable")
     name: Annotated[str, Field(min_length=3, strict=True, max_length=63)] = Field(
         description="The name of the instance."
     )
     state: State
-    __properties: ClassVar[List[str]] = ["id", "isDeletable", "name", "state"]
+    storage: Optional[Storage] = None
+    version: Optional[StrictStr] = Field(
+        default=None,
+        description="The Postgres version used for the instance. See [Versions Endpoint](/documentation/postgres-flex-service/version/v3#tag/Version) for supported version parameters.",
+    )
+    __properties: ClassVar[List[str]] = [
+        "created",
+        "flavorId",
+        "id",
+        "isDeletable",
+        "name",
+        "state",
+        "storage",
+        "version",
+    ]
+
+    @field_validator("created", mode="before")
+    def created_change_year_zero_to_one(cls, value):
+        """Workaround which prevents year 0 issue"""
+        if isinstance(value, str):
+            # Check for year "0000" at the beginning of the string
+            # This assumes common date formats like YYYY-MM-DDTHH:MM:SS+00:00 or YYYY-MM-DDTHH:MM:SSZ
+            if value.startswith("0000-01-01T") and re.match(
+                r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\+\d{2}:\d{2}|Z)$", value
+            ):
+                # Workaround: Replace "0000" with "0001"
+                return "0001" + value[4:]  # Take "0001" and append the rest of the string
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,6 +115,9 @@ class ListInstance(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of storage
+        if self.storage:
+            _dict["storage"] = self.storage.to_dict()
         return _dict
 
     @classmethod
@@ -89,10 +131,14 @@ class ListInstance(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "created": obj.get("created"),
+                "flavorId": obj.get("flavorId"),
                 "id": obj.get("id"),
                 "isDeletable": obj.get("isDeletable"),
                 "name": obj.get("name"),
                 "state": obj.get("state"),
+                "storage": Storage.from_dict(obj["storage"]) if obj.get("storage") is not None else None,
+                "version": obj.get("version"),
             }
         )
         return _obj
