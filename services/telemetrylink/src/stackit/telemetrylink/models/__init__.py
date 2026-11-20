@@ -13,6 +13,10 @@ Do not edit the class manually.
 """  # noqa: E501
 
 # import models into model package
+from stackit.telemetrylink.models.backflush_job_response import BackflushJobResponse
+from stackit.telemetrylink.models.create_folder_backflush_job_payload import (
+    CreateFolderBackflushJobPayload,
+)
 from stackit.telemetrylink.models.create_or_update_folder_telemetry_link_payload import (
     CreateOrUpdateFolderTelemetryLinkPayload,
 )
@@ -21,6 +25,15 @@ from stackit.telemetrylink.models.create_or_update_organization_telemetry_link_p
 )
 from stackit.telemetrylink.models.create_or_update_project_telemetry_link_payload import (
     CreateOrUpdateProjectTelemetryLinkPayload,
+)
+from stackit.telemetrylink.models.create_organization_backflush_job_payload import (
+    CreateOrganizationBackflushJobPayload,
+)
+from stackit.telemetrylink.models.create_project_backflush_job_payload import (
+    CreateProjectBackflushJobPayload,
+)
+from stackit.telemetrylink.models.list_backflush_jobs_response import (
+    ListBackflushJobsResponse,
 )
 from stackit.telemetrylink.models.partial_update_folder_telemetry_link_payload import (
     PartialUpdateFolderTelemetryLinkPayload,
