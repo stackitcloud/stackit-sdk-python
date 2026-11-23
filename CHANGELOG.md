@@ -135,6 +135,9 @@
     - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `logs`
+  - [v0.6.0](services/logs/CHANGELOG.md#v060)
+    - **Feature:** New operations to manage access policies: `create_access_policy`, `get_access_policy`, `list_access_policies`, `update_access_policy`, `delete_access_policy` and `delete_all_access_policies`, with new models `AccessPolicy`, `AccessPolicyList`, `CreateAccessPolicyPayload` and `UpdateAccessPolicyPayload`
+    - **Feature:** New optional `labels` field on `AccessToken`, `CreateAccessTokenPayload`, `UpdateAccessTokenPayload`, `LogsInstance`, `CreateLogsInstancePayload` and `UpdateLogsInstancePayload`
   - [v0.5.0](services/logs/CHANGELOG.md#v050)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15
