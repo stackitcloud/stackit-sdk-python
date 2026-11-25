@@ -1252,6 +1252,7 @@ class DefaultApi:
             "400": "Error",
             "401": "Error",
             "404": None,
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1324,6 +1325,7 @@ class DefaultApi:
             "400": "Error",
             "401": "Error",
             "404": None,
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1396,6 +1398,7 @@ class DefaultApi:
             "400": "Error",
             "401": "Error",
             "404": None,
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1524,6 +1527,7 @@ class DefaultApi:
             "400": "Error",
             "401": "Error",
             "404": None,
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1600,6 +1604,7 @@ class DefaultApi:
             "400": "Error",
             "401": "Error",
             "404": None,
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1676,6 +1681,7 @@ class DefaultApi:
             "400": "Error",
             "401": "Error",
             "404": None,
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1812,6 +1818,7 @@ class DefaultApi:
             "200": "ListDremiosResponse",
             "400": "Error",
             "401": "Error",
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1893,6 +1900,7 @@ class DefaultApi:
             "200": "ListDremiosResponse",
             "400": "Error",
             "401": "Error",
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -1974,6 +1982,7 @@ class DefaultApi:
             "200": "ListDremiosResponse",
             "400": "Error",
             "401": "Error",
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2118,6 +2127,7 @@ class DefaultApi:
             "200": "ListDremioUsersResponse",
             "400": "Error",
             "401": "Error",
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2203,6 +2213,7 @@ class DefaultApi:
             "200": "ListDremioUsersResponse",
             "400": "Error",
             "401": "Error",
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
@@ -2288,6 +2299,7 @@ class DefaultApi:
             "200": "ListDremioUsersResponse",
             "400": "Error",
             "401": "Error",
+            "422": None,
             "500": None,
         }
         response_data = self.api_client.call_api(*_param, _request_timeout=_request_timeout)
