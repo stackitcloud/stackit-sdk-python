@@ -31,6 +31,9 @@ __all__ = [
     "BucketBackendCreate",
     "BucketBackendPatch",
     "BucketCredentials",
+    "CacheConfig",
+    "CacheConfigCreate",
+    "CacheConfigPatch",
     "Config",
     "ConfigBackend",
     "ConfigLogSink",
@@ -81,6 +84,13 @@ __all__ = [
     "Matcher",
     "Optimizer",
     "OptimizerPatch",
+    "OtlpLogSink",
+    "OtlpLogSinkBasicCredentials",
+    "OtlpLogSinkBearerCredentials",
+    "OtlpLogSinkCreate",
+    "OtlpLogSinkCreateCredentials",
+    "OtlpLogSinkPatch",
+    "OtlpLogSinkPatchCredentials",
     "PatchDistributionPayload",
     "PatchDistributionResponse",
     "PurgeCachePayload",
@@ -138,6 +148,11 @@ from stackit.cdn.models.bucket_backend_patch import (
     BucketBackendPatch as BucketBackendPatch,
 )
 from stackit.cdn.models.bucket_credentials import BucketCredentials as BucketCredentials
+from stackit.cdn.models.cache_config import CacheConfig as CacheConfig
+from stackit.cdn.models.cache_config_create import (
+    CacheConfigCreate as CacheConfigCreate,
+)
+from stackit.cdn.models.cache_config_patch import CacheConfigPatch as CacheConfigPatch
 from stackit.cdn.models.config import Config as Config
 from stackit.cdn.models.config_backend import ConfigBackend as ConfigBackend
 from stackit.cdn.models.config_log_sink import ConfigLogSink as ConfigLogSink
@@ -250,6 +265,23 @@ from stackit.cdn.models.match_condition import MatchCondition as MatchCondition
 from stackit.cdn.models.matcher import Matcher as Matcher
 from stackit.cdn.models.optimizer import Optimizer as Optimizer
 from stackit.cdn.models.optimizer_patch import OptimizerPatch as OptimizerPatch
+from stackit.cdn.models.otlp_log_sink import OtlpLogSink as OtlpLogSink
+from stackit.cdn.models.otlp_log_sink_basic_credentials import (
+    OtlpLogSinkBasicCredentials as OtlpLogSinkBasicCredentials,
+)
+from stackit.cdn.models.otlp_log_sink_bearer_credentials import (
+    OtlpLogSinkBearerCredentials as OtlpLogSinkBearerCredentials,
+)
+from stackit.cdn.models.otlp_log_sink_create import (
+    OtlpLogSinkCreate as OtlpLogSinkCreate,
+)
+from stackit.cdn.models.otlp_log_sink_create_credentials import (
+    OtlpLogSinkCreateCredentials as OtlpLogSinkCreateCredentials,
+)
+from stackit.cdn.models.otlp_log_sink_patch import OtlpLogSinkPatch as OtlpLogSinkPatch
+from stackit.cdn.models.otlp_log_sink_patch_credentials import (
+    OtlpLogSinkPatchCredentials as OtlpLogSinkPatchCredentials,
+)
 from stackit.cdn.models.patch_distribution_payload import (
     PatchDistributionPayload as PatchDistributionPayload,
 )
