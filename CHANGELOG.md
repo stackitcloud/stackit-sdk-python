@@ -291,6 +291,10 @@
     - **Breaking Change:** `approve_subscription_payload` parameter is now required in `approve_subscription` API client method (previously optional)
     - **Breaking Change:** Removal of API client methods `get_catalog_product`, `get_vendor_subscription`, `inquiries_create_inquiry`, `list_catalog_products`, `list_vendor_subscriptions`
 - `telemetrylink`
+  - [v0.6.0](services/telemetrylink/CHANGELOG.md#v060)
+    - **Feature:** New API client methods `create_*_backflush_job`, `get_*_backflush_job` and `list_*_backflush_jobs` (each for organization, folder and project) with model classes `BackflushJobResponse`, `Create*BackflushJobPayload` and `ListBackflushJobsResponse`
+    - **Feature:** Add `resource_labels` field to `CreateOrUpdate*TelemetryLinkPayload`, `PartialUpdate*TelemetryLinkPayload` and `TelemetryLinkResponse` models
+    - **Improvement:** `enabled` field of `CreateOrUpdate*TelemetryLinkPayload` models is no longer required and defaults to `True`
   - [v0.5.0](services/telemetrylink/CHANGELOG.md#v050)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15
