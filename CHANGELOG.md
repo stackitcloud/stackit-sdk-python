@@ -296,6 +296,13 @@
     - **Chore:** Support Python version 3.15
     - **Chore:** Update dependencies
 - `telemetryrouter`:
+  - [v0.8.0](services/telemetryrouter/CHANGELOG.md#v080)
+    - **Feature:** New API client methods `partial_update_telemetry_router`, `partial_update_destination` and `partial_update_access_token` with corresponding model classes `PartialUpdate*Payload`, `ConfigFilterPatch` and `DestinationConfigPatch*`
+    - **Feature:** Add `destination_count` field to `TelemetryRouterResponse` model
+    - **Feature:** Add `resource_labels` field to `CreateTelemetryRouterPayload`, `UpdateTelemetryRouterPayload`, `PartialUpdateTelemetryRouterPayload` and `TelemetryRouterResponse` models
+    - **Improvement:** `description` fields now also allow `.` characters
+    - **Breaking Change:** Add regex validation (non-empty, no control characters) to `ConfigFilterAttributes.key`, `DestinationConfigOpenTelemetry.bearer_token`/`uri`, `DestinationConfigOpenTelemetryBasicAuth.username`/`password`, `DestinationConfigS3.endpoint` and `DestinationConfigS3AccessKey.id`/`secret`
+    - **Breaking Change:** `DestinationConfigS3.bucket` may now only contain lowercase letters, digits and hyphens
   - [v0.7.0](services/telemetryrouter/CHANGELOG.md#v070)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15
