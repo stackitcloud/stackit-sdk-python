@@ -70,6 +70,8 @@
     - **Improvement:** `Label.key`/`CreateLabelPayload.key` now accepts up to 314 characters (previously 63), supporting prefixed label keys (e.g. `example.com/environment`)
     - **Breaking Change:** `PartialUpdateZonePayload.extensions` type changed from `ZoneExtensions` to `DomainExtensions`, now also exposing `observability_extension.state`
 - `dremio`:
+  - [v0.4.0](services/dremio/CHANGELOG.md#v040)
+    - **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
   - [v0.3.0](services/dremio/CHANGELOG.md#v030)
     - **Chore:** Bump minimum Python version to 3.11
     - **Chore:** Support Python version 3.15

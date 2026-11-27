@@ -1,3 +1,6 @@
+## v0.4.0
+- **Breaking Change:** Switch from regional to global API server URL (region can't be set via `Configuration` / env-variable anymore).
+
 ## v0.3.0
 - **Chore:** Bump minimum Python version to 3.11
 - **Chore:** Support Python version 3.15
