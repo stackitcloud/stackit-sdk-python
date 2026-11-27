@@ -30,14 +30,9 @@ class ServerAgent(BaseModel):
 
     provisioned: Optional[StrictBool] = Field(
         default=None,
-        description="Configure the STACKIT server agent provisioning during the first boot of the server. When `false`, the agent is not installed. When `true`, the agent is installed. Setting it to `true` when booting from an image requires an image that supports the agent; otherwise, the request is rejected. If omitted when booting from an image, the image default (`provisionByDefault`) applies.",
+        description="Configure the STACKIT server agent provisioning during the first boot of the server. Only works when booting from an images that supports the STACKIT server agent. When `false` the agent IS NOT installed. When `true` the agent IS installed. When its not set the result depend on the used image and its default provisioning setting.",
     )
-    vm_monitoring: Optional[StrictBool] = Field(
-        default=None,
-        description="Configuration property that controls whether active virtual machine monitoring is enabled for a server instance. When `true` it allows the platform to collect metrics, monitor system health, and track guest-level performance on the VM. It operates as a dependent option - meaning `vmMonitoring` cannot be active unless the main server agent is also enabled.",
-        alias="vmMonitoring",
-    )
-    __properties: ClassVar[List[str]] = ["provisioned", "vmMonitoring"]
+    __properties: ClassVar[List[str]] = ["provisioned"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -87,5 +82,5 @@ class ServerAgent(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"provisioned": obj.get("provisioned"), "vmMonitoring": obj.get("vmMonitoring")})
+        _obj = cls.model_validate({"provisioned": obj.get("provisioned")})
         return _obj
