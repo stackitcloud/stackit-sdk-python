@@ -56,6 +56,7 @@ class RuleResponse(BaseModel):
     source_ip: StrictStr = Field(alias="sourceIP")
     stateful: Optional[StrictBool] = None
     status: StrictStr = Field(description="The current state of the resource.")
+    sync_status: Optional[StrictStr] = Field(default=None, alias="syncStatus")
     type: StrictStr = Field(description='The type of the rule (e.g., "ACL", "SecurityRule").')
     __properties: ClassVar[List[str]] = [
         "description",
@@ -78,6 +79,7 @@ class RuleResponse(BaseModel):
         "sourceIP",
         "stateful",
         "status",
+        "syncStatus",
         "type",
     ]
 
@@ -88,6 +90,16 @@ class RuleResponse(BaseModel):
             raise ValueError(
                 "must be one of enum values ('Active', 'Error', 'Pending', 'Updating', 'Deleting', 'Creating')"
             )
+        return value
+
+    @field_validator("sync_status")
+    def sync_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["SYNCED", "NOT_SYNCED"]):
+            raise ValueError("must be one of enum values ('SYNCED', 'NOT_SYNCED')")
         return value
 
     @field_validator("type")
@@ -167,6 +179,7 @@ class RuleResponse(BaseModel):
                 "sourceIP": obj.get("sourceIP"),
                 "stateful": obj.get("stateful"),
                 "status": obj.get("status"),
+                "syncStatus": obj.get("syncStatus"),
                 "type": obj.get("type"),
             }
         )
